@@ -1,0 +1,18 @@
+packages:
+  "framer-motion": "For beautiful page transitions, interactive hover effects, and the tarot card flip animation"
+  "canvas-confetti": "For celebration effects on the result page to make the experience feel rewarding"
+  "@types/canvas-confetti": "Types for canvas-confetti"
+  "lucide-react": "For UI icons throughout the application"
+
+images:
+  - path: "artifacts/inner-meter/public/images/hero-bg.png"
+    description: "Soft, abstract gradient mesh background in pastel violet, pink, and white. Very ethereal, dreamy, and modern Korean aesthetic, suitable for a personality test app landing page. No text."
+    aspect_ratio: "16:9"
+  - path: "artifacts/inner-meter/public/images/tarot-back.png"
+    description: "A beautifully designed modern tarot card back. Minimalist geometric patterns with stars and moons in soft pastel purples and gold. Clean, premium vector art style."
+    aspect_ratio: "3:4"
+
+notes:
+  - Pure frontend application with static data.
+  - Using wouter for client-side routing.
+  - No backend integrations required.
