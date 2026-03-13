@@ -124,6 +124,9 @@ const resources = {
       p6:'이 정보는 사이트 개선과 콘텐츠 품질 향상을 위해 활용됩니다.',
       p7:'사용자는 언제든지 사이트 이용을 중단할 수 있습니다.',
       contactLink:'Contact 페이지', p8Pre:'문의 사항은 ', p8Post:'를 통해 연락하실 수 있습니다.', emailLabel:'문의 이메일',
+      adTitle:'광고 서비스 안내 (Google AdSense)',
+      adText:'InnerMeter는 Google AdSense를 통해 광고를 제공합니다. Google을 포함한 광고 제공업체는 쿠키를 사용하여 이전 방문 기록을 기반으로 맞춤 광고를 표시할 수 있습니다. 사용자는 Google 광고 설정 페이지에서 맞춤 광고를 비활성화할 수 있습니다.',
+      adLinkText:'Google 광고 설정',
     },
     contact: { title:'문의하기', p1:'InnerMeter 서비스와 관련된 문의는 아래 이메일로 보내주세요.', emailLabel:'Email', p2:'가능한 빠르게 답변드리겠습니다.', p3:'감사합니다.' },
     kshaman: {
@@ -296,6 +299,9 @@ const resources = {
       p6:'This information is used to improve the site and enhance content quality.',
       p7:'Users may discontinue use of the site at any time.',
       contactLink:'Contact page', p8Pre:'For inquiries, please contact us via our ', p8Post:'.', emailLabel:'Inquiry email',
+      adTitle:'Advertising (Google AdSense)',
+      adText:'InnerMeter uses Google AdSense to display advertisements. Google and third-party vendors use cookies to serve ads based on your prior visits to this or other websites. You may opt out of personalized advertising by visiting Google Ad Settings.',
+      adLinkText:'Google Ad Settings',
     },
     contact: { title:'Contact Us', p1:'For inquiries related to InnerMeter services, please send us an email.', emailLabel:'Email', p2:'We will respond as quickly as possible.', p3:'Thank you.' },
     kshaman: {

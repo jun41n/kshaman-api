@@ -43,6 +43,21 @@ export default function Privacy() {
           <p>{t('privacy.p6')}</p>
           <p>{t('privacy.p7')}</p>
 
+          <div className="bg-blue-50 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900/40 rounded-2xl px-5 py-4">
+            <h2 className="text-sm font-bold text-foreground mb-2 uppercase tracking-wider">{t('privacy.adTitle')}</h2>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              {t('privacy.adText')}{' '}
+              <a
+                href="https://adssettings.google.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-primary hover:opacity-80 transition-opacity"
+              >
+                {t('privacy.adLinkText')}
+              </a>
+            </p>
+          </div>
+
           <p>
             {t('privacy.p8Pre')}
             <Link href="/contact" className="font-semibold text-primary hover:opacity-80 transition-opacity">
