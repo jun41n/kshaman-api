@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useRoute, useLocation } from "wouter";
+import { useRoute, useLocation, Link } from "wouter";
 import { Layout } from "@/components/layout";
 import { ShareButtons } from "@/components/share-buttons";
 import { TestCard } from "@/components/test-card";
