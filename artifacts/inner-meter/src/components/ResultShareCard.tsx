@@ -80,11 +80,22 @@ const THEMES: Record<string, CardTheme> = {
     accentRgb: '249,115,22',
     badgeBg: 'rgba(255,255,255,0.22)',
     badgeBorder: 'rgba(255,255,255,0.35)',
-    tagline: '재미 심리 분석',
+    tagline: '재미 분석',
     textColor: '#ffffff',
     mutedColor: 'rgba(255,255,255,0.75)',
     dividerColor: 'rgba(255,255,255,0.30)',
     footerBorder: 'rgba(255,255,255,0.18)',
+  },
+  '운세': {
+    bg: 'linear-gradient(150deg, #78350f 0%, #b45309 45%, #d97706 100%)',
+    accentRgb: '180,83,9',
+    badgeBg: 'rgba(255,255,255,0.20)',
+    badgeBorder: 'rgba(255,255,255,0.32)',
+    tagline: '운세 분석',
+    textColor: '#ffffff',
+    mutedColor: 'rgba(255,255,255,0.78)',
+    dividerColor: 'rgba(255,255,255,0.28)',
+    footerBorder: 'rgba(255,255,255,0.16)',
   },
   '타로': {
     bg: 'linear-gradient(150deg, #1e0533 0%, #2d1b69 50%, #1a0d3a 100%)',
@@ -159,25 +170,25 @@ export const ResultShareCard = forwardRef<HTMLDivElement, ResultShareCardProps>(
         }}>
 
           {/* header row */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '18px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '18px', gap: '8px' }}>
             {/* brand */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px', flexShrink: 0 }}>
               <div style={{
                 width: '24px', height: '24px', borderRadius: '7px',
                 background: 'rgba(255,255,255,0.20)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: '11px', color: '#fff',
+                fontSize: '11px', color: '#fff', flexShrink: 0,
               }}>✦</div>
-              <span style={{ fontSize: '13px', fontWeight: '800', color: theme.textColor, letterSpacing: '-0.2px' }}>
+              <span style={{ fontSize: '13px', fontWeight: '800', color: theme.textColor, letterSpacing: '-0.2px', whiteSpace: 'nowrap' }}>
                 InnerMeter
               </span>
             </div>
             {/* category pill */}
             <div style={{
-              padding: '4px 12px', borderRadius: '100px',
+              padding: '4px 10px', borderRadius: '100px',
               background: theme.badgeBg, border: `1px solid ${theme.badgeBorder}`,
               fontSize: '10px', fontWeight: '700', color: theme.textColor,
-              letterSpacing: '0.3px',
+              letterSpacing: '0.3px', whiteSpace: 'nowrap', flexShrink: 0,
             }}>{theme.tagline}</div>
           </div>
 
