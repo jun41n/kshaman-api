@@ -32,15 +32,27 @@ async function downloadCardAsPng(
   el: HTMLDivElement,
   filename: string,
 ): Promise<Blob | null> {
-  const { toPng } = await import("html-to-image");
-  const dataUrl = await toPng(el, {
-    pixelRatio: 3,
-    cacheBust: true,
-    skipAutoScale: false,
+  const { toBlob } = await import("html-to-image");
+
+  // Run toBlob twice — first pass embeds fonts/images, second pass renders cleanly
+  const opts = {
+    pixelRatio: 2.5,
+    cacheBust: false,
+    skipFonts: false,
     style: { borderRadius: '28px' },
-  });
-  const res = await fetch(dataUrl);
-  return res.blob();
+    fetchRequestInit: { cache: 'force-cache' as RequestCache },
+  };
+
+  // Warm-up pass (populates internal caches)
+  await toBlob(el, opts).catch(() => null);
+
+  // Actual capture with timeout guard
+  const blobPromise = toBlob(el, opts);
+  const timeoutPromise = new Promise<null>((_, reject) =>
+    setTimeout(() => reject(new Error('capture-timeout')), 15_000),
+  );
+  const blob = await Promise.race([blobPromise, timeoutPromise]);
+  return blob;
 }
 
 export default function TestResult() {
@@ -125,6 +137,7 @@ export default function TestResult() {
       trackResultImageSave({ test_slug: test.slug, result_key: result.key, result_title: result.title });
     } catch (err) {
       console.warn('Image save failed', err);
+      alert('이미지 저장에 실패했어요 😢\n스크린샷(화면 캡처)을 이용해 저장해보세요!');
     } finally {
       setIsSaving(false);
     }
