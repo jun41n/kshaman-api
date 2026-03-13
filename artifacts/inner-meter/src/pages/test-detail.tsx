@@ -7,6 +7,7 @@ import { Progress } from "@/components/ui/progress";
 import { motion, AnimatePresence } from "framer-motion";
 import { trackTestStart, trackTestComplete } from "@/lib/analytics";
 import { useTranslation } from "react-i18next";
+import { useLocalizedTest } from "@/hooks/useLocalizedTest";
 
 const OPTION_LABELS = ['A', 'B', 'C', 'D'];
 
@@ -26,6 +27,7 @@ export default function TestDetail() {
   const [, setLocation] = useLocation();
   const slug = params?.slug || "";
   const test = getTestBySlug(slug);
+  const localTest = useLocalizedTest(slug);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, Record<string, number>>>({});
@@ -146,7 +148,7 @@ export default function TestDetail() {
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2 min-w-0">
               <span className="text-xl shrink-0">{test.emoji}</span>
-              <span className="text-xs font-semibold text-muted-foreground truncate">{test.title}</span>
+              <span className="text-xs font-semibold text-muted-foreground truncate">{localTest?.title ?? test.title}</span>
             </div>
             <div className="flex items-center gap-1.5 shrink-0">
               {isNearEnd && (
@@ -179,7 +181,7 @@ export default function TestDetail() {
             </p>
 
             <h2 className="text-[1.4rem] md:text-[1.75rem] font-bold text-foreground leading-snug mb-8 text-center break-keep">
-              {question.text}
+              {localTest?.questions[question.id]?.text ?? question.text}
             </h2>
 
             <div className="flex flex-col gap-3">
@@ -204,7 +206,9 @@ export default function TestDetail() {
                         }`}>
                         {OPTION_LABELS[displayIdx]}
                       </span>
-                      <span className="text-[0.95rem] font-medium text-foreground leading-relaxed">{option.label}</span>
+                      <span className="text-[0.95rem] font-medium text-foreground leading-relaxed">
+                        {localTest?.questions[question.id]?.options[optionOrder[displayIdx]] ?? option.label}
+                      </span>
                     </div>
                   </motion.button>
                 );

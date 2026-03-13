@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Clock, ChevronRight } from "lucide-react";
 import { Test } from "@/data/tests";
 import { useTranslation } from "react-i18next";
+import { useLocalizedTest } from "@/hooks/useLocalizedTest";
 
 interface TestCardProps {
   test: Test;
@@ -54,10 +55,15 @@ const PARTICIPANT_COUNTS: Record<string, string> = {
 
 export function TestCard({ test }: TestCardProps) {
   const { t } = useTranslation();
+  const localTest = useLocalizedTest(test.slug);
   const theme = CATEGORY_THEME[test.category];
   const count = PARTICIPANT_COUNTS[test.slug];
   const catKey = theme?.catKey || '';
   const catLabel = catKey ? `${CAT_EMOJI[test.category] || ''} ${t(`common.${catKey}`)}` : test.category;
+
+  const title = localTest?.title ?? test.title;
+  const description = localTest?.description ?? test.description;
+  const estimatedTime = localTest?.estimatedTime ?? test.estimatedTime;
 
   return (
     <Link href={`/tests/${test.slug}`} className="block h-full outline-none group">
@@ -75,7 +81,7 @@ export function TestCard({ test }: TestCardProps) {
 
         {/* Title */}
         <h3 className="text-base md:text-[1.05rem] font-bold text-foreground mb-1 line-clamp-2 leading-snug">
-          {test.title}
+          {title}
         </h3>
 
         {/* Participant count */}
@@ -87,14 +93,14 @@ export function TestCard({ test }: TestCardProps) {
 
         {/* Description */}
         <p className="text-muted-foreground text-[0.8rem] flex-grow line-clamp-2 mb-4 leading-relaxed">
-          {test.description}
+          {description}
         </p>
 
         {/* Footer */}
         <div className="flex items-center justify-between pt-3 border-t border-black/[0.06] dark:border-white/[0.06] mt-auto">
           <div className="flex items-center text-[11px] text-muted-foreground font-medium gap-1">
             <Clock className="w-3 h-3 opacity-60" />
-            {test.estimatedTime}
+            {estimatedTime}
           </div>
           <div className="flex items-center text-[0.8rem] font-bold text-primary group-hover:translate-x-1 transition-transform duration-200">
             {t('card.start')} <ChevronRight className="w-3.5 h-3.5 ml-0.5" />

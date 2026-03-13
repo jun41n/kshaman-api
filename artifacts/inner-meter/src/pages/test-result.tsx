@@ -11,6 +11,7 @@ import confetti from "canvas-confetti";
 import { motion } from "framer-motion";
 import { trackRecommendedTestClick, trackResultImageSave } from "@/lib/analytics";
 import { useTranslation } from "react-i18next";
+import { useLocalizedTest } from "@/hooks/useLocalizedTest";
 
 const CATEGORY_GRADIENTS: Record<string, string> = {
   '연애 테스트': 'from-pink-500 via-rose-500 to-fuchsia-500',
@@ -61,6 +62,7 @@ export default function TestResult() {
   const [, params] = useRoute("/results/:slug");
   const [, setLocation] = useLocation();
   const slug = params?.slug || "";
+  const localTest = useLocalizedTest(slug);
   const [resultKey, setResultKey] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -106,6 +108,13 @@ export default function TestResult() {
   const result = test.results.find(r => r.key === resultKey);
   if (!result) return null;
 
+  const localResult = localTest?.results[resultKey];
+  const resultTitle = localResult?.title ?? result.title;
+  const resultSummary = localResult?.summary ?? result.summary;
+  const resultDescription = localResult?.description ?? result.description;
+  const resultStrengths = localResult?.strengths ?? result.strengths;
+  const resultCaution = localResult?.caution ?? result.caution;
+
   const recommendedTests = result.recommendedTests
     .map(s => getTestBySlug(s))
     .filter(Boolean) as NonNullable<ReturnType<typeof getTestBySlug>>[];
@@ -124,7 +133,7 @@ export default function TestResult() {
       const canNativeShare = typeof navigator.canShare === 'function' && navigator.canShare({ files: [file] });
 
       if (canNativeShare) {
-        await navigator.share({ files: [file], title: result.title, text: result.shareText });
+        await navigator.share({ files: [file], title: resultTitle, text: localResult?.shareText ?? result.shareText });
       } else {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -169,11 +178,11 @@ export default function TestResult() {
               {RESULT_EMOJIS[result.key] ?? test.emoji}
             </div>
             <h1 className="text-3xl md:text-[2.6rem] font-black text-white mb-3 leading-tight tracking-tight">
-              {result.title}
+              {resultTitle}
             </h1>
             <div className="w-12 h-[3px] bg-white/35 rounded-full mb-4" />
             <p className="text-base md:text-lg font-semibold text-white/90 leading-snug max-w-[18rem] break-keep">
-              "{result.summary}"
+              "{resultSummary}"
             </p>
           </div>
         </motion.div>
@@ -186,7 +195,7 @@ export default function TestResult() {
           className="bg-card rounded-[1.5rem] p-6 border border-border shadow-sm mb-4"
         >
           <p className="text-[0.95rem] md:text-base text-foreground leading-relaxed break-keep">
-            {result.description}
+            {resultDescription}
           </p>
         </motion.div>
 
@@ -203,7 +212,7 @@ export default function TestResult() {
               <h3 className="font-bold text-emerald-800 dark:text-emerald-300 text-sm">{t('result.strengths')}</h3>
             </div>
             <ul className="space-y-2.5">
-              {result.strengths.map((item, idx) => (
+              {resultStrengths.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-2">
                   <span className="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-[10px] font-black shrink-0 mt-0.5">
                     {idx + 1}
@@ -225,7 +234,7 @@ export default function TestResult() {
               <h3 className="font-bold text-amber-800 dark:text-amber-300 text-sm">{t('result.caution')}</h3>
             </div>
             <ul className="space-y-2.5">
-              {result.caution.map((item, idx) => (
+              {resultCaution.map((item, idx) => (
                 <li key={idx} className="flex items-start gap-2">
                   <span className="w-5 h-5 rounded-full bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400 flex items-center justify-center text-[10px] font-black shrink-0 mt-0.5">
                     {idx + 1}
@@ -366,8 +375,8 @@ export default function TestResult() {
 
             {/* SNS buttons */}
             <ShareButtons
-              title={t('result.shareTitle', { testTitle: test.title, resultTitle: result.title })}
-              text={result.shareText}
+              title={t('result.shareTitle', { testTitle: localTest?.title ?? test.title, resultTitle: resultTitle })}
+              text={localResult?.shareText ?? result.shareText}
               url={window.location.origin + import.meta.env.BASE_URL}
               testSlug={test.slug}
               resultKey={result.key}
