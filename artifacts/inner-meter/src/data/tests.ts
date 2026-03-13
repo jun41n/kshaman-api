@@ -26,7 +26,7 @@ export interface Test {
   slug: string;
   title: string;
   description: string;
-  category: '성격 테스트' | '연애 테스트' | '재미 테스트' | 'MBTI';
+  category: '성격 테스트' | '연애 테스트' | '재미 테스트' | 'MBTI' | '운세';
   estimatedTime: string;
   emoji: string;
   questions: TestQuestion[];
@@ -1162,7 +1162,310 @@ export const tests: Test[] = [
         compatibleVibe: 'ENTJ, ESFJ — 나의 부드러운 감성을 리드해줄 결단력 있는 유형과 잘 맞아요'
       }
     ]
-  }
+  },
+  /* ═══════════════════════════════════════════════ */
+  /* 운명 나이 테스트                                  */
+  /* ═══════════════════════════════════════════════ */
+  {
+    slug: 'destiny-age-test',
+    title: '내 인생이 풀리는 나이 테스트',
+    description: '당신의 인생 흐름이 바뀌는 나이를 확인해보세요.',
+    category: '운세',
+    estimatedTime: '2분',
+    emoji: '🌟',
+    questions: [
+      {
+        id: 1,
+        text: '카카오톡 알림이 잔뜩 쌓여있을 때 나의 반응은?',
+        options: [
+          { label: '바로 확인하고 전부 읽는다', scores: { y_score: 3 } },
+          { label: '중요한 것만 골라서 확인한다', scores: { t_score: 3 } },
+          { label: '나중에 한꺼번에 확인한다', scores: { w_score: 3 } },
+          { label: '알림 자체를 꺼놓는 편이다', scores: { s_score: 3 } },
+        ],
+      },
+      {
+        id: 2,
+        text: '친구가 갑자기 "내일 여행 가자!"고 하면?',
+        options: [
+          { label: '오케이! 당장 짐 싼다', scores: { y_score: 3 } },
+          { label: '일정 확인 후 가능하면 간다', scores: { t_score: 3 } },
+          { label: '미리 계획된 것이 아니면 부담스럽다', scores: { w_score: 3 } },
+          { label: '여행보다 집이 더 좋다', scores: { s_score: 3 } },
+        ],
+      },
+      {
+        id: 3,
+        text: '예상치 못한 돈이 생겼을 때 가장 먼저 하는 것은?',
+        options: [
+          { label: '쇼핑이나 먹고 싶었던 걸 즐긴다', scores: { y_score: 3 } },
+          { label: '여행이나 강의 등 경험에 투자한다', scores: { t_score: 3 } },
+          { label: '저축이나 투자를 우선 생각한다', scores: { w_score: 3 } },
+          { label: '지금도 충분해서 특별히 계획 없다', scores: { s_score: 3 } },
+        ],
+      },
+      {
+        id: 4,
+        text: '힘든 일이 생겼을 때 나는?',
+        options: [
+          { label: '친구한테 전화해서 털어놓는다', scores: { y_score: 3 } },
+          { label: '혼자 생각 정리하고 해결책을 찾는다', scores: { t_score: 3 } },
+          { label: '시간이 약이라 생각하고 기다린다', scores: { w_score: 3 } },
+          { label: '그냥 받아들이고 흘려보낸다', scores: { s_score: 3 } },
+        ],
+      },
+      {
+        id: 5,
+        text: '나에게 가장 중요한 것은?',
+        options: [
+          { label: '재미와 설렘, 지금 이 순간', scores: { y_score: 3 } },
+          { label: '성장과 발전, 더 나은 미래', scores: { t_score: 3 } },
+          { label: '안정과 균형, 소중한 관계들', scores: { w_score: 3 } },
+          { label: '자유와 여유, 내 방식대로 사는 것', scores: { s_score: 3 } },
+        ],
+      },
+      {
+        id: 6,
+        text: 'SNS를 어떻게 사용하는 편인가요?',
+        options: [
+          { label: '거의 매일 올리고 소식도 자주 본다', scores: { y_score: 3 } },
+          { label: '가끔 올리되 양질의 콘텐츠 위주로', scores: { t_score: 3 } },
+          { label: '거의 올리지 않고 가끔 확인만', scores: { w_score: 3 } },
+          { label: 'SNS 자체에 별로 관심이 없다', scores: { s_score: 3 } },
+        ],
+      },
+      {
+        id: 7,
+        text: '나에게 "좋은 하루"란?',
+        options: [
+          { label: '많은 것을 경험하고 설레는 날', scores: { y_score: 3 } },
+          { label: '계획한 일을 다 해낸 날', scores: { t_score: 3 } },
+          { label: '좋아하는 사람과 따뜻하게 보낸 날', scores: { w_score: 3 } },
+          { label: '아무것도 안 하고 편안하게 쉰 날', scores: { s_score: 3 } },
+        ],
+      },
+      {
+        id: 8,
+        text: '5년 후 나의 모습을 상상하면?',
+        options: [
+          { label: '아직 미래는 너무 먼 이야기...', scores: { y_score: 3 } },
+          { label: '원하는 커리어와 라이프를 이루고 있을 것 같다', scores: { t_score: 3 } },
+          { label: '지금보다 더 여유롭고 안정된 삶', scores: { w_score: 3 } },
+          { label: '지금과 크게 달라도, 달라지지 않아도 괜찮다', scores: { s_score: 3 } },
+        ],
+      },
+    ],
+    calculateResult: (scores) => {
+      const y = scores.y_score || 0;
+      const t = scores.t_score || 0;
+      const w = scores.w_score || 0;
+      const s = scores.s_score || 0;
+      const max = Math.max(y, t, w, s);
+      if (max === s) return 'age-50s';
+      if (max === w) return 'age-40s';
+      if (max === t) return 'age-30s';
+      return 'age-20s';
+    },
+    results: [
+      {
+        key: 'age-20s',
+        title: '찬란한 20대 에너지',
+        summary: '지금 이 순간을 온몸으로 불태우는 청춘의 화신!',
+        description: '당신의 삶 에너지는 20대의 열정과 감성 그 자체입니다. 새로운 것에 호기심이 넘치고 실수를 두려워하기보다 경험을 소중히 여깁니다. 지금이 당신 인생에서 가장 반짝이는 시기예요. 마음이 이끄는 대로 최대한 많은 것을 경험하고, 이 에너지를 놓치지 마세요. 인생의 큰 도전들을 두려움 없이 마주할 수 있는 용기가 빛나는 타입입니다.',
+        strengths: ['뜨거운 열정과 실행력', '새로운 경험에 대한 개방성', '감성적인 공감 능력'],
+        caution: ['충동적인 결정으로 후회할 수 있어요', '장기적인 관점도 함께 키워보세요'],
+        shareText: '내 인생 에너지는 "찬란한 20대" ✨ 너는?',
+        recommendedTests: ['love-style-test', 'how-friends-see-me-test', 'teto-egen-test'],
+      },
+      {
+        key: 'age-30s',
+        title: '균형 잡힌 30대 에너지',
+        summary: '성장과 안정, 두 마리 토끼를 잡는 현실주의 챔피언!',
+        description: '당신은 열정과 이성이 균형 있게 조화를 이루는 30대 에너지의 소유자입니다. 감성에만 흘러가지 않고 냉철하게 분석하면서도 도전을 두려워하지 않아요. 커리어와 인간관계 모두 중요하게 생각하며 더 나은 내일을 위해 꾸준히 노력하는 타입입니다. 지금이 당신 인생이 가장 가파르게 성장하는 시기예요!',
+        strengths: ['전략적 사고와 실행력의 균형', '명확한 목표 설정', '성장 지향적 마인드'],
+        caution: ['가끔은 결과보다 과정도 즐겨보세요', '완벽을 추구하다 지칠 수 있어요'],
+        shareText: '내 인생 에너지는 "균형 잡힌 30대" 🌱 너는?',
+        recommendedTests: ['attachment-style-test', 'intuition-vs-logic-test', 'teto-egen-test'],
+      },
+      {
+        key: 'age-40s',
+        title: '원숙한 40대 에너지',
+        summary: '이미 많은 것을 알고 있는 인생의 고수!',
+        description: '당신은 삶의 깊이와 여유를 동시에 지닌 40대 에너지를 가지고 있습니다. 더 이상 남의 시선에 흔들리지 않고 자신만의 가치와 기준으로 살아갑니다. 인간관계에서도 넓이보다 깊이를 추구하며 중요한 것과 그렇지 않은 것을 명확히 구분할 줄 알아요. 당신의 지혜와 통찰력은 주변 사람들에게 큰 힘이 됩니다.',
+        strengths: ['깊은 통찰력과 지혜', '흔들리지 않는 자기 기준', '안정감 있는 관계력'],
+        caution: ['새로운 변화에 열린 마음을 유지해보세요', '가끔은 즉흥적으로 즐겨봐요'],
+        shareText: '내 인생 에너지는 "원숙한 40대" 🌿 너는?',
+        recommendedTests: ['hidden-personality-test', 'love-style-test', 'attachment-style-test'],
+      },
+      {
+        key: 'age-50s',
+        title: '달관한 50대 에너지',
+        summary: '이미 인생의 모든 답을 알고 있는 것 같은 현자!',
+        description: '당신은 많은 것을 내려놓은 듯 초연한 50대 에너지를 지니고 있습니다. 더 이상 작은 일에 흔들리지 않고 인생의 큰 흐름을 꿰뚫어 보는 통찰력이 있어요. 조용하지만 깊은 존재감을 지니고 있으며 지금 이 순간의 소중함을 누구보다 잘 알고 있습니다. 주변 사람들에게 버팀목 같은 존재가 되어주고 있을 거예요.',
+        strengths: ['큰 그림을 보는 관조적 시각', '감정에 흔들리지 않는 평정심', '진정한 자기 이해'],
+        caution: ['때로는 더 적극적으로 표현해보세요', '주변 사람들과의 연결을 놓치지 마세요'],
+        shareText: '내 인생 에너지는 "달관한 50대" 🌾 너는?',
+        recommendedTests: ['hidden-personality-test', 'intuition-vs-logic-test', 'attachment-style-test'],
+      },
+    ],
+  },
+
+  /* ═══════════════════════════════════════════════ */
+  /* 테토 vs 에겐 테스트                              */
+  /* ═══════════════════════════════════════════════ */
+  {
+    slug: 'teto-egen-test',
+    title: '테토 vs 에겐 테스트',
+    description: '당신은 직진형 테토일까요, 분석형 에겐일까요?',
+    category: '성격 테스트',
+    estimatedTime: '2분',
+    emoji: '⚖️',
+    questions: [
+      {
+        id: 1,
+        text: '좋아하는 사람이 생겼을 때 나는?',
+        options: [
+          { label: '바로 마음을 표현하거나 행동으로 보여준다', scores: { teto_score: 2 } },
+          { label: '좋아하는 마음을 꼭꼭 숨기며 혼자 고민한다', scores: { eigen_score: 2 } },
+        ],
+      },
+      {
+        id: 2,
+        text: '길을 가다가 갑자기 비가 쏟아지면?',
+        options: [
+          { label: '편의점으로 뛰어가며 상황을 즐긴다', scores: { teto_score: 2 } },
+          { label: '일기예보 안 봤던 게 후회되면서 당황한다', scores: { eigen_score: 2 } },
+        ],
+      },
+      {
+        id: 3,
+        text: '친구와 의견이 다를 때 나는?',
+        options: [
+          { label: '바로 내 생각을 말하고 설득한다', scores: { teto_score: 2 } },
+          { label: '일단 들어보고 천천히 내 의견을 정리한다', scores: { eigen_score: 2 } },
+        ],
+      },
+      {
+        id: 4,
+        text: '새 드라마나 게임을 시작할 때?',
+        options: [
+          { label: '정보 없이 일단 시작해봐', scores: { teto_score: 2 } },
+          { label: '후기와 평점을 꼼꼼히 확인하고 시작', scores: { eigen_score: 2 } },
+        ],
+      },
+      {
+        id: 5,
+        text: '화가 났을 때 나는?',
+        options: [
+          { label: '감정이 얼굴에 바로 드러난다', scores: { teto_score: 2 } },
+          { label: '겉으로는 괜찮아 보이지만 속으로 끓는다', scores: { eigen_score: 2 } },
+        ],
+      },
+      {
+        id: 6,
+        text: '여행 스타일은?',
+        options: [
+          { label: '대략적인 목적지만 정하고 즉흥적으로', scores: { teto_score: 2 } },
+          { label: '교통편, 숙소, 맛집까지 꼼꼼하게 계획', scores: { eigen_score: 2 } },
+        ],
+      },
+      {
+        id: 7,
+        text: 'SNS에 악플이 달렸다면?',
+        options: [
+          { label: '기분 나쁘면 바로 맞댓글이나 삭제한다', scores: { teto_score: 2 } },
+          { label: '혼자 상처받고 왜 이런 말을 했는지 분석한다', scores: { eigen_score: 2 } },
+        ],
+      },
+      {
+        id: 8,
+        text: '친구들 사이에서 나는?',
+        options: [
+          { label: '분위기를 주도하거나 빠른 결정을 내리는 편', scores: { teto_score: 2 } },
+          { label: '신중하게 의견 내고 중재 역할을 하는 편', scores: { eigen_score: 2 } },
+        ],
+      },
+      {
+        id: 9,
+        text: '영화를 보고 난 뒤 나는?',
+        options: [
+          { label: '재밌었다/별로였다 간단히 결론 내린다', scores: { teto_score: 2 } },
+          { label: '의미, 연출, 배우 연기 등 꼼꼼히 분석한다', scores: { eigen_score: 2 } },
+        ],
+      },
+      {
+        id: 10,
+        text: '일을 할 때 나는?',
+        options: [
+          { label: '완벽하지 않아도 일단 시작하고 수정한다', scores: { teto_score: 2 } },
+          { label: '충분히 준비된 후 완성도 있게 진행한다', scores: { eigen_score: 2 } },
+        ],
+      },
+    ],
+    calculateResult: (scores) => {
+      const t = scores.teto_score || 0;
+      const e = scores.eigen_score || 0;
+      const total = t + e;
+      const tPct = total > 0 ? t / total : 0.5;
+      if (tPct >= 0.8) return 'pure-teto';
+      if (tPct >= 0.6) return 'teto-lean';
+      if (tPct <= 0.2) return 'pure-eigen';
+      if (tPct <= 0.4) return 'eigen-lean';
+      return 'balanced-te';
+    },
+    results: [
+      {
+        key: 'pure-teto',
+        title: '직진 파워 — 순혈 테토',
+        summary: '망설임 없이 달려드는 직진형 인간계의 정수!',
+        description: '당신은 테토(직진형) 에너지가 넘쳐흐르는 타입입니다. 생각보다 행동이 먼저 나오고, 감정이 솔직하게 표현되며, 분위기를 이끄는 것을 좋아합니다. "일단 해보자"가 인생 모토이며 후회보다는 경험을 택하는 스타일이에요. 에너지가 넘치고 주변을 활기차게 만드는 존재감이 특징입니다.',
+        strengths: ['폭발적인 실행력과 추진력', '솔직하고 명쾌한 감정 표현', '분위기를 이끄는 리더십'],
+        caution: ['충동적인 결정으로 후회할 때도 있어요', '상대의 속도를 맞춰주는 배려도 중요해요'],
+        shareText: '나는 직진형 "순혈 테토" 🔥 너는 테토? 에겐?',
+        recommendedTests: ['love-style-test', 'how-friends-see-me-test', 'over-immersion-test'],
+      },
+      {
+        key: 'teto-lean',
+        title: '감성 테토 — 테토 우세형',
+        summary: '직진 기본에 따뜻한 감성까지 갖춘 매력쟁이!',
+        description: '테토 성향이 우세하지만 에겐의 사려 깊음도 겸비한 매력적인 유형입니다. 평소에는 활발하고 직관적으로 행동하지만, 중요한 결정에서는 한 번 더 생각하는 여유가 있어요. 주변에서 "왜 이렇게 매력 있어?"라는 말을 자주 들을 것 같은 밸런스형 테토입니다.',
+        strengths: ['행동력과 사려 깊음의 균형', '유연한 커뮤니케이션', '다양한 상황 적응력'],
+        caution: ['가끔 결정을 너무 오래 미루지 마세요', '직관을 더 믿어봐도 좋아요'],
+        shareText: '나는 "감성 테토" ⚡ 테토 성향이 우세해!',
+        recommendedTests: ['love-style-test', 'attachment-style-test', 'hidden-personality-test'],
+      },
+      {
+        key: 'eigen-lean',
+        title: '따뜻한 에겐 — 에겐 우세형',
+        summary: '분석은 기본, 마음 따뜻함까지 갖춘 이상형 유형!',
+        description: '에겐 성향이 우세하지만 테토의 온기도 품고 있는 균형 잡힌 유형입니다. 신중하고 계획적이지만 딱딱하지 않고 따뜻한 감성을 지니고 있어요. 분석적으로 생각하되 행동력도 갖추고 있어 실제로 업무와 인간관계 모두에서 높은 평가를 받는 타입입니다.',
+        strengths: ['철저한 준비성과 계획력', '따뜻하고 섬세한 배려심', '신뢰를 쌓는 일관성'],
+        caution: ['가끔은 계획 없이 즉흥적으로 즐겨봐요', '완벽을 추구하다 지칠 수 있어요'],
+        shareText: '나는 "따뜻한 에겐" 🧊 에겐 성향이 우세해!',
+        recommendedTests: ['attachment-style-test', 'intuition-vs-logic-test', 'hidden-personality-test'],
+      },
+      {
+        key: 'pure-eigen',
+        title: '분석 마스터 — 순혈 에겐',
+        summary: '모든 것을 꼼꼼히 따지는 전략적 분석가!',
+        description: '당신은 에겐(분석형) 에너지가 가득한 타입입니다. 무엇이든 꼼꼼하게 파악하고 충분한 준비 후 행동하는 신중파예요. 감정보다는 논리가 앞서며 말보다 결과물로 실력을 증명하는 스타일입니다. 깊이 있는 사고와 철저한 준비성은 어디서도 빛을 발합니다.',
+        strengths: ['뛰어난 분석력과 판단력', '철저한 준비와 완성도', '논리적 문제 해결 능력'],
+        caution: ['지나친 분석이 결정을 늦출 수 있어요', '감정 표현을 조금 더 열어보는 것도 좋아요'],
+        shareText: '나는 분석형 "순혈 에겐" 🔭 너는 테토? 에겐?',
+        recommendedTests: ['intuition-vs-logic-test', 'hidden-personality-test', 'attachment-style-test'],
+      },
+      {
+        key: 'balanced-te',
+        title: '하이브리드형 — 테토에겐',
+        summary: '테토와 에겐, 두 에너지를 완벽하게 활용하는 X맨!',
+        description: '테토와 에겐의 비율이 거의 5:5인 균형형입니다. 상황에 따라 직진 모드와 분석 모드를 자유롭게 전환할 수 있어 다양한 상황에서 강점을 발휘해요. 한 마디로 "예측 불가능한 매력"의 소유자. 주변에서 가끔 당신이 어떤 사람인지 헷갈려할 수 있지만, 그게 오히려 당신의 큰 매력이에요.',
+        strengths: ['상황 대처 유연성', '테토·에겐 장점을 모두 활용', '다채로운 매력'],
+        caution: ['이도 저도 아닌 것처럼 보일 때가 있어요', '자신의 진짜 스타일을 탐색해보세요'],
+        shareText: '나는 "하이브리드 테토에겐" ⚖️ 50:50 완벽 밸런스!',
+        recommendedTests: ['hidden-personality-test', 'love-style-test', 'how-friends-see-me-test'],
+      },
+    ],
+  },
 ];
 
 export const getTestBySlug = (slug: string) => tests.find(t => t.slug === slug);
@@ -1226,4 +1529,13 @@ export const RESULT_EMOJIS: Record<string, string> = {
   'ISFJ': '💝',
   'ISTP': '🔧',
   'ISFP': '🎨',
+  'age-20s': '✨',
+  'age-30s': '🌱',
+  'age-40s': '🌿',
+  'age-50s': '🌾',
+  'pure-teto': '🔥',
+  'teto-lean': '⚡',
+  'eigen-lean': '🧊',
+  'pure-eigen': '🔭',
+  'balanced-te': '⚖️',
 };

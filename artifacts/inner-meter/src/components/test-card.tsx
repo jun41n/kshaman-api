@@ -22,6 +22,16 @@ const CATEGORY_THEME: Record<string, { card: string; badge: string; badgeText: s
     badge: 'bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300',
     badgeText: '⚡ 재미',
   },
+  'MBTI': {
+    card: 'bg-gradient-to-br from-violet-50 to-purple-50/60 dark:from-violet-950/25 dark:to-purple-950/10 border-violet-100/80 dark:border-violet-900/30',
+    badge: 'bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300',
+    badgeText: '🔬 MBTI',
+  },
+  '운세': {
+    card: 'bg-gradient-to-br from-yellow-50 to-amber-50/60 dark:from-yellow-950/25 dark:to-amber-950/10 border-yellow-100/80 dark:border-yellow-900/30',
+    badge: 'bg-yellow-100 dark:bg-yellow-900/40 text-yellow-700 dark:text-yellow-300',
+    badgeText: '🔮 운세',
+  },
 };
 
 const PARTICIPANT_COUNTS: Record<string, string> = {

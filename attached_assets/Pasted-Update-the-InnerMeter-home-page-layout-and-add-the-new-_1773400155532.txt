@@ -1,0 +1,246 @@
+Update the InnerMeter home page layout and add the new test content in this exact structure.
+
+IMPORTANT:
+Do not break existing cards, spacing, routing, analytics, or footer layout.
+Keep the site mobile-first and visually consistent with the current design.
+Reuse existing card components where possible, but create a special large featured section for K-Shaman Reading.
+
+==================================================
+HOME PAGE LAYOUT CHANGE
+==================================================
+
+Current goal:
+
+1. Add "운명 나이 테스트" as a normal test card
+2. Add "테토 vs 에겐 테스트" as a normal test card
+3. Add "K-Shaman Reading" as a large featured section below the card grid
+   styled similarly to the tarot hero section
+
+Layout intention:
+
+Top card grid area:
+- existing test cards remain
+- fill the two empty card slots beside / below MBTI with:
+  1) 운명 나이 테스트
+  2) 테토 vs 에겐 테스트
+
+Below the card grid and above the footer:
+- insert a large full-width featured promotional section for K-Shaman Reading
+- this should visually feel like a major special feature, not just another small card
+
+==================================================
+SECTION 1: NORMAL TEST CARDS
+==================================================
+
+Add these two cards into the test grid using the existing card design system.
+
+--------------------------------
+CARD A
+--------------------------------
+
+Title:
+"내 인생이 풀리는 나이 테스트"
+
+Category tag:
+"운세"
+
+Description:
+"당신의 인생 흐름이 바뀌는 나이를 확인해보세요."
+
+Meta info:
+"2분"
+
+CTA:
+"시작"
+
+Route:
+"/destiny-age-test"
+
+Suggested icon:
+sparkle / clock / star style icon
+
+--------------------------------
+CARD B
+--------------------------------
+
+Title:
+"테토 vs 에겐 테스트"
+
+Category tag:
+"성격"
+
+Description:
+"당신은 직진형 테토일까요, 분석형 에겐일까요?"
+
+Meta info:
+"2분"
+
+CTA:
+"시작"
+
+Route:
+"/teto-egen-test"
+
+Suggested icon:
+balance / brain / split personality style icon
+
+==================================================
+SECTION 2: LARGE FEATURED K-SHAMAN BLOCK
+==================================================
+
+Create a new large featured section below the test card grid.
+
+This section should be visually similar in importance and scale to the tarot section.
+It must feel premium, mystical, and highly clickable.
+
+Route:
+"/k-shaman"
+
+Section type:
+full-width featured banner / hero card
+
+Placement:
+directly below the "모든 테스트 보기" button area OR
+replace that lower empty area with this section,
+while preserving good spacing above the footer.
+
+If needed, move the “모든 테스트 보기” button above this featured section or keep it integrated cleanly.
+Do not let the layout feel cramped.
+
+==================================================
+K-SHAMAN FEATURED SECTION CONTENT
+==================================================
+
+Main title:
+"🔮 K-Shaman Reading"
+
+Headline:
+"누구에게 점사를 볼까요?"
+
+Subheadline:
+"애기보살, 선녀보살, 천신도령, 무속인, 법사 중 한 명을 선택하고
+나만의 점사를 확인해보세요."
+
+Body text:
+"보살마다 말투도 다르고, 해석도 다릅니다.
+선택한 시선으로 당신의 운명 흐름을 읽어보세요."
+
+Primary CTA button:
+"점사 보러 가기"
+
+Optional secondary text:
+"연애운 · 재물운 · 인생 전환 시기 확인"
+
+==================================================
+K-SHAMAN FEATURED VISUAL STYLE
+==================================================
+
+Design direction:
+- visually similar to the tarot hero block
+- dark purple / deep navy / black mystical background
+- gold / ivory text accents
+- subtle spiritual / tarot / shamanic motif
+- elegant and immersive, but still consistent with InnerMeter branding
+
+Visual suggestions:
+- large right-side card illustration or mystical symbol
+- moon / stars / spiritual seal / card-frame motif
+- glowing accent shapes
+- premium rounded container
+- soft shadow
+
+Do not make it look too cluttered.
+It should feel polished and high-conversion.
+
+==================================================
+MOBILE + RESPONSIVE BEHAVIOR
+==================================================
+
+This is very important.
+
+Desktop / tablet:
+- normal test cards stay in the grid
+- K-Shaman featured block spans full width below
+
+Mobile:
+- normal cards stack naturally
+- K-Shaman featured block appears as a large vertical promotional card
+- text must remain readable
+- CTA button must stay visible without overflow
+- no horizontal scrolling
+- safe bottom spacing above footer
+
+==================================================
+FEATURE PRIORITY
+==================================================
+
+K-Shaman Reading should feel like a flagship feature.
+
+That means:
+- do NOT render it as a small standard test card
+- it must stand out more than the other tests
+- it should visually compete with the tarot section in importance
+- the user should immediately understand that this is a premium / special experience
+
+==================================================
+FUNCTIONAL REQUIREMENTS
+==================================================
+
+Ensure these routes exist and are connected:
+
+/destiny-age-test
+/teto-egen-test
+/k-shaman
+
+Card click / section click must navigate correctly.
+
+Track analytics using the existing analytics system:
+- test_start
+- test_complete
+- result_share
+- image_save
+- persona_select (for K-Shaman)
+
+If route pages are not fully implemented yet,
+still create the homepage entry points cleanly without broken navigation.
+
+==================================================
+COPY IN KOREAN
+==================================================
+
+All visible UI copy should be Korean.
+
+Suggested exact copy:
+
+[운명 나이 카드]
+제목: 내 인생이 풀리는 나이 테스트
+설명: 당신의 인생 흐름이 바뀌는 나이를 확인해보세요.
+태그: 운세
+버튼: 시작
+
+[테토 에겐 카드]
+제목: 테토 vs 에겐 테스트
+설명: 당신은 직진형 테토일까요, 분석형 에겐일까요?
+태그: 성격
+버튼: 시작
+
+[K-Shaman 대형 섹션]
+타이틀: 🔮 K-Shaman Reading
+헤드라인: 누구에게 점사를 볼까요?
+설명1: 애기보살, 선녀보살, 천신도령, 무속인, 법사 중 한 명을 선택하고 나만의 점사를 확인해보세요.
+설명2: 보살마다 말투도 다르고, 해석도 다릅니다.
+버튼: 점사 보러 가기
+보조문구: 연애운 · 재물운 · 인생 전환 시기 확인
+
+==================================================
+IMPLEMENTATION NOTES
+==================================================
+
+- Reuse existing test card component for the two new tests
+- Create a dedicated featured section component for K-Shaman
+- Maintain consistent spacing rhythm with the current homepage
+- Do not break footer position
+- Do not leave awkward empty white space
+- Preserve the current visual hierarchy
+- Ensure the featured K-Shaman block looks intentional and integrated, not pasted in
+- Keep code modular and stable

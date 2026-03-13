@@ -171,6 +171,63 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── K-Shaman Featured Section ── */}
+      <section className="mb-12">
+        <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border border-purple-900/40">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0d0720] via-[#1a0a38] to-[#260c4a]" />
+          {/* glow blobs */}
+          <div className="absolute top-0 right-0 w-64 h-64 bg-fuchsia-700/25 rounded-full blur-3xl -translate-y-1/3 translate-x-1/4" />
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-violet-700/20 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
+          {/* floating star particles */}
+          {['8% 10%','88% 7%','12% 82%','82% 78%','50% 42%','25% 55%','72% 35%'].map((pos, i) => (
+            <motion.span
+              key={i}
+              className="absolute text-white/10 text-lg select-none pointer-events-none"
+              style={{ top: pos.split(' ')[1], left: pos.split(' ')[0] }}
+              animate={{ opacity: [0.1, 0.4, 0.1] }}
+              transition={{ duration: 2.5 + i * 0.4, repeat: Infinity }}
+            >✦</motion.span>
+          ))}
+
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 p-8 md:p-10">
+            <div className="text-center md:text-left max-w-sm">
+              <span className="inline-block px-3 py-1 bg-white/10 rounded-full text-xs font-bold text-fuchsia-200 mb-4 border border-white/10">
+                🔮 신규 특별 체험
+              </span>
+              <h2 className="text-2xl md:text-3xl font-black text-white mb-2 leading-tight">
+                누구에게 점사를 볼까요?
+              </h2>
+              <p className="text-purple-200/80 text-sm md:text-base mb-2 leading-relaxed">
+                애기보살, 선녀보살, 천신도령, 무속인, 법사 중<br className="hidden md:block" />
+                한 명을 선택하고 나만의 점사를 확인해보세요.
+              </p>
+              <p className="text-purple-300/60 text-xs mb-6">
+                보살마다 말투도 다르고, 해석도 다릅니다.
+              </p>
+              <Button asChild className="rounded-full bg-gradient-to-r from-fuchsia-500 to-violet-500 hover:from-fuchsia-400 hover:to-violet-400 text-white font-bold border-0 shadow-lg shadow-fuchsia-700/30 h-11 px-7 text-sm">
+                <Link href="/k-shaman">🔮 점사 보러 가기</Link>
+              </Button>
+              <p className="text-purple-400/60 text-[11px] mt-3">연애운 · 재물운 · 인생 전환 시기 확인</p>
+            </div>
+
+            {/* Shaman cards illustration */}
+            <div className="flex gap-2 shrink-0 items-end">
+              {['🌸','🌙','⚡','🔮','📿'].map((emoji, i) => (
+                <motion.div
+                  key={i}
+                  className="flex flex-col items-center justify-end rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm shadow-xl"
+                  style={{ width: 44, height: 64 + i % 3 * 14, fontSize: '1.5rem' }}
+                  animate={{ y: [0, -4, 0] }}
+                  transition={{ duration: 2 + i * 0.3, repeat: Infinity, ease: 'easeInOut' }}
+                >
+                  <span className="pb-2">{emoji}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── 더 많은 테스트 (non-trending) ── */}
       <section className="mb-10">
         <div className="flex items-end justify-between mb-5">
