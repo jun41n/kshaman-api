@@ -1,12 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useRoute, useLocation } from "wouter";
 import { Layout } from "@/components/layout";
 import { getTestBySlug } from "@/data/tests";
 import { ArrowLeft } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { motion, AnimatePresence } from "framer-motion";
+import { trackTestStart, trackTestComplete } from "@/lib/analytics";
 
 const OPTION_LABELS = ['A', 'B', 'C', 'D'];
+
+/* ── Fisher-Yates shuffle (returns a new array) ── */
+function shuffle<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
 export default function TestDetail() {
   const [, params] = useRoute("/tests/:slug");
@@ -19,30 +30,70 @@ export default function TestDetail() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
 
+  // Stable shuffled question order — created once when the test loads
+  const shuffledQuestionsRef = useRef<typeof test extends { questions: infer Q } ? Q : never[]>([]);
+  // Stable shuffled options per question index
+  const shuffledOptionsRef = useRef<Map<number, number[]>>(new Map());
+  const initializedRef = useRef(false);
+
   useEffect(() => {
-    if (!test) setLocation("/tests");
+    if (!test) { setLocation("/tests"); return; }
+
+    // Only shuffle once per test session
+    if (!initializedRef.current) {
+      initializedRef.current = true;
+
+      // Shuffle question order
+      shuffledQuestionsRef.current = shuffle(test.questions) as any;
+
+      // Shuffle option order for each question
+      const optMap = new Map<number, number[]>();
+      test.questions.forEach((_, qi) => {
+        const indices = test.questions[qi].options.map((_, i) => i);
+        optMap.set(qi, shuffle(indices));
+      });
+      shuffledOptionsRef.current = optMap;
+
+      // Track test start
+      trackTestStart({
+        test_slug: test.slug,
+        test_title: test.title,
+        category: test.category,
+      });
+    }
+
     window.scrollTo(0, 0);
   }, [test, setLocation]);
 
   if (!test) return null;
 
-  const question = test.questions[currentQuestionIndex];
-  const progressPct = (currentQuestionIndex / test.questions.length) * 100;
-  const isNearEnd = currentQuestionIndex >= test.questions.length - 2;
+  const questions = shuffledQuestionsRef.current as typeof test.questions;
+  if (questions.length === 0) return null;
 
-  const handleOptionClick = (scores: Record<string, number>, idx: number) => {
+  const question = questions[currentQuestionIndex];
+  // Get the shuffled option order for the current question's original index
+  const origIndex = test.questions.findIndex(q => q.id === question.id);
+  const optionOrder = shuffledOptionsRef.current.get(origIndex) ?? question.options.map((_, i) => i);
+  const displayOptions = optionOrder.map(i => question.options[i]);
+
+  const progressPct = (currentQuestionIndex / questions.length) * 100;
+  const isNearEnd = currentQuestionIndex >= questions.length - 2;
+
+  const handleOptionClick = (scores: Record<string, number>, displayIdx: number) => {
     if (isTransitioning) return;
-    setSelectedIdx(idx);
+    setSelectedIdx(displayIdx);
     const newAnswers = { ...answers, [currentQuestionIndex]: scores };
     setAnswers(newAnswers);
     setIsTransitioning(true);
+
     setTimeout(() => {
-      if (currentQuestionIndex < test.questions.length - 1) {
+      if (currentQuestionIndex < questions.length - 1) {
         setCurrentQuestionIndex(prev => prev + 1);
         setSelectedIdx(null);
         setIsTransitioning(false);
         window.scrollTo({ top: 0, behavior: 'smooth' });
       } else {
+        // Compute final scores
         const totalScores: Record<string, number> = {};
         Object.values(newAnswers).forEach(scoreObj => {
           Object.entries(scoreObj).forEach(([dim, score]) => {
@@ -50,6 +101,18 @@ export default function TestDetail() {
           });
         });
         const resultKey = test.calculateResult(totalScores);
+
+        // Find the result title for tracking
+        const resultObj = test.results.find(r => r.key === resultKey);
+
+        trackTestComplete({
+          test_slug: test.slug,
+          test_title: test.title,
+          result_key: resultKey,
+          result_title: resultObj?.title ?? resultKey,
+          category: test.category,
+        });
+
         setLocation(`/results/${test.slug}?result=${resultKey}`);
       }
     }, 320);
@@ -77,7 +140,6 @@ export default function TestDetail() {
             이전
           </button>
 
-          {/* Test title + count */}
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2 min-w-0">
               <span className="text-xl shrink-0">{test.emoji}</span>
@@ -92,12 +154,11 @@ export default function TestDetail() {
                 >✨</motion.span>
               )}
               <span className="text-sm font-bold text-primary bg-primary/10 px-3 py-1 rounded-full tabular-nums">
-                {currentQuestionIndex + 1} / {test.questions.length}
+                {currentQuestionIndex + 1} / {questions.length}
               </span>
             </div>
           </div>
 
-          {/* Progress bar */}
           <Progress value={progressPct} className="h-2 rounded-full bg-secondary" />
         </div>
 
@@ -110,7 +171,6 @@ export default function TestDetail() {
             exit={{ opacity: 0, x: -24 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
           >
-            {/* Question number */}
             <p className="text-xs font-bold text-primary/60 text-center mb-2 tracking-wide uppercase">
               Q{currentQuestionIndex + 1}
             </p>
@@ -120,12 +180,12 @@ export default function TestDetail() {
             </h2>
 
             <div className="flex flex-col gap-3">
-              {question.options.map((option, idx) => {
-                const isSelected = selectedIdx === idx;
+              {displayOptions.map((option, displayIdx) => {
+                const isSelected = selectedIdx === displayIdx;
                 return (
                   <motion.button
-                    key={idx}
-                    onClick={() => handleOptionClick(option.scores, idx)}
+                    key={displayIdx}
+                    onClick={() => handleOptionClick(option.scores, displayIdx)}
                     whileTap={{ scale: 0.985 }}
                     className={`w-full text-left rounded-2xl border transition-all duration-200 group
                       ${isSelected
@@ -134,13 +194,12 @@ export default function TestDetail() {
                       }`}
                   >
                     <div className="flex items-start gap-3.5 p-4 md:p-5">
-                      {/* Letter badge */}
                       <span className={`flex items-center justify-center w-7 h-7 rounded-xl text-xs font-black shrink-0 mt-0.5 transition-colors
                         ${isSelected
                           ? 'bg-primary text-white'
                           : 'bg-muted text-muted-foreground group-hover:bg-primary/15 group-hover:text-primary'
                         }`}>
-                        {OPTION_LABELS[idx]}
+                        {OPTION_LABELS[displayIdx]}
                       </span>
                       <span className="text-[0.95rem] font-medium text-foreground leading-relaxed">{option.label}</span>
                     </div>

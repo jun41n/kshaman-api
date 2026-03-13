@@ -1,7 +1,9 @@
-import { Switch, Route, Router as WouterRouter } from "wouter";
+import { useEffect } from "react";
+import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { initAnalytics, trackPageView } from "@/lib/analytics";
 
 // Pages
 import Home from "@/pages/home";
@@ -17,24 +19,41 @@ import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
 
+/** Tracks a page view on every wouter route change. */
+function RouteTracker() {
+  const [location] = useLocation();
+  useEffect(() => {
+    trackPageView(location);
+  }, [location]);
+  return null;
+}
+
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/tests" component={Tests} />
-      <Route path="/tests/:slug" component={TestDetail} />
-      <Route path="/results/:slug" component={TestResult} />
-      <Route path="/tarot" component={Tarot} />
-      <Route path="/about" component={About} />
-      <Route path="/privacy" component={Privacy} />
-      <Route path="/terms" component={Terms} />
-      <Route path="/contact" component={Contact} />
-      <Route component={NotFound} />
-    </Switch>
+    <>
+      <RouteTracker />
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/tests" component={Tests} />
+        <Route path="/tests/:slug" component={TestDetail} />
+        <Route path="/results/:slug" component={TestResult} />
+        <Route path="/tarot" component={Tarot} />
+        <Route path="/about" component={About} />
+        <Route path="/privacy" component={Privacy} />
+        <Route path="/terms" component={Terms} />
+        <Route path="/contact" component={Contact} />
+        <Route component={NotFound} />
+      </Switch>
+    </>
   );
 }
 
 function App() {
+  // Initialise GA4 once on mount (no-op when VITE_GA_ID is not set)
+  useEffect(() => {
+    initAnalytics();
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>

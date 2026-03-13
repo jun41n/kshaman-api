@@ -8,6 +8,7 @@ import { RotateCcw, Grid2x2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import confetti from "canvas-confetti";
 import { motion } from "framer-motion";
+import { trackRecommendedTestClick } from "@/lib/analytics";
 
 const CATEGORY_GRADIENTS: Record<string, string> = {
   '연애 테스트': 'from-pink-500 via-rose-500 to-fuchsia-500',
@@ -171,6 +172,8 @@ export default function TestResult() {
             <ShareButtons
               title={`나의 ${test.title} 결과는 ${result.title}!`}
               text={result.shareText}
+              testSlug={test.slug}
+              resultKey={result.key}
             />
           </div>
         </motion.div>
@@ -198,7 +201,14 @@ export default function TestResult() {
               <p className="text-xs text-muted-foreground">이 결과를 본 사람들이 다음에 많이 한 테스트예요</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {recommendedTests.map(rt => <TestCard key={rt.slug} test={rt} />)}
+              {recommendedTests.map(rt => (
+                <div
+                  key={rt.slug}
+                  onClick={() => trackRecommendedTestClick({ from_test_slug: test.slug, to_test_slug: rt.slug })}
+                >
+                  <TestCard test={rt} />
+                </div>
+              ))}
             </div>
           </motion.div>
         )}

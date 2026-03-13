@@ -4,6 +4,7 @@ import { tarotCards } from "@/data/tarot";
 import { Button } from "@/components/ui/button";
 import { Heart, Briefcase, Zap } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { trackTarotDraw } from "@/lib/analytics";
 
 const STARS = [
   { top: '8%', left: '5%', size: '6px', opacity: 0.5, delay: 0 },
@@ -26,9 +27,11 @@ export default function Tarot() {
   const drawCard = () => {
     if (isDrawn) return;
     const randomIndex = Math.floor(Math.random() * tarotCards.length);
-    setSelectedCard(tarotCards[randomIndex]);
+    const card = tarotCards[randomIndex];
+    setSelectedCard(card);
     setIsDrawn(true);
     setTimeout(() => setIsFlipped(true), 700);
+    trackTarotDraw(card.name);
   };
 
   const resetTarot = () => {
