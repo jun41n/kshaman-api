@@ -18,13 +18,15 @@ export interface TestResult {
   caution: string[];
   shareText: string;
   recommendedTests: string[];
+  relationshipStyle?: string;
+  compatibleVibe?: string;
 }
 
 export interface Test {
   slug: string;
   title: string;
   description: string;
-  category: '성격 테스트' | '연애 테스트' | '재미 테스트';
+  category: '성격 테스트' | '연애 테스트' | '재미 테스트' | 'MBTI';
   estimatedTime: string;
   emoji: string;
   questions: TestQuestion[];
@@ -851,6 +853,313 @@ export const tests: Test[] = [
         caution: ['모든 걸 완벽하게 조율하려다 스스로 피곤해질 수 있어요', '때로는 한쪽으로 완전히 미쳐보는 경험도 필요합니다'],
         shareText: '나의 사고 방식은 완벽한 밸런스 "균형형 사고자" ⚖️ 네 뇌구조도 궁금해!',
         recommendedTests: ['attachment-style-test', 'hidden-personality-test', 'intuition-vs-logic-test']
+      }
+    ]
+  },
+  {
+    slug: 'mbti-test',
+    title: '나의 MBTI는 무엇일까?',
+    description: '12개 질문으로 알아보는 나의 진짜 MBTI 유형. 솔직하게 답할수록 더 정확해요.',
+    category: 'MBTI',
+    estimatedTime: '4분',
+    emoji: '🧠',
+    questions: [
+      {
+        id: 1,
+        text: '사람들과 오래 있고 나면 나는?',
+        options: [
+          { label: '더 신나고 에너지가 올라온다', scores: { ei: 2 } },
+          { label: '혼자만의 시간이 절실해진다', scores: { ei: -2 } }
+        ]
+      },
+      {
+        id: 2,
+        text: '처음 보는 사람이 많은 자리에서 나는?',
+        options: [
+          { label: '먼저 말 걸고 빠르게 어울린다', scores: { ei: 2 } },
+          { label: '분위기를 파악하며 조용히 있는다', scores: { ei: -2 } }
+        ]
+      },
+      {
+        id: 3,
+        text: '힘든 일이 있을 때 나는?',
+        options: [
+          { label: '친구에게 털어놓으면 마음이 풀린다', scores: { ei: 2 } },
+          { label: '혼자 조용히 정리할 시간이 필요하다', scores: { ei: -2 } }
+        ]
+      },
+      {
+        id: 4,
+        text: '무언가를 설명할 때 나는?',
+        options: [
+          { label: '구체적인 사례와 실제 경험을 들어 말한다', scores: { sn: 2 } },
+          { label: '비유와 큰 그림으로 이야기하는 편이다', scores: { sn: -2 } }
+        ]
+      },
+      {
+        id: 5,
+        text: '결정할 때 더 믿는 건?',
+        options: [
+          { label: '검증된 사실과 실제 경험', scores: { sn: 2 } },
+          { label: '직감과 가능성에 대한 느낌', scores: { sn: -2 } }
+        ]
+      },
+      {
+        id: 6,
+        text: '끌리는 대화 주제는?',
+        options: [
+          { label: '요즘 사는 이야기, 실용적인 정보 교환', scores: { sn: 2 } },
+          { label: '"만약에~", 미래 가능성, 아이디어 토론', scores: { sn: -2 } }
+        ]
+      },
+      {
+        id: 7,
+        text: '친구가 "나 진짜 힘들어"라고 하면 나는?',
+        options: [
+          { label: '왜 그렇게 됐는지 분석하고 해결책을 찾아준다', scores: { tf: 2 } },
+          { label: '"맞아, 진짜 힘들었겠다"라며 일단 공감한다', scores: { tf: -2 } }
+        ]
+      },
+      {
+        id: 8,
+        text: '중요한 결정을 할 때 나는?',
+        options: [
+          { label: '감정은 잠시 옆에 두고 논리적으로 분석한다', scores: { tf: 2 } },
+          { label: '내 감정과 관련된 사람들 기분도 꼭 고려한다', scores: { tf: -2 } }
+        ]
+      },
+      {
+        id: 9,
+        text: '누군가 명백히 틀렸을 때 나는?',
+        options: [
+          { label: '솔직하게 뭐가 잘못됐는지 말해준다', scores: { tf: 2 } },
+          { label: '상처받을까봐 돌려서 부드럽게 말한다', scores: { tf: -2 } }
+        ]
+      },
+      {
+        id: 10,
+        text: '일정이나 약속을 잡을 때 나는?',
+        options: [
+          { label: '미리 정해두고 달력에 표시해야 편하다', scores: { jp: 2 } },
+          { label: '대충 정해두고 그때그때 조율하면 된다', scores: { jp: -2 } }
+        ]
+      },
+      {
+        id: 11,
+        text: '여행을 계획한다면 나는?',
+        options: [
+          { label: '숙소, 식당, 동선을 미리 완벽하게 짜둔다', scores: { jp: 2 } },
+          { label: '방향만 대충 잡고 현지에서 즉흥적으로', scores: { jp: -2 } }
+        ]
+      },
+      {
+        id: 12,
+        text: '마감이나 기한에 대해 나는?',
+        options: [
+          { label: '기한 훨씬 전에 끝내야 마음이 편하다', scores: { jp: 2 } },
+          { label: '마감이 다가와야 집중력이 제대로 올라온다', scores: { jp: -2 } }
+        ]
+      }
+    ],
+    calculateResult: (scores) => {
+      const e = (scores.ei ?? 0) >= 0 ? 'E' : 'I';
+      const s = (scores.sn ?? 0) >= 0 ? 'S' : 'N';
+      const t = (scores.tf ?? 0) >= 0 ? 'T' : 'F';
+      const j = (scores.jp ?? 0) >= 0 ? 'J' : 'P';
+      return `${e}${s}${t}${j}`;
+    },
+    results: [
+      {
+        key: 'ENTJ',
+        title: '타고난 전략가 (ENTJ)',
+        summary: '태어나서 지금까지 항상 팀장... 솔직히 그게 편해',
+        description: '목표를 정하면 반드시 이루고야 마는 의지의 인간. 카리스마와 추진력이 넘쳐서 자연스럽게 주변을 이끌게 됩니다. 비효율을 못 참고 계획을 세우면 무조건 실행하며, 성취에서 에너지를 얻고 멈추는 법을 잘 모릅니다. 리더 자리가 딱 맞는 사람이에요.',
+        strengths: ['탁월한 리더십과 강력한 추진력', '복잡한 상황을 빠르게 구조화하는 전략적 사고', '목표 달성에 대한 집요한 집중력'],
+        caution: ['너무 직설적이어서 상대방이 상처받는 줄 모를 때가 있어요', '효율만 강조하다 보면 사람의 감정이 놓이기 쉽습니다'],
+        shareText: '나는 타고난 전략가 "ENTJ" 🦁 당신의 MBTI는?',
+        recommendedTests: ['hidden-personality-test', 'how-friends-see-me-test', 'intuition-vs-logic-test'],
+        relationshipStyle: '연애도 목표를 정하고 전략적으로 접근합니다. 표현은 직접적이지만 책임감 하나만큼은 완벽하고, 상대방이 인정해줄 때 더 깊이 헌신해요.',
+        compatibleVibe: 'INFP, INTP — 나의 강한 방향성을 부드럽게 채워줄 유형과 잘 맞아요'
+      },
+      {
+        key: 'ENTP',
+        title: '끝없는 아이디어 뱅크 (ENTP)',
+        summary: '"어? 이거 재밌겠는데?"를 하루에 15번 하는 사람',
+        description: '세상 모든 것에 "왜?"와 "근데 이렇게 하면 어때?"를 달고 사는 호기심 폭발형 인간. 토론을 놀이처럼 즐기고 반박당할수록 더 신이 납니다. 아이디어는 무한하지만 완성하는 건 별개의 문제이고, 지루한 건 진짜 못 참아요.',
+        strengths: ['어떤 상황에서도 창의적인 해결책을 찾아내는 능력', '지적 호기심이 폭발적이고 학습 속도가 빠름', '날카로운 유머와 뛰어난 말솜씨'],
+        caution: ['완성하지 못한 프로젝트가 폴더에 쌓여있을 가능성 높음', '토론 모드로 달려들어 상대방을 지치게 할 때가 있어요'],
+        shareText: '나는 아이디어 뱅크 "ENTP" 💡 당신의 MBTI는?',
+        recommendedTests: ['intuition-vs-logic-test', 'hidden-personality-test', 'how-friends-see-me-test'],
+        relationshipStyle: '지적 대화와 논쟁을 즐기는 연애 스타일. 다양한 이야기를 나눌 수 있는 관계에서 가장 빛납니다.',
+        compatibleVibe: 'INFJ, INTJ — 나의 발산적 에너지를 수렴해줄 깊이 있는 유형과 잘 어울려요'
+      },
+      {
+        key: 'ENFJ',
+        title: '사람들의 빛나는 조력자 (ENFJ)',
+        summary: '남 걱정을 내 걱정보다 먼저 하는 참사랑 인간',
+        description: '주변 사람이 빛나도록 돕는 것에서 진짜 행복을 찾는 유형. 공감 능력이 뛰어나고 사람 사이의 갈등을 감지하는 레이더가 예민합니다. 타인을 위해 에너지를 쏟다 보면 정작 자신의 필요를 놓치는 경우가 생기니 주의가 필요해요.',
+        strengths: ['뛰어난 공감 능력과 사람을 끌어당기는 따뜻한 매력', '조직 내 갈등을 자연스럽게 중재하는 능력', '상대방의 잠재력을 알아보고 성장시키는 힘'],
+        caution: ['거절을 못 해서 자신을 너무 소진시킬 때가 있어요', '사람들의 기대에 부응하려다 스트레스가 쌓입니다'],
+        shareText: '나는 따뜻한 조력자 "ENFJ" 🌟 당신의 MBTI는?',
+        recommendedTests: ['love-style-test', 'attachment-style-test', 'how-friends-see-me-test'],
+        relationshipStyle: '깊고 의미 있는 연애를 추구합니다. 상대방의 성장을 진심으로 응원하며 함께 더 나은 사람이 되고 싶어하는 헌신적인 연인이에요.',
+        compatibleVibe: 'INFP, ISFP — 나의 따뜻함을 온전히 받아들이고 순수하게 감동받는 유형과 맞아요'
+      },
+      {
+        key: 'ENFP',
+        title: '낭만 넘치는 자유 영혼 (ENFP)',
+        summary: '오늘도 설레는 거 하나 발견했음 ✨ 내일도 발견할 예정',
+        description: '매일이 새롭고 신나는 세계. 열정과 호기심이 넘치고 사람들에게 에너지와 영감을 나눠주는 게 특기입니다. 관심사가 너무 많아서 한 가지에만 집중하는 게 세상에서 제일 어렵고, 반복되는 일상은 진짜 힘들어요.',
+        strengths: ['넘치는 열정과 사람들에게 영감을 주는 에너지', '창의적이고 다양한 시각으로 문제를 바라보는 능력', '진심 어린 공감과 따뜻한 지지'],
+        caution: ['흥미가 식으면 빠르게 손을 놓는 경향이 있어요', '미루다 보면 마감 직전에 터지는 경우가 자주 생깁니다'],
+        shareText: '나는 낭만 자유 영혼 "ENFP" 🌈 당신의 MBTI는?',
+        recommendedTests: ['love-style-test', 'over-immersion-test', 'hidden-personality-test'],
+        relationshipStyle: '처음 감정이 폭발하는 썸 단계를 가장 설레게 즐깁니다. 관계가 깊어질수록 자유와 진심 사이에서 균형을 잡으려 노력해요.',
+        compatibleVibe: 'INTJ, INFJ — 나의 에너지를 묵묵히 받아주고 방향을 잡아줄 유형과 잘 맞아요'
+      },
+      {
+        key: 'ESTJ',
+        title: '규칙과 질서의 수호자 (ESTJ)',
+        summary: '계획대로 안 되면 일단 숨부터 참음',
+        description: '체계와 규칙을 사랑하고 해야 할 일 목록을 지우는 쾌감을 아는 사람. 약속 시간 5분 전에 도착하고 맡은 일은 끝까지 해내는 책임감의 화신입니다. 주변이 어수선하거나 계획이 틀어지면 속이 타들어가는 걸 느끼기도 해요.',
+        strengths: ['탁월한 실행력과 흔들리지 않는 책임감', '조직과 시스템을 효율적으로 운영하는 능력', '일관된 원칙과 높은 신뢰감'],
+        caution: ['변화에 유연하게 적응하는 게 스트레스가 될 수 있어요', '내 기준으로 타인을 평가하다 관계가 어색해질 때가 있습니다'],
+        shareText: '나는 강직한 수호자 "ESTJ" 📋 당신의 MBTI는?',
+        recommendedTests: ['how-friends-see-me-test', 'hidden-personality-test', 'intuition-vs-logic-test'],
+        relationshipStyle: '안정적이고 신뢰할 수 있는 파트너. 감정 표현은 서툴 수 있지만 행동으로 진심을 보여주는 든든한 연인이에요.',
+        compatibleVibe: 'ISFP, ISTP — 나의 강한 계획성 옆에서 여유로운 균형을 맞춰줄 유형과 잘 어울려요'
+      },
+      {
+        key: 'ESFJ',
+        title: '모두의 분위기 메이커 (ESFJ)',
+        summary: '다 같이 즐거워야 진짜 즐거운 거지',
+        description: '그룹 분위기를 주도하고 모두가 행복한지 가장 먼저 체크하는 타입. 타인을 배려하는 게 자연스럽고 칭찬받으면 진짜 열심히 합니다. 갈등이나 비판을 받으면 마음이 오래 걸리는 편이고, 인정받고 싶은 마음도 크게 있어요.',
+        strengths: ['분위기를 따뜻하게 만드는 탁월한 소통 능력', '주변 사람들의 필요를 먼저 알아채는 섬세한 센스', '약속과 의리를 소중히 여기는 성실함'],
+        caution: ['남들 눈치를 너무 봐서 내 의견을 말하기 힘들 때가 있어요', '비판에 민감하게 반응해서 상처를 오래 간직합니다'],
+        shareText: '나는 따뜻한 분위기 메이커 "ESFJ" 🎉 당신의 MBTI는?',
+        recommendedTests: ['love-style-test', 'how-friends-see-me-test', 'attachment-style-test'],
+        relationshipStyle: '헌신적이고 따뜻한 연인. 기념일을 절대 잊지 않으며 상대방이 편안하게 느낄 수 있도록 늘 세심하게 노력합니다.',
+        compatibleVibe: 'ISFP, INFP — 나의 헌신에 감동받고 진심으로 화답하는 감성형과 잘 맞아요'
+      },
+      {
+        key: 'ESTP',
+        title: '현장을 지배하는 행동파 (ESTP)',
+        summary: '생각은 나중에, 일단 해보고 고치면 됨',
+        description: '이론보다 실전, 계획보다 즉흥이 맞는 현장형 인간. 눈앞의 상황을 빠르게 파악하고 재빠르게 대응하는 능력이 탁월합니다. 지루한 이론 강의나 기나긴 회의는 질색이고, 실제로 뛰어들어야 실력이 발휘됩니다. 위기의 순간에 특히 빛나는 타입이에요.',
+        strengths: ['어떤 상황도 빠르게 파악하고 대처하는 위기 대응력', '에너지 넘치는 실행력과 대담한 추진력', '현실적이고 실용적인 문제 해결 능력'],
+        caution: ['장기 계획이나 반복되는 루틴이 진짜 힘들게 느껴질 수 있어요', '감정적인 부분을 너무 무시하다 관계에서 오해가 생길 수 있습니다'],
+        shareText: '나는 현장 마스터 "ESTP" ⚡ 당신의 MBTI는?',
+        recommendedTests: ['over-immersion-test', 'how-friends-see-me-test', 'love-style-test'],
+        relationshipStyle: '연애도 즉흥적이고 활기차게. 함께 새로운 경험을 즐기는 것을 중요하게 생각하며 자유롭고 재미있는 관계를 선호해요.',
+        compatibleVibe: 'ISFJ, ISTJ — 나의 즉흥적인 에너지를 안전하게 잡아줄 안정적인 유형과 잘 맞아요'
+      },
+      {
+        key: 'ESFP',
+        title: '어디서든 파티 주인공 (ESFP)',
+        summary: '내가 있어야 파티지, 내가 가면 파티가 되지',
+        description: '존재 자체가 에너지인 사람. 분위기를 띄우고 모두를 웃게 만드는 재주가 타고났습니다. 현재 순간을 즐기는 걸 최우선으로 하고, 무겁고 지루한 분위기는 자연스럽게 밝게 전환시켜버립니다. 계획보다는 지금 이 순간의 행복이 가장 중요해요.',
+        strengths: ['넘치는 유머와 사람들을 즐겁게 만드는 에너지', '새로운 경험에 대한 열린 마음과 도전 정신', '지금 이 순간에 온전히 집중하는 능력'],
+        caution: ['미래 계획이나 장기 목표를 놓치기 쉬워요', '힘든 상황을 외면하다 문제가 커질 수 있습니다'],
+        shareText: '나는 파티 주인공 "ESFP" 🎊 당신의 MBTI는?',
+        recommendedTests: ['love-style-test', 'over-immersion-test', 'how-friends-see-me-test'],
+        relationshipStyle: '사랑받고 또 사랑해주는 것을 적극적으로 즐기는 스타일. 함께하는 순간 하나하나를 특별하게 만들어줍니다.',
+        compatibleVibe: 'ISFJ, ISTJ — 나의 화려함 뒤에서 든든하게 지원해줄 유형과 잘 어울려요'
+      },
+      {
+        key: 'INTJ',
+        title: '모든 걸 계획한 음모론자 (INTJ)',
+        summary: '5년 후의 나를 이미 계획했는데 방해하지 마',
+        description: '철저한 계획과 큰 그림을 동시에 그리는 전략의 달인. 말 수가 적지만 한 마디 한 마디에 무게가 있고, 혼자 깊이 사고하는 시간이 꼭 필요합니다. 비효율적인 것들을 보면 속으로 이미 개선안을 짜고 있으며, 남들의 평가보다는 자기 기준이 훨씬 중요해요.',
+        strengths: ['치밀한 전략적 사고와 장기적 비전 설계 능력', '독립적이고 자기 주도적인 삶의 태도', '높은 집중력과 독보적인 지적 깊이'],
+        caution: ['고집이 세서 다른 의견을 받아들이기 어려울 때가 있어요', '사람들과 따뜻하게 소통하는 부분이 힘들게 느껴질 수 있습니다'],
+        shareText: '나는 전략적 음모론자 "INTJ" 🎯 당신의 MBTI는?',
+        recommendedTests: ['intuition-vs-logic-test', 'hidden-personality-test', 'attachment-style-test'],
+        relationshipStyle: '관계에 신중하게 접근하지만 한번 마음을 열면 깊고 진지한 연인이 됩니다. 말보다 행동으로 사랑을 표현하는 타입이에요.',
+        compatibleVibe: 'ENFP, ENTP — 나의 닫힌 세계를 밝고 창의적으로 열어줄 유형과 잘 맞아요'
+      },
+      {
+        key: 'INTP',
+        title: '끊임없이 분석하는 사색가 (INTP)',
+        summary: '잠들기 전 아무도 안 물어본 질문을 혼자 해결 중',
+        description: '세상을 이해하려는 끊임없는 호기심의 인간. 복잡한 문제를 파고들면서 희열을 느끼고, 겉으로는 조용해 보이지만 머릿속은 항상 풀가동 중입니다. 감정 표현보다 논리와 분석이 편하고, 정해진 틀보다 자유로운 사고를 좋아해요.',
+        strengths: ['깊이 있는 논리적 분석과 개념화 능력', '창의적이고 독창적인 아이디어 생산', '광범위하고 다양한 분야에 걸친 지적 호기심'],
+        caution: ['생각이 너무 많아서 결정을 내리지 못하고 멈춰있을 때가 있어요', '사회적 에너지 소모가 크고 감정 표현이 서툴 수 있습니다'],
+        shareText: '나는 사색하는 분석가 "INTP" 🔬 당신의 MBTI는?',
+        recommendedTests: ['intuition-vs-logic-test', 'hidden-personality-test', 'over-immersion-test'],
+        relationshipStyle: '관계에서 깊은 지적 교감을 가장 중요하게 여깁니다. 말 대신 관심 어린 분석과 배려로 사랑을 표현하는 독특한 스타일이에요.',
+        compatibleVibe: 'ENTJ, ENFJ — 나의 흩어진 에너지를 방향 잡아줄 리더십 있는 유형과 잘 어울려요'
+      },
+      {
+        key: 'INFJ',
+        title: '인류를 이해하는 신비주의자 (INFJ)',
+        summary: '말 안 해도 네 마음 다 알아... 무섭지?',
+        description: '사람의 본질을 꿰뚫어보는 직관력을 가진 드문 유형. 이상과 가치관이 뚜렷하고 세상을 더 나은 곳으로 만들고 싶다는 열망이 있습니다. 공감 능력이 뛰어나지만 타인의 감정에 너무 깊이 빠져들어 지치기도 해요. 혼자만의 시간이 없으면 빠르게 방전됩니다.',
+        strengths: ['사람의 심리와 상황을 꿰뚫는 통찰력', '강한 가치관과 깊고 섬세한 공감 능력', '조용하지만 주변에 강력한 영향력'],
+        caution: ['완벽주의와 이상주의가 지나쳐서 스스로 번아웃될 수 있어요', '속마음을 잘 드러내지 않아 오해를 살 때가 있습니다'],
+        shareText: '나는 신비로운 예언자 "INFJ" 🔮 당신의 MBTI는?',
+        recommendedTests: ['attachment-style-test', 'hidden-personality-test', 'love-style-test'],
+        relationshipStyle: '깊고 의미 있는 연결을 원하며 표면적인 관계는 금방 지루해집니다. 진심이 통하는 사람을 만나면 온 마음을 다해 헌신해요.',
+        compatibleVibe: 'ENFP, ENTP — 나의 진지함을 가볍고 따뜻하게 받아줄 유형과 잘 맞아요'
+      },
+      {
+        key: 'INFP',
+        title: '감성 충만한 이상주의자 (INFP)',
+        summary: '세상이 내 마음처럼만 됐으면 진짜 좋겠다...',
+        description: '나만의 이상과 가치를 누구보다 소중히 여기는 감성형 인간. 겉으로는 조용해 보이지만 내면에는 광활한 우주가 펼쳐져 있습니다. 진정성 없는 사람이나 억지스러운 상황에 금방 에너지가 떨어지고, 의미 있는 일에는 누구보다 진심을 쏟아요.',
+        strengths: ['깊은 공감 능력과 진정성 있는 감수성', '창의적이고 독창적인 상상력', '나만의 확고한 가치관과 신념'],
+        caution: ['이상과 현실의 괴리에 혼자 힘들어하는 경우가 많아요', '비판을 개인적으로 받아들여서 오래 상처받을 수 있습니다'],
+        shareText: '나는 감성 이상주의자 "INFP" 🌙 당신의 MBTI는?',
+        recommendedTests: ['love-style-test', 'hidden-personality-test', 'attachment-style-test'],
+        relationshipStyle: '사랑하면 온 마음을 주는 유형. 진심과 감정을 중시하고 관계에서 깊은 유대와 이해를 원합니다.',
+        compatibleVibe: 'ENFJ, ENTJ — 나를 이해하고 세상을 헤쳐나가도록 이끌어줄 리더형과 잘 맞아요'
+      },
+      {
+        key: 'ISTJ',
+        title: '믿음직한 철벽 완벽주의자 (ISTJ)',
+        summary: '했다고 하면 무조건 한다. 그게 나야.',
+        description: '책임감과 신뢰성이 삶의 핵심 가치인 사람. 정해진 규칙과 절차를 철저히 따르고 맡은 일은 끝까지 완수합니다. 감정보다는 사실과 데이터를 신뢰하고, 갑작스러운 변화보다 예측 가능한 환경에서 가장 편안함을 느껴요.',
+        strengths: ['압도적인 책임감과 흔들리지 않는 신뢰성', '체계적이고 꼼꼼한 업무 처리 능력', '오랜 시간 쌓아온 깊은 전문성'],
+        caution: ['변화나 새로운 방식에 적응하는 데 시간이 오래 걸릴 수 있어요', '감정 표현이 서툴어서 오해를 살 때가 있습니다'],
+        shareText: '나는 믿을 수 있는 완벽주의자 "ISTJ" 🏛️ 당신의 MBTI는?',
+        recommendedTests: ['how-friends-see-me-test', 'hidden-personality-test', 'love-style-test'],
+        relationshipStyle: '천천히 마음을 열지만, 한번 열면 평생 든든한 파트너가 됩니다. 행동으로 사랑을 보여주는 묵직한 스타일이에요.',
+        compatibleVibe: 'ESFP, ESTP — 나의 진중함을 재미있게 흔들어줄 활동적인 유형과 잘 어울려요'
+      },
+      {
+        key: 'ISFJ',
+        title: '조용한 헌신의 수호 천사 (ISFJ)',
+        summary: '내가 챙겨야 마음이 편한 사람이에요',
+        description: '주변 사람들을 세심하게 챙기고 기억하는 따뜻한 마음의 소유자. 조용하게 뒤에서 모든 것을 든든하게 지원하고, 작은 배려 하나하나에 진심을 담습니다. 자신의 필요보다 남의 필요를 먼저 생각하다 보면 어느새 지쳐버리는 경우도 생겨요.',
+        strengths: ['따뜻하고 세심한 배려 능력', '안정적이고 꾸준한 헌신과 성실함', '뛰어난 관찰력과 섬세한 기억력'],
+        caution: ['거절하는 것이 너무 힘들어서 자신을 혹사시킬 수 있어요', '참고 또 참다가 갑자기 폭발할 수 있습니다'],
+        shareText: '나는 조용한 수호 천사 "ISFJ" 💝 당신의 MBTI는?',
+        recommendedTests: ['love-style-test', 'attachment-style-test', 'how-friends-see-me-test'],
+        relationshipStyle: '깊은 헌신과 세심함으로 상대방을 감동시키는 연인. 소소한 기념일도 기억하고 진심으로 챙깁니다.',
+        compatibleVibe: 'ESTP, ESFP — 나의 조용함을 밝고 활기차게 채워줄 유형과 잘 어울려요'
+      },
+      {
+        key: 'ISTP',
+        title: '조용하지만 손재주 만렙 (ISTP)',
+        summary: '말보다 행동이 먼저고, 행동보다 분석이 먼저임',
+        description: '겉으로는 조용하지만 손이 먼저 움직이는 실전형 분석가. 복잡한 기계나 시스템이 어떻게 작동하는지 파악하는 걸 좋아합니다. 감정 표현은 서툴지만 위기 상황에서 침착하게 최적의 판단을 내리는 게 특기예요. 자유롭게 움직일 공간이 있어야 제대로 살 수 있어요.',
+        strengths: ['위기에서 냉정하게 최선의 선택을 하는 능력', '뛰어난 손재주와 기술적 문제 해결력', '자유롭고 독립적인 사고방식'],
+        caution: ['감정 표현이 너무 부족해서 상대방이 답답해할 수 있어요', '장기 계획이나 반복 업무를 오래 유지하기 힘들 수 있습니다'],
+        shareText: '나는 침착한 분석가 "ISTP" 🔧 당신의 MBTI는?',
+        recommendedTests: ['intuition-vs-logic-test', 'hidden-personality-test', 'over-immersion-test'],
+        relationshipStyle: '자유를 중시하는 연애 스타일. 말보다 행동으로 챙기며 상대방의 독립성도 존중하는 여유로운 파트너예요.',
+        compatibleVibe: 'ESFJ, ESTJ — 나의 방향성 없는 일상을 따뜻하게 정리해줄 계획형과 잘 어울려요'
+      },
+      {
+        key: 'ISFP',
+        title: '오늘도 감성 충전 중인 예술가 (ISFP)',
+        summary: '말은 별로 없지만 보이는 것에 다 감동받음',
+        description: '조용하게 자신만의 감성 세계를 살아가는 자유로운 영혼. 아름다운 것과 진정성 있는 경험에 강하게 반응하며, 틀에 박힌 규칙보다 자유로운 표현을 소중히 여깁니다. 말보다 행동이나 예술로 감정을 표현하고, 강요받는 상황에 매우 약해요.',
+        strengths: ['독특하고 섬세한 감수성과 예술적 재능', '다른 사람의 감정과 분위기를 포착하는 예민함', '자신만의 확고한 미적 취향'],
+        caution: ['갈등 상황을 피하다가 해결이 늦어지는 경우가 많아요', '미래 계획보다 지금 감정에 집중하다 준비가 부족해질 수 있습니다'],
+        shareText: '나는 감성 아티스트 "ISFP" 🎨 당신의 MBTI는?',
+        recommendedTests: ['love-style-test', 'hidden-personality-test', 'attachment-style-test'],
+        relationshipStyle: '표현은 적지만 작은 행동 하나하나에 사랑을 담는 타입. 상대방의 취향을 세심하게 기억하고 배려합니다.',
+        compatibleVibe: 'ENTJ, ESFJ — 나의 부드러운 감성을 리드해줄 결단력 있는 유형과 잘 맞아요'
       }
     ]
   }

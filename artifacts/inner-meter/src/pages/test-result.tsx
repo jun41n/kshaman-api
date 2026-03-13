@@ -222,6 +222,39 @@ export default function TestResult() {
           </motion.div>
         </div>
 
+        {/* ── Relationship Style & Compatible Vibe (MBTI only) ── */}
+        {(result.relationshipStyle || result.compatibleVibe) && (
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.25 }}
+            className="mb-5 rounded-[1.5rem] overflow-hidden border border-violet-100 dark:border-violet-900/40"
+          >
+            {result.relationshipStyle && (
+              <div className="bg-violet-50 dark:bg-violet-950/30 p-5 border-b border-violet-100 dark:border-violet-900/40">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-lg leading-none">💘</span>
+                  <h3 className="font-bold text-violet-800 dark:text-violet-300 text-sm">연애 스타일</h3>
+                </div>
+                <p className="text-sm text-violet-900 dark:text-violet-200 leading-relaxed break-keep">
+                  {result.relationshipStyle}
+                </p>
+              </div>
+            )}
+            {result.compatibleVibe && (
+              <div className="bg-fuchsia-50 dark:bg-fuchsia-950/30 p-5">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-lg leading-none">✨</span>
+                  <h3 className="font-bold text-fuchsia-800 dark:text-fuchsia-300 text-sm">잘 맞는 유형</h3>
+                </div>
+                <p className="text-sm text-fuchsia-900 dark:text-fuchsia-200 leading-relaxed break-keep">
+                  {result.compatibleVibe}
+                </p>
+              </div>
+            )}
+          </motion.div>
+        )}
+
         {/* ── Share Card Section ── */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}

@@ -30,9 +30,9 @@ export default function TestDetail() {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
 
-  // Stable shuffled question order — created once when the test loads
-  const shuffledQuestionsRef = useRef<typeof test extends { questions: infer Q } ? Q : never[]>([]);
-  // Stable shuffled options per question index
+  // Shuffled questions in state so a re-render is triggered once they're ready
+  const [shuffledQuestions, setShuffledQuestions] = useState<typeof test extends null ? never[] : NonNullable<typeof test>['questions']>([]);
+  // Stable shuffled options per question index (ref is fine here — not needed for render gating)
   const shuffledOptionsRef = useRef<Map<number, number[]>>(new Map());
   const initializedRef = useRef(false);
 
@@ -43,14 +43,15 @@ export default function TestDetail() {
     if (!initializedRef.current) {
       initializedRef.current = true;
 
-      // Shuffle question order
-      shuffledQuestionsRef.current = shuffle(test.questions) as any;
+      // Shuffle question order — set via state to trigger re-render
+      const shuffled = shuffle(test.questions) as typeof test.questions;
+      setShuffledQuestions(shuffled);
 
       // Shuffle option order for each question
       const optMap = new Map<number, number[]>();
-      test.questions.forEach((_, qi) => {
-        const indices = test.questions[qi].options.map((_, i) => i);
-        optMap.set(qi, shuffle(indices));
+      test.questions.forEach((q) => {
+        const origIdx = test.questions.indexOf(q);
+        optMap.set(origIdx, shuffle(q.options.map((_, i) => i)));
       });
       shuffledOptionsRef.current = optMap;
 
@@ -66,10 +67,9 @@ export default function TestDetail() {
   }, [test, setLocation]);
 
   if (!test) return null;
+  if (shuffledQuestions.length === 0) return null;
 
-  const questions = shuffledQuestionsRef.current as typeof test.questions;
-  if (questions.length === 0) return null;
-
+  const questions = shuffledQuestions;
   const question = questions[currentQuestionIndex];
   // Get the shuffled option order for the current question's original index
   const origIndex = test.questions.findIndex(q => q.id === question.id);
