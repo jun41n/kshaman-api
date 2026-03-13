@@ -175,16 +175,16 @@ export default function Home() {
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 p-8 md:p-10">
             <div className="text-center md:text-left max-w-md">
               <span className="inline-block px-3 py-1 bg-white/10 rounded-full text-xs font-bold text-purple-200 mb-4 border border-white/10">
-                🌙 매일 새로운 카드
+                {t('home.tarotLabel')}
               </span>
               <h2 className="text-2xl md:text-3xl font-black text-white mb-2 leading-tight">
-                오늘 내 운명의 카드는?
+                {t('home.tarotTitle')}
               </h2>
               <p className="text-purple-200/75 text-sm md:text-base mb-6 leading-relaxed">
-                사랑, 일, 에너지에 대한 오늘의 메시지를<br className="hidden md:block" /> 타로 한 장으로 확인해보세요.
+                {t('home.tarotDesc')}
               </p>
               <Button asChild className="rounded-full bg-white text-purple-950 hover:bg-purple-50 font-bold border-0 shadow-lg h-11 px-6 text-sm">
-                <Link href="/tarot">🔮 카드 뽑으러 가기</Link>
+                <Link href="/tarot">{t('home.tarotCta')}</Link>
               </Button>
             </div>
 
