@@ -20,59 +20,57 @@ export default function Privacy() {
         </div>
 
         {/* 본문 */}
-        <div className="bg-card border border-border rounded-3xl p-8 shadow-sm space-y-8 text-foreground/80 leading-relaxed text-base">
+        <div className="bg-card border border-border rounded-3xl p-8 shadow-sm space-y-7 text-foreground/80 leading-relaxed text-base">
 
-          <section>
-            <p>InnerMeter는 사용자의 개인정보를 중요하게 생각합니다.</p>
-            <p className="mt-3">
-              본 사이트는 서비스 제공을 위해 최소한의 정보만을 수집합니다.
-            </p>
-          </section>
+          <p>InnerMeter는 사용자의 개인정보 보호를 중요하게 생각합니다.</p>
 
-          <section>
-            <h2 className="text-base font-bold text-foreground mb-4">수집 가능한 정보</h2>
-            <ul className="space-y-2.5">
+          <p>
+            본 사이트는 서비스 제공을 위해 최소한의 정보만을 수집할 수 있습니다.
+          </p>
+
+          <div>
+            <h2 className="text-sm font-bold text-foreground mb-4 uppercase tracking-wider">수집 가능한 정보</h2>
+            <ul className="space-y-3">
               {['생년월일', '성별', '국가'].map((item) => (
-                <li key={item} className="flex items-center gap-2.5 text-sm">
+                <li key={item} className="flex items-center gap-3 text-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
                   {item}
                 </li>
               ))}
             </ul>
             <p className="mt-4 text-sm">
-              이 정보는 테스트 결과 생성 목적으로만 사용됩니다.
+              이 정보는 테스트 결과 생성 및 사용자 경험 개선을 위한 목적으로만 사용됩니다.
             </p>
-          </section>
+          </div>
 
-          <section>
-            <p>
-              InnerMeter는 사용자의 개인정보를 외부에 판매하거나 공유하지 않습니다.
-            </p>
-          </section>
+          <p>
+            InnerMeter는 사용자의 개인정보를 외부에 판매하거나 공유하지 않습니다.
+          </p>
 
-          <section>
-            <p>
-              또한 Google Analytics와 같은 도구를 통해 방문 통계를 수집할 수 있습니다.
-            </p>
-            <p className="mt-3">
-              이 정보는 사이트 개선 및 사용자 경험 향상을 위해 사용됩니다.
-            </p>
-          </section>
+          <p>
+            또한 Google Analytics와 같은 분석 도구를 통해 방문 통계가 수집될 수 있습니다.
+          </p>
 
-          <section>
-            <p>사용자는 언제든지 사이트 이용을 중단할 수 있습니다.</p>
-            <p className="mt-3">
-              문의 사항이 있는 경우{' '}
-              <Link href="/contact" className="font-semibold text-primary hover:opacity-80 transition-opacity">
-                Contact 페이지
-              </Link>
-              를 통해 연락할 수 있습니다.
-            </p>
-          </section>
+          <p>
+            이 정보는 사이트 개선과 콘텐츠 품질 향상을 위해 활용됩니다.
+          </p>
+
+          <p>사용자는 언제든지 사이트 이용을 중단할 수 있습니다.</p>
+
+          <p>
+            문의 사항은{' '}
+            <Link href="/contact" className="font-semibold text-primary hover:opacity-80 transition-opacity">
+              Contact 페이지
+            </Link>
+            를 통해 연락하실 수 있습니다.
+          </p>
 
           <div className="pt-4 border-t border-border text-sm text-muted-foreground">
             문의 이메일:{' '}
-            <a href={`mailto:${CONTACT_EMAIL}`} className="font-semibold text-primary hover:opacity-80 transition-opacity">
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="font-semibold text-primary hover:opacity-80 transition-opacity"
+            >
               {CONTACT_EMAIL}
             </a>
           </div>

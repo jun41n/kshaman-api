@@ -134,40 +134,32 @@ export function Layout({ children }: LayoutProps) {
               </p>
             </div>
 
-            {/* Links + Contact */}
-            <div className="flex flex-col sm:flex-row gap-6 sm:gap-10">
-              {/* 페이지 링크 */}
+            {/* Links */}
+            <div className="flex flex-col sm:flex-row gap-6 sm:gap-12">
+              {/* 서비스 */}
               <div>
-                <p className="text-xs font-bold text-muted-foreground/60 uppercase tracking-wider mb-2.5">메뉴</p>
-                <div className="flex flex-col gap-2 text-sm font-medium text-muted-foreground">
-                  <Link href="/about"   className="hover:text-primary transition-colors">서비스 소개</Link>
-                  <Link href="/terms"   className="hover:text-primary transition-colors">이용약관</Link>
-                  <Link href="/privacy" className="hover:text-primary transition-colors">개인정보처리방침</Link>
+                <p className="text-xs font-bold text-muted-foreground/60 uppercase tracking-wider mb-3">서비스</p>
+                <div className="flex flex-col gap-2.5 text-sm font-medium text-muted-foreground">
+                  <Link href="/tests"  className="hover:text-primary transition-colors">테스트 모음</Link>
+                  <Link href="/tarot"  className="hover:text-primary transition-colors">오늘의 타로</Link>
+                  <Link href="/k-shaman" className="hover:text-primary transition-colors">K-Shaman</Link>
                 </div>
               </div>
 
-              {/* 문의 */}
+              {/* 정보 */}
               <div>
-                <p className="text-xs font-bold text-muted-foreground/60 uppercase tracking-wider mb-2.5">문의 및 제휴</p>
-                <a
-                  href={`mailto:${CONTACT_EMAIL}`}
-                  className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors"
-                >
-                  <Mail className="w-3.5 h-3.5 shrink-0" />
-                  {CONTACT_EMAIL}
-                </a>
-                <Link
-                  href="/contact"
-                  className="inline-block mt-1.5 text-xs font-semibold text-primary/70 hover:text-primary transition-colors"
-                >
-                  문의 페이지 →
-                </Link>
+                <p className="text-xs font-bold text-muted-foreground/60 uppercase tracking-wider mb-3">정보</p>
+                <div className="flex flex-col gap-2.5 text-sm font-medium text-muted-foreground">
+                  <Link href="/about"   className="hover:text-primary transition-colors">About</Link>
+                  <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+                  <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
+                </div>
               </div>
             </div>
           </div>
 
           <div className="mt-6 pt-5 border-t border-border/50 text-center text-xs text-muted-foreground/50 font-medium">
-            &copy; {new Date().getFullYear()} InnerMeter. All rights reserved.
+            &copy; 2026 InnerMeter. All rights reserved.
           </div>
         </div>
       </footer>
