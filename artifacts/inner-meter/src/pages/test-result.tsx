@@ -83,7 +83,7 @@ export default function TestResult() {
       confetti({ ...opts, particleCount: n, origin: { x: rng(0.7, 0.9), y: -0.1 }, colors: ['#8B5CF6', '#EC4899', '#3B82F6', '#10B981'] });
     }, 220);
 
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'instant' });
     return () => clearInterval(iv);
   }, [slug, test, setLocation]);
 
@@ -366,6 +366,7 @@ export default function TestResult() {
             <ShareButtons
               title={`나의 ${test.title} 결과는 ${result.title}!`}
               text={result.shareText}
+              url={window.location.origin + import.meta.env.BASE_URL}
               testSlug={test.slug}
               resultKey={result.key}
             />

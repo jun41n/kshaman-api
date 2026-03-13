@@ -20,10 +20,11 @@ import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
 
-/** Tracks a page view on every wouter route change. */
+/** Tracks a page view and scrolls to top on every wouter route change. */
 function RouteTracker() {
   const [location] = useLocation();
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
     trackPageView(location);
   }, [location]);
   return null;

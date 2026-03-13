@@ -113,6 +113,7 @@ export default function TestDetail() {
           category: test.category,
         });
 
+        window.scrollTo({ top: 0, behavior: 'instant' });
         setLocation(`/results/${test.slug}?result=${resultKey}`);
       }
     }, 320);
