@@ -1466,6 +1466,725 @@ export const tests: Test[] = [
       },
     ],
   },
+  // ── 빌런 유형 테스트 ──────────────────────────────────────────────
+  {
+    slug: 'villain-type-test',
+    title: '내 안의 빌런 유형은?',
+    description: '당신 안에 숨어있는 빌런 캐릭터, 어떤 유형일까요?',
+    category: '재미 테스트',
+    estimatedTime: '2분',
+    emoji: '😈',
+    questions: [
+      {
+        id: 1,
+        text: '단체 카톡방에서 아무도 내 의견에 반응을 안 해준다. 나는?',
+        options: [
+          { label: '무시하고 다음 화제로 넘어간다', scores: { narcissist: 0, obsessive: 0, cold: 1, timid: 2 } },
+          { label: '다시 한번 더 어필해본다', scores: { narcissist: 2, obsessive: 1, cold: 0, timid: 0 } },
+          { label: '속으로는 열받지만 아무렇지 않은 척', scores: { narcissist: 0, obsessive: 2, cold: 1, timid: 1 } },
+          { label: '조용히 읽씹한 사람 명단을 확인한다', scores: { narcissist: 1, obsessive: 3, cold: 1, timid: 0 } },
+        ],
+      },
+      {
+        id: 2,
+        text: '좋아하는 사람이 다른 이성과 친하게 지낸다. 나는?',
+        options: [
+          { label: '쿨하게 넘긴다. 내가 먼저 다가가면 되지', scores: { narcissist: 2, obsessive: 0, cold: 0, timid: 0 } },
+          { label: '그 이성이 누군지 SNS까지 파헤친다', scores: { narcissist: 0, obsessive: 3, cold: 0, timid: 0 } },
+          { label: '나는 관심 없는 척하며 점수를 조용히 뺀다', scores: { narcissist: 0, obsessive: 0, cold: 3, timid: 0 } },
+          { label: '혼자 속앓이만 하고 아무것도 못 한다', scores: { narcissist: 0, obsessive: 0, cold: 0, timid: 3 } },
+        ],
+      },
+      {
+        id: 3,
+        text: '내가 열심히 한 프로젝트에서 다른 사람이 칭찬을 받았다!',
+        options: [
+          { label: '"그건 사실 제가 한 건데요?" 공개적으로 밝힌다', scores: { narcissist: 3, obsessive: 0, cold: 1, timid: 0 } },
+          { label: '그 사람의 다음 실수를 은근히 기다린다', scores: { narcissist: 0, obsessive: 1, cold: 3, timid: 0 } },
+          { label: '웃으면서 축하해주지만 속은 부글부글', scores: { narcissist: 1, obsessive: 0, cold: 1, timid: 2 } },
+          { label: '"저도 기여했는데..." 작게 중얼거리다 포기', scores: { narcissist: 0, obsessive: 0, cold: 0, timid: 3 } },
+        ],
+      },
+      {
+        id: 4,
+        text: '친구가 약속 시간보다 30분 늦게 나타났다!',
+        options: [
+          { label: '"30분 늦은 거 알지? 다음엔 그냥 혼자 간다" 직구', scores: { narcissist: 2, obsessive: 0, cold: 2, timid: 0 } },
+          { label: '"뭐하다 이렇게 늦었어?" 이유를 꼬치꼬치 캔다', scores: { narcissist: 0, obsessive: 3, cold: 0, timid: 0 } },
+          { label: '"괜찮아~" 웃지만 오늘 내내 쌀쌀맞게 군다', scores: { narcissist: 0, obsessive: 1, cold: 3, timid: 0 } },
+          { label: '"괜찮아..." 진짜로 그냥 넘어간다 (마음속으론 상처)', scores: { narcissist: 0, obsessive: 0, cold: 0, timid: 3 } },
+        ],
+      },
+      {
+        id: 5,
+        text: '내 SNS 팔로워가 갑자기 200명 줄었다!',
+        options: [
+          { label: '"누가 언팔한 거야?" 바로 확인 앱 깔아서 추적', scores: { narcissist: 2, obsessive: 3, cold: 0, timid: 0 } },
+          { label: '그냥 넘긴다. 어차피 내 콘텐츠가 좋으면 돌아옴', scores: { narcissist: 3, obsessive: 0, cold: 2, timid: 0 } },
+          { label: '"혹시 내가 뭘 잘못 올렸나?" 게시물을 다 뒤진다', scores: { narcissist: 0, obsessive: 2, cold: 0, timid: 2 } },
+          { label: '별로 신경 안 쓰인다. SNS가 뭐 대수야', scores: { narcissist: 0, obsessive: 0, cold: 2, timid: 1 } },
+        ],
+      },
+      {
+        id: 6,
+        text: '회의 중에 내 아이디어가 채택되지 않았다. 나는?',
+        options: [
+          { label: '"제 아이디어가 더 낫다고 생각합니다만..." 재어필', scores: { narcissist: 3, obsessive: 0, cold: 1, timid: 0 } },
+          { label: '채택된 아이디어를 낸 사람이 미워진다', scores: { narcissist: 0, obsessive: 2, cold: 2, timid: 0 } },
+          { label: '겉으로는 괜찮은 척하고 퇴근 후 혼자 뾰로통', scores: { narcissist: 0, obsessive: 1, cold: 2, timid: 2 } },
+          { label: '"그런가봐..." 하고 조용히 수긍한다', scores: { narcissist: 0, obsessive: 0, cold: 0, timid: 3 } },
+        ],
+      },
+      {
+        id: 7,
+        text: '연인이 내 생일을 깜빡했다! 반응은?',
+        options: [
+          { label: '"야 오늘 내 생일이야" 바로 통보하고 선물 요구', scores: { narcissist: 3, obsessive: 0, cold: 0, timid: 0 } },
+          { label: '잊은 이유가 뭔지 캐묻고 섭섭함을 장문으로 전송', scores: { narcissist: 0, obsessive: 3, cold: 0, timid: 0 } },
+          { label: '아무렇지 않은 척하다가 나중에 다른 걸로 풀어낸다', scores: { narcissist: 0, obsessive: 0, cold: 3, timid: 0 } },
+          { label: '서운하지만... 말을 못 하겠어서 혼자 운다', scores: { narcissist: 0, obsessive: 0, cold: 0, timid: 3 } },
+        ],
+      },
+      {
+        id: 8,
+        text: '나는 솔직히 말해서, 나 자신에 대해 어떻게 생각해?',
+        options: [
+          { label: '솔직히 나는 꽤 매력적이고 특별한 사람이라고 생각한다', scores: { narcissist: 3, obsessive: 0, cold: 1, timid: 0 } },
+          { label: '좋아하는 사람/것에 대해 너무 집착하는 경향이 있다', scores: { narcissist: 0, obsessive: 3, cold: 0, timid: 0 } },
+          { label: '감정을 잘 드러내지 않고 냉정한 편이다', scores: { narcissist: 0, obsessive: 0, cold: 3, timid: 0 } },
+          { label: '하고 싶은 말이 있어도 잘 못 하는 편이다', scores: { narcissist: 0, obsessive: 0, cold: 0, timid: 3 } },
+        ],
+      },
+    ],
+    calculateResult: (scores) => {
+      const s = scores as Record<string, number>;
+      const candidates: [string, number][] = [
+        ['narcissist', s.narcissist || 0],
+        ['obsessive', s.obsessive || 0],
+        ['cold', s.cold || 0],
+        ['timid', s.timid || 0],
+      ];
+      candidates.sort((a, b) => b[1] - a[1]);
+      return candidates[0][0];
+    },
+    results: [
+      {
+        key: 'narcissist',
+        title: '자기애형 빌런 — 나르시시스트',
+        summary: '"나는 특별해" 아우라가 흘러넘치는 자기 중심 빌런',
+        description: '당신의 빌런 유형은 자기애형 나르시시스트입니다. 자신이 특별하고 뛰어나다는 확신이 있으며, 칭찬과 인정이 삶의 에너지원이에요. 사람들의 시선을 즐기고 주목받기를 좋아하지만, 그게 때론 지나쳐 주변을 피곤하게 만들 수 있습니다. 드라마로 치면 주인공 자리를 절대 양보 안 하는 그 캐릭터!',
+        strengths: ['강한 자신감과 추진력', '자기 PR 능력 탁월', '목표를 향한 집요한 행동력'],
+        caution: ['타인의 감정을 놓칠 수 있어요', '칭찬에 너무 의존하지 않도록 주의'],
+        shareText: '내 안의 빌런은 "자기애형 나르시시스트" 😈 너는 어떤 빌런이야?',
+        recommendedTests: ['hidden-personality-test', 'how-friends-see-me-test', 'love-style-test'],
+      },
+      {
+        key: 'obsessive',
+        title: '집착형 빌런 — 스토커 감성',
+        summary: '"아직 안 봤어?" 읽씹 추적 전문 집착 빌런',
+        description: '당신의 빌런 유형은 집착형입니다. 좋아하는 사람이나 상황에 과도하게 집중하며, 모든 것을 파악하고 싶어하는 성향이 있어요. 관심이 너무 깊어 상대방에게 부담이 될 수 있지만, 이 집착의 뿌리엔 따뜻한 애정이 있습니다. 다만 그 강도를 조절하는 연습이 필요해요.',
+        strengths: ['강한 충성심과 헌신', '관심 있는 것에 깊은 이해력', '디테일에 강한 관찰력'],
+        caution: ['선을 넘지 않도록 감정 조절이 필요해요', '상대방의 공간을 존중하는 연습을'],
+        shareText: '내 안의 빌런은 "집착형 스토커 감성" 🔍 너는 어떤 빌런이야?',
+        recommendedTests: ['attachment-style-test', 'love-style-test', 'over-immersion-test'],
+      },
+      {
+        key: 'cold',
+        title: '냉혹한 전략가 빌런 — 아이스퀸/킹',
+        summary: '"괜찮아" 웃지만 속으로는 점수판 꽉 채우는 냉철 빌런',
+        description: '당신의 빌런 유형은 냉혹한 전략가입니다. 감정을 쉽게 드러내지 않고, 불만이 있어도 표면적으로는 쿨한 척하는 경향이 있어요. 하지만 속으로는 치밀하게 계산하고 있죠. 드라마 속 무표정으로 모든 걸 장악하는 그 인물이 바로 당신의 빌런 페르소나입니다.',
+        strengths: ['냉정한 판단력', '감정에 휘둘리지 않는 이성', '전략적 사고'],
+        caution: ['감정 억누르기가 스트레스가 될 수 있어요', '가끔 속마음을 표현해보세요'],
+        shareText: '내 안의 빌런은 "냉혹한 아이스퀸/킹" 🧊 너는 어떤 빌런이야?',
+        recommendedTests: ['intuition-vs-logic-test', 'attachment-style-test', 'hidden-personality-test'],
+      },
+      {
+        key: 'timid',
+        title: '소심 빌런 — 마음 속에만 있는 반항아',
+        summary: '속으로는 빌런, 겉으론 천사인 소심 반항아',
+        description: '당신의 빌런 유형은 소심 빌런입니다. 마음 속으로는 하고 싶은 말이 엄청 많지만, 실제로 행동으로 옮기기가 어려워요. 상처를 받아도 참고, 억울해도 꾹 삼키는 경우가 많죠. 외면은 착하고 순한 사람이지만, 이불 속에서는 매일 밤 시뮬레이션 복수극을 펼치는 숨은 빌런!',
+        strengths: ['갈등을 피하는 평화주의', '타인에 대한 깊은 배려심', '인내심과 참을성'],
+        caution: ['억누른 감정이 한꺼번에 터질 수 있어요', '자기 주장을 연습해보세요'],
+        shareText: '내 안의 빌런은 "소심 마음 속 반항아" 🫠 너는 어떤 빌런이야?',
+        recommendedTests: ['hidden-personality-test', 'how-friends-see-me-test', 'attachment-style-test'],
+      },
+    ],
+  },
+
+  // ── 극T 극F 테스트 ──────────────────────────────────────────────
+  {
+    slug: 'extreme-tf-test',
+    title: '나는 극T일까 극F일까?',
+    description: 'MBTI T/F를 넘어서 — 나는 얼마나 극단적인 T 혹은 F일까요?',
+    category: '성격 테스트',
+    estimatedTime: '2분',
+    emoji: '🧠',
+    questions: [
+      {
+        id: 1,
+        text: '친구가 "나 오늘 완전 망했어..."라고 카톡을 보냈다.',
+        options: [
+          { label: '"뭐가 문제야? 어떻게 된 거야?" 원인부터 파악', scores: { T: 2, F: 0 } },
+          { label: '"어머 어머 무슨 일이야 얼른 말해봐 ㅠㅠ" 공감 폭발', scores: { T: 0, F: 2 } },
+          { label: '"힘들겠다 ㅠ 뭐가 문제인지 같이 생각해보자"', scores: { T: 1, F: 1 } },
+          { label: '"완전 망했어? 어느 정도야?" 스케일 확인 먼저', scores: { T: 2, F: 0 } },
+        ],
+      },
+      {
+        id: 2,
+        text: '슬픈 영화를 봤을 때 나는?',
+        options: [
+          { label: '전혀 안 운다. 픽션인걸 아니까', scores: { T: 3, F: 0 } },
+          { label: '살짝 눈물이 맺히지만 참는다', scores: { T: 2, F: 1 } },
+          { label: '조용히 눈물 흘린다', scores: { T: 0, F: 2 } },
+          { label: '펑펑 운다. 여운이 며칠 간다', scores: { T: 0, F: 3 } },
+        ],
+      },
+      {
+        id: 3,
+        text: '연인이 "오늘 내가 더 예쁜 것 같아?"라고 물어본다면?',
+        options: [
+          { label: '"오늘따라 더 예쁜 것 같기도 하고 그냥 평소 같기도 하고"', scores: { T: 3, F: 0 } },
+          { label: '"당연하지! 늘 예뻐~" 칭찬 폭격', scores: { T: 0, F: 3 } },
+          { label: '"응 오늘 특히 더 예쁜데?" 자연스럽게 맞장구', scores: { T: 0, F: 2 } },
+          { label: '"더? 어제랑 달라진 게 있어?" 비교 분석 시작', scores: { T: 2, F: 0 } },
+        ],
+      },
+      {
+        id: 4,
+        text: '친구들 사이에서 갈등이 생겼다. 나의 역할은?',
+        options: [
+          { label: '양쪽 주장을 듣고 누가 논리적으로 옳은지 판단', scores: { T: 3, F: 0 } },
+          { label: '양쪽 모두 공감해주며 감정을 달래주는 역할', scores: { T: 0, F: 3 } },
+          { label: '실질적인 해결책을 제시하며 중재', scores: { T: 2, F: 1 } },
+          { label: '분위기를 부드럽게 만들어 갈등을 녹임', scores: { T: 0, F: 2 } },
+        ],
+      },
+      {
+        id: 5,
+        text: '선물을 받을 때 더 중요한 것은?',
+        options: [
+          { label: '내가 실제로 필요한 물건인지, 실용성이 중요', scores: { T: 3, F: 0 } },
+          { label: '상대방이 나를 얼마나 생각했는지, 마음이 중요', scores: { T: 0, F: 3 } },
+          { label: '둘 다 중요하지만 굳이 고르면 마음', scores: { T: 0, F: 1 } },
+          { label: '둘 다 중요하지만 굳이 고르면 실용성', scores: { T: 1, F: 0 } },
+        ],
+      },
+      {
+        id: 6,
+        text: '후배가 실수를 했다. 어떻게 피드백하나요?',
+        options: [
+          { label: '"이 부분이 틀렸고, 이렇게 고쳐야 해" 직접적으로', scores: { T: 3, F: 0 } },
+          { label: '"많이 당황했겠다. 괜찮아? 다음엔 이렇게 해봐"', scores: { T: 0, F: 3 } },
+          { label: '"수고했어. 다만 이 부분은 이렇게 바꾸면 더 좋을 것 같아"', scores: { T: 1, F: 1 } },
+          { label: '일단 칭찬해주고 나서 조심스럽게 피드백', scores: { T: 0, F: 2 } },
+        ],
+      },
+      {
+        id: 7,
+        text: '오늘 길을 걷다 갑자기 눈물이 나올 것 같은 기분이 들었다.',
+        options: [
+          { label: '이런 적 거의 없다. 왜 울어?', scores: { T: 3, F: 0 } },
+          { label: '이성적으로 원인을 찾으려 노력한다', scores: { T: 2, F: 0 } },
+          { label: '그냥 감정이 흐르게 둔다', scores: { T: 0, F: 2 } },
+          { label: '공감 되는 노래 틀고 눈물을 흘린다', scores: { T: 0, F: 3 } },
+        ],
+      },
+      {
+        id: 8,
+        text: '친구가 "솔직히 말해줘. 내 발표 어땠어?"라고 물어본다.',
+        options: [
+          { label: '"솔직히? 이 부분이랑 저 부분이 좀 아쉬웠어"', scores: { T: 3, F: 0 } },
+          { label: '"와 진짜 잘했어! 긴장했을 텐데 수고했다~"', scores: { T: 0, F: 3 } },
+          { label: '"잘한 부분도 많고, 아쉬운 부분도 있었어"', scores: { T: 1, F: 1 } },
+          { label: '"전체적으로 괜찮았어. 다음엔 목소리 좀 더 크게?"', scores: { T: 1, F: 2 } },
+        ],
+      },
+    ],
+    calculateResult: (scores) => {
+      const T = scores.T || 0;
+      const F = scores.F || 0;
+      const total = T + F;
+      const tPct = total > 0 ? T / total : 0.5;
+      if (tPct >= 0.75) return 'extreme-T';
+      if (tPct >= 0.55) return 'T-lean';
+      if (tPct <= 0.25) return 'extreme-F';
+      return 'F-lean';
+    },
+    results: [
+      {
+        key: 'extreme-T',
+        title: '극T — 팩트와 논리의 사람',
+        summary: '"그래서 결론이 뭐야?" 감정보다 논리가 먼저인 이성의 신',
+        description: '당신은 극T 성향으로, 감정보다 논리와 팩트를 우선합니다. 감정적인 호소보다 명확한 근거와 데이터가 있어야 납득하는 스타일이에요. 공감보다는 해결책을, 위로보다는 조언을 먼저 건네는 유형입니다. 이성적이고 효율적이지만, 때로는 주변이 "얘는 왜 이렇게 차갑지?" 오해하기도 해요.',
+        strengths: ['뛰어난 논리적 사고력', '감정에 흔들리지 않는 판단력', '문제 해결에 강함'],
+        caution: ['공감 표현을 의식적으로 연습해보세요', '"그래서?" 보다 "힘들었겠다"가 먼저일 때도 있어요'],
+        shareText: '나는 "극T" 🧠 팩트와 논리로 움직이는 사람! 너는?',
+        recommendedTests: ['intuition-vs-logic-test', 'hidden-personality-test', 'teto-egen-test'],
+      },
+      {
+        key: 'T-lean',
+        title: 'T 우세 — 이성적인 따뜻한 사람',
+        summary: '논리가 기본, 가끔 감성도 챙기는 균형 잡힌 이성형',
+        description: '논리와 이성이 우세하지만, F의 따뜻함도 품고 있는 유형입니다. 평소에는 냉정하게 판단하지만 중요한 순간엔 상대방 마음도 챙길 줄 아는 사람이에요. 지나치게 감정적이지도, 너무 차갑지도 않은 현실적인 밸런스형 T입니다.',
+        strengths: ['이성과 감성의 균형', '논리적이지만 유연한 소통', '신뢰감 있는 조언자'],
+        caution: ['감정 표현에 좀 더 솔직해지면 관계가 깊어져요', 'T 본능이 과할 때 잠깐 멈춰보세요'],
+        shareText: '나는 "T 우세형" 📊 논리가 기본이지만 감성도 있어! 너는?',
+        recommendedTests: ['teto-egen-test', 'how-friends-see-me-test', 'hidden-personality-test'],
+      },
+      {
+        key: 'F-lean',
+        title: 'F 우세 — 감성 충만한 공감자',
+        summary: '공감이 먼저, 해결은 두 번째인 따뜻한 감성파',
+        description: '공감 능력이 뛰어나고 타인의 감정에 민감한 유형입니다. 상대방이 힘들 때 자연스럽게 위로의 말이 나오고, 분위기를 부드럽게 만드는 재주가 있어요. 논리보다 관계와 감정을 중시하며, 주변 사람들에게 "마음이 따뜻한 사람"으로 기억됩니다.',
+        strengths: ['탁월한 공감 능력', '관계를 소중히 여기는 마음', '따뜻하고 배려 깊은 소통'],
+        caution: ['때로는 이성적 판단도 필요해요', '타인 감정에 너무 몰입해 지칠 수 있어요'],
+        shareText: '나는 "F 우세형" 💛 공감이 먼저인 따뜻한 사람! 너는?',
+        recommendedTests: ['attachment-style-test', 'love-style-test', 'how-friends-see-me-test'],
+      },
+      {
+        key: 'extreme-F',
+        title: '극F — 감성과 공감의 화신',
+        summary: '"나도 몰라 그냥 눈물 나" 감정이 먼저인 공감 만렙',
+        description: '당신은 극F 성향으로, 감정과 공감이 삶의 중심입니다. 상대방의 기분 변화를 누구보다 빨리 알아채고, 말하지 않아도 마음을 읽어내는 놀라운 감수성을 지니고 있어요. 슬픈 영화에서는 제일 먼저 울고, 친구 고민을 들을 때 같이 아파하는 사람. 이 세상의 공감 충전소 같은 존재예요.',
+        strengths: ['풍부한 감수성과 공감 능력', '세심한 관찰력', '관계 속에서 빛나는 따뜻함'],
+        caution: ['타인 감정을 너무 흡수해 소진될 수 있어요', '이성적 판단이 필요한 순간을 구분해요'],
+        shareText: '나는 "극F" 🥹 감성과 공감의 화신! 너는 극T? 극F?',
+        recommendedTests: ['love-style-test', 'attachment-style-test', 'over-immersion-test'],
+      },
+    ],
+  },
+
+  // ── 오지랖 지수 테스트 ──────────────────────────────────────────
+  {
+    slug: 'meddling-test',
+    title: '내 오지랖 지수는 몇 레벨?',
+    description: '나는 쿨한 편인가, 아니면 오지랖 만렙인가? 지금 바로 확인해보세요.',
+    category: '재미 테스트',
+    estimatedTime: '2분',
+    emoji: '👀',
+    questions: [
+      {
+        id: 1,
+        text: '친구가 짝사랑하는 사람 얘기를 들었다. 나는?',
+        options: [
+          { label: '"잘 되길 바라~" 하고 끝낸다', scores: { score: 0 } },
+          { label: '"그 사람 SNS 좀 같이 봐봐" 상대방 파악 나선다', scores: { score: 3 } },
+          { label: '"내가 다리 놔줄까?" 직접 개입 시도', scores: { score: 5 } },
+          { label: '"고백해! 내가 분위기 잡아줄게" 작전 회의 소집', scores: { score: 7 } },
+        ],
+      },
+      {
+        id: 2,
+        text: '카페에서 옆 테이블 커플이 싸우고 있다!',
+        options: [
+          { label: '이어폰 꽂고 내 할 일 한다', scores: { score: 0 } },
+          { label: '자연스럽게 귀를 열고 내용을 파악한다', scores: { score: 3 } },
+          { label: '혹시 도움이 필요한지 살짝 눈으로 살핀다', scores: { score: 2 } },
+          { label: '"괜찮으세요?" 말을 건넬 뻔했다', scores: { score: 5 } },
+        ],
+      },
+      {
+        id: 3,
+        text: '친구가 자기 남자친구 얘기를 안 해줬는데, SNS 보니까 사귄 것 같다!',
+        options: [
+          { label: '말해줄 때까지 기다린다', scores: { score: 0 } },
+          { label: '"야 근데 너 요즘 남자친구 생겼어?" 슬쩍 물어본다', scores: { score: 3 } },
+          { label: '"나한테 왜 말 안 했어!!" 섭섭함 표출', scores: { score: 5 } },
+          { label: '공통 지인한테 먼저 확인해본다', scores: { score: 7 } },
+        ],
+      },
+      {
+        id: 4,
+        text: '가족 중 한 명이 다이어트를 결심했다. 나는?',
+        options: [
+          { label: '응원만 해준다', scores: { score: 0 } },
+          { label: '"이 방법이 효과 있대" 정보를 공유한다', scores: { score: 2 } },
+          { label: '식단표를 짜줄 정도로 관여한다', scores: { score: 5 } },
+          { label: '"그거 먹으면 안 되지 않아?" 간식 통제까지 한다', scores: { score: 7 } },
+        ],
+      },
+      {
+        id: 5,
+        text: '친구가 내가 보기에 별로인 사람과 사귀기 시작했다.',
+        options: [
+          { label: '친구 선택이니까 응원만 해준다', scores: { score: 0 } },
+          { label: '"그 사람 좀 이상한 것 같던데..." 걱정을 살짝 전한다', scores: { score: 3 } },
+          { label: '"걔 별로야 왜 사귀어?" 직접적으로 말한다', scores: { score: 6 } },
+          { label: '"그 사람 뒷조사 해봤어?" 정보 공유에 나선다', scores: { score: 8 } },
+        ],
+      },
+      {
+        id: 6,
+        text: '직장 동료가 업무를 좀 비효율적으로 하는 것 같다!',
+        options: [
+          { label: '내 업무에만 집중한다', scores: { score: 0 } },
+          { label: '"혹시 이렇게 해보면 어때?" 한 번만 제안한다', scores: { score: 2 } },
+          { label: '여러 번 방법을 알려주며 개선을 유도한다', scores: { score: 5 } },
+          { label: '팀장에게 슬쩍 말해서 체계를 잡아준다', scores: { score: 7 } },
+        ],
+      },
+      {
+        id: 7,
+        text: '길에서 모르는 사람이 길을 잃은 것 같다.',
+        options: [
+          { label: '상대방이 물어볼 때까지 기다린다', scores: { score: 0 } },
+          { label: '눈이 마주치면 "도움이 필요하세요?" 먼저 묻는다', scores: { score: 2 } },
+          { label: '물어보지 않아도 먼저 다가가 말을 건넨다', scores: { score: 4 } },
+          { label: '같이 목적지까지 동행할 준비가 돼 있다', scores: { score: 6 } },
+        ],
+      },
+      {
+        id: 8,
+        text: '오지랖에 대한 나의 철학은?',
+        options: [
+          { label: '남의 일에 끼어드는 건 예의에 어긋난다', scores: { score: 0 } },
+          { label: '필요할 때만 돕는 게 진짜 배려', scores: { score: 1 } },
+          { label: '관심이 있어야 오지랖도 있는 법', scores: { score: 4 } },
+          { label: '오지랖은 사랑이야. 내가 다 도와줄게!', scores: { score: 7 } },
+        ],
+      },
+    ],
+    calculateResult: (scores) => {
+      const s = scores.score || 0;
+      if (s >= 35) return 'meddling-4';
+      if (s >= 22) return 'meddling-3';
+      if (s >= 10) return 'meddling-2';
+      return 'meddling-1';
+    },
+    results: [
+      {
+        key: 'meddling-4',
+        title: '오지랖 만렙 — 마을 이장님',
+        summary: '이 동네 모든 일은 내가 다 알고 있어! 관심 엔드리스',
+        description: '당신은 오지랖 만렙으로, 주변 모든 일에 관심을 갖고 적극적으로 개입하는 유형입니다. 본인은 도움을 주고 싶다고 생각하지만, 상대방은 가끔 "부담스럽다"고 느낄 수 있어요. 하지만 당신의 오지랖 뒤에는 진심 어린 애정이 있다는 거, 다들 알고 있답니다. 다만 선을 좀 더 지키는 연습이 필요해요!',
+        strengths: ['넘치는 관심과 애정', '커뮤니티를 이어주는 연결자', '도움이 필요할 때 제일 먼저 나타남'],
+        caution: ['때로는 상대방이 혼자 해결할 시간이 필요해요', '관심과 개입의 경계를 의식해보세요'],
+        shareText: '내 오지랖 지수는 "만렙 마을 이장님" 👀 너는 몇 레벨이야?',
+        recommendedTests: ['how-friends-see-me-test', 'love-style-test', 'attachment-style-test'],
+      },
+      {
+        key: 'meddling-3',
+        title: '오지랖 3레벨 — 관심 많은 친구',
+        summary: '궁금한 게 많고, 도와주고 싶은 게 많은 정 많은 유형',
+        description: '관심이 많아서 자연스럽게 주변 상황을 파악하게 되는 유형입니다. 친한 사람일수록 더 많이 개입하려는 경향이 있고, 혼자 해결하도록 두기보다는 함께 해결하고 싶어해요. 오지랖이 있지만 악의는 전혀 없는 정 많고 따뜻한 사람!',
+        strengths: ['주변 상황 파악력이 뛰어남', '먼저 도움의 손을 내밀 줄 아는 사람', '정이 많고 유대감이 강함'],
+        caution: ['의도가 좋아도 상대방 입장에서 생각해보세요', '물어봐야 할 때와 먼저 나설 때를 구분해요'],
+        shareText: '내 오지랖 지수는 "관심 많은 친구" 3레벨! 너는 몇 레벨이야?',
+        recommendedTests: ['how-friends-see-me-test', 'attachment-style-test', 'love-style-test'],
+      },
+      {
+        key: 'meddling-2',
+        title: '오지랖 2레벨 — 필요할 때만 나서는 쿨한 사람',
+        summary: '관심은 있지만 선 지키는 것도 확실한 쿨가이/쿨걸',
+        description: '타인에 대한 관심이 있지만, 지나치게 개입하지 않고 적절한 선을 지킬 줄 아는 유형입니다. 도움이 필요할 때는 적극적으로 나서지만, 상대방의 자율성도 존중합니다. "도움이 필요하면 말해"라는 메시지를 전할 줄 아는 성숙한 관계형이에요.',
+        strengths: ['적절한 선 지키기', '상대방 자율성 존중', '필요한 순간에 정확히 나타남'],
+        caution: ['가끔은 먼저 다가가는 용기도 필요해요', '너무 쿨하면 무관심해 보일 수 있어요'],
+        shareText: '내 오지랖 지수는 "쿨한 2레벨"! 너는 몇 레벨이야? 👀',
+        recommendedTests: ['hidden-personality-test', 'intuition-vs-logic-test', 'how-friends-see-me-test'],
+      },
+      {
+        key: 'meddling-1',
+        title: '오지랖 1레벨 — 마이웨이 무관심파',
+        summary: '남의 일에 에너지 쓸 시간에 내 거나 챙긴다! 쿨한 개인주의자',
+        description: '타인의 일에 개입하거나 관여하는 것을 최소화하는 개인주의형 스타일입니다. 자신의 영역을 명확히 하고, 남의 사생활을 존중하는 것을 중요하게 생각해요. "각자의 삶은 스스로 해결해야 한다"는 철학을 갖고 있는 유형으로, 불필요한 갈등이나 에너지 낭비를 피합니다.',
+        strengths: ['명확한 경계선', '불필요한 갈등 없음', '자기 삶에 집중하는 에너지 관리'],
+        caution: ['가끔 주변 사람들이 외롭게 느낄 수 있어요', '관심을 표현하는 것도 관계에 도움이 돼요'],
+        shareText: '내 오지랖 지수는 "마이웨이 1레벨"! 너는 몇 레벨이야? 👀',
+        recommendedTests: ['hidden-personality-test', 'attachment-style-test', 'teto-egen-test'],
+      },
+    ],
+  },
+
+  // ── 내면 아이 테스트 ────────────────────────────────────────────
+  {
+    slug: 'inner-child-test',
+    title: '내 마음 속 몇 살 아이가 살고 있을까?',
+    description: '당신의 내면에는 어떤 나이의 아이가 숨어있을까요?',
+    category: '성격 테스트',
+    estimatedTime: '2분',
+    emoji: '🧸',
+    questions: [
+      {
+        id: 1,
+        text: '갑자기 아무것도 하기 싫은 날이 찾아왔다. 나는?',
+        options: [
+          { label: '그냥 모든 걸 던져두고 유튜브+과자로 하루를 보낸다', scores: { inner_free: 3, rebel: 1, teen: 0, adult: 0 } },
+          { label: '"왜 이렇게 사는 거지?" 허무함이 밀려온다', scores: { inner_free: 0, rebel: 3, teen: 1, adult: 0 } },
+          { label: '좋아하는 음악 틀고 감성에 젖어든다', scores: { inner_free: 0, rebel: 0, teen: 3, adult: 1 } },
+          { label: '그래도 최소한의 할 일 목록이라도 정리한다', scores: { inner_free: 0, rebel: 0, teen: 0, adult: 3 } },
+        ],
+      },
+      {
+        id: 2,
+        text: '어릴 때 좋아했던 것이 생각났다. 지금도 하고 싶나요?',
+        options: [
+          { label: '당연하지! 지금 당장 해도 재밌을 것 같아', scores: { inner_free: 3, rebel: 0, teen: 1, adult: 0 } },
+          { label: '"그땐 그랬지..." 씁쓸하고 그리운 감정이 든다', scores: { inner_free: 0, rebel: 2, teen: 2, adult: 0 } },
+          { label: '추억은 추억으로 남겨두고 싶다', scores: { inner_free: 0, rebel: 1, teen: 1, adult: 3 } },
+          { label: '어떻게 하면 지금 다시 할 수 있을지 찾아본다', scores: { inner_free: 1, rebel: 0, teen: 2, adult: 2 } },
+        ],
+      },
+      {
+        id: 3,
+        text: '누군가 나한테 규칙을 강요하면?',
+        options: [
+          { label: '"왜요?!" 즉각 반발하거나 무시해버린다', scores: { inner_free: 2, rebel: 3, teen: 0, adult: 0 } },
+          { label: '"납득이 안 되면 따르기 어렵다"는 생각이 든다', scores: { inner_free: 0, rebel: 2, teen: 2, adult: 1 } },
+          { label: '알겠다고 하고 나중에 혼자 불만을 삭힌다', scores: { inner_free: 0, rebel: 1, teen: 2, adult: 1 } },
+          { label: '이유를 물어보고 합리적이면 받아들인다', scores: { inner_free: 0, rebel: 0, teen: 1, adult: 3 } },
+        ],
+      },
+      {
+        id: 4,
+        text: '친구들이 나를 어떻게 표현할 것 같나요?',
+        options: [
+          { label: '"천진난만하고 에너지 넘침"', scores: { inner_free: 3, rebel: 0, teen: 0, adult: 0 } },
+          { label: '"자기만의 색깔이 뚜렷하고 반항적인 면이 있음"', scores: { inner_free: 0, rebel: 3, teen: 0, adult: 0 } },
+          { label: '"감성적이고 감수성이 풍부함"', scores: { inner_free: 0, rebel: 0, teen: 3, adult: 0 } },
+          { label: '"믿음직하고 현실적인 편"', scores: { inner_free: 0, rebel: 0, teen: 0, adult: 3 } },
+        ],
+      },
+      {
+        id: 5,
+        text: '일이 계획대로 되지 않았을 때 나는?',
+        options: [
+          { label: '"에이 뭐 어때" 하고 다른 방법을 즉흥적으로 찾는다', scores: { inner_free: 3, rebel: 1, teen: 0, adult: 0 } },
+          { label: '"이게 왜 이렇게 됐지?" 화나고 짜증난다', scores: { inner_free: 0, rebel: 3, teen: 1, adult: 0 } },
+          { label: '실망감과 아쉬움에 잠시 멍하니 있는다', scores: { inner_free: 0, rebel: 0, teen: 3, adult: 1 } },
+          { label: '원인을 분석하고 다음 계획을 세운다', scores: { inner_free: 0, rebel: 0, teen: 0, adult: 3 } },
+        ],
+      },
+      {
+        id: 6,
+        text: '혼자만의 시간이 생겼을 때 가장 하고 싶은 건?',
+        options: [
+          { label: '유튜브, 게임, 간식 — 그냥 내가 하고 싶은 것만', scores: { inner_free: 3, rebel: 1, teen: 0, adult: 0 } },
+          { label: '아무도 모르는 곳에 혼자 가고 싶다', scores: { inner_free: 0, rebel: 3, teen: 1, adult: 0 } },
+          { label: '좋아하는 음악·영화·책으로 감성 충전', scores: { inner_free: 0, rebel: 0, teen: 3, adult: 1 } },
+          { label: '밀린 일이나 자기계발에 집중', scores: { inner_free: 0, rebel: 0, teen: 0, adult: 3 } },
+        ],
+      },
+      {
+        id: 7,
+        text: '감정을 표현하는 나의 방식은?',
+        options: [
+          { label: '느끼는 대로 바로바로 표현한다', scores: { inner_free: 3, rebel: 1, teen: 0, adult: 0 } },
+          { label: '직접 말하기보다 행동이나 태도로 나타낸다', scores: { inner_free: 0, rebel: 2, teen: 2, adult: 0 } },
+          { label: '글, 노래, 그림 등 감성적인 방식으로 표현', scores: { inner_free: 0, rebel: 0, teen: 3, adult: 1 } },
+          { label: '감정을 정리한 후 차분하게 말로 전달한다', scores: { inner_free: 0, rebel: 0, teen: 1, adult: 3 } },
+        ],
+      },
+      {
+        id: 8,
+        text: '지금의 나에게 가장 필요한 것은?',
+        options: [
+          { label: '아무 걱정 없이 신나게 노는 시간', scores: { inner_free: 3, rebel: 0, teen: 1, adult: 0 } },
+          { label: '세상에 화내도 되는 공간과 자유', scores: { inner_free: 0, rebel: 3, teen: 1, adult: 0 } },
+          { label: '나를 완전히 이해해주는 단 한 사람', scores: { inner_free: 0, rebel: 0, teen: 3, adult: 1 } },
+          { label: '앞으로 나아가게 해주는 명확한 방향성', scores: { inner_free: 0, rebel: 0, teen: 0, adult: 3 } },
+        ],
+      },
+    ],
+    calculateResult: (scores) => {
+      const s = scores as Record<string, number>;
+      const candidates: [string, number][] = [
+        ['inner-free', s.inner_free || 0],
+        ['rebel', s.rebel || 0],
+        ['teen', s.teen || 0],
+        ['adult', s.adult || 0],
+      ];
+      candidates.sort((a, b) => b[1] - a[1]);
+      return candidates[0][0];
+    },
+    results: [
+      {
+        key: 'inner-free',
+        title: '7살의 자유로운 아이',
+        summary: '세상이 놀이터! 호기심과 에너지가 넘치는 영원한 어린이',
+        description: '당신 마음 속에는 7살의 순수하고 자유로운 아이가 살고 있어요. 세상을 놀이터처럼 바라보고, 지금 이 순간을 즐기는 것이 가장 중요한 가치입니다. 규칙보다는 자유를, 계획보다는 즉흥을, 진지함보다는 웃음을 선택하는 유형이에요. 당신과 함께 있으면 왠지 신나는 일이 생길 것 같은 기분이 든답니다.',
+        strengths: ['순수한 에너지와 낙천성', '지금 이 순간을 즐기는 능력', '주변을 밝게 만드는 존재감'],
+        caution: ['무책임해 보일 수 있는 순간도 있어요', '현실적인 책임도 함께 챙겨봐요'],
+        shareText: '내 마음 속엔 "7살 자유로운 아이"가 살고 있어! 🧸 너는?',
+        recommendedTests: ['over-immersion-test', 'how-friends-see-me-test', 'villain-type-test'],
+      },
+      {
+        key: 'rebel',
+        title: '13살의 반항기 아이',
+        summary: '"왜요?" 세상에 부딪히며 나만의 방식을 찾는 반항아',
+        description: '당신 마음 속에는 13살의 반항기 아이가 살고 있어요. 세상의 규칙과 기대에 의문을 품고, 자신만의 방식으로 살고 싶은 강한 욕구가 있습니다. 부당하다고 느끼는 것에 저항하고, 자신의 정체성을 탐색하는 중이에요. 이 반항기 에너지가 때로는 창의성과 독창성의 원천이 되기도 합니다.',
+        strengths: ['강한 자아와 정체성', '불의에 저항하는 용기', '자신만의 독특한 관점'],
+        caution: ['모든 것을 적으로 돌리지 않도록 에너지를 조절해요', '함께하는 사람들과 공감하는 연습도 필요해요'],
+        shareText: '내 마음 속엔 "13살 반항기 아이"가 살고 있어! 🔥 너는?',
+        recommendedTests: ['villain-type-test', 'hidden-personality-test', 'teto-egen-test'],
+      },
+      {
+        key: 'teen',
+        title: '17살의 감성 청춘',
+        summary: '모든 것이 벅차고 아름다운, 감수성 가득한 청춘 감성',
+        description: '당신 마음 속에는 17살의 감성 넘치는 청춘이 살고 있어요. 세상의 아름다움과 슬픔에 깊이 공감하고, 모든 것이 의미 있고 특별하게 느껴지는 풍부한 감수성을 가지고 있습니다. 좋아하는 것에 깊이 빠져들고, 이해받고 싶은 마음이 큰 유형이에요. 이 감성이 예술적 감각과 깊은 관계의 원천이 됩니다.',
+        strengths: ['풍부한 감수성과 공감력', '깊이 있는 관계와 유대감', '예술적 감각과 창의성'],
+        caution: ['감정의 기복이 클 수 있어요', '현실적인 부분도 함께 챙기면 더 균형 잡힌 삶이 돼요'],
+        shareText: '내 마음 속엔 "17살 감성 청춘"이 살고 있어! 🌙 너는?',
+        recommendedTests: ['love-style-test', 'attachment-style-test', 'over-immersion-test'],
+      },
+      {
+        key: 'adult',
+        title: '25살의 성숙한 어른아이',
+        summary: '철들었지만 여전히 성장 중인, 현실과 감성 사이 어딘가',
+        description: '당신 마음 속에는 25살의 성숙하고 현실적인 어른아이가 살고 있어요. 감정보다는 이성을, 즉흥보다는 계획을 선호하며, 책임감을 중요하게 여깁니다. 어른처럼 생각하고 행동하지만, 가끔은 어린 시절로 돌아가고 싶은 그리움이 있는 유형이에요. 성숙하면서도 아직 배우고 성장하고 있는 중입니다.',
+        strengths: ['책임감과 신뢰성', '현실적이고 합리적인 판단', '목표 지향적인 삶의 방식'],
+        caution: ['가끔은 계획 없이 즉흥적으로 즐겨봐요', '자신에게 너무 엄격하지 않아도 괜찮아요'],
+        shareText: '내 마음 속엔 "25살 성숙한 어른아이"가 살고 있어! 🌱 너는?',
+        recommendedTests: ['hidden-personality-test', 'intuition-vs-logic-test', 'teto-egen-test'],
+      },
+    ],
+  },
+
+  // ── 연애 빌런 유형 테스트 ───────────────────────────────────────
+  {
+    slug: 'love-villain-test',
+    title: '나는 어떤 연애 빌런일까?',
+    description: '사랑하면 누구나 빌런이 된다. 당신은 어떤 유형의 연애 빌런인가요?',
+    category: '연애 테스트',
+    estimatedTime: '2분',
+    emoji: '💔',
+    questions: [
+      {
+        id: 1,
+        text: '연인이 SNS에 이성 친구와 찍은 사진을 올렸다!',
+        options: [
+          { label: '"누구야?" 바로 캐묻고 관계를 파악한다', scores: { clingy: 1, cold: 0, jealous: 3, love_free: 0 } },
+          { label: '며칠 동안 연락을 줄이며 은근히 토라진다', scores: { clingy: 0, cold: 3, jealous: 1, love_free: 0 } },
+          { label: '"나 그 사람이 좀 거슬려..." 솔직하게 말한다', scores: { clingy: 2, cold: 0, jealous: 2, love_free: 0 } },
+          { label: '별로 신경 안 쓴다. 그냥 친구겠지', scores: { clingy: 0, cold: 0, jealous: 0, love_free: 3 } },
+        ],
+      },
+      {
+        id: 2,
+        text: '연인이 3시간 동안 답장을 안 한다!',
+        options: [
+          { label: '"뭐해? 자? 바빠?" 연속으로 카톡을 보낸다', scores: { clingy: 3, cold: 0, jealous: 1, love_free: 0 } },
+          { label: '나도 읽고 답장 안 해버린다 (보복 읽씹)', scores: { clingy: 0, cold: 3, jealous: 1, love_free: 0 } },
+          { label: '"혹시 나한테 화났어?" 불안해서 다시 물어본다', scores: { clingy: 2, cold: 0, jealous: 2, love_free: 0 } },
+          { label: '그냥 기다린다. 사람한테 연락 강요하면 안 되지', scores: { clingy: 0, cold: 1, jealous: 0, love_free: 3 } },
+        ],
+      },
+      {
+        id: 3,
+        text: '연인이 "나 오늘 친구들이랑 놀거야"라고 했다.',
+        options: [
+          { label: '"몇 시에 끝나? 누구랑?" 일정을 파악한다', scores: { clingy: 2, cold: 0, jealous: 2, love_free: 0 } },
+          { label: '"그래, 재밌게 놀아" 하고는 왠지 기분이 안 좋다', scores: { clingy: 0, cold: 2, jealous: 2, love_free: 0 } },
+          { label: '"나는?" 하고 살짝 섭섭함을 표현한다', scores: { clingy: 3, cold: 0, jealous: 1, love_free: 0 } },
+          { label: '"오케이! 나도 내 친구들 만나야지~"', scores: { clingy: 0, cold: 0, jealous: 0, love_free: 3 } },
+        ],
+      },
+      {
+        id: 4,
+        text: '연인이 예전 이성 친구와 밥을 먹었다고 한다.',
+        options: [
+          { label: '그 자리에서 헤어질 수도 있다', scores: { clingy: 1, cold: 0, jealous: 3, love_free: 0 } },
+          { label: '"그래" 하고 한 달간 마음의 문을 닫는다', scores: { clingy: 0, cold: 3, jealous: 1, love_free: 0 } },
+          { label: '"왜 말 안 했어?" 서운함을 표현한다', scores: { clingy: 2, cold: 0, jealous: 2, love_free: 0 } },
+          { label: '서로 신뢰가 있으면 이런 건 괜찮다고 생각한다', scores: { clingy: 0, cold: 0, jealous: 0, love_free: 3 } },
+        ],
+      },
+      {
+        id: 5,
+        text: '연인이 최근 들어 나에게 좀 소홀한 것 같다.',
+        options: [
+          { label: '"우리 요즘 왜 이래?" 원인 파악에 나선다', scores: { clingy: 2, cold: 0, jealous: 2, love_free: 0 } },
+          { label: '나도 거리를 두며 소홀하게 대한다', scores: { clingy: 0, cold: 3, jealous: 1, love_free: 0 } },
+          { label: '만나서 솔직하게 감정을 전달한다', scores: { clingy: 1, cold: 0, jealous: 1, love_free: 2 } },
+          { label: '그럴 수도 있지. 조금 지켜본다', scores: { clingy: 0, cold: 1, jealous: 0, love_free: 3 } },
+        ],
+      },
+      {
+        id: 6,
+        text: '연인의 휴대폰을 우연히 볼 기회가 생겼다.',
+        options: [
+          { label: '살짝이라도 보고 싶은 충동이 강하게 든다', scores: { clingy: 1, cold: 0, jealous: 3, love_free: 0 } },
+          { label: '볼 마음이 없다. 알면 더 복잡해질 것 같아서', scores: { clingy: 0, cold: 2, jealous: 0, love_free: 1 } },
+          { label: '보면 안 된다고 생각하면서도 신경이 쓰인다', scores: { clingy: 2, cold: 0, jealous: 2, love_free: 0 } },
+          { label: '관심 없다. 서로 프라이버시를 지켜야지', scores: { clingy: 0, cold: 0, jealous: 0, love_free: 3 } },
+        ],
+      },
+      {
+        id: 7,
+        text: '이별을 통보받는다면 나는?',
+        options: [
+          { label: '"왜? 어디서부터 잘못됐어?" 매달리며 이유를 캔다', scores: { clingy: 3, cold: 0, jealous: 1, love_free: 0 } },
+          { label: '"그래" 쿨하게 받아들이지만 속은 완전 무너진다', scores: { clingy: 0, cold: 3, jealous: 0, love_free: 0 } },
+          { label: '"다른 사람 생겼어?" 의심부터 든다', scores: { clingy: 0, cold: 0, jealous: 3, love_free: 0 } },
+          { label: '슬프지만 상대 의사를 존중하고 받아들인다', scores: { clingy: 0, cold: 0, jealous: 0, love_free: 3 } },
+        ],
+      },
+      {
+        id: 8,
+        text: '내가 생각하는 이상적인 연애는?',
+        options: [
+          { label: '하루에 여러 번 연락하고 자주 보는 밀착형 연애', scores: { clingy: 3, cold: 0, jealous: 1, love_free: 0 } },
+          { label: '서로 독립적이고 적당한 거리가 있는 연애', scores: { clingy: 0, cold: 2, jealous: 0, love_free: 2 } },
+          { label: '서로에게 완전히 집중하는 일편단심 연애', scores: { clingy: 1, cold: 0, jealous: 3, love_free: 0 } },
+          { label: '각자 자유를 존중하며 함께하는 파트너십 연애', scores: { clingy: 0, cold: 0, jealous: 0, love_free: 3 } },
+        ],
+      },
+    ],
+    calculateResult: (scores) => {
+      const s = scores as Record<string, number>;
+      const candidates: [string, number][] = [
+        ['clingy', s.clingy || 0],
+        ['cold', s.cold || 0],
+        ['jealous', s.jealous || 0],
+        ['love-free', s.love_free || 0],
+      ];
+      candidates.sort((a, b) => b[1] - a[1]);
+      return candidates[0][0];
+    },
+    results: [
+      {
+        key: 'clingy',
+        title: '집착형 연애 빌런',
+        summary: '"나만 봐" 애정 넘치지만 가끔 숨막히게 만드는 집착 빌런',
+        description: '당신의 연애 빌런 유형은 집착형입니다. 연인에 대한 애정이 넘쳐서 자연스럽게 많은 시간과 연락을 원하게 됩니다. 사랑하기 때문에 모든 것을 알고 싶고, 항상 함께 있고 싶은 마음이 크죠. 이 열정적인 사랑이 상대방에게는 때로 부담이 될 수 있지만, 그 진심만큼은 의심할 여지가 없어요.',
+        strengths: ['넘치는 애정 표현', '연인을 최우선으로 생각하는 헌신', '열정적인 사랑'],
+        caution: ['연인에게도 개인 시간이 필요해요', '사랑과 집착의 경계를 인식해봐요'],
+        shareText: '나는 "집착형 연애 빌런" 💕 너는 어떤 연애 빌런이야?',
+        recommendedTests: ['attachment-style-test', 'love-style-test', 'meddling-test'],
+      },
+      {
+        key: 'cold',
+        title: '냉각형 연애 빌런',
+        summary: '"그래" 한 글자로 마음을 닫는 감정 온도 0도 빌런',
+        description: '당신의 연애 빌런 유형은 냉각형입니다. 상처받거나 불만이 생기면 감정을 직접 표현하기보다 거리를 두고 차갑게 대하는 경향이 있어요. 속으로는 상처받고 힘든데, 겉으로는 아무렇지 않은 척하는 것이 특기입니다. 연인이 "왜 이렇게 차가워졌어?"라며 당황한 경험이 있을 것 같네요.',
+        strengths: ['감정적으로 휘둘리지 않는 안정감', '충동적인 행동을 자제하는 자기 통제력'],
+        caution: ['감정을 솔직하게 표현해야 관계가 발전해요', '차갑게 구는 것은 상대방을 더 힘들게 해요'],
+        shareText: '나는 "냉각형 연애 빌런" 🧊 너는 어떤 연애 빌런이야?',
+        recommendedTests: ['attachment-style-test', 'love-style-test', 'hidden-personality-test'],
+      },
+      {
+        key: 'jealous',
+        title: '질투형 연애 빌런',
+        summary: '"그 사람은 누구야?" 사랑이 깊을수록 질투도 깊어지는 질투 빌런',
+        description: '당신의 연애 빌런 유형은 질투형입니다. 연인에 대한 사랑이 강한 만큼, 다른 이성에 대한 경계심도 강합니다. "나 말고 다른 사람이 생기면 어떡하지?"라는 불안감이 자주 찾아오고, 연인의 주변 이성 관계에 민감하게 반응해요. 이 질투심의 뿌리에는 상대방을 잃고 싶지 않은 진심 어린 사랑이 있습니다.',
+        strengths: ['연인을 소중히 여기는 깊은 마음', '관계에 진지하게 임하는 자세'],
+        caution: ['질투가 지나치면 신뢰를 무너뜨려요', '상대방을 믿는 연습이 필요해요'],
+        shareText: '나는 "질투형 연애 빌런" 😤 너는 어떤 연애 빌런이야?',
+        recommendedTests: ['attachment-style-test', 'love-style-test', 'villain-type-test'],
+      },
+      {
+        key: 'love-free',
+        title: '자유영혼 연애 빌런',
+        summary: '"각자 자유롭게" 개인주의 연애의 달인, 근데 왜 빌런이야?',
+        description: '당신의 연애 빌런 유형은 자유영혼형입니다. 서로의 독립성을 존중하고 개인 공간을 중요하게 생각하는 건강한 연애관을 가지고 있어요. 하지만 이 쿨함이 지나치면 연인이 "나에게 관심이 없는 건가?" 외로움을 느낄 수 있습니다. 자유와 연결감의 밸런스가 이 빌런의 숙제예요.',
+        strengths: ['건강한 독립성과 개인 공간 존중', '집착하지 않는 성숙한 연애관', '상대방에게 부담을 주지 않음'],
+        caution: ['때로는 더 표현하고 더 관심을 보여줘도 좋아요', '자유를 중시하다 정서적 거리가 멀어질 수 있어요'],
+        shareText: '나는 "자유영혼 연애 빌런" 🦋 너는 어떤 연애 빌런이야?',
+        recommendedTests: ['love-style-test', 'attachment-style-test', 'extreme-tf-test'],
+      },
+    ],
+  },
 ];
 
 export const getTestBySlug = (slug: string) => tests.find(t => t.slug === slug);
@@ -1538,4 +2257,33 @@ export const RESULT_EMOJIS: Record<string, string> = {
   'eigen-lean': '🧊',
   'pure-eigen': '🔭',
   'balanced-te': '⚖️',
+
+  // ── 빌런 유형 테스트 ──
+  'narcissist': '👑',
+  'obsessive':  '🔍',
+  'cold':       '🧊',
+  'timid':      '🫠',
+
+  // ── 극T 극F 테스트 ──
+  'extreme-T': '🧠',
+  'T-lean':    '📊',
+  'F-lean':    '💛',
+  'extreme-F': '🥹',
+
+  // ── 오지랖 지수 테스트 ──
+  'meddling-4': '📣',
+  'meddling-3': '👀',
+  'meddling-2': '😌',
+  'meddling-1': '🎧',
+
+  // ── 내면 아이 테스트 ──
+  'inner-free':  '🎠',
+  'rebel': '🔥',
+  'teen':  '🌙',
+  'adult': '🌱',
+
+  // ── 연애 빌런 유형 테스트 ──
+  'clingy':    '💕',
+  'jealous':   '😤',
+  'love-free': '🦋',
 };
