@@ -4,7 +4,7 @@ import { Layout } from "@/components/layout";
 import { ShareButtons } from "@/components/share-buttons";
 import { ResultShareCard } from "@/components/ResultShareCard";
 import { TestCard } from "@/components/test-card";
-import { getTestBySlug } from "@/data/tests";
+import { getTestBySlug, RESULT_EMOJIS } from "@/data/tests";
 import { RotateCcw, Grid2x2, Download, Share2, Check, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import confetti from "canvas-confetti";
@@ -151,7 +151,7 @@ export default function TestResult() {
               ✨ {test.title} 결과
             </div>
             <div className="text-[5rem] md:text-[7rem] mb-5 drop-shadow-xl select-none leading-none">
-              {test.emoji}
+              {RESULT_EMOJIS[result.key] ?? test.emoji}
             </div>
             <h1 className="text-3xl md:text-[2.6rem] font-black text-white mb-3 leading-tight tracking-tight">
               {result.title}

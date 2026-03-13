@@ -162,27 +162,34 @@ export function ShareButtons({ title, text, url, testSlug, resultKey }: ShareBut
 
   const textParts = splitAtEmoji(text);
 
+  const renderBtn = (btn: SnsButton) => (
+    <button
+      key={btn.label}
+      onClick={btn.onClick}
+      className="flex flex-col items-center gap-1.5 group"
+      title={btn.label}
+    >
+      <div
+        className={`rounded-full flex items-center justify-center transition-all duration-200 active:scale-95 ${btn.bg}`}
+        style={{ width: '3.25rem', height: '3.25rem' }}
+      >
+        {btn.icon}
+      </div>
+      <span className="text-[10px] text-white/60 group-hover:text-white/90 transition-colors whitespace-nowrap font-medium">
+        {btn.label}
+      </span>
+    </button>
+  );
+
   return (
     <div className="flex flex-col items-center gap-5">
-      <div className="flex flex-wrap gap-3.5 justify-center">
-        {buttons.map((btn) => (
-          <button
-            key={btn.label}
-            onClick={btn.onClick}
-            className="flex flex-col items-center gap-1.5 group"
-            title={btn.label}
-          >
-            <div
-              className={`rounded-full flex items-center justify-center transition-all duration-200 active:scale-95 ${btn.bg}`}
-              style={{ width: '3.25rem', height: '3.25rem' }}
-            >
-              {btn.icon}
-            </div>
-            <span className="text-[10px] text-white/60 group-hover:text-white/90 transition-colors whitespace-nowrap font-medium">
-              {btn.label}
-            </span>
-          </button>
-        ))}
+      {/* Row 1: 4 buttons */}
+      <div className="flex gap-3.5 justify-center">
+        {buttons.slice(0, 4).map(renderBtn)}
+      </div>
+      {/* Row 2: 5 buttons */}
+      <div className="flex gap-3.5 justify-center">
+        {buttons.slice(4).map(renderBtn)}
       </div>
 
       {/* Share text preview */}

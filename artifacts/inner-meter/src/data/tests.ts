@@ -1166,3 +1166,64 @@ export const tests: Test[] = [
 ];
 
 export const getTestBySlug = (slug: string) => tests.find(t => t.slug === slug);
+
+/**
+ * Per-result emoji overrides.
+ * Used in the hero card and share card so each result has a
+ * personality-matching icon instead of the generic test emoji.
+ */
+export const RESULT_EMOJIS: Record<string, string> = {
+  // ── 연애 성향 테스트 ──
+  'direct-romantic':  '🔥',
+  'direct-realist':   '💼',
+  'passive-romantic': '💭',
+  'passive-realist':  '🤝',
+
+  // ── 애착 유형 테스트 ──
+  'secure':    '🌿',
+  'anxious':   '🌀',
+  'avoidant':  '🧊',
+  'mixed':     '🎭',
+
+  // ── 숨겨진 성격 테스트 ──
+  'extrovert':  '🦋',
+  'introvert':  '🏠',
+  'chameleon':  '🦎',
+  'balanced':   '🌗',
+
+  // ── 과몰입 테스트 ──
+  'extreme':  '🔥',
+  'high':     '💫',
+  'medium':   '🌤️',
+  'realist':  '🧭',
+
+  // ── 친구들에게 보이는 나 ──
+  'mood-maker':      '🎊',
+  'parent':          '🧸',
+  'hidden-comedian': '😂',
+  'observer':        '👁️',
+
+  // ── 직관 vs 논리 ──
+  'extreme-intuition': '🌊',
+  'extreme-logic':     '🧩',
+  'emotional-logic':   '🌺',
+  'balanced-thinker':  '⚖️',
+
+  // ── MBTI 16 유형 ──
+  'ENTJ': '👑',
+  'ENTP': '💡',
+  'ENFJ': '🌟',
+  'ENFP': '🌈',
+  'ESTJ': '🫡',
+  'ESFJ': '🥳',
+  'ESTP': '⚡',
+  'ESFP': '🎤',
+  'INTJ': '🎯',
+  'INTP': '🔭',
+  'INFJ': '🔮',
+  'INFP': '🌙',
+  'ISTJ': '🏛️',
+  'ISFJ': '💝',
+  'ISTP': '🔧',
+  'ISFP': '🎨',
+};

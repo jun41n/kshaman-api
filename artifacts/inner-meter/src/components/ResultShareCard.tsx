@@ -14,6 +14,7 @@
 
 import { forwardRef } from "react";
 import type { Test, TestResult } from "@/data/tests";
+import { RESULT_EMOJIS } from "@/data/tests";
 
 /* ── design tokens per category ──────────────────────────────────── */
 
@@ -186,11 +187,11 @@ export const ResultShareCard = forwardRef<HTMLDivElement, ResultShareCardProps>(
             alignItems: 'center', justifyContent: 'center', textAlign: 'center',
             padding: '0 8px',
           }}>
-            {/* emoji */}
+            {/* emoji — use result-specific icon if available */}
             <div style={{
               fontSize: '68px', lineHeight: '1', marginBottom: '20px',
               filter: 'drop-shadow(0 6px 18px rgba(0,0,0,0.30))',
-            }}>{test.emoji}</div>
+            }}>{RESULT_EMOJIS[result.key] ?? test.emoji}</div>
 
             {/* result title */}
             <h2 style={{
