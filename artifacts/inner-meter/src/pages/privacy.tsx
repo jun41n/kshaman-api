@@ -1,53 +1,84 @@
 import { Layout } from "@/components/layout";
+import { Link } from "wouter";
+import { ShieldCheck } from "lucide-react";
 
-/* ── 연락처 ──────────────────────────────── */
 const CONTACT_EMAIL = "meaningout_d@naver.com";
 
 export default function Privacy() {
   return (
     <Layout>
-      <div className="max-w-3xl mx-auto py-12">
-        <h1 className="text-3xl font-black text-foreground mb-8">개인정보처리방침</h1>
+      <div className="max-w-2xl mx-auto py-12">
 
-        <div className="prose prose-sm sm:prose-base dark:prose-invert prose-purple max-w-none bg-card p-8 rounded-3xl border border-border shadow-sm">
-          <p className="text-muted-foreground mb-6">시행일: 2025년 1월 1일</p>
+        {/* 헤더 */}
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 text-primary mb-5">
+            <ShieldCheck className="w-7 h-7" />
+          </div>
+          <h1 className="text-3xl md:text-4xl font-black text-foreground mb-4">
+            개인정보 처리방침
+          </h1>
+        </div>
 
-          <h3>1. 수집하는 개인정보 항목</h3>
-          <p>
-            InnerMeter는 회원가입 없이 이용 가능한 서비스입니다. 테스트 이용 시 사용자가 입력하는
-            답변은 오직 결과 도출만을 위해 브라우저에서 일시적으로 처리되며, 당사의 서버로
-            전송되거나 저장되지 않습니다.
-          </p>
+        {/* 본문 */}
+        <div className="bg-card border border-border rounded-3xl p-8 shadow-sm space-y-8 text-foreground/80 leading-relaxed text-base">
 
-          <h3>2. 쿠키(Cookie) 및 로컬 스토리지 이용</h3>
-          <p>
-            서비스의 원활한 제공과 사용자의 편의(다크 모드 설정, 결과 임시 저장 등)를 위해
-            브라우저의 로컬 스토리지(Local Storage)를 사용할 수 있습니다. 이는 사용자의 기기에
-            저장되며 개인을 식별할 수 있는 정보를 포함하지 않습니다.
-          </p>
+          <section>
+            <p>InnerMeter는 사용자의 개인정보를 중요하게 생각합니다.</p>
+            <p className="mt-3">
+              본 사이트는 서비스 제공을 위해 최소한의 정보만을 수집합니다.
+            </p>
+          </section>
 
-          <h3>3. 외부 분석 도구</h3>
-          <p>
-            서비스 이용 통계 및 오류 분석을 위해 구글 애널리틱스(Google Analytics) 등과 같은
-            외부 분석 도구를 사용할 수 있습니다. 이 과정에서 익명화된 방문 데이터가 수집될 수
-            있습니다.
-          </p>
+          <section>
+            <h2 className="text-base font-bold text-foreground mb-4">수집 가능한 정보</h2>
+            <ul className="space-y-2.5">
+              {['생년월일', '성별', '국가'].map((item) => (
+                <li key={item} className="flex items-center gap-2.5 text-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <p className="mt-4 text-sm">
+              이 정보는 테스트 결과 생성 목적으로만 사용됩니다.
+            </p>
+          </section>
 
-          <h3>4. 개인정보의 제3자 제공</h3>
-          <p>당사는 원칙적으로 사용자의 개인정보를 외부로 제공하지 않습니다.</p>
+          <section>
+            <p>
+              InnerMeter는 사용자의 개인정보를 외부에 판매하거나 공유하지 않습니다.
+            </p>
+          </section>
 
-          <h3>5. 개인정보 관련 문의</h3>
-          <p>
-            개인정보 처리와 관련된 문의사항은 아래 이메일로 연락해주세요.
-            영업일 기준 2~3일 이내 회신 드립니다.
-          </p>
-          <p>
-            이메일:{" "}
+          <section>
+            <p>
+              또한 Google Analytics와 같은 도구를 통해 방문 통계를 수집할 수 있습니다.
+            </p>
+            <p className="mt-3">
+              이 정보는 사이트 개선 및 사용자 경험 향상을 위해 사용됩니다.
+            </p>
+          </section>
+
+          <section>
+            <p>사용자는 언제든지 사이트 이용을 중단할 수 있습니다.</p>
+            <p className="mt-3">
+              문의 사항이 있는 경우{' '}
+              <Link href="/contact" className="font-semibold text-primary hover:opacity-80 transition-opacity">
+                Contact 페이지
+              </Link>
+              를 통해 연락할 수 있습니다.
+            </p>
+          </section>
+
+          <div className="pt-4 border-t border-border text-sm text-muted-foreground">
+            문의 이메일:{' '}
             <a href={`mailto:${CONTACT_EMAIL}`} className="font-semibold text-primary hover:opacity-80 transition-opacity">
               {CONTACT_EMAIL}
             </a>
-          </p>
+          </div>
+
         </div>
+
       </div>
     </Layout>
   );

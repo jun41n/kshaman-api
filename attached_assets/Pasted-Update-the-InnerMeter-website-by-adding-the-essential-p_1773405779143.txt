@@ -1,0 +1,135 @@
+Update the InnerMeter website by adding the essential pages required for AdSense approval and connecting them in the site footer.
+
+Create the following routes:
+
+/about
+/privacy
+/contact
+
+All text must be in Korean.
+Do not break the current layout, homepage, test cards, or K-Shaman feature.
+
+The pages must be mobile responsive and accessible from every page through the footer.
+
+---
+
+## ABOUT PAGE
+
+Route:
+/about
+
+Page title:
+InnerMeter 소개
+
+Content:
+
+InnerMeter는 다양한 성격 테스트와 흥미로운 심리 콘텐츠를 제공하는 플랫폼입니다.
+
+사용자는 간단한 질문을 통해 자신의 성향, 심리 유형, 그리고 인생의 흐름을 재미있게 확인할 수 있습니다.
+
+InnerMeter의 콘텐츠는 자기 탐색과 엔터테인먼트 목적의 경험을 제공하기 위해 만들어졌습니다.
+
+현재 제공되는 테스트 예시:
+
+MBTI 성격 테스트
+애착 유형 테스트
+직관 vs 논리 테스트
+과몰입 테스트
+테토 vs 에겐 테스트
+내 인생이 풀리는 나이 테스트
+K-Shaman Reading
+
+InnerMeter는 사람들이 자신을 더 흥미롭게 이해하고 결과를 친구들과 공유할 수 있는 경험을 제공하는 것을 목표로 합니다.
+
+본 사이트에서 제공되는 운세 및 점사 콘텐츠는 오락 및 엔터테인먼트 목적의 콘텐츠입니다.
+
+© 2026 InnerMeter
+
+---
+
+## PRIVACY POLICY PAGE
+
+Route:
+/privacy
+
+Page title:
+개인정보 처리방침
+
+Content:
+
+InnerMeter는 사용자의 개인정보 보호를 중요하게 생각합니다.
+
+본 사이트는 서비스 제공을 위해 최소한의 정보만을 수집할 수 있습니다.
+
+수집 가능한 정보:
+
+생년월일
+성별
+국가
+
+이 정보는 테스트 결과 생성 및 사용자 경험 개선을 위한 목적으로만 사용됩니다.
+
+InnerMeter는 사용자의 개인정보를 외부에 판매하거나 공유하지 않습니다.
+
+또한 Google Analytics와 같은 분석 도구를 통해 방문 통계가 수집될 수 있습니다.
+
+이 정보는 사이트 개선과 콘텐츠 품질 향상을 위해 활용됩니다.
+
+사용자는 언제든지 사이트 이용을 중단할 수 있습니다.
+
+문의 사항은 Contact 페이지를 통해 연락하실 수 있습니다.
+
+---
+
+## CONTACT PAGE
+
+Route:
+/contact
+
+Page title:
+문의하기
+
+Content:
+
+InnerMeter 서비스와 관련된 문의는 아래 이메일로 보내주세요.
+
+Email
+[meaningout_d@naver.com](mailto:meaningout_d@naver.com)
+
+가능한 빠르게 답변드리겠습니다.
+
+감사합니다.
+
+---
+
+## FOOTER UPDATE
+
+Add the following links to the global site footer so they appear on all pages.
+
+About
+Privacy Policy
+Contact
+
+Each link must navigate to the correct route:
+
+/about
+/privacy
+/contact
+
+Also display the copyright text in the footer:
+
+© 2026 InnerMeter
+
+---
+
+## TECHNICAL REQUIREMENTS
+
+Ensure:
+
+mobile responsive layout
+clean readable typography
+no layout breaking
+footer visible on all pages
+pages accessible to search engines
+
+These pages must be crawlable and visible to AdSense review bots.
