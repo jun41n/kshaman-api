@@ -102,6 +102,11 @@ export function Layout({ children }: LayoutProps) {
                   {link.label}
                 </Link>
               ))}
+              <div className="pt-2 pb-1 border-t border-border mt-2">
+                <Button asChild className="w-full bg-gradient-primary text-white font-bold h-12 rounded-xl shadow-md">
+                  <Link href="/tests">시작하기</Link>
+                </Button>
+              </div>
             </nav>
           </div>
         )}
