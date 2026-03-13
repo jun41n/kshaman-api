@@ -139,7 +139,7 @@ export default function TestResult() {
       trackResultImageSave({ test_slug: test.slug, result_key: result.key, result_title: result.title });
     } catch (err) {
       console.warn('Image save failed', err);
-      alert('이미지 저장에 실패했어요 😢\n스크린샷(화면 캡처)을 이용해 저장해보세요!');
+      alert(t('result.saveError'));
     } finally {
       setIsSaving(false);
     }
@@ -163,7 +163,7 @@ export default function TestResult() {
 
           <div className="relative z-10 flex flex-col items-center text-center px-6 pt-10 pb-10">
             <div className="inline-flex items-center gap-1 px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/25 text-white text-xs font-bold mb-5">
-              ✨ {test.title} 결과
+              {t('result.resultBadge', { title: test.title })}
             </div>
             <div className="text-[5rem] md:text-[7rem] mb-5 drop-shadow-xl select-none leading-none">
               {RESULT_EMOJIS[result.key] ?? test.emoji}
@@ -200,7 +200,7 @@ export default function TestResult() {
           >
             <div className="flex items-center gap-2 mb-4">
               <div className="w-7 h-7 rounded-xl bg-emerald-500 flex items-center justify-center text-white font-black text-sm">✓</div>
-              <h3 className="font-bold text-emerald-800 dark:text-emerald-300 text-sm">나의 강점</h3>
+              <h3 className="font-bold text-emerald-800 dark:text-emerald-300 text-sm">{t('result.strengths')}</h3>
             </div>
             <ul className="space-y-2.5">
               {result.strengths.map((item, idx) => (
@@ -222,7 +222,7 @@ export default function TestResult() {
           >
             <div className="flex items-center gap-2 mb-4">
               <div className="w-7 h-7 rounded-xl bg-amber-400 flex items-center justify-center text-white font-black text-sm">!</div>
-              <h3 className="font-bold text-amber-800 dark:text-amber-300 text-sm">주의할 점</h3>
+              <h3 className="font-bold text-amber-800 dark:text-amber-300 text-sm">{t('result.caution')}</h3>
             </div>
             <ul className="space-y-2.5">
               {result.caution.map((item, idx) => (
@@ -249,7 +249,7 @@ export default function TestResult() {
               <div className="bg-violet-50 dark:bg-violet-950/30 p-5 border-b border-violet-100 dark:border-violet-900/40">
                 <div className="flex items-center gap-2 mb-3">
                   <span className="text-lg leading-none">💘</span>
-                  <h3 className="font-bold text-violet-800 dark:text-violet-300 text-sm">연애 스타일</h3>
+                  <h3 className="font-bold text-violet-800 dark:text-violet-300 text-sm">{t('result.loveStyle')}</h3>
                 </div>
                 <p className="text-sm text-violet-900 dark:text-violet-200 leading-relaxed break-keep">
                   {result.relationshipStyle}
@@ -260,7 +260,7 @@ export default function TestResult() {
               <div className="bg-fuchsia-50 dark:bg-fuchsia-950/30 p-5">
                 <div className="flex items-center gap-2 mb-3">
                   <span className="text-lg leading-none">✨</span>
-                  <h3 className="font-bold text-fuchsia-800 dark:text-fuchsia-300 text-sm">잘 맞는 유형</h3>
+                  <h3 className="font-bold text-fuchsia-800 dark:text-fuchsia-300 text-sm">{t('result.compatibleVibe')}</h3>
                 </div>
                 <p className="text-sm text-fuchsia-900 dark:text-fuchsia-200 leading-relaxed break-keep">
                   {result.compatibleVibe}
@@ -289,8 +289,8 @@ export default function TestResult() {
           <div className="relative z-10 p-6 md:p-8">
             {/* section header */}
             <div className="text-center mb-6">
-              <h3 className="text-lg font-black text-white mb-1">결과 카드 저장 & 공유 ✨</h3>
-              <p className="text-white/55 text-sm">이미지로 저장하고 SNS에 자랑해봐요!</p>
+              <h3 className="text-lg font-black text-white mb-1">{t('result.shareCardTitle')}</h3>
+              <p className="text-white/55 text-sm">{t('result.shareCardSub')}</p>
             </div>
 
             {/* ── Card Preview ── */}
@@ -352,7 +352,7 @@ export default function TestResult() {
                   onClick={handleSaveImage}
                   className="w-full flex items-center justify-center gap-2.5 rounded-2xl h-11 text-sm font-bold text-white/80 border border-white/20 hover:bg-white/10 transition-colors"
                 >
-                  <Share2 className="w-4 h-4" />이미지로 공유하기 (모바일)
+                  <Share2 className="w-4 h-4" />{t('result.shareMobile')}
                 </button>
               )}
             </div>
@@ -360,13 +360,13 @@ export default function TestResult() {
             {/* divider */}
             <div className="flex items-center gap-3 mb-5">
               <div className="flex-1 h-px bg-white/10" />
-              <span className="text-white/35 text-xs font-medium shrink-0">SNS로 바로 공유</span>
+              <span className="text-white/35 text-xs font-medium shrink-0">{t('result.snsDivider')}</span>
               <div className="flex-1 h-px bg-white/10" />
             </div>
 
             {/* SNS buttons */}
             <ShareButtons
-              title={`나의 ${test.title} 결과는 ${result.title}!`}
+              title={t('result.shareTitle', { testTitle: test.title, resultTitle: result.title })}
               text={result.shareText}
               url={window.location.origin + import.meta.env.BASE_URL}
               testSlug={test.slug}
@@ -400,8 +400,8 @@ export default function TestResult() {
             className="border-t border-border pt-10 mb-8"
           >
             <div className="text-center mb-6">
-              <h2 className="text-xl font-black text-foreground mb-1">이런 테스트도 해봤어요? 🎯</h2>
-              <p className="text-xs text-muted-foreground">이 결과를 본 사람들이 다음에 많이 한 테스트예요</p>
+              <h2 className="text-xl font-black text-foreground mb-1">{t('result.recommended')}</h2>
+              <p className="text-xs text-muted-foreground">{t('result.recommendedSub')}</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {recommendedTests.map(rt => (

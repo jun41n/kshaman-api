@@ -114,13 +114,13 @@ export default function Home() {
 
       {/* ── 카테고리 ── */}
       <section className="mb-12">
-        <h2 className="text-lg md:text-xl font-bold text-foreground mb-4 text-center">어떤 테스트가 궁금해요?</h2>
+        <h2 className="text-lg md:text-xl font-bold text-foreground mb-4 text-center">{t('home.catSection')}</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {[
-            { label: '성격 분석', emoji: null, icon: <Brain className="w-6 h-6 text-blue-500" />, bg: 'bg-blue-50 dark:bg-blue-900/20 border-blue-100 dark:border-blue-800', ring: 'bg-blue-100 dark:bg-blue-800', cat: '성격 테스트' },
-            { label: '연애 성향', emoji: null, icon: <Heart className="w-6 h-6 text-pink-500" />, bg: 'bg-pink-50 dark:bg-pink-900/20 border-pink-100 dark:border-pink-800', ring: 'bg-pink-100 dark:bg-pink-800', cat: '연애 테스트' },
-            { label: '심심풀이', emoji: null, icon: <Zap className="w-6 h-6 text-amber-500" />, bg: 'bg-amber-50 dark:bg-amber-900/20 border-amber-100 dark:border-amber-800', ring: 'bg-amber-100 dark:bg-amber-800', cat: '재미 테스트' },
-            { label: '타로 뽑기', emoji: '🔮', icon: null, bg: 'bg-violet-50 dark:bg-violet-900/20 border-violet-100 dark:border-violet-800', ring: 'bg-violet-100 dark:bg-violet-800', cat: null },
+            { label: t('home.catPersonality'), emoji: null, icon: <Brain className="w-6 h-6 text-blue-500" />, bg: 'bg-blue-50 dark:bg-blue-900/20 border-blue-100 dark:border-blue-800', ring: 'bg-blue-100 dark:bg-blue-800', cat: '성격 테스트' },
+            { label: t('home.catLove'), emoji: null, icon: <Heart className="w-6 h-6 text-pink-500" />, bg: 'bg-pink-50 dark:bg-pink-900/20 border-pink-100 dark:border-pink-800', ring: 'bg-pink-100 dark:bg-pink-800', cat: '연애 테스트' },
+            { label: t('home.catFun'), emoji: null, icon: <Zap className="w-6 h-6 text-amber-500" />, bg: 'bg-amber-50 dark:bg-amber-900/20 border-amber-100 dark:border-amber-800', ring: 'bg-amber-100 dark:bg-amber-800', cat: '재미 테스트' },
+            { label: t('home.catTarot'), emoji: '🔮', icon: null, bg: 'bg-violet-50 dark:bg-violet-900/20 border-violet-100 dark:border-violet-800', ring: 'bg-violet-100 dark:bg-violet-800', cat: null },
           ].map(item => {
             const inner = (
               <div className={`flex flex-col items-center justify-center p-5 min-h-[108px] rounded-[1.5rem] border ${item.bg} hover:shadow-lg hover:-translate-y-1 transition-all duration-200 group cursor-pointer w-full`}>
@@ -224,20 +224,20 @@ export default function Home() {
             <div className="text-center md:text-left max-w-sm w-full">
               {/* Label */}
               <span className="inline-block px-3 py-1 bg-amber-400/10 rounded-full text-xs font-bold text-amber-300 mb-5 border border-amber-400/20 tracking-wide">
-                🔮 K-Shaman Reading
+                {t('home.kshamanLabel')}
               </span>
 
               {/* Headline */}
-              <h2 className="text-2xl md:text-3xl font-black text-white mb-4 leading-tight">
-                당신의 운명을<br />누가 먼저 볼까요?
+              <h2 className="text-2xl md:text-3xl font-black text-white mb-4 leading-tight" style={{ whiteSpace: 'pre-line' }}>
+                {t('home.kshamanHeadline')}
               </h2>
 
               {/* Description */}
               <div className="text-purple-200/70 text-sm md:text-[0.9rem] mb-6 leading-[1.85] space-y-0.5">
-                <p>애기보살은 직관으로 봅니다.</p>
-                <p>천신도령은 고비를 짚습니다.</p>
-                <p>무속인은 인생의 흐름을 봅니다.</p>
-                <p className="mt-3 text-purple-300/60">같은 사주라도<br />보살마다 말이 다릅니다.</p>
+                <p>{t('home.kshamanDesc1')}</p>
+                <p>{t('home.kshamanDesc2')}</p>
+                <p>{t('home.kshamanDesc3')}</p>
+                <p className="mt-3 text-purple-300/60">{t('home.kshamanDesc4')}</p>
               </div>
 
               {/* Primary CTA */}
@@ -246,22 +246,22 @@ export default function Home() {
                 className="rounded-full bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-black font-black border-0 shadow-xl shadow-amber-700/30 h-12 px-8 text-sm mb-3 w-full sm:w-auto"
                 onClick={() => trackEvent('k_shaman_home_click', {})}
               >
-                <Link href="/k-shaman">🔮 내 점사 보기</Link>
+                <Link href="/k-shaman">{t('home.kshamanCta')}</Link>
               </Button>
 
               {/* Secondary helper text */}
               <p className="text-purple-400/60 text-[11px] mb-1.5">
-                같은 사주라도 보살마다 해석이 다릅니다
+                {t('home.kshamanHelper')}
               </p>
 
               {/* Social proof */}
               <p className="text-amber-400/50 text-[11px] font-semibold">
-                오늘 1,284명이 점사를 확인했습니다
+                {t('home.kshamanProof')}
               </p>
 
               {/* Keywords */}
               <p className="text-purple-500/50 text-[10px] mt-3 tracking-wider">
-                연애운 · 재물운 · 인생 전환 시기
+                {t('home.kshamanKeywords')}
               </p>
             </div>
 
@@ -294,7 +294,7 @@ export default function Home() {
       <section className="mb-10">
         <div className="flex items-end justify-between mb-5">
           <h2 className="text-xl font-black text-foreground">{t('home.moreTests')}</h2>
-          <span className="text-xs font-bold text-muted-foreground bg-muted px-3 py-1 rounded-full">총 {tests.length}개</span>
+          <span className="text-xs font-bold text-muted-foreground bg-muted px-3 py-1 rounded-full">{t('home.totalCount', { count: tests.length })}</span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {otherTests.map(test => (
@@ -303,7 +303,7 @@ export default function Home() {
         </div>
         <div className="mt-5 text-center">
           <Button asChild variant="outline" className="rounded-full px-8 font-bold border-border hover:bg-muted">
-            <Link href="/tests">모든 테스트 보기 ({tests.length}개)</Link>
+            <Link href="/tests">{t('home.viewAllTests', { count: tests.length })}</Link>
           </Button>
         </div>
       </section>
