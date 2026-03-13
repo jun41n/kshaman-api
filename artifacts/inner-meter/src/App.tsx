@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { initAnalytics, trackPageView } from "@/lib/analytics";
+import "@/lib/i18n";
 
 // Pages
 import Home from "@/pages/home";

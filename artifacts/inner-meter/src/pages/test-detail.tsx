@@ -6,6 +6,7 @@ import { ArrowLeft } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
 import { motion, AnimatePresence } from "framer-motion";
 import { trackTestStart, trackTestComplete } from "@/lib/analytics";
+import { useTranslation } from "react-i18next";
 
 const OPTION_LABELS = ['A', 'B', 'C', 'D'];
 
@@ -20,6 +21,7 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 export default function TestDetail() {
+  const { t } = useTranslation();
   const [, params] = useRoute("/tests/:slug");
   const [, setLocation] = useLocation();
   const slug = params?.slug || "";
@@ -138,7 +140,7 @@ export default function TestDetail() {
             className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors mb-5 group"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
-            이전
+            {t('common.back')}
           </button>
 
           <div className="flex items-center justify-between mb-3">

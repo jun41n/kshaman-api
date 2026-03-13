@@ -6,11 +6,13 @@ import { ArrowRight, Sparkles, Heart, Brain, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { trackEvent } from "@/lib/analytics";
+import { useTranslation } from "react-i18next";
 
 const TRENDING_SLUGS = ['love-style-test', 'hidden-personality-test', 'how-friends-see-me-test'];
 const NEW_SLUGS = ['destiny-age-test', 'teto-egen-test'];
 
 export default function Home() {
+  const { t } = useTranslation();
   const [, setLocation] = useLocation();
 
   const handleCategoryClick = (category: string) => {
@@ -46,21 +48,21 @@ export default function Home() {
         <div className="relative z-10 flex flex-col items-center justify-center px-6 py-16 md:py-28 text-center gap-5">
           <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/60 dark:bg-black/40 backdrop-blur-sm border border-white/30 text-xs font-bold text-primary shadow-sm">
             <Sparkles className="w-3.5 h-3.5" />
-            나를 알아가는 가장 재밌는 방법
+            {t('home.badge')}
           </div>
 
           <h1 className="text-[2.6rem] leading-[1.15] md:text-6xl font-black tracking-tight text-foreground max-w-md">
-            나는 어떤 사람일까?<br />
-            <span className="text-gradient-primary">지금 확인해봐요</span>
+            {t('home.title1')} {t('home.title2')}<br />
+            <span className="text-gradient-primary">{t('home.title3')}</span>
           </h1>
 
           <p className="text-[0.95rem] md:text-lg text-muted-foreground max-w-xs md:max-w-sm leading-relaxed">
-            성격·연애·멘탈까지 — 재미있고 정확한 심리 분석을 3분 안에 완성해봐요.
+            {t('home.subtitle')}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 w-full max-w-xs sm:max-w-none sm:w-auto">
             <Button asChild size="lg" className="rounded-full h-13 px-8 text-base font-bold shadow-xl shadow-primary/30 hover:-translate-y-0.5 transition-all">
-              <Link href="/tests">테스트 시작하기 →</Link>
+              <Link href="/tests">{t('home.ctaPrimary')}</Link>
             </Button>
             <Button
               onClick={() => document.getElementById('trending-section')?.scrollIntoView({ behavior: 'smooth' })}
@@ -68,12 +70,12 @@ export default function Home() {
               size="lg"
               className="rounded-full h-12 px-6 text-sm font-bold bg-white/50 dark:bg-black/30 backdrop-blur-sm border-white/40 hover:bg-white/70 transition-all"
             >
-              인기 테스트 구경하기
+              {t('home.ctaSecondary')}
             </Button>
           </div>
 
           <p className="text-xs text-muted-foreground/70 font-medium">
-            🎉 지금까지 <span className="text-primary font-bold">12만명</span>이 참여했어요
+            {t('home.participants')}
           </p>
         </div>
       </section>
@@ -82,11 +84,11 @@ export default function Home() {
       <section id="trending-section" className="mb-12">
         <div className="flex items-end justify-between mb-5">
           <div>
-            <h2 className="text-xl md:text-2xl font-black text-foreground">🔥 지금 뜨는 테스트</h2>
-            <p className="text-muted-foreground text-sm mt-0.5">오늘 가장 많이 공유된 테스트예요</p>
+            <h2 className="text-xl md:text-2xl font-black text-foreground">{t('home.trending')}</h2>
+            <p className="text-muted-foreground text-sm mt-0.5">{t('home.trendingSub')}</p>
           </div>
           <Link href="/tests" className="hidden sm:flex items-center text-xs font-bold text-primary hover:opacity-75 transition-opacity gap-0.5">
-            전체 보기 <ArrowRight className="w-3.5 h-3.5" />
+            {t('home.viewAll')} <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
 
@@ -105,7 +107,7 @@ export default function Home() {
 
         <div className="mt-4 sm:hidden">
           <Button asChild variant="ghost" size="sm" className="w-full text-primary font-bold">
-            <Link href="/tests">전체 테스트 보기 <ArrowRight className="w-4 h-4 ml-1" /></Link>
+            <Link href="/tests">{t('home.viewAll')} <ArrowRight className="w-4 h-4 ml-1" /></Link>
           </Button>
         </div>
       </section>
@@ -142,8 +144,8 @@ export default function Home() {
       <section className="mb-12">
         <div className="flex items-end justify-between mb-5">
           <div>
-            <h2 className="text-xl md:text-2xl font-black text-foreground">✨ 새로 나왔어요</h2>
-            <p className="text-muted-foreground text-sm mt-0.5">방금 새로 추가된 테스트예요</p>
+            <h2 className="text-xl md:text-2xl font-black text-foreground">{t('home.newSection')}</h2>
+            <p className="text-muted-foreground text-sm mt-0.5">{t('home.newSub')}</p>
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -291,7 +293,7 @@ export default function Home() {
       {/* ── 더 많은 테스트 ── */}
       <section className="mb-10">
         <div className="flex items-end justify-between mb-5">
-          <h2 className="text-xl font-black text-foreground">더 많은 테스트</h2>
+          <h2 className="text-xl font-black text-foreground">{t('home.moreTests')}</h2>
           <span className="text-xs font-bold text-muted-foreground bg-muted px-3 py-1 rounded-full">총 {tests.length}개</span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">

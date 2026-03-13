@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import confetti from "canvas-confetti";
 import { motion } from "framer-motion";
 import { trackRecommendedTestClick, trackResultImageSave } from "@/lib/analytics";
+import { useTranslation } from "react-i18next";
 
 const CATEGORY_GRADIENTS: Record<string, string> = {
   '연애 테스트': 'from-pink-500 via-rose-500 to-fuchsia-500',
@@ -56,6 +57,7 @@ async function downloadCardAsPng(
 }
 
 export default function TestResult() {
+  const { t } = useTranslation();
   const [, params] = useRoute("/results/:slug");
   const [, setLocation] = useLocation();
   const slug = params?.slug || "";
@@ -337,11 +339,11 @@ export default function TestResult() {
                 `}
               >
                 {isSaving ? (
-                  <><Loader2 className="w-5 h-5 animate-spin" />이미지 생성 중...</>
+                  <><Loader2 className="w-5 h-5 animate-spin" />{t('common.saveImage')}...</>
                 ) : saved ? (
-                  <><Check className="w-5 h-5" />저장 완료! 🎉</>
+                  <><Check className="w-5 h-5" />{t('common.copied')} 🎉</>
                 ) : (
-                  <><Download className="w-5 h-5" />결과 이미지 저장하기</>
+                  <><Download className="w-5 h-5" />{t('common.saveImage')}</>
                 )}
               </button>
 
@@ -378,13 +380,13 @@ export default function TestResult() {
           <Button asChild size="lg"
             className="w-full rounded-2xl h-13 text-[0.95rem] font-bold shadow-lg shadow-primary/20 hover:-translate-y-0.5 transition-transform">
             <Link href={`/tests/${test.slug}`}>
-              <RotateCcw className="w-4 h-4 mr-2" />다시 해보기
+              <RotateCcw className="w-4 h-4 mr-2" />{t('common.retake')}
             </Link>
           </Button>
           <Button asChild variant="outline" size="lg"
             className="w-full rounded-2xl h-12 text-[0.95rem] font-bold hover:-translate-y-0.5 transition-transform">
             <Link href="/tests">
-              <Grid2x2 className="w-4 h-4 mr-2" />다른 테스트 하기
+              <Grid2x2 className="w-4 h-4 mr-2" />{t('common.takeOther')}
             </Link>
           </Button>
         </div>

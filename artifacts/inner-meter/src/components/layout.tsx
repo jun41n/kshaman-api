@@ -1,16 +1,16 @@
 import { ReactNode, useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Sparkles, Mail } from "lucide-react";
+import { Menu, X, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-/* ── 연락처 ──────────────────────────────── */
-const CONTACT_EMAIL = "meaningout_d@naver.com";
+import { useTranslation } from "react-i18next";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
 export function Layout({ children }: LayoutProps) {
+  const { t } = useTranslation();
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -26,9 +26,9 @@ export function Layout({ children }: LayoutProps) {
   }, [location]);
 
   const navLinks = [
-    { href: "/tests",  label: "테스트 모음" },
-    { href: "/tarot",  label: "오늘의 타로" },
-    { href: "/about",  label: "소개" },
+    { href: "/tests",  label: t('nav.tests') },
+    { href: "/tarot",  label: t('nav.tarot') },
+    { href: "/about",  label: t('nav.about') },
   ];
 
   return (
@@ -53,7 +53,7 @@ export function Layout({ children }: LayoutProps) {
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center gap-8">
+            <nav className="hidden md:flex items-center gap-6">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
@@ -65,19 +65,23 @@ export function Layout({ children }: LayoutProps) {
                   {link.label}
                 </Link>
               ))}
+              <LanguageSwitcher />
               <Button asChild variant="default" className="rounded-full shadow-md shadow-primary/20 font-bold px-6">
-                <Link href="/tests">시작하기</Link>
+                <Link href="/tests">{t('nav.start')}</Link>
               </Button>
             </nav>
 
-            {/* Mobile toggle */}
-            <button
-              className="md:hidden p-2 text-foreground"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              aria-label="메뉴 열기/닫기"
-            >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
+            {/* Mobile: language switcher + hamburger */}
+            <div className="md:hidden flex items-center gap-2">
+              <LanguageSwitcher />
+              <button
+                className="p-2 text-foreground"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="메뉴 열기/닫기"
+              >
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </button>
+            </div>
           </div>
         </div>
 
@@ -99,9 +103,13 @@ export function Layout({ children }: LayoutProps) {
                   {link.label}
                 </Link>
               ))}
-              <div className="pt-4 pb-2 border-t border-border mt-2">
+              <div className="pt-2 pb-1">
+                <p className="text-xs font-bold text-muted-foreground/50 uppercase tracking-wider px-4 mb-2">Language</p>
+                <LanguageSwitcher compact />
+              </div>
+              <div className="pt-2 pb-2 border-t border-border mt-1">
                 <Button asChild className="w-full bg-gradient-primary text-white font-bold h-13 rounded-2xl shadow-lg text-base">
-                  <Link href="/tests">테스트 시작하기</Link>
+                  <Link href="/tests">{t('nav.startLong')}</Link>
                 </Button>
               </div>
             </nav>
@@ -129,8 +137,8 @@ export function Layout({ children }: LayoutProps) {
                 </div>
                 InnerMeter
               </span>
-              <p className="text-sm text-muted-foreground">
-                당신의 내면을 가볍고 재미있게 측정해보세요.
+              <p className="text-sm text-muted-foreground max-w-[220px]">
+                {t('footer.tagline')}
               </p>
             </div>
 
@@ -138,17 +146,17 @@ export function Layout({ children }: LayoutProps) {
             <div className="flex flex-col sm:flex-row gap-6 sm:gap-12">
               {/* 서비스 */}
               <div>
-                <p className="text-xs font-bold text-muted-foreground/60 uppercase tracking-wider mb-3">서비스</p>
+                <p className="text-xs font-bold text-muted-foreground/60 uppercase tracking-wider mb-3">{t('footer.services')}</p>
                 <div className="flex flex-col gap-2.5 text-sm font-medium text-muted-foreground">
-                  <Link href="/tests"  className="hover:text-primary transition-colors">테스트 모음</Link>
-                  <Link href="/tarot"  className="hover:text-primary transition-colors">오늘의 타로</Link>
+                  <Link href="/tests"    className="hover:text-primary transition-colors">{t('nav.tests')}</Link>
+                  <Link href="/tarot"    className="hover:text-primary transition-colors">{t('nav.tarot')}</Link>
                   <Link href="/k-shaman" className="hover:text-primary transition-colors">K-Shaman</Link>
                 </div>
               </div>
 
               {/* 정보 */}
               <div>
-                <p className="text-xs font-bold text-muted-foreground/60 uppercase tracking-wider mb-3">정보</p>
+                <p className="text-xs font-bold text-muted-foreground/60 uppercase tracking-wider mb-3">{t('footer.info')}</p>
                 <div className="flex flex-col gap-2.5 text-sm font-medium text-muted-foreground">
                   <Link href="/about"   className="hover:text-primary transition-colors">About</Link>
                   <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
@@ -159,7 +167,7 @@ export function Layout({ children }: LayoutProps) {
           </div>
 
           <div className="mt-6 pt-5 border-t border-border/50 text-center text-xs text-muted-foreground/50 font-medium">
-            &copy; 2026 InnerMeter. All rights reserved.
+            {t('footer.copyright')}
           </div>
         </div>
       </footer>
