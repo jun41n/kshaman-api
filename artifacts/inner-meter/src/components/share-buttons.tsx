@@ -8,6 +8,13 @@ interface ShareButtonsProps {
   url?: string;
 }
 
+function splitAtEmoji(text: string): [string, string] | [string] {
+  // Split at the last emoji followed by a space (e.g. "...결과" 💘 "너의 연애...")
+  const match = text.match(/^(.*\p{Emoji_Presentation})\s+(.+)$/u);
+  if (match) return [match[1], match[2]];
+  return [text];
+}
+
 interface SnsButton {
   label: string;
   bg: string;
@@ -139,6 +146,8 @@ export function ShareButtons({ title, text, url }: ShareButtonsProps) {
     },
   ];
 
+  const textParts = splitAtEmoji(text);
+
   return (
     <div className="flex flex-col items-center gap-4">
       <div className="flex flex-wrap gap-4 justify-center">
@@ -159,7 +168,18 @@ export function ShareButtons({ title, text, url }: ShareButtonsProps) {
         ))}
       </div>
 
-      <p className="text-xs text-muted-foreground/60 italic mt-1">
+      {/* Share text preview with line break */}
+      <div className="bg-muted/40 border border-border/50 rounded-2xl px-5 py-3.5 text-sm text-muted-foreground max-w-xs text-center leading-relaxed">
+        <span>{textParts[0]}</span>
+        {textParts[1] && (
+          <>
+            <br />
+            <span>{textParts[1]}</span>
+          </>
+        )}
+      </div>
+
+      <p className="text-xs text-muted-foreground/60 italic">
         인스타그램·틱톡·카카오톡은 링크 복사 후 앱에서 붙여넣기 해주세요
       </p>
     </div>
