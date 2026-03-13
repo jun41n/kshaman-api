@@ -1,17 +1,27 @@
 import { Link } from "wouter";
 import { Clock, ChevronRight } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Test } from "@/data/tests";
 
 interface TestCardProps {
   test: Test;
-  compact?: boolean;
 }
 
-const CATEGORY_STYLES: Record<string, { bg: string; dot: string }> = {
-  '연애 테스트': { bg: 'bg-pink-50 dark:bg-pink-950/20', dot: 'bg-pink-400' },
-  '성격 테스트': { bg: 'bg-indigo-50 dark:bg-indigo-950/20', dot: 'bg-indigo-400' },
-  '재미 테스트': { bg: 'bg-amber-50 dark:bg-amber-950/20', dot: 'bg-amber-400' },
+const CATEGORY_THEME: Record<string, { card: string; badge: string; badgeText: string }> = {
+  '연애 테스트': {
+    card: 'bg-gradient-to-br from-pink-50 to-rose-50/60 dark:from-pink-950/25 dark:to-rose-950/10 border-pink-100/80 dark:border-pink-900/30',
+    badge: 'bg-pink-100 dark:bg-pink-900/40 text-pink-700 dark:text-pink-300',
+    badgeText: '💕 연애',
+  },
+  '성격 테스트': {
+    card: 'bg-gradient-to-br from-indigo-50 to-blue-50/60 dark:from-indigo-950/25 dark:to-blue-950/10 border-indigo-100/80 dark:border-indigo-900/30',
+    badge: 'bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300',
+    badgeText: '🧠 성격',
+  },
+  '재미 테스트': {
+    card: 'bg-gradient-to-br from-amber-50 to-orange-50/60 dark:from-amber-950/25 dark:to-orange-950/10 border-amber-100/80 dark:border-amber-900/30',
+    badge: 'bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300',
+    badgeText: '⚡ 재미',
+  },
 };
 
 const PARTICIPANT_COUNTS: Record<string, string> = {
@@ -24,47 +34,50 @@ const PARTICIPANT_COUNTS: Record<string, string> = {
 };
 
 export function TestCard({ test }: TestCardProps) {
-  const style = CATEGORY_STYLES[test.category] || { bg: 'bg-muted/40', dot: 'bg-primary' };
+  const theme = CATEGORY_THEME[test.category] ?? {
+    card: 'bg-card border-border/50',
+    badge: 'bg-muted text-muted-foreground',
+    badgeText: test.category,
+  };
   const count = PARTICIPANT_COUNTS[test.slug];
 
   return (
     <Link href={`/tests/${test.slug}`} className="block h-full outline-none group">
-      <div className={`
-        h-full rounded-2xl p-6 flex flex-col
-        border border-border/50
-        shadow-sm
-        transition-all duration-300 ease-out
-        hover:shadow-lg hover:shadow-primary/10 hover:border-primary/30 hover:-translate-y-1
-        ${style.bg}
-      `}>
-        <div className="flex justify-between items-start mb-4">
-          <div className="w-14 h-14 rounded-2xl bg-white dark:bg-black/20 shadow-sm flex items-center justify-center text-3xl group-hover:scale-110 transition-transform duration-300">
+      <div className={`h-full rounded-[1.5rem] p-5 md:p-6 flex flex-col border transition-all duration-250 ease-out hover:shadow-xl hover:-translate-y-1 hover:shadow-primary/8 ${theme.card}`}>
+
+        {/* Top row: emoji + badge */}
+        <div className="flex items-start justify-between mb-4">
+          <div className="w-14 h-14 rounded-2xl bg-white dark:bg-black/20 shadow-sm flex items-center justify-center text-[1.8rem] group-hover:scale-110 transition-transform duration-250 shrink-0">
             {test.emoji}
           </div>
-          <Badge variant="secondary" className="bg-white/70 dark:bg-black/20 text-muted-foreground font-medium rounded-full px-3 text-xs border-0 shadow-none">
-            {test.category}
-          </Badge>
+          <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full ${theme.badge}`}>
+            {theme.badgeText}
+          </span>
         </div>
-        
-        <h3 className="text-lg font-bold text-foreground mb-1.5 line-clamp-2 leading-snug">
+
+        {/* Title */}
+        <h3 className="text-base md:text-[1.05rem] font-bold text-foreground mb-1 line-clamp-2 leading-snug">
           {test.title}
         </h3>
 
+        {/* Participant count */}
         {count && (
-          <p className="text-xs text-muted-foreground/70 mb-2 font-medium">👥 {count} 참여</p>
+          <p className="text-[11px] text-muted-foreground/65 mb-2 font-medium">👥 {count} 참여</p>
         )}
-        
-        <p className="text-muted-foreground text-sm flex-grow line-clamp-3 mb-5 leading-relaxed">
+
+        {/* Description */}
+        <p className="text-muted-foreground text-[0.8rem] flex-grow line-clamp-2 mb-4 leading-relaxed">
           {test.description}
         </p>
-        
-        <div className="flex items-center justify-between pt-3 border-t border-black/5 dark:border-white/10 mt-auto">
-          <div className="flex items-center text-xs text-muted-foreground font-medium">
-            <Clock className="w-3.5 h-3.5 mr-1 opacity-60" />
+
+        {/* Footer */}
+        <div className="flex items-center justify-between pt-3 border-t border-black/[0.06] dark:border-white/[0.06] mt-auto">
+          <div className="flex items-center text-[11px] text-muted-foreground font-medium gap-1">
+            <Clock className="w-3 h-3 opacity-60" />
             {test.estimatedTime}
           </div>
-          <div className="flex items-center text-sm font-bold text-primary group-hover:translate-x-1 transition-transform">
-            시작하기 <ChevronRight className="w-4 h-4 ml-0.5" />
+          <div className="flex items-center text-[0.8rem] font-bold text-primary group-hover:translate-x-1 transition-transform duration-200">
+            시작 <ChevronRight className="w-3.5 h-3.5 ml-0.5" />
           </div>
         </div>
       </div>

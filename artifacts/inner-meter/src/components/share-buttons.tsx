@@ -9,7 +9,6 @@ interface ShareButtonsProps {
 }
 
 function splitAtEmoji(text: string): [string, string] | [string] {
-  // Split at the last emoji followed by a space (e.g. "...결과" 💘 "너의 연애...")
   const match = text.match(/^(.*\p{Emoji_Presentation})\s+(.+)$/u);
   if (match) return [match[1], match[2]];
   return [text];
@@ -31,7 +30,7 @@ export function ShareButtons({ title, text, url }: ShareButtonsProps) {
     try {
       await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
-      toast({ title: "링크 복사 완료!", description: "클립보드에 결과 링크가 복사되었습니다." });
+      toast({ title: "링크 복사 완료! 🎉", description: "결과 링크가 클립보드에 복사됐어요." });
       setTimeout(() => setCopied(false), 2500);
     } catch {
       toast({ variant: "destructive", title: "복사 실패", description: "다시 시도해주세요." });
@@ -40,32 +39,32 @@ export function ShareButtons({ title, text, url }: ShareButtonsProps) {
 
   const copyAndToast = (appName: string) => {
     navigator.clipboard.writeText(shareUrl).catch(() => {});
-    toast({ title: `${appName}에 공유하기`, description: "링크가 복사되었습니다. 앱에서 붙여넣기 해주세요." });
+    toast({ title: `${appName}에 공유하기`, description: "링크 복사 완료! 앱에서 붙여넣기하세요." });
   };
 
   const open = (u: string) => window.open(u, "_blank", "width=640,height=480");
 
   const buttons: SnsButton[] = [
     {
-      label: "링크 복사",
-      bg: "bg-muted border border-border hover:bg-muted/80",
+      label: copied ? "복사됨 ✓" : "링크 복사",
+      bg: copied ? "bg-emerald-500" : "bg-white/15 border border-white/20 hover:bg-white/25",
       icon: copied
-        ? <Check className="w-5 h-5 text-green-500" />
-        : <LinkIcon className="w-5 h-5 text-muted-foreground" />,
+        ? <Check className="w-5 h-5 text-white" />
+        : <LinkIcon className="w-5 h-5 text-white" />,
       onClick: copyLink,
     },
     {
       label: "X",
-      bg: "bg-black hover:opacity-80",
+      bg: "bg-black/90 hover:opacity-80",
       icon: (
-        <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
+        <svg className="w-4.5 h-4.5 fill-white" viewBox="0 0 24 24">
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
         </svg>
       ),
       onClick: () => open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`),
     },
     {
-      label: "페이스북",
+      label: "페북",
       bg: "bg-[#1877F2] hover:opacity-80",
       icon: (
         <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
@@ -85,17 +84,7 @@ export function ShareButtons({ title, text, url }: ShareButtonsProps) {
       onClick: () => copyAndToast("인스타그램"),
     },
     {
-      label: "틱톡",
-      bg: "bg-black hover:opacity-80",
-      icon: (
-        <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
-          <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.83a8.18 8.18 0 0 0 4.78 1.52V6.9a4.85 4.85 0 0 1-1.01-.21z" />
-        </svg>
-      ),
-      onClick: () => copyAndToast("틱톡"),
-    },
-    {
-      label: "카카오톡",
+      label: "카카오",
       bg: "bg-[#FEE500] hover:opacity-80",
       icon: (
         <svg className="w-5 h-5 fill-[#3C1E1E]" viewBox="0 0 24 24">
@@ -103,6 +92,16 @@ export function ShareButtons({ title, text, url }: ShareButtonsProps) {
         </svg>
       ),
       onClick: () => copyAndToast("카카오톡"),
+    },
+    {
+      label: "틱톡",
+      bg: "bg-black/90 hover:opacity-80",
+      icon: (
+        <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
+          <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.83a8.18 8.18 0 0 0 4.78 1.52V6.9a4.85 4.85 0 0 1-1.01-.21z" />
+        </svg>
+      ),
+      onClick: () => copyAndToast("틱톡"),
     },
     {
       label: "라인",
@@ -125,16 +124,6 @@ export function ShareButtons({ title, text, url }: ShareButtonsProps) {
       onClick: () => open(`https://www.threads.net/intent/post?text=${encodeURIComponent(text + " " + shareUrl)}`),
     },
     {
-      label: "핀터레스트",
-      bg: "bg-[#E60023] hover:opacity-80",
-      icon: (
-        <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
-          <path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 0 1 .083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z" />
-        </svg>
-      ),
-      onClick: () => open(`https://pinterest.com/pin/create/button/?url=${encodeURIComponent(shareUrl)}&description=${encodeURIComponent(text)}`),
-    },
-    {
       label: "왓츠앱",
       bg: "bg-[#25D366] hover:opacity-80",
       icon: (
@@ -149,38 +138,36 @@ export function ShareButtons({ title, text, url }: ShareButtonsProps) {
   const textParts = splitAtEmoji(text);
 
   return (
-    <div className="flex flex-col items-center gap-4">
-      <div className="flex flex-wrap gap-4 justify-center">
+    <div className="flex flex-col items-center gap-5">
+      {/* Share icons grid */}
+      <div className="flex flex-wrap gap-3.5 justify-center">
         {buttons.map((btn) => (
           <button
             key={btn.label}
             onClick={btn.onClick}
-            className={`flex flex-col items-center gap-1.5 group transition-all duration-200`}
+            className="flex flex-col items-center gap-1.5 group"
             title={btn.label}
           >
-            <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-200 ${btn.bg}`}>
+            <div className={`w-13 h-13 rounded-full flex items-center justify-center transition-all duration-200 active:scale-95 ${btn.bg}`}
+              style={{ width: '3.25rem', height: '3.25rem' }}
+            >
               {btn.icon}
             </div>
-            <span className="text-xs text-muted-foreground group-hover:text-foreground transition-colors whitespace-nowrap">
-              {btn.label === "링크 복사" && copied ? "복사됨!" : btn.label}
+            <span className="text-[10px] text-white/60 group-hover:text-white/90 transition-colors whitespace-nowrap font-medium">
+              {btn.label}
             </span>
           </button>
         ))}
       </div>
 
-      {/* Share text preview with line break */}
-      <div className="bg-muted/40 border border-border/50 rounded-2xl px-5 py-3.5 text-sm text-muted-foreground max-w-xs text-center leading-relaxed">
+      {/* Share text preview */}
+      <div className="bg-white/10 border border-white/15 rounded-2xl px-5 py-3 text-sm text-white/75 max-w-[17rem] text-center leading-relaxed backdrop-blur-sm">
         <span>{textParts[0]}</span>
-        {textParts[1] && (
-          <>
-            <br />
-            <span>{textParts[1]}</span>
-          </>
-        )}
+        {textParts[1] && <><br /><span>{textParts[1]}</span></>}
       </div>
 
-      <p className="text-xs text-muted-foreground/60 italic">
-        인스타그램·틱톡·카카오톡은 링크 복사 후 앱에서 붙여넣기 해주세요
+      <p className="text-[10px] text-white/40 leading-relaxed text-center max-w-[18rem]">
+        인스타·틱톡·카카오는 링크 복사 후 앱에서 붙여넣기 해주세요
       </p>
     </div>
   );

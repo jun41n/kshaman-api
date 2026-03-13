@@ -253,9 +253,32 @@
 
   /* Custom beautiful gradients */
   .bg-gradient-primary {
-    @apply bg-gradient-to-br from-primary to-accent;
+    background: linear-gradient(135deg, hsl(262 83% 58%), hsl(330 80% 65%));
   }
   .text-gradient-primary {
-    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+    background: linear-gradient(135deg, hsl(262 83% 58%), hsl(320 75% 60%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Smooth page transitions */
+  .page-enter {
+    animation: pageEnter 0.35s ease-out forwards;
+  }
+  @keyframes pageEnter {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Better tap highlight on mobile */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Korean text optimisation */
+  body {
+    word-break: keep-all;
+    overflow-wrap: break-word;
   }
 }
