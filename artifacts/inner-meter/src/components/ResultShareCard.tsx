@@ -239,13 +239,12 @@ export const ResultShareCard = forwardRef<HTMLDivElement, ResultShareCardProps>(
           <div style={{
             borderTop: `1px solid ${theme.footerBorder}`,
             paddingTop: '13px',
-            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           }}>
-            <span style={{ fontSize: '10.5px', color: theme.mutedColor, fontWeight: '600' }}>
+            <span style={{
+              fontSize: '10.5px', color: theme.mutedColor, fontWeight: '600',
+              display: 'block', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
+            }}>
               {test.title}
-            </span>
-            <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.38)', fontWeight: '500' }}>
-              innermeter.app
             </span>
           </div>
         </div>

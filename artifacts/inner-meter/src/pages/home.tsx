@@ -5,8 +5,10 @@ import { tests } from "@/data/tests";
 import { ArrowRight, Sparkles, Heart, Brain, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { trackEvent } from "@/lib/analytics";
 
 const TRENDING_SLUGS = ['love-style-test', 'hidden-personality-test', 'how-friends-see-me-test'];
+const NEW_SLUGS = ['destiny-age-test', 'teto-egen-test'];
 
 export default function Home() {
   const [, setLocation] = useLocation();
@@ -19,7 +21,13 @@ export default function Home() {
     .map(slug => tests.find(t => t.slug === slug))
     .filter(Boolean) as typeof tests;
 
-  const otherTests = tests.filter(t => !TRENDING_SLUGS.includes(t.slug));
+  const newTests = NEW_SLUGS
+    .map(slug => tests.find(t => t.slug === slug))
+    .filter(Boolean) as typeof tests;
+
+  const otherTests = tests.filter(
+    t => !TRENDING_SLUGS.includes(t.slug) && !NEW_SLUGS.includes(t.slug)
+  );
 
   return (
     <Layout>
@@ -32,29 +40,24 @@ export default function Home() {
             aria-hidden="true"
             className="w-full h-full object-cover"
           />
-          {/* Stronger overlay so text is always readable */}
           <div className="absolute inset-0 bg-gradient-to-b from-background/30 via-background/60 to-background/95" />
         </div>
 
         <div className="relative z-10 flex flex-col items-center justify-center px-6 py-16 md:py-28 text-center gap-5">
-          {/* Eyebrow */}
           <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/60 dark:bg-black/40 backdrop-blur-sm border border-white/30 text-xs font-bold text-primary shadow-sm">
             <Sparkles className="w-3.5 h-3.5" />
             나를 알아가는 가장 재밌는 방법
           </div>
 
-          {/* H1 */}
           <h1 className="text-[2.6rem] leading-[1.15] md:text-6xl font-black tracking-tight text-foreground max-w-md">
             나는 어떤 사람일까?<br />
             <span className="text-gradient-primary">지금 확인해봐요</span>
           </h1>
 
-          {/* Sub */}
           <p className="text-[0.95rem] md:text-lg text-muted-foreground max-w-xs md:max-w-sm leading-relaxed">
             성격·연애·멘탈까지 — 재미있고 정확한 심리 분석을 3분 안에 완성해봐요.
           </p>
 
-          {/* CTAs */}
           <div className="flex flex-col sm:flex-row gap-3 w-full max-w-xs sm:max-w-none sm:w-auto">
             <Button asChild size="lg" className="rounded-full h-13 px-8 text-base font-bold shadow-xl shadow-primary/30 hover:-translate-y-0.5 transition-all">
               <Link href="/tests">테스트 시작하기 →</Link>
@@ -69,7 +72,6 @@ export default function Home() {
             </Button>
           </div>
 
-          {/* Social proof */}
           <p className="text-xs text-muted-foreground/70 font-medium">
             🎉 지금까지 <span className="text-primary font-bold">12만명</span>이 참여했어요
           </p>
@@ -136,14 +138,34 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── 새로 나왔어요 ── */}
+      <section className="mb-12">
+        <div className="flex items-end justify-between mb-5">
+          <div>
+            <h2 className="text-xl md:text-2xl font-black text-foreground">✨ 새로 나왔어요</h2>
+            <p className="text-muted-foreground text-sm mt-0.5">방금 새로 추가된 테스트예요</p>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {newTests.map((test, i) => (
+            <motion.div
+              key={test.slug}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.08, duration: 0.35 }}
+            >
+              <TestCard test={test} />
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* ── Tarot teaser ── */}
       <section className="mb-12">
         <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border border-purple-900/40">
           <div className="absolute inset-0 bg-gradient-to-br from-[#110d2a] via-[#1e0b3a] to-[#2d0f4a]" />
-          {/* glow blobs */}
           <div className="absolute top-0 right-0 w-64 h-64 bg-violet-600/20 rounded-full blur-3xl -translate-y-1/3 translate-x-1/3" />
           <div className="absolute bottom-0 left-0 w-48 h-48 bg-fuchsia-600/15 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3" />
-          {/* star sprinkles */}
           {['6% 12%','90% 8%','15% 78%','85% 72%','50% 45%'].map((pos, i) => (
             <span key={i} className="absolute text-white/15 text-base select-none pointer-events-none" style={{ top: pos.split(' ')[1], left: pos.split(' ')[0] }}>✦</span>
           ))}
@@ -173,54 +195,92 @@ export default function Home() {
 
       {/* ── K-Shaman Featured Section ── */}
       <section className="mb-12">
-        <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border border-purple-900/40">
-          <div className="absolute inset-0 bg-gradient-to-br from-[#0d0720] via-[#1a0a38] to-[#260c4a]" />
-          {/* glow blobs */}
-          <div className="absolute top-0 right-0 w-64 h-64 bg-fuchsia-700/25 rounded-full blur-3xl -translate-y-1/3 translate-x-1/4" />
-          <div className="absolute bottom-0 left-0 w-48 h-48 bg-violet-700/20 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
-          {/* floating star particles */}
-          {['8% 10%','88% 7%','12% 82%','82% 78%','50% 42%','25% 55%','72% 35%'].map((pos, i) => (
+        <div className="relative rounded-[2rem] overflow-hidden shadow-2xl border border-yellow-900/30">
+          {/* Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0d0a1a] via-[#160d2e] to-[#1e0c3a]" />
+          {/* Gold glow accents */}
+          <div className="absolute top-0 right-0 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl -translate-y-1/3 translate-x-1/4" />
+          <div className="absolute bottom-0 left-0 w-56 h-56 bg-fuchsia-700/15 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_70%_50%,rgba(180,130,50,0.06),transparent_65%)]" />
+
+          {/* Floating star particles */}
+          {[
+            ['8%','10%'],['88%','7%'],['12%','82%'],
+            ['82%','78%'],['50%','42%'],['25%','55%'],['72%','30%'],
+          ].map(([left, top], i) => (
             <motion.span
               key={i}
-              className="absolute text-white/10 text-lg select-none pointer-events-none"
-              style={{ top: pos.split(' ')[1], left: pos.split(' ')[0] }}
-              animate={{ opacity: [0.1, 0.4, 0.1] }}
-              transition={{ duration: 2.5 + i * 0.4, repeat: Infinity }}
+              className="absolute select-none pointer-events-none"
+              style={{ top, left, color: i % 2 === 0 ? 'rgba(251,191,36,0.18)' : 'rgba(255,255,255,0.10)', fontSize: '1rem' }}
+              animate={{ opacity: [0.2, 0.7, 0.2] }}
+              transition={{ duration: 2.4 + i * 0.5, repeat: Infinity }}
             >✦</motion.span>
           ))}
 
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 p-8 md:p-10">
-            <div className="text-center md:text-left max-w-sm">
-              <span className="inline-block px-3 py-1 bg-white/10 rounded-full text-xs font-bold text-fuchsia-200 mb-4 border border-white/10">
-                🔮 신규 특별 체험
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 p-8 md:p-10">
+            {/* Copy */}
+            <div className="text-center md:text-left max-w-sm w-full">
+              {/* Label */}
+              <span className="inline-block px-3 py-1 bg-amber-400/10 rounded-full text-xs font-bold text-amber-300 mb-5 border border-amber-400/20 tracking-wide">
+                🔮 K-Shaman Reading
               </span>
-              <h2 className="text-2xl md:text-3xl font-black text-white mb-2 leading-tight">
-                누구에게 점사를 볼까요?
+
+              {/* Headline */}
+              <h2 className="text-2xl md:text-3xl font-black text-white mb-4 leading-tight">
+                당신의 운명을<br />누가 먼저 볼까요?
               </h2>
-              <p className="text-purple-200/80 text-sm md:text-base mb-2 leading-relaxed">
-                애기보살, 선녀보살, 천신도령, 무속인, 법사 중<br className="hidden md:block" />
-                한 명을 선택하고 나만의 점사를 확인해보세요.
-              </p>
-              <p className="text-purple-300/60 text-xs mb-6">
-                보살마다 말투도 다르고, 해석도 다릅니다.
-              </p>
-              <Button asChild className="rounded-full bg-gradient-to-r from-fuchsia-500 to-violet-500 hover:from-fuchsia-400 hover:to-violet-400 text-white font-bold border-0 shadow-lg shadow-fuchsia-700/30 h-11 px-7 text-sm">
-                <Link href="/k-shaman">🔮 점사 보러 가기</Link>
+
+              {/* Description */}
+              <div className="text-purple-200/70 text-sm md:text-[0.9rem] mb-6 leading-[1.85] space-y-0.5">
+                <p>애기보살은 직관으로 봅니다.</p>
+                <p>천신도령은 고비를 짚습니다.</p>
+                <p>무속인은 인생의 흐름을 봅니다.</p>
+                <p className="mt-3 text-purple-300/60">같은 사주라도<br />보살마다 말이 다릅니다.</p>
+              </div>
+
+              {/* Primary CTA */}
+              <Button
+                asChild
+                className="rounded-full bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-black font-black border-0 shadow-xl shadow-amber-700/30 h-12 px-8 text-sm mb-3 w-full sm:w-auto"
+                onClick={() => trackEvent('k_shaman_home_click', {})}
+              >
+                <Link href="/k-shaman">🔮 내 점사 보기</Link>
               </Button>
-              <p className="text-purple-400/60 text-[11px] mt-3">연애운 · 재물운 · 인생 전환 시기 확인</p>
+
+              {/* Secondary helper text */}
+              <p className="text-purple-400/60 text-[11px] mb-1.5">
+                같은 사주라도 보살마다 해석이 다릅니다
+              </p>
+
+              {/* Social proof */}
+              <p className="text-amber-400/50 text-[11px] font-semibold">
+                오늘 1,284명이 점사를 확인했습니다
+              </p>
+
+              {/* Keywords */}
+              <p className="text-purple-500/50 text-[10px] mt-3 tracking-wider">
+                연애운 · 재물운 · 인생 전환 시기
+              </p>
             </div>
 
-            {/* Shaman cards illustration */}
-            <div className="flex gap-2 shrink-0 items-end">
-              {['🌸','🌙','⚡','🔮','📿'].map((emoji, i) => (
+            {/* Shaman visual — floating persona cards */}
+            <div className="flex gap-2.5 shrink-0 items-end justify-center">
+              {[
+                { emoji: '🌸', label: '애기보살', h: 80 },
+                { emoji: '🌙', label: '선녀보살', h: 96 },
+                { emoji: '⚡', label: '천신도령', h: 110 },
+                { emoji: '🔮', label: '무속인', h: 94 },
+                { emoji: '📿', label: '법사', h: 78 },
+              ].map((card, i) => (
                 <motion.div
                   key={i}
-                  className="flex flex-col items-center justify-end rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm shadow-xl"
-                  style={{ width: 44, height: 64 + i % 3 * 14, fontSize: '1.5rem' }}
-                  animate={{ y: [0, -4, 0] }}
-                  transition={{ duration: 2 + i * 0.3, repeat: Infinity, ease: 'easeInOut' }}
+                  className="flex flex-col items-center justify-end rounded-2xl border border-amber-400/15 bg-white/[0.04] backdrop-blur-sm shadow-xl"
+                  style={{ width: 46, height: card.h }}
+                  animate={{ y: [0, -5, 0] }}
+                  transition={{ duration: 2.2 + i * 0.35, repeat: Infinity, ease: 'easeInOut', delay: i * 0.18 }}
                 >
-                  <span className="pb-2">{emoji}</span>
+                  <span className="pb-1.5 text-[1.4rem]">{card.emoji}</span>
+                  <span className="pb-2 text-[8px] text-amber-300/50 font-medium leading-none">{card.label}</span>
                 </motion.div>
               ))}
             </div>
@@ -228,7 +288,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 더 많은 테스트 (non-trending) ── */}
+      {/* ── 더 많은 테스트 ── */}
       <section className="mb-10">
         <div className="flex items-end justify-between mb-5">
           <h2 className="text-xl font-black text-foreground">더 많은 테스트</h2>
