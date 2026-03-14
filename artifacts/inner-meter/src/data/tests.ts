@@ -20,6 +20,7 @@ export interface TestResult {
   recommendedTests: string[];
   relationshipStyle?: string;
   compatibleVibe?: string;
+  careers?: string[];
 }
 
 export interface Test {
