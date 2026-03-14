@@ -34,7 +34,7 @@ export interface Test {
   calculateResult: (scores: Record<string, number>) => string;
 }
 
-export const tests: Test[] = [
+const _tests: Test[] = [
   {
     slug: 'love-style-test',
     title: '나의 진짜 연애 성향은?',
@@ -2682,6 +2682,35 @@ export const tests: Test[] = [
     },
   },
 ];
+
+const TEST_DISPLAY_ORDER = [
+  'mbti-test',
+  'love-language-test',
+  'narcissist-test',
+  'teto-egen-test',
+  'psychopath-test',
+  'extreme-tf-test',
+  'love-style-test',
+  'attachment-style-test',
+  'hidden-personality-test',
+  'love-villain-test',
+  'villain-type-test',
+  'how-friends-see-me-test',
+  'inner-child-test',
+  'meddling-test',
+  'over-immersion-test',
+  'intuition-vs-logic-test',
+  'destiny-age-test',
+];
+
+export const tests: Test[] = [..._tests].sort((a, b) => {
+  const ai = TEST_DISPLAY_ORDER.indexOf(a.slug);
+  const bi = TEST_DISPLAY_ORDER.indexOf(b.slug);
+  if (ai === -1 && bi === -1) return 0;
+  if (ai === -1) return 1;
+  if (bi === -1) return -1;
+  return ai - bi;
+});
 
 export const getTestBySlug = (slug: string) => tests.find(t => t.slug === slug);
 
