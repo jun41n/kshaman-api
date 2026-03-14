@@ -13,6 +13,7 @@ import { motion } from "framer-motion";
 import { trackRecommendedTestClick, trackResultImageSave } from "@/lib/analytics";
 import { useTranslation } from "react-i18next";
 import { useLocalizedTest } from "@/hooks/useLocalizedTest";
+import { MbtiSeoContent } from "@/components/MbtiSeoContent";
 
 const CATEGORY_GRADIENTS: Record<string, string> = {
   '연애 테스트': 'from-pink-500 via-rose-500 to-fuchsia-500',
@@ -496,6 +497,11 @@ export default function TestResult() {
               ))}
             </div>
           </motion.div>
+        )}
+
+        {/* ── MBTI SEO Content ── */}
+        {test.slug === 'mbti-test' && result && (
+          <MbtiSeoContent mbtiType={result.key} />
         )}
       </div>
     </Layout>
