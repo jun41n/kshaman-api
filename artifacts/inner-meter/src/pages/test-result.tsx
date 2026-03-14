@@ -37,22 +37,22 @@ async function downloadCardAsPng(
 ): Promise<Blob | null> {
   const { toBlob } = await import("html-to-image");
 
-  // Run toBlob twice — first pass embeds fonts/images, second pass renders cleanly
+  // skipFonts: true avoids CORS failures when inlining external web-fonts.
+  // The share card uses inline styles so system fonts are fine.
   const opts = {
-    pixelRatio: 2.5,
-    cacheBust: false,
-    skipFonts: false,
+    pixelRatio: 2,
+    cacheBust: true,
+    skipFonts: true,
     style: { borderRadius: '28px' },
-    fetchRequestInit: { cache: 'force-cache' as RequestCache },
   };
 
-  // Warm-up pass (populates internal caches)
+  // Warm-up pass: let html-to-image resolve images / layout
   await toBlob(el, opts).catch(() => null);
 
   // Actual capture with timeout guard
   const blobPromise = toBlob(el, opts);
   const timeoutPromise = new Promise<null>((_, reject) =>
-    setTimeout(() => reject(new Error('capture-timeout')), 15_000),
+    setTimeout(() => reject(new Error('capture-timeout')), 12_000),
   );
   const blob = await Promise.race([blobPromise, timeoutPromise]);
   return blob;
@@ -123,6 +123,26 @@ export default function TestResult() {
   const gradient = CATEGORY_GRADIENTS[test.category] || 'from-violet-600 via-purple-500 to-fuchsia-500';
   const glow = CATEGORY_GLOW[test.category] || 'shadow-violet-500/25';
 
+  const resultPageUrl = `${window.location.origin}${window.location.pathname}${window.location.search}`;
+  const shareText = localResult?.shareText ?? result.shareText;
+
+  // Native OS share sheet — fast, no image needed, works with Kakao/Instagram/etc.
+  const handleNativeShare = async () => {
+    try {
+      await navigator.share({
+        title: resultTitle,
+        text: shareText,
+        url: resultPageUrl,
+      });
+      trackResultImageSave({ test_slug: test.slug, result_key: result.key, result_title: result.title });
+    } catch (err) {
+      if (err instanceof Error && err.name !== 'AbortError') {
+        console.warn('Native share failed', err);
+      }
+    }
+  };
+
+  // Image capture → download on desktop / native share with image on mobile
   const handleSaveImage = async () => {
     if (!cardRef.current || isSaving) return;
     setIsSaving(true);
@@ -131,16 +151,20 @@ export default function TestResult() {
       if (!blob) throw new Error('Failed to generate image');
 
       const file = new File([blob], `innermeter-${result.key}.png`, { type: 'image/png' });
-      const canNativeShare = typeof navigator.canShare === 'function' && navigator.canShare({ files: [file] });
+      const canShareFile = typeof navigator.canShare === 'function' && navigator.canShare({ files: [file] });
 
-      if (canNativeShare) {
-        await navigator.share({ files: [file], title: resultTitle, text: localResult?.shareText ?? result.shareText });
+      if (canShareFile) {
+        // Mobile: share image via OS share sheet
+        await navigator.share({ files: [file], title: resultTitle, text: shareText });
       } else {
+        // Desktop: trigger download
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
         a.download = `innermeter-${result.key}.png`;
+        document.body.appendChild(a);
         a.click();
+        document.body.removeChild(a);
         URL.revokeObjectURL(url);
       }
 
@@ -148,7 +172,17 @@ export default function TestResult() {
       setTimeout(() => setSaved(false), 2800);
       trackResultImageSave({ test_slug: test.slug, result_key: result.key, result_title: result.title });
     } catch (err) {
+      if (err instanceof Error && err.name === 'AbortError') return; // user cancelled — fine
       console.warn('Image save failed', err);
+      // Fallback: share URL if image capture fails
+      if (typeof navigator.share === 'function') {
+        try {
+          await navigator.share({ title: resultTitle, text: shareText, url: resultPageUrl });
+          setSaved(true);
+          setTimeout(() => setSaved(false), 2800);
+          return;
+        } catch { /* ignore */ }
+      }
       alert(t('result.saveError'));
     } finally {
       setIsSaving(false);
@@ -371,7 +405,7 @@ export default function TestResult() {
 
               {typeof navigator.share === 'function' && (
                 <button
-                  onClick={handleSaveImage}
+                  onClick={handleNativeShare}
                   className="w-full flex items-center justify-center gap-2.5 rounded-2xl h-11 text-sm font-bold text-white/80 border border-white/20 hover:bg-white/10 transition-colors"
                 >
                   <Share2 className="w-4 h-4" />{t('result.shareMobile')}
@@ -389,8 +423,8 @@ export default function TestResult() {
             {/* SNS buttons */}
             <ShareButtons
               title={t('result.shareTitle', { testTitle: localTest?.title ?? test.title, resultTitle: resultTitle })}
-              text={localResult?.shareText ?? result.shareText}
-              url={window.location.origin + import.meta.env.BASE_URL}
+              text={shareText}
+              url={resultPageUrl}
               testSlug={test.slug}
               resultKey={result.key}
             />

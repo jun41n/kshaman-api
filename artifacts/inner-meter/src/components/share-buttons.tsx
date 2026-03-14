@@ -196,9 +196,11 @@ export function ShareButtons({ title, text, url, testSlug, resultKey }: ShareBut
         {textParts[1] && <><br /><span>{textParts[1]}</span></>}
       </div>
 
-      <p className="text-[10px] text-white/40 leading-relaxed text-center max-w-[18rem]">
-        {t('share.pasteHint')}
-      </p>
+      {typeof navigator.share !== 'function' && (
+        <p className="text-[10px] text-white/40 leading-relaxed text-center max-w-[18rem]">
+          {t('share.pasteHint')}
+        </p>
+      )}
     </div>
   );
 }
