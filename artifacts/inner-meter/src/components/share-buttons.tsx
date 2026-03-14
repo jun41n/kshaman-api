@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { Check, Link as LinkIcon } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { useTranslation } from "react-i18next";
 import { trackResultShareClick } from "@/lib/analytics";
 
 interface ShareButtonsProps {
   title: string;
   text: string;
   url?: string;
-  /** Optional: passed so share clicks can be tracked */
   testSlug?: string;
   resultKey?: string;
 }
@@ -27,6 +27,7 @@ interface SnsButton {
 }
 
 export function ShareButtons({ title, text, url, testSlug, resultKey }: ShareButtonsProps) {
+  const { t } = useTranslation();
   const { toast } = useToast();
   const [copied, setCopied] = useState(false);
   const shareUrl = url || window.location.href;
@@ -41,17 +42,17 @@ export function ShareButtons({ title, text, url, testSlug, resultKey }: ShareBut
     try {
       await navigator.clipboard.writeText(shareUrl);
       setCopied(true);
-      toast({ title: "링크 복사 완료! 🎉", description: "결과 링크가 클립보드에 복사됐어요." });
+      toast({ title: t('share.copySuccess'), description: t('share.copySuccessDesc') });
       setTimeout(() => setCopied(false), 2500);
       track('copy_link');
     } catch {
-      toast({ variant: "destructive", title: "복사 실패", description: "다시 시도해주세요." });
+      toast({ variant: "destructive", title: t('share.copyError'), description: t('share.copyErrorDesc') });
     }
   };
 
   const copyAndToast = (appName: string, shareType: string) => {
     navigator.clipboard.writeText(shareUrl).catch(() => {});
-    toast({ title: `${appName}에 공유하기`, description: "링크 복사 완료! 앱에서 붙여넣기하세요." });
+    toast({ title: t('share.shareOnApp', { app: appName }), description: t('share.shareOnAppDesc') });
     track(shareType);
   };
 
@@ -62,7 +63,7 @@ export function ShareButtons({ title, text, url, testSlug, resultKey }: ShareBut
 
   const buttons: SnsButton[] = [
     {
-      label: copied ? "복사됨 ✓" : "링크 복사",
+      label: copied ? t('common.copied') : t('common.copyLink'),
       shareType: 'copy_link',
       bg: copied ? "bg-emerald-500" : "bg-white/15 border border-white/20 hover:bg-white/25",
       icon: copied
@@ -82,7 +83,7 @@ export function ShareButtons({ title, text, url, testSlug, resultKey }: ShareBut
       onClick: () => open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(shareUrl)}`, 'x'),
     },
     {
-      label: "페북",
+      label: t('share.facebook'),
       shareType: 'facebook',
       bg: "bg-[#1877F2] hover:opacity-80",
       icon: (
@@ -93,7 +94,7 @@ export function ShareButtons({ title, text, url, testSlug, resultKey }: ShareBut
       onClick: () => open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, 'facebook'),
     },
     {
-      label: "인스타",
+      label: t('share.instagram'),
       shareType: 'instagram',
       bg: "bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] hover:opacity-80",
       icon: (
@@ -101,10 +102,10 @@ export function ShareButtons({ title, text, url, testSlug, resultKey }: ShareBut
           <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
         </svg>
       ),
-      onClick: () => copyAndToast("인스타그램", 'instagram'),
+      onClick: () => copyAndToast(t('share.instagramFull'), 'instagram'),
     },
     {
-      label: "카카오",
+      label: t('share.kakao'),
       shareType: 'kakaotalk',
       bg: "bg-[#FEE500] hover:opacity-80",
       icon: (
@@ -112,10 +113,10 @@ export function ShareButtons({ title, text, url, testSlug, resultKey }: ShareBut
           <path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.728 1.614 5.13 4.073 6.605-.18.664-.65 2.415-.744 2.786-.116.46.169.454.356.33.146-.097 2.325-1.577 3.264-2.214.32.047.648.073.982.073.015 0 .03 0 .046-.001C15.523 18.38 22 14.832 22 10.8 22 6.477 17.523 3 12 3z" />
         </svg>
       ),
-      onClick: () => copyAndToast("카카오톡", 'kakaotalk'),
+      onClick: () => copyAndToast(t('share.kakaoFull'), 'kakaotalk'),
     },
     {
-      label: "틱톡",
+      label: t('share.tiktok'),
       shareType: 'tiktok',
       bg: "bg-black/90 hover:opacity-80",
       icon: (
@@ -123,10 +124,10 @@ export function ShareButtons({ title, text, url, testSlug, resultKey }: ShareBut
           <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.83a8.18 8.18 0 0 0 4.78 1.52V6.9a4.85 4.85 0 0 1-1.01-.21z" />
         </svg>
       ),
-      onClick: () => copyAndToast("틱톡", 'tiktok'),
+      onClick: () => copyAndToast(t('share.tiktok'), 'tiktok'),
     },
     {
-      label: "라인",
+      label: t('share.line'),
       shareType: 'line',
       bg: "bg-[#00B900] hover:opacity-80",
       icon: (
@@ -137,7 +138,7 @@ export function ShareButtons({ title, text, url, testSlug, resultKey }: ShareBut
       onClick: () => open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}`, 'line'),
     },
     {
-      label: "스레드",
+      label: t('share.threads'),
       shareType: 'threads',
       bg: "bg-[#101010] hover:opacity-80",
       icon: (
@@ -148,7 +149,7 @@ export function ShareButtons({ title, text, url, testSlug, resultKey }: ShareBut
       onClick: () => open(`https://www.threads.net/intent/post?text=${encodeURIComponent(text + " " + shareUrl)}`, 'threads'),
     },
     {
-      label: "왓츠앱",
+      label: t('share.whatsapp'),
       shareType: 'whatsapp',
       bg: "bg-[#25D366] hover:opacity-80",
       icon: (
@@ -164,7 +165,7 @@ export function ShareButtons({ title, text, url, testSlug, resultKey }: ShareBut
 
   const renderBtn = (btn: SnsButton) => (
     <button
-      key={btn.label}
+      key={btn.shareType}
       onClick={btn.onClick}
       className="flex flex-col items-center gap-1.5 group"
       title={btn.label}
@@ -183,23 +184,20 @@ export function ShareButtons({ title, text, url, testSlug, resultKey }: ShareBut
 
   return (
     <div className="flex flex-col items-center gap-5">
-      {/* Row 1: 4 buttons */}
       <div className="flex gap-3.5 justify-center">
         {buttons.slice(0, 4).map(renderBtn)}
       </div>
-      {/* Row 2: 5 buttons */}
       <div className="flex gap-3.5 justify-center">
         {buttons.slice(4).map(renderBtn)}
       </div>
 
-      {/* Share text preview */}
       <div className="bg-white/10 border border-white/15 rounded-2xl px-5 py-3 text-sm text-white/75 max-w-[17rem] text-center leading-relaxed backdrop-blur-sm">
         <span>{textParts[0]}</span>
         {textParts[1] && <><br /><span>{textParts[1]}</span></>}
       </div>
 
       <p className="text-[10px] text-white/40 leading-relaxed text-center max-w-[18rem]">
-        인스타·틱톡·카카오는 링크 복사 후 앱에서 붙여넣기 해주세요
+        {t('share.pasteHint')}
       </p>
     </div>
   );
