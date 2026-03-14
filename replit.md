@@ -50,6 +50,19 @@ Every package extends `tsconfig.base.json` which sets `composite: true`. The roo
 
 ## Packages
 
+### `artifacts/inner-meter` (`@workspace/inner-meter`)
+
+Korean-first, mobile-first personality test web app. Fully static React + Vite SPA.
+
+- **14 experiences**: 12 personality tests + Tarot 3-card reading + K-Shaman fortune reading
+- **i18n**: 4 languages (ko/en/ja/es) via `react-i18next`; strings in `src/lib/i18n.ts`; test-specific translations in `src/locales/testTranslations.ts`
+- **Tarot 3-card**: `src/pages/tarot.tsx` — 3 phases (intro → 22-card grid selection → reading with Present/Advice/Future positions); data from `src/data/majorArcana.ts` (22 cards × 4 languages)
+- **K-Shaman**: `src/pages/kshaman.tsx` — birthday-based fortune reading with 5 persona readers
+- **Tests**: `src/data/tests.ts` (14 test definitions), `src/pages/test-detail.tsx`, `src/pages/test-result.tsx`
+- **Analytics**: GA4 `G-70BK9892B5` in `src/lib/analytics.ts`; AdSense `ca-pub-7780005617186465` in `index.html`
+- **Contact**: `meaningout_d@naver.com`
+- Port: `24578` (reads `PORT` env)
+
 ### `artifacts/api-server` (`@workspace/api-server`)
 
 Express 5 API server. Routes live in `src/routes/` and use `@workspace/api-zod` for request and response validation and `@workspace/db` for persistence.
