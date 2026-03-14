@@ -189,12 +189,40 @@ export default function TestResult() {
     }
   };
 
+  const BASE = "https://innermeter.app";
+  const resultPath = `/results/${slug}?result=${result.key}`;
+  const seoTitle = resultTitle ? `${resultTitle} | InnerMeter` : `${localTest?.title ?? test.title} | InnerMeter`;
+
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": seoTitle,
+      "description": resultSummary,
+      "url": `${BASE}${resultPath}`,
+      "inLanguage": "ko",
+      "isPartOf": { "@type": "WebSite", "name": "InnerMeter", "url": BASE },
+      "publisher": { "@type": "Organization", "name": "InnerMeter", "url": BASE },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "InnerMeter", "item": BASE + "/" },
+        { "@type": "ListItem", "position": 2, "name": "Tests", "item": BASE + "/tests" },
+        { "@type": "ListItem", "position": 3, "name": localTest?.title ?? test.title, "item": `${BASE}/tests/${slug}` },
+        { "@type": "ListItem", "position": 4, "name": resultTitle, "item": `${BASE}${resultPath}` },
+      ],
+    },
+  ];
+
   return (
     <Layout>
       <SeoHead
-        title={resultTitle ? `${resultTitle} | InnerMeter` : `${localTest?.title ?? ''} | InnerMeter`}
+        title={seoTitle}
         description={resultSummary}
-        path={`/results/${slug}`}
+        path={resultPath}
+        jsonLd={jsonLd}
       />
       <div className="max-w-xl mx-auto pt-2 pb-4">
 

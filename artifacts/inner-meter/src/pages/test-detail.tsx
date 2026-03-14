@@ -136,9 +136,51 @@ export default function TestDetail() {
   const seoTitle = localTest?.title ? `${localTest.title} | InnerMeter` : `${test.title} | InnerMeter`;
   const seoDesc = localTest?.description ?? test.description;
 
+  const BASE = "https://innermeter.app";
+  const testJsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Quiz",
+      "name": localTest?.title ?? test.title,
+      "description": seoDesc,
+      "url": `${BASE}/tests/${slug}`,
+      "educationalLevel": "general",
+      "inLanguage": "ko",
+      "about": { "@type": "Thing", "name": test.category },
+      "numberOfQuestions": test.questions.length,
+      "educationalAlignment": {
+        "@type": "AlignmentObject",
+        "alignmentType": "educationalSubject",
+        "targetName": "Personality Psychology",
+      },
+      "publisher": { "@type": "Organization", "name": "InnerMeter", "url": BASE },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "InnerMeter", "item": BASE + "/" },
+        { "@type": "ListItem", "position": 2, "name": "Tests", "item": BASE + "/tests" },
+        { "@type": "ListItem", "position": 3, "name": localTest?.title ?? test.title, "item": `${BASE}/tests/${slug}` },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": test.results.map(r => ({
+        "@type": "Question",
+        "name": `${localTest?.title ?? test.title} 결과: ${r.title}는 어떤 유형인가요?`,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": r.summary,
+        },
+      })),
+    },
+  ];
+
   return (
     <Layout>
-      <SeoHead title={seoTitle} description={seoDesc} path={`/tests/${slug}`} />
+      <SeoHead title={seoTitle} description={seoDesc} path={`/tests/${slug}`} jsonLd={testJsonLd} />
       <div className="max-w-xl mx-auto w-full pt-2 pb-20">
         {/* ── Header ── */}
         <div className="mb-8">

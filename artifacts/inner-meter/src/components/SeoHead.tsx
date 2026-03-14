@@ -5,13 +5,15 @@ interface SeoHeadProps {
   description?: string;
   path?: string;
   ogImage?: string;
+  jsonLd?: object | object[];
 }
 
 const BASE_URL = "https://innermeter.app";
 const DEFAULT_OG_IMAGE = `${BASE_URL}/opengraph.jpg`;
 
-export function SeoHead({ title, description, path = "/", ogImage = DEFAULT_OG_IMAGE }: SeoHeadProps) {
+export function SeoHead({ title, description, path = "/", ogImage = DEFAULT_OG_IMAGE, jsonLd }: SeoHeadProps) {
   const canonicalUrl = `${BASE_URL}${path}`;
+  const schemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
   return (
     <Helmet>
@@ -30,6 +32,12 @@ export function SeoHead({ title, description, path = "/", ogImage = DEFAULT_OG_I
       {description && <meta name="twitter:description" content={description} />}
       <meta name="twitter:image" content={ogImage} />
       <meta name="twitter:card" content="summary_large_image" />
+
+      {schemas.map((schema, i) => (
+        <script key={i} type="application/ld+json">
+          {JSON.stringify(schema)}
+        </script>
+      ))}
     </Helmet>
   );
 }
