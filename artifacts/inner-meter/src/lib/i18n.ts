@@ -242,6 +242,9 @@ const resources = {
       synthesisSubtitle:'세 장의 흐름을 종합합니다',
       resetBtn:'다시 뽑기',
       caution:'주의 포인트',
+      snsDivider:'나의 리딩 공유하기',
+      shareTitle:'오늘의 타로 3카드 리딩',
+      shareText:'오늘의 타로 3카드: {{cards}} ✨ innermeter.app/tarot',
     },
   }},
 
@@ -459,6 +462,9 @@ const resources = {
       synthesisSubtitle:'A synthesis of all three cards',
       resetBtn:'Draw Again',
       caution:'Caution',
+      snsDivider:'Share My Reading',
+      shareTitle:'Today\'s 3-Card Tarot Reading',
+      shareText:'My 3-card tarot today: {{cards}} ✨ innermeter.app/tarot',
     },
   }},
   ja: { translation: {
@@ -561,6 +567,9 @@ const resources = {
       synthesisSubtitle:'3枚の流れをまとめます',
       resetBtn:'もう一度引く',
       caution:'注意ポイント',
+      snsDivider:'リーディングをシェアする',
+      shareTitle:'今日の3枚タロットリーディング',
+      shareText:'今日のタロット3枚: {{cards}} ✨ innermeter.app/tarot',
     },
   }},
   es: { translation: {
@@ -657,6 +666,9 @@ const resources = {
       synthesisSubtitle:'Una síntesis de las tres cartas',
       resetBtn:'Volver a Tirar',
       caution:'Precaución',
+      snsDivider:'Compartir mi Lectura',
+      shareTitle:'Lectura de Tarot de 3 Cartas de Hoy',
+      shareText:'Mi tarot de 3 cartas hoy: {{cards}} ✨ innermeter.app/tarot',
     },
   }},
 };

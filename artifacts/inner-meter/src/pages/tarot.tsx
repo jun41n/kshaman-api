@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { trackTarotDraw } from "@/lib/analytics";
+import { ShareButtons } from "@/components/share-buttons";
 
 const STARS = [
   { top: '5%',  left: '4%',  size: '4px', opacity: 0.55, delay: 0 },
@@ -383,6 +384,25 @@ export default function Tarot() {
                   >
                     🔮 {t('tarot3.resetBtn')}
                   </Button>
+                </motion.div>
+
+                {/* ── Share Section ── */}
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={revealed ? { opacity: 1, y: 0 } : { opacity: 0 }}
+                  transition={{ delay: 2.1 }}
+                  className="mt-6"
+                >
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="flex-1 h-px bg-white/10" />
+                    <span className="text-white/40 text-xs font-medium shrink-0">{t('tarot3.snsDivider')}</span>
+                    <div className="flex-1 h-px bg-white/10" />
+                  </div>
+                  <ShareButtons
+                    title={t('tarot3.shareTitle')}
+                    text={t('tarot3.shareText', { cards: selectedCards.map(c => c.name[safeLocale]).join(' · ') })}
+                    url={typeof window !== 'undefined' ? window.location.href : 'https://innermeter.app/tarot'}
+                  />
                 </motion.div>
               </motion.div>
             )}
