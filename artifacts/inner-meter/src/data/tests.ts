@@ -9,6 +9,8 @@ export interface TestQuestion {
   options: TestOption[];
 }
 
+export type LocalizedString = { ko: string; en: string; ja: string; es: string };
+
 export interface TestResult {
   key: string;
   title: string;
@@ -18,8 +20,8 @@ export interface TestResult {
   caution: string[];
   shareText: string;
   recommendedTests: string[];
-  relationshipStyle?: string;
-  compatibleVibe?: string;
+  relationshipStyle?: LocalizedString;
+  compatibleVibe?: LocalizedString;
   careers?: string[];
 }
 
@@ -979,8 +981,8 @@ const _tests: Test[] = [
         caution: ['너무 직설적이어서 상대방이 상처받는 줄 모를 때가 있어요', '효율만 강조하다 보면 사람의 감정이 놓이기 쉽습니다'],
         shareText: '나는 타고난 전략가 "ENTJ" 🦁 당신의 MBTI는?',
         recommendedTests: ['hidden-personality-test', 'how-friends-see-me-test', 'intuition-vs-logic-test'],
-        relationshipStyle: '연애도 목표를 정하고 전략적으로 접근합니다. 표현은 직접적이지만 책임감 하나만큼은 완벽하고, 상대방이 인정해줄 때 더 깊이 헌신해요.',
-        compatibleVibe: 'INFP, INTP — 나의 강한 방향성을 부드럽게 채워줄 유형과 잘 맞아요'
+        relationshipStyle: { ko: '연애도 목표를 정하고 전략적으로 접근합니다. 표현은 직접적이지만 책임감 하나만큼은 완벽하고, 상대방이 인정해줄 때 더 깊이 헌신해요.', en: 'Approaches love with strategy and clear goals. Direct in expression but deeply devoted—thrives when a partner recognizes their dedication.', ja: '恋愛も目標を持って戦略的に取り組みます。表現は直接的ですが責任感は完璧で、認めてもらえるほど深く献身します。', es: 'Aborda el amor con estrategia y metas claras. Directo en la expresión pero profundamente comprometido cuando su pareja lo reconoce.' },
+        compatibleVibe: { ko: 'INFP, INTP — 나의 강한 방향성을 부드럽게 채워줄 유형과 잘 맞아요', en: 'INFP, INTP — Types who gently balance your strong drive with warmth and flexibility', ja: 'INFP, INTP — 強い方向性を優しく補ってくれるタイプと相性◎', es: 'INFP, INTP — Tipos que equilibran suavemente tu fuerte sentido de dirección' }
       },
       {
         key: 'ENTP',
@@ -991,8 +993,8 @@ const _tests: Test[] = [
         caution: ['완성하지 못한 프로젝트가 폴더에 쌓여있을 가능성 높음', '토론 모드로 달려들어 상대방을 지치게 할 때가 있어요'],
         shareText: '나는 아이디어 뱅크 "ENTP" 💡 당신의 MBTI는?',
         recommendedTests: ['intuition-vs-logic-test', 'hidden-personality-test', 'how-friends-see-me-test'],
-        relationshipStyle: '지적 대화와 논쟁을 즐기는 연애 스타일. 다양한 이야기를 나눌 수 있는 관계에서 가장 빛납니다.',
-        compatibleVibe: 'INFJ, INTJ — 나의 발산적 에너지를 수렴해줄 깊이 있는 유형과 잘 어울려요'
+        relationshipStyle: { ko: '지적 대화와 논쟁을 즐기는 연애 스타일. 다양한 이야기를 나눌 수 있는 관계에서 가장 빛납니다.', en: 'Loves intellectual debate and stimulating conversation in relationships. Shines brightest with a partner who can keep up mentally.', ja: '知的な会話や議論を楽しむ恋愛スタイル。様々な話ができる関係で最も輝きます。', es: 'Disfruta del debate intelectual en el amor. Brilla más con una pareja que pueda seguir su ritmo mental.' },
+        compatibleVibe: { ko: 'INFJ, INTJ — 나의 발산적 에너지를 수렴해줄 깊이 있는 유형과 잘 어울려요', en: 'INFJ, INTJ — Deep thinkers who channel your scattered energy into focus', ja: 'INFJ, INTJ — 発散するエネルギーを収束させてくれる深みのあるタイプ', es: 'INFJ, INTJ — Pensadores profundos que canalizan tu energía dispersa' }
       },
       {
         key: 'ENFJ',
@@ -1003,8 +1005,8 @@ const _tests: Test[] = [
         caution: ['거절을 못 해서 자신을 너무 소진시킬 때가 있어요', '사람들의 기대에 부응하려다 스트레스가 쌓입니다'],
         shareText: '나는 따뜻한 조력자 "ENFJ" 🌟 당신의 MBTI는?',
         recommendedTests: ['love-style-test', 'attachment-style-test', 'how-friends-see-me-test'],
-        relationshipStyle: '깊고 의미 있는 연애를 추구합니다. 상대방의 성장을 진심으로 응원하며 함께 더 나은 사람이 되고 싶어하는 헌신적인 연인이에요.',
-        compatibleVibe: 'INFP, ISFP — 나의 따뜻함을 온전히 받아들이고 순수하게 감동받는 유형과 맞아요'
+        relationshipStyle: { ko: '깊고 의미 있는 연애를 추구합니다. 상대방의 성장을 진심으로 응원하며 함께 더 나은 사람이 되고 싶어하는 헌신적인 연인이에요.', en: "Seeks deep, meaningful love. Sincerely cheers on a partner's growth and strives to grow together.", ja: '深く意味のある恋愛を求めます。相手の成長を心から応援し、共に高め合える献身的な恋人です。', es: 'Busca un amor profundo y significativo. Apoya el crecimiento de su pareja y quiere crecer juntos.' },
+        compatibleVibe: { ko: 'INFP, ISFP — 나의 따뜻함을 온전히 받아들이고 순수하게 감동받는 유형과 맞아요', en: 'INFP, ISFP — Types who fully embrace your warmth and are genuinely moved by it', ja: 'INFP, ISFP — 温かさを丸ごと受け取り、純粋に感動してくれるタイプ', es: 'INFP, ISFP — Tipos que reciben tu calidez con autenticidad y gratitud' }
       },
       {
         key: 'ENFP',
@@ -1015,8 +1017,8 @@ const _tests: Test[] = [
         caution: ['흥미가 식으면 빠르게 손을 놓는 경향이 있어요', '미루다 보면 마감 직전에 터지는 경우가 자주 생깁니다'],
         shareText: '나는 낭만 자유 영혼 "ENFP" 🌈 당신의 MBTI는?',
         recommendedTests: ['love-style-test', 'over-immersion-test', 'hidden-personality-test'],
-        relationshipStyle: '처음 감정이 폭발하는 썸 단계를 가장 설레게 즐깁니다. 관계가 깊어질수록 자유와 진심 사이에서 균형을 잡으려 노력해요.',
-        compatibleVibe: 'INTJ, INFJ — 나의 에너지를 묵묵히 받아주고 방향을 잡아줄 유형과 잘 맞아요'
+        relationshipStyle: { ko: '처음 감정이 폭발하는 썸 단계를 가장 설레게 즐깁니다. 관계가 깊어질수록 자유와 진심 사이에서 균형을 잡으려 노력해요.', en: 'Thrives in the electric early stages of romance. Balances freedom and sincerity as the relationship deepens.', ja: '感情が爆発する初期のときめき期が最も輝きます。関係が深まるにつれ自由と誠実さのバランスを大切にします。', es: 'Disfruta al máximo la etapa inicial del romance. Busca equilibrar libertad y sinceridad a medida que la relación profundiza.' },
+        compatibleVibe: { ko: 'INTJ, INFJ — 나의 에너지를 묵묵히 받아주고 방향을 잡아줄 유형과 잘 맞아요', en: 'INTJ, INFJ — Types who quietly absorb your energy and give you direction', ja: 'INTJ, INFJ — エネルギーを黙って受け止め、方向性を示してくれるタイプ', es: 'INTJ, INFJ — Tipos que absorben tu energía y te dan dirección con calma' }
       },
       {
         key: 'ESTJ',
@@ -1027,8 +1029,8 @@ const _tests: Test[] = [
         caution: ['변화에 유연하게 적응하는 게 스트레스가 될 수 있어요', '내 기준으로 타인을 평가하다 관계가 어색해질 때가 있습니다'],
         shareText: '나는 강직한 수호자 "ESTJ" 📋 당신의 MBTI는?',
         recommendedTests: ['how-friends-see-me-test', 'hidden-personality-test', 'intuition-vs-logic-test'],
-        relationshipStyle: '안정적이고 신뢰할 수 있는 파트너. 감정 표현은 서툴 수 있지만 행동으로 진심을 보여주는 든든한 연인이에요.',
-        compatibleVibe: 'ISFP, ISTP — 나의 강한 계획성 옆에서 여유로운 균형을 맞춰줄 유형과 잘 어울려요'
+        relationshipStyle: { ko: '안정적이고 신뢰할 수 있는 파트너. 감정 표현은 서툴 수 있지만 행동으로 진심을 보여주는 든든한 연인이에요.', en: 'A stable, reliable partner. May struggle with words but shows love through dependable, consistent actions.', ja: '安定感と信頼感のあるパートナー。感情表現は苦手でも行動で愛情をしっかり示します。', es: 'Pareja estable y confiable. Puede no ser elocuente, pero demuestra amor con acciones sólidas y constantes.' },
+        compatibleVibe: { ko: 'ISFP, ISTP — 나의 강한 계획성 옆에서 여유로운 균형을 맞춰줄 유형과 잘 어울려요', en: 'ISFP, ISTP — Types who bring a relaxed balance alongside your structured drive', ja: 'ISFP, ISTP — 計画的な性格の隣で余裕のあるバランスをとってくれるタイプ', es: 'ISFP, ISTP — Tipos que aportan equilibrio relajado junto a tu sentido de estructura' }
       },
       {
         key: 'ESFJ',
@@ -1039,8 +1041,8 @@ const _tests: Test[] = [
         caution: ['남들 눈치를 너무 봐서 내 의견을 말하기 힘들 때가 있어요', '비판에 민감하게 반응해서 상처를 오래 간직합니다'],
         shareText: '나는 따뜻한 분위기 메이커 "ESFJ" 🎉 당신의 MBTI는?',
         recommendedTests: ['love-style-test', 'how-friends-see-me-test', 'attachment-style-test'],
-        relationshipStyle: '헌신적이고 따뜻한 연인. 기념일을 절대 잊지 않으며 상대방이 편안하게 느낄 수 있도록 늘 세심하게 노력합니다.',
-        compatibleVibe: 'ISFP, INFP — 나의 헌신에 감동받고 진심으로 화답하는 감성형과 잘 맞아요'
+        relationshipStyle: { ko: '헌신적이고 따뜻한 연인. 기념일을 절대 잊지 않으며 상대방이 편안하게 느낄 수 있도록 늘 세심하게 노력합니다.', en: 'Devoted and warm. Never forgets anniversaries and always works to make a partner feel comfortable and loved.', ja: '献身的で温かい恋人。記念日は絶対に忘れず、相手が心地よくいられるよう細やかに気遣います。', es: 'Amante dedicado y cálido. Nunca olvida los aniversarios y siempre se esfuerza por hacer sentir cómoda a su pareja.' },
+        compatibleVibe: { ko: 'ISFP, INFP — 나의 헌신에 감동받고 진심으로 화답하는 감성형과 잘 맞아요', en: 'ISFP, INFP — Emotional types genuinely moved by your devotion who respond wholeheartedly', ja: 'ISFP, INFP — 献身に感動し、心から応えてくれる感性豊かなタイプ', es: 'ISFP, INFP — Tipos sensibles que se conmueven de verdad con tu entrega y responden con el corazón' }
       },
       {
         key: 'ESTP',
@@ -1051,8 +1053,8 @@ const _tests: Test[] = [
         caution: ['장기 계획이나 반복되는 루틴이 진짜 힘들게 느껴질 수 있어요', '감정적인 부분을 너무 무시하다 관계에서 오해가 생길 수 있습니다'],
         shareText: '나는 현장 마스터 "ESTP" ⚡ 당신의 MBTI는?',
         recommendedTests: ['over-immersion-test', 'how-friends-see-me-test', 'love-style-test'],
-        relationshipStyle: '연애도 즉흥적이고 활기차게. 함께 새로운 경험을 즐기는 것을 중요하게 생각하며 자유롭고 재미있는 관계를 선호해요.',
-        compatibleVibe: 'ISFJ, ISTJ — 나의 즉흥적인 에너지를 안전하게 잡아줄 안정적인 유형과 잘 맞아요'
+        relationshipStyle: { ko: '연애도 즉흥적이고 활기차게. 함께 새로운 경험을 즐기는 것을 중요하게 생각하며 자유롭고 재미있는 관계를 선호해요.', en: 'Spontaneous and energetic in love. Values sharing new experiences and prefers a free, fun-filled relationship.', ja: '恋愛も即興的で活発。新しい体験を一緒に楽しむことを大切にし、自由で楽しい関係を好みます。', es: 'Espontáneo y enérgico en el amor. Valora compartir nuevas experiencias y prefiere relaciones libres y divertidas.' },
+        compatibleVibe: { ko: 'ISFJ, ISTJ — 나의 즉흥적인 에너지를 안전하게 잡아줄 안정적인 유형과 잘 맞아요', en: 'ISFJ, ISTJ — Steady types who safely ground your spontaneous energy', ja: 'ISFJ, ISTJ — 即興的なエネルギーを安全に受け止め安定させてくれるタイプ', es: 'ISFJ, ISTJ — Tipos estables que anclan con seguridad tu energía espontánea' }
       },
       {
         key: 'ESFP',
@@ -1063,8 +1065,8 @@ const _tests: Test[] = [
         caution: ['미래 계획이나 장기 목표를 놓치기 쉬워요', '힘든 상황을 외면하다 문제가 커질 수 있습니다'],
         shareText: '나는 파티 주인공 "ESFP" 🎊 당신의 MBTI는?',
         recommendedTests: ['love-style-test', 'over-immersion-test', 'how-friends-see-me-test'],
-        relationshipStyle: '사랑받고 또 사랑해주는 것을 적극적으로 즐기는 스타일. 함께하는 순간 하나하나를 특별하게 만들어줍니다.',
-        compatibleVibe: 'ISFJ, ISTJ — 나의 화려함 뒤에서 든든하게 지원해줄 유형과 잘 어울려요'
+        relationshipStyle: { ko: '사랑받고 또 사랑해주는 것을 적극적으로 즐기는 스타일. 함께하는 순간 하나하나를 특별하게 만들어줍니다.', en: 'Actively enjoys loving and being loved. Makes every moment together feel special and memorable.', ja: '愛されることも愛することも積極的に楽しみます。一緒に過ごす瞬間ひとつひとつを特別にしてくれます。', es: 'Disfruta activamente amar y ser amado. Hace que cada momento juntos sea especial e inolvidable.' },
+        compatibleVibe: { ko: 'ISFJ, ISTJ — 나의 화려함 뒤에서 든든하게 지원해줄 유형과 잘 어울려요', en: 'ISFJ, ISTJ — Reliable types who steadily support you behind the scenes', ja: 'ISFJ, ISTJ — 華やかさの裏でしっかりとサポートしてくれるタイプ', es: 'ISFJ, ISTJ — Tipos confiables que te apoyan firmemente entre bastidores' }
       },
       {
         key: 'INTJ',
@@ -1075,8 +1077,8 @@ const _tests: Test[] = [
         caution: ['고집이 세서 다른 의견을 받아들이기 어려울 때가 있어요', '사람들과 따뜻하게 소통하는 부분이 힘들게 느껴질 수 있습니다'],
         shareText: '나는 전략적 음모론자 "INTJ" 🎯 당신의 MBTI는?',
         recommendedTests: ['intuition-vs-logic-test', 'hidden-personality-test', 'attachment-style-test'],
-        relationshipStyle: '관계에 신중하게 접근하지만 한번 마음을 열면 깊고 진지한 연인이 됩니다. 말보다 행동으로 사랑을 표현하는 타입이에요.',
-        compatibleVibe: 'ENFP, ENTP — 나의 닫힌 세계를 밝고 창의적으로 열어줄 유형과 잘 맞아요'
+        relationshipStyle: { ko: '관계에 신중하게 접근하지만 한번 마음을 열면 깊고 진지한 연인이 됩니다. 말보다 행동으로 사랑을 표현하는 타입이에요.', en: 'Cautious about relationships, but once open, becomes a deeply devoted partner. Expresses love through actions, not words.', ja: '関係には慎重ですが、心を開いたら深く真剣な恋人に。言葉より行動で愛情を表現するタイプです。', es: 'Cauteloso en las relaciones, pero una vez abierto, se convierte en una pareja profundamente comprometida. Expresa el amor con hechos, no palabras.' },
+        compatibleVibe: { ko: 'ENFP, ENTP — 나의 닫힌 세계를 밝고 창의적으로 열어줄 유형과 잘 맞아요', en: 'ENFP, ENTP — Types who creatively and cheerfully open up your closed world', ja: 'ENFP, ENTP — 閉じた世界を明るく創造的に開いてくれるタイプ', es: 'ENFP, ENTP — Tipos que abren tu mundo cerrado de manera creativa y alegre' }
       },
       {
         key: 'INTP',
@@ -1087,8 +1089,8 @@ const _tests: Test[] = [
         caution: ['생각이 너무 많아서 결정을 내리지 못하고 멈춰있을 때가 있어요', '사회적 에너지 소모가 크고 감정 표현이 서툴 수 있습니다'],
         shareText: '나는 사색하는 분석가 "INTP" 🔬 당신의 MBTI는?',
         recommendedTests: ['intuition-vs-logic-test', 'hidden-personality-test', 'over-immersion-test'],
-        relationshipStyle: '관계에서 깊은 지적 교감을 가장 중요하게 여깁니다. 말 대신 관심 어린 분석과 배려로 사랑을 표현하는 독특한 스타일이에요.',
-        compatibleVibe: 'ENTJ, ENFJ — 나의 흩어진 에너지를 방향 잡아줄 리더십 있는 유형과 잘 어울려요'
+        relationshipStyle: { ko: '관계에서 깊은 지적 교감을 가장 중요하게 여깁니다. 말 대신 관심 어린 분석과 배려로 사랑을 표현하는 독특한 스타일이에요.', en: 'Values deep intellectual connection above all in relationships. Expresses love through thoughtful analysis and quiet, attentive care.', ja: '関係では深い知的共鳴を最も大切にします。言葉の代わりに、気づかいのある分析と配慮で愛を表現する独特なスタイルです。', es: 'Valora la conexión intelectual profunda por encima de todo. Expresa el amor a través del análisis reflexivo y el cuidado silencioso.' },
+        compatibleVibe: { ko: 'ENTJ, ENFJ — 나의 흩어진 에너지를 방향 잡아줄 리더십 있는 유형과 잘 어울려요', en: 'ENTJ, ENFJ — Leaders who give structure and direction to your scattered energy', ja: 'ENTJ, ENFJ — 散らかったエネルギーに方向性を与えてくれるリーダーシップのあるタイプ', es: 'ENTJ, ENFJ — Líderes que orientan y estructuran tu energía dispersa' }
       },
       {
         key: 'INFJ',
@@ -1099,8 +1101,8 @@ const _tests: Test[] = [
         caution: ['완벽주의와 이상주의가 지나쳐서 스스로 번아웃될 수 있어요', '속마음을 잘 드러내지 않아 오해를 살 때가 있습니다'],
         shareText: '나는 신비로운 예언자 "INFJ" 🔮 당신의 MBTI는?',
         recommendedTests: ['attachment-style-test', 'hidden-personality-test', 'love-style-test'],
-        relationshipStyle: '깊고 의미 있는 연결을 원하며 표면적인 관계는 금방 지루해집니다. 진심이 통하는 사람을 만나면 온 마음을 다해 헌신해요.',
-        compatibleVibe: 'ENFP, ENTP — 나의 진지함을 가볍고 따뜻하게 받아줄 유형과 잘 맞아요'
+        relationshipStyle: { ko: '깊고 의미 있는 연결을 원하며 표면적인 관계는 금방 지루해집니다. 진심이 통하는 사람을 만나면 온 마음을 다해 헌신해요.', en: 'Craves deep, meaningful connection and grows bored quickly with superficiality. Gives everything to someone who truly understands.', ja: '深く意味のある繋がりを求め、表面的な関係はすぐに飽きます。本当に心が通じる人には全力で献身します。', es: 'Anhela conexiones profundas; se aburre rápido de lo superficial. Se entrega por completo a quien lo comprende de verdad.' },
+        compatibleVibe: { ko: 'ENFP, ENTP — 나의 진지함을 가볍고 따뜻하게 받아줄 유형과 잘 맞아요', en: 'ENFP, ENTP — Types who receive your seriousness with warmth and lightness', ja: 'ENFP, ENTP — 真剣さを軽やかに温かく受け止めてくれるタイプ', es: 'ENFP, ENTP — Tipos que reciben tu seriedad con calidez y ligereza' }
       },
       {
         key: 'INFP',
@@ -1111,8 +1113,8 @@ const _tests: Test[] = [
         caution: ['이상과 현실의 괴리에 혼자 힘들어하는 경우가 많아요', '비판을 개인적으로 받아들여서 오래 상처받을 수 있습니다'],
         shareText: '나는 감성 이상주의자 "INFP" 🌙 당신의 MBTI는?',
         recommendedTests: ['love-style-test', 'hidden-personality-test', 'attachment-style-test'],
-        relationshipStyle: '사랑하면 온 마음을 주는 유형. 진심과 감정을 중시하고 관계에서 깊은 유대와 이해를 원합니다.',
-        compatibleVibe: 'ENFJ, ENTJ — 나를 이해하고 세상을 헤쳐나가도록 이끌어줄 리더형과 잘 맞아요'
+        relationshipStyle: { ko: '사랑하면 온 마음을 주는 유형. 진심과 감정을 중시하고 관계에서 깊은 유대와 이해를 원합니다.', en: 'Gives everything when in love. Values sincerity and emotion, seeking deep bonds and mutual understanding above all.', ja: '愛すると全てを捧げるタイプ。誠実さと感情を大切にし、深い絆と理解を求めます。', es: 'Lo da todo cuando ama. Valora la sinceridad y la emoción, buscando vínculos profundos y comprensión mutua.' },
+        compatibleVibe: { ko: 'ENFJ, ENTJ — 나를 이해하고 세상을 헤쳐나가도록 이끌어줄 리더형과 잘 맞아요', en: 'ENFJ, ENTJ — Leaders who understand you and guide you confidently through the world', ja: 'ENFJ, ENTJ — 理解してくれ、世界を共に切り開いてくれるリーダータイプ', es: 'ENFJ, ENTJ — Líderes que te comprenden y te guían con confianza por el mundo' }
       },
       {
         key: 'ISTJ',
@@ -1123,8 +1125,8 @@ const _tests: Test[] = [
         caution: ['변화나 새로운 방식에 적응하는 데 시간이 오래 걸릴 수 있어요', '감정 표현이 서툴어서 오해를 살 때가 있습니다'],
         shareText: '나는 믿을 수 있는 완벽주의자 "ISTJ" 🏛️ 당신의 MBTI는?',
         recommendedTests: ['how-friends-see-me-test', 'hidden-personality-test', 'love-style-test'],
-        relationshipStyle: '천천히 마음을 열지만, 한번 열면 평생 든든한 파트너가 됩니다. 행동으로 사랑을 보여주는 묵직한 스타일이에요.',
-        compatibleVibe: 'ESFP, ESTP — 나의 진중함을 재미있게 흔들어줄 활동적인 유형과 잘 어울려요'
+        relationshipStyle: { ko: '천천히 마음을 열지만, 한번 열면 평생 든든한 파트너가 됩니다. 행동으로 사랑을 보여주는 묵직한 스타일이에요.', en: 'Slow to open up, but once they do, a lifelong dependable partner. Shows love through steady, reliable actions rather than words.', ja: '心を開くのは遅いですが、一度開けば生涯の頼れるパートナーに。行動でどっしりと愛情を示すスタイルです。', es: 'Tarda en abrirse, pero una vez que lo hace, es un compañero confiable de por vida. Muestra el amor con acciones sólidas y constantes.' },
+        compatibleVibe: { ko: 'ESFP, ESTP — 나의 진중함을 재미있게 흔들어줄 활동적인 유형과 잘 어울려요', en: 'ESFP, ESTP — Active, fun-loving types who lighten up your serious side', ja: 'ESFP, ESTP — 真剣さを楽しく揺さぶってくれる活動的なタイプ', es: 'ESFP, ESTP — Tipos activos y divertidos que aligeras tu lado serio' }
       },
       {
         key: 'ISFJ',
@@ -1135,8 +1137,8 @@ const _tests: Test[] = [
         caution: ['거절하는 것이 너무 힘들어서 자신을 혹사시킬 수 있어요', '참고 또 참다가 갑자기 폭발할 수 있습니다'],
         shareText: '나는 조용한 수호 천사 "ISFJ" 💝 당신의 MBTI는?',
         recommendedTests: ['love-style-test', 'attachment-style-test', 'how-friends-see-me-test'],
-        relationshipStyle: '깊은 헌신과 세심함으로 상대방을 감동시키는 연인. 소소한 기념일도 기억하고 진심으로 챙깁니다.',
-        compatibleVibe: 'ESTP, ESFP — 나의 조용함을 밝고 활기차게 채워줄 유형과 잘 어울려요'
+        relationshipStyle: { ko: '깊은 헌신과 세심함으로 상대방을 감동시키는 연인. 소소한 기념일도 기억하고 진심으로 챙깁니다.', en: 'Moves a partner with deep devotion and attention to detail. Remembers even small anniversaries and celebrates them sincerely.', ja: '深い献身と細やかさで相手を感動させる恋人。小さな記念日も覚えて心から大切にします。', es: 'Conmueve a su pareja con dedicación profunda y atención al detalle. Recuerda hasta los pequeños aniversarios y los celebra de corazón.' },
+        compatibleVibe: { ko: 'ESTP, ESFP — 나의 조용함을 밝고 활기차게 채워줄 유형과 잘 어울려요', en: 'ESTP, ESFP — Bright, energetic types who fill your quietness with life', ja: 'ESTP, ESFP — 静けさを明るく活気よく満たしてくれるタイプ', es: 'ESTP, ESFP — Tipos brillantes y enérgicos que llenan tu quietud con vida' }
       },
       {
         key: 'ISTP',
@@ -1147,8 +1149,8 @@ const _tests: Test[] = [
         caution: ['감정 표현이 너무 부족해서 상대방이 답답해할 수 있어요', '장기 계획이나 반복 업무를 오래 유지하기 힘들 수 있습니다'],
         shareText: '나는 침착한 분석가 "ISTP" 🔧 당신의 MBTI는?',
         recommendedTests: ['intuition-vs-logic-test', 'hidden-personality-test', 'over-immersion-test'],
-        relationshipStyle: '자유를 중시하는 연애 스타일. 말보다 행동으로 챙기며 상대방의 독립성도 존중하는 여유로운 파트너예요.',
-        compatibleVibe: 'ESFJ, ESTJ — 나의 방향성 없는 일상을 따뜻하게 정리해줄 계획형과 잘 어울려요'
+        relationshipStyle: { ko: '자유를 중시하는 연애 스타일. 말보다 행동으로 챙기며 상대방의 독립성도 존중하는 여유로운 파트너예요.', en: "Values freedom in love. Cares through actions over words and genuinely respects a partner's independence.", ja: '自由を重視する恋愛スタイル。言葉より行動でケアし、相手の独立性も尊重するゆとりあるパートナーです。', es: 'Valora la libertad en el amor. Cuida con acciones más que palabras y respeta genuinamente la independencia de su pareja.' },
+        compatibleVibe: { ko: 'ESFJ, ESTJ — 나의 방향성 없는 일상을 따뜻하게 정리해줄 계획형과 잘 어울려요', en: 'ESFJ, ESTJ — Planners who warmly bring order to your directionless daily life', ja: 'ESFJ, ESTJ — 方向性のない日常を温かく整理してくれる計画型タイプ', es: 'ESFJ, ESTJ — Planificadores que ordenan calurosamente tu vida cotidiana' }
       },
       {
         key: 'ISFP',
@@ -1159,8 +1161,8 @@ const _tests: Test[] = [
         caution: ['갈등 상황을 피하다가 해결이 늦어지는 경우가 많아요', '미래 계획보다 지금 감정에 집중하다 준비가 부족해질 수 있습니다'],
         shareText: '나는 감성 아티스트 "ISFP" 🎨 당신의 MBTI는?',
         recommendedTests: ['love-style-test', 'hidden-personality-test', 'attachment-style-test'],
-        relationshipStyle: '표현은 적지만 작은 행동 하나하나에 사랑을 담는 타입. 상대방의 취향을 세심하게 기억하고 배려합니다.',
-        compatibleVibe: 'ENTJ, ESFJ — 나의 부드러운 감성을 리드해줄 결단력 있는 유형과 잘 맞아요'
+        relationshipStyle: { ko: '표현은 적지만 작은 행동 하나하나에 사랑을 담는 타입. 상대방의 취향을 세심하게 기억하고 배려합니다.', en: "Quiet in expression but pours love into small, thoughtful gestures. Remembers a partner's preferences with remarkable care.", ja: '表現は少ないですが、小さな行動ひとつひとつに愛情を込めます。相手の好みを細やかに覚え気遣います。', es: 'Reservado en expresión, pero llena de amor cada pequeño gesto. Recuerda con cuidado las preferencias de su pareja.' },
+        compatibleVibe: { ko: 'ENTJ, ESFJ — 나의 부드러운 감성을 리드해줄 결단력 있는 유형과 잘 맞아요', en: 'ENTJ, ESFJ — Decisive types who lead and channel your gentle sensitivity', ja: 'ENTJ, ESFJ — 優しい感性をリードしてくれる決断力のあるタイプ', es: 'ENTJ, ESFJ — Tipos decididos que lideran y canalizan tu sensibilidad suave' }
       }
     ]
   },

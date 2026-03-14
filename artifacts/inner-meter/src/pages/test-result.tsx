@@ -60,7 +60,10 @@ async function downloadCardAsPng(
 }
 
 export default function TestResult() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = (i18n.language?.slice(0, 2) || 'ko') as 'ko' | 'en' | 'ja' | 'es';
+  const localize = (field?: { ko: string; en: string; ja: string; es: string }) =>
+    field ? (field[lang] ?? field.ko) : undefined;
   const [, params] = useRoute("/results/:slug");
   const [, setLocation] = useLocation();
   const slug = params?.slug || "";
@@ -330,7 +333,7 @@ export default function TestResult() {
                   <h3 className="font-bold text-violet-800 dark:text-violet-300 text-sm">{t('result.loveStyle')}</h3>
                 </div>
                 <p className="text-sm text-violet-900 dark:text-violet-200 leading-relaxed break-keep">
-                  {result.relationshipStyle}
+                  {localize(result.relationshipStyle)}
                 </p>
               </div>
             )}
@@ -341,7 +344,7 @@ export default function TestResult() {
                   <h3 className="font-bold text-fuchsia-800 dark:text-fuchsia-300 text-sm">{t('result.compatibleVibe')}</h3>
                 </div>
                 <p className="text-sm text-fuchsia-900 dark:text-fuchsia-200 leading-relaxed break-keep">
-                  {result.compatibleVibe}
+                  {localize(result.compatibleVibe)}
                 </p>
               </div>
             )}
