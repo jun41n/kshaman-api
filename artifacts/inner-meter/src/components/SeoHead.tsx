@@ -8,7 +8,7 @@ interface SeoHeadProps {
   jsonLd?: object | object[];
 }
 
-const BASE_URL = "https://innermeter.app";
+const BASE_URL = "https://mytesttype.com";
 const DEFAULT_OG_IMAGE = `${BASE_URL}/opengraph.jpg`;
 
 export function SeoHead({ title, description, path = "/", ogImage = DEFAULT_OG_IMAGE, jsonLd }: SeoHeadProps) {

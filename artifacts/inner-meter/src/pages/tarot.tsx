@@ -420,7 +420,7 @@ export default function Tarot() {
                   <ShareButtons
                     title={t('tarot3.shareTitle')}
                     text={t('tarot3.shareText', { cards: selectedCards.map(c => c.name[safeLocale]).join(' · ') })}
-                    url={typeof window !== 'undefined' ? window.location.href : 'https://innermeter.app/tarot'}
+                    url={typeof window !== 'undefined' ? window.location.href : 'https://mytesttype.com/tarot'}
                   />
                 </motion.div>
               </motion.div>

@@ -190,7 +190,7 @@ export default function TestResult() {
     }
   };
 
-  const BASE = "https://innermeter.app";
+  const BASE = "https://mytesttype.com";
   const resultPath = `/results/${slug}?result=${result.key}`;
   const seoTitle = resultTitle ? `${resultTitle} | InnerMeter` : `${localTest?.title ?? test.title} | InnerMeter`;
 

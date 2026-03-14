@@ -136,7 +136,7 @@ export default function TestDetail() {
   const seoTitle = localTest?.title ? `${localTest.title} | InnerMeter` : `${test.title} | InnerMeter`;
   const seoDesc = localTest?.description ?? test.description;
 
-  const BASE = "https://innermeter.app";
+  const BASE = "https://mytesttype.com";
   const testJsonLd = [
     {
       "@context": "https://schema.org",

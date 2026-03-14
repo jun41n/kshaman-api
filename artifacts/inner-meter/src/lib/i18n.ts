@@ -244,7 +244,7 @@ const resources = {
       caution:'주의 포인트',
       snsDivider:'나의 리딩 공유하기',
       shareTitle:'오늘의 타로 3카드 리딩',
-      shareText:'오늘의 타로 3카드: {{cards}} ✨ innermeter.app/tarot',
+      shareText:'오늘의 타로 3카드: {{cards}} ✨ mytesttype.com/tarot',
     },
   }},
 
@@ -464,7 +464,7 @@ const resources = {
       caution:'Caution',
       snsDivider:'Share My Reading',
       shareTitle:'Today\'s 3-Card Tarot Reading',
-      shareText:'My 3-card tarot today: {{cards}} ✨ innermeter.app/tarot',
+      shareText:'My 3-card tarot today: {{cards}} ✨ mytesttype.com/tarot',
     },
   }},
   ja: { translation: {
@@ -569,7 +569,7 @@ const resources = {
       caution:'注意ポイント',
       snsDivider:'リーディングをシェアする',
       shareTitle:'今日の3枚タロットリーディング',
-      shareText:'今日のタロット3枚: {{cards}} ✨ innermeter.app/tarot',
+      shareText:'今日のタロット3枚: {{cards}} ✨ mytesttype.com/tarot',
     },
   }},
   es: { translation: {
@@ -668,7 +668,7 @@ const resources = {
       caution:'Precaución',
       snsDivider:'Compartir mi Lectura',
       shareTitle:'Lectura de Tarot de 3 Cartas de Hoy',
-      shareText:'Mi tarot de 3 cartas hoy: {{cards}} ✨ innermeter.app/tarot',
+      shareText:'Mi tarot de 3 cartas hoy: {{cards}} ✨ mytesttype.com/tarot',
     },
   }},
 };
