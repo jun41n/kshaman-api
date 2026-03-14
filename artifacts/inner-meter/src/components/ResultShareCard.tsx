@@ -13,8 +13,19 @@
  */
 
 import { forwardRef } from "react";
+import { useTranslation } from "react-i18next";
 import type { Test, TestResult } from "@/data/tests";
 import { RESULT_EMOJIS } from "@/data/tests";
+
+const CATEGORY_TAGLINE_KEY: Record<string, string> = {
+  '연애 테스트': 'love',
+  '성격 테스트': 'personality',
+  'MBTI':        'mbti',
+  '심리 테스트': 'psychology',
+  '재미 테스트': 'fun',
+  '운세':        'fortune',
+  '타로':        'tarot',
+};
 
 /* ── design tokens per category ──────────────────────────────────── */
 
@@ -121,13 +132,22 @@ function getTheme(category: string): CardTheme {
 export interface ResultShareCardProps {
   test: Test;
   result: TestResult;
+  localTitle?: string;
+  localSummary?: string;
+  localTestTitle?: string;
 }
 
 export const ResultShareCard = forwardRef<HTMLDivElement, ResultShareCardProps>(
-  ({ test, result }, ref) => {
+  ({ test, result, localTitle, localSummary, localTestTitle }, ref) => {
+    const { t } = useTranslation();
     const theme = getTheme(test.category);
-    const isLongTitle = result.title.length > 14;
-    const isLongSummary = result.summary.length > 36;
+    const displayTitle = localTitle ?? result.title;
+    const displaySummary = localSummary ?? result.summary;
+    const displayTestTitle = localTestTitle ?? test.title;
+    const taglineKey = CATEGORY_TAGLINE_KEY[test.category] ?? 'personality';
+    const displayTagline = t(`result.cardTagline.${taglineKey}`);
+    const isLongTitle = displayTitle.length > 14;
+    const isLongSummary = displaySummary.length > 36;
 
     return (
       <div
@@ -189,7 +209,7 @@ export const ResultShareCard = forwardRef<HTMLDivElement, ResultShareCardProps>(
               background: theme.badgeBg, border: `1px solid ${theme.badgeBorder}`,
               fontSize: '10px', fontWeight: '700', color: theme.textColor,
               letterSpacing: '0.3px', whiteSpace: 'nowrap', flexShrink: 0,
-            }}>{theme.tagline}</div>
+            }}>{displayTagline}</div>
           </div>
 
           {/* main content */}
@@ -215,7 +235,7 @@ export const ResultShareCard = forwardRef<HTMLDivElement, ResultShareCardProps>(
               textShadow: '0 2px 10px rgba(0,0,0,0.18)',
               wordBreak: 'keep-all',
               maxWidth: '290px',
-            }}>{result.title}</h2>
+            }}>{displayTitle}</h2>
 
             {/* accent line */}
             <div style={{
@@ -232,7 +252,7 @@ export const ResultShareCard = forwardRef<HTMLDivElement, ResultShareCardProps>(
               lineHeight: '1.6',
               maxWidth: '270px',
               wordBreak: 'keep-all',
-            }}>"{result.summary}"</p>
+            }}>"{displaySummary}"</p>
           </div>
 
           {/* footer */}
@@ -244,7 +264,7 @@ export const ResultShareCard = forwardRef<HTMLDivElement, ResultShareCardProps>(
               fontSize: '10.5px', color: theme.mutedColor, fontWeight: '600',
               display: 'block', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
             }}>
-              {test.title}
+              {displayTestTitle}
             </span>
           </div>
         </div>

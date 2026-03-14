@@ -79,6 +79,7 @@ const resources = {
     },
     result: {
       resultBadge:'✨ {{title}} 결과',
+      cardTagline:{ love:'연애 유형 분석', personality:'성격 유형 분석', mbti:'MBTI 유형', psychology:'심리 유형 분석', fun:'재미 분석', fortune:'운세 분석', tarot:'타로 · 오늘의 운세' },
       strengths:'나의 강점',
       caution:'주의할 점',
       loveStyle:'연애 스타일',
@@ -284,6 +285,7 @@ const resources = {
     },
     result: {
       resultBadge:'✨ {{title}} Result',
+      cardTagline:{ love:'Love Type Analysis', personality:'Personality Analysis', mbti:'MBTI Type', psychology:'Psychology Analysis', fun:'Fun Analysis', fortune:'Fortune Reading', tarot:'Tarot · Today\'s Fortune' },
       strengths:'My Strengths',
       caution:'Things to Watch Out For',
       loveStyle:'Love Style',
@@ -474,6 +476,7 @@ const resources = {
     card: { start:'開始', participants:'参加' },
     result: {
       resultBadge:'✨ {{title}} 結果',
+      cardTagline:{ love:'恋愛タイプ分析', personality:'性格タイプ分析', mbti:'MBTIタイプ', psychology:'心理タイプ分析', fun:'楽しい分析', fortune:'運勢分析', tarot:'タロット・今日の運勢' },
       strengths:'私の強み',
       caution:'注意すること',
       loveStyle:'恋愛スタイル',
@@ -559,6 +562,7 @@ const resources = {
     card: { start:'Iniciar', participants:'participaron' },
     result: {
       resultBadge:'✨ Resultado de {{title}}',
+      cardTagline:{ love:'Análisis de Amor', personality:'Análisis de Personalidad', mbti:'Tipo MBTI', psychology:'Análisis Psicológico', fun:'Análisis Divertido', fortune:'Lectura de Fortuna', tarot:'Tarot · Fortuna de Hoy' },
       strengths:'Mis Fortalezas',
       caution:'Cosas a Tener en Cuenta',
       loveStyle:'Estilo Amoroso',
