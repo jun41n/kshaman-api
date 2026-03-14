@@ -551,39 +551,12 @@ function CardIllustration({ id }: { id: string }) {
 /* ─── Card Back ───────────────────────────────────────────────── */
 function CardBack({ w = 220, h = 356 }: { w?: number; h?: number }) {
   return (
-    <svg viewBox="0 0 220 356" xmlns="http://www.w3.org/2000/svg" style={{ width: w, height: h }}>
-      <defs>
-        <radialGradient id="cbg" cx="50%" cy="50%" r="65%">
-          <stop offset="0%" stopColor="#1a0542"/>
-          <stop offset="100%" stopColor="#060118"/>
-        </radialGradient>
-        <pattern id="dots" x="0" y="0" width="14" height="14" patternUnits="userSpaceOnUse">
-          <circle cx="7" cy="7" r="0.8" fill="#5b21b6" opacity="0.5"/>
-        </pattern>
-      </defs>
-      <rect width="220" height="356" fill="url(#cbg)" rx="12"/>
-      <rect width="220" height="356" fill="url(#dots)" rx="12"/>
-      <rect x="8" y="8" width="204" height="340" rx="8" fill="none" stroke="#b8860b" strokeWidth="2"/>
-      <rect x="14" y="14" width="192" height="328" rx="6" fill="none" stroke="#b8860b" strokeWidth="1" opacity="0.7"/>
-      {[[18,18],[202,18],[18,338],[202,338]].map(([cx,cy],i) => (
-        <g key={i}><circle cx={cx} cy={cy} r="6" fill="none" stroke="#b8860b" strokeWidth="1.5"/><circle cx={cx} cy={cy} r="2" fill="#b8860b"/></g>
-      ))}
-      {Array.from({length:8},(_,i) => {
-        const a = (i*45)*Math.PI/180;
-        const cx = 110 + Math.cos(a)*45, cy = 178 + Math.sin(a)*45;
-        return <ellipse key={i} cx={cx} cy={cy} rx="12" ry="7" fill="none" stroke="#b8860b" strokeWidth="1" transform={`rotate(${i*45},${cx},${cy})`} opacity="0.7"/>;
-      })}
-      <circle cx="110" cy="178" r="60" fill="none" stroke="#b8860b" strokeWidth="1.5" opacity="0.5"/>
-      <circle cx="110" cy="178" r="32" fill="none" stroke="#b8860b" strokeWidth="1" opacity="0.6"/>
-      <circle cx="110" cy="178" r="16" fill="none" stroke="#b8860b" strokeWidth="1.5" opacity="0.8"/>
-      {Array.from({length:8},(_,i) => {
-        const a = (i*45-90)*Math.PI/180;
-        return <line key={i} x1="110" y1="178" x2={110+Math.cos(a)*14} y2={178+Math.sin(a)*14} stroke="#b8860b" strokeWidth="1.5"/>;
-      })}
-      <circle cx="110" cy="178" r="5" fill="#b8860b"/>
-      <text x="110" y="32" textAnchor="middle" fill="#b8860b" fontSize="14" opacity="0.8">✦</text>
-      <text x="110" y="348" textAnchor="middle" fill="#b8860b" fontSize="14" opacity="0.8">✦</text>
-    </svg>
+    <img
+      src={`${import.meta.env.BASE_URL}images/tarot-back.png`}
+      alt="Tarot card back"
+      style={{ width: w, height: h, objectFit: 'cover', borderRadius: 12, display: 'block' }}
+      draggable={false}
+    />
   );
 }
 
@@ -599,13 +572,12 @@ function MiniCardBack({ selected, selectionOrder }: { selected: boolean; selecti
           : '0 2px 8px rgba(0,0,0,0.5)',
       }}
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-[#1a0542] to-[#060118]" />
-      <div className="absolute inset-[3px] border border-[#b8860b] rounded opacity-70" />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-8 h-8 rounded-full border border-[#b8860b] border-opacity-60 flex items-center justify-center">
-          <div className="w-3 h-3 rounded-full bg-[#b8860b] opacity-70" />
-        </div>
-      </div>
+      <img
+        src={`${import.meta.env.BASE_URL}images/tarot-back.png`}
+        alt="Tarot card back"
+        className="absolute inset-0 w-full h-full object-cover"
+        draggable={false}
+      />
       {selected && selectionOrder !== undefined && (
         <div className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#b8860b] flex items-center justify-center">
           <span className="text-black text-[9px] font-black">{selectionOrder}</span>
