@@ -1,12 +1,11 @@
 import { useState, useMemo } from "react";
 import { Layout } from "@/components/layout";
-import { MAJOR_ARCANA } from "@/data/majorArcana";
-import type { MajorArcanaCard } from "@/data/majorArcana";
+import { TAROT3_CARDS } from "@/data/tarot3Cards";
+import type { Tarot3Card } from "@/data/tarot3Cards";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { trackTarotDraw } from "@/lib/analytics";
-import type { Locale } from "@/lib/i18n";
 
 const STARS = [
   { top: '5%',  left: '4%',  size: '4px', opacity: 0.55, delay: 0 },
@@ -515,7 +514,7 @@ function JudgmentArt() {
       <path d="M84 160 Q90 176 96 160" fill="#546e7a" opacity="0.7"/>
       <circle cx="135" cy="155" r="7" fill="#ffccbc" opacity="0.7"/>
       <path d="M129 162 Q135 178 141 162" fill="#546e7a" opacity="0.7"/>
-      {[35,25],[90,20],[150,28],[15,55],[165,50],[20,90],[160,88].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="1.5" fill="#b0bec5" opacity="0.6"/>)}
+      {[[35,25],[90,20],[150,28],[15,55],[165,50],[20,90],[160,88]].map(([x,y],i)=><circle key={i} cx={x} cy={y} r="1.5" fill="#b0bec5" opacity="0.6"/>)}
     </svg>
   );
 }
@@ -525,7 +524,7 @@ function CardIllustration({ id }: { id: string }) {
   switch (id) {
     case 'fool':          return <FoolArt />;
     case 'magician':      return <MagicianArt />;
-    case 'high-priestess': return <HighPriestessArt />;
+    case 'high_priestess': return <HighPriestessArt />;
     case 'empress':        return <EmpressArt />;
     case 'emperor':        return <EmperorArt />;
     case 'hierophant':     return <HierophantArt />;
@@ -535,7 +534,7 @@ function CardIllustration({ id }: { id: string }) {
     case 'hermit':         return <HermitArt />;
     case 'wheel':          return <WheelArt />;
     case 'justice':        return <JusticeArt />;
-    case 'hanged-man':     return <HangedManArt />;
+    case 'hanged_man':     return <HangedManArt />;
     case 'death':          return <DeathArt />;
     case 'temperance':     return <TemperanceArt />;
     case 'devil':          return <DevilArt />;
@@ -543,7 +542,7 @@ function CardIllustration({ id }: { id: string }) {
     case 'star':           return <StarArt />;
     case 'moon':           return <MoonArt />;
     case 'sun':            return <SunArt />;
-    case 'judgement':      return <JudgmentArt />;
+    case 'judgment':       return <JudgmentArt />;
     case 'world':          return <WorldArt />;
     default:              return <div className="w-full h-full bg-violet-900" />;
   }
@@ -616,9 +615,10 @@ function MiniCardBack({ selected, selectionOrder }: { selected: boolean; selecti
   );
 }
 
+type CardLocale = 'ko' | 'en' | 'ja' | 'es';
+
 /* ─── Full card face for reading ─────────────────────────────── */
-function ReadingCard({ card, locale }: { card: MajorArcanaCard; locale: Locale }) {
-  const loc = card.localized[locale] ?? card.localized['ko'];
+function ReadingCard({ card, locale }: { card: Tarot3Card; locale: CardLocale }) {
   return (
     <div
       className="relative rounded-xl overflow-hidden"
@@ -630,13 +630,13 @@ function ReadingCard({ card, locale }: { card: MajorArcanaCard; locale: Locale }
       <div className="absolute inset-0 bg-[#0e0620]" />
       <div className="absolute inset-[4px] border border-[#b8860b] rounded-lg opacity-70" />
       <div className="absolute top-[4px] left-[4px] right-[4px] h-5 flex items-center justify-center">
-        <span className="text-[#ffd700] text-[8px] font-bold tracking-widest font-serif">{card.number}</span>
+        <span className="text-[#ffd700] text-[8px] font-bold tracking-widest font-serif">{card.roman}</span>
       </div>
       <div className="absolute top-[24px] left-[5px] right-[5px] bottom-[20px] overflow-hidden rounded border border-[#b8860b] border-opacity-40">
         <CardIllustration id={card.id} />
       </div>
       <div className="absolute bottom-[4px] left-[4px] right-[4px] h-4 flex items-center justify-center">
-        <span className="text-[#ffd700] text-[7px] font-bold tracking-wide font-serif text-center leading-tight truncate px-1">{loc.name}</span>
+        <span className="text-[#ffd700] text-[7px] font-bold tracking-wide font-serif text-center leading-tight truncate px-1">{card.name[locale]}</span>
       </div>
     </div>
   );
@@ -647,8 +647,9 @@ type Phase = 'intro' | 'selection' | 'reading';
 
 export default function Tarot() {
   const { t, i18n } = useTranslation();
-  const locale = (i18n.language?.slice(0, 2) as Locale) ?? 'ko';
-  const safeLocale: Locale = ['ko', 'en', 'ja', 'es'].includes(locale) ? locale : 'ko';
+  const rawLocale = i18n.language?.slice(0, 2) ?? 'ko';
+  const safeLocale: CardLocale = (['ko','en','ja','es'] as CardLocale[]).includes(rawLocale as CardLocale)
+    ? (rawLocale as CardLocale) : 'ko';
 
   const [phase, setPhase] = useState<Phase>('intro');
   const [question, setQuestion] = useState('');
@@ -656,7 +657,7 @@ export default function Tarot() {
   const [revealed, setRevealed] = useState(false);
 
   const shuffled = useMemo(
-    () => [...MAJOR_ARCANA].sort(() => Math.random() - 0.5),
+    () => [...TAROT3_CARDS].sort(() => Math.random() - 0.5),
     []
   );
 
@@ -664,16 +665,15 @@ export default function Tarot() {
     if (selectedIds.includes(id)) {
       setSelectedIds(prev => prev.filter(s => s !== id));
     } else if (selectedIds.length < 3) {
-      const next = [...selectedIds, id];
-      setSelectedIds(next);
+      setSelectedIds(prev => [...prev, id]);
     }
   };
 
   const handleRead = () => {
     const selected = selectedIds
-      .map(id => MAJOR_ARCANA.find(c => c.id === id)!)
+      .map(id => TAROT3_CARDS.find(c => c.id === id)!)
       .filter(Boolean);
-    selected.forEach(c => trackTarotDraw(c.localized[safeLocale]?.name ?? c.id));
+    selected.forEach(c => trackTarotDraw(c.name[safeLocale]));
     setPhase('reading');
     setTimeout(() => setRevealed(true), 300);
   };
@@ -685,8 +685,8 @@ export default function Tarot() {
     setRevealed(false);
   };
 
-  const selectedCards: MajorArcanaCard[] = selectedIds
-    .map(id => MAJOR_ARCANA.find(c => c.id === id)!)
+  const selectedCards: Tarot3Card[] = selectedIds
+    .map(id => TAROT3_CARDS.find(c => c.id === id)!)
     .filter(Boolean);
 
   const positions = [
@@ -831,8 +831,7 @@ export default function Tarot() {
                 {/* Card readings */}
                 <div className="space-y-4 mb-6">
                   {selectedCards.map((card, i) => {
-                    const loc = card.localized[safeLocale] ?? card.localized['ko'];
-                    const posKey = positionKeys[i];
+                    const posKey = positionKeys[i] as 'present' | 'advice' | 'future';
                     return (
                       <motion.div
                         key={card.id}
@@ -847,26 +846,17 @@ export default function Tarot() {
                           </div>
                           <div>
                             <p className="text-violet-300/60 text-[10px] font-semibold tracking-widest uppercase">{positions[i]}</p>
-                            <p className="text-[#ffd700] font-bold text-sm">{loc.name}</p>
+                            <p className="text-[#ffd700] font-bold text-sm">{card.name[safeLocale]}</p>
                           </div>
                         </div>
                         <div className="flex flex-wrap gap-1 mb-3 ml-9">
-                          {loc.keywords.map(kw => (
+                          {card.keywords[safeLocale].map(kw => (
                             <span key={kw} className="text-[10px] px-2 py-0.5 rounded-full bg-violet-900/60 text-violet-200/80 border border-violet-700/40">
                               {kw}
                             </span>
                           ))}
                         </div>
-                        <p className="text-sm text-violet-100/80 leading-relaxed ml-9">{loc.interpretations[posKey]}</p>
-                        {loc.caution && (
-                          <div className="mt-3 ml-9 flex items-start gap-2">
-                            <span className="text-amber-400/70 text-xs shrink-0 mt-0.5">⚠</span>
-                            <p className="text-xs text-amber-300/60 leading-relaxed">
-                              <span className="font-semibold">{t('tarot3.caution')}: </span>
-                              {loc.caution}
-                            </p>
-                          </div>
-                        )}
+                        <p className="text-sm text-violet-100/80 leading-relaxed ml-9">{card.reading[posKey][safeLocale]}</p>
                       </motion.div>
                     );
                   })}
@@ -882,15 +872,12 @@ export default function Tarot() {
                   <p className="text-violet-300/60 text-[10px] font-semibold tracking-widest uppercase mb-1">{t('tarot3.synthesisSubtitle')}</p>
                   <p className="text-white font-bold text-base mb-3">{t('tarot3.synthesisTitle')}</p>
                   <div className="space-y-2">
-                    {selectedCards.map((card, i) => {
-                      const loc = card.localized[safeLocale] ?? card.localized['ko'];
-                      return (
-                        <p key={card.id} className="text-sm text-violet-100/70 leading-relaxed">
-                          <span className="text-[#ffd700]/80 font-semibold">{loc.name}</span>
-                          {' — '}{loc.baseMeaning}
-                        </p>
-                      );
-                    })}
+                    {selectedCards.map(card => (
+                      <p key={card.id} className="text-sm text-violet-100/70 leading-relaxed">
+                        <span className="text-[#ffd700]/80 font-semibold">{card.name[safeLocale]}</span>
+                        {' — '}{card.daily[safeLocale]}
+                      </p>
+                    ))}
                   </div>
                 </motion.div>
 
