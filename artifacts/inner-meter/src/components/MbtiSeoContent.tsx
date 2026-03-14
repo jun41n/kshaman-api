@@ -47,6 +47,16 @@ const SECTION_LABELS: Record<string, Record<string, string>> = {
     explore: "Explorar Otros Tipos MBTI",
     exploreDesc: "¿Curioso por otros tipos de personalidad? Descubre los 16 tipos MBTI.",
   },
+  pt: {
+    traits: "Traços de Personalidade",
+    strengths: "Pontos Fortes",
+    weaknesses: "Pontos Fracos",
+    relationships: "Estilo nos Relacionamentos",
+    careers: "Carreiras Recomendadas",
+    compatibility: "Compatibilidade",
+    explore: "Explorar Outros Tipos MBTI",
+    exploreDesc: "Curioso sobre outros tipos de personalidade? Descubra todos os 16 tipos MBTI.",
+  },
 };
 
 const SECTION_ICONS: Record<string, string> = {
@@ -61,7 +71,7 @@ const SECTION_ICONS: Record<string, string> = {
 export function MbtiSeoContent({ mbtiType }: Props) {
   const { i18n } = useTranslation();
   const rawLang = i18n.language?.split("-")[0] ?? "ko";
-  const lang = ["ko", "en", "ja", "es"].includes(rawLang) ? rawLang : "ko";
+  const lang = ["ko", "en", "ja", "es", "pt"].includes(rawLang) ? rawLang : "ko";
 
   const content = MBTI_SEO[lang]?.[mbtiType];
   const labels = SECTION_LABELS[lang] ?? SECTION_LABELS.en;

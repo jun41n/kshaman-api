@@ -61,8 +61,8 @@ async function downloadCardAsPng(
 
 export default function TestResult() {
   const { t, i18n } = useTranslation();
-  const lang = (i18n.language?.slice(0, 2) || 'ko') as 'ko' | 'en' | 'ja' | 'es';
-  const localize = (field?: { ko: string; en: string; ja: string; es: string }) =>
+  const lang = (i18n.language?.slice(0, 2) || 'ko') as 'ko' | 'en' | 'ja' | 'es' | 'pt';
+  const localize = (field?: { ko: string; en: string; ja: string; es: string; pt: string }) =>
     field ? (field[lang] ?? field.ko) : undefined;
   const [, params] = useRoute("/results/:slug");
   const [, setLocation] = useLocation();
