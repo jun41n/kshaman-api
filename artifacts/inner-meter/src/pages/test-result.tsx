@@ -476,6 +476,11 @@ export default function TestResult() {
           </Button>
         </div>
 
+        {/* ── MBTI SEO Content ── */}
+        {test.slug === 'mbti-test' && result && (
+          <MbtiSeoContent mbtiType={result.key} />
+        )}
+
         {/* ── Recommended ── */}
         {recommendedTests.length > 0 && (
           <motion.div
@@ -497,11 +502,6 @@ export default function TestResult() {
               ))}
             </div>
           </motion.div>
-        )}
-
-        {/* ── MBTI SEO Content ── */}
-        {test.slug === 'mbti-test' && result && (
-          <MbtiSeoContent mbtiType={result.key} />
         )}
       </div>
     </Layout>
