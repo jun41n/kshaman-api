@@ -44,20 +44,22 @@ const CAT_EMOJI: Record<string, string> = {
   '운세': '🔮',
 };
 
-const PARTICIPANT_COUNTS: Record<string, string> = {
-  'love-style-test': '2.3만',
-  'attachment-style-test': '1.8만',
-  'hidden-personality-test': '3.1만',
-  'over-immersion-test': '1.4만',
-  'how-friends-see-me-test': '2.7만',
-  'intuition-vs-logic-test': '1.9만',
+const PARTICIPANT_COUNTS: Record<string, { ko: string; ja: string; default: string }> = {
+  'love-style-test': { ko: '2.3만', ja: '2.3万', default: '23K' },
+  'attachment-style-test': { ko: '1.8만', ja: '1.8万', default: '18K' },
+  'hidden-personality-test': { ko: '3.1만', ja: '3.1万', default: '31K' },
+  'over-immersion-test': { ko: '1.4만', ja: '1.4万', default: '14K' },
+  'how-friends-see-me-test': { ko: '2.7만', ja: '2.7万', default: '27K' },
+  'intuition-vs-logic-test': { ko: '1.9만', ja: '1.9万', default: '19K' },
 };
 
 export function TestCard({ test }: TestCardProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const localTest = useLocalizedTest(test.slug);
   const theme = CATEGORY_THEME[test.category];
-  const count = PARTICIPANT_COUNTS[test.slug];
+  const lang = i18n.language.split('-')[0];
+  const countEntry = PARTICIPANT_COUNTS[test.slug];
+  const count = countEntry ? (countEntry[lang as 'ko' | 'ja'] ?? countEntry.default) : undefined;
   const catKey = theme?.catKey || '';
   const catLabel = catKey ? `${CAT_EMOJI[test.category] || ''} ${t(`common.${catKey}`)}` : test.category;
 

@@ -77,7 +77,7 @@ export function Layout({ children }: LayoutProps) {
               <button
                 className="p-2 text-foreground"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                aria-label="메뉴 열기/닫기"
+                aria-label={t('common.menuToggle')}
               >
                 {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
               </button>

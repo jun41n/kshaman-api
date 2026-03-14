@@ -3,18 +3,9 @@ import { Link } from "wouter";
 import { Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
-const TESTS = [
-  'MBTI 성격 테스트',
-  '애착 유형 테스트',
-  '직관 vs 논리 테스트',
-  '과몰입 테스트',
-  '테토 vs 에겐 테스트',
-  '내 인생이 풀리는 나이 테스트',
-  'K-Shaman Reading',
-];
-
 export default function About() {
   const { t } = useTranslation();
+  const tests = t('about.tests', { returnObjects: true }) as string[];
 
   return (
     <Layout>
@@ -37,7 +28,7 @@ export default function About() {
           <div>
             <h2 className="text-sm font-bold text-foreground mb-4 uppercase tracking-wider">{t('about.testsTitle')}</h2>
             <ul className="space-y-3">
-              {TESTS.map((test) => (
+              {tests.map((test) => (
                 <li key={test} className="flex items-center gap-3 text-sm">
                   <span className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
                   {test}
