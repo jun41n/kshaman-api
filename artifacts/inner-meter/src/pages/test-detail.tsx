@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { useRoute, useLocation } from "wouter";
 import { Layout } from "@/components/layout";
+import { SeoHead } from "@/components/SeoHead";
 import { getTestBySlug } from "@/data/tests";
 import { ArrowLeft } from "lucide-react";
 import { Progress } from "@/components/ui/progress";
@@ -132,8 +133,12 @@ export default function TestDetail() {
     }
   };
 
+  const seoTitle = localTest?.title ? `${localTest.title} | InnerMeter` : `${test.title} | InnerMeter`;
+  const seoDesc = localTest?.description ?? test.description;
+
   return (
     <Layout>
+      <SeoHead title={seoTitle} description={seoDesc} path={`/tests/${slug}`} />
       <div className="max-w-xl mx-auto w-full pt-2 pb-20">
         {/* ── Header ── */}
         <div className="mb-8">

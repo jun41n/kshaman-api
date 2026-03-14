@@ -2,6 +2,7 @@ import { Layout } from "@/components/layout";
 import { Link } from "wouter";
 import { Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { SeoHead } from "@/components/SeoHead";
 
 export default function About() {
   const { t } = useTranslation();
@@ -9,6 +10,7 @@ export default function About() {
 
   return (
     <Layout>
+      <SeoHead title={t('seo.about.title')} description={t('seo.about.desc')} path="/about" />
       <div className="max-w-2xl mx-auto py-12">
         <div className="text-center mb-12">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 text-primary mb-5">
@@ -49,8 +51,8 @@ export default function About() {
         </div>
 
         <div className="flex items-center justify-center gap-6 mt-8 text-sm font-semibold text-muted-foreground">
-          <Link href="/contact" className="hover:text-primary transition-colors">Contact →</Link>
-          <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy →</Link>
+          <Link href="/contact" className="hover:text-primary transition-colors">{t('footer.contact')} →</Link>
+          <Link href="/privacy" className="hover:text-primary transition-colors">{t('footer.privacy')} →</Link>
         </div>
       </div>
     </Layout>

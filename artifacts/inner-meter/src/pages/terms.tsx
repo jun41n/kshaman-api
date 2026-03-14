@@ -1,8 +1,12 @@
 import { Layout } from "@/components/layout";
+import { SeoHead } from "@/components/SeoHead";
+import { useTranslation } from "react-i18next";
 
 export default function Terms() {
+  const { t } = useTranslation();
   return (
     <Layout>
+      <SeoHead title={t('seo.terms.title')} description={t('seo.terms.desc')} path="/terms" />
       <div className="max-w-3xl mx-auto py-12">
         <h1 className="text-3xl font-bold text-foreground mb-8">이용약관</h1>
         

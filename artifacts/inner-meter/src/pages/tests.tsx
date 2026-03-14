@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Layout } from "@/components/layout";
+import { SeoHead } from "@/components/SeoHead";
 import { TestCard } from "@/components/test-card";
 import { tests } from "@/data/tests";
 import { Sparkles, Search } from "lucide-react";
@@ -40,6 +41,7 @@ export default function Tests() {
 
   return (
     <Layout>
+      <SeoHead title={t('seo.tests.title')} description={t('seo.tests.desc')} path="/tests" />
       <div className="mb-12 text-center pt-8">
         <div className="inline-flex items-center justify-center p-3 bg-primary/10 rounded-full text-primary mb-4">
           <Sparkles className="w-6 h-6" />

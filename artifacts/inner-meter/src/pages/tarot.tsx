@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { Layout } from "@/components/layout";
+import { SeoHead } from "@/components/SeoHead";
 import { TAROT3_CARDS } from "@/data/tarot3Cards";
 import type { Tarot3Card } from "@/data/tarot3Cards";
 import { Button } from "@/components/ui/button";
@@ -155,6 +156,7 @@ export default function Tarot() {
 
   return (
     <Layout>
+      <SeoHead title={t('seo.tarot.title')} description={t('seo.tarot.desc')} path="/tarot" />
       <div className="relative min-h-screen -mx-4 sm:-mx-6 -mt-6 px-4 sm:px-6 pt-8 pb-20 overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#080420] via-[#0d0630] to-[#120840]" />

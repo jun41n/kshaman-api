@@ -1,5 +1,6 @@
 import { Link, useLocation } from "wouter";
 import { Layout } from "@/components/layout";
+import { SeoHead } from "@/components/SeoHead";
 import { TestCard } from "@/components/test-card";
 import { tests } from "@/data/tests";
 import { ArrowRight, Sparkles, Heart, Brain, Zap } from "lucide-react";
@@ -33,6 +34,7 @@ export default function Home() {
 
   return (
     <Layout>
+      <SeoHead title={t('seo.home.title')} description={t('seo.home.desc')} path="/" />
       {/* ── Hero ── */}
       <section className="relative w-full rounded-[2rem] overflow-hidden mb-10 shadow-2xl shadow-primary/15">
         <div className="absolute inset-0">

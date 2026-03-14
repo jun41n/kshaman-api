@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRoute, useLocation, Link } from "wouter";
 import { Layout } from "@/components/layout";
+import { SeoHead } from "@/components/SeoHead";
 import { ShareButtons } from "@/components/share-buttons";
 import { ResultShareCard } from "@/components/ResultShareCard";
 import { TestCard } from "@/components/test-card";
@@ -156,6 +157,11 @@ export default function TestResult() {
 
   return (
     <Layout>
+      <SeoHead
+        title={resultTitle ? `${resultTitle} | InnerMeter` : `${localTest?.title ?? ''} | InnerMeter`}
+        description={resultSummary}
+        path={`/results/${slug}`}
+      />
       <div className="max-w-xl mx-auto pt-2 pb-4">
 
         {/* ── Hero Card ── */}

@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
 import { ShareButtons } from "@/components/share-buttons";
+import { SeoHead } from "@/components/SeoHead";
 
 /* ─────────────────────────────────────────────
    PERSONA DATA (structural — names stay Korean as cultural brand)
@@ -214,6 +215,7 @@ export default function KShaman() {
 
   return (
     <Layout>
+      <SeoHead title={t('seo.kshaman.title')} description={t('seo.kshaman.desc')} path="/k-shaman" />
       <div className="relative min-h-screen -mx-4 sm:-mx-6 -mt-6 px-4 sm:px-6 pt-8 pb-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0d0720] via-[#130a2e] to-[#1a0d3a]" />
         {STARS.map((s, i) => (

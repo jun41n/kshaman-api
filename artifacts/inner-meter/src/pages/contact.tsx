@@ -1,6 +1,7 @@
 import { Layout } from "@/components/layout";
 import { Mail } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { SeoHead } from "@/components/SeoHead";
 
 const CONTACT_EMAIL = "meaningout_d@naver.com";
 
@@ -9,6 +10,7 @@ export default function Contact() {
 
   return (
     <Layout>
+      <SeoHead title={t('seo.contact.title')} description={t('seo.contact.desc')} path="/contact" />
       <div className="max-w-2xl mx-auto py-12">
         <div className="text-center mb-12">
           <div className="inline-flex items-center justify-center w-14 h-14 rounded-full bg-primary/10 text-primary mb-5">

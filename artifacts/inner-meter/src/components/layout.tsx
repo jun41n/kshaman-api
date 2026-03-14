@@ -158,9 +158,9 @@ export function Layout({ children }: LayoutProps) {
               <div>
                 <p className="text-xs font-bold text-muted-foreground/60 uppercase tracking-wider mb-3">{t('footer.info')}</p>
                 <div className="flex flex-col gap-2.5 text-sm font-medium text-muted-foreground">
-                  <Link href="/about"   className="hover:text-primary transition-colors">About</Link>
-                  <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
-                  <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
+                  <Link href="/about"   className="hover:text-primary transition-colors">{t('footer.about')}</Link>
+                  <Link href="/privacy" className="hover:text-primary transition-colors">{t('footer.privacy')}</Link>
+                  <Link href="/contact" className="hover:text-primary transition-colors">{t('footer.contact')}</Link>
                 </div>
               </div>
             </div>
