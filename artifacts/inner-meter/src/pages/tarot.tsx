@@ -561,15 +561,15 @@ function CardBack({ w = 220, h = 356 }: { w?: number; h?: number }) {
 }
 
 /* ─── Mini card for grid ──────────────────────────────────────── */
-function MiniCardBack({ selected, selectionOrder }: { selected: boolean; selectionOrder?: number }) {
+function MiniCardBack({ selected, selectionOrder, w = 48, h = 76 }: { selected: boolean; selectionOrder?: number; w?: number; h?: number }) {
   return (
     <div
-      className="relative rounded-lg overflow-hidden cursor-pointer transition-transform duration-150 active:scale-95"
+      className="relative rounded-lg overflow-hidden cursor-pointer"
       style={{
-        width: 60, height: 95,
+        width: w, height: h,
         boxShadow: selected
-          ? '0 0 0 2.5px #b8860b, 0 4px 16px rgba(184,134,11,0.5)'
-          : '0 2px 8px rgba(0,0,0,0.5)',
+          ? '0 0 0 2.5px #f0c040, 0 4px 20px rgba(240,192,64,0.6)'
+          : '0 2px 10px rgba(0,0,0,0.6)',
       }}
     >
       <img
@@ -579,7 +579,7 @@ function MiniCardBack({ selected, selectionOrder }: { selected: boolean; selecti
         draggable={false}
       />
       {selected && selectionOrder !== undefined && (
-        <div className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#b8860b] flex items-center justify-center">
+        <div className="absolute top-1 right-1 w-4 h-4 rounded-full bg-[#f0c040] flex items-center justify-center">
           <span className="text-black text-[9px] font-black">{selectionOrder}</span>
         </div>
       )}
@@ -738,25 +738,58 @@ export default function Tarot() {
                   {t('tarot3.selectedCount', { count: selectedIds.length })}
                 </p>
 
-                {/* 22-card grid */}
-                <div className="grid grid-cols-5 gap-2 justify-items-center mb-5">
-                  {shuffled.map((card, idx) => {
-                    const orderIdx = selectedIds.indexOf(card.id);
-                    const sel = orderIdx !== -1;
+                {/* 22-card fan spread — 2 rows of 11 */}
+                {(() => {
+                  const CARD_W = 48, CARD_H = 76;
+                  const STEP = 27;       // horizontal step between cards (overlap)
+                  const MAX_DEG = 9;     // max rotation angle at edges
+                  const ROW_H = CARD_H + 28; // container height per row (space for rotation)
+
+                  const renderFanRow = (cards: typeof shuffled) => {
+                    const n = cards.length;
+                    const center = (n - 1) / 2;
+                    const totalW = CARD_W + (n - 1) * STEP;
+
                     return (
-                      <motion.div
-                        key={card.id}
-                        onClick={() => handleCardClick(card.id)}
-                        whileTap={{ scale: 0.92 }}
-                        animate={sel ? { y: -4 } : { y: 0 }}
-                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-                        className="cursor-pointer"
-                      >
-                        <MiniCardBack selected={sel} selectionOrder={sel ? orderIdx + 1 : undefined} />
-                      </motion.div>
+                      <div className="relative mx-auto" style={{ width: totalW, height: ROW_H }}>
+                        {cards.map((card, i) => {
+                          const angle = ((i - center) / center) * MAX_DEG;
+                          const orderIdx = selectedIds.indexOf(card.id);
+                          const sel = orderIdx !== -1;
+                          return (
+                            <div
+                              key={card.id}
+                              style={{
+                                position: 'absolute',
+                                left: i * STEP,
+                                bottom: 0,
+                                transform: `rotate(${angle}deg)`,
+                                transformOrigin: 'bottom center',
+                                zIndex: sel ? 30 + i : i,
+                              }}
+                            >
+                              <motion.div
+                                onClick={() => handleCardClick(card.id)}
+                                whileTap={{ scale: 0.93 }}
+                                animate={sel ? { y: -12 } : { y: 0 }}
+                                transition={{ type: 'spring', stiffness: 320, damping: 22 }}
+                              >
+                                <MiniCardBack selected={sel} selectionOrder={sel ? orderIdx + 1 : undefined} w={CARD_W} h={CARD_H} />
+                              </motion.div>
+                            </div>
+                          );
+                        })}
+                      </div>
                     );
-                  })}
-                </div>
+                  };
+
+                  return (
+                    <div className="flex flex-col gap-4 mb-6 items-center overflow-x-auto px-2">
+                      {renderFanRow(shuffled.slice(0, 11))}
+                      {renderFanRow(shuffled.slice(11, 22))}
+                    </div>
+                  );
+                })()}
 
                 <Button
                   onClick={selectedIds.length === 3 ? handleRead : undefined}
