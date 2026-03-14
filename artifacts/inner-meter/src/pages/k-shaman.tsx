@@ -8,6 +8,7 @@ import { toPng } from "html-to-image";
 import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
 import type { TFunction } from "i18next";
+import { ShareButtons } from "@/components/share-buttons";
 
 /* ─────────────────────────────────────────────
    PERSONA DATA (structural — names stay Korean as cultural brand)
@@ -467,6 +468,22 @@ export default function KShaman() {
                       <RefreshCw className="w-4 h-4" /> {t('kshaman.ui.newReading')}
                     </button>
                   </div>
+                </div>
+
+                {/* SNS 바이럴 공유 */}
+                <div className="mb-4">
+                  <div className="flex items-center gap-3 my-5">
+                    <div className="flex-1 h-px bg-white/15" />
+                    <span className="text-xs text-white/45 font-medium tracking-wide">{t('result.snsDivider')}</span>
+                    <div className="flex-1 h-px bg-white/15" />
+                  </div>
+                  <ShareButtons
+                    title={selected ? t('kshaman.ui.cardReading', { name: selected.name }) : ''}
+                    text={t('kshaman.ui.shareText')}
+                    url={window.location.origin + '/k-shaman'}
+                    testSlug="k-shaman"
+                    resultKey={selected?.id ?? ''}
+                  />
                 </div>
 
               </motion.div>
