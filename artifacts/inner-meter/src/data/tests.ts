@@ -2185,6 +2185,502 @@ export const tests: Test[] = [
       },
     ],
   },
+
+  /* ═══════════════════════════════════════════════════
+     LOVE LANGUAGE TEST
+  ═══════════════════════════════════════════════════ */
+  {
+    slug: 'love-language-test',
+    title: '나의 사랑 언어는?',
+    description: '당신이 사랑받는다고 느끼는 방식은 5가지입니다. 당신의 진짜 사랑 언어를 알아보세요.',
+    category: '연애 테스트',
+    estimatedTime: '3분',
+    emoji: '💌',
+    questions: [
+      {
+        id: 1,
+        text: '연인이 어떻게 할 때 가장 사랑받는다고 느끼나요?',
+        options: [
+          { label: '"오늘 진짜 예뻤어, 최고야" 같은 칭찬 한마디', scores: { words: 2, acts: 0, gifts: 0, time: 0 } },
+          { label: '내가 피곤할 때 조용히 집안일을 대신 해줄 때', scores: { words: 0, acts: 2, gifts: 0, time: 0 } },
+          { label: '아무 이유 없이 깜짝 선물을 사다 줄 때', scores: { words: 0, acts: 0, gifts: 2, time: 0 } },
+          { label: '폰 내려놓고 오직 나에게만 집중하는 시간', scores: { words: 0, acts: 0, gifts: 0, time: 2 } },
+        ],
+      },
+      {
+        id: 2,
+        text: '힘든 하루를 보낸 날, 연인에게 가장 바라는 것은?',
+        options: [
+          { label: '"많이 힘들었지? 고생했어"라는 위로의 말', scores: { words: 2, acts: 0, touch: 0, time: 0 } },
+          { label: '말없이 저녁을 차려주거나 안마를 해줌', scores: { words: 0, acts: 2, touch: 0, time: 0 } },
+          { label: '조용히 꼭 안아주는 것', scores: { words: 0, acts: 0, touch: 2, time: 0 } },
+          { label: '아무것도 안 해도 그냥 옆에 있어줌', scores: { words: 0, acts: 0, touch: 0, time: 2 } },
+        ],
+      },
+      {
+        id: 3,
+        text: '기념일에 가장 감동받을 것 같은 이벤트는?',
+        options: [
+          { label: '내 이름이 적힌 손편지나 진심 어린 긴 문자', scores: { words: 2, gifts: 0, touch: 0, time: 0 } },
+          { label: '내가 갖고 싶다고 했던 걸 기억해 준 선물', scores: { words: 0, gifts: 2, touch: 0, time: 0 } },
+          { label: '아침에 눈 뜨자마자 해주는 포옹과 키스', scores: { words: 0, gifts: 0, touch: 2, time: 0 } },
+          { label: '휴대폰 없이 온종일 둘만의 특별한 하루', scores: { words: 0, gifts: 0, touch: 0, time: 2 } },
+        ],
+      },
+      {
+        id: 4,
+        text: '멀리 사는 연인이 보고 싶을 때, 가장 그리운 것은?',
+        options: [
+          { label: '"보고 싶어, 사랑해"라는 갑작스러운 연락', scores: { words: 2, acts: 0, touch: 0, time: 0 } },
+          { label: '내가 힘들 때 달려와 문제를 해결해 주던 것', scores: { words: 0, acts: 2, touch: 0, time: 0 } },
+          { label: '"생각났어"하며 보내준 선물 택배', scores: { words: 0, acts: 0, gifts: 2, time: 0 } },
+          { label: '아무 말 없이 오래 통화하던 그 시간', scores: { words: 0, acts: 0, gifts: 0, time: 2 } },
+        ],
+      },
+      {
+        id: 5,
+        text: '상대방에게 내 사랑을 표현할 때 가장 자연스러운 방식은?',
+        options: [
+          { label: '"사랑해, 네가 없으면 안 돼" 같은 말', scores: { words: 2, acts: 0, gifts: 0, touch: 0 } },
+          { label: '청소, 요리, 심부름 등 직접 도와주기', scores: { words: 0, acts: 2, gifts: 0, touch: 0 } },
+          { label: '취향에 맞는 선물이나 깜짝 이벤트', scores: { words: 0, acts: 0, gifts: 2, touch: 0 } },
+          { label: '손 잡기, 어깨동무, 스킨십으로 표현', scores: { words: 0, acts: 0, gifts: 0, touch: 2 } },
+        ],
+      },
+      {
+        id: 6,
+        text: '데이트 후 집에 돌아와서 가장 기억에 남는 장면은?',
+        options: [
+          { label: '그날 나에게 해준 칭찬이나 고백 같은 말', scores: { words: 2, acts: 0, gifts: 0, time: 0 } },
+          { label: '무거운 짐 들어주기 등 자연스러운 배려 행동', scores: { words: 0, acts: 2, gifts: 0, time: 0 } },
+          { label: '"먹고 싶다" 했던 디저트를 몰래 사다 준 것', scores: { words: 0, acts: 0, gifts: 2, time: 0 } },
+          { label: '벤치에 나란히 앉아 말없이 함께한 그 시간', scores: { words: 0, acts: 0, gifts: 0, time: 2 } },
+        ],
+      },
+      {
+        id: 7,
+        text: '바쁜 상대가 나를 신경 쓴다는 걸 느끼는 순간은?',
+        options: [
+          { label: '쉬는 시간에 짧게 "생각났어" 문자를 보낼 때', scores: { words: 2, acts: 0, touch: 0, time: 0 } },
+          { label: '내 힘든 일을 기억하고 먼저 도와줄 때', scores: { words: 0, acts: 2, touch: 0, time: 0 } },
+          { label: '퇴근하고 들어오자마자 꼭 안아줄 때', scores: { words: 0, acts: 0, touch: 2, time: 0 } },
+          { label: '바빠도 30분이라도 꼭 만나려 할 때', scores: { words: 0, acts: 0, touch: 0, time: 2 } },
+        ],
+      },
+      {
+        id: 8,
+        text: '싸운 후 화해할 때 가장 마음이 풀리는 것은?',
+        options: [
+          { label: '"미안해, 사랑해" 진심 어린 말을 들을 때', scores: { words: 2, gifts: 0, touch: 0, time: 0 } },
+          { label: '좋아하는 음식이나 작은 선물을 들고 올 때', scores: { words: 0, gifts: 2, touch: 0, time: 0 } },
+          { label: '말없이 손 잡아주거나 꼭 안아줄 때', scores: { words: 0, gifts: 0, touch: 2, time: 0 } },
+          { label: '조용히 옆에 앉아 내 말을 다 들어줄 때', scores: { words: 0, gifts: 0, touch: 0, time: 2 } },
+        ],
+      },
+      {
+        id: 9,
+        text: '연인이 나를 위해 해준 것 중 가장 감사했던 기억은?',
+        options: [
+          { label: '힘들 때 써준 응원 편지나 메모', scores: { words: 2, acts: 0, gifts: 0, time: 0 } },
+          { label: '내 몫까지 도맡아 해결해 준 일', scores: { words: 0, acts: 2, gifts: 0, time: 0 } },
+          { label: '이유 없이 사다 준 내 최애 간식이나 선물', scores: { words: 0, acts: 0, gifts: 2, time: 0 } },
+          { label: '아무 말 없이 내 곁에 오래 있어준 그 시간', scores: { words: 0, acts: 0, gifts: 0, time: 2 } },
+        ],
+      },
+      {
+        id: 10,
+        text: '이상적인 주말 데이트라면?',
+        options: [
+          { label: '카페에서 서로 하고 싶은 말 다 쏟아내는 수다 데이트', scores: { words: 2, acts: 0, gifts: 0, touch: 0 } },
+          { label: '내가 원하는 걸 직접 해주는 서프라이즈 이벤트', scores: { words: 0, acts: 2, gifts: 0, touch: 0 } },
+          { label: '소소한 선물을 교환하며 쇼핑하는 데이트', scores: { words: 0, acts: 0, gifts: 2, touch: 0 } },
+          { label: '손 잡고 산책하거나 집에서 붙어서 뒹구는 스킨십 데이트', scores: { words: 0, acts: 0, gifts: 0, touch: 2 } },
+        ],
+      },
+    ],
+    results: [
+      {
+        key: 'words',
+        title: '말로 사랑받는 언어형',
+        summary: '"사랑해" 한마디가 세상 어떤 선물보다 소중한 당신!',
+        description: '당신의 사랑 언어는 "확인의 말(Words of Affirmation)"입니다. 칭찬, 감사, 사랑의 고백 등 언어적 표현에서 사랑을 가장 강하게 느낍니다. 연인이 진심 어린 말 한마디를 건넬 때 마음이 가득 차오르고, 반대로 부정적인 말은 다른 유형보다 더 깊이 상처가 됩니다. 파트너에게도 자신의 언어로 솔직하게 마음을 표현해주세요.',
+        strengths: ['진심 어린 칭찬과 감사 표현에 민감하게 반응', '언어로 감정을 주고받는 소통 능력이 뛰어남', '파트너의 말 한마디를 오래 기억하고 소중히 여김'],
+        caution: ['부정적인 말이나 비판에 상처받기 쉬워요', '파트너도 같은 방식으로 표현하길 기대하지 않도록 해요'],
+        shareText: '나의 사랑 언어는 "말(Words)" 💬 너는 어떤 사랑 언어야?',
+        recommendedTests: ['love-style-test', 'attachment-style-test', 'mbti-test'],
+      },
+      {
+        key: 'acts',
+        title: '행동으로 사랑받는 봉사형',
+        summary: '말보다 행동! "해줬어" 한마디에 심장이 뛰는 타입',
+        description: '당신의 사랑 언어는 "봉사 행위(Acts of Service)"입니다. 연인이 직접 행동으로 도움을 줄 때 사랑을 가장 크게 느낍니다. 말보다 결과로 증명하는 실천적인 사랑에 감동받으며, 상대가 내 편의를 위해 무언가를 해줄 때 "이 사람이 나를 진짜 사랑하는구나"를 확인합니다. 작은 배려 행동 하나에 크게 감사하는 사람입니다.',
+        strengths: ['실질적인 도움과 배려 행동에 깊이 감동받음', '파트너를 위해 직접 무언가를 해주는 것에 능숙', '사랑을 말이 아닌 행동으로 증명하는 관계를 원함'],
+        caution: ['말로 표현하는 것도 상대에게 중요할 수 있어요', '상대가 잘 움직이지 않을 때 무관심으로 오해하지 마세요'],
+        shareText: '나의 사랑 언어는 "행동(Acts)" 🤝 너는 어떤 사랑 언어야?',
+        recommendedTests: ['love-style-test', 'attachment-style-test', 'how-friends-see-me-test'],
+      },
+      {
+        key: 'gifts',
+        title: '선물로 사랑받는 선물형',
+        summary: '"생각났어"라는 말과 함께 건네는 선물에 녹아버리는 타입!',
+        description: '당신의 사랑 언어는 "선물 받기(Receiving Gifts)"입니다. 선물의 가격보다 그 안에 담긴 마음과 정성을 느끼는 사람입니다. "이걸 보고 네 생각이 났어"라는 말 한마디와 함께 건네는 작은 선물이 세상에서 가장 큰 사랑의 증거입니다. 기념일뿐만 아니라 평범한 날에 받는 깜짝 선물에 가장 설레고 행복합니다.',
+        strengths: ['상대의 취향과 필요를 기억해 선물 잘 고름', '선물 속에 담긴 마음과 정성을 깊이 느낌', '사랑을 물질이 아닌 관심과 기억으로 이해함'],
+        caution: ['선물보다 마음이 중요하다는 것을 파트너에게 알려주세요', '선물이 없을 때 사랑이 없다고 오해하지 않도록 해요'],
+        shareText: '나의 사랑 언어는 "선물(Gifts)" 🎁 너는 어떤 사랑 언어야?',
+        recommendedTests: ['love-style-test', 'love-villain-test', 'attachment-style-test'],
+      },
+      {
+        key: 'quality-time',
+        title: '함께 있는 시간이 사랑인 시간형',
+        summary: '폰 내려놓고 나만 바라봐줄 때 세상을 다 가진 기분!',
+        description: '당신의 사랑 언어는 "함께하는 시간(Quality Time)"입니다. 연인과 온전히 집중해 함께하는 시간에서 사랑을 가장 깊이 느낍니다. 비싼 선물보다 아무것도 안 하고 그냥 옆에 있어주는 것, 휴대폰 없이 눈을 마주치며 대화하는 것이 최고의 사랑 표현입니다. 상대가 자리를 비우거나 주의를 분산시킬 때 외로움을 더 크게 느낍니다.',
+        strengths: ['함께하는 시간의 질을 높이기 위해 노력함', '현재에 충실한 사랑을 나눌 줄 앎', '연인과 깊은 감정적 교류를 원하고 잘함'],
+        caution: ['혼자만의 시간도 건강한 관계에 필요해요', '상대가 바쁠 때 방치됐다고 느끼지 않도록 해요'],
+        shareText: '나의 사랑 언어는 "시간(Quality Time)" ⏱️ 너는 어떤 사랑 언어야?',
+        recommendedTests: ['attachment-style-test', 'love-style-test', 'hidden-personality-test'],
+      },
+      {
+        key: 'touch',
+        title: '스킨십으로 사랑받는 접촉형',
+        summary: '손 한번 잡아줬을 뿐인데 하루가 다 행복해지는 타입!',
+        description: '당신의 사랑 언어는 "신체 접촉(Physical Touch)"입니다. 포옹, 손잡기, 어깨에 기대기 등 가벼운 스킨십에서도 사랑을 강하게 느낍니다. 말이나 선물보다 몸으로 전달되는 따뜻함이 당신의 마음을 가장 빠르게 채웁니다. 힘들 때 안아주는 것 하나로 모든 게 해결되는 사람이에요.',
+        strengths: ['스킨십을 통해 감정을 자연스럽게 표현', '신체 접촉으로 안정감과 연결감을 나눌 수 있음', '파트너의 작은 스킨십에 큰 위안을 받음'],
+        caution: ['스킨십을 불편해하는 상대에게는 속도를 맞춰주세요', '스킨십 이외의 사랑 언어도 함께 배워봐요'],
+        shareText: '나의 사랑 언어는 "스킨십(Touch)" 🤗 너는 어떤 사랑 언어야?',
+        recommendedTests: ['love-style-test', 'attachment-style-test', 'love-villain-test'],
+      },
+    ],
+    calculateResult: (scores) => {
+      const langs = ['words', 'acts', 'gifts', 'quality-time', 'touch'] as const;
+      return langs.reduce<string>((best, k) => ((scores[k] ?? 0) > (scores[best] ?? 0) ? k : best), 'words');
+    },
+  },
+
+  /* ═══════════════════════════════════════════════════
+     NARCISSIST TEST
+  ═══════════════════════════════════════════════════ */
+  {
+    slug: 'narcissist-test',
+    title: '나는 나르시시스트일까?',
+    description: '나르시시즘 지수를 측정해 나의 자기중심성을 솔직하게 알아봐요. 점수가 높을수록 주의!',
+    category: '성격 테스트',
+    estimatedTime: '3분',
+    emoji: '🪞',
+    questions: [
+      {
+        id: 1,
+        text: '그룹 사진을 찍을 때 나는?',
+        options: [
+          { label: '내가 제일 잘 나왔는지 제일 먼저 확인한다', scores: { narc: 3 } },
+          { label: '다들 잘 나왔는지 먼저 본다', scores: { narc: 1 } },
+          { label: '거의 신경 안 쓴다 — 추억이 중요하지', scores: { narc: 0 } },
+          { label: '내 것은 보정 앱 돌리고 공유한다', scores: { narc: 2 } },
+        ],
+      },
+      {
+        id: 2,
+        text: '팀 프로젝트가 성공했을 때 나는?',
+        options: [
+          { label: '속으로 "내 덕분이지"라고 생각한다', scores: { narc: 3 } },
+          { label: '팀원들과 함께 기뻐하고 공을 나눈다', scores: { narc: 0 } },
+          { label: '결과를 내 포트폴리오에 바로 추가한다', scores: { narc: 2 } },
+          { label: '다음엔 내 역할을 더 크게 하고 싶다고 생각한다', scores: { narc: 1 } },
+        ],
+      },
+      {
+        id: 3,
+        text: '친구가 나보다 먼저 좋은 일이 생겼을 때 나는?',
+        options: [
+          { label: '진심으로 축하하고 함께 기뻐한다', scores: { narc: 0 } },
+          { label: '"나도 곧 될 텐데"라는 생각이 든다', scores: { narc: 1 } },
+          { label: '왠지 모르게 기분이 안 좋다', scores: { narc: 2 } },
+          { label: '내 성과도 같이 언급하고 싶어진다', scores: { narc: 3 } },
+        ],
+      },
+      {
+        id: 4,
+        text: '소셜 미디어에서 내 게시물에 "좋아요"가 적을 때?',
+        options: [
+          { label: '신경 별로 안 씀 — 내가 좋으면 됐지', scores: { narc: 0 } },
+          { label: '조금 아쉽지만 금방 잊는다', scores: { narc: 1 } },
+          { label: '사진이나 글이 별로였나 분석해 본다', scores: { narc: 2 } },
+          { label: '삭제하거나 더 좋은 걸로 다시 올린다', scores: { narc: 3 } },
+        ],
+      },
+      {
+        id: 5,
+        text: '누군가 내 의견에 공개적으로 반박할 때 나는?',
+        options: [
+          { label: '틀렸다고 생각하지만 그럴 수도 있다고 인정한다', scores: { narc: 0 } },
+          { label: '더 논리적으로 내 주장을 펼친다', scores: { narc: 1 } },
+          { label: '화가 나고 그 사람이 밉다', scores: { narc: 2 } },
+          { label: '그 사람의 신뢰도를 깎으려 한다', scores: { narc: 3 } },
+        ],
+      },
+      {
+        id: 6,
+        text: '내 외모나 능력에 대한 솔직한 생각은?',
+        options: [
+          { label: '평균 정도는 된다고 생각한다', scores: { narc: 0 } },
+          { label: '일부 분야에선 꽤 잘한다고 생각한다', scores: { narc: 1 } },
+          { label: '대부분의 사람보다 낫다고 생각한다', scores: { narc: 2 } },
+          { label: '내 주변엔 나만큼 한 사람이 없다', scores: { narc: 3 } },
+        ],
+      },
+      {
+        id: 7,
+        text: '친구가 자신의 고민을 털어놓을 때 나는?',
+        options: [
+          { label: '끝까지 경청하고 공감해준다', scores: { narc: 0 } },
+          { label: '듣다가 비슷한 내 경험을 꺼낸다', scores: { narc: 1 } },
+          { label: '빨리 해결책을 주고 대화를 정리한다', scores: { narc: 2 } },
+          { label: '내 이야기로 대화를 자연스럽게 넘긴다', scores: { narc: 3 } },
+        ],
+      },
+      {
+        id: 8,
+        text: '내가 규칙을 지키지 않아도 될 것 같을 때?',
+        options: [
+          { label: '규칙은 모두를 위한 것이라 지킨다', scores: { narc: 0 } },
+          { label: '상황이 정말 어쩔 수 없을 때만 어긴다', scores: { narc: 1 } },
+          { label: '내가 이 정도면 예외가 될 수 있다고 생각한다', scores: { narc: 2 } },
+          { label: '규칙이 나한테까지 적용된다고 생각 안 한다', scores: { narc: 3 } },
+        ],
+      },
+      {
+        id: 9,
+        text: '대화에서 가장 좋아하는 주제는?',
+        options: [
+          { label: '상대방의 관심사나 일상 이야기', scores: { narc: 0 } },
+          { label: '서로 공통된 관심사나 사회 이슈', scores: { narc: 1 } },
+          { label: '내가 잘 아는 분야 — 가르쳐주는 게 좋음', scores: { narc: 2 } },
+          { label: '내 성과, 경험, 계획에 대한 이야기', scores: { narc: 3 } },
+        ],
+      },
+      {
+        id: 10,
+        text: '나를 오해하거나 과소평가하는 사람을 만나면?',
+        options: [
+          { label: '그럴 수 있다고 이해하고 넘긴다', scores: { narc: 0 } },
+          { label: '기회가 되면 내 진짜 모습을 보여준다', scores: { narc: 1 } },
+          { label: '속으로 무시하고 상대의 수준을 낮게 본다', scores: { narc: 2 } },
+          { label: '그 사람에게 잘못됐음을 직접 알린다', scores: { narc: 3 } },
+        ],
+      },
+    ],
+    results: [
+      {
+        key: 'narc-empath',
+        title: '공감의 달인',
+        summary: '자기중심성 최저! 당신은 남을 먼저 생각하는 사람이에요',
+        description: '나르시시즘 점수가 매우 낮습니다. 당신은 타인의 감정에 민감하고, 공감 능력이 뛰어나며, 관계에서 자신보다 상대방을 먼저 생각하는 경향이 있습니다. 자기 자신을 과도하게 낮추거나 지나치게 양보하는 것은 오히려 관계에서 건강하지 않을 수 있으니, 적절한 자기 주장도 필요합니다. 당신은 주변 사람들에게 정서적으로 안정감을 주는 존재예요.',
+        strengths: ['높은 공감 능력과 타인 배려', '관계에서 상대방을 존중하는 태도', '팀워크와 협업에서 빛나는 사람'],
+        caution: ['자신의 필요와 경계도 지켜야 해요', '지나친 자기희생은 번아웃의 원인이 돼요'],
+        shareText: '내 나르시시즘 지수는 "공감의 달인" 🌿 너는 어때?',
+        recommendedTests: ['hidden-personality-test', 'attachment-style-test', 'mbti-test'],
+      },
+      {
+        key: 'narc-healthy',
+        title: '건강한 자기애',
+        summary: '적절한 자존감! 나를 사랑하면서 남도 배려하는 균형잡힌 타입',
+        description: '나르시시즘 점수가 보통 수준입니다. 당신은 자신을 가치 있게 여기면서도 타인을 배려하는 건강한 자기애를 가지고 있어요. 때로는 자신의 성취를 드러내고 싶거나 인정받고 싶은 욕구가 있지만, 그것이 관계를 해치지는 않습니다. 자신감과 공감의 균형을 잘 잡고 있는 건강한 유형입니다.',
+        strengths: ['적절한 자신감과 자존감 유지', '자신의 성취를 인식하면서도 타인을 존중', '관계에서 주도권을 적절히 발휘'],
+        caution: ['가끔 자기중심적으로 보일 수 있으니 타인 배려를 의식하세요', '경쟁심이 과해지지 않도록 주의하세요'],
+        shareText: '내 나르시시즘 지수는 "건강한 자기애" ✨ 너는 어때?',
+        recommendedTests: ['mbti-test', 'hidden-personality-test', 'how-friends-see-me-test'],
+      },
+      {
+        key: 'narc-covert',
+        title: '은밀한 나르시시스트',
+        summary: '겉으론 평범해 보이지만... 속에선 "나는 특별해" 생각 중?',
+        description: '나르시시즘 점수가 다소 높습니다. 당신은 눈에 띄게 과시하지 않지만, 내심 자신이 특별하다는 생각을 자주 합니다. 타인의 성공에 묘한 불쾌감을 느끼거나, 내 이야기로 대화를 이끌고 싶은 욕구가 있을 수 있습니다. 이른바 "은밀한 나르시시스트"의 특성이 보입니다. 이를 인식하고 타인의 관점을 더 적극적으로 이해하려는 노력이 도움이 됩니다.',
+        strengths: ['높은 자기 기준과 동기 부여', '성취욕이 강하고 목표 지향적', '자신의 이미지 관리에 신경 씀'],
+        caution: ['타인의 성공을 진심으로 축하하는 연습이 필요해요', '대화에서 상대방의 이야기에 더 집중해 보세요'],
+        shareText: '내 나르시시즘 지수는 "은밀한 나르시시스트" 🪞 너는 어때?',
+        recommendedTests: ['villain-type-test', 'hidden-personality-test', 'mbti-test'],
+      },
+      {
+        key: 'narc-core',
+        title: '나르시시스트 유형',
+        summary: '자기중심성 MAX! 세상의 중심은 나라고 생각하는 타입',
+        description: '나르시시즘 점수가 매우 높습니다. 당신은 자신을 다른 사람보다 특별하거나 우월하게 생각하는 경향이 강합니다. 타인의 감정보다 자신의 필요를 우선하거나, 비판에 민감하게 반응하고 상대를 비난하는 패턴이 있을 수 있습니다. 이러한 특성은 장기적인 관계에서 어려움을 만들 수 있어요. 타인의 관점을 이해하려는 의식적인 노력이 필요합니다. 이 결과는 재미 목적이며, 임상 진단이 아닙니다.',
+        strengths: ['강한 자신감과 리더십 에너지', '목표를 향한 강한 추진력', '자신의 능력을 높게 평가하는 자존감'],
+        caution: ['타인의 감정과 필요를 적극적으로 고려해 보세요', '비판을 공격으로 받아들이지 않는 연습이 중요해요'],
+        shareText: '내 나르시시즘 지수는 "나르시시스트 유형" 👑 너는 어때?',
+        recommendedTests: ['villain-type-test', 'attachment-style-test', 'extreme-tf-test'],
+      },
+    ],
+    calculateResult: (scores) => {
+      const s = scores['narc'] ?? 0;
+      if (s >= 23) return 'narc-core';
+      if (s >= 16) return 'narc-covert';
+      if (s >= 8)  return 'narc-healthy';
+      return 'narc-empath';
+    },
+  },
+
+  /* ═══════════════════════════════════════════════════
+     PSYCHOPATH TEST
+  ═══════════════════════════════════════════════════ */
+  {
+    slug: 'psychopath-test',
+    title: '나의 사이코패스 지수는?',
+    description: '공감력 vs 냉정함. 내 안의 다크한 면을 솔직하게 측정해봐요. (재미 목적)',
+    category: '성격 테스트',
+    estimatedTime: '3분',
+    emoji: '🎭',
+    questions: [
+      {
+        id: 1,
+        text: '길을 걷다 강아지가 다쳐서 울부짖는 걸 목격했다. 나는?',
+        options: [
+          { label: '즉시 달려가 도움을 주거나 도움을 요청한다', scores: { psych: 0 } },
+          { label: '마음이 아프지만 어떻게 해야 할지 몰라 멈춘다', scores: { psych: 1 } },
+          { label: '안타깝긴 한데 내 일이 있어서 그냥 지나친다', scores: { psych: 2 } },
+          { label: '별감흥이 없다 — 그냥 지나친다', scores: { psych: 3 } },
+        ],
+      },
+      {
+        id: 2,
+        text: '친한 친구가 나 때문에 많이 상처받았다. 나는?',
+        options: [
+          { label: '정말 미안하고 어떻게 위로할까 진지하게 고민한다', scores: { psych: 0 } },
+          { label: '미안하다고 사과하고 수습한다', scores: { psych: 1 } },
+          { label: '내가 그렇게 의도하진 않았으니까 별로 죄책감 없다', scores: { psych: 2 } },
+          { label: '왜 그렇게 상처받는지 이해가 안 된다', scores: { psych: 3 } },
+        ],
+      },
+      {
+        id: 3,
+        text: '규칙을 어기면 이득을 볼 수 있는 상황이라면?',
+        options: [
+          { label: '이득이 있어도 규칙은 지킨다', scores: { psych: 0 } },
+          { label: '들키지 않을 것 같아도 웬만하면 안 한다', scores: { psych: 1 } },
+          { label: '안 들킬 것 같으면 어길 수도 있다', scores: { psych: 2 } },
+          { label: '이득이 된다면 당연히 한다 — 걸리면 그때 생각', scores: { psych: 3 } },
+        ],
+      },
+      {
+        id: 4,
+        text: '협상이나 협업에서 나의 전략은?',
+        options: [
+          { label: '서로 이득이 되는 방향을 찾는다', scores: { psych: 0 } },
+          { label: '내 이익을 지키면서도 상대를 배려한다', scores: { psych: 1 } },
+          { label: '내 이익이 최우선 — 상대는 알아서 챙기면 된다', scores: { psych: 2 } },
+          { label: '상대의 약점을 파악하고 활용한다', scores: { psych: 3 } },
+        ],
+      },
+      {
+        id: 5,
+        text: '처음 만난 사람과의 첫인상 관리에 대해 나는?',
+        options: [
+          { label: '자연스럽게 나를 드러내는 편이다', scores: { psych: 0 } },
+          { label: '좋은 모습을 보이려고 의식적으로 노력한다', scores: { psych: 1 } },
+          { label: '원하는 인상을 의도적으로 설계한다', scores: { psych: 2 } },
+          { label: '상황에 따라 완전히 다른 페르소나를 사용한다', scores: { psych: 3 } },
+        ],
+      },
+      {
+        id: 6,
+        text: '슬픈 영화나 드라마를 볼 때 나는?',
+        options: [
+          { label: '자연스럽게 눈물이 난다', scores: { psych: 0 } },
+          { label: '감동적이라고 느끼지만 눈물은 안 나온다', scores: { psych: 1 } },
+          { label: '이야기는 재미있지만 감정이입은 잘 안 된다', scores: { psych: 2 } },
+          { label: '왜 우는지 이해가 안 된다', scores: { psych: 3 } },
+        ],
+      },
+      {
+        id: 7,
+        text: '내가 누군가에게 거짓말을 해야 한다면?',
+        options: [
+          { label: '거짓말이 정말 불편하고 최대한 피한다', scores: { psych: 0 } },
+          { label: '어쩔 수 없을 때만 하고 죄책감을 느낀다', scores: { psych: 1 } },
+          { label: '필요하면 할 수 있고 죄책감은 별로 없다', scores: { psych: 2 } },
+          { label: '자연스럽게 잘 한다 — 들키지 않으면 문제없다', scores: { psych: 3 } },
+        ],
+      },
+      {
+        id: 8,
+        text: '위험하거나 자극적인 상황에 대한 나의 태도는?',
+        options: [
+          { label: '안전을 최우선으로 한다 — 위험은 피하는 게 최선', scores: { psych: 0 } },
+          { label: '약간의 스릴은 좋지만 크게 무리하지 않는다', scores: { psych: 1 } },
+          { label: '위험도 재미의 일부다 — 충동적으로 뛰어드는 편', scores: { psych: 2 } },
+          { label: '강한 자극이 없으면 지루하다', scores: { psych: 3 } },
+        ],
+      },
+      {
+        id: 9,
+        text: '나에게 잘못을 한 사람에 대해 나는?',
+        options: [
+          { label: '화가 나지만 이해하려 하고 용서한다', scores: { psych: 0 } },
+          { label: '시간이 지나면 자연스럽게 잊는다', scores: { psych: 1 } },
+          { label: '기억해두고 언젠가 갚는다', scores: { psych: 2 } },
+          { label: '즉각적으로 응징하거나 냉정하게 제거한다', scores: { psych: 3 } },
+        ],
+      },
+      {
+        id: 10,
+        text: '다른 사람의 실패나 불행을 목격했을 때 나의 첫 반응은?',
+        options: [
+          { label: '안타깝고 도와주고 싶다', scores: { psych: 0 } },
+          { label: '공감은 되지만 내 일이 아니면 크게 신경 안 쓴다', scores: { psych: 1 } },
+          { label: '왜 그런 결과가 나왔는지 분석한다', scores: { psych: 2 } },
+          { label: '그 사람의 약점이 드러난 것 정도로 받아들인다', scores: { psych: 3 } },
+        ],
+      },
+    ],
+    results: [
+      {
+        key: 'psych-empath',
+        title: '공감 초과형',
+        summary: '사이코패스 지수 최저! 당신은 타인의 감정에 누구보다 민감해요',
+        description: '사이코패스 지수가 매우 낮습니다. 당신은 강한 공감 능력을 가지고 있으며, 타인의 감정과 고통을 자신의 것처럼 느끼는 경향이 있습니다. 규칙을 지키고 도덕적 기준이 높으며, 거짓말이나 조작을 매우 불편하게 느낍니다. 때로는 타인의 감정을 지나치게 흡수해 정서적으로 소진될 수 있으니, 자신의 경계를 지키는 것도 중요합니다.',
+        strengths: ['강한 공감력과 높은 감수성', '진실하고 도덕적인 가치관', '깊은 인간관계를 형성하는 능력'],
+        caution: ['감정 과몰입으로 지칠 수 있어요', '자신의 감정 경계도 지키는 연습이 필요해요'],
+        shareText: '나의 사이코패스 지수는 "공감 초과형" 🌟 너는 몇 점이야?',
+        recommendedTests: ['hidden-personality-test', 'attachment-style-test', 'mbti-test'],
+      },
+      {
+        key: 'psych-rational',
+        title: '감정 합리형',
+        summary: '감정도 있고 이성도 있는 딱 평균! 실용적인 공감러',
+        description: '사이코패스 지수가 평균 수준입니다. 당신은 감정과 이성 사이에서 균형을 잡는 실용적인 사람입니다. 공감 능력이 있지만 지나치게 감정에 휩쓸리지는 않으며, 필요할 때는 냉정하게 판단할 수 있습니다. 규칙을 준수하면서도 상황에 따른 유연성을 발휘하는 현실적인 인물입니다.',
+        strengths: ['감정과 이성의 균형 잡힌 판단', '실용적이고 현실적인 사고방식', '스트레스 상황에서 침착하게 대처'],
+        caution: ['감정이 필요한 순간에 너무 논리적으로 대응하지 않도록 해요', '타인의 감정적 필요에 조금 더 귀 기울여 보세요'],
+        shareText: '나의 사이코패스 지수는 "감정 합리형" ⚖️ 너는 몇 점이야?',
+        recommendedTests: ['extreme-tf-test', 'mbti-test', 'hidden-personality-test'],
+      },
+      {
+        key: 'psych-cold',
+        title: '냉정한 계산가',
+        summary: '감정보다 논리! 차갑게 분석하는 냉철한 뇌 구조',
+        description: '사이코패스 지수가 다소 높습니다. 당신은 감정보다 논리와 결과를 우선시하는 경향이 강합니다. 공감이 완전히 없는 건 아니지만, 감정적인 반응보다 분석적인 판단을 선호합니다. 목적 달성을 위해 전략적으로 행동하며, 사람들을 때로는 도구적으로 바라볼 수 있습니다. 관계에서 따뜻함을 의식적으로 더 표현하는 것이 도움이 됩니다.',
+        strengths: ['냉철하고 객관적인 분석력', '감정에 흔들리지 않는 판단력', '위기 상황에서의 침착한 대응'],
+        caution: ['타인의 감정을 더 적극적으로 고려해 보세요', '목적을 위해 사람을 이용하는 패턴을 점검해 보세요'],
+        shareText: '나의 사이코패스 지수는 "냉정한 계산가" 🧊 너는 몇 점이야?',
+        recommendedTests: ['villain-type-test', 'narcissist-test', 'extreme-tf-test'],
+      },
+      {
+        key: 'psych-dark',
+        title: '다크 인사이더',
+        summary: '공감보다 전략! 인간관계도 체스판으로 보는 다크한 뇌',
+        description: '사이코패스 지수가 매우 높습니다. 당신은 감정적 공감보다 전략적 사고가 강하게 발달되어 있습니다. 규칙을 자신에게 유리하게 해석하거나, 타인의 감정에 무감각한 경향이 있을 수 있습니다. 이러한 특성이 비즈니스나 경쟁적 환경에서 유리하게 작용할 수도 있지만, 장기적인 진정한 인간관계 형성에는 어려움이 될 수 있습니다. 이 결과는 재미 목적이며, 임상적 진단이 아닙니다.',
+        strengths: ['강한 전략적 사고와 실행력', '감정에 흔들리지 않는 냉정한 판단', '목표 달성에 대한 강한 집중력'],
+        caution: ['진정한 연결을 원한다면 공감 능력을 키우는 노력이 필요해요', '타인을 수단이 아닌 목적으로 대하는 연습을 해보세요'],
+        shareText: '나의 사이코패스 지수는 "다크 인사이더" 🎭 너는 몇 점이야?',
+        recommendedTests: ['villain-type-test', 'narcissist-test', 'hidden-personality-test'],
+      },
+    ],
+    calculateResult: (scores) => {
+      const s = scores['psych'] ?? 0;
+      if (s >= 23) return 'psych-dark';
+      if (s >= 16) return 'psych-cold';
+      if (s >= 8)  return 'psych-rational';
+      return 'psych-empath';
+    },
+  },
 ];
 
 export const getTestBySlug = (slug: string) => tests.find(t => t.slug === slug);
@@ -2286,4 +2782,23 @@ export const RESULT_EMOJIS: Record<string, string> = {
   'clingy':    '💕',
   'jealous':   '😤',
   'love-free': '🦋',
+
+  // ── 사랑 언어 테스트 ──
+  'words':        '💬',
+  'acts':         '🤝',
+  'gifts':        '🎁',
+  'quality-time': '⏱️',
+  'touch':        '🤗',
+
+  // ── 나르시시스트 테스트 ──
+  'narc-empath':  '🌿',
+  'narc-healthy': '✨',
+  'narc-covert':  '🪞',
+  'narc-core':    '👑',
+
+  // ── 사이코패스 테스트 ──
+  'psych-empath':    '🌟',
+  'psych-rational':  '⚖️',
+  'psych-cold':      '🧊',
+  'psych-dark':      '🎭',
 };

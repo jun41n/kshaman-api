@@ -26,6 +26,9 @@
   <url><loc>https://innermeter.app/tests/meddling-test</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://innermeter.app/tests/inner-child-test</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://innermeter.app/tests/love-villain-test</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://innermeter.app/tests/love-language-test</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://innermeter.app/tests/narcissist-test</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://innermeter.app/tests/psychopath-test</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
 
   <!-- ── Result pages: love-style-test ─────────────────── -->
   <url><loc>https://innermeter.app/results/love-style-test?result=direct-romantic</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
@@ -123,5 +126,24 @@
   <url><loc>https://innermeter.app/results/love-villain-test?result=cold</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
   <url><loc>https://innermeter.app/results/love-villain-test?result=jealous</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
   <url><loc>https://innermeter.app/results/love-villain-test?result=love-free</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+
+  <!-- ── Result pages: love-language-test ─────────────── -->
+  <url><loc>https://innermeter.app/results/love-language-test?result=words</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://innermeter.app/results/love-language-test?result=acts</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://innermeter.app/results/love-language-test?result=gifts</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://innermeter.app/results/love-language-test?result=quality-time</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://innermeter.app/results/love-language-test?result=touch</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+
+  <!-- ── Result pages: narcissist-test ────────────────── -->
+  <url><loc>https://innermeter.app/results/narcissist-test?result=narc-empath</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://innermeter.app/results/narcissist-test?result=narc-healthy</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://innermeter.app/results/narcissist-test?result=narc-covert</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://innermeter.app/results/narcissist-test?result=narc-core</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+
+  <!-- ── Result pages: psychopath-test ────────────────── -->
+  <url><loc>https://innermeter.app/results/psychopath-test?result=psych-empath</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://innermeter.app/results/psychopath-test?result=psych-rational</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://innermeter.app/results/psychopath-test?result=psych-cold</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://innermeter.app/results/psychopath-test?result=psych-dark</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
 
 </urlset>

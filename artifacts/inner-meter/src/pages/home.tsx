@@ -9,8 +9,8 @@ import { motion } from "framer-motion";
 import { trackEvent } from "@/lib/analytics";
 import { useTranslation } from "react-i18next";
 
-const TRENDING_SLUGS = ['love-style-test', 'hidden-personality-test', 'how-friends-see-me-test'];
-const NEW_SLUGS = ['destiny-age-test', 'teto-egen-test'];
+const TRENDING_SLUGS = ['mbti-test', 'love-language-test', 'narcissist-test'];
+const NEW_SLUGS = ['teto-egen-test', 'psychopath-test'];
 
 export default function Home() {
   const { t } = useTranslation();
