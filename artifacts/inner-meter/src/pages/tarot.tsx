@@ -341,14 +341,33 @@ export default function Tarot() {
                             <p className="text-[#ffd700] font-bold text-sm">{card.name[safeLocale]}</p>
                           </div>
                         </div>
-                        <div className="flex flex-wrap gap-1 mb-3 ml-9">
+                        <div className="flex flex-wrap gap-1 mb-4 ml-9">
                           {card.keywords[safeLocale].map(kw => (
                             <span key={kw} className="text-[10px] px-2 py-0.5 rounded-full bg-violet-900/60 text-violet-200/80 border border-violet-700/40">
                               {kw}
                             </span>
                           ))}
                         </div>
-                        <p className="text-sm text-violet-100/80 leading-relaxed ml-9">{card.reading[posKey][safeLocale]}</p>
+                        {/* 3-part structured reading */}
+                        <div className="ml-9 space-y-3">
+                          {/* 짧은 문장 */}
+                          <p className="text-sm font-bold text-white leading-snug">
+                            {card.reading[posKey][safeLocale].headline}
+                          </p>
+                          {/* 상징 해석 */}
+                          <p className="text-sm text-violet-100/80 leading-relaxed">
+                            {card.reading[posKey][safeLocale].symbol}
+                          </p>
+                          {/* 조언 */}
+                          <div className="bg-[#ffd700]/8 rounded-xl px-3 py-2.5 border border-[#ffd700]/15">
+                            <p className="text-[10px] text-[#ffd700]/60 font-semibold tracking-widest uppercase mb-1">
+                              {safeLocale === 'ko' ? '조언' : safeLocale === 'ja' ? 'アドバイス' : safeLocale === 'es' ? 'Consejo' : 'Advice'}
+                            </p>
+                            <p className="text-sm text-violet-100/90 leading-relaxed">
+                              {card.reading[posKey][safeLocale].advice}
+                            </p>
+                          </div>
+                        </div>
                       </motion.div>
                     );
                   })}
