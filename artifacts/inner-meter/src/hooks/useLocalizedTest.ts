@@ -7,6 +7,6 @@ export function useLocalizedTest(slug: string): TestLocale | null {
 
   if (lang === 'ko') return null;
 
-  const code = lang as 'en' | 'ja' | 'es';
+  const code = lang as 'en' | 'ja' | 'es' | 'pt';
   return TEST_TRANSLATIONS[code]?.[slug] ?? TEST_TRANSLATIONS['en']?.[slug] ?? null;
 }
