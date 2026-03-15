@@ -61,9 +61,12 @@ async function downloadCardAsPng(
 
 export default function TestResult() {
   const { t, i18n } = useTranslation();
-  const lang = (i18n.language?.slice(0, 2) || 'ko') as 'ko' | 'en' | 'ja' | 'es' | 'pt';
-  const localize = (field?: { ko: string; en: string; ja: string; es: string; pt: string }) =>
-    field ? (field[lang] ?? field.ko) : undefined;
+  const rawLang = i18n.language || 'ko';
+  const lang = (['ko','en','ja','es','pt-BR','fr'] as const).includes(rawLang as 'ko')
+    ? rawLang as 'ko' | 'en' | 'ja' | 'es' | 'pt-BR' | 'fr'
+    : (rawLang.split('-')[0] as 'ko' | 'en' | 'ja' | 'es' | 'pt-BR' | 'fr') || 'ko';
+  const localize = (field?: { ko: string; en: string; ja: string; es: string; 'pt-BR': string; fr: string }) =>
+    field ? (field[lang] ?? field.en ?? field.ko) : undefined;
   const [, params] = useRoute("/results/:slug");
   const [, setLocation] = useLocation();
   const slug = params?.slug || "";

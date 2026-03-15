@@ -545,7 +545,7 @@ export const MBTI_SEO: Record<string, Record<string, MbtiSeoContent>> = {
     },
   },
 
-  pt: {
+  'pt-BR': {
     INTJ: {
       traits: "O INTJ, conhecido como o 'Arquiteto', é um introvertido intuitivo com um poderoso impulso para o pensamento estratégico. Busca constantemente entender padrões subjacentes e construir visões de longo prazo. Com grande confiança em suas ideias, os INTJs estabelecem padrões excepcionalmente altos para si mesmos e buscam continuamente melhorar.",
       strengths: "Os INTJs se destacam em planejamento de longo prazo, raciocínio analítico e ação decisiva. Sua capacidade de sintetizar informações complexas em estratégias coerentes os torna inestimáveis. São aprendizes intensamente motivados que buscam o domínio de forma incansável, e sua abordagem criativa e lógica para resolver problemas frequentemente produz avanços que outros não enxergam.",

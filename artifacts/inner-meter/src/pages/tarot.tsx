@@ -73,7 +73,7 @@ function MiniCardBack({ selected, selectionOrder, w = 48, h = 76 }: { selected: 
   );
 }
 
-type CardLocale = 'ko' | 'en' | 'ja' | 'es' | 'pt';
+type CardLocale = 'ko' | 'en' | 'ja' | 'es' | 'pt-BR' | 'fr';
 
 /* ─── Full card face for reading ─────────────────────────────── */
 function ReadingCard({ card, locale }: { card: Tarot3Card; locale: CardLocale }) {
@@ -105,9 +105,10 @@ type Phase = 'intro' | 'selection' | 'reading';
 
 export default function Tarot() {
   const { t, i18n } = useTranslation();
-  const rawLocale = i18n.language?.slice(0, 2) ?? 'ko';
-  const safeLocale: CardLocale = (['ko','en','ja','es','pt'] as CardLocale[]).includes(rawLocale as CardLocale)
-    ? (rawLocale as CardLocale) : 'ko';
+  const fullLocale = i18n.language ?? 'ko';
+  const validLocales: CardLocale[] = ['ko','en','ja','es','pt-BR','fr'];
+  const safeLocale: CardLocale = validLocales.includes(fullLocale as CardLocale)
+    ? (fullLocale as CardLocale) : 'ko';
 
   const [phase, setPhase] = useState<Phase>('intro');
   const [question, setQuestion] = useState('');

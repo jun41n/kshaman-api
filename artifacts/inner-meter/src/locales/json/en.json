@@ -1,0 +1,363 @@
+{
+  "nav": {
+    "tests": "Tests",
+    "tarot": "Daily Tarot",
+    "about": "About",
+    "start": "Get Started",
+    "startLong": "Start Test"
+  },
+  "home": {
+    "badge": "The most fun way to discover yourself",
+    "title1": "What kind of",
+    "title2": "person am I?",
+    "title3": "Find out now",
+    "subtitle": "Personality, love & more — fun and accurate psychological analysis in 3 minutes.",
+    "ctaPrimary": "Start a Test →",
+    "ctaSecondary": "Browse Popular Tests",
+    "participants": "🎉 120,000 people have participated",
+    "trending": "🔥 Trending Now",
+    "trendingSub": "Most shared tests today",
+    "viewAll": "View All →",
+    "newSection": "✨ Just Released",
+    "newSub": "Brand new tests just added",
+    "moreTests": "More Tests",
+    "moreSub": "Explore all tests on various topics",
+    "totalCount": "Total: {{count}}",
+    "catSection": "What test interests you?",
+    "catPersonality": "Personality",
+    "catLove": "Love Type",
+    "catFun": "Just for Fun",
+    "catTarot": "Draw Tarot",
+    "tarotLabel": "🌙 New Card Every Day",
+    "tarotTitle": "What's your destiny card today?",
+    "tarotDesc": "Discover today's message about love, work, and energy with a single tarot card.",
+    "tarotCta": "🔮 Draw Your Card",
+    "kshamanHeadline": "Who will read\nyour destiny?",
+    "kshamanDesc1": "Baby Bosal reads with pure intuition.",
+    "kshamanDesc2": "Chunshin Doryeong finds the critical turning points.",
+    "kshamanDesc3": "Musog-in reads your life's flow.",
+    "kshamanDesc4": "Same birth chart, different voice from each reader.",
+    "kshamanCta": "🔮 See My Reading",
+    "kshamanHelper": "Same birth chart — each reader interprets differently",
+    "kshamanProof": "1,284 people got their reading today",
+    "kshamanKeywords": "Love Fortune · Wealth Fortune · Life Turning Point",
+    "kshamanLabel": "🔮 K-Shaman Reading",
+    "viewAllTests": "View All Tests ({{count}})"
+  },
+  "common": {
+    "startTest": "Start Test",
+    "minutes": "min",
+    "questionsUnit": "questions",
+    "next": "Next",
+    "back": "Back",
+    "seeResult": "See Result",
+    "retake": "Retake",
+    "saveImage": "Save Image",
+    "copyLink": "Copy Link",
+    "copied": "Copied ✓",
+    "catPersonality": "Personality",
+    "catLove": "Love",
+    "catFun": "Fun",
+    "catMbti": "MBTI",
+    "catFortune": "Fortune",
+    "shareResult": "Share Result",
+    "takeOther": "Try Another Test",
+    "viewAll": "View All",
+    "start": "Start",
+    "menuToggle": "Toggle menu"
+  },
+  "tests": {
+    "title": "Test Collection",
+    "subtitle": "Discover what you've always wondered about yourself. Explore the hidden sides of your personality through fun, insightful tests.",
+    "count": "{{count}} Tests",
+    "catAll": "All",
+    "empty": "No tests in this category."
+  },
+  "card": {
+    "start": "Start",
+    "participants": "joined"
+  },
+  "result": {
+    "resultBadge": "✨ {{title}} Result",
+    "cardTagline": {
+      "love": "Love Type Analysis",
+      "personality": "Personality Analysis",
+      "mbti": "MBTI Type",
+      "psychology": "Psychology Analysis",
+      "fun": "Fun Analysis",
+      "fortune": "Fortune Reading",
+      "tarot": "Tarot · Today's Fortune"
+    },
+    "strengths": "My Strengths",
+    "caution": "Things to Watch Out For",
+    "loveStyle": "Love Style",
+    "compatibleVibe": "Compatible Type",
+    "shareCardTitle": "Save & Share Result Card ✨",
+    "shareCardSub": "Save as image and share on social media!",
+    "shareMobile": "Share as Image (Mobile)",
+    "snsDivider": "Share on Social Media",
+    "shareTitle": "My {{testTitle}} result: {{resultTitle}}!",
+    "recommended": "Also Try These Tests 🎯",
+    "recommendedSub": "Tests that people with this result often try next",
+    "saveError": "Image save failed 😢\nTry taking a screenshot instead!"
+  },
+  "share": {
+    "copySuccess": "Link Copied! 🎉",
+    "copySuccessDesc": "Result link copied to clipboard.",
+    "copyError": "Copy Failed",
+    "copyErrorDesc": "Please try again.",
+    "shareOnApp": "Share on {{app}}",
+    "shareOnAppDesc": "Link copied! Paste it in the app.",
+    "pasteHint": "For Insta, TikTok & Kakao — copy the link then paste in the app",
+    "facebook": "Facebook",
+    "instagram": "Insta",
+    "instagramFull": "Instagram",
+    "kakao": "Kakao",
+    "kakaoFull": "KakaoTalk",
+    "tiktok": "TikTok",
+    "line": "LINE",
+    "threads": "Threads",
+    "whatsapp": "WhatsApp"
+  },
+  "footer": {
+    "tagline": "Discover your inner self in a fun and effortless way.",
+    "services": "Services",
+    "info": "Info",
+    "copyright": "© 2026 InnerMeter. All rights reserved.",
+    "about": "About",
+    "privacy": "Privacy Policy",
+    "contact": "Contact",
+    "terms": "Terms"
+  },
+  "seo": {
+    "home": {
+      "title": "InnerMeter — Personality & Psychology Tests",
+      "desc": "Who am I really? Personality, love style, MBTI, tarot, K-Shaman and more. Discover your inner self with 14 fun psychology tests."
+    },
+    "tests": {
+      "title": "All Tests | InnerMeter",
+      "desc": "Browse personality, love, MBTI, and psychology tests. Find the perfect test for you."
+    },
+    "tarot": {
+      "title": "Daily Tarot | InnerMeter",
+      "desc": "Draw 3 tarot cards and receive today's message about love, work, and your future."
+    },
+    "kshaman": {
+      "title": "K-Shaman Reading | InnerMeter",
+      "desc": "Get your Korean-style fortune reading from a spirit reader. Discover your life turning point with K-Shaman."
+    },
+    "about": {
+      "title": "About InnerMeter",
+      "desc": "InnerMeter is a platform offering personality, love, MBTI, and tarot tests."
+    },
+    "privacy": {
+      "title": "Privacy Policy | InnerMeter",
+      "desc": "Read the InnerMeter Privacy Policy."
+    },
+    "contact": {
+      "title": "Contact | InnerMeter",
+      "desc": "Have a question? Contact InnerMeter via email."
+    },
+    "terms": {
+      "title": "Terms of Service | InnerMeter",
+      "desc": "Read the InnerMeter Terms of Service."
+    }
+  },
+  "about": {
+    "title": "About InnerMeter",
+    "p1": "InnerMeter is a platform offering various personality tests and engaging psychological content.",
+    "p2": "Users can discover their tendencies, psychological type, and life flow through simple questions in a fun way.",
+    "p3": "InnerMeter's content is designed to provide experiences for self-exploration and entertainment.",
+    "testsTitle": "Available Tests (Examples)",
+    "tests": [
+      "What's My MBTI?",
+      "My Attachment Style Test",
+      "Intuition vs. Logic in My Head",
+      "How Deep Is My Hyper-Fixation?",
+      "Teto vs. Egen — Which Are You?",
+      "At What Age Does Your Life Peak?",
+      "K-Shaman Reading"
+    ],
+    "p4": "InnerMeter aims to help people understand themselves in a more interesting way and share results with friends.",
+    "disclaimer": "Fortune and divination content on this site is for entertainment purposes only."
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "p1": "InnerMeter takes the protection of your personal information seriously.",
+    "p2": "This site may collect only the minimum information necessary to provide our services.",
+    "collectedTitle": "Information We May Collect",
+    "item1": "Date of birth",
+    "item2": "Gender",
+    "item3": "Country",
+    "p3": "This information is used solely for generating test results and improving user experience.",
+    "p4": "InnerMeter does not sell or share your personal information with third parties.",
+    "p5": "Visit statistics may be collected through analytics tools such as Google Analytics.",
+    "p6": "This information is used to improve the site and enhance content quality.",
+    "p7": "Users may discontinue use of the site at any time.",
+    "contactLink": "Contact page",
+    "p8Pre": "For inquiries, please contact us via our ",
+    "p8Post": ".",
+    "emailLabel": "Inquiry email",
+    "adTitle": "Advertising (Google AdSense)",
+    "adText": "InnerMeter uses Google AdSense to display advertisements. Google and third-party vendors use cookies to serve ads based on your prior visits to this or other websites. You may opt out of personalized advertising by visiting Google Ad Settings.",
+    "adLinkText": "Google Ad Settings"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "p1": "For inquiries related to InnerMeter services, please send us an email.",
+    "emailLabel": "Email",
+    "p2": "We will respond as quickly as possible.",
+    "p3": "Thank you."
+  },
+  "kshaman": {
+    "ui": {
+      "heading": "Who will read your destiny?",
+      "subtext": "Each spirit reader has a different voice and interpretation.\nChoose the one that calls to your heart.",
+      "footerNote": "Life Turning Point · Love Fortune · Wealth Fortune · Path to Success",
+      "backToPersona": "Choose Different Reader",
+      "formTitle": "Tell me your date of birth",
+      "formSubtitle": "The more accurate, the deeper the reading",
+      "birthYear": "Birth Year",
+      "yearPlaceholder": "e.g. 1995",
+      "monthLabel": "Month",
+      "dayLabel": "Day",
+      "monthSelect": "Select Month",
+      "daySelect": "Select Day",
+      "genderLabel": "Gender",
+      "female": "👩 Female",
+      "male": "👨 Male",
+      "readingBtn": "🔮 See My Reading",
+      "reEnter": "Re-enter",
+      "readingOf": "{{name}}'s Reading",
+      "turningBanner": "Life Turning Point",
+      "turningSubtext": "Your life's flow changes around this age",
+      "ageSuffix": "",
+      "saveImage": "Save Result Image",
+      "saveImageSaving": "Saving...",
+      "copyLink": "Copy Link",
+      "newReading": "New Reading",
+      "saveSuccess": "Image saved! 🔮",
+      "saveSuccessDesc": "Check your gallery.",
+      "saveError": "Save failed",
+      "saveErrorDesc": "Please try again.",
+      "copySuccess": "Link copied! 🎉",
+      "copySuccessDesc": "Share it with friends.",
+      "copyError": "Copy failed",
+      "copyErrorDesc": "Please try again.",
+      "successInfo": "Success: After age {{sa}} · Wealth: Ages {{ws}}–{{we}}",
+      "genderFemale": "Female",
+      "genderMale": "Male",
+      "cardReading": "{{name}}'s Reading",
+      "turningAge": "My Life Turning Point",
+      "shareText": "I got my K-Shaman fortune reading 🔮 Find out yours too!"
+    },
+    "lifeFlow": {
+      "early_hard": "Early Struggle Type",
+      "mid_rise": "Mid-Life Rise Type",
+      "late_success": "Late Bloomer Type",
+      "steady_rise": "Steady Rise Type"
+    },
+    "sec": {
+      "summary": "Overall Reading",
+      "inborn": "Your Innate Energy",
+      "turning": "Life Turning Point",
+      "success": "Path to Success",
+      "love": "Love Flow",
+      "wealth": "Wealth Flow",
+      "warning": "Caution Period"
+    },
+    "persona": {
+      "baby_bosal": {
+        "title": "Spirit of Innocence",
+        "vibe": "Friendly & intuitive, like a cheerful big sister"
+      },
+      "sunnyeo_bosal": {
+        "title": "Spirit of the Moon",
+        "vibe": "Elegant & mysterious, a graceful seeress"
+      },
+      "chunshin_doryeong": {
+        "title": "Spirit of the Sky",
+        "vibe": "Strong & direct, a bold celestial warrior"
+      },
+      "musog_in": {
+        "title": "Spirit of Tradition",
+        "vibe": "Honest & no-nonsense, the classic shaman"
+      },
+      "beopsa": {
+        "title": "Spirit of Wisdom",
+        "vibe": "Quiet & philosophical, a learned elder"
+      }
+    },
+    "speech": {
+      "baby_bosal": {
+        "summary": "Hmm~ looking at your flow, you're definitely a {{flow}} type! I can see something big shifting around age {{ta}}. Before then, things might feel stuck... but there's a reason for it, I promise.",
+        "inborn": "Here's the thing about you~ once your energy door opens, you just keep on rising! Sure, you might've had some tough patches early on, but all of that becomes your greatest strength later. Even if it's hard right now, hang in there~",
+        "turning": "Your life really changes around age {{ta}}, for real! It's not just a vague feeling — around then, something big shifts: your job, relationships, or even where you live. Don't be scared. Ride that wave!",
+        "success": "After age {{sa}}, things start falling into place in society~ Recognition starts coming in, and so does financial stability. When that moment arrives, all the hardship before will finally make sense.",
+        "love": "For love~ your energy comes in STRONG around ages {{la0}}, {{la1}}, and {{la2}}! The people you meet around these times could be seriously meaningful. Don't you dare let them pass you by!",
+        "wealth": "Financial fortune gradually stabilizes from age {{ws}} to {{we}}~ Instead of trying to make it big all at once, it's best to build steadily. Don't rush it~",
+        "warning": "Around ages {{wa0}} and {{wa1}}, please be a little careful! If you rush decisions or act on emotion during these times, you might regret it. Just pause for a moment and think it over. I'm rooting for you!"
+      },
+      "sunnyeo_bosal": {
+        "summary": "Your fortune flows gently... you carry the destiny of a {{flow}} path. Around age {{ta}}, I sense the currents of your life opening up beautifully in a new direction.",
+        "inborn": "You were born with an energy that, once your fortune's gate opens, flows endlessly without ceasing. Even if the path ahead seems unclear right now, know that good energy continues to surround you. Please, do not rush.",
+        "turning": "Around age {{ta}}, the energy of your life begins to flow anew. New connections and opportunities will naturally find their way to you during this time. Simply open your heart... and receive them.",
+        "success": "After age {{sa}}, the fruits of your long effort begin to ripen. The work you have quietly built up over time will finally shine in the light. Trust deeply in the process you are walking right now.",
+        "love": "The energy of love flows powerfully around ages {{la0}}, {{la1}}, and {{la2}}. The souls you encounter during these times are not mere coincidences — they may be deep, destined connections. Keep your heart open.",
+        "wealth": "The flow of wealth slowly and gracefully stabilizes from age {{ws}} to {{we}}. If you approach each small blessing with gratitude and sincerity... abundant energy will naturally follow.",
+        "warning": "Around ages {{wa0}} and {{wa1}}, please exercise great care in your decisions and relationships. Do not rush. First quiet your heart, then choose. These are periods that require wisdom to pass through gracefully."
+      },
+      "chunshin_doryeong": {
+        "summary": "{{flow}} — that's you. Age {{ta}} is your turning point. Prepare yourself before that moment arrives. That's where your path divides.",
+        "inborn": "Your innate energy is strong. Once your flow opens, nothing stops it. But you tend to carry everything alone — put some of that down.",
+        "turning": "Age {{ta}}. This is the turning point. You need to lock in your direction right here. Don't waver. Miss this window, and the next opportunity is a long way off.",
+        "success": "Achievement starts arriving at age {{sa}}. Everything you've built before shows results then. Don't let your guard down here. Keep pushing.",
+        "love": "Love energy hits hard at ages {{la0}}, {{la1}}, and {{la2}}. When the opportunity comes during those times — don't hesitate. Just go. Overthinking means losing everything.",
+        "wealth": "Wealth fortune opens from age {{ws}} to {{we}}. During this window, make decisive moves — investment, business, something. But absolutely no gambling. Build it clean.",
+        "warning": "Ages {{wa0}} and {{wa1}} — watch out. Reckless judgment here means deep regret. Stay sharp in these periods and you can seize what comes next."
+      },
+      "musog_in": {
+        "summary": "Looking at your life flow — you're a {{flow}} type. Around age {{ta}}, your fortune starts to wake up. Before that, there may be some blockages.",
+        "inborn": "Looking at your innate energy, your willpower is strong. You don't give up easily, you keep going steadily — and that's your biggest weapon.",
+        "turning": "Around age {{ta}}, your fortune makes a big shift. The flow changes after this period — don't be afraid of that change. You need to embrace it.",
+        "success": "After age {{sa}}, I see a flow of social stability and achievement coming in. Prepare well for this period and things will open up even wider.",
+        "love": "Looking at your love flow — strong connections come in around ages {{la0}}, {{la1}}, and {{la2}}. Don't overlook the people you meet during these times.",
+        "wealth": "Financial flow gradually stabilizes from age {{ws}} to {{we}}. Don't let greed take over during this period — that would scatter everything you've built.",
+        "warning": "Around ages {{wa0}} and {{wa1}}, be careful with your judgment. When making decisions during these times, think twice, three times, and listen to the people around you."
+      },
+      "beopsa": {
+        "summary": "You carry the destiny of a {{flow}} path. Around age {{ta}}, a significant turning point arrives in the flow of your life. Prepare yourself well for this time.",
+        "inborn": "Within you is a quiet, unshakeable strength. Though it may not be visible on the surface, you were born with an energy that always finds its center, no matter how great the difficulty.",
+        "turning": "Around age {{ta}}, the direction of your life will be determined. Do not rush. Think deeply, and choose with great care.",
+        "success": "After age {{sa}}, the fruits of long effort begin to become visible. Remember — the achievements of this time are not born from greed, but are the reward for your sincerity.",
+        "love": "The connections of love will arrive around ages {{la0}}, {{la1}}, and {{la2}}. Do not try to force them. Simply follow the heart that opens naturally during those times.",
+        "wealth": "From age {{ws}} to {{we}}, wealth stabilizes. To one who abandons greed and works with honesty, wealth will always return. Do not spend this period carelessly.",
+        "warning": "Around ages {{wa0}} and {{wa1}}, you must exercise caution. Do not rush your judgment. For any important decision, give it time and reflect deeply."
+      }
+    }
+  },
+  "tarot3": {
+    "title": "Today's Tarot Reading",
+    "subtitle": "Choose 3 cards and explore your current flow",
+    "questionLabel": "Do you have a question or concern?",
+    "questionPlaceholder": "Example: love, work, relationships, choices, anxiety, future concerns",
+    "questionOptional": "(optional)",
+    "continueBtn": "Choose Cards",
+    "selectInstruction": "Select 3 cards for your reading",
+    "selectedCount": "Selected {{count}} / 3",
+    "readBtn": "Begin Reading",
+    "readBtnHint": "Select 3 cards to activate",
+    "position1": "Present Situation",
+    "position2": "Hidden Influence · Advice",
+    "position3": "Near Future · Direction",
+    "keywords": "Keywords",
+    "interpretation": "Interpretation",
+    "synthesisTitle": "Combined Reading",
+    "synthesisSubtitle": "A synthesis of all three cards",
+    "resetBtn": "Draw Again",
+    "caution": "Caution",
+    "snsDivider": "Share My Reading",
+    "shareTitle": "Today's 3-Card Tarot Reading",
+    "shareText": "My 3-card tarot today: {{cards}} ✨ mytesttype.com/tarot"
+  }
+}

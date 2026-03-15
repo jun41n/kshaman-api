@@ -54,13 +54,20 @@ Every package extends `tsconfig.base.json` which sets `composite: true`. The roo
 
 Korean-first, mobile-first personality test web app. Fully static React + Vite SPA.
 
-- **14 experiences**: 12 personality tests + Tarot 3-card reading + K-Shaman fortune reading
-- **i18n**: 4 languages (ko/en/ja/es) via `react-i18next`; strings in `src/lib/i18n.ts`; test-specific translations in `src/locales/testTranslations.ts`
-- **Tarot 3-card**: `src/pages/tarot.tsx` — 3 phases (intro → 22-card grid selection → reading with Present/Advice/Future positions); data from `src/data/majorArcana.ts` (22 cards × 4 languages)
-- **K-Shaman**: `src/pages/kshaman.tsx` — birthday-based fortune reading with 5 persona readers
-- **Tests**: `src/data/tests.ts` (14 test definitions), `src/pages/test-detail.tsx`, `src/pages/test-result.tsx`
+- **15+ experiences**: 13 personality tests + Tarot 3-card reading + K-Shaman fortune reading
+- **i18n**: 6 languages (ko/en/ja/es/pt-BR/fr) via `react-i18next`
+  - UI strings: `src/locales/json/{ko,en,ja,es,pt-BR,fr}.json`
+  - Language config: `src/lib/i18n.ts` — imports JSON files, exports `LANGUAGES` array and `setLanguage()`
+  - Test content translations: `src/locales/testTranslations.ts` — const en/ja/es/ptBR/fr (fr=en alias), exported as `TEST_TRANSLATIONS`
+  - `LocalizedString` type in `src/data/tests.ts`: `{ ko, en, ja, es, 'pt-BR', fr }` — used for MBTI `relationshipStyle` / `compatibleVibe`
+- **Tarot 3-card**: `src/pages/tarot.tsx` — 3 phases (intro → 22-card grid selection → reading with Present/Advice/Future positions); data from `src/data/tarot3Cards.ts` (22 cards × 6 languages)
+  - `CardLocale` type: `'ko' | 'en' | 'ja' | 'es' | 'pt-BR' | 'fr'`
+- **K-Shaman**: `src/pages/k-shaman.tsx` — birthday-based fortune reading; birth year input max=2020
+- **Tests**: `src/data/tests.ts` (15+ test definitions), `src/pages/test-detail.tsx`, `src/pages/test-result.tsx`
+- **MBTI SEO**: `src/data/mbti-seo.ts` (ko/en/ja/es/'pt-BR' sections), `src/components/MbtiSeoContent.tsx`
 - **Analytics**: GA4 `G-70BK9892B5` in `src/lib/analytics.ts`; AdSense `ca-pub-7780005617186465` in `index.html`
 - **Contact**: `meaningout_d@naver.com`
+- **OG**: default image `/opengraph.jpg`; per-test images can go in `public/og/` (SeoHead accepts `ogImage` prop)
 - Port: `24578` (reads `PORT` env)
 
 ### `artifacts/api-server` (`@workspace/api-server`)

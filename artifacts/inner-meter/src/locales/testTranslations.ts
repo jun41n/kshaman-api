@@ -1913,7 +1913,7 @@ const es: AllTestLocales = {
   /* ─────────────────────────────────────────────────────────────
      PORTUGUESE
   ───────────────────────────────────────────────────────────── */
-const pt: AllTestLocales = {
+const ptBR: AllTestLocales = {
     'love-style-test': {
       title: 'Qual é o Meu Verdadeiro Estilo Amoroso?',
       description: 'Descubra suas tendências românticas ocultas e como você realmente se aproxima do amor.',
@@ -2341,4 +2341,5 @@ const pt: AllTestLocales = {
     },
   };
 
-export const TEST_TRANSLATIONS = { en, ja, es, pt };
+const fr: AllTestLocales = en;
+export const TEST_TRANSLATIONS: Record<string, AllTestLocales> = { en, ja, es, 'pt-BR': ptBR, fr };

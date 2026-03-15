@@ -1,0 +1,316 @@
+{
+  "nav": {
+    "tests": "Tests",
+    "tarot": "Tarot du Jour",
+    "about": "À propos",
+    "start": "Commencer",
+    "startLong": "Démarrer le Test"
+  },
+  "home": {
+    "badge": "La façon la plus amusante de se découvrir",
+    "title1": "Quel type de",
+    "title2": "personne suis-je ?",
+    "title3": "Découvrez maintenant",
+    "subtitle": "Personnalité, amour et plus — analyse psychologique amusante et précise en 3 minutes.",
+    "ctaPrimary": "Démarrer un Test →",
+    "ctaSecondary": "Voir les Tests Populaires",
+    "participants": "🎉 120 000 personnes ont participé",
+    "trending": "🔥 Tendances",
+    "trendingSub": "Les tests les plus partagés aujourd'hui",
+    "viewAll": "Tout Voir →",
+    "newSection": "✨ Tout Nouveau",
+    "newSub": "Nouveaux tests fraîchement ajoutés",
+    "moreTests": "Plus de Tests",
+    "moreSub": "Explorez tous les tests sur divers sujets",
+    "totalCount": "Total : {{count}}",
+    "catSection": "Quel test vous intéresse ?",
+    "catPersonality": "Personnalité",
+    "catLove": "Type Amoureux",
+    "catFun": "Juste pour le Fun",
+    "catTarot": "Tirer le Tarot",
+    "tarotLabel": "🌙 Nouvelle carte chaque jour",
+    "tarotTitle": "Quelle est votre carte du destin aujourd'hui ?",
+    "tarotDesc": "Découvrez le message du jour sur l'amour, le travail et l'énergie avec une seule carte de tarot.",
+    "tarotCta": "🔮 Tirer ma Carte",
+    "kshamanHeadline": "Qui lira\nvotre destin ?",
+    "kshamanDesc1": "애기보살 lit avec pure intuition.",
+    "kshamanDesc2": "천신도령 trouve les tournants décisifs.",
+    "kshamanDesc3": "무속인 lit le flux de votre vie.",
+    "kshamanDesc4": "Même thème natal, voix différente de chaque lecteur.",
+    "kshamanCta": "🔮 Voir ma Lecture",
+    "kshamanHelper": "Même thème natal — chaque lecteur interprète différemment",
+    "kshamanProof": "1 284 personnes ont reçu leur lecture aujourd'hui",
+    "kshamanKeywords": "Fortune Amoureuse · Fortune Financière · Point de Tournant Vital",
+    "kshamanLabel": "🔮 Lecture K-Shaman",
+    "viewAllTests": "Voir Tous les Tests ({{count}})"
+  },
+  "common": {
+    "startTest": "Démarrer le Test",
+    "minutes": "min",
+    "questionsUnit": "questions",
+    "next": "Suivant",
+    "back": "Retour",
+    "seeResult": "Voir le Résultat",
+    "retake": "Recommencer",
+    "saveImage": "Enregistrer l'Image",
+    "copyLink": "Copier le Lien",
+    "copied": "Copié ✓",
+    "catPersonality": "Personnalité",
+    "catLove": "Amour",
+    "catFun": "Fun",
+    "catMbti": "MBTI",
+    "catFortune": "Fortune",
+    "shareResult": "Partager le Résultat",
+    "takeOther": "Essayer un Autre Test",
+    "viewAll": "Tout Voir",
+    "start": "Démarrer",
+    "menuToggle": "Basculer le menu"
+  },
+  "tests": {
+    "title": "Collection de Tests",
+    "subtitle": "Découvrez ce que vous avez toujours voulu savoir sur vous-même. Explorez les côtés cachés de votre personnalité à travers des tests amusants et perspicaces.",
+    "count": "{{count}} Tests",
+    "catAll": "Tous",
+    "empty": "Aucun test dans cette catégorie."
+  },
+  "card": {
+    "start": "Démarrer",
+    "participants": "participé"
+  },
+  "result": {
+    "resultBadge": "✨ Résultat {{title}}",
+    "cardTagline": {
+      "love": "Analyse du Type Amoureux",
+      "personality": "Analyse de Personnalité",
+      "mbti": "Type MBTI",
+      "psychology": "Analyse Psychologique",
+      "fun": "Analyse Fun",
+      "fortune": "Lecture de Fortune",
+      "tarot": "Tarot · Fortune du Jour"
+    },
+    "strengths": "Mes Points Forts",
+    "caution": "Points à Surveiller",
+    "loveStyle": "Style Amoureux",
+    "compatibleVibe": "Type Compatible",
+    "shareCardTitle": "Enregistrer et Partager la Carte Résultat ✨",
+    "shareCardSub": "Enregistrez en image et partagez sur les réseaux sociaux !",
+    "shareMobile": "Partager en Image (Mobile)",
+    "snsDivider": "Partager sur les Réseaux Sociaux",
+    "shareTitle": "Mon résultat {{testTitle}} : {{resultTitle}} !",
+    "recommended": "Essayez Aussi Ces Tests 🎯",
+    "recommendedSub": "Tests que les personnes avec ce résultat essaient ensuite",
+    "saveError": "Échec de l'enregistrement 😢\nEssayez de faire une capture d'écran !"
+  },
+  "share": {
+    "copySuccess": "Lien copié ! 🎉",
+    "copySuccessDesc": "Lien copié dans le presse-papiers.",
+    "copyError": "Échec de la copie",
+    "copyErrorDesc": "Veuillez réessayer.",
+    "shareOnApp": "Partager sur {{app}}",
+    "shareOnAppDesc": "Lien copié ! Collez-le dans l'appli.",
+    "pasteHint": "Pour Insta, TikTok & WhatsApp — copiez le lien puis collez dans l'appli",
+    "facebook": "Facebook",
+    "instagram": "Insta",
+    "instagramFull": "Instagram",
+    "kakao": "Kakao",
+    "kakaoFull": "KakaoTalk",
+    "tiktok": "TikTok",
+    "line": "LINE",
+    "threads": "Threads",
+    "whatsapp": "WhatsApp"
+  },
+  "footer": {
+    "tagline": "Découvrez votre moi intérieur de façon légère et amusante.",
+    "services": "Services",
+    "info": "Informations",
+    "copyright": "© 2026 InnerMeter. Tous droits réservés.",
+    "about": "À propos",
+    "privacy": "Confidentialité",
+    "contact": "Contact",
+    "terms": "Conditions"
+  },
+  "seo": {
+    "home": {
+      "title": "InnerMeter — Tests de Personnalité et de Psychologie",
+      "desc": "Qui suis-je vraiment ? Personnalité, style amoureux, MBTI, tarot, K-Shaman et plus. Découvrez votre moi intérieur avec 14 tests amusants."
+    },
+    "tests": {
+      "title": "Tous les Tests | InnerMeter",
+      "desc": "Parcourez des tests de personnalité, d'amour, MBTI et de psychologie. Trouvez le test parfait pour vous."
+    },
+    "tarot": {
+      "title": "Tarot du Jour | InnerMeter",
+      "desc": "Tirez 3 cartes de tarot et recevez le message du jour sur l'amour, le travail et votre avenir."
+    },
+    "kshaman": {
+      "title": "Lecture K-Shaman | InnerMeter",
+      "desc": "Obtenez votre lecture de fortune à la coréenne. Découvrez votre point de tournant vital avec K-Shaman."
+    },
+    "about": {
+      "title": "À propos d'InnerMeter",
+      "desc": "InnerMeter est une plateforme proposant des tests de personnalité, d'amour, MBTI et de tarot."
+    },
+    "privacy": {
+      "title": "Politique de Confidentialité | InnerMeter",
+      "desc": "Lisez la Politique de Confidentialité d'InnerMeter."
+    },
+    "contact": {
+      "title": "Contact | InnerMeter",
+      "desc": "Une question ? Contactez InnerMeter par e-mail."
+    },
+    "terms": {
+      "title": "Conditions d'Utilisation | InnerMeter",
+      "desc": "Lisez les Conditions d'Utilisation d'InnerMeter."
+    }
+  },
+  "about": {
+    "title": "À propos d'InnerMeter",
+    "p1": "InnerMeter est une plateforme proposant divers tests de personnalité et du contenu psychologique engageant.",
+    "p2": "Les utilisateurs peuvent découvrir leurs tendances, leur type psychologique et le flux de leur vie à travers des questions simples, de façon amusante.",
+    "p3": "Le contenu d'InnerMeter est conçu pour offrir des expériences d'auto-exploration et de divertissement.",
+    "testsTitle": "Tests Disponibles (Exemples)",
+    "tests": [
+      "Quel est mon MBTI ?",
+      "Mon Test de Style d'Attachement",
+      "Intuition vs. Logique",
+      "Jusqu'où va ma Passion ?",
+      "Teto vs. Egen — Lequel Êtes-Vous ?",
+      "À Quel Âge Votre Vie S'Épanouira-t-elle ?",
+      "Lecture K-Shaman"
+    ],
+    "p4": "InnerMeter vise à aider les gens à se comprendre de manière plus intéressante et à partager leurs résultats avec leurs amis.",
+    "disclaimer": "Le contenu de fortune et de divination sur ce site est uniquement à des fins de divertissement."
+  },
+  "privacy": {
+    "title": "Politique de Confidentialité",
+    "p1": "InnerMeter prend au sérieux la protection de vos informations personnelles.",
+    "p2": "Ce site peut collecter uniquement les informations minimales nécessaires pour fournir nos services.",
+    "collectedTitle": "Informations que Nous Pouvons Collecter",
+    "item1": "Date de naissance",
+    "item2": "Genre",
+    "item3": "Pays",
+    "p3": "Ces informations sont utilisées uniquement pour générer des résultats de tests et améliorer l'expérience utilisateur.",
+    "p4": "InnerMeter ne vend ni ne partage vos informations personnelles avec des tiers.",
+    "p5": "Des statistiques de visite peuvent être collectées via des outils d'analyse comme Google Analytics.",
+    "p6": "Ces informations sont utilisées pour améliorer le site et la qualité du contenu.",
+    "p7": "Les utilisateurs peuvent arrêter d'utiliser le site à tout moment.",
+    "contactLink": "page de contact",
+    "p8Pre": "Pour toute demande, contactez-nous via notre ",
+    "p8Post": ".",
+    "emailLabel": "E-mail de contact",
+    "adTitle": "Publicité (Google AdSense)",
+    "adText": "InnerMeter utilise Google AdSense pour afficher des publicités. Google et des fournisseurs tiers utilisent des cookies pour diffuser des annonces basées sur vos visites précédentes sur ce site ou d'autres sites. Vous pouvez désactiver la publicité personnalisée en visitant les Paramètres des Annonces Google.",
+    "adLinkText": "Paramètres des Annonces Google"
+  },
+  "contact": {
+    "title": "Nous Contacter",
+    "p1": "Pour toute question relative aux services InnerMeter, veuillez nous envoyer un e-mail.",
+    "emailLabel": "E-mail",
+    "p2": "Nous répondrons aussi vite que possible.",
+    "p3": "Merci."
+  },
+  "kshaman": {
+    "ui": {
+      "heading": "Qui lira votre destin ?",
+      "subtext": "Chaque lecteur spirituel a une voix et une interprétation différentes.\nChoisissez celui qui appelle votre cœur.",
+      "footerNote": "Point de Tournant · Fortune Amoureuse · Fortune Financière · Chemin vers le Succès",
+      "backToPersona": "Choisir un Autre Lecteur",
+      "formTitle": "Dites-moi votre date de naissance",
+      "formSubtitle": "Plus c'est précis, plus la lecture est profonde",
+      "birthYear": "Année de Naissance",
+      "yearPlaceholder": "ex. 1995",
+      "monthLabel": "Mois",
+      "dayLabel": "Jour",
+      "monthSelect": "Sélectionner le Mois",
+      "daySelect": "Sélectionner le Jour",
+      "genderLabel": "Genre",
+      "female": "👩 Féminin",
+      "male": "👨 Masculin",
+      "readingBtn": "🔮 Voir ma Lecture",
+      "reEnter": "Ressaisir",
+      "readingOf": "Lecture de {{name}}",
+      "turningBanner": "Point de Tournant Vital",
+      "turningSubtext": "Le flux de votre vie change autour de cet âge",
+      "ageSuffix": " ans",
+      "saveImage": "Enregistrer l'Image du Résultat",
+      "saveImageSaving": "Enregistrement...",
+      "copyLink": "Copier le Lien",
+      "newReading": "Nouvelle Lecture",
+      "saveSuccess": "Image enregistrée ! 🔮",
+      "saveSuccessDesc": "Vérifiez votre galerie.",
+      "saveError": "Échec de l'enregistrement",
+      "saveErrorDesc": "Veuillez réessayer.",
+      "copySuccess": "Lien copié ! 🎉",
+      "copySuccessDesc": "Partagez-le avec vos amis.",
+      "copyError": "Échec de la copie",
+      "copyErrorDesc": "Veuillez réessayer.",
+      "successInfo": "Succès : Après {{sa}} ans · Richesse : {{ws}}–{{we}} ans",
+      "genderFemale": "Féminin",
+      "genderMale": "Masculin",
+      "cardReading": "Lecture de {{name}}",
+      "turningAge": "Mon Point de Tournant Vital",
+      "shareText": "J'ai reçu ma lecture K-Shaman 🔮 Découvrez la vôtre aussi !"
+    },
+    "lifeFlow": {
+      "early_hard": "Type Effort Précoce",
+      "mid_rise": "Type Montée Médiane",
+      "late_success": "Type Épanouissement Tardif",
+      "steady_rise": "Type Montée Régulière"
+    },
+    "sec": {
+      "summary": "Lecture Générale",
+      "inborn": "Votre Énergie Innée",
+      "turning": "Point de Tournant Vital",
+      "success": "Chemin vers le Succès",
+      "love": "Flux Amoureux",
+      "wealth": "Flux de Richesse",
+      "warning": "Période de Prudence"
+    },
+    "persona": {
+      "baby_bosal": {
+        "title": "Esprit de l'Innocence",
+        "vibe": "Amical et intuitif, comme une grande sœur joyeuse"
+      },
+      "sunnyeo_bosal": {
+        "title": "Esprit de la Lune",
+        "vibe": "Élégant et mystérieux, une voyante gracieuse"
+      },
+      "chunshin_doryeong": {
+        "title": "Esprit du Ciel",
+        "vibe": "Fort et direct, un guerrier céleste audacieux"
+      },
+      "musog_in": {
+        "title": "Esprit de la Tradition",
+        "vibe": "Honnête et direct, le chaman classique"
+      },
+      "beopsa": {
+        "title": "Esprit de la Sagesse",
+        "vibe": "Calme et philosophique, un sage ancien"
+      }
+    }
+  },
+  "tarot3": {
+    "title": "Lecture de Tarot du Jour",
+    "subtitle": "Choisissez 3 cartes et explorez votre flux actuel",
+    "questionLabel": "Avez-vous une question ou une préoccupation ?",
+    "questionPlaceholder": "Exemple : amour, travail, relations, choix, anxiété, préoccupations futures",
+    "questionOptional": "(facultatif)",
+    "continueBtn": "Choisir les Cartes",
+    "selectInstruction": "Sélectionnez 3 cartes pour votre lecture",
+    "selectedCount": "Sélectionnées {{count}} / 3",
+    "readBtn": "Commencer la Lecture",
+    "readBtnHint": "Sélectionnez 3 cartes pour activer",
+    "position1": "Situation Actuelle",
+    "position2": "Influence Cachée · Conseil",
+    "position3": "Futur Proche · Direction",
+    "keywords": "Mots-clés",
+    "interpretation": "Interprétation",
+    "synthesisTitle": "Lecture Combinée",
+    "synthesisSubtitle": "Une synthèse des trois cartes",
+    "resetBtn": "Retirer",
+    "caution": "Prudence",
+    "snsDivider": "Partager ma Lecture",
+    "shareTitle": "Lecture de Tarot 3 Cartes du Jour",
+    "shareText": "Mon tarot 3 cartes aujourd'hui : {{cards}} ✨ mytesttype.com/tarot"
+  }
+}

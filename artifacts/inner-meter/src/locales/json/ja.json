@@ -1,0 +1,313 @@
+{
+  "nav": {
+    "tests": "テスト一覧",
+    "tarot": "今日のタロット",
+    "about": "About",
+    "start": "はじめる",
+    "startLong": "テストをはじめる"
+  },
+  "home": {
+    "badge": "自分を知る最も楽しい方法",
+    "title1": "私はどんな",
+    "title2": "人間なの？",
+    "title3": "今すぐ確認しよう",
+    "subtitle": "性格・恋愛・メンタルまで — 楽しくて正確な心理分析を3分で完成させよう。",
+    "ctaPrimary": "テストをはじめる →",
+    "ctaSecondary": "人気テストを見る",
+    "participants": "🎉 12万人が参加しました",
+    "trending": "🔥 今話題のテスト",
+    "trendingSub": "今日最も共有されたテスト",
+    "viewAll": "すべて見る →",
+    "newSection": "✨ 新登場",
+    "newSub": "新しく追加されたテスト",
+    "moreTests": "もっとテスト",
+    "moreSub": "さまざまなジャンルのテストを探してみよう",
+    "totalCount": "計 {{count}}個",
+    "catSection": "どんなテストが気になりますか？",
+    "catPersonality": "性格分析",
+    "catLove": "恋愛タイプ",
+    "catFun": "暇つぶし",
+    "catTarot": "タロット占い",
+    "tarotLabel": "🌙 毎日新しいカード",
+    "tarotTitle": "今日の運命カードは？",
+    "tarotDesc": "愛、仕事、エネルギーに関する今日のメッセージをタロット一枚で確認しましょう。",
+    "tarotCta": "🔮 カードを引く",
+    "kshamanHeadline": "あなたの運命を\n誰が最初に読む？",
+    "kshamanDesc1": "애기보살は直感で読みます。",
+    "kshamanDesc2": "천신도령は転機を見抜きます。",
+    "kshamanDesc3": "무속인は人生の流れを読みます。",
+    "kshamanDesc4": "同じ生年月日でも、読み手によって言葉が異なります。",
+    "kshamanCta": "🔮 私の占いを見る",
+    "kshamanHelper": "同じ生年月日でも、読み手によって解釈が違います",
+    "kshamanProof": "今日1,284人が占いを確認しました",
+    "kshamanKeywords": "恋愛運 · 財運 · 人生の転換期",
+    "kshamanLabel": "🔮 K-Shaman 占い",
+    "viewAllTests": "すべてのテストを見る ({{count}}個)"
+  },
+  "common": {
+    "startTest": "テストをはじめる",
+    "minutes": "分",
+    "questionsUnit": "問",
+    "next": "次へ",
+    "back": "戻る",
+    "seeResult": "結果を見る",
+    "retake": "もう一度",
+    "saveImage": "画像を保存",
+    "copyLink": "リンクをコピー",
+    "copied": "コピーしました ✓",
+    "catPersonality": "性格テスト",
+    "catLove": "恋愛テスト",
+    "catFun": "楽しいテスト",
+    "catMbti": "MBTI",
+    "catFortune": "占い",
+    "shareResult": "結果をシェア",
+    "takeOther": "他のテストを試す",
+    "viewAll": "すべて見る",
+    "start": "開始",
+    "menuToggle": "メニューを開く"
+  },
+  "tests": {
+    "title": "テストコレクション",
+    "subtitle": "ずっと気になっていた自分の姿を今すぐ確認しよう。様々なテストを通じて隠れた内面を楽しく分析します。",
+    "count": "計 {{count}}個のテスト",
+    "catAll": "すべて",
+    "empty": "このカテゴリにテストはありません。"
+  },
+  "card": {
+    "start": "開始",
+    "participants": "参加"
+  },
+  "result": {
+    "resultBadge": "✨ {{title}} 結果",
+    "cardTagline": {
+      "love": "恋愛タイプ分析",
+      "personality": "性格タイプ分析",
+      "mbti": "MBTIタイプ",
+      "psychology": "心理タイプ分析",
+      "fun": "楽しい分析",
+      "fortune": "運勢分析",
+      "tarot": "タロット・今日の運勢"
+    },
+    "strengths": "私の強み",
+    "caution": "注意すること",
+    "loveStyle": "恋愛スタイル",
+    "compatibleVibe": "相性の良いタイプ",
+    "shareCardTitle": "結果カードを保存＆シェア ✨",
+    "shareCardSub": "画像として保存してSNSでシェアしよう！",
+    "shareMobile": "画像としてシェア（モバイル）",
+    "snsDivider": "SNSでシェア",
+    "shareTitle": "私の{{testTitle}}の結果は{{resultTitle}}！",
+    "recommended": "こんなテストもどうぞ 🎯",
+    "recommendedSub": "この結果を見た人がよく試すテストです",
+    "saveError": "画像の保存に失敗しました 😢\nスクリーンショットで保存してください！"
+  },
+  "share": {
+    "copySuccess": "リンクをコピーしました！🎉",
+    "copySuccessDesc": "結果リンクがコピーされました。",
+    "copyError": "コピー失敗",
+    "copyErrorDesc": "もう一度試してください。",
+    "shareOnApp": "{{app}}でシェア",
+    "shareOnAppDesc": "リンクをコピーしました！アプリで貼り付けてください。",
+    "pasteHint": "インスタ・TikTok・カカオはリンクをコピーしてアプリで貼り付けてください",
+    "facebook": "Facebook",
+    "instagram": "インスタ",
+    "instagramFull": "Instagram",
+    "kakao": "カカオ",
+    "kakaoFull": "カカオトーク",
+    "tiktok": "TikTok",
+    "line": "LINE",
+    "threads": "Threads",
+    "whatsapp": "WhatsApp"
+  },
+  "footer": {
+    "tagline": "あなたの内面を楽しく軽やかに測定しよう。",
+    "services": "サービス",
+    "info": "情報",
+    "copyright": "© 2026 InnerMeter. All rights reserved.",
+    "about": "About",
+    "privacy": "プライバシーポリシー",
+    "contact": "お問い合わせ",
+    "terms": "利用規約"
+  },
+  "seo": {
+    "home": {
+      "title": "InnerMeter — 性格・恋愛・心理テスト",
+      "desc": "私ってどんな人？性格、恋愛スタイル、MBTI、タロット、K-Shamanまで。楽しい心理テストで自分の内面を発見しよう。"
+    },
+    "tests": {
+      "title": "テスト一覧 | InnerMeter",
+      "desc": "性格、恋愛、MBTI、心理テストが揃っています。あなたにぴったりのテストを見つけよう。"
+    },
+    "tarot": {
+      "title": "今日のタロット | InnerMeter",
+      "desc": "タロットカードを3枚引いて、愛、仕事、未来へのメッセージを受け取ろう。"
+    },
+    "kshaman": {
+      "title": "K-Shaman占い | InnerMeter",
+      "desc": "霊的なリーダーによる韓国式占い。K-Shamanで人生の転換期を確認しよう。"
+    },
+    "about": {
+      "title": "InnerMeterについて",
+      "desc": "InnerMeterは、性格・恋愛・MBTI・タロットなど多彩なテストを提供するプラットフォームです。"
+    },
+    "privacy": {
+      "title": "プライバシーポリシー | InnerMeter",
+      "desc": "InnerMeterのプライバシーポリシーをご確認ください。"
+    },
+    "contact": {
+      "title": "お問い合わせ | InnerMeter",
+      "desc": "ご質問はInnerMeterへメールでお気軽にどうぞ。"
+    },
+    "terms": {
+      "title": "利用規約 | InnerMeter",
+      "desc": "InnerMeterの利用規約をご確認ください。"
+    }
+  },
+  "about": {
+    "title": "InnerMeterについて",
+    "p1": "InnerMeterは、さまざまな性格テストと興味深い心理コンテンツを提供するプラットフォームです。",
+    "p2": "ユーザーは簡単な質問を通じて、自分の傾向、心理タイプ、そして人生の流れを楽しく確認できます。",
+    "p3": "InnerMeterのコンテンツは、自己探求とエンターテインメントの体験を提供するために作られています。",
+    "testsTitle": "提供中のテスト例",
+    "tests": [
+      "MBTI性格テスト",
+      "愛着スタイルテスト",
+      "直感 vs 論理テスト",
+      "ハイパー集中テスト",
+      "テト vs エゲンテスト",
+      "人生が開花する年齢テスト",
+      "K-Shaman Reading"
+    ],
+    "p4": "InnerMeterは、人々が自分自身をより面白く理解し、友達と結果を共有できる体験を提供することを目指しています。",
+    "disclaimer": "本サイトの占い・運勢コンテンツは、エンターテインメント目的のみです。"
+  },
+  "privacy": {
+    "title": "プライバシーポリシー",
+    "p1": "InnerMeterはユーザーの個人情報保護を重視しています。",
+    "p2": "本サイトはサービス提供のために最小限の情報のみを収集する場合があります。",
+    "collectedTitle": "収集する可能性のある情報",
+    "item1": "生年月日",
+    "item2": "性別",
+    "item3": "国",
+    "p3": "この情報は、テスト結果の生成とユーザー体験の向上のためのみに使用されます。",
+    "p4": "InnerMeterはユーザーの個人情報を外部に販売・共有しません。",
+    "p5": "Google Analyticsなどの分析ツールを通じて訪問統計が収集される場合があります。",
+    "p6": "この情報はサイトの改善とコンテンツ品質向上のために活用されます。",
+    "p7": "ユーザーはいつでもサイトの利用を中止できます。",
+    "contactLink": "お問い合わせページ",
+    "p8Pre": "ご質問は",
+    "p8Post": "からお気軽にご連絡ください。",
+    "emailLabel": "お問い合わせメール"
+  },
+  "contact": {
+    "title": "お問い合わせ",
+    "p1": "InnerMeterサービスに関するお問い合わせは、以下のメールアドレスへお送りください。",
+    "emailLabel": "メールアドレス",
+    "p2": "できる限り早くご返答いたします。",
+    "p3": "ありがとうございます。"
+  },
+  "kshaman": {
+    "ui": {
+      "heading": "誰があなたの運命を読む？",
+      "subtext": "読み手によって口調も解釈も異なります。\n心が引かれる方を選んでください。",
+      "footerNote": "人生の転換期 · 恋愛運 · 財運 · 成功の流れ",
+      "backToPersona": "別の読み手を選ぶ",
+      "formTitle": "生年月日を教えてください",
+      "formSubtitle": "正確なほど、より深く読めます",
+      "birthYear": "生まれ年",
+      "yearPlaceholder": "例：1995",
+      "monthLabel": "月",
+      "dayLabel": "日",
+      "monthSelect": "月を選択",
+      "daySelect": "日を選択",
+      "genderLabel": "性別",
+      "female": "👩 女性",
+      "male": "👨 男性",
+      "readingBtn": "🔮 占いを見る",
+      "reEnter": "再入力",
+      "readingOf": "{{name}}の占い",
+      "turningBanner": "人生の転換期",
+      "turningSubtext": "この時期前後に人生の流れが変わります",
+      "ageSuffix": "歳",
+      "saveImage": "結果画像を保存",
+      "saveImageSaving": "保存中...",
+      "copyLink": "リンクをコピー",
+      "newReading": "新しい占い",
+      "saveSuccess": "画像を保存しました！🔮",
+      "saveSuccessDesc": "ギャラリーで確認してください。",
+      "saveError": "保存失敗",
+      "saveErrorDesc": "もう一度試してください。",
+      "copySuccess": "リンクをコピーしました！🎉",
+      "copySuccessDesc": "友達にシェアしよう。",
+      "copyError": "コピー失敗",
+      "copyErrorDesc": "もう一度試してください。",
+      "successInfo": "成功の流れ：{{sa}}歳以降 · 財運安定：{{ws}}~{{we}}歳",
+      "genderFemale": "女性",
+      "genderMale": "男性",
+      "cardReading": "{{name}}の占い",
+      "turningAge": "私の人生の転換期",
+      "shareText": "K-Shamanに占ってもらいました 🔮 あなたも試してみて！"
+    },
+    "lifeFlow": {
+      "early_hard": "苦労先行型",
+      "mid_rise": "中期上昇型",
+      "late_success": "大器晩成型",
+      "steady_rise": "安定上昇型"
+    },
+    "sec": {
+      "summary": "総合鑑定",
+      "inborn": "生まれ持った運気",
+      "turning": "人生の転換期",
+      "success": "成功の流れ",
+      "love": "恋愛運",
+      "wealth": "財運",
+      "warning": "注意すべき時期"
+    },
+    "persona": {
+      "baby_bosal": {
+        "title": "純粋な神霊",
+        "vibe": "親しみやすく正直な20代の保薩"
+      },
+      "sunnyeo_bosal": {
+        "title": "月の神霊",
+        "vibe": "優雅で神秘的な中年の保薩"
+      },
+      "chunshin_doryeong": {
+        "title": "天の神霊",
+        "vibe": "強くて自信に満ちた若い神霊"
+      },
+      "musog_in": {
+        "title": "伝統の神霊",
+        "vibe": "誠実で率直な伝統的な巫師"
+      },
+      "beopsa": {
+        "title": "知恵の神霊",
+        "vibe": "静かで哲学的な老年の法師"
+      }
+    }
+  },
+  "tarot3": {
+    "title": "今日のタロットリーディング",
+    "subtitle": "3枚のカードを選んで、今の流れを確認してください",
+    "questionLabel": "質問や悩みがありますか？",
+    "questionPlaceholder": "例：恋愛、仕事、人間関係、選択、不安、将来の悩み",
+    "questionOptional": "（任意）",
+    "continueBtn": "カードを選ぶ",
+    "selectInstruction": "3枚のカードを直接選んでください",
+    "selectedCount": "選択したカード {{count}} / 3",
+    "readBtn": "リーディング開始",
+    "readBtnHint": "カードを3枚選んでください",
+    "position1": "現在の状況",
+    "position2": "隠れた影響・助言",
+    "position3": "近い未来・流れ",
+    "keywords": "キーワード",
+    "interpretation": "解釈",
+    "synthesisTitle": "総合リーディング",
+    "synthesisSubtitle": "3枚の流れをまとめます",
+    "resetBtn": "もう一度引く",
+    "caution": "注意ポイント",
+    "snsDivider": "リーディングをシェアする",
+    "shareTitle": "今日の3枚タロットリーディング",
+    "shareText": "今日のタロット3枚: {{cards}} ✨ mytesttype.com/tarot"
+  }
+}

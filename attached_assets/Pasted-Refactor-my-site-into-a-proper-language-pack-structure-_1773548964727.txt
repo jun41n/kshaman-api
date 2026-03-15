@@ -1,0 +1,201 @@
+Refactor my site into a proper language-pack structure, replace Portuguese with Brazilian Portuguese, add French, and improve the Open Graph structure so each major test can have its own OG image and metadata.
+
+Site:
+https://mytesttype.com
+
+Current status:
+- The site currently supports these languages:
+  - ko
+  - en
+  - ja
+  - es
+  - pt
+- The multilingual structure is inconsistent and not fully managed through language-pack files.
+- The site currently relies on a single common Open Graph structure.
+- I want a cleaner i18n structure and better social sharing structure for traffic growth.
+
+Main goals:
+1. Convert the site to a proper language-pack system.
+2. Replace Portuguese (pt) with Brazilian Portuguese (pt-BR).
+3. Add French (fr).
+4. Improve the Open Graph structure so each major test can have its own OG image and metadata.
+5. Preserve all existing functionality.
+
+==================================================
+1. LANGUAGE SYSTEM REFACTOR
+==================================================
+
+Refactor the site to use a proper language-pack structure using JSON files or an equivalent clean i18n system.
+
+Final language list should be:
+
+- ko
+- en
+- ja
+- es
+- pt-BR
+- fr
+
+Replace the current pt language with pt-BR.
+
+Suggested structure:
+
+/locales
+  ko.json
+  en.json
+  ja.json
+  es.json
+  pt-BR.json
+  fr.json
+
+Move ALL user-facing text into language files:
+
+- navigation
+- buttons
+- labels
+- notices
+- errors
+- test titles
+- test descriptions
+- test questions
+- test answers
+- result titles
+- result descriptions
+- share text
+- any visible UI copy
+
+Do not leave important UI text hardcoded in components.
+
+==================================================
+2. BRAZILIAN PORTUGUESE REPLACEMENT
+==================================================
+
+Replace Portuguese with Brazilian Portuguese.
+
+Requirements:
+
+- Language code: pt-BR
+- Display label: PT-BR — Português (Brasil)
+
+Existing Portuguese text should be converted to Brazilian Portuguese wording where needed.
+
+==================================================
+3. ADD FRENCH
+==================================================
+
+Add French support.
+
+Requirements:
+
+Language code:
+fr
+
+Display label:
+FR — Français
+
+Create fr language pack file and translate all user-facing text.
+
+==================================================
+4. ADD FALLBACK SYSTEM
+==================================================
+
+If a translation key is missing in a language, fallback to English.
+
+Fallback priority:
+
+selected language → en
+
+This prevents broken UI text.
+
+==================================================
+5. PRESERVE CURRENT FUNCTIONALITY
+==================================================
+
+Do NOT break any of the following:
+
+- existing test logic
+- scoring logic
+- result rendering
+- result image saving
+- SNS sharing
+- language switching
+- homepage layout
+- mobile layout
+- SEO metadata
+- Google AdSense
+- Google Analytics
+- sitemap.xml
+- robots.txt
+- domain behavior / deployment
+
+This must be a coherent refactor.
+
+==================================================
+6. IMPROVE OPEN GRAPH STRUCTURE
+==================================================
+
+Currently the site uses one generic Open Graph structure.
+
+Improve this so major tests can have their own OG metadata and image.
+
+Create a structure like:
+
+/og
+  og-main.jpg
+  og-mbti.jpg
+  og-love.jpg
+  og-tarot.jpg
+  og-kshaman.jpg
+
+Homepage keeps a branded OG.
+
+Each major test can have:
+
+- og:title
+- og:description
+- og:image
+- og:url
+- twitter:title
+- twitter:description
+- twitter:image
+
+Example:
+
+MBTI test → og-mbti.jpg
+Love obsession test → og-love.jpg
+Tarot test → og-tarot.jpg
+K-Shaman test → og-kshaman.jpg
+
+Important:
+
+The site appears to be an SPA, so do NOT introduce SSR or a risky architecture change.
+
+If result-level OG is too complex right now, implement test-level OG only.
+
+==================================================
+7. FINAL VERIFICATION
+==================================================
+
+Verify that:
+
+1. The site now uses language pack files
+2. pt has been replaced by pt-BR
+3. fr has been added
+4. Existing languages still work
+5. Missing keys fall back to English
+6. Tests still work
+7. Results still work
+8. Sharing still works
+9. Mobile layout still works
+10. SEO / AdSense / Analytics still work
+
+Provide a summary of:
+
+- files created
+- files updated
+- final language list
+- whether test-level OG was implemented
+
+Important:
+Do not do a partial refactor.
+I want one coherent pass without breaking the live site.

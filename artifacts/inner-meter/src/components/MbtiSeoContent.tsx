@@ -47,7 +47,7 @@ const SECTION_LABELS: Record<string, Record<string, string>> = {
     explore: "Explorar Otros Tipos MBTI",
     exploreDesc: "¿Curioso por otros tipos de personalidad? Descubre los 16 tipos MBTI.",
   },
-  pt: {
+  'pt-BR': {
     traits: "Traços de Personalidade",
     strengths: "Pontos Fortes",
     weaknesses: "Pontos Fracos",
@@ -56,6 +56,16 @@ const SECTION_LABELS: Record<string, Record<string, string>> = {
     compatibility: "Compatibilidade",
     explore: "Explorar Outros Tipos MBTI",
     exploreDesc: "Curioso sobre outros tipos de personalidade? Descubra todos os 16 tipos MBTI.",
+  },
+  fr: {
+    traits: "Traits de Personnalité",
+    strengths: "Points Forts",
+    weaknesses: "Points Faibles",
+    relationships: "Style Relationnel",
+    careers: "Carrières Recommandées",
+    compatibility: "Compatibilité",
+    explore: "Explorer les Autres Types MBTI",
+    exploreDesc: "Curieux des autres types de personnalité ? Découvrez les 16 types MBTI.",
   },
 };
 
@@ -70,10 +80,11 @@ const SECTION_ICONS: Record<string, string> = {
 
 export function MbtiSeoContent({ mbtiType }: Props) {
   const { i18n } = useTranslation();
-  const rawLang = i18n.language?.split("-")[0] ?? "ko";
-  const lang = ["ko", "en", "ja", "es", "pt"].includes(rawLang) ? rawLang : "ko";
+  const fullLang = i18n.language ?? "ko";
+  const supportedLangs = ["ko", "en", "ja", "es", "pt-BR", "fr"];
+  const lang = supportedLangs.includes(fullLang) ? fullLang : (fullLang.split("-")[0] || "ko");
 
-  const content = MBTI_SEO[lang]?.[mbtiType];
+  const content = (MBTI_SEO[lang] ?? MBTI_SEO["en"])?.[mbtiType];
   const labels = SECTION_LABELS[lang] ?? SECTION_LABELS.en;
 
   if (!content) return null;
