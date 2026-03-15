@@ -162,7 +162,7 @@ export default function KShaman() {
     const m = parseInt(birthMonth);
     const dy = parseInt(birthDay);
     if (!y || !m || !dy || !gender) return;
-    if (y < 1940 || y > 2010 || m < 1 || m > 12 || dy < 1 || dy > 31) return;
+    if (y < 1940 || y > 2020 || m < 1 || m > 12 || dy < 1 || dy > 31) return;
     const d = calculateDestiny(y, m, dy);
     setDestiny(d);
     trackEvent('k_shaman_result_view', { persona_id: selected?.id, birth_year: y });
@@ -315,7 +315,7 @@ export default function KShaman() {
                       placeholder={t('kshaman.ui.yearPlaceholder')}
                       value={birthYear}
                       onChange={e => setBirthYear(e.target.value)}
-                      min={1940} max={2010}
+                      min={1940} max={2020}
                       className="w-full bg-white/8 border border-white/20 rounded-xl px-4 py-3.5 text-white placeholder-white/30 text-lg font-bold outline-none focus:border-violet-400/60 focus:bg-white/12 transition-all"
                       style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}
                     />
