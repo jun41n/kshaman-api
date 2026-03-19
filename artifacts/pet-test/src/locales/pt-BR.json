@@ -1,5 +1,7 @@
 {
-  "app": { "name": "Teste de Personalidade do Pet" },
+  "app": {
+    "name": "Teste de Personalidade do Pet"
+  },
   "nav": {
     "back": "← Voltar ao início",
     "tests": "Testes",
@@ -41,7 +43,14 @@
     "savingBtn": "Salvando...",
     "shareBtn": "🔗 Compartilhar com amigos",
     "copiedBtn": "Link copiado!",
-    "retryBtn": "Fazer o teste novamente"
+    "retryBtn": "Fazer o teste novamente",
+    "compareWithFriends": "Comparar com amigos",
+    "linkCopied": "Link copiado! 🎉",
+    "savingImage": "Salvando...",
+    "imageSaved": "Salvo ✓",
+    "saveError": "Falha ao salvar imagem 😢\nTente tirar um print!",
+    "shareCardTitle": "Salvar e compartilhar resultado",
+    "shareCardSub": "Compartilhe seu resultado com amigos"
   },
   "dog": {
     "q1": {
@@ -360,5 +369,10 @@
         "ownerTip": "Instale um arranhador alto ou prateleira como mirante pessoal do seu gato!"
       }
     }
+  },
+  "common": {
+    "saveImage": "Salvar Imagem",
+    "retake": "Refazer Teste",
+    "takeOther": "Tentar Outro Teste"
   }
 }

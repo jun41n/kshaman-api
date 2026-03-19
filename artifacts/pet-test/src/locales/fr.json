@@ -1,5 +1,7 @@
 {
-  "app": { "name": "Test de personnalité des animaux" },
+  "app": {
+    "name": "Test de personnalité des animaux"
+  },
   "nav": {
     "back": "← Retour à l'accueil",
     "tests": "Tests",
@@ -41,7 +43,14 @@
     "savingBtn": "Enregistrement...",
     "shareBtn": "🔗 Partager avec des amis",
     "copiedBtn": "Lien copié !",
-    "retryBtn": "Refaire le test"
+    "retryBtn": "Refaire le test",
+    "compareWithFriends": "Comparer avec des amis",
+    "linkCopied": "Lien copié ! 🎉",
+    "savingImage": "Enregistrement...",
+    "imageSaved": "Enregistré ✓",
+    "saveError": "Échec de l'enregistrement 😢\nEssayez de faire une capture d'écran !",
+    "shareCardTitle": "Sauvegarder et partager",
+    "shareCardSub": "Partagez votre résultat avec vos amis"
   },
   "dog": {
     "q1": {
@@ -360,5 +369,10 @@
         "ownerTip": "Installez un arbre à chat ou une étagère haute comme poste d'observation personnel !"
       }
     }
+  },
+  "common": {
+    "saveImage": "Enregistrer l'Image",
+    "retake": "Refaire le Test",
+    "takeOther": "Essayer un Autre Test"
   }
 }

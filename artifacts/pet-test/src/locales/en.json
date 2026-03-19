@@ -1,5 +1,7 @@
 {
-  "app": { "name": "Pet Personality Test" },
+  "app": {
+    "name": "Pet Personality Test"
+  },
   "nav": {
     "back": "← Back to Home",
     "tests": "Tests",
@@ -41,7 +43,14 @@
     "savingBtn": "Saving...",
     "shareBtn": "🔗 Share with Friends",
     "copiedBtn": "Link Copied!",
-    "retryBtn": "Take the Test Again"
+    "retryBtn": "Take the Test Again",
+    "compareWithFriends": "Compare with Friends",
+    "linkCopied": "Link copied! 🎉",
+    "savingImage": "Saving...",
+    "imageSaved": "Saved ✓",
+    "saveError": "Image save failed 😢\nTry taking a screenshot instead!",
+    "shareCardTitle": "Save & Share Your Result",
+    "shareCardSub": "Share your result with friends"
   },
   "dog": {
     "q1": {
@@ -360,5 +369,10 @@
         "ownerTip": "Set up a cat tower or high shelf as their personal observation deck!"
       }
     }
+  },
+  "common": {
+    "saveImage": "Save Image",
+    "retake": "Retake Test",
+    "takeOther": "Try Another Test"
   }
 }

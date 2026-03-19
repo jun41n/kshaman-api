@@ -1,5 +1,7 @@
 {
-  "app": { "name": "Test de Personalidad de Mascotas" },
+  "app": {
+    "name": "Test de Personalidad de Mascotas"
+  },
   "nav": {
     "back": "← Volver al inicio",
     "tests": "Tests",
@@ -41,7 +43,14 @@
     "savingBtn": "Guardando...",
     "shareBtn": "🔗 Compartir con amigos",
     "copiedBtn": "¡Enlace copiado!",
-    "retryBtn": "Repetir el test"
+    "retryBtn": "Repetir el test",
+    "compareWithFriends": "Comparar con amigos",
+    "linkCopied": "¡Enlace copiado! 🎉",
+    "savingImage": "Guardando...",
+    "imageSaved": "Guardado ✓",
+    "saveError": "Error al guardar la imagen 😢\n¡Intenta tomar una captura de pantalla!",
+    "shareCardTitle": "Guardar y compartir tu resultado",
+    "shareCardSub": "Comparte tu resultado con amigos"
   },
   "dog": {
     "q1": {
@@ -360,5 +369,10 @@
         "ownerTip": "¡Coloca un árbol rascador o estantería alta como mirador personal!"
       }
     }
+  },
+  "common": {
+    "saveImage": "Guardar Imagen",
+    "retake": "Repetir Test",
+    "takeOther": "Probar Otro Test"
   }
 }

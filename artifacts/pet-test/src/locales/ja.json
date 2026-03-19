@@ -1,5 +1,7 @@
 {
-  "app": { "name": "ペット性格診断" },
+  "app": {
+    "name": "ペット性格診断"
+  },
   "nav": {
     "back": "← ホームに戻る",
     "tests": "テスト一覧",
@@ -41,7 +43,14 @@
     "savingBtn": "保存中...",
     "shareBtn": "🔗 友達にシェア",
     "copiedBtn": "リンクをコピーしました！",
-    "retryBtn": "もう一度テストする"
+    "retryBtn": "もう一度テストする",
+    "compareWithFriends": "友達と比べる",
+    "linkCopied": "リンクをコピーしました！ 🎉",
+    "savingImage": "保存中...",
+    "imageSaved": "保存しました ✓",
+    "saveError": "画像の保存に失敗しました 😢\nスクリーンショットで保存してください！",
+    "shareCardTitle": "結果カードを保存・シェア",
+    "shareCardSub": "友達に結果をシェアしよう"
   },
   "dog": {
     "q1": {
@@ -360,5 +369,10 @@
         "ownerTip": "キャットタワーや高い棚を用意して、お気に入りの観察場所を作ってあげて！"
       }
     }
+  },
+  "common": {
+    "saveImage": "画像を保存",
+    "retake": "もう一度テスト",
+    "takeOther": "他のテストを試す"
   }
 }

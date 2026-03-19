@@ -41,7 +41,19 @@
     "savingBtn": "저장 중...",
     "shareBtn": "🔗 친구에게 공유하기",
     "copiedBtn": "링크 복사됨!",
-    "retryBtn": "다시 테스트하기"
+    "retryBtn": "다시 테스트하기",
+    "compareWithFriends": "친구랑 비교하기",
+    "linkCopied": "링크가 복사되었습니다! 🎉",
+    "savingImage": "저장 중...",
+    "imageSaved": "저장됨 ✓",
+    "saveError": "이미지 저장에 실패했어요 😢\n스크린샷을 이용해 저장해보세요!",
+    "shareCardTitle": "결과 카드 저장 및 공유",
+    "shareCardSub": "친구에게 결과를 공유해보세요"
+  },
+  "common": {
+    "saveImage": "이미지 저장",
+    "retake": "다시 테스트하기",
+    "takeOther": "다른 테스트 해보기"
   },
   "dog": {
     "q1": {
