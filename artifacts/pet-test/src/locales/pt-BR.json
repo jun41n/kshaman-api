@@ -1,10 +1,22 @@
 {
   "app": { "name": "Teste de Personalidade do Pet" },
-  "nav": { "back": "← Voltar ao início", "start": "Começar" },
+  "nav": {
+    "back": "← Voltar ao início",
+    "tests": "Testes",
+    "tarot": "Tarô do Dia",
+    "about": "Sobre",
+    "start": "Começar",
+    "startLong": "Iniciar Teste"
+  },
   "footer": {
-    "tagline": "Descubra a personalidade oculta do seu pet de forma divertida.",
+    "tagline": "Descubra seu interior de forma leve e divertida.",
+    "services": "Serviços",
+    "info": "Informações",
     "copyright": "© 2026 InnerMeter. Todos os direitos reservados.",
-    "backToMain": "Ir para InnerMeter"
+    "about": "Sobre",
+    "privacy": "Privacidade",
+    "contact": "Contato",
+    "terms": "Termos"
   },
   "home": {
     "title": "Qual é a personalidade\ndo seu pet?",

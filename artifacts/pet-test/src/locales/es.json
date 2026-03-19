@@ -1,10 +1,22 @@
 {
   "app": { "name": "Test de Personalidad de Mascotas" },
-  "nav": { "back": "← Volver al inicio", "start": "Empezar" },
+  "nav": {
+    "back": "← Volver al inicio",
+    "tests": "Tests",
+    "tarot": "Tarot de Hoy",
+    "about": "Acerca de",
+    "start": "Empezar",
+    "startLong": "Iniciar Test"
+  },
   "footer": {
-    "tagline": "Descubre la personalidad oculta de tu mascota de forma divertida.",
+    "tagline": "Descubre tu interior de forma ligera y divertida.",
+    "services": "Servicios",
+    "info": "Información",
     "copyright": "© 2026 InnerMeter. Todos los derechos reservados.",
-    "backToMain": "Ir a InnerMeter"
+    "about": "Acerca de",
+    "privacy": "Privacidad",
+    "contact": "Contacto",
+    "terms": "Términos"
   },
   "home": {
     "title": "¿Cuál es la personalidad\nde tu mascota?",

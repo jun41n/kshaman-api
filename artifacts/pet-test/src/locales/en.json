@@ -1,10 +1,22 @@
 {
   "app": { "name": "Pet Personality Test" },
-  "nav": { "back": "← Back to Home", "start": "Get Started" },
+  "nav": {
+    "back": "← Back to Home",
+    "tests": "Tests",
+    "tarot": "Daily Tarot",
+    "about": "About",
+    "start": "Get Started",
+    "startLong": "Start Test"
+  },
   "footer": {
-    "tagline": "Discover your pet's hidden personality in a fun and easy way.",
+    "tagline": "Discover your inner self in a fun and effortless way.",
+    "services": "Services",
+    "info": "Info",
     "copyright": "© 2026 InnerMeter. All rights reserved.",
-    "backToMain": "Go to InnerMeter"
+    "about": "About",
+    "privacy": "Privacy Policy",
+    "contact": "Contact",
+    "terms": "Terms"
   },
   "home": {
     "title": "What's Your Pet's\nPersonality Type?",

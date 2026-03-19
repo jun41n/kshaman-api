@@ -1,10 +1,22 @@
 {
   "app": { "name": "반려동물 성격 테스트" },
-  "nav": { "back": "← 처음으로", "start": "시작하기" },
+  "nav": {
+    "back": "← 처음으로",
+    "tests": "테스트 모음",
+    "tarot": "오늘의 타로",
+    "about": "소개",
+    "start": "시작하기",
+    "startLong": "테스트 시작하기"
+  },
   "footer": {
-    "tagline": "우리 아이의 숨겨진 성향을 재미있게 알아보세요.",
+    "tagline": "당신의 내면을 가볍고 재미있게 측정해보세요.",
+    "services": "서비스",
+    "info": "정보",
     "copyright": "© 2026 InnerMeter. All rights reserved.",
-    "backToMain": "InnerMeter 바로가기"
+    "about": "소개",
+    "privacy": "개인정보처리방침",
+    "contact": "문의하기",
+    "terms": "이용약관"
   },
   "home": {
     "title": "우리집 반려동물\n성격 유형은?",

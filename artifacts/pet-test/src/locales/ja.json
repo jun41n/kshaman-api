@@ -1,10 +1,22 @@
 {
   "app": { "name": "ペット性格診断" },
-  "nav": { "back": "← ホームに戻る", "start": "はじめる" },
+  "nav": {
+    "back": "← ホームに戻る",
+    "tests": "テスト一覧",
+    "tarot": "今日のタロット",
+    "about": "About",
+    "start": "はじめる",
+    "startLong": "テストをはじめる"
+  },
   "footer": {
-    "tagline": "大切なペットの隠れた性格を楽しく発見しよう。",
+    "tagline": "あなたの内面を楽しく軽やかに測定しよう。",
+    "services": "サービス",
+    "info": "情報",
     "copyright": "© 2026 InnerMeter. All rights reserved.",
-    "backToMain": "InnerMeterへ"
+    "about": "About",
+    "privacy": "プライバシーポリシー",
+    "contact": "お問い合わせ",
+    "terms": "利用規約"
   },
   "home": {
     "title": "うちの子の\n性格タイプは？",
