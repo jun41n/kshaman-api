@@ -907,6 +907,13 @@ const en: AllTestLocales = {
       'psych-dark': { title: 'Dark Insider', summary: 'Empathy? Strategy. Relationships? A chessboard. You operate on a different frequency.', description: 'Your psychopathy score is very high. Strategic thinking dominates emotional response for you. You may interpret rules as optional and others\' emotions may not register strongly. This result is for entertainment only and is not a clinical assessment.', strengths: ['Powerful strategic thinking and execution', 'Cold-headed judgment when everything is on the line', 'Laser-focused on goals without emotional noise'], caution: ['True connection requires building empathy deliberately', 'Practice treating people as ends in themselves, not instruments'], shareText: 'My psychopathy score: "Dark Insider" 🎭 What\'s yours?' },
     },
   },
+  'pet-type-test': {
+    title: "What's Your Pet's Personality Type?",
+    description: "Discover your pet's hidden nature in just 15 questions!",
+    estimatedTime: '3 min',
+    questions: {},
+    results: {},
+  },
 };
 
 /* ─────────────────────────────────────────────────────────────
@@ -1477,6 +1484,13 @@ const ja: AllTestLocales = {
       'psych-dark': { title: 'ダークインサイダー', summary: '共感より戦略！人間関係もチェス盤に見えるダークな頭脳', description: 'サイコパス指数がとても高いです。戦略的思考が感情的反応より強く発達しています。ルールを都合よく解釈したり、他人の感情に無感覚な傾向があるかもしれません。この結果はエンタメ目的であり、臨床的な評価ではありません。', strengths: ['強い戦略的思考と実行力', '感情に揺れない冷静な判断', '目標達成への強い集中力'], caution: ['真の繋がりを望むなら共感力を育てる努力が必要', '他人を手段ではなく目的として接する練習をして'], shareText: '私のサイコパス指数は「ダークインサイダー」🎭 あなたは？' },
     },
   },
+  'pet-type-test': {
+    title: 'うちの子の性格タイプは？',
+    description: '15問でペットの隠れた個性を発見しよう！',
+    estimatedTime: '約3分',
+    questions: {},
+    results: {},
+  },
 };
 
 /* ─────────────────────────────────────────────────────────────
@@ -1906,6 +1920,13 @@ const es: AllTestLocales = {
       'psych-cold': { title: 'Estratega Frío/a', summary: 'Lógica sobre sentimiento — una mente aguda y calculadora que raramente se sacude.', description: 'Tu puntuación de psicopatía es algo alta. Te inclinas fuertemente hacia la lógica y los resultados sobre las emociones. Piensas estratégicamente y puedes ver a las personas de manera algo instrumental. En entornos competitivos, esto puede ser una ventaja — en relaciones cercanas, puede crear distancia.', strengths: ['Aguda y objetiva capacidad analítica', 'Juicio que no cede bajo presión emocional', 'Calmado/a y efectivo/a en condiciones de crisis'], caution: ['Haz un esfuerzo consciente por considerar la realidad emocional de los demás', 'Audita si a veces tratas a las personas como medios para un fin'], shareText: 'Mi puntuación de psicopatía: "Estratega Frío/a" 🧊 ¿Cuál es la tuya?' },
       'psych-dark': { title: 'Iniciado/a Oscuro/a', summary: '¿Empatía? Estrategia. ¿Relaciones? Un tablero de ajedrez. Operas en una frecuencia diferente.', description: 'Tu puntuación de psicopatía es muy alta. El pensamiento estratégico domina la respuesta emocional para ti. Puedes interpretar las reglas como opcionales y las emociones de los demás pueden no registrarse fuertemente. Este resultado es solo para entretenimiento y no es una evaluación clínica.', strengths: ['Poderoso pensamiento estratégico y ejecución', 'Juicio de cabeza fría cuando todo está en juego', 'Enfocado/a en metas sin ruido emocional'], caution: ['La verdadera conexión requiere construir empatía deliberadamente', 'Practica tratar a las personas como fines en sí mismos, no como instrumentos'], shareText: 'Mi puntuación de psicopatía: "Iniciado/a Oscuro/a" 🎭 ¿Cuál es la tuya?' },
     },
+  },
+  'pet-type-test': {
+    title: '¿Cuál es la personalidad de tu mascota?',
+    description: 'Descubre la naturaleza oculta de tu compañero en 15 preguntas.',
+    estimatedTime: '3 min',
+    questions: {},
+    results: {},
   },
 };
 
@@ -2339,6 +2360,13 @@ const ptBR: AllTestLocales = {
         'psych-dark': { title: 'Pontuação Alta — A Mente Fria', summary: 'Pontuação de psicopatia: alta. Calculado/a, focado/a, desapegado/a emocionalmente.', description: 'Sua pontuação de psicopatia é alta. Você opera principalmente com lógica fria, tem empatia limitada pela maioria dos padrões, e as considerações éticas raramente moldam suas escolhas. Nota: isso é apenas para entretenimento e não é um diagnóstico clínico.', strengths: ['Tomada de decisão clírica e desapaixonada', 'Alta tolerância ao estresse e pressão', 'Objetivos perseguidos sem distração emocional'], caution: ['As pessoas ao seu redor podem sofrer pelos seus métodos sem que você perceba', 'Considere como suas ações afetam seu bem-estar de longo prazo e relacionamentos'], shareText: 'Minha pontuação de psicopatia: "A Mente Fria" 🧊 Qual é a sua?' },
       },
     },
+  'pet-type-test': {
+    title: 'Qual é a personalidade do seu pet?',
+    description: 'Descubra a natureza oculta do seu companheiro em 15 perguntas!',
+    estimatedTime: '3 min',
+    questions: {},
+    results: {},
+  },
   };
 
 const fr: AllTestLocales = en;
