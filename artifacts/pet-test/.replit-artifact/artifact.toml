@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/pet-test/"
+title = "반려동물 성향 테스트"
+version = "1.0.0"
+id = "artifacts/pet-test"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/pet-test/" ]
+localPort = 22976
+
+[services.development]
+run = "pnpm --filter @workspace/pet-test run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/pet-test", "run", "build" ]
+publicDir = "artifacts/pet-test/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "22976"
+BASE_PATH = "/pet-test/"
