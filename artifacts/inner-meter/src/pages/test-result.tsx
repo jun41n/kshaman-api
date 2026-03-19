@@ -6,7 +6,7 @@ import { ShareButtons } from "@/components/share-buttons";
 import { ResultShareCard } from "@/components/ResultShareCard";
 import { TestCard } from "@/components/test-card";
 import { getTestBySlug, RESULT_EMOJIS } from "@/data/tests";
-import { RotateCcw, Grid2x2, Download, Share2, Check, Loader2 } from "lucide-react";
+import { RotateCcw, Grid2x2, Download, Link2, Check, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import confetti from "canvas-confetti";
 import { motion } from "framer-motion";
@@ -74,6 +74,7 @@ export default function TestResult() {
   const [resultKey, setResultKey] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [saved, setSaved] = useState(false);
+  const [linkCopied, setLinkCopied] = useState(false);
   const [cardScale, setCardScale] = useState(1);
   const cardRef = useRef<HTMLDivElement>(null!);
   const previewWrapperRef = useRef<HTMLDivElement>(null);
@@ -134,19 +135,20 @@ export default function TestResult() {
   const shareText = localResult?.shareText ?? result.shareText;
 
   // Native OS share sheet — fast, no image needed, works with Kakao/Instagram/etc.
-  const handleNativeShare = async () => {
+  const handleCopyLink = async () => {
     try {
-      await navigator.share({
-        title: resultTitle,
-        text: shareText,
-        url: resultPageUrl,
-      });
-      trackResultImageSave({ test_slug: test.slug, result_key: result.key, result_title: result.title });
-    } catch (err) {
-      if (err instanceof Error && err.name !== 'AbortError') {
-        console.warn('Native share failed', err);
-      }
+      await navigator.clipboard.writeText(window.location.href);
+    } catch {
+      // Fallback for older browsers
+      const el = document.createElement('textarea');
+      el.value = window.location.href;
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      document.body.removeChild(el);
     }
+    setLinkCopied(true);
+    setTimeout(() => setLinkCopied(false), 2800);
   };
 
   // Image capture → download on desktop / native share with image on mobile
@@ -415,37 +417,39 @@ export default function TestResult() {
             {/* ── Save / Share buttons ── */}
             <div className="flex flex-col gap-3 mb-6">
               <button
-                onClick={handleSaveImage}
-                disabled={isSaving}
+                onClick={handleCopyLink}
                 className={`
                   w-full flex items-center justify-center gap-2.5 
                   rounded-2xl h-14 text-[0.95rem] font-black
                   transition-all duration-200 active:scale-[0.97]
-                  ${saved
+                  ${linkCopied
                     ? 'bg-emerald-500 text-white'
                     : 'bg-white text-gray-900 hover:bg-white/90'
                   }
-                  ${isSaving ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'}
+                  cursor-pointer
                   shadow-xl shadow-black/30
                 `}
               >
-                {isSaving ? (
-                  <><Loader2 className="w-5 h-5 animate-spin" />{t('common.saveImage')}...</>
-                ) : saved ? (
-                  <><Check className="w-5 h-5" />{t('common.copied')} 🎉</>
+                {linkCopied ? (
+                  <><Check className="w-5 h-5" />링크가 복사되었습니다! 🎉</>
                 ) : (
-                  <><Download className="w-5 h-5" />{t('common.saveImage')}</>
+                  <><Link2 className="w-5 h-5" />친구랑 비교하기</>
                 )}
               </button>
 
-              {typeof navigator.share === 'function' && (
-                <button
-                  onClick={handleNativeShare}
-                  className="w-full flex items-center justify-center gap-2.5 rounded-2xl h-11 text-sm font-bold text-white/80 border border-white/20 hover:bg-white/10 transition-colors"
-                >
-                  <Share2 className="w-4 h-4" />{t('result.shareMobile')}
-                </button>
-              )}
+              <button
+                onClick={handleSaveImage}
+                disabled={isSaving}
+                className={`w-full flex items-center justify-center gap-2.5 rounded-2xl h-11 text-sm font-bold text-white/80 border border-white/20 hover:bg-white/10 transition-colors ${isSaving ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'}`}
+              >
+                {isSaving ? (
+                  <><Loader2 className="w-4 h-4 animate-spin" />저장 중...</>
+                ) : saved ? (
+                  <><Check className="w-4 h-4" />저장됨 ✓</>
+                ) : (
+                  <><Download className="w-4 h-4" />이미지 저장</>
+                )}
+              </button>
             </div>
 
             {/* divider */}
