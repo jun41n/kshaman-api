@@ -1,6 +1,6 @@
 kind = "web"
 previewPath = "/pet-test/"
-title = "반려동물 성향 테스트"
+title = "--반려동물 성향 테스트"
 version = "1.0.0"
 id = "artifacts/pet-test"
 router = "path"
