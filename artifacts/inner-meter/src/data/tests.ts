@@ -2692,7 +2692,6 @@ const _tests: Test[] = [
     category: '재미 테스트',
     estimatedTime: '3분',
     emoji: '🐾',
-    externalUrl: '/pet-test/',
     questions: [],
     results: [],
     calculateResult: () => '',

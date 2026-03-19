@@ -313,5 +313,366 @@
     "snsDivider": "Compartir mi Lectura",
     "shareTitle": "Lectura de Tarot de 3 Cartas de Hoy",
     "shareText": "Mi tarot de 3 cartas hoy: {{cards}} ✨ mytesttype.com/tarot"
+  },
+  "pet": {
+    "appName": "Test de Personalidad de Mascotas",
+    "nav": {
+      "back": "← Volver al inicio"
+    },
+    "home": {
+      "title": "¿Cuál es la personalidad\nde tu mascota?",
+      "subtitle": "Descubre la naturaleza oculta\nde tu compañero en 15 preguntas",
+      "dog": "Test para perros",
+      "cat": "Test para gatos",
+      "footer": "15 preguntas · aprox. 3 min"
+    },
+    "quiz": {
+      "dogLabel": "Perro",
+      "catLabel": "Gato",
+      "testLabel": "Test de personalidad para {{label}}"
+    },
+    "result": {
+      "heading": "Resultado del test para {{label}}",
+      "notFound": "Resultado no encontrado.",
+      "descSection": "Descripción",
+      "traitsSection": "Características",
+      "ownerLabel": "💑 Tipo de dueño ideal",
+      "tipLabel": "Consejo para el dueño",
+      "saveBtn": "📸 Guardar imagen",
+      "savingBtn": "Guardando...",
+      "shareBtn": "🔗 Compartir con amigos",
+      "copiedBtn": "¡Enlace copiado!",
+      "retryBtn": "Repetir el test",
+      "compareWithFriends": "Comparar con amigos",
+      "linkCopied": "¡Enlace copiado! 🎉",
+      "savingImage": "Guardando...",
+      "imageSaved": "Guardado ✓",
+      "saveError": "Error al guardar la imagen 😢\n¡Intenta tomar una captura de pantalla!",
+      "shareCardTitle": "Guardar y compartir tu resultado",
+      "shareCardSub": "Comparte tu resultado con amigos"
+    },
+    "common": {
+      "saveImage": "Guardar Imagen",
+      "retake": "Repetir Test",
+      "takeOther": "Probar Otro Test"
+    }
+  },
+  "dog": {
+    "q1": {
+      "text": "Cuando tu dueño se prepara para salir, tú…",
+      "a0": "Corres emocionado a la puerta queriendo ir también",
+      "a1": "Mueves la cola y muestras la barriga para que te alaben",
+      "a2": "Lo sigues olfateando: ¿habrá un premio?",
+      "a3": "Que se vaya tranquilo, yo estaré bien solo"
+    },
+    "q2": {
+      "text": "Durante el paseo, te encuentras con otro perro. Tú…",
+      "a0": "Corres hacia él para olerlo e invitarlo a jugar",
+      "a1": "Mueves la cola y en segundos ya sois amigos",
+      "a2": "No te importa mucho, sigues olfateando el suelo",
+      "a3": "Te escondes detrás de las piernas de tu dueño"
+    },
+    "q3": {
+      "text": "¡Aparece un juguete nuevo! Tú…",
+      "a0": "Lo agarras, lo agitas y lo lanzas por todo el sitio",
+      "a1": "Se lo llevas a tu dueño para jugar juntos",
+      "a2": "Lo hueles para ver si es comestible",
+      "a3": "Lo hueles una vez y enseguida pierdes el interés"
+    },
+    "q4": {
+      "text": "¡Hora de comer! Tú…",
+      "a0": "No aguantas más y das vueltas frente al plato",
+      "a1": "Prefieres hacer contacto visual con tu dueño antes que comer",
+      "a2": "Terminas y sigues lamiendo el plato pidiendo más",
+      "a3": "Si hay comida, comes; si no, esperas tranquilo"
+    },
+    "q5": {
+      "text": "Tu dueño se sienta en el sofá. Tú…",
+      "a0": "Te pegas a su lado inmediatamente",
+      "a1": "Aprovechas el momento y saltas para hacerte con un sitio",
+      "a2": "Esperas que traiga un premio",
+      "a3": "Descansan cada uno en su sitio"
+    },
+    "q6": {
+      "text": "Un desconocido visita la casa. Tú…",
+      "a0": "Ladras, te abalanzas y empiezas a explorarle",
+      "a1": "Mueves la cola y enseguida muestras la barriga",
+      "a2": "Te escondes y no paras de ladrar desde lejos",
+      "a3": "Te da igual, estabas durmiendo y sigues durmiendo"
+    },
+    "q7": {
+      "text": "Tu dueño parece triste. Tú…",
+      "a0": "Te acercas, le lames y te quedas pegado a él",
+      "a1": "Traes un juguete para animarle",
+      "a2": "Te sientas en silencio a su lado",
+      "a3": "Algo va mal: te quedas paralizado mirando"
+    },
+    "q8": {
+      "text": "Llega el día del baño…",
+      "a0": "Sales corriendo hasta que te atrapan y te rindes",
+      "a1": "No hay remedio, así que te quedas quieto",
+      "a2": "Aguantas temblando mirando solo el premio",
+      "a3": "Ni te acercas a la bañera"
+    },
+    "q9": {
+      "text": "Tienes un accidente dentro de casa. Tú…",
+      "a0": "Bajas la cola al ver la cara que pone tu dueño",
+      "a1": "Ni te das cuenta de que está mal y sigues jugando",
+      "a2": "Sin vergüenza, vas a lamer a tu dueño",
+      "a3": "Observas desde lejos mientras lo limpia"
+    },
+    "q10": {
+      "text": "Después de estar solo mucho tiempo, tu dueño vuelve. Tú…",
+      "a0": "Saltas, ladras y le recibes con todo tu cuerpo",
+      "a1": "Le lanzas una avalancha explosiva de cariño",
+      "a2": "Hueles su bolsa buscando snacks",
+      "a3": "Te alegras, pero solo mueves la cola levemente"
+    },
+    "q11": {
+      "text": "¡Tiempo libre para correr en el parque! Tú…",
+      "a0": "Corres a toda velocidad explorando todo lo que ves",
+      "a1": "No paras de correr hacia la gente a saludar",
+      "a2": "Buscas algo en el suelo que puedas comer",
+      "a3": "Caminas un poco con tu dueño y luego descansas"
+    },
+    "q12": {
+      "text": "Solo en casa, tú…",
+      "a0": "Exploras la casa y juegas con los juguetes",
+      "a1": "Te quedas cerca de la ropa o bolsa de tu dueño para olerlos",
+      "a2": "Rondas alrededor del comedero",
+      "a3": "No tienes nada que hacer así que duermes"
+    },
+    "q13": {
+      "text": "Durante el entrenamiento (sentado, espera…), tú…",
+      "a0": "Reaccionas rápido y te emocionas",
+      "a1": "Te esfuerzas porque te encanta que te alaben",
+      "a2": "Sin premio, no lo haces",
+      "a3": "Finges no escuchar al principio, pero al final lo haces"
+    },
+    "q14": {
+      "text": "Un ruido extraño durante el paseo. Tú…",
+      "a0": "Vas corriendo hacia él con valentía",
+      "a1": "Te pegas bien a las piernas de tu dueño",
+      "a2": "Te paras, lo compruebas y sigues caminando tranquilo",
+      "a3": "Ni caso, seguías olfateando algo interesante"
+    },
+    "q15": {
+      "text": "Ahora mismo, ¿qué te hace más feliz?",
+      "a0": "Correr y jugar con mi dueño",
+      "a1": "Estar con toda la familia, que me abracen",
+      "a2": "Recibir un premio delicioso",
+      "a3": "Dormir tranquilo en mi sitio"
+    },
+    "results": {
+      "active": {
+        "title": "El aventurero energético",
+        "summary": "¡Correr, explorar, aventurar—necesita acción para ser feliz!",
+        "description": "Un perro lleno de energía que adora explorar y descubrir cosas nuevas todo el día. Cuanto más paseo y más juego, más feliz está. Cuando se aburre puede morder cosas o hacer travesuras, ¡así que el ejercicio diario es imprescindible!",
+        "trait0": "Ama el estilo de vida activo al aire libre",
+        "trait1": "Siempre explorando nuevos lugares y olores",
+        "trait2": "Disfruta de juegos rápidos y carreras",
+        "compatibleOwner": "Un dueño activo que disfruta de actividades al aire libre",
+        "ownerTip": "El ejercicio diario es esencial. ¡Paseos, carreras y frisbee son perfectos!"
+      },
+      "social": {
+        "title": "El encantador afectuoso",
+        "summary": "¡Mi dueño es mi mundo—soy más feliz cuando estamos juntos!",
+        "description": "Un perro increíblemente sociable que saca energía del amor y la atención. Estar solo puede ser difícil para él. Hace amigos con cualquiera al instante y tiene una habilidad mágica para ganarse a todos.",
+        "trait0": "Adora el contacto físico con su dueño",
+        "trait1": "Hace amigos con cualquiera al instante",
+        "trait2": "Puede sufrir ansiedad por separación",
+        "compatibleOwner": "Un dueño que pasa mucho tiempo en casa y expresa afecto con facilidad",
+        "ownerTip": "Es posible que necesite entrenamiento para estar solo. ¡Dale mucho amor y atención!"
+      },
+      "foodie": {
+        "title": "El sibarita absoluto",
+        "summary": "¡Nada supera la comida—dame un snack y haré lo que sea!",
+        "description": "La comida es su mayor motivación. Aprende trucos rapidísimo cuando hay premios. Tiene un olfato superpoderoso para la comida y se anima muchísimo en cualquier situación que la involucre.",
+        "trait0": "Los premios son la motivación definitiva",
+        "trait1": "Encuentra comida con el olfato como un experto",
+        "trait2": "Se convierte en un genio cuando aparece un snack",
+        "compatibleOwner": "Un dueño que controla los horarios de comida y disfruta del entrenamiento con premios",
+        "ownerTip": "¡Cuidado con comer en exceso! El control del peso es clave para su salud."
+      },
+      "calm": {
+        "title": "El independiente relajado",
+        "summary": "Estoy bien solo—lo que importa es mi propio ritmo",
+        "description": "Un perro independiente y tranquilo al que no le molesta estar solo. Valora su propio ritmo y no le gusta que le presionen. Gracias a su carácter estable y sereno, es el compañero de piso ideal.",
+        "trait0": "Se siente totalmente cómodo solo",
+        "trait1": "Valora su rutina y espacio personal",
+        "trait2": "Tranquilo y raramente estresado",
+        "compatibleOwner": "Un dueño ocupado que respeta la autonomía de su perro",
+        "ownerTip": "No le fuerces a jugar. ¡Respeta su ritmo y sus preferencias!"
+      },
+      "anxious": {
+        "title": "El sensible preocupado",
+        "summary": "Todo lo nuevo da miedo... solo confío en mi dueño",
+        "description": "Un alma sensible que se asusta fácilmente y se pone nervioso con lo nuevo. Necesita tiempo para acostumbrarse a personas, ruidos y lugares desconocidos. Pero cuando confía, es tremendamente leal y forma vínculos muy profundos.",
+        "trait0": "Se pone nervioso en entornos desconocidos",
+        "trait1": "Depende mucho de su dueño",
+        "trait2": "Necesita una socialización gradual",
+        "compatibleOwner": "Un dueño paciente, tranquilo y que comprende la sensibilidad",
+        "ownerTip": "Introdúcelo a cosas nuevas poco a poco y usa el refuerzo positivo para darle confianza."
+      }
+    }
+  },
+  "cat": {
+    "q1": {
+      "text": "Cuando tu dueño se levanta por la mañana, tú…",
+      "a0": "Te acercas con elegancia y das una vuelta a su alrededor",
+      "a1": "Corres a la ventana a mirar afuera",
+      "a2": "Le pisas la cara o maúllas fuerte pidiendo desayuno",
+      "a3": "Observas en silencio desde un rincón y desapareces"
+    },
+    "q2": {
+      "text": "¡Hora del snack! Tú…",
+      "a0": "Te acercas elegante, comes un par de bocados y te vas",
+      "a1": "Usas la pata para arrastrar el plato hacia ti",
+      "a2": "A veces simplemente no te importa la comida",
+      "a3": "Te acercas despacio y agarras la comida rápido"
+    },
+    "q3": {
+      "text": "Aparece un objeto nuevo en casa. Tú…",
+      "a0": "Te acercas directo a olerlo e investigarlo",
+      "a1": "Lo observas de lejos y luego te acercas despacio",
+      "a2": "Finges no importarte y lo compruebas cuando nadie mira",
+      "a3": "Lo empujas para ver si cae"
+    },
+    "q4": {
+      "text": "Tu dueño está viendo la tele. Tú…",
+      "a0": "Te sientas justo delante de la pantalla tapando la imagen",
+      "a1": "Observas a tu dueño en silencio desde un rincón",
+      "a2": "Te subes a su regazo y te apoderas del sitio",
+      "a3": "Algo que se mueve fuera es mucho más interesante"
+    },
+    "q5": {
+      "text": "Tu dueño está trabajando en el teclado. Tú…",
+      "a0": "Te subes encima del teclado",
+      "a1": "Juegas solo—no es problema tuyo",
+      "a2": "Golpeas el cursor que se mueve en la pantalla",
+      "a3": "Observas desde la distancia"
+    },
+    "q6": {
+      "text": "Un desconocido intenta tocarte. Tú…",
+      "a0": "Te apartas con gracia",
+      "a1": "Huyes y te escondes",
+      "a2": "Te quedas quieto, pero si te tocan sin permiso, zarpazos",
+      "a3": "Solo observas en silencio desde detrás"
+    },
+    "q7": {
+      "text": "Tu dueño agita un juguete (caña, pelota). Tú…",
+      "a0": "Esperas el momento preciso y atacas salvajemente",
+      "a1": "Juegas con entusiasmo un momento y luego pierdes el interés",
+      "a2": "Lo miras fijamente y luego te vas callado",
+      "a3": "No juegas a menos que realmente te divierta"
+    },
+    "q8": {
+      "text": "Un día de lluvia en casa. El ambiente es…",
+      "a0": "Sentado junto a la ventana escuchando la lluvia",
+      "a1": "Durmiendo la siesta elegante en el sofá",
+      "a2": "De repente empiezas a correr por toda la casa",
+      "a3": "Como siempre—sin más"
+    },
+    "q9": {
+      "text": "Tu dueño parece estresado. Tú…",
+      "a0": "Vas y te sientas en silencio a su lado",
+      "a1": "Te subes a su regazo y empiezas a acicalarte",
+      "a2": "Sales de tu habitación por el ruido",
+      "a3": "Sin reacción particular"
+    },
+    "q10": {
+      "text": "De noche te vuelves más activo. ¿Qué sueles hacer?",
+      "a0": "Tiras todo lo que haya sobre las superficies al suelo",
+      "a1": "Corres de un lado a otro en la oscuridad",
+      "a2": "Tranquilamente duermes en tu sitio",
+      "a3": "Vigilas la fauna salvaje exterior desde la ventana"
+    },
+    "q11": {
+      "text": "Te quedas solo en casa. Tú…",
+      "a0": "Disfrutas de la libertad total",
+      "a1": "Exploras cada rincón de la casa",
+      "a2": "Subes a lo alto y observas todo",
+      "a3": "Como siempre: siesta y luego acicalado"
+    },
+    "q12": {
+      "text": "Tu escondite favorito es…",
+      "a0": "El alféizar de la ventana o una estantería alta",
+      "a1": "Dentro de una caja oscura o un cajón",
+      "a2": "En el centro de la cama de tu dueño",
+      "a3": "Donde sea—te mueves libremente por la casa"
+    },
+    "q13": {
+      "text": "Tus hábitos de acicalado son…",
+      "a0": "Siempre que puedo—el aspecto perfecto es importante",
+      "a1": "Empieza de repente y para de repente",
+      "a2": "Lames la mano de tu dueño y luego te lames la tuya",
+      "a3": "De forma sistemática, de cabeza a pies"
+    },
+    "q14": {
+      "text": "Descubres un objeto de tu dueño. Tú…",
+      "a0": "Lo hueles y lo reivindicas como tu territorio (frote de cara)",
+      "a1": "Lo golpeas con la pata y lo empujas",
+      "a2": "Te metes dentro o te sientas encima",
+      "a3": "Lo observas en silencio desde lejos"
+    },
+    "q15": {
+      "text": "Ahora mismo, ¿cuándo eres más feliz?",
+      "a0": "Mirando toda la casa desde las alturas",
+      "a1": "¡Modo caza activado—atrapar algo que se mueve!",
+      "a2": "Cuando mi dueño me da cariño solo cuando yo quiero",
+      "a3": "Pasando tiempo tranquilo solo, sin interrupciones"
+    },
+    "results": {
+      "noble": {
+        "title": "El aristogato elegante",
+        "summary": "Yo dueño de esta casa—y nunca pierdo la dignidad",
+        "description": "Un gato de alta alcurnia con estándares impecables. No muestra afecto a cualquiera, pero cuando confía en alguien, ofrece un vínculo muy especial. Cada movimiento es pura elegancia y jamás compromete su dignidad.",
+        "trait0": "Muy particular con su aseo personal",
+        "trait1": "Solo muestra afecto a los elegidos",
+        "trait2": "Tiene rutinas y estándares propios firmes",
+        "compatibleOwner": "Un dueño que respeta la independencia felina y ofrece un ambiente tranquilo",
+        "ownerTip": "No fuerces los abrazos. ¡Espera a que el gato se acerque en sus propios términos!"
+      },
+      "free": {
+        "title": "El espíritu libre",
+        "summary": "Mi vida, mis reglas—por favor no interfieras",
+        "description": "Un espíritu salvaje no atado por reglas ni rutinas. Disfruta del tiempo solo y no le gusta que le fuercen a nada. Pero cuando le apetece, se acercará calurosamente—un encanto impredecible.",
+        "trait0": "Valora mucho su tiempo a solas",
+        "trait1": "Rechaza cualquier atención forzada",
+        "trait2": "Más feliz cuando tiene espacio libre",
+        "compatibleOwner": "Un dueño ocupado que confía y respeta a su gato",
+        "ownerTip": "¡Ofrécele escondites y alturas (árbol rascador) para explorar!"
+      },
+      "boss": {
+        "title": "El jefe de la casa",
+        "summary": "Todo aquí es mío—¡humano, a trabajar!",
+        "description": "Este gato sabe exactamente lo que quiere y tiene al dueño funcionando según su horario. El cariño se usa estratégicamente—cuando hace falta y con máximo efecto. Saben perfectamente que dirigen la casa.",
+        "trait0": "Hace sus demandas de forma clara y ruidosa",
+        "trait1": "Se considera el ser más importante de la casa",
+        "trait2": "Usa el encanto de forma estratégica cuando le conviene",
+        "compatibleOwner": "Un dueño con sentido del humor que acepta la autoridad del gato",
+        "ownerTip": "Establece límites claros—¡pero ser demasiado estricto saldrá mal!"
+      },
+      "hunter": {
+        "title": "El cazador nato",
+        "summary": "Todo lo que se mueve es mi presa—¡viviendo por instinto!",
+        "description": "Sentidos agudos e instinto cazador fuerte. Reacciona de inmediato a cualquier movimiento y cobra vida total cuando juega con juguetes. Prospera en entornos llenos de estimulación y movimiento.",
+        "trait0": "Reacciona al instante a cualquier movimiento",
+        "trait1": "Encuentra alegría pura en cazar juguetes",
+        "trait2": "Le encanta correr por espacios abiertos",
+        "compatibleOwner": "Un dueño que disfruta del juego interactivo con cañas o juguetes a motor",
+        "ownerTip": "¡Satisface su instinto cazador con juguetes variados y puzzles de comida!"
+      },
+      "observer": {
+        "title": "El observador frío",
+        "summary": "Lo veo todo—observo antes de actuar",
+        "description": "Un gato cauteloso y analítico que observa todo en silencio antes de moverse. No actúa precipitadamente—se toma tiempo para entender. Silencioso pero intensamente consciente de todo lo que ocurre a su alrededor.",
+        "trait0": "Observa a fondo antes de actuar",
+        "trait1": "Silencioso pero siempre alerta al entorno",
+        "trait2": "Le encanta mirar desde un punto elevado",
+        "compatibleOwner": "Un dueño tranquilo que respeta el espacio y el ritmo del gato",
+        "ownerTip": "¡Coloca un árbol rascador o estantería alta como mirador personal!"
+      }
+    }
   }
 }

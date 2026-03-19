@@ -54,7 +54,13 @@ Every package extends `tsconfig.base.json` which sets `composite: true`. The roo
 
 Korean-first, mobile-first personality test web app. Fully static React + Vite SPA.
 
-- **15+ experiences**: 13 personality tests + Tarot 3-card reading + K-Shaman fortune reading
+- **15+ experiences**: personality tests + Pet Type Test (dog/cat) + Tarot 3-card reading + K-Shaman fortune reading
+- **Pet Test**: Fully merged from pet-test artifact. Routes: `/pet-test` (home) → `/pet-test/quiz/:type` → `/pet-test/result/:type/:key`
+  - Data: `src/data/petData.ts` (DOG_TEST, CAT_TEST, getPetTest)
+  - Pages: `src/pages/pet-home.tsx`, `src/pages/pet-quiz.tsx`, `src/pages/pet-result.tsx`
+  - Components: `src/components/PetShareCard.tsx`
+  - Locale keys: `pet.*`, `dog.*`, `cat.*` in all 6 locale JSON files
+  - test-card.tsx links `pet-type-test` slug → `/pet-test`; test-detail.tsx redirects `pet-type-test` → `/pet-test`
 - **i18n**: 6 languages (ko/en/ja/es/pt-BR/fr) via `react-i18next`
   - UI strings: `src/locales/json/{ko,en,ja,es,pt-BR,fr}.json`
   - Language config: `src/lib/i18n.ts` — imports JSON files, exports `LANGUAGES` array and `setLanguage()`

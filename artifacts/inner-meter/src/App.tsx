@@ -19,6 +19,9 @@ import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
 import Contact from "@/pages/contact";
 import NotFound from "@/pages/not-found";
+import PetHome from "@/pages/pet-home";
+import PetQuiz from "@/pages/pet-quiz";
+import PetResult from "@/pages/pet-result";
 
 const queryClient = new QueryClient();
 
@@ -47,6 +50,9 @@ function Router() {
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
         <Route path="/contact" component={Contact} />
+        <Route path="/pet-test" component={PetHome} />
+        <Route path="/pet-test/quiz/:type" component={PetQuiz} />
+        <Route path="/pet-test/result/:type/:key" component={PetResult} />
         <Route component={NotFound} />
       </Switch>
     </>

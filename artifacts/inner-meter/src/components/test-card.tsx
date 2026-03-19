@@ -121,11 +121,11 @@ export function TestCard({ test }: TestCardProps) {
 
   const bodyProps: CardBodyProps = { test, theme, catLabel, count, title, description, estimatedTime, startLabel };
 
-  if (test.externalUrl) {
+  if (test.slug === 'pet-type-test') {
     return (
-      <a href={test.externalUrl} className="block h-full outline-none group">
+      <Link href="/pet-test" className="block h-full outline-none group">
         <CardBody {...bodyProps} />
-      </a>
+      </Link>
     );
   }
 
