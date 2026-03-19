@@ -193,7 +193,7 @@ export const DOG_TEST: PetTest = {
   ],
   calculateResult: (scores) => {
     const dims = ['active', 'social', 'foodie', 'calm', 'anxious'] as const;
-    let best = dims[0];
+    let best: (typeof dims)[number] = dims[0];
     for (const d of dims) {
       if ((scores[d] || 0) > (scores[best] || 0)) best = d;
     }
@@ -447,7 +447,7 @@ export const CAT_TEST: PetTest = {
   ],
   calculateResult: (scores) => {
     const dims = ['noble', 'free', 'boss', 'hunter', 'observer'] as const;
-    let best = dims[0];
+    let best: (typeof dims)[number] = dims[0];
     for (const d of dims) {
       if ((scores[d] || 0) > (scores[best] || 0)) best = d;
     }
