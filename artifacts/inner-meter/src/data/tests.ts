@@ -35,6 +35,7 @@ export interface Test {
   questions: TestQuestion[];
   results: TestResult[];
   calculateResult: (scores: Record<string, number>) => string;
+  externalUrl?: string;
 }
 
 const _tests: Test[] = [
@@ -2684,6 +2685,18 @@ const _tests: Test[] = [
       return 'psych-empath';
     },
   },
+  {
+    slug: 'pet-type-test',
+    title: '우리집 반려동물 성격 유형은?',
+    description: '강아지·고양이 15문항으로 우리 아이의 숨겨진 성향을 분석해 드려요!',
+    category: '재미 테스트',
+    estimatedTime: '3분',
+    emoji: '🐾',
+    externalUrl: '/pet-test/',
+    questions: [],
+    results: [],
+    calculateResult: () => '',
+  },
 ];
 
 const TEST_DISPLAY_ORDER = [
@@ -2691,6 +2704,7 @@ const TEST_DISPLAY_ORDER = [
   'love-language-test',
   'narcissist-test',
   'teto-egen-test',
+  'pet-type-test',
   'psychopath-test',
   'extreme-tf-test',
   'love-style-test',

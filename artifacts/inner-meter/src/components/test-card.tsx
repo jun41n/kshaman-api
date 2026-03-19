@@ -53,6 +53,57 @@ const PARTICIPANT_COUNTS: Record<string, { ko: string; ja: string; default: stri
   'intuition-vs-logic-test': { ko: '1.9만', ja: '1.9万', default: '19K' },
 };
 
+interface CardBodyProps {
+  test: Test;
+  theme: (typeof CATEGORY_THEME)[string] | undefined;
+  catLabel: string;
+  count: string | undefined;
+  title: string;
+  description: string;
+  estimatedTime: string;
+  startLabel: string;
+}
+
+function CardBody({ test, theme, catLabel, count, title, description, estimatedTime, startLabel }: CardBodyProps) {
+  const { t } = useTranslation();
+  return (
+    <div className={`h-full rounded-[1.5rem] p-5 md:p-6 flex flex-col border transition-all duration-250 ease-out hover:shadow-xl hover:-translate-y-1 hover:shadow-primary/8 ${theme?.card ?? 'bg-card border-border/50'}`}>
+      <div className="flex items-start justify-between mb-4">
+        <div className="w-14 h-14 rounded-2xl bg-white dark:bg-black/20 shadow-sm flex items-center justify-center text-[1.8rem] group-hover:scale-110 transition-transform duration-250 shrink-0">
+          {test.emoji}
+        </div>
+        <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full ${theme?.badge ?? 'bg-muted text-muted-foreground'}`}>
+          {catLabel}
+        </span>
+      </div>
+
+      <h3 className="text-base md:text-[1.05rem] font-bold text-foreground mb-1 line-clamp-2 leading-snug">
+        {title}
+      </h3>
+
+      {count && (
+        <p className="text-[11px] text-muted-foreground/65 mb-2 font-medium">
+          👥 {count} {t('card.participants')}
+        </p>
+      )}
+
+      <p className="text-muted-foreground text-[0.8rem] flex-grow line-clamp-2 mb-4 leading-relaxed">
+        {description}
+      </p>
+
+      <div className="flex items-center justify-between pt-3 border-t border-black/[0.06] dark:border-white/[0.06] mt-auto">
+        <div className="flex items-center text-[11px] text-muted-foreground font-medium gap-1">
+          <Clock className="w-3 h-3 opacity-60" />
+          {estimatedTime}
+        </div>
+        <div className="flex items-center text-[0.8rem] font-bold text-primary group-hover:translate-x-1 transition-transform duration-200">
+          {startLabel} <ChevronRight className="w-3.5 h-3.5 ml-0.5" />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function TestCard({ test }: TestCardProps) {
   const { t, i18n } = useTranslation();
   const localTest = useLocalizedTest(test.slug);
@@ -66,49 +117,21 @@ export function TestCard({ test }: TestCardProps) {
   const title = localTest?.title ?? test.title;
   const description = localTest?.description ?? test.description;
   const estimatedTime = localTest?.estimatedTime ?? test.estimatedTime;
+  const startLabel = t('card.start');
+
+  const bodyProps: CardBodyProps = { test, theme, catLabel, count, title, description, estimatedTime, startLabel };
+
+  if (test.externalUrl) {
+    return (
+      <a href={test.externalUrl} className="block h-full outline-none group">
+        <CardBody {...bodyProps} />
+      </a>
+    );
+  }
 
   return (
     <Link href={`/tests/${test.slug}`} className="block h-full outline-none group">
-      <div className={`h-full rounded-[1.5rem] p-5 md:p-6 flex flex-col border transition-all duration-250 ease-out hover:shadow-xl hover:-translate-y-1 hover:shadow-primary/8 ${theme?.card ?? 'bg-card border-border/50'}`}>
-
-        {/* Top row: emoji + badge */}
-        <div className="flex items-start justify-between mb-4">
-          <div className="w-14 h-14 rounded-2xl bg-white dark:bg-black/20 shadow-sm flex items-center justify-center text-[1.8rem] group-hover:scale-110 transition-transform duration-250 shrink-0">
-            {test.emoji}
-          </div>
-          <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full ${theme?.badge ?? 'bg-muted text-muted-foreground'}`}>
-            {catLabel}
-          </span>
-        </div>
-
-        {/* Title */}
-        <h3 className="text-base md:text-[1.05rem] font-bold text-foreground mb-1 line-clamp-2 leading-snug">
-          {title}
-        </h3>
-
-        {/* Participant count */}
-        {count && (
-          <p className="text-[11px] text-muted-foreground/65 mb-2 font-medium">
-            👥 {count} {t('card.participants')}
-          </p>
-        )}
-
-        {/* Description */}
-        <p className="text-muted-foreground text-[0.8rem] flex-grow line-clamp-2 mb-4 leading-relaxed">
-          {description}
-        </p>
-
-        {/* Footer */}
-        <div className="flex items-center justify-between pt-3 border-t border-black/[0.06] dark:border-white/[0.06] mt-auto">
-          <div className="flex items-center text-[11px] text-muted-foreground font-medium gap-1">
-            <Clock className="w-3 h-3 opacity-60" />
-            {estimatedTime}
-          </div>
-          <div className="flex items-center text-[0.8rem] font-bold text-primary group-hover:translate-x-1 transition-transform duration-200">
-            {t('card.start')} <ChevronRight className="w-3.5 h-3.5 ml-0.5" />
-          </div>
-        </div>
-      </div>
+      <CardBody {...bodyProps} />
     </Link>
   );
 }

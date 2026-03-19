@@ -43,6 +43,7 @@ export default function TestDetail() {
 
   useEffect(() => {
     if (!test) { setLocation("/tests"); return; }
+    if (test.externalUrl) { window.location.href = test.externalUrl; return; }
 
     // Only shuffle once per test session
     if (!initializedRef.current) {

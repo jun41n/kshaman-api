@@ -10,7 +10,7 @@ import { trackEvent } from "@/lib/analytics";
 import { useTranslation } from "react-i18next";
 
 const TRENDING_SLUGS = ['mbti-test', 'love-language-test', 'narcissist-test'];
-const NEW_SLUGS = ['teto-egen-test', 'psychopath-test'];
+const NEW_SLUGS = ['teto-egen-test', 'pet-type-test', 'psychopath-test'];
 
 export default function Home() {
   const { t } = useTranslation();
@@ -150,7 +150,7 @@ export default function Home() {
             <p className="text-muted-foreground text-sm mt-0.5">{t('home.newSub')}</p>
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {newTests.map((test, i) => (
             <motion.div
               key={test.slug}
