@@ -21,7 +21,7 @@ export default function Home() {
         </motion.div>
 
         <h1 className="text-3xl font-extrabold text-[#3D2B1F] leading-tight mb-2">
-          반려동물<br />성향 테스트
+          우리집 반려동물<br />성격 유형은?
         </h1>
         <p className="text-base text-[#8B6650] mt-2 mb-8 leading-relaxed">
           우리 아이의 숨겨진 성향을<br />15문항으로 알아보세요!
