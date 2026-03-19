@@ -674,5 +674,9 @@
         "ownerTip": "¡Coloca un árbol rascador o estantería alta como mirador personal!"
       }
     }
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "desc": "La página que solicitaste no existe."
   }
 }

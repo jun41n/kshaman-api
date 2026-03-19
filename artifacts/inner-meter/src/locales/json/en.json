@@ -724,5 +724,9 @@
         "ownerTip": "Set up a cat tower or high shelf as their personal observation deck!"
       }
     }
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "desc": "The page you requested does not exist."
   }
 }

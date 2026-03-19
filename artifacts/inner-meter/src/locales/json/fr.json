@@ -677,5 +677,9 @@
         "ownerTip": "Installez un arbre à chat ou une étagère haute comme poste d'observation personnel !"
       }
     }
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "desc": "La page que vous avez demandée n'existe pas."
   }
 }

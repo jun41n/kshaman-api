@@ -674,5 +674,9 @@
         "ownerTip": "Instale um arranhador alto ou prateleira como mirante pessoal do seu gato!"
       }
     }
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "desc": "A página que você solicitou não existe."
   }
 }
