@@ -39,6 +39,7 @@ export default function Quiz() {
         setSelected(null);
       } else {
         const resultKey = test.calculateResult(newScores);
+        sessionStorage.setItem(`pet_quiz_done_${petType}`, resultKey);
         navigate(`/result/${petType}/${resultKey}`);
       }
     }, 420);
