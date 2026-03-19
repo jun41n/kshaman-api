@@ -40,6 +40,7 @@ export default function PetQuiz() {
         setSelected(null);
       } else {
         const resultKey = test.calculateResult(newScores);
+        sessionStorage.setItem(`pet_quiz_done_${petType}`, resultKey);
         navigate(`/pet-test/result/${petType}/${resultKey}`);
       }
     }, 420);

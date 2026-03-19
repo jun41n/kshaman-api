@@ -7,13 +7,11 @@ import { getPetTest, PetType } from "@/data/petData";
 import PetShareCard from "@/components/PetShareCard";
 import { Layout } from "@/components/layout";
 
-async function downloadCardAsPng(el: HTMLDivElement, filename: string): Promise<Blob | null> {
+async function downloadCardAsPng(el: HTMLDivElement): Promise<Blob | null> {
   const { toBlob } = await import("html-to-image");
   const opts = { pixelRatio: 2, cacheBust: true, skipFonts: true, style: { borderRadius: '28px' } };
-  await toBlob(el, opts).catch(() => null);
-  const blobPromise = toBlob(el, opts);
   const timeout = new Promise<null>((_, reject) => setTimeout(() => reject(new Error('timeout')), 12_000));
-  return Promise.race([blobPromise, timeout]);
+  return Promise.race([toBlob(el, opts), timeout]);
 }
 
 export default function PetResult() {
@@ -32,6 +30,13 @@ export default function PetResult() {
 
   const test = getPetTest(petType);
   const result = test.results.find((r) => r.key === resultKey);
+
+  useEffect(() => {
+    const completed = sessionStorage.getItem(`pet_quiz_done_${petType}`);
+    if (!completed) {
+      navigate(`/pet-test/quiz/${petType}`);
+    }
+  }, [petType, navigate]);
 
   const updateCardScale = useCallback(() => {
     if (!previewWrapperRef.current) return;
@@ -62,7 +67,7 @@ export default function PetResult() {
     if (!cardRef.current || saving) return;
     setSaving(true);
     try {
-      const blob = await downloadCardAsPng(cardRef.current, `pet-result-${resultKey}`);
+      const blob = await downloadCardAsPng(cardRef.current);
       if (!blob) throw new Error('Failed to generate image');
 
       const file = new File([blob], `pet-result-${resultKey}.png`, { type: 'image/png' });
