@@ -1,6 +1,11 @@
 {
   "app": { "name": "Test de personnalité des animaux" },
-  "nav": { "back": "← Retour à l'accueil" },
+  "nav": { "back": "← Retour à l'accueil", "start": "Commencer" },
+  "footer": {
+    "tagline": "Découvrez la personnalité cachée de votre animal de façon amusante.",
+    "copyright": "© 2026 InnerMeter. Tous droits réservés.",
+    "backToMain": "Aller à InnerMeter"
+  },
   "home": {
     "title": "Quel est le type de\npersonnalité de votre animal ?",
     "subtitle": "Découvrez la vraie nature de votre\ncompagnon en 15 questions !",

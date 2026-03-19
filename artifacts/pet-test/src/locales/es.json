@@ -1,6 +1,11 @@
 {
   "app": { "name": "Test de Personalidad de Mascotas" },
-  "nav": { "back": "← Volver al inicio" },
+  "nav": { "back": "← Volver al inicio", "start": "Empezar" },
+  "footer": {
+    "tagline": "Descubre la personalidad oculta de tu mascota de forma divertida.",
+    "copyright": "© 2026 InnerMeter. Todos los derechos reservados.",
+    "backToMain": "Ir a InnerMeter"
+  },
   "home": {
     "title": "¿Cuál es la personalidad\nde tu mascota?",
     "subtitle": "Descubre la naturaleza oculta\nde tu compañero en 15 preguntas",

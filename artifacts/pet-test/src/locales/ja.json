@@ -1,6 +1,11 @@
 {
   "app": { "name": "ペット性格診断" },
-  "nav": { "back": "← ホームに戻る" },
+  "nav": { "back": "← ホームに戻る", "start": "はじめる" },
+  "footer": {
+    "tagline": "大切なペットの隠れた性格を楽しく発見しよう。",
+    "copyright": "© 2026 InnerMeter. All rights reserved.",
+    "backToMain": "InnerMeterへ"
+  },
   "home": {
     "title": "うちの子の\n性格タイプは？",
     "subtitle": "15問であなたのペットの\n隠れた個性を発見しよう！",

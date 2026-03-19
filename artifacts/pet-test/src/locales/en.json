@@ -1,6 +1,11 @@
 {
   "app": { "name": "Pet Personality Test" },
-  "nav": { "back": "← Back to Home" },
+  "nav": { "back": "← Back to Home", "start": "Get Started" },
+  "footer": {
+    "tagline": "Discover your pet's hidden personality in a fun and easy way.",
+    "copyright": "© 2026 InnerMeter. All rights reserved.",
+    "backToMain": "Go to InnerMeter"
+  },
   "home": {
     "title": "What's Your Pet's\nPersonality Type?",
     "subtitle": "Discover your pet's hidden nature\nin just 15 questions!",
