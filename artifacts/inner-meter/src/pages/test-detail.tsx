@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { trackTestStart, trackTestComplete } from "@/lib/analytics";
 import { useTranslation } from "react-i18next";
 import { useLocalizedTest } from "@/hooks/useLocalizedTest";
+import i18n from "@/lib/i18n";
 
 const OPTION_LABELS = ['A', 'B', 'C', 'D'];
 
@@ -43,7 +44,7 @@ export default function TestDetail() {
 
   useEffect(() => {
     if (!test) { setLocation("/tests"); return; }
-    if (test.externalUrl) { window.location.href = test.externalUrl; return; }
+    if (test.externalUrl) { window.scrollTo(0, 0); return; }
 
     // Only shuffle once per test session
     if (!initializedRef.current) {
@@ -73,6 +74,25 @@ export default function TestDetail() {
   }, [test, setLocation]);
 
   if (!test) return null;
+
+  /* ── Embedded external test (e.g. pet-type-test) ── */
+  if (test.externalUrl) {
+    const lng = i18n.language || 'ko';
+    const embedUrl = `${test.externalUrl}?embedded=1&lng=${lng}`;
+    return (
+      <Layout>
+        <div className="w-full" style={{ height: 'calc(100vh - 64px)' }}>
+          <iframe
+            src={embedUrl}
+            title={test.title}
+            className="w-full h-full border-0"
+            allow="clipboard-write"
+          />
+        </div>
+      </Layout>
+    );
+  }
+
   if (shuffledQuestions.length === 0) return null;
 
   const questions = shuffledQuestions;

@@ -1,15 +1,38 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import { useLocation } from "wouter";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import i18n from "@/lib/i18n";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
+function useEmbedded() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("embedded") === "1";
+}
+
 export function Layout({ children }: LayoutProps) {
   const { t } = useTranslation();
   const [, navigate] = useLocation();
+  const embedded = useEmbedded();
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const lng = params.get("lng");
+    if (lng && i18n.language !== lng) {
+      i18n.changeLanguage(lng);
+    }
+  }, []);
+
+  if (embedded) {
+    return (
+      <div className="min-h-screen flex flex-col bg-[#FDF8F2]">
+        <main className="flex-grow flex flex-col">{children}</main>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FDF8F2]">
