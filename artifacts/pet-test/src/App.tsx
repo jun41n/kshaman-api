@@ -1,5 +1,6 @@
 import { Switch, Route, Router as WouterRouter } from "wouter";
 import { Toaster } from "@/components/ui/toaster";
+import { Layout } from "@/components/Layout";
 import Home from "@/pages/Home";
 import Quiz from "@/pages/Quiz";
 import Result from "@/pages/Result";
@@ -20,7 +21,9 @@ export default function App() {
   return (
     <>
       <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-        <Router />
+        <Layout>
+          <Router />
+        </Layout>
       </WouterRouter>
       <Toaster />
     </>

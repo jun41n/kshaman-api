@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useParams, useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import { getPetTest, PetType } from "@/data/petData";
 
 export default function Quiz() {
   const params = useParams<{ type: string }>();
   const petType = params.type as PetType;
   const [, navigate] = useLocation();
+  const { t } = useTranslation();
 
   const test = getPetTest(petType);
   const [current, setCurrent] = useState(0);
@@ -16,6 +18,8 @@ export default function Quiz() {
 
   const q = test.questions[current];
   const progress = ((current) / test.questions.length) * 100;
+
+  const labelKey = petType === 'dog' ? 'quiz.dogLabel' : 'quiz.catLabel';
 
   function handleAnswer(optIdx: number) {
     if (selected !== null) return;
@@ -43,20 +47,22 @@ export default function Quiz() {
   const accentColor = petType === "dog" ? "#F97316" : "#A855F7";
   const accentLight = petType === "dog" ? "#FFF0E6" : "#F5EEFF";
 
+  const qKey = `${petType}.q${q.id}`;
+
   return (
-    <div className="min-h-screen bg-[#FDF8F2] flex flex-col">
-      <div className="px-4 pt-6 pb-2">
+    <div className="flex-1 flex flex-col">
+      <div className="px-4 pt-6 pb-2 max-w-sm mx-auto w-full">
         <button
           className="text-[#8B6650] text-sm mb-4 flex items-center gap-1"
           onClick={() => navigate("/")}
         >
-          ← 처음으로
+          {t('nav.back')}
         </button>
 
         <div className="flex items-center gap-2 mb-1">
           <span className="text-lg">{test.emoji}</span>
           <span className="text-sm font-semibold text-[#8B6650]">
-            {test.label}용 테스트
+            {t('quiz.testLabel', { label: t(labelKey) })}
           </span>
         </div>
 
@@ -75,7 +81,7 @@ export default function Quiz() {
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col px-4 pb-8">
+      <div className="flex-1 flex flex-col px-4 pb-8 max-w-sm mx-auto w-full">
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={current}
@@ -95,7 +101,7 @@ export default function Quiz() {
                 Q{q.id}
               </p>
               <p className="text-xl font-bold text-[#3D2B1F] leading-snug">
-                {q.text}
+                {t(`${qKey}.text`)}
               </p>
             </div>
 
@@ -127,7 +133,7 @@ export default function Quiz() {
                       >
                         {String.fromCharCode(65 + idx)}
                       </span>
-                      <span>{opt.label}</span>
+                      <span>{t(`${qKey}.a${idx}`)}</span>
                     </span>
                   </motion.button>
                 );

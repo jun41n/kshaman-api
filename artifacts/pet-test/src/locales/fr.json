@@ -1,0 +1,347 @@
+{
+  "app": { "name": "Test de personnalité des animaux" },
+  "nav": { "back": "← Retour à l'accueil" },
+  "home": {
+    "title": "Quel est le type de\npersonnalité de votre animal ?",
+    "subtitle": "Découvrez la vraie nature de votre\ncompagnon en 15 questions !",
+    "dog": "Test pour chiens",
+    "cat": "Test pour chats",
+    "footer": "15 questions · environ 3 min"
+  },
+  "quiz": {
+    "dogLabel": "Chien",
+    "catLabel": "Chat",
+    "testLabel": "Test de personnalité pour {{label}}"
+  },
+  "result": {
+    "heading": "Résultat du test pour {{label}}",
+    "notFound": "Résultat introuvable.",
+    "descSection": "Description",
+    "traitsSection": "Traits",
+    "ownerLabel": "💑 Type de maître idéal",
+    "tipLabel": "Conseil pour le maître",
+    "saveBtn": "📸 Enregistrer l'image",
+    "savingBtn": "Enregistrement...",
+    "shareBtn": "🔗 Partager avec des amis",
+    "copiedBtn": "Lien copié !",
+    "retryBtn": "Refaire le test"
+  },
+  "dog": {
+    "q1": {
+      "text": "Quand votre maître se prépare à sortir, vous…",
+      "a0": "Courez excité vers la porte pour partir avec lui",
+      "a1": "Remuez la queue et montrez votre ventre pour être félicité",
+      "a2": "Le suivez en reniflant — peut-être une friandise ?",
+      "a3": "Pas de problème, je resterai bien seul ici"
+    },
+    "q2": {
+      "text": "En balade, vous rencontrez un autre chien. Vous…",
+      "a0": "Vous précipitez pour renifler et inviter à jouer",
+      "a1": "Remuez la queue et devenez amis immédiatement",
+      "a2": "À peine intéressé — vous renifllez le sol",
+      "a3": "Vous cachez derrière les jambes de votre maître"
+    },
+    "q3": {
+      "text": "Un tout nouveau jouet apparaît ! Vous…",
+      "a0": "L'attrapez, le secouez et le lancez partout",
+      "a1": "L'apportez à votre maître pour jouer ensemble",
+      "a2": "Le renifllez pour vérifier si c'est mangeable",
+      "a3": "Le renifllez une fois, puis perdez l'intérêt"
+    },
+    "q4": {
+      "text": "C'est l'heure de manger ! Vous…",
+      "a0": "Ne tenez plus — tournez en rond devant la gamelle",
+      "a1": "Préférez regarder votre maître dans les yeux plutôt que manger",
+      "a2": "Finissez et léchez la gamelle pour en avoir plus",
+      "a3": "Mangez si c'est là, attendez patiemment sinon"
+    },
+    "q5": {
+      "text": "Votre maître s'assoit sur le canapé. Vous…",
+      "a0": "Vous collez immédiatement à côté de lui",
+      "a1": "Saisissez l'occasion et sautez pour occuper une place",
+      "a2": "Attendez qu'il apporte une friandise",
+      "a3": "Vous reposez chacun à votre endroit"
+    },
+    "q6": {
+      "text": "Un inconnu rend visite. Vous…",
+      "a0": "Aboyez, chargez et commencez à explorer la personne",
+      "a1": "Remuez la queue et montrez immédiatement votre ventre",
+      "a2": "Vous cachez et continuez à aboyer de loin",
+      "a3": "Peu importe — vous dormiez et continuez à dormir"
+    },
+    "q7": {
+      "text": "Votre maître a l'air triste. Vous…",
+      "a0": "Vous approchez, léchez et restez collé à lui",
+      "a1": "Apportez un jouet pour le remonter le moral",
+      "a2": "Vous asseyez silencieusement à côté de lui",
+      "a3": "Quelque chose ne va pas — vous figez et regardez"
+    },
+    "q8": {
+      "text": "C'est le jour du bain…",
+      "a0": "Vous enfuyez jusqu'à être attrapé, puis abandonnez",
+      "a1": "Pas le choix, vous restez debout là",
+      "a2": "Supportez en tremblant, les yeux rivés sur la friandise",
+      "a3": "Refusez d'aller n'importe où près de la baignoire"
+    },
+    "q9": {
+      "text": "Vous avez un accident à l'intérieur. Vous…",
+      "a0": "Baissez la queue quand vous voyez l'expression de votre maître changer",
+      "a1": "Ne réalisez même pas que c'était mal et continuez à jouer",
+      "a2": "Sans vous en rendre compte, allez lécher votre maître",
+      "a3": "Observez de loin pendant que votre maître nettoie"
+    },
+    "q10": {
+      "text": "Après avoir été seul longtemps, votre maître rentre. Vous…",
+      "a0": "Sautez, aboyez et accueillez avec tout votre corps",
+      "a1": "Déclenchez une vague explosive d'affection",
+      "a2": "Renifllez le sac à la recherche de friandises",
+      "a3": "Content de le voir, mais remuez juste légèrement la queue"
+    },
+    "q11": {
+      "text": "Temps libre pour courir au parc ! Vous…",
+      "a0": "Courez à toute vitesse en explorant tout",
+      "a1": "Courez sans cesse vers les gens pour les saluer",
+      "a2": "Cherchez quelque chose par terre à manger",
+      "a3": "Marchez un peu avec votre maître, puis vous reposez"
+    },
+    "q12": {
+      "text": "Seul à la maison, vous…",
+      "a0": "Explorez la maison et jouez avec les jouets",
+      "a1": "Restez près des vêtements ou du sac de votre maître pour les renifler",
+      "a2": "Tournez autour de la gamelle",
+      "a3": "Rien à faire, alors vous dormez"
+    },
+    "q13": {
+      "text": "Pendant l'entraînement (assis, reste…), vous…",
+      "a0": "Réagissez rapidement et êtes enthousiaste",
+      "a1": "Faites des efforts car vous adorez les félicitations",
+      "a2": "Sans friandise, vous ne faites rien",
+      "a3": "Faites semblant de ne pas entendre au début, puis obéissez"
+    },
+    "q14": {
+      "text": "Un bruit étrange pendant la balade. Vous…",
+      "a0": "Vous précipitez courageusement vers le son",
+      "a1": "Vous collez bien aux jambes de votre maître",
+      "a2": "Vous arrêtez, vérifiez et continuez tranquillement",
+      "a3": "Peu importe — vous reniflliez quelque chose d'intéressant"
+    },
+    "q15": {
+      "text": "En ce moment, qu'est-ce qui vous rend le plus heureux ?",
+      "a0": "Courir et jouer avec mon maître",
+      "a1": "La famille entière réunie, être câliné",
+      "a2": "Recevoir une délicieuse friandise",
+      "a3": "Dormir tranquillement à ma place"
+    },
+    "results": {
+      "active": {
+        "title": "L'aventurier énergique",
+        "summary": "Courir, explorer, s'aventurer — il faut de l'action pour être heureux !",
+        "description": "Un chien plein d'énergie qui adore explorer et découvrir de nouvelles choses toute la journée. Plus il y a de promenades et de jeux, plus il est heureux. Quand il s'ennuie, il peut mâcher des objets ou faire des bêtises — l'exercice quotidien est indispensable !",
+        "trait0": "Adore le style de vie actif en plein air",
+        "trait1": "Toujours à explorer de nouveaux endroits et odeurs",
+        "trait2": "Apprécie les jeux rapides et les courses",
+        "compatibleOwner": "Un maître actif qui aime les activités en plein air",
+        "ownerTip": "L'exercice quotidien est essentiel. Promenades, courses et frisbee sont parfaits !"
+      },
+      "social": {
+        "title": "Le charmeur affectueux",
+        "summary": "Mon maître est tout mon monde — je suis plus heureux quand nous sommes ensemble !",
+        "description": "Un chien incroyablement sociable qui tire son énergie de l'amour et de l'attention. Être seul peut être difficile pour lui. Il se fait des amis avec n'importe qui instantanément et a une capacité magique à conquérir tout le monde.",
+        "trait0": "Adore le contact physique avec son maître",
+        "trait1": "Se fait des amis avec n'importe qui instantanément",
+        "trait2": "Peut souffrir d'anxiété de séparation",
+        "compatibleOwner": "Un maître qui reste souvent à la maison et exprime facilement son affection",
+        "ownerTip": "Un entraînement pour rester seul peut être nécessaire. Donnez beaucoup d'attention et d'amour !"
+      },
+      "foodie": {
+        "title": "Le gourmet absolu",
+        "summary": "Rien ne surpasse la nourriture — donnez-moi une friandise et je ferai n'importe quoi !",
+        "description": "La nourriture est la plus grande motivation. Apprend les tours très vite quand il y a des friandises. A un flair supersensible pour la nourriture et réagit avec le plus d'enthousiasme dans toute situation liée à la nourriture.",
+        "trait0": "Les friandises sont la motivation ultime",
+        "trait1": "Trouve la nourriture à l'odeur comme un expert",
+        "trait2": "Devient un génie dès qu'une friandise apparaît",
+        "compatibleOwner": "Un maître qui gère les horaires de repas et apprécie l'entraînement aux friandises",
+        "ownerTip": "Attention à la suralimentation ! La gestion du poids est clé pour la santé."
+      },
+      "calm": {
+        "title": "L'indépendant détendu",
+        "summary": "Je vais bien seul — mon rythme est ce qui compte",
+        "description": "Un chien indépendant et détendu qui ne se soucie pas de la solitude. Il valorise son propre rythme et n'aime pas être pressé. Grâce à son caractère calme et stable, c'est le meilleur colocataire !",
+        "trait0": "Totalement à l'aise seul",
+        "trait1": "Tient à sa routine et son espace personnel",
+        "trait2": "Calme et rarement stressé",
+        "compatibleOwner": "Un maître occupé qui respecte l'autonomie de son chien",
+        "ownerTip": "Ne forcez pas les jeux. Respectez le rythme et les préférences de votre chien !"
+      },
+      "anxious": {
+        "title": "Le sensible inquiet",
+        "summary": "Tout ce qui est nouveau fait peur... je ne fais confiance qu'à mon maître",
+        "description": "Une âme sensible qui se fait facilement peur et devient anxieuse face aux nouveautés. A besoin de temps pour s'habituer aux étrangers, bruits et lieux inconnus. Mais une fois la confiance établie, il est d'une loyauté absolue et crée des liens profonds.",
+        "trait0": "Se sent anxieux dans des environnements inconnus",
+        "trait1": "Dépend beaucoup de son maître",
+        "trait2": "A besoin d'une socialisation progressive",
+        "compatibleOwner": "Un maître patient, calme et qui comprend la sensibilité",
+        "ownerTip": "Introduisez les nouveautés progressivement et utilisez le renforcement positif pour renforcer la confiance !"
+      }
+    }
+  },
+  "cat": {
+    "q1": {
+      "text": "Quand votre maître se lève le matin, vous…",
+      "a0": "Marchez gracieusement jusqu'à lui et tournez autour",
+      "a1": "Courez à la fenêtre pour regarder dehors",
+      "a2": "Marchez sur son visage ou miaulez fort pour le petit-déjeuner",
+      "a3": "Observez silencieusement depuis un coin, puis disparaissez"
+    },
+    "q2": {
+      "text": "C'est l'heure de la friandise ! Vous…",
+      "a0": "Approchez élégamment, mangez deux bouchées et repartez",
+      "a1": "Utilisez votre patte pour tirer la gamelle vers vous",
+      "a2": "Parfois vous n'avez tout simplement pas faim",
+      "a3": "Approchez doucement et attrapez la nourriture rapidement"
+    },
+    "q3": {
+      "text": "Un nouvel objet apparaît dans la maison. Vous…",
+      "a0": "Allez directement le renifler et l'examiner",
+      "a1": "L'observez de loin puis approchez lentement",
+      "a2": "Feignez de ne pas vous en soucier et vérifiez quand personne ne regarde",
+      "a3": "Le poussez pour voir ce qui se passe"
+    },
+    "q4": {
+      "text": "Votre maître regarde la TV. Vous…",
+      "a0": "Vous asseyez juste devant l'écran pour le bloquer",
+      "a1": "Observez votre maître silencieusement depuis un coin",
+      "a2": "Montez sur ses genoux et occupez la place",
+      "a3": "Quelque chose qui bouge dehors est bien plus intéressant"
+    },
+    "q5": {
+      "text": "Votre maître travaille sur le clavier. Vous…",
+      "a0": "Montez directement sur le clavier",
+      "a1": "Jouez seul — ce n'est pas votre problème",
+      "a2": "Frappez le curseur qui se déplace sur l'écran",
+      "a3": "Observez de loin"
+    },
+    "q6": {
+      "text": "Un inconnu essaie de vous caresser. Vous…",
+      "a0": "Vous écartez gracieusement",
+      "a1": "Fuyez et vous cachez",
+      "a2": "Restez immobile — mais griffez si touché sans permission",
+      "a3": "Observez simplement en silence par derrière"
+    },
+    "q7": {
+      "text": "Votre maître agite un jouet (canne, balle). Vous…",
+      "a0": "Attendez le bon moment puis attaquez sauvagement",
+      "a1": "Jouez avec enthousiasme un moment puis perdez l'intérêt",
+      "a2": "Regardez fixement puis partez silencieusement",
+      "a3": "Ne jouez pas à moins que ce soit vraiment amusant"
+    },
+    "q8": {
+      "text": "Un jour de pluie à la maison. L'ambiance est…",
+      "a0": "Assis près de la fenêtre à écouter la pluie",
+      "a1": "Faisant une sieste élégante sur le canapé",
+      "a2": "Soudainement commencer à courir partout dans la maison",
+      "a3": "Comme d'habitude — rien de spécial"
+    },
+    "q9": {
+      "text": "Votre maître semble stressé. Vous…",
+      "a0": "Venez vous asseoir silencieusement à côté de lui",
+      "a1": "Montez sur ses genoux et commencez à faire votre toilette",
+      "a2": "Sortez de votre pièce à cause du bruit",
+      "a3": "Pas de réaction particulière"
+    },
+    "q10": {
+      "text": "La nuit, vous devenez plus actif. Que faites-vous ?",
+      "a0": "Faites tomber tout ce qui traîne sur les surfaces",
+      "a1": "Courez dans tous les sens dans le noir",
+      "a2": "Dormez tranquillement à votre place",
+      "a3": "Surveillez la faune sauvage dehors par la fenêtre"
+    },
+    "q11": {
+      "text": "Laissé seul à la maison, vous…",
+      "a0": "Profitez d'une liberté totale",
+      "a1": "Explorez chaque coin de la maison",
+      "a2": "Montez quelque part en hauteur et observez tout",
+      "a3": "Faites une sieste puis votre toilette comme d'habitude"
+    },
+    "q12": {
+      "text": "Votre cachette préférée est…",
+      "a0": "L'appui de fenêtre ou une étagère haute",
+      "a1": "Dans une boîte sombre ou un tiroir",
+      "a2": "Au centre du lit de votre maître",
+      "a3": "N'importe où dans la maison — vous circulez librement"
+    },
+    "q13": {
+      "text": "Vos habitudes de toilettage sont…",
+      "a0": "Chaque fois que possible — l'apparence parfaite est importante",
+      "a1": "Commencez soudainement et arrêtez soudainement",
+      "a2": "Léchez la main de votre maître puis votre propre patte",
+      "a3": "De façon systématique, de la tête à la queue"
+    },
+    "q14": {
+      "text": "Vous découvrez un objet de votre maître. Vous…",
+      "a0": "Le renifllez et le revendiquez comme votre territoire (frottement de joue)",
+      "a1": "Tapotez-le avec la patte puis le poussez",
+      "a2": "Entrez dedans ou asseyez-vous dessus",
+      "a3": "L'observez silencieusement de loin"
+    },
+    "q15": {
+      "text": "En ce moment, quand êtes-vous le plus heureux ?",
+      "a0": "Regardant toute la maison d'en haut",
+      "a1": "Mode chasse activé — attraper quelque chose qui bouge !",
+      "a2": "Quand mon maître me câline seulement quand je le veux",
+      "a3": "Passer du temps calme seul sans interruptions"
+    },
+    "results": {
+      "noble": {
+        "title": "L'aristochat élégant",
+        "summary": "Je suis le maître de cette maison — et je ne perds jamais ma dignité",
+        "description": "Un chat de haut rang avec des standards impeccables. Il ne montre pas son affection à n'importe qui, mais quand il fait confiance à quelqu'un, il offre un lien très spécial. Chaque mouvement est pure élégance et il ne compromet jamais sa dignité.",
+        "trait0": "Très attentif à son entretien personnel",
+        "trait1": "Ne montre son affection qu'aux élus",
+        "trait2": "A des routines et standards personnels bien établis",
+        "compatibleOwner": "Un maître qui respecte l'indépendance féline et offre un environnement calme",
+        "ownerTip": "Ne forcez pas les câlins. Attendez que le chat s'approche à ses propres conditions !"
+      },
+      "free": {
+        "title": "L'esprit libre",
+        "summary": "Ma vie, mes règles — n'interférez pas s'il vous plaît",
+        "description": "Un esprit sauvage non lié par les règles ou les routines. Apprécie le temps seul et n'aime pas être forcé à quoi que ce soit. Mais quand il en a envie, il s'approche chaleureusement — un charme imprévisible qui lui appartient.",
+        "trait0": "Chérit son temps seul",
+        "trait1": "Rejette toute attention forcée",
+        "trait2": "Plus heureux quand il a de l'espace libre",
+        "compatibleOwner": "Un maître occupé qui fait confiance et respecte son chat",
+        "ownerTip": "Offrez des cachettes et des perchoirs (arbre à chat) pour explorer !"
+      },
+      "boss": {
+        "title": "Le boss de la maison",
+        "summary": "Tout ici m'appartient — humain, fais ton travail !",
+        "description": "Ce chat sait exactement ce qu'il veut et a le maître qui fonctionne selon son calendrier. L'affection est utilisée stratégiquement — quand nécessaire et avec un effet maximal. Il sait parfaitement qu'il dirige la maison.",
+        "trait0": "Formule ses exigences clairement",
+        "trait1": "Se considère l'être le plus important de la maison",
+        "trait2": "Utilise le charme stratégiquement quand nécessaire",
+        "compatibleOwner": "Un maître avec le sens de l'humour qui accepte l'autorité du chat",
+        "ownerTip": "Fixez des limites claires — mais être trop strict se retournera contre vous !"
+      },
+      "hunter": {
+        "title": "Le chasseur né",
+        "summary": "Tout ce qui bouge est ma proie — vivre par instinct !",
+        "description": "Des sens aiguisés et un fort instinct de chasse. Réagit immédiatement à tout mouvement et s'épanouit pleinement quand il joue avec des jouets. Prospère dans un environnement plein de stimulation et de mouvement.",
+        "trait0": "Réagit instantanément à tout mouvement",
+        "trait1": "Trouve une joie pure à chasser les jouets",
+        "trait2": "Adore courir dans des espaces ouverts",
+        "compatibleOwner": "Un maître qui adore le jeu interactif avec canne ou jouets motorisés",
+        "ownerTip": "Satisfaisez l'instinct de chasse avec des jouets variés et des distributeurs alimentaires !"
+      },
+      "observer": {
+        "title": "L'observateur froid",
+        "summary": "Je vois tout — j'observe avant d'agir",
+        "description": "Un chat prudent et analytique qui observe tout silencieusement avant de bouger. Il n'agit pas à la hâte — il prend le temps de comprendre. Silencieux mais intensément conscient de tout ce qui se passe autour de lui.",
+        "trait0": "Observe soigneusement avant d'agir",
+        "trait1": "Silencieux mais toujours conscient de son environnement",
+        "trait2": "Adore regarder de haut",
+        "compatibleOwner": "Un maître calme qui respecte l'espace et le rythme du chat",
+        "ownerTip": "Installez un arbre à chat ou une étagère haute comme poste d'observation personnel !"
+      }
+    }
+  }
+}

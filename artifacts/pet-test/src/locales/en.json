@@ -1,0 +1,347 @@
+{
+  "app": { "name": "Pet Personality Test" },
+  "nav": { "back": "← Back to Home" },
+  "home": {
+    "title": "What's Your Pet's\nPersonality Type?",
+    "subtitle": "Discover your pet's hidden nature\nin just 15 questions!",
+    "dog": "Dog Personality Test",
+    "cat": "Cat Personality Test",
+    "footer": "15 questions · approx. 3 min"
+  },
+  "quiz": {
+    "dogLabel": "Dog",
+    "catLabel": "Cat",
+    "testLabel": "{{label}} Personality Test"
+  },
+  "result": {
+    "heading": "{{label}} Test Result",
+    "notFound": "Result not found.",
+    "descSection": "Description",
+    "traitsSection": "Traits",
+    "ownerLabel": "💑 Your Perfect Owner Type",
+    "tipLabel": "Owner TIP",
+    "saveBtn": "📸 Save as Image",
+    "savingBtn": "Saving...",
+    "shareBtn": "🔗 Share with Friends",
+    "copiedBtn": "Link Copied!",
+    "retryBtn": "Take the Test Again"
+  },
+  "dog": {
+    "q1": {
+      "text": "When your owner gets ready to go out, you…",
+      "a0": "Run to the door excitedly, trying to come along",
+      "a1": "Wag your tail and show your belly for praise",
+      "a2": "Follow them around sniffing—maybe there's a treat?",
+      "a3": "That's fine, I'll just stay here on my own"
+    },
+    "q2": {
+      "text": "During a walk, you meet another dog. You…",
+      "a0": "Rush over to sniff and invite them to play",
+      "a1": "Wag your tail and instantly make a new friend",
+      "a2": "Barely notice—you're busy sniffing the ground",
+      "a3": "Hide behind your owner's legs"
+    },
+    "q3": {
+      "text": "A brand-new toy appears! You…",
+      "a0": "Grab it, shake it, and toss it around wildly",
+      "a1": "Bring it to your owner to play together",
+      "a2": "Sniff it to check if it's edible",
+      "a3": "Give it one sniff, then lose interest"
+    },
+    "q4": {
+      "text": "It's mealtime! You…",
+      "a0": "Can't wait—pace circles in front of your bowl",
+      "a1": "Prefer making eye contact with your owner over eating",
+      "a2": "Finish the meal and lick the bowl for more",
+      "a3": "Eat if it's there, wait patiently if not"
+    },
+    "q5": {
+      "text": "Your owner sits on the sofa. You…",
+      "a0": "Squeeze in right next to them",
+      "a1": "Seize the chance and jump up to claim a spot",
+      "a2": "Wait nearby hoping for a snack",
+      "a3": "Rest on your own bed, doing your own thing"
+    },
+    "q6": {
+      "text": "A stranger visits the house. You…",
+      "a0": "Bark, charge over, sniff, and explore them",
+      "a1": "Wag your tail and immediately show your belly",
+      "a2": "Hide somewhere and keep barking from a distance",
+      "a3": "Don't care—you were napping and keep napping"
+    },
+    "q7": {
+      "text": "Your owner looks upset. You…",
+      "a0": "Go over, lick them, and stay glued to their side",
+      "a1": "Bring a toy to cheer them up",
+      "a2": "Sit quietly beside them",
+      "a3": "Something feels wrong—you freeze and just stare"
+    },
+    "q8": {
+      "text": "Bath day arrives. You…",
+      "a0": "Run away until caught, then give up",
+      "a1": "Can't avoid it, so you just stand there",
+      "a2": "Tremble through it while staring at the treat",
+      "a3": "Refuse to go anywhere near the bathtub"
+    },
+    "q9": {
+      "text": "You accidentally have an indoor accident. You…",
+      "a0": "Tuck your tail when you see your owner's expression change",
+      "a1": "Don't even realize it was wrong and keep playing",
+      "a2": "Obliviously go over and lick your owner",
+      "a3": "Watch from a distance while your owner cleans up"
+    },
+    "q10": {
+      "text": "After being alone for a long time, your owner comes home. You…",
+      "a0": "Jump, bark, and greet them with your whole body",
+      "a1": "Unleash an explosive wave of affection",
+      "a2": "Sniff their bag for snack clues",
+      "a3": "Happy to see them, but just give a small tail wag"
+    },
+    "q11": {
+      "text": "Free run time at the park! You…",
+      "a0": "Sprint full speed, exploring everything in sight",
+      "a1": "Keep running up to people to say hello",
+      "a2": "Hunt the ground for anything that might be food",
+      "a3": "Walk a little beside your owner, then rest"
+    },
+    "q12": {
+      "text": "Alone at home, you…",
+      "a0": "Explore the house and play with toys",
+      "a1": "Hang around your owner's clothes or bag to smell them",
+      "a2": "Hover around the food bowl",
+      "a3": "Nothing special to do, so you sleep"
+    },
+    "q13": {
+      "text": "During training (sit, stay, etc.), you…",
+      "a0": "Respond quickly and get excited about it",
+      "a1": "Try hard because you love your owner's praise",
+      "a2": "Refuse unless there's a treat",
+      "a3": "Pretend not to hear at first, then comply"
+    },
+    "q14": {
+      "text": "A strange sound during your walk. You…",
+      "a0": "Bravely charge toward the sound",
+      "a1": "Press close behind your owner's legs",
+      "a2": "Stop, check it out, then calmly walk on",
+      "a3": "Don't care—you were sniffing something interesting"
+    },
+    "q15": {
+      "text": "Right now, what makes you happiest?",
+      "a0": "Running and playing with my owner",
+      "a1": "The whole family together, cuddle time",
+      "a2": "Getting a delicious treat",
+      "a3": "Sleeping quietly in my own spot"
+    },
+    "results": {
+      "active": {
+        "title": "The Energetic Adventurer",
+        "summary": "Run, explore, adventure—this pup needs action to be happy!",
+        "description": "A high-energy explorer who loves dashing around and discovering new things all day long. The more walks and playtime, the happier this dog gets. When bored, they may chew things or get mischievous—so daily exercise is a must!",
+        "trait0": "Loves an active outdoor lifestyle",
+        "trait1": "Always sniffing out new places and smells",
+        "trait2": "Enjoys fast play and running",
+        "compatibleOwner": "An active owner who loves outdoor activities",
+        "ownerTip": "Daily exercise is essential. Walks, running, and frisbee are perfect!"
+      },
+      "social": {
+        "title": "The Affectionate Charmer",
+        "summary": "My owner is my whole world—I'm happiest when we're together!",
+        "description": "An incredibly sociable pup who draws energy from love and attention. Being alone can be tough for them. They instantly befriend anyone they meet and have a magical ability to win everyone over!",
+        "trait0": "Loves physical affection from their owner",
+        "trait1": "Makes friends with anyone, instantly",
+        "trait2": "May suffer from separation anxiety",
+        "compatibleOwner": "An owner who stays home often and expresses affection freely",
+        "ownerTip": "Alone training may be needed. Give plenty of attention and love!"
+      },
+      "foodie": {
+        "title": "The Ultimate Foodie",
+        "summary": "Nothing beats food—give me snacks and I'll do anything!",
+        "description": "Food is the greatest motivator—nothing can top a tasty treat! This pup learns tricks quickly when snacks are involved, has a super-sensitive nose for food, and lights up brightest in any food-related situation.",
+        "trait0": "Snacks are the ultimate motivation",
+        "trait1": "Can sniff out food like a pro",
+        "trait2": "A genius dog the moment a treat appears",
+        "compatibleOwner": "An owner who manages meal schedules and enjoys treat-based training",
+        "ownerTip": "Watch out for overeating! Weight management is key to good health."
+      },
+      "calm": {
+        "title": "The Relaxed Independent",
+        "summary": "I'm just fine alone—my pace matters most",
+        "description": "An independent and laid-back pup who doesn't mind alone time. They value their own rhythm and dislike being pushed around. Thanks to their calm and stable nature, they make the best low-maintenance roommate!",
+        "trait0": "Totally comfortable spending time alone",
+        "trait1": "Values their own routine and personal space",
+        "trait2": "Calm and rarely stressed",
+        "compatibleOwner": "A busy owner who respects their dog's autonomy",
+        "ownerTip": "Don't force play. Respect your dog's pace and preferences!"
+      },
+      "anxious": {
+        "title": "The Sensitive Worrier",
+        "summary": "Everything new is scary... I only trust my owner",
+        "description": "A sensitive soul who startles easily and gets anxious around new things. Strangers, loud noises, and unfamiliar places take getting used to. But once trust is built, they are fiercely loyal and deeply bonded.",
+        "trait0": "Feels anxious in unfamiliar environments",
+        "trait1": "Relies heavily on their owner",
+        "trait2": "Needs gradual socialization",
+        "compatibleOwner": "A patient, calm owner who understands sensitivity",
+        "ownerTip": "Introduce new things slowly and build confidence with positive reinforcement!"
+      }
+    }
+  },
+  "cat": {
+    "q1": {
+      "text": "When your owner gets up in the morning, you…",
+      "a0": "Stroll over gracefully and circle around them",
+      "a1": "Dash to the window to look outside",
+      "a2": "Step on their face or meow loudly for breakfast",
+      "a3": "Watch quietly from a corner, then disappear"
+    },
+    "q2": {
+      "text": "Snack time! You…",
+      "a0": "Approach elegantly, eat a couple bites, and leave",
+      "a1": "Use your paw to drag the bowl toward you",
+      "a2": "Sometimes you just don't care about food",
+      "a3": "Creep up slowly then snatch the food quickly"
+    },
+    "q3": {
+      "text": "A new object appears in the house. You…",
+      "a0": "Go straight over to sniff and investigate it",
+      "a1": "Watch from afar, then slowly approach",
+      "a2": "Pretend not to care, then check it out when nobody's watching",
+      "a3": "Push it off the edge to see what happens"
+    },
+    "q4": {
+      "text": "Your owner is watching TV. You…",
+      "a0": "Sit right in front of the screen and block the view",
+      "a1": "Quietly observe your owner from a corner",
+      "a2": "Climb onto their lap and claim the spot",
+      "a3": "Something moving outside is way more interesting"
+    },
+    "q5": {
+      "text": "Your owner is working at the keyboard. You…",
+      "a0": "Walk right onto the keyboard",
+      "a1": "Play alone—not your problem",
+      "a2": "Bat at the moving cursor on the screen",
+      "a3": "Observe from a distance"
+    },
+    "q6": {
+      "text": "A stranger tries to pet you. You…",
+      "a0": "Gracefully step aside",
+      "a1": "Run away and hide",
+      "a2": "Stay still—but swat their hand if they touch without permission",
+      "a3": "Just observe quietly from behind"
+    },
+    "q7": {
+      "text": "Your owner waves a toy (wand, ball). You…",
+      "a0": "Wait patiently for the right moment, then attack wildly",
+      "a1": "Play enthusiastically for a bit, then lose interest",
+      "a2": "Stare intensely, then quietly walk away",
+      "a3": "Not interested unless it's actually fun to you"
+    },
+    "q8": {
+      "text": "A rainy day at home. The vibe is…",
+      "a0": "Sit by the window listening to the rain",
+      "a1": "Take an elegant nap on the sofa",
+      "a2": "Suddenly start sprinting laps around the house",
+      "a3": "Same as always—no big deal"
+    },
+    "q9": {
+      "text": "Your owner seems stressed. You…",
+      "a0": "Come sit quietly beside them",
+      "a1": "Climb onto their lap and start grooming",
+      "a2": "Leave your room because of the noise",
+      "a3": "No particular reaction"
+    },
+    "q10": {
+      "text": "Late at night you get most active. What do you do?",
+      "a0": "Knock everything off every surface in the house",
+      "a1": "Sprint around in the dark",
+      "a2": "Chill in your spot and sleep",
+      "a3": "Watch wildlife outside through the window"
+    },
+    "q11": {
+      "text": "Left alone at home, you…",
+      "a0": "Enjoy total freedom",
+      "a1": "Explore every corner of the house",
+      "a2": "Climb somewhere high and observe everything",
+      "a3": "Nap and then groom yourself as usual"
+    },
+    "q12": {
+      "text": "Your favorite hideout is…",
+      "a0": "The windowsill or a high shelf",
+      "a1": "Inside a dark box or drawer",
+      "a2": "The center of your owner's bed",
+      "a3": "Anywhere in the house—you roam freely"
+    },
+    "q13": {
+      "text": "Your grooming habits are…",
+      "a0": "Whenever possible—perfect appearance matters",
+      "a1": "Randomly start and randomly stop",
+      "a2": "Lick your owner's hand, then lick your own paw",
+      "a3": "Systematic, head to toe, thoroughly"
+    },
+    "q14": {
+      "text": "You discover an object your owner uses. You…",
+      "a0": "Sniff it and claim it as your territory (cheek rub)",
+      "a1": "Tap it with your paw then push it off",
+      "a2": "Climb inside or sit on top of it",
+      "a3": "Observe it silently from afar"
+    },
+    "q15": {
+      "text": "Right now, when are you happiest?",
+      "a0": "Looking down over the whole house from up high",
+      "a1": "Hunt mode activated—catching something moving!",
+      "a2": "When my owner gives me attention only when I want it",
+      "a3": "Spending quiet time alone with no interruptions"
+    },
+    "results": {
+      "noble": {
+        "title": "The Elegant Aristocat",
+        "summary": "I own this home—and I never lose my dignity",
+        "description": "A high-class cat with impeccable standards. They don't show affection to just anyone, but when they trust someone, they offer a very special bond. Every move is pure elegance, and they would never compromise their dignity.",
+        "trait0": "Very particular about personal grooming",
+        "trait1": "Shows affection only to the chosen few",
+        "trait2": "Has firm personal routines and standards",
+        "compatibleOwner": "An owner who respects feline independence and provides a quiet environment",
+        "ownerTip": "Don't force cuddles. Wait for the cat to come to you on their terms!"
+      },
+      "free": {
+        "title": "The Free-Spirited Soul",
+        "summary": "My life, my rules—please don't interfere",
+        "description": "An untamed, free spirit who isn't bound by rules or routines. They enjoy alone time and dislike being forced into anything. But when they feel like it, they'll approach you warmly—an unpredictable charm all their own.",
+        "trait0": "Treasures their alone time",
+        "trait1": "Rejects any forced attention",
+        "trait2": "Happiest when they have free space",
+        "compatibleOwner": "A busy owner who trusts and respects their cat",
+        "ownerTip": "Provide hiding spots and high perches (cat tower) for them to explore!"
+      },
+      "boss": {
+        "title": "The House Boss",
+        "summary": "Everything here is mine—human, do your job!",
+        "description": "This cat knows exactly what they want and has the owner operating on their schedule. Affection is deployed strategically—when needed, and with maximum effect. They are fully aware they run this house.",
+        "trait0": "Makes demands loudly and clearly",
+        "trait1": "Considers themselves the most important being in the house",
+        "trait2": "Uses charm strategically when needed",
+        "compatibleOwner": "An owner with a good sense of humor who accepts the cat's authority",
+        "ownerTip": "Set clear boundaries—but being too strict will backfire!"
+      },
+      "hunter": {
+        "title": "The Natural Hunter",
+        "summary": "Anything that moves is my prey—living by instinct!",
+        "description": "Sharp senses and strong hunting instincts define this cat. They react immediately to any movement and come fully alive when playing with toys. They thrive in an environment full of stimulation and movement.",
+        "trait0": "Reacts instantly to any movement",
+        "trait1": "Finds pure joy in toy hunting",
+        "trait2": "Loves running around in open spaces",
+        "compatibleOwner": "An owner who loves interactive play with wand toys or motorized toys",
+        "ownerTip": "Satisfy their hunting instincts with diverse toys and puzzle feeders!"
+      },
+      "observer": {
+        "title": "The Cool Observer",
+        "summary": "I see everything—I watch before I act",
+        "description": "A careful, analytical cat who observes quietly before making any move. They don't act hastily—they take time to understand before doing anything. Quiet but intensely aware of everything happening around them.",
+        "trait0": "Observes thoroughly before acting",
+        "trait1": "Quiet but always aware of surroundings",
+        "trait2": "Loves looking down from a high vantage point",
+        "compatibleOwner": "A quiet owner who respects the cat's space and pace",
+        "ownerTip": "Set up a cat tower or high shelf as their personal observation deck!"
+      }
+    }
+  }
+}

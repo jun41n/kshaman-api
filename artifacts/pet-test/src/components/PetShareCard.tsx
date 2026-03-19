@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { PetResult, PetType } from "@/data/petData";
 
 interface Props {
@@ -6,6 +7,10 @@ interface Props {
 }
 
 export default function PetShareCard({ result, petType }: Props) {
+  const { t } = useTranslation();
+  const rKey = `${petType}.results.${result.key}`;
+  const labelKey = petType === 'dog' ? 'quiz.dogLabel' : 'quiz.catLabel';
+
   return (
     <div
       style={{
@@ -34,7 +39,7 @@ export default function PetShareCard({ result, petType }: Props) {
           textTransform: "uppercase",
         }}
       >
-        {petType === "dog" ? "🐕 강아지" : "🐈 고양이"} 성향 테스트
+        {result.emoji} {t(labelKey)} {t('app.name')}
       </div>
 
       <div style={{ fontSize: 68, lineHeight: 1, marginBottom: 12 }}>
@@ -52,7 +57,7 @@ export default function PetShareCard({ result, petType }: Props) {
           textShadow: "0 2px 12px rgba(0,0,0,0.18)",
         }}
       >
-        {result.title}
+        {t(`${rKey}.title`)}
       </div>
 
       <div
@@ -65,7 +70,7 @@ export default function PetShareCard({ result, petType }: Props) {
           marginBottom: 20,
         }}
       >
-        {result.summary}
+        {t(`${rKey}.summary`)}
       </div>
 
       <div
@@ -80,7 +85,7 @@ export default function PetShareCard({ result, petType }: Props) {
           maxWidth: 260,
         }}
       >
-        {result.traits.map((t, i) => (
+        {[0, 1, 2].map((i) => (
           <div
             key={i}
             style={{
@@ -92,7 +97,7 @@ export default function PetShareCard({ result, petType }: Props) {
             }}
           >
             <span style={{ opacity: 0.7 }}>✦</span>
-            <span>{t}</span>
+            <span>{t(`${rKey}.trait${i}`)}</span>
           </div>
         ))}
       </div>
@@ -105,7 +110,7 @@ export default function PetShareCard({ result, petType }: Props) {
           letterSpacing: 1,
         }}
       >
-        반려동물 성향 테스트
+        {t('app.name')}
       </div>
     </div>
   );

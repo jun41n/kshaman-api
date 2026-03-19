@@ -1,11 +1,13 @@
 import { useLocation } from "wouter";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export default function Home() {
   const [, navigate] = useLocation();
+  const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen bg-[#FDF8F2] flex flex-col items-center justify-center px-4 py-10">
+    <div className="flex-1 flex flex-col items-center justify-center px-4 py-10">
       <motion.div
         className="w-full max-w-sm text-center"
         initial={{ opacity: 0, y: 24 }}
@@ -20,11 +22,11 @@ export default function Home() {
           🐾
         </motion.div>
 
-        <h1 className="text-3xl font-extrabold text-[#3D2B1F] leading-tight mb-2">
-          우리집 반려동물<br />성격 유형은?
+        <h1 className="text-3xl font-extrabold text-[#3D2B1F] leading-tight mb-2 whitespace-pre-line">
+          {t('home.title')}
         </h1>
-        <p className="text-base text-[#8B6650] mt-2 mb-8 leading-relaxed">
-          우리 아이의 숨겨진 성향을<br />15문항으로 알아보세요!
+        <p className="text-base text-[#8B6650] mt-2 mb-8 leading-relaxed whitespace-pre-line">
+          {t('home.subtitle')}
         </p>
 
         <div className="space-y-4">
@@ -35,7 +37,7 @@ export default function Home() {
             onClick={() => navigate("/quiz/dog")}
           >
             <span className="text-3xl">🐕</span>
-            <span className="flex-1 text-center">강아지용 테스트</span>
+            <span className="flex-1 text-center">{t('home.dog')}</span>
             <span className="text-xl opacity-60">→</span>
           </motion.button>
 
@@ -46,13 +48,13 @@ export default function Home() {
             onClick={() => navigate("/quiz/cat")}
           >
             <span className="text-3xl">🐈</span>
-            <span className="flex-1 text-center">고양이용 테스트</span>
+            <span className="flex-1 text-center">{t('home.cat')}</span>
             <span className="text-xl opacity-60">→</span>
           </motion.button>
         </div>
 
         <p className="mt-8 text-xs text-[#C5A898]">
-          총 15문항 · 약 3분 소요
+          {t('home.footer')}
         </p>
       </motion.div>
     </div>

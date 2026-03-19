@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { useParams, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { toPng } from "html-to-image";
+import { useTranslation } from "react-i18next";
 import { getPetTest, PetType } from "@/data/petData";
 import PetShareCard from "@/components/PetShareCard";
 
@@ -10,6 +11,7 @@ export default function Result() {
   const petType = params.type as PetType;
   const resultKey = params.key;
   const [, navigate] = useLocation();
+  const { t } = useTranslation();
   const cardRef = useRef<HTMLDivElement>(null);
   const [saving, setSaving] = useState(false);
   const [copied, setCopied] = useState(false);
@@ -20,10 +22,12 @@ export default function Result() {
   if (!result) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <p className="text-[#8B6650]">결과를 찾을 수 없어요.</p>
+        <p className="text-[#8B6650]">{t('result.notFound')}</p>
       </div>
     );
   }
+
+  const labelKey = petType === 'dog' ? 'quiz.dogLabel' : 'quiz.catLabel';
 
   async function handleSaveImage() {
     if (!cardRef.current || saving) return;
@@ -56,14 +60,16 @@ export default function Result() {
     }
   }
 
+  const rKey = `${petType}.results.${resultKey}`;
+
   return (
-    <div className="min-h-screen bg-[#FDF8F2] flex flex-col items-center pb-10">
+    <div className="flex-1 flex flex-col items-center pb-10">
       <div className="w-full max-w-sm px-4 pt-6">
         <button
           className="text-[#8B6650] text-sm mb-6 flex items-center gap-1"
           onClick={() => navigate("/")}
         >
-          ← 처음으로
+          {t('nav.back')}
         </button>
 
         <motion.div
@@ -72,7 +78,7 @@ export default function Result() {
           transition={{ duration: 0.5 }}
         >
           <p className="text-center text-sm text-[#8B6650] font-semibold mb-3 uppercase tracking-wider">
-            {test.emoji} {test.label}용 테스트 결과
+            {test.emoji} {t('result.heading', { label: t(labelKey) })}
           </p>
 
           <div ref={cardRef} className="rounded-3xl overflow-hidden shadow-xl mb-6">
@@ -80,17 +86,17 @@ export default function Result() {
           </div>
 
           <div className="bg-white rounded-3xl p-5 shadow-sm mb-4">
-            <h3 className="text-[#3D2B1F] font-bold text-base mb-2">설명</h3>
-            <p className="text-[#5A3E2B] text-sm leading-relaxed">{result.description}</p>
+            <h3 className="text-[#3D2B1F] font-bold text-base mb-2">{t('result.descSection')}</h3>
+            <p className="text-[#5A3E2B] text-sm leading-relaxed">{t(`${rKey}.description`)}</p>
           </div>
 
           <div className="bg-white rounded-3xl p-5 shadow-sm mb-4">
-            <h3 className="text-[#3D2B1F] font-bold text-base mb-3">특징</h3>
+            <h3 className="text-[#3D2B1F] font-bold text-base mb-3">{t('result.traitsSection')}</h3>
             <ul className="space-y-2">
-              {result.traits.map((t, i) => (
+              {[0, 1, 2].map((i) => (
                 <li key={i} className="flex items-start gap-2 text-sm text-[#5A3E2B]">
                   <span className="text-base leading-none mt-0.5">✅</span>
-                  <span>{t}</span>
+                  <span>{t(`${rKey}.trait${i}`)}</span>
                 </li>
               ))}
             </ul>
@@ -98,12 +104,12 @@ export default function Result() {
 
           <div className="rounded-3xl p-5 shadow-sm mb-6"
             style={{ background: result.gradient }}>
-            <p className="text-white font-bold text-sm mb-1">💑 나와 잘 맞는 보호자</p>
-            <p className="text-white/90 text-sm font-semibold mb-3">{result.compatibleOwner}</p>
+            <p className="text-white font-bold text-sm mb-1">{t('result.ownerLabel')}</p>
+            <p className="text-white/90 text-sm font-semibold mb-3">{t(`${rKey}.compatibleOwner`)}</p>
             <div className="bg-white/20 rounded-2xl p-3">
               <p className="text-white text-xs leading-relaxed">
-                💡 <span className="font-semibold">보호자 TIP</span><br />
-                {result.ownerTip}
+                💡 <span className="font-semibold">{t('result.tipLabel')}</span><br />
+                {t(`${rKey}.ownerTip`)}
               </p>
             </div>
           </div>
@@ -115,21 +121,21 @@ export default function Result() {
               onClick={handleSaveImage}
               disabled={saving}
             >
-              📸 {saving ? "저장 중..." : "이미지 저장하기"}
+              {saving ? t('result.savingBtn') : t('result.saveBtn')}
             </button>
 
             <button
               className="w-full py-4 rounded-2xl font-bold text-base border-2 border-[#F0E4D8] bg-white text-[#3D2B1F] shadow-sm flex items-center justify-center gap-2 transition-colors"
               onClick={handleCopyLink}
             >
-              🔗 {copied ? "링크 복사됨!" : "친구에게 공유하기"}
+              {copied ? t('result.copiedBtn') : t('result.shareBtn')}
             </button>
 
             <button
               className="w-full py-3 rounded-2xl font-semibold text-sm text-[#8B6650] bg-[#F0E4D8] transition-colors"
               onClick={() => navigate(`/quiz/${petType}`)}
             >
-              다시 테스트하기
+              {t('result.retryBtn')}
             </button>
           </div>
         </motion.div>

@@ -1,0 +1,347 @@
+{
+  "app": { "name": "Teste de Personalidade do Pet" },
+  "nav": { "back": "← Voltar ao início" },
+  "home": {
+    "title": "Qual é a personalidade\ndo seu pet?",
+    "subtitle": "Descubra a natureza oculta\ndo seu companheiro em 15 perguntas!",
+    "dog": "Teste para cachorros",
+    "cat": "Teste para gatos",
+    "footer": "15 perguntas · aprox. 3 min"
+  },
+  "quiz": {
+    "dogLabel": "Cachorro",
+    "catLabel": "Gato",
+    "testLabel": "Teste de personalidade para {{label}}"
+  },
+  "result": {
+    "heading": "Resultado do teste para {{label}}",
+    "notFound": "Resultado não encontrado.",
+    "descSection": "Descrição",
+    "traitsSection": "Características",
+    "ownerLabel": "💑 Tipo de tutor ideal",
+    "tipLabel": "Dica para o tutor",
+    "saveBtn": "📸 Salvar imagem",
+    "savingBtn": "Salvando...",
+    "shareBtn": "🔗 Compartilhar com amigos",
+    "copiedBtn": "Link copiado!",
+    "retryBtn": "Fazer o teste novamente"
+  },
+  "dog": {
+    "q1": {
+      "text": "Quando seu tutor se prepara para sair, você…",
+      "a0": "Corre animado para a porta querendo ir junto",
+      "a1": "Abana o rabo e mostra a barriga pedindo elogio",
+      "a2": "Segue farejando — será que tem petisco?",
+      "a3": "Pode ir, eu fico bem aqui sozinho"
+    },
+    "q2": {
+      "text": "No passeio, você encontra outro cachorro. Você…",
+      "a0": "Corre para farejar e convida para brincar",
+      "a1": "Abana o rabo e já viram amigos na hora",
+      "a2": "Pouco liga — você está farejando o chão",
+      "a3": "Se esconde atrás das pernas do tutor"
+    },
+    "q3": {
+      "text": "Apareceu um brinquedo novo! Você…",
+      "a0": "Pega, sacode e joga por todo o canto",
+      "a1": "Leva ao tutor para brincar juntos",
+      "a2": "Fareja para ver se é comestível",
+      "a3": "Fareja uma vez e perde o interesse na hora"
+    },
+    "q4": {
+      "text": "Hora de comer! Você…",
+      "a0": "Não aguenta e fica circulando na frente do pote",
+      "a1": "Prefere fazer contato visual com o tutor a comer",
+      "a2": "Termina e lambe o pote pedindo mais",
+      "a3": "Se tiver come, se não tiver espera tranquilo"
+    },
+    "q5": {
+      "text": "Seu tutor senta no sofá. Você…",
+      "a0": "Cola do lado imediatamente",
+      "a1": "Aproveita a chance e pula para garantir um lugar",
+      "a2": "Fica esperando aparecer um petisco",
+      "a3": "Descansam cada um no seu cantinho"
+    },
+    "q6": {
+      "text": "Um desconhecido visita a casa. Você…",
+      "a0": "Late, avança e começa a explorar a pessoa",
+      "a1": "Abana o rabo e já mostra a barriga",
+      "a2": "Fica escondido latindo de longe",
+      "a3": "Não liga — estava dormindo e continua dormindo"
+    },
+    "q7": {
+      "text": "Seu tutor parece triste. Você…",
+      "a0": "Se aproxima, lambe e fica colado nele",
+      "a1": "Traz um brinquedo para animar",
+      "a2": "Senta quieto ao lado",
+      "a3": "Algo está errado — você trava e fica olhando"
+    },
+    "q8": {
+      "text": "Chegou o dia do banho…",
+      "a0": "Sai correndo até ser pego e se rende",
+      "a1": "Não tem jeito, fica parado",
+      "a2": "Aguenta tremendo, olhando só para o petisco",
+      "a3": "Não chega perto da banheira de jeito nenhum"
+    },
+    "q9": {
+      "text": "Você tem um acidente dentro de casa. Você…",
+      "a0": "Abaixa o rabo ao ver a expressão do tutor mudar",
+      "a1": "Nem percebe que foi errado e continua brincando",
+      "a2": "Sem perceber nada, vai lamber o tutor",
+      "a3": "Observa de longe enquanto o tutor limpa"
+    },
+    "q10": {
+      "text": "Depois de ficar sozinho por muito tempo, o tutor volta. Você…",
+      "a0": "Pula, late e recebe com o corpo todo",
+      "a1": "Solta uma enxurrada explosiva de carinho",
+      "a2": "Fareja a bolsa procurando petisco",
+      "a3": "Fica feliz, mas só abana levemente o rabo"
+    },
+    "q11": {
+      "text": "Tempo livre para correr no parque! Você…",
+      "a0": "Corre em velocidade máxima explorando tudo",
+      "a1": "Fica correndo para cumprimentar todas as pessoas",
+      "a2": "Procura algo no chão para comer",
+      "a3": "Caminha um pouco com o tutor e descansa"
+    },
+    "q12": {
+      "text": "Sozinho em casa, você…",
+      "a0": "Explora a casa e brinca com os brinquedos",
+      "a1": "Fica perto das roupas ou bolsa do tutor para farejar",
+      "a2": "Fica circulando em volta do pote de comida",
+      "a3": "Não tem nada para fazer, então dorme"
+    },
+    "q13": {
+      "text": "Durante o treino (senta, fica…), você…",
+      "a0": "Reage rápido e fica animado",
+      "a1": "Se esforça porque ama ser elogiado",
+      "a2": "Sem petisco, não faz",
+      "a3": "Finge não ouvir no começo, mas acaba fazendo"
+    },
+    "q14": {
+      "text": "Um barulho estranho no passeio. Você…",
+      "a0": "Corre corajosamente em direção ao som",
+      "a1": "Cola bem nas pernas do tutor",
+      "a2": "Para, verifica e continua andando tranquilo",
+      "a3": "Não liga — estava farejando algo interessante"
+    },
+    "q15": {
+      "text": "Agora mesmo, o que te deixa mais feliz?",
+      "a0": "Correr e brincar com meu tutor",
+      "a1": "A família toda reunida, ser abraçado",
+      "a2": "Receber um petisco gostoso",
+      "a3": "Dormir sossegado no meu cantinho"
+    },
+    "results": {
+      "active": {
+        "title": "O Aventureiro Energético",
+        "summary": "Correr, explorar, aventurar—precisa de ação para ser feliz!",
+        "description": "Um cachorro cheio de energia que adora explorar e descobrir coisas novas o dia todo. Quanto mais passeio e mais brincadeira, mais feliz fica. Quando está entediado pode mastigar coisas ou fazer travessuras—exercício diário é essencial!",
+        "trait0": "Ama o estilo de vida ativo ao ar livre",
+        "trait1": "Sempre explorando novos lugares e cheiros",
+        "trait2": "Curte brincadeiras rápidas e corridas",
+        "compatibleOwner": "Um tutor ativo que adora atividades ao ar livre",
+        "ownerTip": "Exercício diário é essencial. Passeios, corridas e frisbee são perfeitos!"
+      },
+      "social": {
+        "title": "O Charmoso Carinhoso",
+        "summary": "Meu tutor é meu mundo—sou mais feliz quando estamos juntos!",
+        "description": "Um cachorro incrivelmente sociável que tira energia do amor e da atenção. Ficar sozinho pode ser difícil para ele. Faz amizade com qualquer pessoa na hora e tem uma habilidade mágica de conquistar todos.",
+        "trait0": "Adora carinho físico do tutor",
+        "trait1": "Faz amizade com qualquer pessoa na hora",
+        "trait2": "Pode sofrer de ansiedade de separação",
+        "compatibleOwner": "Um tutor que fica muito em casa e demonstra afeto com facilidade",
+        "ownerTip": "Pode precisar de treino para ficar sozinho. Dê muita atenção e carinho!"
+      },
+      "foodie": {
+        "title": "O Guloso Absoluto",
+        "summary": "Nada supera a comida—me dê um petisco e faço qualquer coisa!",
+        "description": "A comida é a maior motivação. Aprende truques rapidíssimo quando tem petisco envolvido. Tem um faro supersensível para comida e reage mais animado em qualquer situação que envolva ela.",
+        "trait0": "Petiscos são a motivação máxima",
+        "trait1": "Encontra comida pelo cheiro como um profissional",
+        "trait2": "Vira um gênio quando aparece um petisco",
+        "compatibleOwner": "Um tutor que controla os horários de alimentação e curte treinos com petisco",
+        "ownerTip": "Cuidado com excesso de comida! O controle do peso é chave para a saúde."
+      },
+      "calm": {
+        "title": "O Independente Tranquilo",
+        "summary": "Fico bem sozinho—o meu ritmo é o mais importante",
+        "description": "Um cachorro independente e tranquilo que não se incomoda com a solidão. Valoriza seu próprio ritmo e não gosta de ser pressionado. Graças ao temperamento calmo e estável, é o melhor companheiro de apartamento!",
+        "trait0": "Totalmente confortável ficando sozinho",
+        "trait1": "Valoriza sua rotina e espaço pessoal",
+        "trait2": "Calmo e raramente estressado",
+        "compatibleOwner": "Um tutor ocupado que respeita a autonomia do cachorro",
+        "ownerTip": "Não force brincadeiras. Respeite o ritmo e as preferências do seu pet!"
+      },
+      "anxious": {
+        "title": "O Sensível Preocupado",
+        "summary": "Tudo novo é assustador... só confio no meu tutor",
+        "description": "Uma alma sensível que se assusta com facilidade e fica ansiosa com o novo. Precisa de tempo para se acostumar com pessoas, barulhos e lugares desconhecidos. Mas quando confia, é extremamente leal e cria vínculos profundos.",
+        "trait0": "Fica ansioso em ambientes desconhecidos",
+        "trait1": "Depende muito do tutor",
+        "trait2": "Precisa de socialização gradual",
+        "compatibleOwner": "Um tutor paciente, calmo e que entende a sensibilidade",
+        "ownerTip": "Apresente coisas novas aos poucos e use reforço positivo para criar confiança!"
+      }
+    }
+  },
+  "cat": {
+    "q1": {
+      "text": "Quando seu tutor acorda de manhã, você…",
+      "a0": "Caminha graciosamente até ele e dá uma volta ao redor",
+      "a1": "Corre para a janela para olhar lá fora",
+      "a2": "Pisa no rosto dele ou mia alto pedindo comida",
+      "a3": "Observa quieto de um canto e desaparece"
+    },
+    "q2": {
+      "text": "Hora do petisco! Você…",
+      "a0": "Se aproxima elegante, come dois bocados e vai embora",
+      "a1": "Usa a pata para puxar o pote em sua direção",
+      "a2": "Às vezes simplesmente não liga para comida",
+      "a3": "Chega devagar e pega a comida rapidinho"
+    },
+    "q3": {
+      "text": "Apareceu um objeto novo em casa. Você…",
+      "a0": "Vai direto farejar e investigar",
+      "a1": "Observa de longe e depois se aproxima devagar",
+      "a2": "Finge não ligar e verifica quando ninguém está olhando",
+      "a3": "Empurra para ver se cai"
+    },
+    "q4": {
+      "text": "Seu tutor está assistindo TV. Você…",
+      "a0": "Senta bem na frente da tela bloqueando a visão",
+      "a1": "Observa o tutor em silêncio de um canto",
+      "a2": "Sobe no colo dele e ocupa o espaço",
+      "a3": "Algo se movendo lá fora é muito mais interessante"
+    },
+    "q5": {
+      "text": "Seu tutor está trabalhando no teclado. Você…",
+      "a0": "Sobe em cima do teclado",
+      "a1": "Brinca sozinho — não é problema seu",
+      "a2": "Dá patadas no cursor que se move na tela",
+      "a3": "Observa de longe"
+    },
+    "q6": {
+      "text": "Um desconhecido tenta te acariciar. Você…",
+      "a0": "Se afasta com graça",
+      "a1": "Corre e se esconde",
+      "a2": "Fica parado, mas se tocarem sem permissão, arranha",
+      "a3": "Só observa em silêncio por trás"
+    },
+    "q7": {
+      "text": "Seu tutor balança um brinquedo (varinha, bolinha). Você…",
+      "a0": "Aguarda o momento certo e ataca ferozmente",
+      "a1": "Brinca animado por um momento e perde o interesse",
+      "a2": "Fita por um tempo e depois vai embora quieto",
+      "a3": "Não brinca a menos que seja realmente divertido"
+    },
+    "q8": {
+      "text": "Um dia de chuva em casa. O clima é…",
+      "a0": "Sentado na janela ouvindo a chuva",
+      "a1": "Tirando um cochilo elegante no sofá",
+      "a2": "De repente começa a correr pela casa toda",
+      "a3": "Igual a sempre — sem novidade"
+    },
+    "q9": {
+      "text": "Seu tutor parece estressado. Você…",
+      "a0": "Vai e senta quieto ao lado",
+      "a1": "Sobe no colo e começa a se limpar",
+      "a2": "Sai do quarto por causa do barulho",
+      "a3": "Sem reação particular"
+    },
+    "q10": {
+      "text": "À noite você fica mais ativo. O que costuma fazer?",
+      "a0": "Joga tudo que está nas superfícies no chão",
+      "a1": "Corre de um lado para o outro no escuro",
+      "a2": "Dorme tranquilo no seu lugar",
+      "a3": "Vigia os animais lá fora pela janela"
+    },
+    "q11": {
+      "text": "Ficou sozinho em casa. Você…",
+      "a0": "Aproveita a liberdade total",
+      "a1": "Explora cada canto da casa",
+      "a2": "Sobe em algum lugar alto e observa tudo",
+      "a3": "Cochila e depois se limpa como de costume"
+    },
+    "q12": {
+      "text": "Seu esconderijo favorito é…",
+      "a0": "O parapeito da janela ou uma prateleira alta",
+      "a1": "Dentro de uma caixa escura ou gaveta",
+      "a2": "O centro da cama do tutor",
+      "a3": "Qualquer lugar da casa — você circula livremente"
+    },
+    "q13": {
+      "text": "Seus hábitos de higiene são…",
+      "a0": "Sempre que possível — aparência perfeita é importante",
+      "a1": "Começa do nada e para do nada",
+      "a2": "Lambe a mão do tutor e depois lambe a sua própria pata",
+      "a3": "De forma sistemática, da cabeça à cauda"
+    },
+    "q14": {
+      "text": "Você encontra um objeto do tutor. Você…",
+      "a0": "Fareja e marca como seu território (esfrega o rosto)",
+      "a1": "Dá patadas e empurra",
+      "a2": "Entra dentro ou senta em cima",
+      "a3": "Observa quieto de longe"
+    },
+    "q15": {
+      "text": "Agora mesmo, quando você é mais feliz?",
+      "a0": "Olhando toda a casa lá de cima",
+      "a1": "Modo caça ativado — pegando algo que se move!",
+      "a2": "Quando o tutor me dá carinho só quando eu quero",
+      "a3": "Passando tempo tranquilo sozinho sem interrupções"
+    },
+    "results": {
+      "noble": {
+        "title": "O Aristocata Elegante",
+        "summary": "Eu sou o dono desta casa — e jamais perco a dignidade",
+        "description": "Um gato de alto padrão com estilo impecável. Não demonstra carinho para qualquer um, mas quando confia em alguém, oferece um vínculo muito especial. Cada movimento é pura elegância e jamais compromete sua dignidade.",
+        "trait0": "Muito criterioso com sua higiene pessoal",
+        "trait1": "Demonstra carinho só para os escolhidos",
+        "trait2": "Tem rotinas e padrões próprios bem definidos",
+        "compatibleOwner": "Um tutor que respeita a independência felina e oferece ambiente tranquilo",
+        "ownerTip": "Não force abraços. Espere o gato se aproximar nos próprios termos!"
+      },
+      "free": {
+        "title": "O Espírito Livre",
+        "summary": "Minha vida, minhas regras — por favor não interfira",
+        "description": "Um espírito indomável não preso por regras ou rotinas. Curte o tempo sozinho e não gosta de ser forçado a nada. Mas quando tem vontade, se aproxima com calor — um charme imprevisível todo seu.",
+        "trait0": "Valoriza muito seu tempo a sós",
+        "trait1": "Rejeita qualquer atenção forçada",
+        "trait2": "Mais feliz quando tem espaço livre",
+        "compatibleOwner": "Um tutor ocupado que confia e respeita o gato",
+        "ownerTip": "Ofereça esconderijos e alturas (arranhador vertical) para explorar!"
+      },
+      "boss": {
+        "title": "O Chefe da Casa",
+        "summary": "Tudo aqui é meu — humano, cumpra suas obrigações!",
+        "description": "Este gato sabe exatamente o que quer e tem o tutor funcionando segundo sua agenda. O carinho é usado estrategicamente — quando necessário e com o máximo efeito. Sabe muito bem que é quem manda aqui.",
+        "trait0": "Faz suas exigências de forma clara",
+        "trait1": "Se considera o ser mais importante da casa",
+        "trait2": "Usa o charme estrategicamente quando convém",
+        "compatibleOwner": "Um tutor com bom humor que aceita a autoridade do gato",
+        "ownerTip": "Defina limites claros — mas ser rígido demais vai sair pela culatra!"
+      },
+      "hunter": {
+        "title": "O Caçador Nato",
+        "summary": "Tudo que se move é minha presa — vivendo pelo instinto!",
+        "description": "Sentidos aguçados e forte instinto de caça. Reage imediatamente a qualquer movimento e ganha vida total quando brinca com brinquedos. Prospera em ambientes cheios de estímulo e movimento.",
+        "trait0": "Reage instantaneamente a qualquer movimento",
+        "trait1": "Encontra alegria pura em caçar brinquedos",
+        "trait2": "Adora correr por espaços abertos",
+        "compatibleOwner": "Um tutor que adora brincar com varinha ou brinquedos motorizados",
+        "ownerTip": "Satisfaça o instinto de caça com brinquedos variados e comedouros interativos!"
+      },
+      "observer": {
+        "title": "O Observador Frio",
+        "summary": "Vejo tudo — observo antes de agir",
+        "description": "Um gato cauteloso e analítico que observa tudo em silêncio antes de se mover. Não age precipitadamente — leva tempo para entender. Quieto mas intensamente consciente de tudo ao redor.",
+        "trait0": "Observa com atenção antes de agir",
+        "trait1": "Quieto mas sempre atento ao ambiente",
+        "trait2": "Adora olhar de um ponto elevado",
+        "compatibleOwner": "Um tutor tranquilo que respeita o espaço e o ritmo do gato",
+        "ownerTip": "Instale um arranhador alto ou prateleira como mirante pessoal do seu gato!"
+      }
+    }
+  }
+}
