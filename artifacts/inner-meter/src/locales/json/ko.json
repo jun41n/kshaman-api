@@ -99,6 +99,10 @@
     "shareTitle": "나의 {{testTitle}} 결과는 {{resultTitle}}!",
     "recommended": "이런 테스트도 해봤어요? 🎯",
     "recommendedSub": "이 결과를 본 사람들이 다음에 많이 한 테스트예요",
+    "compareWithFriends": "친구랑 비교하기",
+    "linkCopied": "링크가 복사되었습니다! 🎉",
+    "savingImage": "저장 중...",
+    "imageSaved": "저장됨 ✓",
     "saveError": "이미지 저장에 실패했어요 😢\n스크린샷을 이용해 저장해보세요!"
   },
   "share": {

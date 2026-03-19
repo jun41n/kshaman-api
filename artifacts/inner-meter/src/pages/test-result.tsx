@@ -431,9 +431,9 @@ export default function TestResult() {
                 `}
               >
                 {linkCopied ? (
-                  <><Check className="w-5 h-5" />링크가 복사되었습니다! 🎉</>
+                  <><Check className="w-5 h-5" />{t('result.linkCopied')}</>
                 ) : (
-                  <><Link2 className="w-5 h-5" />친구랑 비교하기</>
+                  <><Link2 className="w-5 h-5" />{t('result.compareWithFriends')}</>
                 )}
               </button>
 
@@ -443,11 +443,11 @@ export default function TestResult() {
                 className={`w-full flex items-center justify-center gap-2.5 rounded-2xl h-11 text-sm font-bold text-white/80 border border-white/20 hover:bg-white/10 transition-colors ${isSaving ? 'opacity-70 cursor-not-allowed' : 'cursor-pointer'}`}
               >
                 {isSaving ? (
-                  <><Loader2 className="w-4 h-4 animate-spin" />저장 중...</>
+                  <><Loader2 className="w-4 h-4 animate-spin" />{t('result.savingImage')}</>
                 ) : saved ? (
-                  <><Check className="w-4 h-4" />저장됨 ✓</>
+                  <><Check className="w-4 h-4" />{t('result.imageSaved')}</>
                 ) : (
-                  <><Download className="w-4 h-4" />이미지 저장</>
+                  <><Download className="w-4 h-4" />{t('common.saveImage')}</>
                 )}
               </button>
             </div>

@@ -99,6 +99,10 @@
     "shareTitle": "¡Mi resultado de {{testTitle}}: {{resultTitle}}!",
     "recommended": "También Prueba Estos Tests 🎯",
     "recommendedSub": "Tests que la gente con este resultado suele probar a continuación",
+    "compareWithFriends": "Comparar con amigos",
+    "linkCopied": "¡Enlace copiado! 🎉",
+    "savingImage": "Guardando...",
+    "imageSaved": "Guardado ✓",
     "saveError": "Error al guardar la imagen 😢\n¡Intenta tomar una captura de pantalla!"
   },
   "share": {

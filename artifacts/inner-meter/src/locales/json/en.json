@@ -99,6 +99,10 @@
     "shareTitle": "My {{testTitle}} result: {{resultTitle}}!",
     "recommended": "Also Try These Tests 🎯",
     "recommendedSub": "Tests that people with this result often try next",
+    "compareWithFriends": "Compare with Friends",
+    "linkCopied": "Link copied! 🎉",
+    "savingImage": "Saving...",
+    "imageSaved": "Saved ✓",
     "saveError": "Image save failed 😢\nTry taking a screenshot instead!"
   },
   "share": {
