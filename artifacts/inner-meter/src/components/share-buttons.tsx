@@ -4,6 +4,40 @@ import { useToast } from "@/hooks/use-toast";
 import { useTranslation } from "react-i18next";
 import { trackResultShareClick } from "@/lib/analytics";
 
+declare global {
+  interface Window {
+    Kakao?: {
+      isInitialized: () => boolean;
+      init: (key: string) => void;
+      Share: {
+        sendDefault: (options: Record<string, unknown>) => void;
+      };
+    };
+  }
+}
+
+const KAKAO_KEY = import.meta.env.VITE_KAKAO_APP_KEY as string | undefined;
+
+async function loadAndInitKakao(): Promise<boolean> {
+  if (!KAKAO_KEY) return false;
+  if (!window.Kakao) {
+    await new Promise<void>((resolve, reject) => {
+      const existing = document.querySelector('script[src*="kakao_js_sdk"]');
+      if (existing) { resolve(); return; }
+      const s = document.createElement('script');
+      s.src = 'https://t1.kakaocdn.net/kakao_js_sdk/2.7.5/kakao.min.js';
+      s.crossOrigin = 'anonymous';
+      s.onload = () => resolve();
+      s.onerror = () => reject(new Error('Kakao SDK load failed'));
+      document.head.appendChild(s);
+    });
+  }
+  if (window.Kakao && !window.Kakao.isInitialized()) {
+    window.Kakao.init(KAKAO_KEY);
+  }
+  return !!(window.Kakao?.isInitialized());
+}
+
 interface ShareButtonsProps {
   title: string;
   text: string;
@@ -69,21 +103,33 @@ export function ShareButtons({ title, text, url, testSlug, resultKey, resultTitl
     track('tiktok');
   };
 
-  const handleKakao = () => {
+  const handleKakao = async () => {
     track('kakaotalk');
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const kakaoText = resultTitle
-      ? `${resultTitle}\n${text}\n${shareUrl}`
-      : `${text}\n${shareUrl}`;
-
-    if (isMobile) {
-      const scheme = `kakaotalk://send?text=${encodeURIComponent(kakaoText)}`;
-      const fallbackTimer = setTimeout(() => {
-        setGuidance(g => g === 'kakao' ? g : 'kakao');
-      }, 1200);
-      window.location.href = scheme;
-      clearTimeout(fallbackTimer);
-    } else {
+    try {
+      const ready = await loadAndInitKakao();
+      if (!ready || !window.Kakao?.Share) throw new Error('not_ready');
+      window.Kakao.Share.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: resultTitle || title,
+          description: text,
+          imageUrl: 'https://mytesttype.com/opengraph.jpg',
+          link: {
+            mobileWebUrl: shareUrl,
+            webUrl: shareUrl,
+          },
+        },
+        buttons: [
+          {
+            title: t('share.kakaoViewResult'),
+            link: {
+              mobileWebUrl: shareUrl,
+              webUrl: shareUrl,
+            },
+          },
+        ],
+      });
+    } catch {
       setGuidance(g => g === 'kakao' ? null : 'kakao');
     }
   };

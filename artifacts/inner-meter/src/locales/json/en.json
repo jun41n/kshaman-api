@@ -137,7 +137,8 @@
     "tiktokStep3": "Long-press the text field → Paste",
     "kakaoGuideTitle": "How to share on KakaoTalk",
     "kakaoStep1": "Open KakaoTalk and choose a chat",
-    "kakaoStep2": "Copy the link below and paste it"
+    "kakaoStep2": "Copy the link below and paste it",
+    "kakaoViewResult": "View Result"
   },
   "footer": {
     "tagline": "Discover your inner self in a fun and effortless way.",

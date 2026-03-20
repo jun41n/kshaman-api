@@ -137,7 +137,8 @@
     "tiktokStep3": "テキスト欄を長押し → 貼り付け",
     "kakaoGuideTitle": "カカオトークでシェアする方法",
     "kakaoStep1": "カカオトークを開きチャットを選択",
-    "kakaoStep2": "下のリンクをコピーして貼り付けてください"
+    "kakaoStep2": "下のリンクをコピーして貼り付けてください",
+    "kakaoViewResult": "結果を見る"
   },
   "footer": {
     "tagline": "あなたの内面を楽しく軽やかに測定しよう。",

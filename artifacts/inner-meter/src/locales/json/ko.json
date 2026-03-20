@@ -137,7 +137,8 @@
     "tiktokStep3": "텍스트 입력창 길게 누르기 → 붙여넣기",
     "kakaoGuideTitle": "카카오톡 공유 방법",
     "kakaoStep1": "카카오톡 앱을 열고 공유할 채팅 선택",
-    "kakaoStep2": "아래 링크를 복사하여 붙여넣기하세요"
+    "kakaoStep2": "아래 링크를 복사하여 붙여넣기하세요",
+    "kakaoViewResult": "결과 보기"
   },
   "footer": {
     "tagline": "당신의 내면을 가볍고 재미있게 측정해보세요.",
