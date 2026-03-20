@@ -64,7 +64,8 @@
     "takeOther": "Try Another Test",
     "viewAll": "View All",
     "start": "Start",
-    "menuToggle": "Toggle menu"
+    "menuToggle": "Toggle menu",
+    "copy": "Copy"
   },
   "tests": {
     "title": "Test Collection",
@@ -125,7 +126,18 @@
     "tiktok": "TikTok",
     "line": "LINE",
     "threads": "Threads",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "instagramGuideTitle": "How to share on Instagram",
+    "instagramStep1": "Link copied ✓",
+    "instagramStep2": "Open Instagram, go to Stories or DM",
+    "instagramStep3": "Long-press the text field → Paste",
+    "tiktokGuideTitle": "How to share on TikTok",
+    "tiktokStep1": "Link copied ✓",
+    "tiktokStep2": "Open TikTok and create a new post",
+    "tiktokStep3": "Long-press the text field → Paste",
+    "kakaoGuideTitle": "How to share on KakaoTalk",
+    "kakaoStep1": "Open KakaoTalk and choose a chat",
+    "kakaoStep2": "Copy the link below and paste it"
   },
   "footer": {
     "tagline": "Discover your inner self in a fun and effortless way.",

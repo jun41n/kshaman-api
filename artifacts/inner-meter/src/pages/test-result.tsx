@@ -113,8 +113,8 @@ export default function TestResult() {
   const gradient = CATEGORY_GRADIENTS[test.category] || 'from-violet-600 via-purple-500 to-fuchsia-500';
   const glow = CATEGORY_GLOW[test.category] || 'shadow-violet-500/25';
 
-  const testEntryUrl = `${window.location.origin}/tests/${test.slug}`;
-  const shareText = buildShareMessage(lang, resultTitle, testEntryUrl);
+  const resultPageUrl = `${window.location.origin}/results/${slug}?result=${result.key}`;
+  const shareText = buildShareMessage(lang, resultTitle, resultPageUrl);
 
   const handleSaveImage = async () => {
     if (!cardRef.current || isSaving) return;
@@ -144,7 +144,7 @@ export default function TestResult() {
       await shareResultComparison(
         cardRef.current,
         resultTitle,
-        testEntryUrl,
+        resultPageUrl,
         lang,
         `innermeter-${result.key}`,
       );
@@ -152,7 +152,7 @@ export default function TestResult() {
       setTimeout(() => setShared(false), 2800);
     } catch (err) {
       if (err instanceof Error && err.name === 'AbortError') return;
-      await navigator.clipboard.writeText(testEntryUrl).catch(() => {});
+      await navigator.clipboard.writeText(resultPageUrl).catch(() => {});
       toast({ title: t('share.copySuccess'), description: t('share.copySuccessDesc') });
     } finally {
       setIsSharing(false);
@@ -420,13 +420,14 @@ export default function TestResult() {
               <div className="flex-1 h-px bg-white/10" />
             </div>
 
-            {/* SNS buttons — use testEntryUrl + buildShareMessage text */}
+            {/* SNS buttons — share the specific result page URL */}
             <ShareButtons
               title={t('result.shareTitle', { testTitle: localTest?.title ?? test.title, resultTitle: resultTitle })}
               text={shareText}
-              url={testEntryUrl}
+              url={resultPageUrl}
               testSlug={test.slug}
               resultKey={result.key}
+              resultTitle={resultTitle}
             />
           </div>
         </motion.div>

@@ -64,7 +64,8 @@
     "takeOther": "他のテストを試す",
     "viewAll": "すべて見る",
     "start": "開始",
-    "menuToggle": "メニューを開く"
+    "menuToggle": "メニューを開く",
+    "copy": "コピー"
   },
   "tests": {
     "title": "テストコレクション",
@@ -125,7 +126,18 @@
     "tiktok": "TikTok",
     "line": "LINE",
     "threads": "Threads",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "instagramGuideTitle": "Instagramでシェアする方法",
+    "instagramStep1": "リンクをコピーしました ✓",
+    "instagramStep2": "Instagramを開きストーリーまたはDMへ",
+    "instagramStep3": "テキスト欄を長押し → 貼り付け",
+    "tiktokGuideTitle": "TikTokでシェアする方法",
+    "tiktokStep1": "リンクをコピーしました ✓",
+    "tiktokStep2": "TikTokを開き新規投稿作成",
+    "tiktokStep3": "テキスト欄を長押し → 貼り付け",
+    "kakaoGuideTitle": "カカオトークでシェアする方法",
+    "kakaoStep1": "カカオトークを開きチャットを選択",
+    "kakaoStep2": "下のリンクをコピーして貼り付けてください"
   },
   "footer": {
     "tagline": "あなたの内面を楽しく軽やかに測定しよう。",

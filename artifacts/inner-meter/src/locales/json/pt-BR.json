@@ -64,7 +64,8 @@
     "takeOther": "Tentar Outro Teste",
     "viewAll": "Ver Tudo",
     "start": "Iniciar",
-    "menuToggle": "Abrir menu"
+    "menuToggle": "Abrir menu",
+    "copy": "Copiar"
   },
   "tests": {
     "title": "Coleção de Testes",
@@ -125,7 +126,18 @@
     "tiktok": "TikTok",
     "line": "LINE",
     "threads": "Threads",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "instagramGuideTitle": "Como compartilhar no Instagram",
+    "instagramStep1": "Link copiado ✓",
+    "instagramStep2": "Abra o Instagram, vá para Stories ou DM",
+    "instagramStep3": "Pressione e segure o texto → Colar",
+    "tiktokGuideTitle": "Como compartilhar no TikTok",
+    "tiktokStep1": "Link copiado ✓",
+    "tiktokStep2": "Abra o TikTok e crie uma nova publicação",
+    "tiktokStep3": "Pressione e segure o texto → Colar",
+    "kakaoGuideTitle": "Como compartilhar no KakaoTalk",
+    "kakaoStep1": "Abra o KakaoTalk e escolha um chat",
+    "kakaoStep2": "Copie e cole o link abaixo"
   },
   "footer": {
     "tagline": "Descubra seu interior de forma leve e divertida.",

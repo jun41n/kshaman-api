@@ -33,12 +33,6 @@ export default function PetResult() {
   const test = getPetTest(petType);
   const result = test.results.find((r) => r.key === resultKey);
 
-  useEffect(() => {
-    const completed = sessionStorage.getItem(`pet_quiz_done_${petType}`);
-    if (!completed) {
-      navigate(`/pet-test/quiz/${petType}`);
-    }
-  }, [petType, navigate]);
 
   const updateCardScale = useCallback(() => {
     if (!previewWrapperRef.current) return;
@@ -65,7 +59,7 @@ export default function PetResult() {
   const labelKey = petType === 'dog' ? 'pet.quiz.dogLabel' : 'pet.quiz.catLabel';
   const rKey = `${petType}.results.${resultKey}`;
   const resultTitle = t(`${rKey}.title`);
-  const testEntryUrl = `${window.location.origin}/pet-test/quiz/${petType}`;
+  const resultPageUrl = window.location.href;
 
   async function handleSaveImage() {
     if (!cardRef.current || saving) return;
@@ -94,7 +88,7 @@ export default function PetResult() {
       await shareResultComparison(
         cardRef.current,
         resultTitle,
-        testEntryUrl,
+        resultPageUrl,
         lang,
         `pet-result-${resultKey}`,
       );
@@ -102,7 +96,7 @@ export default function PetResult() {
       setTimeout(() => setShared(false), 2800);
     } catch (err) {
       if (err instanceof Error && err.name === 'AbortError') return;
-      await navigator.clipboard.writeText(testEntryUrl).catch(() => {});
+      await navigator.clipboard.writeText(resultPageUrl).catch(() => {});
       toast({ title: t('share.copySuccess'), description: t('share.copySuccessDesc') });
     } finally {
       setSharing(false);

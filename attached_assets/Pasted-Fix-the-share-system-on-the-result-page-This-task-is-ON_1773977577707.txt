@@ -1,0 +1,154 @@
+Fix the share system on the result page.
+This task is ONLY about fixing share logic, result links, and unsupported-platform share guidance.
+Do NOT redesign the site.
+Do NOT change layout or styling unless required for this share fix.
+Do NOT add new languages.
+
+==================================================
+GOAL
+==================================================
+
+1) Shared links must represent the user's FINAL RESULT
+
+- Currently, share buttons use the test URL (for example /tests/...)
+- This is wrong
+- When another user opens a shared link:
+  - they must see the exact same result immediately
+  - they must NOT be sent to the test questions
+  - they must NOT need to retake the test
+
+2) The final result must be reproducible from the URL alone
+
+- Do NOT rely on localStorage or previous session state
+- Include a result identifier in the URL (result slug / result code / result type)
+
+Example route patterns:
+- /result/love-language-test/:resultSlug
+- OR /tests/love-language-test/result/:resultSlug
+
+3) When a result link is opened:
+
+- Render the correct result page immediately
+- Show the correct result card
+- Keep a separate “try the test” button if needed
+
+==================================================
+KEEP THIS AS IS
+==================================================
+
+- Do NOT modify the "친구와 비교하기" button
+- It already uses the native share flow correctly
+- Keep its current behavior unchanged
+
+==================================================
+KAKAO BUTTON
+==================================================
+
+Fix the Kakao button behavior:
+
+- Do NOT copy the link to clipboard
+- Do NOT show a generic "link copied" flow
+- Instead, trigger Kakao share directly
+- Open the KakaoTalk sharing flow
+- Let the user choose the recipient inside KakaoTalk
+
+Shared content should include:
+- Result title
+- Short share message
+- Result link (NOT the generic test link)
+- Result image if available
+
+==================================================
+OTHER SUPPORTED PLATFORMS
+==================================================
+
+For platforms that have proper official web share support, implement the official share method.
+
+Examples:
+- X
+- Facebook
+
+Requirements:
+- Use official share URLs / official supported methods only
+- Do NOT use unreliable hacks
+- Do NOT use fake app-opening deep links
+
+==================================================
+INSTAGRAM + TIKTOK
+==================================================
+
+Instagram and TikTok do NOT have a reliable direct web share flow for this use case.
+Do NOT try to force direct app sharing for these two.
+
+Instead, when the Instagram button or TikTok button is clicked:
+
+1. Copy the correct RESULT LINK to clipboard
+   - NOT the generic test link
+   - It must be the final result link
+
+2. Show a small guidance UI / modal / toast with these instructions:
+   - “스토리에 붙여넣기”
+   - “링크 복사됨”
+   - “이미지 저장 후 업로드”
+
+3. Also provide a way to save/download the result card image if that capability already exists or can be reused safely
+
+4. Keep the current visual style
+   - do not redesign the page
+   - use a minimal guidance UI only if needed
+
+==================================================
+MULTI-LANGUAGE REQUIREMENTS
+==================================================
+
+- Preserve the existing i18n / translation system
+- Do NOT break language switching
+- Do NOT hardcode Korean-only text globally
+
+Requirements:
+- The current selected language must be preserved in:
+  - result URLs
+  - shared links
+  - result pages opened from shared links
+
+- Share messages must be generated from the current active language
+- Instagram/TikTok guidance text must also follow the current active language
+- Do NOT fallback everything to one language
+
+Add translation keys for all new share guidance text where needed.
+
+Examples of guidance text that must be translated:
+- “스토리에 붙여넣기”
+- “링크 복사됨”
+- “이미지 저장 후 업로드”
+
+==================================================
+IMPORTANT RULES
+==================================================
+
+- Do NOT break the existing test flow
+- Do NOT modify test questions
+- Do NOT modify scoring logic
+- Do NOT redesign the UI
+- Do NOT add new languages
+- Do NOT introduce complex routing changes outside result handling
+- Only change what is necessary for:
+  - result-specific links
+  - Kakao share
+  - supported official platform shares
+  - Instagram/TikTok fallback guidance
+
+==================================================
+OUTPUT REQUIRED
+==================================================
+
+Show clearly:
+
+1) The final result URL structure
+2) Which file controls the share link
+3) Which file renders the result page
+4) Which files were modified
+5) How Kakao share was implemented
+6) How X / Facebook were handled
+7) How Instagram / TikTok guidance was implemented
+8) Which new translation keys were added

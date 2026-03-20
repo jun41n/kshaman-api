@@ -64,7 +64,8 @@
     "takeOther": "다른 테스트 해보기",
     "viewAll": "전체 보기",
     "start": "시작",
-    "menuToggle": "메뉴 열기/닫기"
+    "menuToggle": "메뉴 열기/닫기",
+    "copy": "복사"
   },
   "tests": {
     "title": "테스트 컬렉션",
@@ -125,7 +126,18 @@
     "tiktok": "틱톡",
     "line": "라인",
     "threads": "스레드",
-    "whatsapp": "왓츠앱"
+    "whatsapp": "왓츠앱",
+    "instagramGuideTitle": "인스타그램 공유 방법",
+    "instagramStep1": "링크가 복사되었습니다 ✓",
+    "instagramStep2": "인스타그램 앱에서 스토리 또는 DM 열기",
+    "instagramStep3": "텍스트 입력창 길게 누르기 → 붙여넣기",
+    "tiktokGuideTitle": "틱톡 공유 방법",
+    "tiktokStep1": "링크가 복사되었습니다 ✓",
+    "tiktokStep2": "틱톡 앱에서 새 글 작성",
+    "tiktokStep3": "텍스트 입력창 길게 누르기 → 붙여넣기",
+    "kakaoGuideTitle": "카카오톡 공유 방법",
+    "kakaoStep1": "카카오톡 앱을 열고 공유할 채팅 선택",
+    "kakaoStep2": "아래 링크를 복사하여 붙여넣기하세요"
   },
   "footer": {
     "tagline": "당신의 내면을 가볍고 재미있게 측정해보세요.",

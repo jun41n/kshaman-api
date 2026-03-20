@@ -64,7 +64,8 @@
     "takeOther": "Essayer un Autre Test",
     "viewAll": "Tout Voir",
     "start": "Démarrer",
-    "menuToggle": "Basculer le menu"
+    "menuToggle": "Basculer le menu",
+    "copy": "Copier"
   },
   "tests": {
     "title": "Collection de Tests",
@@ -125,7 +126,18 @@
     "tiktok": "TikTok",
     "line": "LINE",
     "threads": "Threads",
-    "whatsapp": "WhatsApp"
+    "whatsapp": "WhatsApp",
+    "instagramGuideTitle": "Comment partager sur Instagram",
+    "instagramStep1": "Lien copié ✓",
+    "instagramStep2": "Ouvre Instagram, va dans Stories ou DM",
+    "instagramStep3": "Appuie longuement sur le texte → Coller",
+    "tiktokGuideTitle": "Comment partager sur TikTok",
+    "tiktokStep1": "Lien copié ✓",
+    "tiktokStep2": "Ouvre TikTok et crée une nouvelle publication",
+    "tiktokStep3": "Appuie longuement sur le texte → Coller",
+    "kakaoGuideTitle": "Comment partager sur KakaoTalk",
+    "kakaoStep1": "Ouvre KakaoTalk et choisis une conversation",
+    "kakaoStep2": "Copie et colle le lien ci-dessous"
   },
   "footer": {
     "tagline": "Découvrez votre moi intérieur de façon légère et amusante.",
