@@ -60,7 +60,7 @@ export default function PetResult() {
   const labelKey = petType === 'dog' ? 'pet.quiz.dogLabel' : 'pet.quiz.catLabel';
   const rKey = `${petType}.results.${resultKey}`;
   const resultTitle = t(`${rKey}.title`);
-  const resultPageUrl = window.location.href;
+  const resultPageUrl = `https://mytesttype.com${window.location.pathname}${window.location.search}`;
   const shareText = buildShareMessage(lang, resultTitle, resultPageUrl);
 
   async function handleSaveImage() {

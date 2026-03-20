@@ -23,12 +23,6 @@ interface SnsButton {
 
 type GuidanceType = 'instagram' | 'tiktok' | 'kakao' | null;
 
-function splitAtEmoji(text: string): [string, string] | [string] {
-  const match = text.match(/^(.*\p{Emoji_Presentation})\s+(.+)$/u);
-  if (match) return [match[1], match[2]];
-  return [text];
-}
-
 export function ShareButtons({ title, text, url, testSlug, resultKey, resultTitle }: ShareButtonsProps) {
   const { t } = useTranslation();
   const { toast } = useToast();
@@ -203,8 +197,6 @@ export function ShareButtons({ title, text, url, testSlug, resultKey, resultTitl
     },
   ];
 
-  const textParts = splitAtEmoji(text);
-
   const renderBtn = (btn: SnsButton) => (
     <button
       key={btn.shareType}
@@ -294,11 +286,6 @@ export function ShareButtons({ title, text, url, testSlug, resultKey, resultTitl
       </div>
 
       {guidance && <GuidancePanel type={guidance} />}
-
-      <div className="bg-white/10 border border-white/15 rounded-2xl px-5 py-3 text-sm text-white/75 max-w-[17rem] text-center leading-relaxed backdrop-blur-sm">
-        <span>{textParts[0]}</span>
-        {textParts[1] && <><br /><span>{textParts[1]}</span></>}
-      </div>
 
       {typeof navigator.share !== 'function' && (
         <p className="text-[10px] text-white/40 leading-relaxed text-center max-w-[18rem]">

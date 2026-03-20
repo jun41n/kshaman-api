@@ -113,7 +113,7 @@ export default function TestResult() {
   const gradient = CATEGORY_GRADIENTS[test.category] || 'from-violet-600 via-purple-500 to-fuchsia-500';
   const glow = CATEGORY_GLOW[test.category] || 'shadow-violet-500/25';
 
-  const resultPageUrl = `${window.location.origin}/results/${slug}?result=${result.key}`;
+  const resultPageUrl = `https://mytesttype.com/results/${slug}?result=${result.key}`;
   const shareText = buildShareMessage(lang, resultTitle, resultPageUrl);
 
   const handleSaveImage = async () => {
