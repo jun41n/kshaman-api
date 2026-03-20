@@ -129,7 +129,8 @@ export function ShareButtons({ title, text, url, testSlug, resultKey, resultTitl
           },
         ],
       });
-    } catch {
+    } catch (err) {
+      console.error('[Kakao] share failed:', err);
       setGuidance(g => g === 'kakao' ? null : 'kakao');
     }
   };
