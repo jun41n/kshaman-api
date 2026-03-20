@@ -2,6 +2,7 @@ import { useRef, useState, useCallback, useEffect } from "react";
 import { useParams, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import confetti from "canvas-confetti";
 import { Check, Download, Loader2, RotateCcw, Grid2x2, Share2 } from "lucide-react";
 import { getPetTest, PetType } from "@/data/petData";
 import PetShareCard from "@/components/PetShareCard";
@@ -46,6 +47,22 @@ export default function PetResult() {
     window.addEventListener('resize', updateCardScale);
     return () => window.removeEventListener('resize', updateCardScale);
   }, [updateCardScale]);
+
+  useEffect(() => {
+    if (!result) return;
+    const end = Date.now() + 2200;
+    const rng = (min: number, max: number) => Math.random() * (max - min) + min;
+    const iv = setInterval(() => {
+      const left = end - Date.now();
+      if (left <= 0) { clearInterval(iv); return; }
+      const n = 45 * (left / 2200);
+      const opts = { startVelocity: 26, spread: 340, ticks: 55, zIndex: 0 };
+      confetti({ ...opts, particleCount: n, origin: { x: rng(0.1, 0.3), y: -0.1 }, colors: ['#8B5CF6', '#EC4899', '#3B82F6', '#F59E0B'] });
+      confetti({ ...opts, particleCount: n, origin: { x: rng(0.7, 0.9), y: -0.1 }, colors: ['#8B5CF6', '#EC4899', '#3B82F6', '#10B981'] });
+    }, 220);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    return () => clearInterval(iv);
+  }, [result]);
 
   if (!result) {
     return (
