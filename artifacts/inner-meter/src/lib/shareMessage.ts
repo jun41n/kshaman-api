@@ -76,7 +76,8 @@ export async function shareResultComparison(
         typeof navigator.canShare === 'function' && navigator.canShare({ files: [file] });
 
       if (canShareFile) {
-        await navigator.share({ files: [file], text: shareText, url: testEntryUrl });
+        // iOS rejects share() when both files + url are passed; url is already in shareText
+        await navigator.share({ files: [file], text: shareText });
         return;
       }
     }
