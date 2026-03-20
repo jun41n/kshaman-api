@@ -7,6 +7,7 @@ import { getPetTest, PetType } from "@/data/petData";
 import PetShareCard from "@/components/PetShareCard";
 import { Layout } from "@/components/layout";
 import { useToast } from "@/hooks/use-toast";
+import { ShareButtons } from "@/components/share-buttons";
 import {
   buildShareMessage,
   saveResultCardImage,
@@ -60,6 +61,7 @@ export default function PetResult() {
   const rKey = `${petType}.results.${resultKey}`;
   const resultTitle = t(`${rKey}.title`);
   const resultPageUrl = window.location.href;
+  const shareText = buildShareMessage(lang, resultTitle, resultPageUrl);
 
   async function handleSaveImage() {
     if (!cardRef.current || saving) return;
@@ -200,8 +202,8 @@ export default function PetResult() {
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-3 mb-4">
-                  {/* Primary: 친구랑 비교하기 — native share with image + message + testEntryUrl */}
+                <div className="flex flex-col gap-3 mb-6">
+                  {/* Primary: 친구랑 비교하기 — native share with image + message */}
                   <button
                     onClick={handleShareComparison}
                     disabled={sharing}
@@ -235,6 +237,19 @@ export default function PetResult() {
                     }
                   </button>
                 </div>
+
+                <div className="flex items-center gap-3 mb-5">
+                  <div className="flex-1 h-px bg-white/10" />
+                  <span className="text-white/35 text-xs font-medium shrink-0">{t('result.snsDivider')}</span>
+                  <div className="flex-1 h-px bg-white/10" />
+                </div>
+
+                <ShareButtons
+                  title={t('result.shareTitle', { testTitle: t(labelKey), resultTitle })}
+                  text={shareText}
+                  url={resultPageUrl}
+                  resultTitle={resultTitle}
+                />
               </div>
             </motion.div>
 
