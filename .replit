@@ -29,3 +29,4 @@ timeoutMs = 20000
 
 [userenv.shared]
 VITE_GA_ID = "G-70BK9892B5"
+VITE_KAKAO_APP_KEY = "70a6718f352e10b0912aa3e2abea6257"
