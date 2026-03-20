@@ -2,30 +2,32 @@ import { useRef, useState, useCallback, useEffect } from "react";
 import { useParams, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Link2, Check, Download, Loader2, RotateCcw, Grid2x2 } from "lucide-react";
+import { Check, Download, Loader2, RotateCcw, Grid2x2, Share2 } from "lucide-react";
 import { getPetTest, PetType } from "@/data/petData";
 import PetShareCard from "@/components/PetShareCard";
 import { Layout } from "@/components/layout";
-
-async function downloadCardAsPng(el: HTMLDivElement): Promise<Blob | null> {
-  const { toBlob } = await import("html-to-image");
-  const opts = { pixelRatio: 2, cacheBust: true, skipFonts: true, style: { borderRadius: '28px' } };
-  const timeout = new Promise<null>((_, reject) => setTimeout(() => reject(new Error('timeout')), 12_000));
-  return Promise.race([toBlob(el, opts), timeout]);
-}
+import { useToast } from "@/hooks/use-toast";
+import {
+  buildShareMessage,
+  saveResultCardImage,
+  shareResultComparison,
+} from "@/lib/shareMessage";
 
 export default function PetResult() {
   const params = useParams<{ type: string; key: string }>();
   const petType = params.type as PetType;
   const resultKey = params.key;
   const [, navigate] = useLocation();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { toast } = useToast();
+  const lang = i18n.language || 'ko';
 
   const cardRef = useRef<HTMLDivElement>(null!);
   const previewWrapperRef = useRef<HTMLDivElement>(null);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [sharing, setSharing] = useState(false);
+  const [shared, setShared] = useState(false);
   const [cardScale, setCardScale] = useState(1);
 
   const test = getPetTest(petType);
@@ -62,62 +64,49 @@ export default function PetResult() {
 
   const labelKey = petType === 'dog' ? 'pet.quiz.dogLabel' : 'pet.quiz.catLabel';
   const rKey = `${petType}.results.${resultKey}`;
+  const resultTitle = t(`${rKey}.title`);
+  const testEntryUrl = `${window.location.origin}/pet-test/quiz/${petType}`;
 
   async function handleSaveImage() {
     if (!cardRef.current || saving) return;
     setSaving(true);
     try {
-      const blob = await downloadCardAsPng(cardRef.current);
-      if (!blob) throw new Error('Failed to generate image');
-
-      const file = new File([blob], `pet-result-${resultKey}.png`, { type: 'image/png' });
-      const canShareFile = typeof navigator.canShare === 'function' && navigator.canShare({ files: [file] });
-
-      if (canShareFile) {
-        await navigator.share({ files: [file], title: t(`${rKey}.title`) });
-      } else {
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `pet-result-${resultKey}.png`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-      }
-
+      await saveResultCardImage(
+        cardRef.current,
+        `pet-result-${resultKey}`,
+        () => toast({ title: t('result.iosSaveHint'), description: t('result.iosSaveHintDesc') }),
+      );
       setSaved(true);
       setTimeout(() => setSaved(false), 2800);
     } catch (err) {
       if (err instanceof Error && err.name === 'AbortError') return;
       console.warn('Image save failed', err);
-      if (typeof navigator.share === 'function') {
-        try {
-          await navigator.share({ title: t(`${rKey}.title`), url: window.location.href });
-          setSaved(true);
-          setTimeout(() => setSaved(false), 2800);
-          return;
-        } catch { }
-      }
-      alert(t('pet.result.saveError'));
+      toast({ variant: 'destructive', title: t('pet.result.saveError') });
     } finally {
       setSaving(false);
     }
   }
 
-  async function handleCopyLink() {
+  async function handleShareComparison() {
+    if (!cardRef.current || sharing) return;
+    setSharing(true);
     try {
-      await navigator.clipboard.writeText(window.location.href);
-    } catch {
-      const el = document.createElement('textarea');
-      el.value = window.location.href;
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand('copy');
-      document.body.removeChild(el);
+      await shareResultComparison(
+        cardRef.current,
+        resultTitle,
+        testEntryUrl,
+        lang,
+        `pet-result-${resultKey}`,
+      );
+      setShared(true);
+      setTimeout(() => setShared(false), 2800);
+    } catch (err) {
+      if (err instanceof Error && err.name === 'AbortError') return;
+      await navigator.clipboard.writeText(testEntryUrl).catch(() => {});
+      toast({ title: t('share.copySuccess'), description: t('share.copySuccessDesc') });
+    } finally {
+      setSharing(false);
     }
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2800);
   }
 
   return (
@@ -172,6 +161,7 @@ export default function PetResult() {
               </div>
             </div>
 
+            {/* ── Share Card Section ── */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -192,6 +182,7 @@ export default function PetResult() {
                   <p className="text-white/55 text-sm">{t('pet.result.shareCardSub')}</p>
                 </div>
 
+                {/* ── Card Preview (capture target: cardRef) ── */}
                 <div ref={previewWrapperRef} className="w-full flex justify-center mb-5">
                   <div style={{
                     width: `${Math.round(360 * cardScale)}px`,
@@ -207,6 +198,7 @@ export default function PetResult() {
                       transformOrigin: 'top left',
                       transform: `scale(${cardScale})`,
                     }}>
+                      {/* cardRef — only this 360×480 card is captured */}
                       <div ref={cardRef}>
                         <PetShareCard result={result} petType={petType} />
                       </div>
@@ -215,17 +207,27 @@ export default function PetResult() {
                 </div>
 
                 <div className="flex flex-col gap-3 mb-4">
+                  {/* Primary: 친구랑 비교하기 — native share with image + message + testEntryUrl */}
                   <button
-                    onClick={handleCopyLink}
-                    className={`w-full flex items-center justify-center gap-2.5 rounded-2xl h-14 text-[0.95rem] font-black transition-all duration-200 active:scale-[0.97] cursor-pointer shadow-xl shadow-black/30 ${copied ? 'bg-emerald-500 text-white' : 'bg-white text-gray-900 hover:bg-white/90'
-                      }`}
+                    onClick={handleShareComparison}
+                    disabled={sharing}
+                    className={`w-full flex items-center justify-center gap-2.5 rounded-2xl h-14 text-[0.95rem] font-black transition-all duration-200 active:scale-[0.97] shadow-xl shadow-black/30 ${
+                      shared
+                        ? 'bg-emerald-500 text-white cursor-pointer'
+                        : sharing
+                          ? 'bg-white/70 text-gray-400 cursor-not-allowed'
+                          : 'bg-white text-gray-900 hover:bg-white/90 cursor-pointer'
+                    }`}
                   >
-                    {copied
-                      ? <><Check className="w-5 h-5" />{t('pet.result.linkCopied')}</>
-                      : <><Link2 className="w-5 h-5" />{t('pet.result.compareWithFriends')}</>
+                    {sharing
+                      ? <><Loader2 className="w-5 h-5 animate-spin" />{t('result.sharing')}</>
+                      : shared
+                        ? <><Check className="w-5 h-5" />{t('result.shared')}</>
+                        : <><Share2 className="w-5 h-5" />{t('pet.result.compareWithFriends')}</>
                     }
                   </button>
 
+                  {/* Secondary: 이미지 저장 — save PNG only, no share sheet */}
                   <button
                     onClick={handleSaveImage}
                     disabled={saving}

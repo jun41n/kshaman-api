@@ -101,9 +101,13 @@
     "recommendedSub": "이 결과를 본 사람들이 다음에 많이 한 테스트예요",
     "compareWithFriends": "친구랑 비교하기",
     "linkCopied": "링크가 복사되었습니다! 🎉",
+    "sharing": "공유 중...",
+    "shared": "공유 완료! ✓",
     "savingImage": "저장 중...",
     "imageSaved": "저장됨 ✓",
-    "saveError": "이미지 저장에 실패했어요 😢\n스크린샷을 이용해 저장해보세요!"
+    "saveError": "이미지 저장에 실패했어요 😢\n스크린샷을 이용해 저장해보세요!",
+    "iosSaveHint": "이미지를 길게 눌러 저장하세요",
+    "iosSaveHintDesc": "새 탭에서 열린 이미지를 길게 눌러 저장하면 돼요"
   },
   "share": {
     "copySuccess": "링크 복사 완료! 🎉",

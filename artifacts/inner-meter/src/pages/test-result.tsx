@@ -6,7 +6,7 @@ import { ShareButtons } from "@/components/share-buttons";
 import { ResultShareCard } from "@/components/ResultShareCard";
 import { TestCard } from "@/components/test-card";
 import { getTestBySlug, RESULT_EMOJIS } from "@/data/tests";
-import { RotateCcw, Grid2x2, Download, Link2, Check, Loader2 } from "lucide-react";
+import { RotateCcw, Grid2x2, Download, Share2, Check, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import confetti from "canvas-confetti";
 import { motion } from "framer-motion";
@@ -14,6 +14,13 @@ import { trackRecommendedTestClick, trackResultImageSave } from "@/lib/analytics
 import { useTranslation } from "react-i18next";
 import { useLocalizedTest } from "@/hooks/useLocalizedTest";
 import { MbtiSeoContent } from "@/components/MbtiSeoContent";
+import { useToast } from "@/hooks/use-toast";
+import {
+  buildShareMessage,
+  generateResultCardImage,
+  saveResultCardImage,
+  shareResultComparison,
+} from "@/lib/shareMessage";
 
 const CATEGORY_GRADIENTS: Record<string, string> = {
   '연애 테스트': 'from-pink-500 via-rose-500 to-fuchsia-500',
@@ -32,41 +39,16 @@ const CATEGORY_GLOW: Record<string, string> = {
   '타로':         'shadow-purple-500/30',
 };
 
-async function downloadCardAsPng(
-  el: HTMLDivElement,
-  filename: string,
-): Promise<Blob | null> {
-  const { toBlob } = await import("html-to-image");
-
-  // skipFonts: true avoids CORS failures when inlining external web-fonts.
-  // The share card uses inline styles so system fonts are fine.
-  const opts = {
-    pixelRatio: 2,
-    cacheBust: true,
-    skipFonts: true,
-    style: { borderRadius: '28px' },
-  };
-
-  // Warm-up pass: let html-to-image resolve images / layout
-  await toBlob(el, opts).catch(() => null);
-
-  // Actual capture with timeout guard
-  const blobPromise = toBlob(el, opts);
-  const timeoutPromise = new Promise<null>((_, reject) =>
-    setTimeout(() => reject(new Error('capture-timeout')), 12_000),
-  );
-  const blob = await Promise.race([blobPromise, timeoutPromise]);
-  return blob;
-}
-
 export default function TestResult() {
   const { t, i18n } = useTranslation();
+  const { toast } = useToast();
   const rawLang = i18n.language || 'ko';
   const lang = (['ko','en','ja','es','pt-BR','fr'] as const).includes(rawLang as 'ko')
     ? rawLang as 'ko' | 'en' | 'ja' | 'es' | 'pt-BR' | 'fr'
     : (rawLang.split('-')[0] as 'ko' | 'en' | 'ja' | 'es' | 'pt-BR' | 'fr') || 'ko';
   const localize = (field?: { ko: string; en: string; ja: string; es: string; 'pt-BR': string; fr: string }) =>
     field ? (field[lang] ?? field.en ?? field.ko) : undefined;
+
   const [, params] = useRoute("/results/:slug");
   const [, setLocation] = useLocation();
   const slug = params?.slug || "";
@@ -74,7 +56,8 @@ export default function TestResult() {
   const [resultKey, setResultKey] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [saved, setSaved] = useState(false);
-  const [linkCopied, setLinkCopied] = useState(false);
+  const [isSharing, setIsSharing] = useState(false);
+  const [shared, setShared] = useState(false);
   const [cardScale, setCardScale] = useState(1);
   const cardRef = useRef<HTMLDivElement>(null!);
   const previewWrapperRef = useRef<HTMLDivElement>(null);
@@ -100,7 +83,6 @@ export default function TestResult() {
     return () => clearInterval(iv);
   }, [slug, test, setLocation]);
 
-  // Measure the preview wrapper and compute how much to scale the card
   const updateCardScale = useCallback(() => {
     if (!previewWrapperRef.current) return;
     const available = previewWrapperRef.current.clientWidth;
@@ -131,70 +113,49 @@ export default function TestResult() {
   const gradient = CATEGORY_GRADIENTS[test.category] || 'from-violet-600 via-purple-500 to-fuchsia-500';
   const glow = CATEGORY_GLOW[test.category] || 'shadow-violet-500/25';
 
-  const resultPageUrl = `${window.location.origin}${window.location.pathname}${window.location.search}`;
-  const shareText = localResult?.shareText ?? result.shareText;
+  const testEntryUrl = `${window.location.origin}/tests/${test.slug}`;
+  const shareText = buildShareMessage(lang, resultTitle, testEntryUrl);
 
-  // Native OS share sheet — fast, no image needed, works with Kakao/Instagram/etc.
-  const handleCopyLink = async () => {
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-    } catch {
-      // Fallback for older browsers
-      const el = document.createElement('textarea');
-      el.value = window.location.href;
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand('copy');
-      document.body.removeChild(el);
-    }
-    setLinkCopied(true);
-    setTimeout(() => setLinkCopied(false), 2800);
-  };
-
-  // Image capture → download on desktop / native share with image on mobile
   const handleSaveImage = async () => {
     if (!cardRef.current || isSaving) return;
     setIsSaving(true);
     try {
-      const blob = await downloadCardAsPng(cardRef.current, `innermeter-${result.key}`);
-      if (!blob) throw new Error('Failed to generate image');
-
-      const file = new File([blob], `innermeter-${result.key}.png`, { type: 'image/png' });
-      const canShareFile = typeof navigator.canShare === 'function' && navigator.canShare({ files: [file] });
-
-      if (canShareFile) {
-        // Mobile: share image via OS share sheet
-        await navigator.share({ files: [file], title: resultTitle, text: shareText });
-      } else {
-        // Desktop: trigger download
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `innermeter-${result.key}.png`;
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-      }
-
+      await saveResultCardImage(
+        cardRef.current,
+        `innermeter-${result.key}`,
+        () => toast({ title: t('result.iosSaveHint'), description: t('result.iosSaveHintDesc') }),
+      );
       setSaved(true);
       setTimeout(() => setSaved(false), 2800);
       trackResultImageSave({ test_slug: test.slug, result_key: result.key, result_title: result.title });
     } catch (err) {
-      if (err instanceof Error && err.name === 'AbortError') return; // user cancelled — fine
+      if (err instanceof Error && err.name === 'AbortError') return;
       console.warn('Image save failed', err);
-      // Fallback: share URL if image capture fails
-      if (typeof navigator.share === 'function') {
-        try {
-          await navigator.share({ title: resultTitle, text: shareText, url: resultPageUrl });
-          setSaved(true);
-          setTimeout(() => setSaved(false), 2800);
-          return;
-        } catch { /* ignore */ }
-      }
-      alert(t('result.saveError'));
+      toast({ variant: 'destructive', title: t('result.saveError') });
     } finally {
       setIsSaving(false);
+    }
+  };
+
+  const handleShareComparison = async () => {
+    if (!cardRef.current || isSharing) return;
+    setIsSharing(true);
+    try {
+      await shareResultComparison(
+        cardRef.current,
+        resultTitle,
+        testEntryUrl,
+        lang,
+        `innermeter-${result.key}`,
+      );
+      setShared(true);
+      setTimeout(() => setShared(false), 2800);
+    } catch (err) {
+      if (err instanceof Error && err.name === 'AbortError') return;
+      await navigator.clipboard.writeText(testEntryUrl).catch(() => {});
+      toast({ title: t('share.copySuccess'), description: t('share.copySuccessDesc') });
+    } finally {
+      setIsSharing(false);
     }
   };
 
@@ -230,7 +191,7 @@ export default function TestResult() {
       <SeoHead
         title={seoTitle}
         description={resultSummary}
-        path={resultPath}
+        path={`/tests/${slug}`}
         jsonLd={jsonLd}
       />
       <div className="max-w-xl mx-auto pt-2 pb-4">
@@ -363,7 +324,6 @@ export default function TestResult() {
           transition={{ duration: 0.4, delay: 0.28 }}
           className="relative rounded-[1.75rem] overflow-hidden mb-6"
         >
-          {/* dark cosmic bg */}
           <div className="absolute inset-0 bg-gradient-to-br from-indigo-950 via-purple-900 to-fuchsia-950" />
           <div className="absolute inset-0"
             style={{ backgroundImage: 'radial-gradient(circle at 20% 20%, rgba(139,92,246,0.30) 0%, transparent 55%), radial-gradient(circle at 80% 80%, rgba(236,72,153,0.18) 0%, transparent 50%)' }} />
@@ -373,16 +333,13 @@ export default function TestResult() {
           ))}
 
           <div className="relative z-10 p-6 md:p-8">
-            {/* section header */}
             <div className="text-center mb-6">
               <h3 className="text-lg font-black text-white mb-1">{t('result.shareCardTitle')}</h3>
               <p className="text-white/55 text-sm">{t('result.shareCardSub')}</p>
             </div>
 
-            {/* ── Card Preview ── */}
-            {/* previewWrapperRef measures available width; cardScale is set by JS */}
+            {/* ── Card Preview (capture target: cardRef) ── */}
             <div ref={previewWrapperRef} className="w-full flex justify-center mb-5">
-              {/* outer div is the visual bounding box after scaling */}
               <div
                 style={{
                   width: `${Math.round(360 * cardScale)}px`,
@@ -393,7 +350,6 @@ export default function TestResult() {
                   filter: 'drop-shadow(0 20px 60px rgba(139,92,246,0.45)) drop-shadow(0 8px 24px rgba(0,0,0,0.5))',
                 }}
               >
-                {/* inner div renders at native 360×480 then scales to fill the outer */}
                 <div
                   style={{
                     width: '360px',
@@ -402,6 +358,7 @@ export default function TestResult() {
                     transform: `scale(${cardScale})`,
                   }}
                 >
+                  {/* cardRef — only this 360×480 card is captured */}
                   <ResultShareCard
                     ref={cardRef}
                     test={test}
@@ -414,29 +371,34 @@ export default function TestResult() {
               </div>
             </div>
 
-            {/* ── Save / Share buttons ── */}
+            {/* ── Primary action: 친구랑 비교하기 (share image + message + testUrl) ── */}
             <div className="flex flex-col gap-3 mb-6">
               <button
-                onClick={handleCopyLink}
+                onClick={handleShareComparison}
+                disabled={isSharing}
                 className={`
-                  w-full flex items-center justify-center gap-2.5 
+                  w-full flex items-center justify-center gap-2.5
                   rounded-2xl h-14 text-[0.95rem] font-black
                   transition-all duration-200 active:scale-[0.97]
-                  ${linkCopied
+                  ${shared
                     ? 'bg-emerald-500 text-white'
-                    : 'bg-white text-gray-900 hover:bg-white/90'
+                    : isSharing
+                      ? 'bg-white/70 text-gray-400 cursor-not-allowed'
+                      : 'bg-white text-gray-900 hover:bg-white/90 cursor-pointer'
                   }
-                  cursor-pointer
                   shadow-xl shadow-black/30
                 `}
               >
-                {linkCopied ? (
-                  <><Check className="w-5 h-5" />{t('result.linkCopied')}</>
+                {isSharing ? (
+                  <><Loader2 className="w-5 h-5 animate-spin" />{t('result.sharing')}</>
+                ) : shared ? (
+                  <><Check className="w-5 h-5" />{t('result.shared')}</>
                 ) : (
-                  <><Link2 className="w-5 h-5" />{t('result.compareWithFriends')}</>
+                  <><Share2 className="w-5 h-5" />{t('result.compareWithFriends')}</>
                 )}
               </button>
 
+              {/* Secondary action: 이미지 저장 (save PNG only — no share sheet) */}
               <button
                 onClick={handleSaveImage}
                 disabled={isSaving}
@@ -452,18 +414,17 @@ export default function TestResult() {
               </button>
             </div>
 
-            {/* divider */}
             <div className="flex items-center gap-3 mb-5">
               <div className="flex-1 h-px bg-white/10" />
               <span className="text-white/35 text-xs font-medium shrink-0">{t('result.snsDivider')}</span>
               <div className="flex-1 h-px bg-white/10" />
             </div>
 
-            {/* SNS buttons */}
+            {/* SNS buttons — use testEntryUrl + buildShareMessage text */}
             <ShareButtons
               title={t('result.shareTitle', { testTitle: localTest?.title ?? test.title, resultTitle: resultTitle })}
               text={shareText}
-              url={resultPageUrl}
+              url={testEntryUrl}
               testSlug={test.slug}
               resultKey={result.key}
             />

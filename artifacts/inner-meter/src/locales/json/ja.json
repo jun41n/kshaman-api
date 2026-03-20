@@ -101,9 +101,13 @@
     "recommendedSub": "この結果を見た人がよく試すテストです",
     "compareWithFriends": "友達と比べる",
     "linkCopied": "リンクをコピーしました！ 🎉",
+    "sharing": "シェア中...",
+    "shared": "シェアしました！ ✓",
     "savingImage": "保存中...",
     "imageSaved": "保存しました ✓",
-    "saveError": "画像の保存に失敗しました 😢\nスクリーンショットで保存してください！"
+    "saveError": "画像の保存に失敗しました 😢\nスクリーンショットで保存してください！",
+    "iosSaveHint": "画像を長押しして保存してください",
+    "iosSaveHintDesc": "新しいタブで開いた画像を長押しして保存できます"
   },
   "share": {
     "copySuccess": "リンクをコピーしました！🎉",

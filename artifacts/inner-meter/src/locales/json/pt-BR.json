@@ -101,9 +101,13 @@
     "recommendedSub": "Testes que pessoas com este resultado costumam tentar a seguir",
     "compareWithFriends": "Comparar com amigos",
     "linkCopied": "Link copiado! 🎉",
+    "sharing": "Compartilhando...",
+    "shared": "Compartilhado! ✓",
     "savingImage": "Salvando...",
     "imageSaved": "Salvo ✓",
-    "saveError": "Falha ao salvar imagem 😢\nTente tirar um print!"
+    "saveError": "Falha ao salvar imagem 😢\nTente tirar um print!",
+    "iosSaveHint": "Pressione e segure a imagem para salvar",
+    "iosSaveHintDesc": "A imagem abriu numa nova aba — pressione e segure para salvar na galeria"
   },
   "share": {
     "copySuccess": "Link copiado! 🎉",

@@ -101,9 +101,13 @@
     "recommendedSub": "Tests que les personnes avec ce résultat essaient ensuite",
     "compareWithFriends": "Comparer avec des amis",
     "linkCopied": "Lien copié ! 🎉",
+    "sharing": "Partage en cours...",
+    "shared": "Partagé ! ✓",
     "savingImage": "Enregistrement...",
     "imageSaved": "Enregistré ✓",
-    "saveError": "Échec de l'enregistrement 😢\nEssayez de faire une capture d'écran !"
+    "saveError": "Échec de l'enregistrement 😢\nEssayez de faire une capture d'écran !",
+    "iosSaveHint": "Appuyez longuement sur l'image pour l'enregistrer",
+    "iosSaveHintDesc": "L'image s'est ouverte dans un nouvel onglet — appuyez longuement pour l'enregistrer"
   },
   "share": {
     "copySuccess": "Lien copié ! 🎉",

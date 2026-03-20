@@ -1,0 +1,286 @@
+Fix the result-page save/share system for the production site.
+
+This task is ONLY about fixing the viral save/share flow.
+Do NOT add new languages.
+Do NOT redesign the whole site.
+Do NOT redesign MBTI result images yet.
+Do NOT change unrelated layout or features.
+Keep the current visual style unless necessary for this share/save fix.
+
+==================================================
+MAIN GOAL
+==================================================
+
+I need the result page to work like this:
+
+1) "이미지 저장" button
+- Save ONLY the result card image as PNG
+- Do NOT open the native share sheet as the main behavior
+- Do NOT save the full page screenshot
+- Save/capture only the main result card area
+
+2) "친구랑 비교하기" button
+- Open native share flow
+- Share:
+  a) the result card image
+  b) a short share message in the current site language
+  c) the correct test link URL
+- The purpose is viral comparison sharing:
+  the friend should see the result card first, then the text, then want to open the link and try the same test
+
+3) SNS icon buttons
+- Each SNS/share icon should share the result card + message + link as much as the platform allows
+- If a platform cannot support image + text + URL together, use the best fallback:
+  - at minimum share text + URL
+  - do NOT silently fail
+- Never share only a bare result-page URL unless no other option exists
+
+4) Shared link destination
+- Do NOT share a confusing result-only page that just reopens the same result screen
+- Share the proper test entry URL (or proper comparison/test landing URL) so the friend can immediately take the test
+
+5) Result preview trust fix
+- Shared links must show a normal branded preview
+- They must NEVER show a dev error screen, Vite overlay, broken code preview, or scary/debug-like content
+
+==================================================
+CURRENT PROBLEM
+==================================================
+
+Current behavior is wrong:
+- "이미지 저장" currently opens share behavior instead of saving
+- "친구랑 비교하기" currently acts too much like a link copy/share of the same result page
+- SNS sharing is not properly designed for virality
+- Some shared links show bad previews that reduce trust
+
+This is wrong.
+
+The correct product behavior is:
+
+- 이미지 저장 = save result card image only
+- 친구랑 비교하기 = share result card + message + URL
+- SNS icons = platform sharing with result card + message + URL as much as possible
+- Shared links should invite the friend to take the same test, not just reopen the same result page
+
+==================================================
+IMPLEMENTATION REQUIREMENTS
+==================================================
+
+Please refactor the logic clearly and separate responsibilities.
+
+Create or refactor functions like:
+
+- generateResultCardImage()
+- saveResultCardImage()
+- buildShareMessage()
+- shareResultComparison()
+- shareToSocial(platform)
+
+Use the actual project structure, but separate these responsibilities cleanly.
+
+==================================================
+RESULT CARD CAPTURE REQUIREMENTS
+==================================================
+
+Capture ONLY the main result visual card area.
+Do NOT capture:
+- save/share buttons
+- SNS buttons
+- recommendation section
+- retry buttons
+- whole page screenshot
+- footer content
+- unrelated sections
+
+The captured image should be the clean result card that is worth sharing.
+
+Please identify the exact DOM section/ref used for capture and keep it stable.
+
+==================================================
+SAVE BUTTON REQUIREMENTS
+==================================================
+
+For "이미지 저장":
+- First choice: save/download PNG directly
+- If iPhone Safari/browser limitations make direct save difficult, implement the best possible fallback:
+  - open the generated image in a way the user can save it
+  - provide a clear instruction in the current language if needed
+  - for Korean example: "이미지를 길게 눌러 저장하세요"
+- But do NOT make the main save button behave like generic sharing
+
+==================================================
+NATIVE SHARE REQUIREMENTS
+==================================================
+
+For "친구랑 비교하기":
+- Try to share:
+  - image file
+  - text
+  - URL
+
+If the platform/browser cannot share all 3 together:
+- fallback to text + URL
+- and make sure the experience still works instead of breaking
+
+==================================================
+SNS SHARE BUTTON REQUIREMENTS
+==================================================
+
+For each SNS/share icon:
+- share the result in a viral way
+- prefer:
+  - result summary text
+  - URL
+  - image if supported by platform/browser
+- if platform limitations exist, implement per-platform best effort
+- do not treat all platforms as identical if they have different URL schemes or sharing rules
+
+Please inspect the existing SNS share button code and fix each one properly.
+
+==================================================
+SHARE MESSAGE SYSTEM
+==================================================
+
+The share message must be language-aware.
+
+Detect the current site language using the existing i18n / language selector system.
+Build the share message in the same language as the current page.
+Do NOT always use Korean.
+
+Important:
+- There are many result types (MBTI etc.)
+- Do NOT create separate share messages for each result
+- Do NOT duplicate logic per result
+- Use a scalable template-based system only
+
+Use this function pattern:
+
+buildShareMessage(lang, resultTitle, url)
+
+Create ONE message template per language only.
+Inject the dynamic resultTitle and url into the template.
+
+Use these language templates:
+
+Korean (ko):
+나 결과 이거 나왔어 👀
+"{RESULT_TITLE}"
+너도 해보고 나랑 비교해봐
+{URL}
+
+English (en):
+I got this result 👀
+"{RESULT_TITLE}"
+Try it and compare with me
+{URL}
+
+Japanese (ja):
+私の結果はこれだった 👀
+「{RESULT_TITLE}」
+あなたもやって比べてみて
+{URL}
+
+Spanish (es):
+Mira mi resultado 👀
+"{RESULT_TITLE}"
+Hazlo tú también y compáralo conmigo
+{URL}
+
+Portuguese (pt):
+Olha meu resultado 👀
+"{RESULT_TITLE}"
+Faz o teste também e compara comigo
+{URL}
+
+Indonesian (id):
+Ini hasilku 👀
+"{RESULT_TITLE}"
+Coba juga dan bandingkan denganku
+{URL}
+
+Implementation rules:
+- Use ONE template per language only
+- The resultTitle must already be localized from the existing i18n/result data
+- Replace {RESULT_TITLE} dynamically
+- Replace {URL} dynamically with the proper test entry URL
+- If language is unknown, fallback to English
+
+Please implement buildShareMessage(lang, resultTitle, url) with this template-based approach.
+Do NOT hardcode result-specific messages.
+
+==================================================
+LINK DESTINATION REQUIREMENTS
+==================================================
+
+Do NOT use a shared URL that only reopens the same result page in a confusing way.
+
+Instead:
+- share the correct test start URL, OR
+- share a proper comparison/test landing URL
+whichever is already most suitable in this project
+
+The goal is:
+friend receives result -> gets curious -> clicks -> starts the same test easily
+
+==================================================
+OG / META PREVIEW FIX
+==================================================
+
+Audit and fix production metadata for shared links.
+
+Ensure proper and clean metadata exists, including:
+- title
+- meta description
+- og:title
+- og:description
+- og:image
+- og:url
+- twitter:card
+- twitter:title
+- twitter:description
+- twitter:image
+
+Requirements:
+- use valid public absolute URLs where needed
+- never show dev/debug/error overlay content in shared previews
+- make sure production build output is clean
+- remove any possibility of Vite/dev overlay leaking into production preview
+- ensure the shared canonical URL is correct and stable
+
+==================================================
+PRODUCTION SAFETY CHECK
+==================================================
+
+Please inspect production-related code and confirm:
+- no dev-only overlay/debug content can appear in production share previews
+- production build routes used for sharing return clean HTML/meta
+- shared URLs point to the correct live production pages
+- stale or broken preview risks are minimized
+
+==================================================
+WHAT TO SHOW ME
+==================================================
+
+After making changes, show me:
+
+1) every modified file
+2) what was changed in each file
+3) which DOM section/ref is used for result card capture
+4) how "이미지 저장" now works
+5) how "친구랑 비교하기" now works
+6) how SNS icon sharing now works
+7) what shared URL destination is now used
+8) the final buildShareMessage() function
+9) how current language is detected
+10) how localized resultTitle is injected
+11) what metadata/OG preview fixes were applied
+
+==================================================
+IMPORTANT LIMITS
+==================================================
+
+- Do NOT work on language expansion
+- Do NOT redesign MBTI images yet
+- Do NOT touch unrelated features
+- Focus only on the save/share/viral preview system
+- Actually modify the code now and then show me the changed files

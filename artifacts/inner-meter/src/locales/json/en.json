@@ -101,9 +101,13 @@
     "recommendedSub": "Tests that people with this result often try next",
     "compareWithFriends": "Compare with Friends",
     "linkCopied": "Link copied! 🎉",
+    "sharing": "Sharing...",
+    "shared": "Shared! ✓",
     "savingImage": "Saving...",
     "imageSaved": "Saved ✓",
-    "saveError": "Image save failed 😢\nTry taking a screenshot instead!"
+    "saveError": "Image save failed 😢\nTry taking a screenshot instead!",
+    "iosSaveHint": "Long-press the image to save",
+    "iosSaveHintDesc": "The image opened in a new tab — long-press it to save to your photos"
   },
   "share": {
     "copySuccess": "Link Copied! 🎉",
