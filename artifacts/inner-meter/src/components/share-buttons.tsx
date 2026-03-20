@@ -105,38 +105,33 @@ export function ShareButtons({ title, text, url, testSlug, resultKey, resultTitl
 
   const handleKakao = async () => {
     track('kakaotalk');
-    // 1. Try official SDK if key is configured
     try {
       const ready = await loadAndInitKakao();
-      if (ready && window.Kakao?.Share) {
-        window.Kakao.Share.sendDefault({
-          objectType: 'feed',
-          content: {
-            title: resultTitle || title,
-            description: text,
-            imageUrl: 'https://mytesttype.com/opengraph.jpg',
+      if (!ready || !window.Kakao?.Share) throw new Error('not_ready');
+      window.Kakao.Share.sendDefault({
+        objectType: 'feed',
+        content: {
+          title: resultTitle || title,
+          description: text,
+          imageUrl: 'https://mytesttype.com/opengraph.jpg',
+          link: {
+            mobileWebUrl: shareUrl,
+            webUrl: shareUrl,
+          },
+        },
+        buttons: [
+          {
+            title: t('share.kakaoViewResult'),
             link: {
               mobileWebUrl: shareUrl,
               webUrl: shareUrl,
             },
           },
-          buttons: [
-            {
-              title: t('share.kakaoViewResult'),
-              link: {
-                mobileWebUrl: shareUrl,
-                webUrl: shareUrl,
-              },
-            },
-          ],
-        });
-        return;
-      }
-    } catch { /* fall through to web fallback */ }
-
-    // 2. Web fallback: Kakao Story share page (login if not logged in → same UX as LINE)
-    const kakaoStoryUrl = `https://story.kakao.com/share?url=${encodeURIComponent(shareUrl)}`;
-    window.open(kakaoStoryUrl, '_blank', 'width=640,height=640,scrollbars=yes');
+        ],
+      });
+    } catch {
+      setGuidance(g => g === 'kakao' ? null : 'kakao');
+    }
   };
 
   const buttons: SnsButton[] = [
