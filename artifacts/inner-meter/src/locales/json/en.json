@@ -745,5 +745,20 @@
   "notFound": {
     "title": "Page Not Found",
     "desc": "The page you requested does not exist."
+  },
+  "terms": {
+    "title": "Terms of Use",
+    "effectiveDate": "Effective Date: January 1, 2025",
+    "a1title": "Article 1 – Purpose",
+    "a1body": "These Terms of Use govern the relationship between InnerMeter (hereinafter \"the Company\") and users with respect to the psychology test and tarot-related services (hereinafter \"the Service\") provided by the Company.",
+    "a2title": "Article 2 – Nature of the Service",
+    "a2body": "The personality, relationship, and other psychology tests and tarot services provided by the Company are designed primarily for entertainment and fun. The results of the Service are not a substitute for medical, psychological, or professional diagnosis or counseling, and users should not make important decisions based solely on test results.",
+    "a2strong": "entertainment and fun",
+    "a3title": "Article 3 – Copyright",
+    "a3body": "All content provided within the Service (questions, result descriptions, images, designs, etc.) is the intellectual property of the Company. Users may not reproduce, distribute, publish, or commercially exploit such content without prior consent from the Company. (Sharing via the in-service share feature on social media is permitted.)",
+    "a4title": "Article 4 – Disclaimer",
+    "a4body": "The Company assumes no liability for any damages incurred by users in connection with the free Service. The Company is also not obligated to intervene in disputes between users arising from use of the Service.",
+    "a5title": "Article 5 – Changes to Terms",
+    "a5body": "The Company may amend these Terms as necessary within the bounds of applicable law. Amended Terms take effect upon being posted within the Service."
   }
 }

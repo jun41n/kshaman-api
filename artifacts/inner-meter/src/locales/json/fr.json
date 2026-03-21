@@ -698,5 +698,20 @@
   "notFound": {
     "title": "Page introuvable",
     "desc": "La page que vous avez demandée n'existe pas."
+  },
+  "terms": {
+    "title": "Conditions d'utilisation",
+    "effectiveDate": "Date d'entrée en vigueur : 1er janvier 2025",
+    "a1title": "Article 1 – Objet",
+    "a1body": "Les présentes Conditions d'utilisation régissent la relation entre InnerMeter (ci-après « la Société ») et les utilisateurs concernant les services de tests psychologiques et de tarot (ci-après « le Service ») fournis par la Société.",
+    "a2title": "Article 2 – Nature du Service",
+    "a2body": "Les tests de personnalité, d'amour et autres tests psychologiques ainsi que le service de tarot proposés par la Société sont conçus principalement à des fins de divertissement et de plaisir. Les résultats du Service ne remplacent pas un diagnostic médical, psychologique ou un conseil professionnel. Les utilisateurs ne doivent pas prendre de décisions importantes en se basant uniquement sur les résultats.",
+    "a2strong": "divertissement et de plaisir",
+    "a3title": "Article 3 – Droits d'auteur",
+    "a3body": "Tout le contenu du Service (questions, descriptions des résultats, images, designs, etc.) est la propriété intellectuelle de la Société. Les utilisateurs ne peuvent pas reproduire, distribuer ou exploiter commercialement ce contenu sans le consentement préalable de la Société. (Le partage sur les réseaux sociaux via la fonction de partage intégrée est autorisé.)",
+    "a4title": "Article 4 – Limitation de responsabilité",
+    "a4body": "La Société décline toute responsabilité pour les dommages subis par les utilisateurs en lien avec l'utilisation gratuite du Service. Elle n'est pas non plus tenue d'intervenir dans les litiges entre utilisateurs découlant de l'utilisation du Service.",
+    "a5title": "Article 5 – Modification des Conditions",
+    "a5body": "La Société peut modifier les présentes Conditions si nécessaire, dans les limites de la législation applicable. Les modifications prennent effet dès leur publication dans le Service."
   }
 }

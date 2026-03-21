@@ -695,5 +695,20 @@
   "notFound": {
     "title": "Página não encontrada",
     "desc": "A página que você solicitou não existe."
+  },
+  "terms": {
+    "title": "Termos de Uso",
+    "effectiveDate": "Data de vigência: 1 de janeiro de 2025",
+    "a1title": "Artigo 1 – Objetivo",
+    "a1body": "Estes Termos de Uso regulam a relação entre InnerMeter (doravante «a Empresa») e os usuários com relação aos serviços de testes psicológicos e tarô (doravante «o Serviço») fornecidos pela Empresa.",
+    "a2title": "Artigo 2 – Natureza do Serviço",
+    "a2body": "Os testes de personalidade, relacionamento e outros testes psicológicos e o serviço de tarô fornecidos pela Empresa são criados principalmente para entretenimento e diversão. Os resultados do Serviço não substituem diagnósticos médicos, psicológicos ou aconselhamento profissional. Os usuários não devem tomar decisões importantes baseando-se somente nos resultados.",
+    "a2strong": "entretenimento e diversão",
+    "a3title": "Artigo 3 – Direitos Autorais",
+    "a3body": "Todo o conteúdo do Serviço (perguntas, descrições de resultados, imagens, designs, etc.) é propriedade intelectual da Empresa. Os usuários não podem reproduzir, distribuir ou explorar comercialmente tal conteúdo sem o consentimento prévio da Empresa. (Compartilhar em redes sociais através da função de compartilhamento integrada é permitido.)",
+    "a4title": "Artigo 4 – Isenção de Responsabilidade",
+    "a4body": "A Empresa não assume qualquer responsabilidade por danos sofridos pelos usuários em conexão com o uso gratuito do Serviço, nem é obrigada a intervir em disputas entre usuários decorrentes do uso do Serviço.",
+    "a5title": "Artigo 5 – Alterações nos Termos",
+    "a5body": "A Empresa poderá alterar estes Termos quando necessário, dentro dos limites da legislação aplicável. As alterações entrarão em vigor após serem publicadas no Serviço."
   }
 }
