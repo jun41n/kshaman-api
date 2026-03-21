@@ -160,6 +160,7 @@ export function Layout({ children }: LayoutProps) {
                 <div className="flex flex-col gap-2.5 text-sm font-medium text-muted-foreground">
                   <Link href="/about"   className="hover:text-primary transition-colors">{t('footer.about')}</Link>
                   <Link href="/privacy" className="hover:text-primary transition-colors">{t('footer.privacy')}</Link>
+                  <Link href="/terms"   className="hover:text-primary transition-colors">{t('footer.terms')}</Link>
                   <Link href="/contact" className="hover:text-primary transition-colors">{t('footer.contact')}</Link>
                 </div>
               </div>
