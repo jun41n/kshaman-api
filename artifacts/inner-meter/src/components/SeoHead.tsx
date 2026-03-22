@@ -36,6 +36,20 @@ export function SeoHead({
     <Helmet>
       <html lang="en" />
 
+      {/* 🔥 Google Analytics */}
+      <script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-X5N345WH91"
+      ></script>
+      <script>
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-X5N345WH91');
+        `}
+      </script>
+
       <title>{finalTitle}</title>
 
       <meta name="description" content={description} />
