@@ -36,7 +36,6 @@ export function SeoHead({
     <Helmet>
       <html lang="en" />
 
-      {/* 🔥 Google Analytics */}
       <script
         async
         src="https://www.googletagmanager.com/gtag/js?id=G-X5N345WH91"
@@ -56,7 +55,6 @@ export function SeoHead({
 
       <link rel="canonical" href={canonicalUrl} />
 
-      {/* Open Graph */}
       <meta property="og:locale" content="en_US" />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={SITE_NAME} />
@@ -65,13 +63,11 @@ export function SeoHead({
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={ogImage} />
 
-      {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={finalTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
 
-      {/* JSON-LD */}
       {schemas.map((schema, i) => (
         <script key={i} type="application/ld+json">
           {JSON.stringify(schema)}
