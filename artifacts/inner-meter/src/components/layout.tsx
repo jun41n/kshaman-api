@@ -125,9 +125,6 @@ export function Layout({ children }: LayoutProps) {
         </div>
       </main>
 
-      {/* ── Adsterra Banner ── */}
-      <AdsterraBanner />
-
       {/* ── Footer ── */}
       <footer className="w-full border-t border-border bg-card mt-auto">
         <div className="container max-w-5xl mx-auto px-4 sm:px-6 py-8">
@@ -176,6 +173,9 @@ export function Layout({ children }: LayoutProps) {
           </div>
         </div>
       </footer>
+
+      {/* ── Adsterra Banner (맨 하단) ── */}
+      <AdsterraBanner />
     </div>
   );
 }
