@@ -53,9 +53,11 @@ export default function Home() {
             {t('home.badge')}
           </div>
 
-          <h1 className="text-[2.6rem] leading-[1.15] md:text-6xl font-black tracking-tight text-foreground max-w-md">
-            {t('home.title1')} {t('home.title2')}<br />
-            <span className="text-gradient-primary">{t('home.title3')}</span>
+          <h1 className="text-[2.6rem] leading-[1.15] md:text-6xl tracking-tight text-foreground max-w-md">
+            <span className="font-light">{t('home.title1')} </span>
+            <span className="font-black text-gradient-primary">{t('home.title2')}</span>
+            <br />
+            <span className="font-light">{t('home.title3')}</span>
           </h1>
 
           <p className="text-[0.95rem] md:text-lg text-muted-foreground max-w-xs md:max-w-sm leading-relaxed">
