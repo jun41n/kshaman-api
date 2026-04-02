@@ -292,24 +292,24 @@
     },
     "persona": {
       "baby_bosal": {
-        "title": "Espírito da Inocência",
-        "vibe": "Amigável e intuitiva, como uma irmã mais velha alegre"
+        "title": "Baby Oracle",
+        "vibe": "Espírito Divino Puro e Inocente"
       },
       "sunnyeo_bosal": {
-        "title": "Espírito da Lua",
-        "vibe": "Elegante e misteriosa, uma vidente graciosa"
+        "title": "Lunar Goddess",
+        "vibe": "Espírito Lunar Elegante e Misterioso"
       },
       "chunshin_doryeong": {
-        "title": "Espírito do Céu",
-        "vibe": "Forte e direto, um guerreiro celestial audaz"
+        "title": "Sky Warrior",
+        "vibe": "Espírito Celestial Poderoso e Confiante"
       },
       "musog_in": {
-        "title": "Espírito da Tradição",
-        "vibe": "Honesto e direto, o xamã clássico"
+        "title": "Grand Shaman",
+        "vibe": "Vidente de Karma Direto e Tradicional"
       },
       "beopsa": {
-        "title": "Espírito da Sabedoria",
-        "vibe": "Tranquilo e filosófico, um sábio ancião"
+        "title": "Sage Master",
+        "vibe": "Alma Antiga Calma e Filosófica"
       }
     }
   },

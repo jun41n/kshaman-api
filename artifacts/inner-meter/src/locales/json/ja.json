@@ -292,24 +292,24 @@
     },
     "persona": {
       "baby_bosal": {
-        "title": "純粋な神霊",
-        "vibe": "親しみやすく正直な20代の保薩"
+        "title": "Baby Oracle",
+        "vibe": "純粋で無邪気な神霊"
       },
       "sunnyeo_bosal": {
-        "title": "月の神霊",
-        "vibe": "優雅で神秘的な中年の保薩"
+        "title": "Lunar Goddess",
+        "vibe": "優雅で神秘的な月の霊"
       },
       "chunshin_doryeong": {
-        "title": "天の神霊",
-        "vibe": "強くて自信に満ちた若い神霊"
+        "title": "Sky Warrior",
+        "vibe": "力強く自信に満ちた天の霊"
       },
       "musog_in": {
-        "title": "伝統の神霊",
-        "vibe": "誠実で率直な伝統的な巫師"
+        "title": "Grand Shaman",
+        "vibe": "直接的で伝統的な業報の見者"
       },
       "beopsa": {
-        "title": "知恵の神霊",
-        "vibe": "静かで哲学的な老年の法師"
+        "title": "Sage Master",
+        "vibe": "穏やかで哲学的な古代の魂"
       }
     }
   },

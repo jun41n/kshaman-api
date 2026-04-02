@@ -295,24 +295,24 @@
     },
     "persona": {
       "baby_bosal": {
-        "title": "Esprit de l'Innocence",
-        "vibe": "Amical et intuitif, comme une grande sœur joyeuse"
+        "title": "Baby Oracle",
+        "vibe": "Esprit Divin Pur et Innocent"
       },
       "sunnyeo_bosal": {
-        "title": "Esprit de la Lune",
-        "vibe": "Élégant et mystérieux, une voyante gracieuse"
+        "title": "Lunar Goddess",
+        "vibe": "Esprit Lunaire Élégant et Mystérieux"
       },
       "chunshin_doryeong": {
-        "title": "Esprit du Ciel",
-        "vibe": "Fort et direct, un guerrier céleste audacieux"
+        "title": "Sky Warrior",
+        "vibe": "Esprit Céleste Puissant et Confiant"
       },
       "musog_in": {
-        "title": "Esprit de la Tradition",
-        "vibe": "Honnête et direct, le chaman classique"
+        "title": "Grand Shaman",
+        "vibe": "Visionnaire Karmique Direct et Traditionnel"
       },
       "beopsa": {
-        "title": "Esprit de la Sagesse",
-        "vibe": "Calme et philosophique, un sage ancien"
+        "title": "Sage Master",
+        "vibe": "Âme Ancienne Calme et Philosophique"
       }
     },
     "speech": {
