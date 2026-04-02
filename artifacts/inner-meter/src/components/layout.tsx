@@ -48,7 +48,7 @@ export function Layout({ children }: LayoutProps) {
                 <Sparkles className="w-5 h-5" />
               </div>
               <span className="font-display font-bold text-xl tracking-tight text-foreground">
-                InnerMeter
+                MyTestType
               </span>
             </Link>
 
@@ -135,7 +135,7 @@ export function Layout({ children }: LayoutProps) {
                 <div className="w-6 h-6 rounded-lg bg-gradient-primary flex items-center justify-center text-white">
                   <Sparkles className="w-3.5 h-3.5" />
                 </div>
-                InnerMeter
+                MyTestType
               </span>
               <p className="text-sm text-muted-foreground max-w-[220px]">
                 {t('footer.tagline')}

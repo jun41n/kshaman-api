@@ -584,7 +584,7 @@ const ShamanShareCard = forwardRef<HTMLDivElement, ShamanShareCardProps>(
         <div style={{ position: 'relative', zIndex: 1, textAlign: 'center', width: '100%' }}>
           {/* Brand */}
           <p style={{ color: 'rgba(196,181,253,0.6)', fontSize: 10, fontWeight: 700, letterSpacing: '0.25em', marginBottom: 20 }}>
-            INNERMETER · K-SHAMAN READING
+            MYTESTTYPE · K-SHAMAN READING
           </p>
 
           {/* Persona emoji */}

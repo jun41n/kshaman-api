@@ -144,7 +144,7 @@
     "tagline": "Découvrez votre moi intérieur de façon légère et amusante.",
     "services": "Services",
     "info": "Informations",
-    "copyright": "© 2026 InnerMeter. Tous droits réservés.",
+    "copyright": "© 2026 MyTestType. Tous droits réservés.",
     "about": "À propos",
     "privacy": "Confidentialité",
     "contact": "Contact",
@@ -152,43 +152,43 @@
   },
   "seo": {
     "home": {
-      "title": "InnerMeter — Tests de Personnalité et de Psychologie",
+      "title": "MyTestType — Tests de Personnalité et de Psychologie",
       "desc": "Qui suis-je vraiment ? Personnalité, style amoureux, MBTI, tarot, K-Shaman et plus. Découvrez votre moi intérieur avec 14 tests amusants."
     },
     "tests": {
-      "title": "Tous les Tests | InnerMeter",
+      "title": "Tous les Tests | MyTestType",
       "desc": "Parcourez des tests de personnalité, d'amour, MBTI et de psychologie. Trouvez le test parfait pour vous."
     },
     "tarot": {
-      "title": "Tarot du Jour | InnerMeter",
+      "title": "Tarot du Jour | MyTestType",
       "desc": "Tirez 3 cartes de tarot et recevez le message du jour sur l'amour, le travail et votre avenir."
     },
     "kshaman": {
-      "title": "Lecture K-Shaman | InnerMeter",
+      "title": "Lecture K-Shaman | MyTestType",
       "desc": "Obtenez votre lecture de fortune à la coréenne. Découvrez votre point de tournant vital avec K-Shaman."
     },
     "about": {
-      "title": "À propos d'InnerMeter",
-      "desc": "InnerMeter est une plateforme proposant des tests de personnalité, d'amour, MBTI et de tarot."
+      "title": "À propos d'MyTestType",
+      "desc": "MyTestType est une plateforme proposant des tests de personnalité, d'amour, MBTI et de tarot."
     },
     "privacy": {
-      "title": "Politique de Confidentialité | InnerMeter",
-      "desc": "Lisez la Politique de Confidentialité d'InnerMeter."
+      "title": "Politique de Confidentialité | MyTestType",
+      "desc": "Lisez la Politique de Confidentialité d'MyTestType."
     },
     "contact": {
-      "title": "Contact | InnerMeter",
-      "desc": "Une question ? Contactez InnerMeter par e-mail."
+      "title": "Contact | MyTestType",
+      "desc": "Une question ? Contactez MyTestType par e-mail."
     },
     "terms": {
-      "title": "Conditions d'Utilisation | InnerMeter",
-      "desc": "Lisez les Conditions d'Utilisation d'InnerMeter."
+      "title": "Conditions d'Utilisation | MyTestType",
+      "desc": "Lisez les Conditions d'Utilisation d'MyTestType."
     }
   },
   "about": {
-    "title": "À propos d'InnerMeter",
-    "p1": "InnerMeter est une plateforme proposant divers tests de personnalité et du contenu psychologique engageant.",
+    "title": "À propos d'MyTestType",
+    "p1": "MyTestType est une plateforme proposant divers tests de personnalité et du contenu psychologique engageant.",
     "p2": "Les utilisateurs peuvent découvrir leurs tendances, leur type psychologique et le flux de leur vie à travers des questions simples, de façon amusante.",
-    "p3": "Le contenu d'InnerMeter est conçu pour offrir des expériences d'auto-exploration et de divertissement.",
+    "p3": "Le contenu d'MyTestType est conçu pour offrir des expériences d'auto-exploration et de divertissement.",
     "testsTitle": "Tests Disponibles (Exemples)",
     "tests": [
       "Quel est mon MBTI ?",
@@ -199,19 +199,19 @@
       "À Quel Âge Votre Vie S'Épanouira-t-elle ?",
       "Lecture K-Shaman"
     ],
-    "p4": "InnerMeter vise à aider les gens à se comprendre de manière plus intéressante et à partager leurs résultats avec leurs amis.",
+    "p4": "MyTestType vise à aider les gens à se comprendre de manière plus intéressante et à partager leurs résultats avec leurs amis.",
     "disclaimer": "Le contenu de fortune et de divination sur ce site est uniquement à des fins de divertissement."
   },
   "privacy": {
     "title": "Politique de Confidentialité",
-    "p1": "InnerMeter prend au sérieux la protection de vos informations personnelles.",
+    "p1": "MyTestType prend au sérieux la protection de vos informations personnelles.",
     "p2": "Ce site peut collecter uniquement les informations minimales nécessaires pour fournir nos services.",
     "collectedTitle": "Informations que Nous Pouvons Collecter",
     "item1": "Date de naissance",
     "item2": "Genre",
     "item3": "Pays",
     "p3": "Ces informations sont utilisées uniquement pour générer des résultats de tests et améliorer l'expérience utilisateur.",
-    "p4": "InnerMeter ne vend ni ne partage vos informations personnelles avec des tiers.",
+    "p4": "MyTestType ne vend ni ne partage vos informations personnelles avec des tiers.",
     "p5": "Des statistiques de visite peuvent être collectées via des outils d'analyse comme Google Analytics.",
     "p6": "Ces informations sont utilisées pour améliorer le site et la qualité du contenu.",
     "p7": "Les utilisateurs peuvent arrêter d'utiliser le site à tout moment.",
@@ -220,12 +220,12 @@
     "p8Post": ".",
     "emailLabel": "E-mail de contact",
     "adTitle": "Publicité (Google AdSense)",
-    "adText": "InnerMeter utilise Google AdSense pour afficher des publicités. Google et des fournisseurs tiers utilisent des cookies pour diffuser des annonces basées sur vos visites précédentes sur ce site ou d'autres sites. Vous pouvez désactiver la publicité personnalisée en visitant les Paramètres des Annonces Google.",
+    "adText": "MyTestType utilise Google AdSense pour afficher des publicités. Google et des fournisseurs tiers utilisent des cookies pour diffuser des annonces basées sur vos visites précédentes sur ce site ou d'autres sites. Vous pouvez désactiver la publicité personnalisée en visitant les Paramètres des Annonces Google.",
     "adLinkText": "Paramètres des Annonces Google"
   },
   "contact": {
     "title": "Nous Contacter",
-    "p1": "Pour toute question relative aux services InnerMeter, veuillez nous envoyer un e-mail.",
+    "p1": "Pour toute question relative aux services MyTestType, veuillez nous envoyer un e-mail.",
     "emailLabel": "E-mail",
     "p2": "Nous répondrons aussi vite que possible.",
     "p3": "Merci."
@@ -750,7 +750,7 @@
     "title": "Conditions d'utilisation",
     "effectiveDate": "Date d'entrée en vigueur : 1er janvier 2025",
     "a1title": "Article 1 – Objet",
-    "a1body": "Les présentes Conditions d'utilisation régissent la relation entre InnerMeter (ci-après « la Société ») et les utilisateurs concernant les services de tests psychologiques et de tarot (ci-après « le Service ») fournis par la Société.",
+    "a1body": "Les présentes Conditions d'utilisation régissent la relation entre MyTestType (ci-après « la Société ») et les utilisateurs concernant les services de tests psychologiques et de tarot (ci-après « le Service ») fournis par la Société.",
     "a2title": "Article 2 – Nature du Service",
     "a2body": "Les tests de personnalité, d'amour et autres tests psychologiques ainsi que le service de tarot proposés par la Société sont conçus principalement à des fins de divertissement et de plaisir. Les résultats du Service ne remplacent pas un diagnostic médical, psychologique ou un conseil professionnel. Les utilisateurs ne doivent pas prendre de décisions importantes en se basant uniquement sur les résultats.",
     "a2strong": "divertissement et de plaisir",

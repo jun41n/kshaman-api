@@ -172,7 +172,7 @@ export default function Result() {
             </div>
           </div>
 
-          {/* ── Share Card Section — dark cosmic (matches InnerMeter) ── */}
+          {/* ── Share Card Section — dark cosmic (matches MyTestType) ── */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}

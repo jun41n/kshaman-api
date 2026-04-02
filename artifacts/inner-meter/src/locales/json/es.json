@@ -144,7 +144,7 @@
     "tagline": "Descubre tu interior de forma ligera y divertida.",
     "services": "Servicios",
     "info": "Información",
-    "copyright": "© 2026 InnerMeter. Todos los derechos reservados.",
+    "copyright": "© 2026 MyTestType. Todos los derechos reservados.",
     "about": "Acerca de",
     "privacy": "Privacidad",
     "contact": "Contacto",
@@ -152,43 +152,43 @@
   },
   "seo": {
     "home": {
-      "title": "InnerMeter — Tests de Personalidad y Psicología",
+      "title": "MyTestType — Tests de Personalidad y Psicología",
       "desc": "¿Quién soy realmente? Personalidad, estilo de amor, MBTI, tarot, K-Shaman y más. Descubre tu interior con 14 divertidos tests."
     },
     "tests": {
-      "title": "Todos los Tests | InnerMeter",
+      "title": "Todos los Tests | MyTestType",
       "desc": "Explora tests de personalidad, amor, MBTI y psicología. Encuentra el test perfecto para ti."
     },
     "tarot": {
-      "title": "Tarot del Día | InnerMeter",
+      "title": "Tarot del Día | MyTestType",
       "desc": "Elige 3 cartas del tarot y recibe el mensaje de hoy sobre el amor, el trabajo y tu futuro."
     },
     "kshaman": {
-      "title": "Lectura K-Shaman | InnerMeter",
+      "title": "Lectura K-Shaman | MyTestType",
       "desc": "Obtén tu lectura de fortuna al estilo coreano. Descubre tu punto de inflexión vital con K-Shaman."
     },
     "about": {
-      "title": "Acerca de InnerMeter",
-      "desc": "InnerMeter es una plataforma de tests de personalidad, amor, MBTI y tarot."
+      "title": "Acerca de MyTestType",
+      "desc": "MyTestType es una plataforma de tests de personalidad, amor, MBTI y tarot."
     },
     "privacy": {
-      "title": "Política de Privacidad | InnerMeter",
-      "desc": "Lee la Política de Privacidad de InnerMeter."
+      "title": "Política de Privacidad | MyTestType",
+      "desc": "Lee la Política de Privacidad de MyTestType."
     },
     "contact": {
-      "title": "Contacto | InnerMeter",
-      "desc": "¿Tienes alguna pregunta? Contacta a InnerMeter por correo electrónico."
+      "title": "Contacto | MyTestType",
+      "desc": "¿Tienes alguna pregunta? Contacta a MyTestType por correo electrónico."
     },
     "terms": {
-      "title": "Términos de Servicio | InnerMeter",
-      "desc": "Lee los Términos de Servicio de InnerMeter."
+      "title": "Términos de Servicio | MyTestType",
+      "desc": "Lee los Términos de Servicio de MyTestType."
     }
   },
   "about": {
-    "title": "Acerca de InnerMeter",
-    "p1": "InnerMeter es una plataforma que ofrece varios tests de personalidad y contenido psicológico interesante.",
+    "title": "Acerca de MyTestType",
+    "p1": "MyTestType es una plataforma que ofrece varios tests de personalidad y contenido psicológico interesante.",
     "p2": "Los usuarios pueden descubrir sus tendencias, tipo psicológico y flujo de vida a través de preguntas simples de forma divertida.",
-    "p3": "El contenido de InnerMeter está diseñado para proporcionar experiencias de autoexploración y entretenimiento.",
+    "p3": "El contenido de MyTestType está diseñado para proporcionar experiencias de autoexploración y entretenimiento.",
     "testsTitle": "Ejemplos de Tests Disponibles",
     "tests": [
       "Test de Personalidad MBTI",
@@ -199,19 +199,19 @@
       "Test de la Edad de Tu Éxito",
       "K-Shaman Reading"
     ],
-    "p4": "InnerMeter tiene como objetivo ayudar a las personas a entenderse de manera más interesante y compartir resultados con amigos.",
+    "p4": "MyTestType tiene como objetivo ayudar a las personas a entenderse de manera más interesante y compartir resultados con amigos.",
     "disclaimer": "El contenido de astrología y adivinación en este sitio es solo para fines de entretenimiento."
   },
   "privacy": {
     "title": "Política de Privacidad",
-    "p1": "InnerMeter toma en serio la protección de tu información personal.",
+    "p1": "MyTestType toma en serio la protección de tu información personal.",
     "p2": "Este sitio puede recopilar solo la información mínima necesaria para proporcionar nuestros servicios.",
     "collectedTitle": "Información que Podemos Recopilar",
     "item1": "Fecha de nacimiento",
     "item2": "Género",
     "item3": "País",
     "p3": "Esta información se utiliza únicamente para generar resultados de tests y mejorar la experiencia del usuario.",
-    "p4": "InnerMeter no vende ni comparte tu información personal con terceros.",
+    "p4": "MyTestType no vende ni comparte tu información personal con terceros.",
     "p5": "Podemos recopilar estadísticas de visitas a través de herramientas de análisis como Google Analytics.",
     "p6": "Esta información se utiliza para mejorar el sitio y la calidad del contenido.",
     "p7": "Los usuarios pueden dejar de usar el sitio en cualquier momento.",
@@ -222,7 +222,7 @@
   },
   "contact": {
     "title": "Contáctanos",
-    "p1": "Para consultas sobre los servicios de InnerMeter, envíanos un correo electrónico.",
+    "p1": "Para consultas sobre los servicios de MyTestType, envíanos un correo electrónico.",
     "emailLabel": "Email",
     "p2": "Responderemos lo antes posible.",
     "p3": "Gracias."
@@ -700,7 +700,7 @@
     "title": "Términos de Uso",
     "effectiveDate": "Fecha de entrada en vigor: 1 de enero de 2025",
     "a1title": "Artículo 1 – Objeto",
-    "a1body": "Los presentes Términos de Uso regulan la relación entre InnerMeter (en adelante «la Empresa») y los usuarios con respecto a los servicios de test psicológicos y tarot (en adelante «el Servicio») proporcionados por la Empresa.",
+    "a1body": "Los presentes Términos de Uso regulan la relación entre MyTestType (en adelante «la Empresa») y los usuarios con respecto a los servicios de test psicológicos y tarot (en adelante «el Servicio») proporcionados por la Empresa.",
     "a2title": "Artículo 2 – Naturaleza del Servicio",
     "a2body": "Los tests de personalidad, amor y otros test psicológicos, así como el servicio de tarot ofrecidos por la Empresa, están diseñados principalmente con fines de entretenimiento y diversión. Los resultados del Servicio no sustituyen diagnósticos médicos, psicológicos ni asesoramiento profesional. Los usuarios no deben tomar decisiones importantes basándose únicamente en los resultados.",
     "a2strong": "entretenimiento y diversión",

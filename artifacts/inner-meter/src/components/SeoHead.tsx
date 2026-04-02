@@ -9,10 +9,10 @@ interface SeoHeadProps {
 }
 
 const BASE_URL = "https://mytesttype.com";
-const SITE_NAME = "InnerMeter";
+const SITE_NAME = "MyTestType";
 
 const DEFAULT_TITLE =
-  "Personality Test · Love Test · Psychology Quiz | InnerMeter";
+  "Personality Test · Love Test · Psychology Quiz | MyTestType";
 
 const DEFAULT_DESCRIPTION =
   "Discover your personality, love style, and hidden traits through fun and simple psychology tests.";

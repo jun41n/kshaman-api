@@ -144,7 +144,7 @@
     "tagline": "Discover your inner self in a fun and effortless way.",
     "services": "Services",
     "info": "Info",
-    "copyright": "© 2026 InnerMeter. All rights reserved.",
+    "copyright": "© 2026 MyTestType. All rights reserved.",
     "about": "About",
     "privacy": "Privacy Policy",
     "contact": "Contact",
@@ -152,43 +152,43 @@
   },
   "seo": {
     "home": {
-      "title": "InnerMeter — Personality & Psychology Tests",
+      "title": "MyTestType — Personality & Psychology Tests",
       "desc": "Who am I really? Personality, love style, MBTI, tarot, K-Shaman and more. Discover your inner self with 14 fun psychology tests."
     },
     "tests": {
-      "title": "All Tests | InnerMeter",
+      "title": "All Tests | MyTestType",
       "desc": "Browse personality, love, MBTI, and psychology tests. Find the perfect test for you."
     },
     "tarot": {
-      "title": "Daily Tarot | InnerMeter",
+      "title": "Daily Tarot | MyTestType",
       "desc": "Draw 3 tarot cards and receive today's message about love, work, and your future."
     },
     "kshaman": {
-      "title": "K-Shaman Reading | InnerMeter",
+      "title": "K-Shaman Reading | MyTestType",
       "desc": "Get your Korean-style fortune reading from a spirit reader. Discover your life turning point with K-Shaman."
     },
     "about": {
-      "title": "About InnerMeter",
-      "desc": "InnerMeter is a platform offering personality, love, MBTI, and tarot tests."
+      "title": "About MyTestType",
+      "desc": "MyTestType is a platform offering personality, love, MBTI, and tarot tests."
     },
     "privacy": {
-      "title": "Privacy Policy | InnerMeter",
-      "desc": "Read the InnerMeter Privacy Policy."
+      "title": "Privacy Policy | MyTestType",
+      "desc": "Read the MyTestType Privacy Policy."
     },
     "contact": {
-      "title": "Contact | InnerMeter",
-      "desc": "Have a question? Contact InnerMeter via email."
+      "title": "Contact | MyTestType",
+      "desc": "Have a question? Contact MyTestType via email."
     },
     "terms": {
-      "title": "Terms of Service | InnerMeter",
-      "desc": "Read the InnerMeter Terms of Service."
+      "title": "Terms of Service | MyTestType",
+      "desc": "Read the MyTestType Terms of Service."
     }
   },
   "about": {
-    "title": "About InnerMeter",
-    "p1": "InnerMeter is a platform offering various personality tests and engaging psychological content.",
+    "title": "About MyTestType",
+    "p1": "MyTestType is a platform offering various personality tests and engaging psychological content.",
     "p2": "Users can discover their tendencies, psychological type, and life flow through simple questions in a fun way.",
-    "p3": "InnerMeter's content is designed to provide experiences for self-exploration and entertainment.",
+    "p3": "MyTestType's content is designed to provide experiences for self-exploration and entertainment.",
     "testsTitle": "Available Tests (Examples)",
     "tests": [
       "What's My MBTI?",
@@ -199,19 +199,19 @@
       "At What Age Does Your Life Peak?",
       "K-Shaman Reading"
     ],
-    "p4": "InnerMeter aims to help people understand themselves in a more interesting way and share results with friends.",
+    "p4": "MyTestType aims to help people understand themselves in a more interesting way and share results with friends.",
     "disclaimer": "Fortune and divination content on this site is for entertainment purposes only."
   },
   "privacy": {
     "title": "Privacy Policy",
-    "p1": "InnerMeter takes the protection of your personal information seriously.",
+    "p1": "MyTestType takes the protection of your personal information seriously.",
     "p2": "This site may collect only the minimum information necessary to provide our services.",
     "collectedTitle": "Information We May Collect",
     "item1": "Date of birth",
     "item2": "Gender",
     "item3": "Country",
     "p3": "This information is used solely for generating test results and improving user experience.",
-    "p4": "InnerMeter does not sell or share your personal information with third parties.",
+    "p4": "MyTestType does not sell or share your personal information with third parties.",
     "p5": "Visit statistics may be collected through analytics tools such as Google Analytics.",
     "p6": "This information is used to improve the site and enhance content quality.",
     "p7": "Users may discontinue use of the site at any time.",
@@ -220,12 +220,12 @@
     "p8Post": ".",
     "emailLabel": "Inquiry email",
     "adTitle": "Advertising (Google AdSense)",
-    "adText": "InnerMeter uses Google AdSense to display advertisements. Google and third-party vendors use cookies to serve ads based on your prior visits to this or other websites. You may opt out of personalized advertising by visiting Google Ad Settings.",
+    "adText": "MyTestType uses Google AdSense to display advertisements. Google and third-party vendors use cookies to serve ads based on your prior visits to this or other websites. You may opt out of personalized advertising by visiting Google Ad Settings.",
     "adLinkText": "Google Ad Settings"
   },
   "contact": {
     "title": "Contact Us",
-    "p1": "For inquiries related to InnerMeter services, please send us an email.",
+    "p1": "For inquiries related to MyTestType services, please send us an email.",
     "emailLabel": "Email",
     "p2": "We will respond as quickly as possible.",
     "p3": "Thank you."
@@ -750,7 +750,7 @@
     "title": "Terms of Use",
     "effectiveDate": "Effective Date: January 1, 2025",
     "a1title": "Article 1 – Purpose",
-    "a1body": "These Terms of Use govern the relationship between InnerMeter (hereinafter \"the Company\") and users with respect to the psychology test and tarot-related services (hereinafter \"the Service\") provided by the Company.",
+    "a1body": "These Terms of Use govern the relationship between MyTestType (hereinafter \"the Company\") and users with respect to the psychology test and tarot-related services (hereinafter \"the Service\") provided by the Company.",
     "a2title": "Article 2 – Nature of the Service",
     "a2body": "The personality, relationship, and other psychology tests and tarot services provided by the Company are designed primarily for entertainment and fun. The results of the Service are not a substitute for medical, psychological, or professional diagnosis or counseling, and users should not make important decisions based solely on test results.",
     "a2strong": "entertainment and fun",

@@ -136,7 +136,7 @@ export default function TestDetail() {
     }
   };
 
-  const seoTitle = localTest?.title ? `${localTest.title} | InnerMeter` : `${test.title} | InnerMeter`;
+  const seoTitle = localTest?.title ? `${localTest.title} | MyTestType` : `${test.title} | MyTestType`;
   const seoDesc = localTest?.description ?? test.description;
 
   const BASE = "https://mytesttype.com";
@@ -156,13 +156,13 @@ export default function TestDetail() {
         "alignmentType": "educationalSubject",
         "targetName": "Personality Psychology",
       },
-      "publisher": { "@type": "Organization", "name": "InnerMeter", "url": BASE },
+      "publisher": { "@type": "Organization", "name": "MyTestType", "url": BASE },
     },
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "InnerMeter", "item": BASE + "/" },
+        { "@type": "ListItem", "position": 1, "name": "MyTestType", "item": BASE + "/" },
         { "@type": "ListItem", "position": 2, "name": "Tests", "item": BASE + "/tests" },
         { "@type": "ListItem", "position": 3, "name": localTest?.title ?? test.title, "item": `${BASE}/tests/${slug}` },
       ],

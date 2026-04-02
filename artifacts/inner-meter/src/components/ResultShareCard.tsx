@@ -200,7 +200,7 @@ export const ResultShareCard = forwardRef<HTMLDivElement, ResultShareCardProps>(
                 fontSize: '11px', color: '#fff', flexShrink: 0,
               }}>✦</div>
               <span style={{ fontSize: '13px', fontWeight: '800', color: theme.textColor, letterSpacing: '-0.2px', whiteSpace: 'nowrap' }}>
-                InnerMeter
+                MyTestType
               </span>
             </div>
             {/* category pill */}

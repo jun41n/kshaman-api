@@ -46,7 +46,7 @@ export default function About() {
           </div>
 
           <p className="text-sm text-muted-foreground/60 text-center pt-2">
-            &copy; 2026 InnerMeter
+            &copy; 2026 MyTestType
           </p>
         </div>
 

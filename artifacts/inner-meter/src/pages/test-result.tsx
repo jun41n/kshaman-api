@@ -122,7 +122,7 @@ export default function TestResult() {
     try {
       await saveResultCardImage(
         cardRef.current,
-        `innermeter-${result.key}`,
+        `mytesttype-${result.key}`,
         () => toast({ title: t('result.iosSaveHint'), description: t('result.iosSaveHintDesc') }),
       );
       setSaved(true);
@@ -146,7 +146,7 @@ export default function TestResult() {
         resultTitle,
         resultPageUrl,
         lang,
-        `innermeter-${result.key}`,
+        `mytesttype-${result.key}`,
       );
       setShared(true);
       setTimeout(() => setShared(false), 2800);
@@ -161,7 +161,7 @@ export default function TestResult() {
 
   const BASE = "https://mytesttype.com";
   const resultPath = `/results/${slug}?result=${result.key}`;
-  const seoTitle = resultTitle ? `${resultTitle} | InnerMeter` : `${localTest?.title ?? test.title} | InnerMeter`;
+  const seoTitle = resultTitle ? `${resultTitle} | MyTestType` : `${localTest?.title ?? test.title} | MyTestType`;
 
   const jsonLd = [
     {
@@ -171,14 +171,14 @@ export default function TestResult() {
       "description": resultSummary,
       "url": `${BASE}${resultPath}`,
       "inLanguage": "ko",
-      "isPartOf": { "@type": "WebSite", "name": "InnerMeter", "url": BASE },
-      "publisher": { "@type": "Organization", "name": "InnerMeter", "url": BASE },
+      "isPartOf": { "@type": "WebSite", "name": "MyTestType", "url": BASE },
+      "publisher": { "@type": "Organization", "name": "MyTestType", "url": BASE },
     },
     {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "InnerMeter", "item": BASE + "/" },
+        { "@type": "ListItem", "position": 1, "name": "MyTestType", "item": BASE + "/" },
         { "@type": "ListItem", "position": 2, "name": "Tests", "item": BASE + "/tests" },
         { "@type": "ListItem", "position": 3, "name": localTest?.title ?? test.title, "item": `${BASE}/tests/${slug}` },
         { "@type": "ListItem", "position": 4, "name": resultTitle, "item": `${BASE}${resultPath}` },
