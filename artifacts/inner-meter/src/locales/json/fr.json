@@ -33,9 +33,9 @@
     "tarotDesc": "Découvrez le message du jour sur l'amour, le travail et l'énergie avec une seule carte de tarot.",
     "tarotCta": "🔮 Tirer ma Carte",
     "kshamanHeadline": "Qui lira\nvotre destin ?",
-    "kshamanDesc1": "애기보살 lit avec pure intuition.",
-    "kshamanDesc2": "천신도령 trouve les tournants décisifs.",
-    "kshamanDesc3": "무속인 lit le flux de votre vie.",
+    "kshamanDesc1": "L'Esprit de l'Innocence lit avec une intuition pure.",
+    "kshamanDesc2": "L'Esprit du Ciel révèle les tournants décisifs.",
+    "kshamanDesc3": "L'Esprit de la Tradition lit le flux de votre vie.",
     "kshamanDesc4": "Même thème natal, voix différente de chaque lecteur.",
     "kshamanCta": "🔮 Voir ma Lecture",
     "kshamanHelper": "Même thème natal — chaque lecteur interprète différemment",
@@ -307,6 +307,53 @@
       "beopsa": {
         "title": "Esprit de la Sagesse",
         "vibe": "Calme et philosophique, un sage ancien"
+      }
+    },
+    "speech": {
+      "baby_bosal": {
+        "summary": "Hmm… en regardant le flux, c'est exactement {{flow}}. En observant de plus près, il y a une énergie de grand changement autour de vos {{ta}} ans. Ça peut sembler un peu bloqué avant ça — mais tout a une raison.",
+        "inborn": "Vous avez cette énergie en vous. Une fois que le flux s'ouvre, vous montez en continu. Mais il y a des expériences difficiles au début — et tout ça devient une ressource plus tard. Tenez bon même si c'est dur maintenant~",
+        "turning": "Votre vie va vraiment changer autour de vos {{ta}} ans. Ce n'est pas qu'une expression — à ce moment-là, il y aura un grand changement, que ce soit la carrière, les relations ou où vous vivez. Montez dans le courant sans avoir peur.",
+        "success": "Après {{sa}} ans, vous aurez l'impression que les choses se stabilisent socialement. Vous commencerez à être reconnu, et la stabilité financière arrive aussi. Quand ça arrive, tout ce travail difficile aura eu un sens.",
+        "love": "Pour l'amour~ le flux entre fort autour de {{la0}}, {{la1}} et {{la2}} ans. Surtout, les personnes que vous rencontrez à ces périodes peuvent être vraiment significatives. Ne les laissez pas passer !",
+        "wealth": "La richesse se stabilise de {{ws}} à {{we}} ans. Plutôt que de tout faire en même temps, accumulez progressivement — c'est ce qui paye vraiment. Ne vous précipitez pas~",
+        "warning": "Autour de {{wa0}} et {{wa1}} ans, soyez prudent. Si vous vous précipitez ou agissez émotionnellement, vous le regretterez. Faites une pause et réfléchissez. J'étais un peu inquiet en regardant cette période."
+      },
+      "sunnyeo_bosal": {
+        "summary": "L'énergie de votre destin se déplace avec douceur. Vous portez l'énergie de {{flow}}, et autour de {{ta}} ans, un nouveau courant de vie s'ouvre.",
+        "inborn": "Vous êtes né avec une énergie qui ne s'arrête pas une fois que la porte du destin s'ouvre. Même si vous ne la voyez pas pour l'instant, une bonne énergie se poursuit — ne soyez pas impatient.",
+        "turning": "Autour de {{ta}} ans, l'énergie de votre vie commence à couler d'une nouvelle façon. À cette période, de nouvelles rencontres et opportunités viendront naturellement — ouvrez votre cœur et accueillez-les.",
+        "success": "Après {{sa}} ans, les fruits de votre vie commencent à se former. C'est le moment où vos efforts silencieux brillent — faites confiance au processus actuel.",
+        "love": "L'énergie amoureuse coule fortement autour de {{la0}}, {{la1}} et {{la2}} ans. Les rencontres de ces périodes ne sont pas de simples passages — ce peuvent être des connexions profondes. Gardez votre cœur ouvert.",
+        "wealth": "Le flux de richesse se stabilise progressivement de {{ws}} à {{we}} ans. Si vous êtes sincère et reconnaissant même pour les petites choses, une énergie d'abondance viendra naturellement.",
+        "warning": "Autour de {{wa0}} et {{wa1}} ans, soyez prudent dans vos décisions et relations. Ne vous précipitez pas — calmez votre esprit avant de choisir. Cette période doit être traversée avec sagesse."
+      },
+      "chunshin_doryeong": {
+        "summary": "C'est {{flow}}. Autour de {{ta}} ans, c'est le tournant. Préparez-vous solidement avant ce moment. C'est là que les chemins se séparent.",
+        "inborn": "L'énergie que vous avez est forte. Une fois le flux ouvert, ça ne s'arrête pas. Mais vous avez tendance à tout porter seul. Lâchez ça un peu.",
+        "turning": "{{ta}} ans. C'est le tournant. Vous devez bien choisir votre direction ici. Ne vacillez pas. Si vous manquez cette période, l'occasion suivante est bien plus tard.",
+        "success": "La réussite arrive après {{sa}} ans. Tout ce que vous avez accumulé avant se manifeste à cette période. Ne vous relâchez pas. Continuez à avancer.",
+        "love": "L'énergie amoureuse entre fort autour de {{la0}}, {{la1}} et {{la2}} ans. Quand l'occasion se présente, n'hésitez pas. Foncez. Ne perdez tout qu'en réfléchissant trop.",
+        "wealth": "La richesse s'ouvre de {{ws}} à {{we}} ans. À cette période, qu'il s'agisse d'investissement ou d'entreprise, prenez une décision. Mais jamais rien de spéculatif. Accumulez honnêtement.",
+        "warning": "Autour de {{wa0}} et {{wa1}} ans, c'est une période à surveiller. Si vous jugez trop vite, vous le regretterez beaucoup. Soyez prudent ici pour saisir la prochaine occasion."
+      },
+      "musog_in": {
+        "summary": "En regardant le flux des fortunes, c'est {{flow}}. L'énergie se réveille autour de {{ta}} ans, et avant ça, il peut y avoir quelques blocages.",
+        "inborn": "En regardant votre énergie naturelle, votre volonté est plutôt forte. Vous êtes du genre à ne pas abandonner facilement et à persévérer — c'est votre plus grande force.",
+        "turning": "Autour de {{ta}} ans, c'est une période de grand changement dans votre énergie. Après ce moment, le flux commence à changer — n'ayez pas peur, acceptez-le.",
+        "success": "Après {{sa}} ans, on voit un flux de stabilité sociale ou de réussite. Si vous vous préparez bien pour ce moment, ça s'ouvre encore plus grand.",
+        "love": "En regardant le flux amoureux, il y a une forte énergie de rencontre autour de {{la0}}, {{la1}} et {{la2}} ans. Ne traitez pas à la légère les personnes que vous rencontrez à ces périodes.",
+        "wealth": "Le flux de richesse se stabilise progressivement de {{ws}} à {{we}} ans. Si vous êtes trop gourmand pendant cette période, ça se disperse — soyez prudent.",
+        "warning": "Autour de {{wa0}} et {{wa1}} ans, faites attention à votre jugement. À cette période, réfléchissez deux ou trois fois avant de prendre une décision, et écoutez aussi les personnes autour de vous."
+      },
+      "beopsa": {
+        "summary": "Vous portez le destin de {{flow}}. Autour de {{ta}} ans, une période de grand tournant arrive dans le flux de votre vie. Préparez-vous bien pour cette période.",
+        "inborn": "En votre for intérieur, il y a une force tranquille qui ne vacille pas. Invisible de l'extérieur, vous êtes né avec l'énergie de trouver finalement votre centre face à toutes les difficultés.",
+        "turning": "Autour de {{ta}} ans, c'est un tournant important où la direction de votre vie se décide. Ne vous précipitez pas — réfléchissez profondément et choisissez avec prudence.",
+        "success": "Après {{sa}} ans, les résultats de vos longs efforts commencent à apparaître. Rappelez-vous que la réussite de cette période est une récompense de votre sincérité, non de votre avidité.",
+        "love": "L'amour arrive autour de {{la0}}, {{la1}} et {{la2}} ans. N'essayez pas de le forcer — suivez le cœur qui s'ouvre naturellement à ces moments.",
+        "wealth": "De {{ws}} à {{we}} ans, c'est la période où la richesse se stabilise. Pour celui qui abandonne la cupidité et travaille honnêtement, la richesse reviendra nécessairement. N'utilisez pas cette période à la légère.",
+        "warning": "Autour de {{wa0}} et {{wa1}} ans, soyez prudent. À cette période, ne précipitez pas vos décisions. Pour une décision importante, prenez absolument le temps de réfléchir profondément."
       }
     }
   },
