@@ -145,6 +145,9 @@ export default function KShaman() {
   const [birthYear, setBirthYear] = useState('');
   const [birthMonth, setBirthMonth] = useState('');
   const [birthDay, setBirthDay] = useState('');
+  const [birthHour, setBirthHour] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [firstName, setFirstName] = useState('');
   const [gender, setGender] = useState<'male' | 'female' | null>(null);
   const [destiny, setDestiny] = useState<DestinyValues | null>(null);
   const [saving, setSaving] = useState(false);
@@ -173,7 +176,8 @@ export default function KShaman() {
   const handleReset = () => {
     setStep('persona');
     setSelected(null);
-    setBirthYear(''); setBirthMonth(''); setBirthDay('');
+    setBirthYear(''); setBirthMonth(''); setBirthDay(''); setBirthHour('');
+    setLastName(''); setFirstName('');
     setGender(null);
     setDestiny(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -211,7 +215,7 @@ export default function KShaman() {
     ? generateSections(destiny, selected, t)
     : [];
 
-  const isFormValid = birthYear.length === 4 && birthMonth && birthDay && gender;
+  const isFormValid = birthYear.length === 4 && birthMonth && birthDay && lastName.trim() && firstName.trim() && gender;
 
   return (
     <Layout>
@@ -306,6 +310,7 @@ export default function KShaman() {
 
                 {/* 생년월일 입력 */}
                 <div className="space-y-4 mb-6">
+                  {/* 출생연도 */}
                   <div>
                     <label className="text-purple-300/80 text-xs font-bold tracking-wider uppercase block mb-2">
                       {t('kshaman.ui.birthYear')}
@@ -315,12 +320,14 @@ export default function KShaman() {
                       placeholder={t('kshaman.ui.yearPlaceholder')}
                       value={birthYear}
                       onChange={e => setBirthYear(e.target.value)}
-                      min={1940} max={2020}
+                      min={1900} max={2020}
                       className="w-full bg-white/8 border border-white/20 rounded-xl px-4 py-3.5 text-white placeholder-white/30 text-lg font-bold outline-none focus:border-violet-400/60 focus:bg-white/12 transition-all"
                       style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-3">
+
+                  {/* 월 / 일 / 시 — 3칸 */}
+                  <div className="grid grid-cols-3 gap-3">
                     <div>
                       <label className="text-purple-300/80 text-xs font-bold tracking-wider uppercase block mb-2">
                         {t('kshaman.ui.monthLabel')}
@@ -328,7 +335,7 @@ export default function KShaman() {
                       <select
                         value={birthMonth}
                         onChange={e => setBirthMonth(e.target.value)}
-                        className="w-full bg-white/8 border border-white/20 rounded-xl px-4 py-3.5 text-white text-base font-bold outline-none focus:border-violet-400/60 transition-all appearance-none"
+                        className="w-full bg-white/8 border border-white/20 rounded-xl px-2 py-3.5 text-white text-sm font-bold outline-none focus:border-violet-400/60 transition-all appearance-none"
                         style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}
                       >
                         <option value="" style={{ background: '#130a2e' }}>{t('kshaman.ui.monthSelect')}</option>
@@ -344,7 +351,7 @@ export default function KShaman() {
                       <select
                         value={birthDay}
                         onChange={e => setBirthDay(e.target.value)}
-                        className="w-full bg-white/8 border border-white/20 rounded-xl px-4 py-3.5 text-white text-base font-bold outline-none focus:border-violet-400/60 transition-all appearance-none"
+                        className="w-full bg-white/8 border border-white/20 rounded-xl px-2 py-3.5 text-white text-sm font-bold outline-none focus:border-violet-400/60 transition-all appearance-none"
                         style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}
                       >
                         <option value="" style={{ background: '#130a2e' }}>{t('kshaman.ui.daySelect')}</option>
@@ -352,6 +359,52 @@ export default function KShaman() {
                           <option key={i + 1} value={i + 1} style={{ background: '#130a2e' }}>{i + 1}</option>
                         ))}
                       </select>
+                    </div>
+                    <div>
+                      <label className="text-purple-300/80 text-xs font-bold tracking-wider uppercase block mb-2">
+                        {t('kshaman.ui.hourLabel')}
+                      </label>
+                      <select
+                        value={birthHour}
+                        onChange={e => setBirthHour(e.target.value)}
+                        className="w-full bg-white/8 border border-white/20 rounded-xl px-2 py-3.5 text-white text-sm font-bold outline-none focus:border-violet-400/60 transition-all appearance-none"
+                        style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}
+                      >
+                        <option value="" style={{ background: '#130a2e' }}>{t('kshaman.ui.hourSelect')}</option>
+                        {Array.from({ length: 24 }, (_, i) => (
+                          <option key={i} value={i} style={{ background: '#130a2e' }}>{String(i).padStart(2,'0')}:00</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* 성 / 이름 — 2칸 */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="text-purple-300/80 text-xs font-bold tracking-wider uppercase block mb-2">
+                        {t('kshaman.ui.lastNameLabel')}
+                      </label>
+                      <input
+                        type="text"
+                        placeholder={t('kshaman.ui.lastNamePlaceholder')}
+                        value={lastName}
+                        onChange={e => setLastName(e.target.value)}
+                        className="w-full bg-white/8 border border-white/20 rounded-xl px-4 py-3.5 text-white placeholder-white/30 text-base font-bold outline-none focus:border-violet-400/60 transition-all"
+                        style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}
+                      />
+                    </div>
+                    <div>
+                      <label className="text-purple-300/80 text-xs font-bold tracking-wider uppercase block mb-2">
+                        {t('kshaman.ui.firstNameLabel')}
+                      </label>
+                      <input
+                        type="text"
+                        placeholder={t('kshaman.ui.firstNamePlaceholder')}
+                        value={firstName}
+                        onChange={e => setFirstName(e.target.value)}
+                        className="w-full bg-white/8 border border-white/20 rounded-xl px-4 py-3.5 text-white placeholder-white/30 text-base font-bold outline-none focus:border-violet-400/60 transition-all"
+                        style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}
+                      />
                     </div>
                   </div>
                 </div>
@@ -403,8 +456,11 @@ export default function KShaman() {
                     <p className="text-purple-300/80 text-xs font-bold tracking-[0.2em] uppercase mb-1">
                       {t('kshaman.ui.readingOf', { name: selected.name })}
                     </p>
+                    <div className="text-white font-bold text-base mt-1">
+                      {lastName}{firstName}
+                    </div>
                     <div className="text-purple-200/60 text-xs mt-1">
-                      {birthYear}.{birthMonth}.{birthDay} · {gender === 'female' ? t('kshaman.ui.genderFemale') : t('kshaman.ui.genderMale')}
+                      {birthYear}.{birthMonth}.{birthDay}{birthHour !== '' ? ` · ${String(birthHour).padStart(2,'0')}:00` : ''} · {gender === 'female' ? t('kshaman.ui.genderFemale') : t('kshaman.ui.genderMale')}
                     </div>
                   </div>
                 </div>
