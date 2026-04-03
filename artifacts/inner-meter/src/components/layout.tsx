@@ -4,7 +4,6 @@ import { Menu, X, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
-import { AdsterraBanner } from "@/components/AdsterraBanner";
 
 interface LayoutProps {
   children: ReactNode;
@@ -174,8 +173,6 @@ export function Layout({ children }: LayoutProps) {
         </div>
       </footer>
 
-      {/* ── Adsterra Banner (맨 하단) ── */}
-      <AdsterraBanner />
     </div>
   );
 }

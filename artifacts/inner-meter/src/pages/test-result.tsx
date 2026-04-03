@@ -21,7 +21,6 @@ import {
   saveResultCardImage,
   shareResultComparison,
 } from "@/lib/shareMessage";
-import { AdsterraBanner } from "@/components/AdsterraBanner";
 
 const CATEGORY_GRADIENTS: Record<string, string> = {
   '연애 테스트': 'from-pink-500 via-rose-500 to-fuchsia-500',
@@ -284,9 +283,6 @@ export default function TestResult() {
             </ul>
           </motion.div>
         </div>
-
-        {/* ── Adsterra Banner (in-result) ── */}
-        <AdsterraBanner slot="b" />
 
         {/* ── Relationship Style & Compatible Vibe (MBTI only) ── */}
         {(result.relationshipStyle || result.compatibleVibe) && (
