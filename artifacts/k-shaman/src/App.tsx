@@ -1,42 +1,66 @@
-import { Switch, Route, Router as WouterRouter } from "wouter";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/toaster";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import NotFound from "@/pages/not-found";
+import { useState } from "react";
+import { AppContext, useAppStore } from "./store/appStore";
+import { CharacterSelectPage } from "./pages/CharacterSelectPage";
+import { UserInfoFormPage } from "./pages/UserInfoFormPage";
+import { ProductMenuPage } from "./pages/ProductMenuPage";
+import { PaymentPage } from "./pages/PaymentPage";
+import { ReadingResultPage } from "./pages/ReadingResultPage";
+import { AskAnythingChatPage } from "./pages/AskAnythingChatPage";
+import type { Product } from "./types";
 
-const queryClient = new QueryClient();
+type Step = "select" | "form" | "products" | "payment" | "result" | "chat";
 
-function Home() {
+export default function App() {
+  const store = useAppStore();
+  const [step, setStep] = useState<Step>("select");
+
+  const handleProductSelect = (product: Product) => {
+    store.setProduct(product);
+    setStep("payment");
+  };
+
+  const handleReset = () => {
+    store.reset();
+    setStep("select");
+  };
+
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
-      <div className="text-center">
-        <h1 className="text-2xl font-bold text-gray-900">Replit Agent is building...</h1>
-        <p className="mt-2 text-sm text-gray-600">Your app will appear here once it's ready.</p>
+    <AppContext.Provider value={store}>
+      <div className="min-h-screen bg-gray-950 font-sans antialiased">
+        {step === "select" && (
+          <CharacterSelectPage onNext={() => setStep("form")} />
+        )}
+        {step === "form" && (
+          <UserInfoFormPage
+            onNext={() => setStep("products")}
+            onBack={() => setStep("select")}
+          />
+        )}
+        {step === "products" && (
+          <ProductMenuPage
+            onSelect={handleProductSelect}
+            onBack={() => setStep("form")}
+          />
+        )}
+        {step === "payment" && (
+          <PaymentPage
+            onSuccess={() => setStep("result")}
+            onBack={() => setStep("products")}
+          />
+        )}
+        {step === "result" && (
+          <ReadingResultPage
+            onAskAnything={() => setStep("chat")}
+            onReset={handleReset}
+          />
+        )}
+        {step === "chat" && (
+          <AskAnythingChatPage
+            onBack={() => setStep("result")}
+            onReset={handleReset}
+          />
+        )}
       </div>
-    </div>
+    </AppContext.Provider>
   );
 }
-
-function Router() {
-  return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route component={NotFound} />
-    </Switch>
-  );
-}
-
-function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
-          <Router />
-        </WouterRouter>
-        <Toaster />
-      </TooltipProvider>
-    </QueryClientProvider>
-  );
-}
-
-export default App;
