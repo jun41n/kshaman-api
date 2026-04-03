@@ -29,7 +29,7 @@ export function buildReadingMessages(profile: UserProfile): FinalMessages {
     buildSessionContext(profile),
   ].join("\n");
 
-  const userMessage = buildReadingUserMessage(profile.locale);
+  const userMessage = buildReadingUserMessage(profile.locale, profile.productId);
 
   return {
     messages: [
@@ -133,15 +133,73 @@ Please write an updated memory summary.
   };
 }
 
-function buildReadingUserMessage(locale: Language): string {
+const FREE_PRODUCTS = new Set(["daily_fortune"]);
+
+function buildReadingUserMessage(locale: Language, productId: string): string {
+  const isPaid = !FREE_PRODUCTS.has(productId);
+
+  if (!isPaid) {
+    // Free reading — simple prompt
+    const prompts: Record<Language, string> = {
+      ko: "지금 저를 위한 오늘의 운세를 봐주세요.",
+      en: "Please give me my daily fortune now.",
+      ja: "今日の運勢を教えてください。",
+      es: "Por favor, dame mi fortuna del día ahora.",
+      pt: "Por favor, me dê minha fortuna diária agora.",
+      fr: "Veuillez me donner ma fortune du jour maintenant.",
+    };
+    return prompts[locale] ?? prompts.en;
+  }
+
+  // Paid reading — include hard length enforcement in user turn
   const prompts: Record<Language, string> = {
-    ko: "지금 저를 위한 점사를 봐주세요.",
-    en: "Please give me my reading now.",
-    ja: "今、私のために占ってください。",
-    es: "Por favor, dame mi lectura ahora.",
-    pt: "Por favor, me dê minha leitura agora.",
-    fr: "Veuillez me donner ma lecture maintenant.",
+    ko: `지금 저를 위한 점사를 봐주세요.
+
+⚠️ 중요: 이것은 유료 프리미엄 점사입니다. 반드시 다음을 지켜주세요:
+• 7개 섹션을 모두 완성해주세요 — 하나도 빠뜨리지 마세요.
+• 각 섹션은 최소 3–4개의 문단, 각 문단은 최소 4–6개의 완성된 문장으로 구성해야 합니다.
+• 전체 글자수가 2000자 이상이어야 합니다. 1500자에서 끝내지 마세요.
+• 글을 쓰면서 스스로 확인하세요: "충분히 깊게 썼는가? 더 설명할 수 있는가?"
+• 절대로 요약하거나 생략하지 마세요. 완전하게 전개된 글이어야 합니다.`,
+
+    en: `Please give me my reading now.
+
+⚠️ IMPORTANT: This is a paid premium reading. You MUST:
+• Complete all 7 sections — do not skip or compress any.
+• Each section: minimum 3–4 full paragraphs, each paragraph 4–6 complete sentences.
+• Total length: minimum 800 words. Do not stop at 400.
+• As you write, check: "Have I gone deep enough? Is there more I can reveal?"
+• Do NOT summarize or truncate. Write full, developed prose throughout.`,
+
+    ja: `今、私のために占ってください。
+
+⚠️ 重要：これは有料プレミアム占いです。以下を必ず守ってください：
+• 7つのセクションをすべて完成させてください。
+• 各セクション：最低3〜4段落、各段落4〜6文。
+• 合計2000文字以上。途中で終わらないでください。`,
+
+    es: `Por favor, dame mi lectura ahora.
+
+⚠️ IMPORTANTE: Esta es una lectura premium de pago. DEBES:
+• Completar las 7 secciones — no omitas ni comprimas ninguna.
+• Mínimo 800 palabras en total. No termines antes.
+• Prosa completa y desarrollada en todo momento.`,
+
+    pt: `Por favor, me dê minha leitura agora.
+
+⚠️ IMPORTANTE: Esta é uma leitura premium paga. VOCÊ DEVE:
+• Completar todas as 7 seções — não pule nenhuma.
+• Mínimo de 800 palavras no total.
+• Prosa completa e desenvolvida.`,
+
+    fr: `Veuillez me donner ma lecture maintenant.
+
+⚠️ IMPORTANT: Il s'agit d'une lecture premium payante. VOUS DEVEZ:
+• Compléter les 7 sections — n'en omettez aucune.
+• Minimum 800 mots au total.
+• Prose complète et développée.`,
   };
+
   return prompts[locale] ?? prompts.en;
 }
 

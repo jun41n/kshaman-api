@@ -5,30 +5,52 @@ import type { ReadingRequest, ReadingResponse } from "../lib/ai/types.js";
 
 const router = Router();
 
-// Products that are free and should use shorter responses
 const FREE_PRODUCTS = new Set(["daily_fortune"]);
-
-// Products with the longest expected output
 const LONGEST_PRODUCTS = new Set(["yearly_fortune", "saju"]);
 
 function getMaxTokens(productId: string): number {
-  if (FREE_PRODUCTS.has(productId)) return 600;
-  if (LONGEST_PRODUCTS.has(productId)) return 3500;
-  return 2800; // All other paid products
+  if (FREE_PRODUCTS.has(productId)) return 700;
+  if (LONGEST_PRODUCTS.has(productId)) return 4000;
+  return 3200;
 }
+
+// Minimum character thresholds for paid products before triggering expansion
+const MIN_CHARS_BY_PRODUCT: Record<string, number> = {
+  saju: 2000,
+  yearly_fortune: 2500,
+  compatibility: 2000,
+  luck_cycle: 2000,
+  date_selection: 2000,
+};
+
+// Continuation instruction — added to conversation so model appends more content
+const CONTINUATION_MESSAGES: Record<string, string> = {
+  ko: `점사가 아직 충분히 깊지 않습니다. 위의 내용을 이어받아 다음을 추가로 작성해 주세요:
+
+① 아직 충분히 전개하지 않은 섹션이 있다면 그 섹션을 더 깊이 발전시켜 주세요.
+② 사용자의 생년월일에서 오는 에너지가 현재 삶의 구체적인 영역(직업, 인간관계, 건강, 재물)에 어떻게 나타나는지 더 자세히 분석해 주세요.
+③ 실질적인 조언 섹션을 더 구체적이고 실행 가능하게 확장해 주세요.
+④ 가장 강력한 마무리 문장으로 끝맺어 주세요.
+
+위 내용을 반복하지 말고, 바로 이어서 새로운 내용을 추가로 써주세요.`,
+
+  en: `This reading needs more depth. Please continue from where you left off and add:
+
+① Expand any sections that were not fully developed.
+② Add detailed analysis of how the user's birth energy manifests in specific life areas (career, relationships, health, finances).
+③ Expand the practical advice section with more concrete, actionable guidance.
+④ End with a powerful closing statement.
+
+Do NOT repeat the above content — just continue writing new content from here.`,
+};
 
 /**
  * POST /api/reading/generate
  *
  * Generates a one-time spiritual reading based on persona + product + user profile.
+ * For paid products: automatically requests a deeper expansion if the first response is too short.
  *
  * TODO (payment): Before calling the AI, verify payment status here.
- * For now, all requests in development mode are allowed through.
- * Example future check:
- *   const isPaid = await verifyPaymentToken(req.body.paymentToken);
- *   if (!isPaid && !FREE_PRODUCTS.has(userProfile.productId)) {
- *     return res.status(402).json({ error: 'Payment required' });
- *   }
  */
 router.post("/reading/generate", async (req, res) => {
   try {
@@ -49,23 +71,57 @@ router.post("/reading/generate", async (req, res) => {
     const client = getOpenAIClient();
     const { messages } = buildReadingMessages(userProfile);
     const maxTokens = getMaxTokens(userProfile.productId);
+    const isPaid = !FREE_PRODUCTS.has(userProfile.productId);
+    const minChars = MIN_CHARS_BY_PRODUCT[userProfile.productId] ?? 2000;
 
     console.log(`[reading/generate] persona=${userProfile.personaId} product=${userProfile.productId} max_tokens=${maxTokens}`);
 
     const completion = await client.chat.completions.create({
       model: "gpt-4o",
       messages,
-      temperature: 0.88, // Slightly creative for authentic persona voice
+      temperature: 0.88,
       max_tokens: maxTokens,
     });
 
-    const content = completion.choices[0]?.message?.content;
+    let content = completion.choices[0]?.message?.content ?? "";
     if (!content) {
       res.status(500).json({ error: "No response generated" });
       return;
     }
 
-    console.log(`[reading/generate] Generated ${content.length} chars for ${userProfile.productId}`);
+    console.log(`[reading/generate] First pass: ${content.length} chars`);
+
+    // Auto-continuation: if paid reading is too short, append more content
+    if (isPaid && content.length < minChars) {
+      console.log(`[reading/generate] Too short (${content.length} < ${minChars}), requesting continuation...`);
+
+      const continuationLocale = (userProfile.locale === "ko" ? "ko" : "en") as keyof typeof CONTINUATION_MESSAGES;
+      const continuationInstruction = CONTINUATION_MESSAGES[continuationLocale] ?? CONTINUATION_MESSAGES.en;
+
+      const continuationMessages = [
+        ...messages,
+        { role: "assistant" as const, content },
+        { role: "user" as const, content: continuationInstruction },
+      ];
+
+      const continuationCompletion = await client.chat.completions.create({
+        model: "gpt-4o",
+        messages: continuationMessages,
+        temperature: 0.88,
+        max_tokens: maxTokens,
+      });
+
+      const continuation = continuationCompletion.choices[0]?.message?.content;
+      if (continuation && continuation.trim().length > 100) {
+        // Append the continuation to the original (additive — guaranteed to be longer)
+        content = content + "\n\n" + continuation;
+        console.log(`[reading/generate] After continuation: ${content.length} chars`);
+      } else {
+        console.log(`[reading/generate] Continuation was empty or too short, using original`);
+      }
+    }
+
+    console.log(`[reading/generate] Final: ${content.length} chars for ${userProfile.productId}`);
 
     const response: ReadingResponse = {
       content,
