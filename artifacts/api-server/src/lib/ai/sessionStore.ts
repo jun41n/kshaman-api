@@ -5,7 +5,7 @@ import type { AskAnythingSession } from "./types.js";
 const sessions = new Map<string, AskAnythingSession>();
 
 const SESSION_TTL_MS = 60 * 60 * 1000; // 1 hour
-const MAX_QUESTIONS = 10;
+const MAX_QUESTIONS = 15;
 
 function generateSessionId(): string {
   return `ks_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;

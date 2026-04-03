@@ -86,6 +86,14 @@ export async function generateReading(
   return res.json() as Promise<ReadingResult>;
 }
 
+// Special error thrown when the session question limit is reached on the server
+export class LimitReachedError extends Error {
+  constructor(public readonly sessionId?: string) {
+    super("limit_reached");
+    this.name = "LimitReachedError";
+  }
+}
+
 export async function sendMessage(
   userMessage: string,
   userInfo: UserInfo,
@@ -105,6 +113,12 @@ export async function sendMessage(
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
+
+  if (res.status === 429) {
+    // Server-side limit enforcement — user has used all questions
+    const err = await res.json().catch(() => ({}));
+    throw new LimitReachedError((err as { sessionId?: string }).sessionId);
+  }
 
   if (!res.ok) {
     const err = await res.json().catch(() => ({ error: "Network error" }));
