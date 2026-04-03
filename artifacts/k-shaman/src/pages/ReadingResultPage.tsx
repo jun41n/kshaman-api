@@ -16,7 +16,7 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
   const user = state.userInfo;
   const isKo = lang === "ko";
 
-  const [paragraphs, setParagraphs] = useState<string[]>([]);
+  const [blocks, setBlocks] = useState<string[]>([]);
   const [revealedCount, setRevealedCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -29,7 +29,6 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
     ? `${user?.lastName ?? ""}${user?.firstName ?? ""}`
     : `${user?.firstName ?? ""} ${user?.lastName ?? ""}`.trim();
 
-  // Fetch the reading when the component mounts
   useEffect(() => {
     if (!user || !state.selectedPersonaId || !state.selectedProductId) {
       setError("Missing required information for reading.");
@@ -41,52 +40,61 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
       user,
       lang,
       state.selectedPersonaId,
-      state.selectedProductId
+      state.selectedProductId,
     )
       .then((result) => {
-        // Split the reading into paragraphs for progressive reveal
-        const rawParagraphs = result.content
-          .split(/\n\n+/)
-          .map((p) => p.trim())
-          .filter((p) => p.length > 0);
-        setParagraphs(rawParagraphs.length > 0 ? rawParagraphs : [result.content]);
+        const normalized = (result.content ?? "")
+          .replace(/\r\n/g, "\n")
+          .replace(/\n{3,}/g, "\n\n")
+          .trim();
+
+        // 1) 빈 줄 2개 이상이면 큰 블록 분리
+        // 2) 그 안에서 한 줄씩도 살아 있게 white-space로 렌더링
+        const parsedBlocks = normalized
+          .split(/\n{2,}/)
+          .map((block) => block.trim())
+          .filter(Boolean);
+
+        setBlocks(parsedBlocks.length > 0 ? parsedBlocks : [normalized || ""]);
         setLoading(false);
       })
       .catch((err: Error) => {
         setError(err.message ?? "Failed to generate reading.");
         setLoading(false);
       });
-  }, []);
+  }, [user, lang, state.selectedPersonaId, state.selectedProductId]);
 
-  // Progressive reveal — reveal one paragraph every 600ms
   useEffect(() => {
-    if (!loading && paragraphs.length > 0 && revealedCount < paragraphs.length) {
+    if (!loading && blocks.length > 0 && revealedCount < blocks.length) {
       const timer = setTimeout(() => {
         setRevealedCount((c) => c + 1);
-      }, 600);
+      }, 450);
       return () => clearTimeout(timer);
     }
-  }, [loading, paragraphs, revealedCount]);
+  }, [loading, blocks, revealedCount]);
 
-  const isFullyRevealed = revealedCount >= paragraphs.length;
+  const isFullyRevealed = revealedCount >= blocks.length;
 
   return (
     <div className="min-h-screen bg-gray-950 text-white pb-32">
       <SiteNav onBack={onReset} backLabel={t.newReading} />
 
-      {/* Header */}
       <div className="px-4 pt-8 pb-6 text-center">
         <div
           className={`w-20 h-20 rounded-full bg-gradient-to-br ${fromColor} ${toColor} flex items-center justify-center text-4xl mx-auto mb-4 shadow-2xl shadow-violet-500/40`}
         >
           {selectedPersona?.emoji ?? "🔮"}
         </div>
+
         <p className={`text-xs font-medium mb-1 ${accentColor}`}>
-          {selectedPersona?.display_name_ko} · {selectedPersona?.display_name_en}
+          {selectedPersona?.display_name_ko} ·{" "}
+          {selectedPersona?.display_name_en}
         </p>
+
         <h1 className="text-2xl font-extrabold">
           {isKo ? `${fullName}님의 점사` : `${fullName}'s Reading`}
         </h1>
+
         <p className="text-xs text-white/40 mt-1">
           {selectedProduct
             ? isKo
@@ -98,23 +106,34 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
         </p>
       </div>
 
-      <div className="px-4 max-w-md mx-auto space-y-4">
-        {/* Loading state */}
+      <div className="px-4 max-w-md mx-auto space-y-3">
         {loading && (
           <div className="rounded-2xl border border-white/10 bg-white/5 p-8 text-center">
-            <div className="text-4xl mb-4 animate-pulse">{selectedPersona?.emoji ?? "🔮"}</div>
+            <div className="text-4xl mb-4 animate-pulse">
+              {selectedPersona?.emoji ?? "🔮"}
+            </div>
             <p className={`text-sm ${accentColor} animate-pulse`}>
-              {isKo ? "신령이 점사를 보고 있어요..." : "Your spirit guide is reading..."}
+              {isKo
+                ? "신령이 점사를 보고 있어요..."
+                : "Your spirit guide is reading..."}
             </p>
             <div className="flex justify-center gap-1 mt-4">
-              <span className="w-2 h-2 rounded-full bg-white/40 animate-bounce" style={{ animationDelay: "0ms" }} />
-              <span className="w-2 h-2 rounded-full bg-white/40 animate-bounce" style={{ animationDelay: "150ms" }} />
-              <span className="w-2 h-2 rounded-full bg-white/40 animate-bounce" style={{ animationDelay: "300ms" }} />
+              <span
+                className="w-2 h-2 rounded-full bg-white/40 animate-bounce"
+                style={{ animationDelay: "0ms" }}
+              />
+              <span
+                className="w-2 h-2 rounded-full bg-white/40 animate-bounce"
+                style={{ animationDelay: "150ms" }}
+              />
+              <span
+                className="w-2 h-2 rounded-full bg-white/40 animate-bounce"
+                style={{ animationDelay: "300ms" }}
+              />
             </div>
           </div>
         )}
 
-        {/* Error state */}
         {error && !loading && (
           <div className="rounded-2xl border border-red-400/30 bg-red-900/10 p-6 text-center">
             <p className="text-red-300 text-sm font-medium mb-1">
@@ -130,24 +149,26 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
           </div>
         )}
 
-        {/* Reading paragraphs — progressively revealed */}
-        {!loading && !error && paragraphs.map((paragraph, i) => (
-          <div
-            key={i}
-            className={`transition-all duration-700 ${
-              i < revealedCount
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-4 pointer-events-none"
-            }`}
-          >
-            <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm px-5 py-4">
-              <p className="text-sm text-white/80 leading-relaxed">{paragraph}</p>
+        {!loading &&
+          !error &&
+          blocks.map((block, i) => (
+            <div
+              key={i}
+              className={`transition-all duration-700 ${
+                i < revealedCount
+                  ? "opacity-100 translate-y-0"
+                  : "opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden"
+              }`}
+            >
+              <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm px-5 py-4">
+                <p className="text-[15px] text-white/90 leading-7 whitespace-pre-wrap break-words">
+                  {block}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
 
-      {/* Bottom CTAs — shown only after full reveal */}
       {isFullyRevealed && !loading && !error && (
         <div className="fixed bottom-0 left-0 right-0 z-40 p-4 bg-gradient-to-t from-gray-950 via-gray-950/90 to-transparent">
           <div className="max-w-md mx-auto space-y-3">
