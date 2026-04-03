@@ -11,7 +11,7 @@ interface Props {
 }
 
 const MYTESTTYPE_HOME = "https://mytesttype.com";
-const MYTESTTYPE_TESTS = "https://mytesttype.com";
+const MYTESTTYPE_TESTS = "https://mytesttype.com/tests";
 
 export function SiteNav({ onBack, backLabel, centre }: Props) {
   const { state } = useApp();
@@ -34,8 +34,6 @@ export function SiteNav({ onBack, backLabel, centre }: Props) {
           ) : (
             <a
               href={MYTESTTYPE_HOME}
-              target="_blank"
-              rel="noopener noreferrer"
               className="flex items-center gap-2 group shrink-0"
             >
               {/* MyTestType logo mark */}
@@ -68,16 +66,12 @@ export function SiteNav({ onBack, backLabel, centre }: Props) {
           <nav className="hidden sm:flex items-center gap-1">
             <a
               href={MYTESTTYPE_HOME}
-              target="_blank"
-              rel="noopener noreferrer"
               className="px-3 py-1.5 rounded-lg text-sm text-white/50 hover:text-white hover:bg-white/5 transition-colors"
             >
               {isKo ? "홈" : "Home"}
             </a>
             <a
               href={MYTESTTYPE_TESTS}
-              target="_blank"
-              rel="noopener noreferrer"
               className="px-3 py-1.5 rounded-lg text-sm text-white/50 hover:text-white hover:bg-white/5 transition-colors"
             >
               {isKo ? "테스트 모음" : "All Tests"}
@@ -87,8 +81,6 @@ export function SiteNav({ onBack, backLabel, centre }: Props) {
           {/* Mobile-only: compact home icon */}
           <a
             href={MYTESTTYPE_HOME}
-            target="_blank"
-            rel="noopener noreferrer"
             className="sm:hidden p-1.5 rounded-lg text-white/40 hover:text-white/80 hover:bg-white/5 transition-colors text-base"
             aria-label="Home"
           >
