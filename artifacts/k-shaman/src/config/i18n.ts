@@ -28,8 +28,8 @@ type TranslationKey =
   | "back"
   | "chooseReading"
   | "chooseReadingSubtitle"
-  | "popular"
-  | "premium"
+  | "freeLabel"
+  | "tryFree"
   | "selectReading"
   | "paymentTitle"
   | "paymentSubtitle"
@@ -40,7 +40,9 @@ type TranslationKey =
   | "askPlaceholder"
   | "sendMessage"
   | "newReading"
-  | "hourUnknown";
+  | "hourUnknown"
+  | "processingPayment"
+  | "securePayment";
 
 type Translations = Record<TranslationKey, string>;
 
@@ -64,12 +66,12 @@ export const T: Record<Language, Translations> = {
     back: "뒤로",
     chooseReading: "어떤 점사를 원하세요?",
     chooseReadingSubtitle: "당신에게 맞는 점사를 선택하세요",
-    popular: "인기",
-    premium: "프리미엄",
-    selectReading: "선택하기",
+    freeLabel: "무료",
+    tryFree: "무료로 보기",
+    selectReading: "990원에 보기",
     paymentTitle: "결제하기",
     paymentSubtitle: "안전하게 결제하고 점사를 받으세요",
-    payWith: "결제하기",
+    payWith: "990원 결제하기",
     comingSoon: "준비 중",
     yourReading: "당신의 점사",
     askAnything: "무엇이든 물어보세요",
@@ -77,6 +79,8 @@ export const T: Record<Language, Translations> = {
     sendMessage: "전송",
     newReading: "처음부터 다시",
     hourUnknown: "모름",
+    processingPayment: "처리 중...",
+    securePayment: "SSL 256비트 암호화 — 안전한 결제",
   },
   en: {
     selectGuide: "Who will read your destiny?",
@@ -97,12 +101,12 @@ export const T: Record<Language, Translations> = {
     back: "Back",
     chooseReading: "Choose your reading",
     chooseReadingSubtitle: "Select the reading that resonates with you",
-    popular: "Popular",
-    premium: "Premium",
-    selectReading: "Select",
+    freeLabel: "Free",
+    tryFree: "Try for Free",
+    selectReading: "Get for $0.69",
     paymentTitle: "Complete Payment",
     paymentSubtitle: "Secure payment — your reading begins immediately",
-    payWith: "Pay Now",
+    payWith: "Pay $0.69",
     comingSoon: "Coming Soon",
     yourReading: "Your Reading",
     askAnything: "Ask Anything",
@@ -110,6 +114,8 @@ export const T: Record<Language, Translations> = {
     sendMessage: "Send",
     newReading: "Start Over",
     hourUnknown: "Unknown",
+    processingPayment: "Processing...",
+    securePayment: "SSL 256-bit encrypted — secure payment",
   },
   ja: {
     selectGuide: "誰に占ってもらいますか？",
@@ -130,12 +136,12 @@ export const T: Record<Language, Translations> = {
     back: "戻る",
     chooseReading: "占いを選んでください",
     chooseReadingSubtitle: "あなたに合った占いを選んでください",
-    popular: "人気",
-    premium: "プレミアム",
-    selectReading: "選ぶ",
+    freeLabel: "無料",
+    tryFree: "無料で試す",
+    selectReading: "$0.69で見る",
     paymentTitle: "お支払い",
     paymentSubtitle: "安全にお支払いください",
-    payWith: "今すぐ支払う",
+    payWith: "$0.69を支払う",
     comingSoon: "近日公開",
     yourReading: "あなたの占い",
     askAnything: "何でも聞いてください",
@@ -143,6 +149,8 @@ export const T: Record<Language, Translations> = {
     sendMessage: "送信",
     newReading: "最初からやり直す",
     hourUnknown: "不明",
+    processingPayment: "処理中...",
+    securePayment: "SSL 256ビット暗号化 — 安全なお支払い",
   },
   es: {
     selectGuide: "¿Quién leerá tu destino?",
@@ -163,12 +171,12 @@ export const T: Record<Language, Translations> = {
     back: "Atrás",
     chooseReading: "Elige tu lectura",
     chooseReadingSubtitle: "Selecciona la lectura que resuena contigo",
-    popular: "Popular",
-    premium: "Premium",
-    selectReading: "Seleccionar",
+    freeLabel: "Gratis",
+    tryFree: "Probar Gratis",
+    selectReading: "Obtener por $0.69",
     paymentTitle: "Completar Pago",
     paymentSubtitle: "Pago seguro — tu lectura comienza de inmediato",
-    payWith: "Pagar Ahora",
+    payWith: "Pagar $0.69",
     comingSoon: "Próximamente",
     yourReading: "Tu Lectura",
     askAnything: "Pregunta Cualquier Cosa",
@@ -176,6 +184,8 @@ export const T: Record<Language, Translations> = {
     sendMessage: "Enviar",
     newReading: "Empezar de Nuevo",
     hourUnknown: "Desconocido",
+    processingPayment: "Procesando...",
+    securePayment: "SSL cifrado 256 bits — pago seguro",
   },
   pt: {
     selectGuide: "Quem vai ler seu destino?",
@@ -196,12 +206,12 @@ export const T: Record<Language, Translations> = {
     back: "Voltar",
     chooseReading: "Escolha sua leitura",
     chooseReadingSubtitle: "Selecione a leitura que ressoa com você",
-    popular: "Popular",
-    premium: "Premium",
-    selectReading: "Selecionar",
+    freeLabel: "Grátis",
+    tryFree: "Experimentar Grátis",
+    selectReading: "Obter por $0.69",
     paymentTitle: "Concluir Pagamento",
     paymentSubtitle: "Pagamento seguro — sua leitura começa imediatamente",
-    payWith: "Pagar Agora",
+    payWith: "Pagar $0.69",
     comingSoon: "Em Breve",
     yourReading: "Sua Leitura",
     askAnything: "Pergunte Qualquer Coisa",
@@ -209,6 +219,8 @@ export const T: Record<Language, Translations> = {
     sendMessage: "Enviar",
     newReading: "Recomeçar",
     hourUnknown: "Desconhecido",
+    processingPayment: "Processando...",
+    securePayment: "SSL criptografado 256 bits — pagamento seguro",
   },
   fr: {
     selectGuide: "Qui lira votre destin ?",
@@ -229,12 +241,12 @@ export const T: Record<Language, Translations> = {
     back: "Retour",
     chooseReading: "Choisissez votre lecture",
     chooseReadingSubtitle: "Sélectionnez la lecture qui vous correspond",
-    popular: "Populaire",
-    premium: "Premium",
-    selectReading: "Sélectionner",
+    freeLabel: "Gratuit",
+    tryFree: "Essayer Gratuitement",
+    selectReading: "Obtenir pour $0.69",
     paymentTitle: "Compléter le Paiement",
     paymentSubtitle: "Paiement sécurisé — votre lecture commence immédiatement",
-    payWith: "Payer Maintenant",
+    payWith: "Payer $0.69",
     comingSoon: "Bientôt disponible",
     yourReading: "Votre Lecture",
     askAnything: "Demandez n'importe quoi",
@@ -242,5 +254,7 @@ export const T: Record<Language, Translations> = {
     sendMessage: "Envoyer",
     newReading: "Recommencer",
     hourUnknown: "Inconnu",
+    processingPayment: "Traitement...",
+    securePayment: "SSL chiffré 256 bits — paiement sécurisé",
   },
 };

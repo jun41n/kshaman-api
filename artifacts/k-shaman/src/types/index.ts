@@ -19,13 +19,10 @@ export interface Product {
   id: string;
   name: string;
   nameKo: string;
-  description: string;
-  price: number;
-  currency: string;
-  badge?: string;
-  popular?: boolean;
-  features: string[];
+  descriptions: Record<Language, string>;
+  free?: boolean;
   icon: string;
+  features: Record<Language, string[]>;
 }
 
 export interface UserInfo {
