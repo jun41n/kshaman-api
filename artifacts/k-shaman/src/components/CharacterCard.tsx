@@ -31,7 +31,7 @@ export function CharacterCard({ persona, onSelect }: CharacterCardProps) {
         </div>
 
         <div className="border-t border-white/10 pt-3 mt-3">
-          <p className="text-xs text-white/60 leading-relaxed text-center">
+          <p className="text-xs text-white/60 leading-relaxed text-center whitespace-pre-line">
             {persona.description[lang]}
           </p>
         </div>

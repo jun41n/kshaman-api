@@ -74,7 +74,7 @@ export const T: Record<Language, Translations> = {
     payWith: "990원 결제하기",
     comingSoon: "준비 중",
     yourReading: "당신의 점사",
-    askAnything: "무엇이든 물어보세요",
+    askAnything: "사주가 술술 풀리려면 보살에게 물어봐",
     askPlaceholder: "신령에게 질문을 입력하세요...",
     sendMessage: "전송",
     newReading: "처음부터 다시",

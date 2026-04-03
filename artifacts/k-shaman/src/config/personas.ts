@@ -63,7 +63,7 @@ export const PERSONAS: Persona[] = [
       fr: "Esprit Divin Pur et Innocent",
     },
     description: {
-      ko: "다정하고 따뜻한 언니 같은 신령이에요. 솔직하고 친근하게 당신의 마음을 어루만져 드릴게요.",
+      ko: "다정하고 따뜻한 언니 같은 신령이에요.\n솔직하고 친근하게 당신의 마음을 어루만져 드릴게요.",
       en: "Friendly, warm and intuitive. She speaks like a cheerful elder sister who genuinely cares about you.",
       ja: "優しく温かい、姉のような神霊です。率直で親しみやすく、あなたの心に寄り添います。",
       es: "Amigable, cálida e intuitiva. Habla como una alegre hermana mayor que genuinamente se preocupa por ti.",
@@ -118,7 +118,7 @@ export const PERSONAS: Persona[] = [
       fr: "Esprit de Lune Élégant et Mystérieux",
     },
     description: {
-      ko: "우아하고 고고한 신령이에요. 삶의 깊은 흐름과 숨겨진 진실을 꿰뚫어 보는 눈을 가지고 있어요.",
+      ko: "우아하고 고고한 신령이에요.\n삶의 깊은 흐름과 숨겨진 진실을 꿰뚫어 보는 눈을 가지고 있어요.",
       en: "Elegant, refined and deeply mystical. She sees the hidden currents beneath the surface of your life.",
       ja: "優雅で洗練された、深く神秘的な神霊です。あなたの人生の表面下に隠れた流れを見通します。",
       es: "Elegante, refinada y profundamente mística. Ella ve las corrientes ocultas bajo la superficie de tu vida.",
@@ -173,7 +173,7 @@ export const PERSONAS: Persona[] = [
       fr: "Esprit Céleste Puissant et Confiant",
     },
     description: {
-      ko: "대담하고 직설적인 신령이에요. 복잡한 말 없이 당신의 운명을 정확하게 꿰뚫어 말해드려요.",
+      ko: "대담하고 직설적인 신령이에요.\n복잡한 말 없이 당신의 운명을 정확하게 꿰뚫어 말해드려요.",
       en: "Bold, direct and powerful. He cuts through the noise and tells you exactly what your fate holds.",
       ja: "大胆で直接的、力強い神霊です。無駄なく、あなたの運命を正確に見通して伝えます。",
       es: "Audaz, directo y poderoso. Corta el ruido y te dice exactamente lo que depara tu destino.",
@@ -228,7 +228,7 @@ export const PERSONAS: Persona[] = [
       fr: "Voyante de Karma Directe et Traditionnelle",
     },
     description: {
-      ko: "전통 무속의 기운으로 당신의 카르마와 전생의 인연을 솔직하게 풀어드려요.",
+      ko: "전통 무속의 깊은 기운으로 풀어드려요.\n당신의 카르마와 전생의 인연까지 솔직하게.",
       en: "Traditional, no-nonsense and deeply experienced. She reads the karmic threads of your life with unwavering honesty.",
       ja: "伝統的で率直、深い経験を持つ神霊です。あなたの人生のカルマの糸を揺るぎない誠実さで読み解きます。",
       es: "Tradicional, directa y profundamente experimentada. Ella lee los hilos kármicos de tu vida con honestidad inquebrantable.",
@@ -283,7 +283,7 @@ export const PERSONAS: Persona[] = [
       fr: "Âme Ancienne Calme et Philosophique",
     },
     description: {
-      ko: "고요하고 깊은 법사님이에요. 당신의 삶 전체에 흐르는 영적인 패턴을 밝혀드려요.",
+      ko: "고요하고 깊은 법사님이에요.\n당신의 삶 전체에 흐르는 영적인 패턴을 밝혀드려요.",
       en: "Serene, philosophical and deeply wise. He reveals the spiritual patterns that shape your entire existence.",
       ja: "穏やかで哲学的、深い知恵を持つ法師です。あなたの存在全体を形作る霊的なパターンを明かします。",
       es: "Sereno, filosófico y profundamente sabio. Él revela los patrones espirituales que dan forma a toda tu existencia.",

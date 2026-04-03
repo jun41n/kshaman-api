@@ -181,7 +181,7 @@ export const PRODUCTS: ProductConfig[] = [
   },
   {
     id: "ask_anything",
-    name_ko: "무엇이든 물어보세요",
+    name_ko: "사주가 술술 풀리려면 보살에게 물어봐",
     name_en: "Ask Anything",
     price_krw: PRICE_KRW,
     price_usd: PRICE_USD,
