@@ -72,11 +72,13 @@ router.post("/ask-anything/message", async (req, res) => {
       userMessage
     );
 
+    console.log(`[ask-anything] sessionId=${session.sessionId} remaining=${session.remainingQuestions}`);
+
     const completion = await client.chat.completions.create({
       model: "gpt-4o",
       messages,
-      temperature: 0.9, // Slightly higher for conversational expressiveness
-      max_tokens: 600,
+      temperature: 0.9, // Higher for conversational expressiveness
+      max_tokens: 1200, // Medium length — meaningful but conversational
     });
 
     const reply = completion.choices[0]?.message?.content;
@@ -84,6 +86,8 @@ router.post("/ask-anything/message", async (req, res) => {
       res.status(500).json({ error: "No response generated" });
       return;
     }
+
+    console.log(`[ask-anything] Reply generated: ${reply.length} chars`);
 
     // Update session messages
     const updatedMessages = [
@@ -94,8 +98,7 @@ router.post("/ask-anything/message", async (req, res) => {
 
     const remainingQuestions = session.remainingQuestions - 1;
 
-    // Asynchronously update conversation summary every 4 turns
-    // This runs in the background and doesn't block the response
+    // Update conversation summary every 4 turns (8 messages)
     let newSummary = session.conversationSummary;
     if (updatedMessages.length % 8 === 0) {
       try {
@@ -107,15 +110,15 @@ router.post("/ask-anything/message", async (req, res) => {
         );
 
         const summaryCompletion = await client.chat.completions.create({
-          model: "gpt-4o-mini", // Use mini for summary — cheaper and fast enough
+          model: "gpt-4o-mini",
           messages: summaryMessages,
           temperature: 0.3,
           max_tokens: 200,
         });
 
         newSummary = summaryCompletion.choices[0]?.message?.content ?? newSummary;
+        console.log(`[ask-anything] Summary updated for session ${session.sessionId}`);
       } catch (summaryErr) {
-        // Non-critical — session continues even if summary update fails
         console.warn("[ask-anything] Summary update failed:", summaryErr);
       }
     }
