@@ -2,7 +2,7 @@ import { useState } from "react";
 import { T } from "../config/i18n";
 import { useApp } from "../store/appStore";
 import { formatPrice, FREE_LABEL } from "../config/pricing";
-import { LanguageSwitcher } from "../components/LanguageSwitcher";
+import { SiteNav } from "../components/SiteNav";
 
 interface Props {
   onSuccess: () => void;
@@ -57,13 +57,7 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
 
   return (
     <div className="min-h-screen bg-gray-950 text-white pb-28">
-      <div className="sticky top-0 z-30 px-4 py-3 flex items-center justify-between bg-gray-950/80 backdrop-blur-md border-b border-white/5">
-        <button onClick={onBack} className="text-white/60 hover:text-white transition-colors text-sm flex items-center gap-1">
-          ← {t.back}
-        </button>
-        <span className="text-sm font-semibold text-white/70">{t.paymentTitle}</span>
-        <LanguageSwitcher />
-      </div>
+      <SiteNav onBack={onBack} backLabel={t.back} />
 
       <div className="px-4 pt-6 max-w-md mx-auto space-y-5">
         {/* Order summary */}

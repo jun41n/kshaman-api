@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { T } from "../config/i18n";
 import { useApp } from "../store/appStore";
-import { LanguageSwitcher } from "../components/LanguageSwitcher";
+import { SiteNav } from "../components/SiteNav";
 import { generateReading } from "../lib/apiClient";
 
 interface Props {
@@ -72,13 +72,7 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
 
   return (
     <div className="min-h-screen bg-gray-950 text-white pb-32">
-      <div className="sticky top-0 z-30 px-4 py-3 flex items-center justify-between bg-gray-950/80 backdrop-blur-md border-b border-white/5">
-        <button onClick={onReset} className="text-white/60 hover:text-white transition-colors text-sm">
-          ← {t.newReading}
-        </button>
-        <span className="text-sm font-semibold text-white/70">{t.yourReading}</span>
-        <LanguageSwitcher />
-      </div>
+      <SiteNav onBack={onReset} backLabel={t.newReading} />
 
       {/* Header */}
       <div className="px-4 pt-8 pb-6 text-center">

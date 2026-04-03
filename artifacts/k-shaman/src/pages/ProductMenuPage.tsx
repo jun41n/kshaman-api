@@ -2,7 +2,7 @@ import { PRODUCTS } from "../config/products";
 import { T } from "../config/i18n";
 import { useApp } from "../store/appStore";
 import { ProductCard } from "../components/ProductCard";
-import { LanguageSwitcher } from "../components/LanguageSwitcher";
+import { SiteNav } from "../components/SiteNav";
 
 interface Props {
   onSelect: (productId: string) => void;
@@ -22,21 +22,18 @@ export function ProductMenuPage({ onSelect, onBack }: Props) {
 
   return (
     <div className="min-h-screen bg-gray-950 text-white pb-10">
-      <div className="sticky top-0 z-30 px-4 py-3 flex items-center justify-between bg-gray-950/80 backdrop-blur-md border-b border-white/5">
-        <button
-          onClick={onBack}
-          className="text-white/60 hover:text-white transition-colors text-sm flex items-center gap-1"
-        >
-          ← {t.back}
-        </button>
-        <div className="text-center">
-          <span className="text-lg">{selectedPersona?.emoji}</span>
-          <span className="ml-1 text-sm font-semibold text-white/70">
-            {selectedPersona?.display_name_ko}
-          </span>
-        </div>
-        <LanguageSwitcher />
-      </div>
+      <SiteNav
+        onBack={onBack}
+        backLabel={t.back}
+        centre={
+          <div className="flex items-center gap-1.5">
+            <span>{selectedPersona?.emoji}</span>
+            <span className="text-sm font-semibold text-white/70">
+              {selectedPersona?.display_name_ko}
+            </span>
+          </div>
+        }
+      />
 
       <div className="px-4 pt-6 pb-4 text-center">
         <p className={`text-sm font-medium mb-1 ${selectedPersona?.accentColor ?? "text-violet-300"}`}>

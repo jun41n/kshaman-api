@@ -2,8 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import { T } from "../config/i18n";
 import { useApp } from "../store/appStore";
 import { ChatBubble } from "../components/ChatBubble";
-import { LanguageSwitcher } from "../components/LanguageSwitcher";
 import { sendMessage, LimitReachedError } from "../lib/apiClient";
+import { SiteNav } from "../components/SiteNav";
 import type { ChatMessage } from "../types";
 
 interface Props {
@@ -139,36 +139,26 @@ export function AskAnythingChatPage({ onBack, onReset }: Props) {
   return (
     <div className="min-h-screen bg-gray-950 text-white flex flex-col">
       {/* Header */}
-      <div className="sticky top-0 z-30 px-4 py-3 flex items-center justify-between bg-gray-950/95 backdrop-blur-md border-b border-white/5">
-        <button
-          onClick={onBack}
-          className="text-white/60 hover:text-white transition-colors text-sm flex items-center gap-1"
-        >
-          ← {t.back}
-        </button>
-
-        <div className="flex flex-col items-center">
-          <div className="flex items-center gap-2">
-            <span className="text-lg">{selectedPersona?.emoji}</span>
-            <span className="text-sm font-semibold text-white/70">
-              {isKo ? selectedPersona?.display_name_ko : selectedPersona?.display_name_en}
+      <SiteNav
+        onBack={onBack}
+        backLabel={t.back}
+        centre={
+          <div className="flex flex-col items-center">
+            <div className="flex items-center gap-1.5">
+              <span>{selectedPersona?.emoji}</span>
+              <span className="text-sm font-semibold text-white/70">
+                {isKo ? selectedPersona?.display_name_ko : selectedPersona?.display_name_en}
+              </span>
+              <span className={`w-2 h-2 rounded-full ${limitReached ? "bg-red-500" : "bg-green-400 animate-pulse"}`} />
+            </div>
+            <span className={`text-[11px] font-medium ${getCounterColor(remainingQuestions)}`}>
+              {isKo
+                ? `남은 질문 ${Math.max(0, remainingQuestions)}개`
+                : `${Math.max(0, remainingQuestions)} questions left`}
             </span>
-            {!limitReached && (
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            )}
-            {limitReached && (
-              <span className="w-2 h-2 rounded-full bg-red-500" />
-            )}
           </div>
-          <span className={`text-[11px] font-medium mt-0.5 ${getCounterColor(remainingQuestions)}`}>
-            {isKo
-              ? `남은 질문 ${Math.max(0, remainingQuestions)}개`
-              : `${Math.max(0, remainingQuestions)} questions left`}
-          </span>
-        </div>
-
-        <LanguageSwitcher />
-      </div>
+        }
+      />
 
       {/* Error banner */}
       {error && (
