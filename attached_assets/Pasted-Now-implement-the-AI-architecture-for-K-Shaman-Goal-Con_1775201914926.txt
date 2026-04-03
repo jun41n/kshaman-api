@@ -1,0 +1,214 @@
+Now implement the AI architecture for K-Shaman.
+
+Goal:
+Connect persona + product + user profile into a reusable AI prompt system.
+The most important requirement is persona consistency across all turns, especially in Ask Anything chat mode.
+Do not let the responses drift into a generic chatbot voice after several turns.
+
+Use environment variable:
+OPENAI_API_KEY
+
+Build this in a clean modular way.
+
+--------------------------------
+1. CREATE AI PROMPT ARCHITECTURE
+--------------------------------
+
+Create a prompt builder system with these layers:
+
+1) global system prompt
+2) persona prompt
+3) product prompt
+4) session memory summary
+5) runtime user input
+
+Create reusable modules such as:
+- lib/ai/globalPrompt.ts
+- lib/ai/buildPersonaPrompt.ts
+- lib/ai/buildProductPrompt.ts
+- lib/ai/buildSessionContext.ts
+- lib/ai/buildFinalMessages.ts
+- lib/ai/openaiClient.ts
+
+--------------------------------
+2. GLOBAL SYSTEM RULES
+--------------------------------
+
+Use a strong global system prompt that enforces these rules:
+
+- The assistant is not a generic AI assistant.
+- It is the selected spiritual guide persona inside K-Shaman.
+- It must remain fully in character across every reply.
+- It must never say it is an AI, chatbot, assistant, or language model.
+- It must not flatten into generic helpful tone after multiple turns.
+- It must match the selected locale:
+  - Korean for Korean users
+  - English for non-Korean users
+- It must sound immersive, character-based, natural, and premium.
+- It must avoid absolute guarantees, medical/legal/financial certainty, and dangerous claims.
+- It should use interpretive guidance rather than deterministic prophecy.
+- It may naturally suggest related readings when appropriate, but must not sound spammy.
+
+Also include anti-drift instructions:
+- Before each answer, internally check whether the draft sounds like the selected persona or like a generic chatbot.
+- If it sounds generic, rewrite it in persona voice before returning it.
+- Maintain sentence rhythm, vocabulary, worldview, and emotional posture of the persona on every turn.
+
+--------------------------------
+3. PERSONA INTEGRATION
+--------------------------------
+
+Load the selected persona from personas.ts.
+
+Inject into prompt:
+- display name
+- archetype
+- tone keywords
+- speech style rules
+- forbidden rules
+- upsell style
+
+Persona voice must remain stable across:
+- one-time reading pages
+- follow-up user actions
+- Ask Anything chat turns
+- repeat reading generation in the same persona
+
+--------------------------------
+4. PRODUCT INTEGRATION
+--------------------------------
+
+Load the selected product from products.ts.
+
+Each product must have distinct prompt behavior:
+- saju
+- compatibility
+- luck_cycle
+- date_selection
+- yearly_fortune
+- daily_fortune
+- ask_anything
+
+Behavior rules:
+- paid readings should be more substantial than daily_fortune
+- ask_anything should behave like a live conversational spiritual guide
+- daily_fortune should be short and free-style
+- compatibility should support second-person info later, but for now leave structure ready
+
+--------------------------------
+5. USER PROFILE INPUT
+--------------------------------
+
+Use these user fields in the prompt context:
+- full name
+- birth date
+- birth time
+- gender
+- email
+- locale
+- selected personaId
+- selected productId
+
+Create a structured context object for this.
+
+--------------------------------
+6. API ROUTES
+--------------------------------
+
+Create backend API routes for:
+- POST /api/reading/generate
+- POST /api/ask-anything/message
+
+Requirements:
+A. /api/reading/generate
+- accepts user profile + personaId + productId
+- returns one generated reading result
+
+B. /api/ask-anything/message
+- accepts sessionId + user message
+- returns assistant reply in the same selected persona
+- uses conversation memory summary
+- keeps persona stable across turns
+
+--------------------------------
+7. ASK ANYTHING SESSION MEMORY
+--------------------------------
+
+Create a session structure for Ask Anything.
+
+Suggested fields:
+- sessionId
+- personaId
+- productId
+- locale
+- maxQuestions
+- remainingQuestions
+- conversationSummary
+- messages
+
+Important:
+Do not rely only on raw full chat history.
+Also maintain a concise conversation summary that preserves:
+- the user’s core issue
+- emotional state
+- unresolved question
+- persona voice reminder
+
+Example memory summary:
+- user is asking about a complicated romantic situation
+- emotional tone is confused but attached
+- unresolved issue is whether to let go or wait
+- maintain Musokin persona: blunt, sharp, penetrating, non-generic
+
+--------------------------------
+8. PERSONA DRIFT PREVENTION
+--------------------------------
+
+This is critical.
+
+Implement the system so persona stays consistent even after multiple turns.
+
+Do all of the following:
+- re-inject persona prompt on every request
+- re-inject product context on every request
+- include anti-drift global rules on every request
+- include session summary on every request
+- avoid only sending raw recent messages without persona context
+
+Also add a small internal helper function that checks whether the response may sound too generic.
+If needed, rewrite prompt assembly to reinforce persona style before calling the API.
+
+--------------------------------
+9. FRONTEND CONNECTION
+--------------------------------
+
+Connect:
+- ReadingResultPage to /api/reading/generate
+- AskAnythingChatPage to /api/ask-anything/message
+
+Requirements:
+- loading state while generating
+- error handling
+- clean typed request/response objects
+- preserve selected persona/product in app state
+
+--------------------------------
+10. DEVELOPMENT MODE
+--------------------------------
+
+For now, allow development mode without payment lock.
+Add a clear TODO comment where payment verification will later gate access.
+
+Do not implement final Stripe/PayPal unlock yet.
+Just prepare the structure cleanly for later integration.
+
+--------------------------------
+11. IMPORTANT
+--------------------------------
+
+- Keep all AI prompt logic server-side
+- Never expose the API key client-side
+- Use environment variables only
+- Keep code modular and easy to edit
+- Prioritize persona consistency over generic answer quality
+- The system must feel like 5 distinct spiritual characters, not one chatbot with 5 labels
