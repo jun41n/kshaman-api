@@ -6,11 +6,10 @@ interface ChatBubbleProps {
 }
 
 export function ChatBubble({ message }: ChatBubbleProps) {
-  const { state } = useApp();
-  const char = state.selectedCharacter;
+  const { selectedPersona } = useApp();
   const isShaman = message.role === "shaman";
-  const fromColor = char?.colorFrom ?? "from-violet-600";
-  const toColor = char?.colorTo ?? "to-indigo-500";
+  const fromColor = selectedPersona?.colorFrom ?? "from-violet-600";
+  const toColor = selectedPersona?.colorTo ?? "to-indigo-500";
 
   return (
     <div className={`flex ${isShaman ? "justify-start" : "justify-end"} mb-4`}>
@@ -19,7 +18,7 @@ export function ChatBubble({ message }: ChatBubbleProps) {
           <div
             className={`w-9 h-9 rounded-full bg-gradient-to-br ${fromColor} ${toColor} flex items-center justify-center text-lg shadow`}
           >
-            {char?.emoji ?? "🔮"}
+            {selectedPersona?.emoji ?? "🔮"}
           </div>
         </div>
       )}

@@ -1,4 +1,5 @@
-import { CHARACTERS } from "../config/characters";
+import { PERSONAS } from "../config/personas";
+import type { Persona } from "../config/personas";
 import { T } from "../config/i18n";
 import { useApp } from "../store/appStore";
 import { CharacterCard } from "../components/CharacterCard";
@@ -9,11 +10,11 @@ interface Props {
 }
 
 export function CharacterSelectPage({ onNext }: Props) {
-  const { state, setCharacter } = useApp();
+  const { state, setPersonaId } = useApp();
   const t = T[state.currentLang];
 
-  const handleSelect = (char: (typeof CHARACTERS)[0]) => {
-    setCharacter(char);
+  const handleSelect = (persona: Persona) => {
+    setPersonaId(persona.id);
     onNext();
   };
 
@@ -40,11 +41,11 @@ export function CharacterSelectPage({ onNext }: Props) {
       </div>
 
       <div className="px-4 pb-20 grid grid-cols-1 gap-4 max-w-md mx-auto">
-        {CHARACTERS.map((char) => (
+        {PERSONAS.map((persona) => (
           <CharacterCard
-            key={char.id}
-            character={char}
-            onSelect={() => handleSelect(char)}
+            key={persona.id}
+            persona={persona}
+            onSelect={() => handleSelect(persona)}
           />
         ))}
       </div>

@@ -57,21 +57,20 @@ const READING_SECTIONS = [
 ];
 
 export function ReadingResultPage({ onAskAnything, onReset }: Props) {
-  const { state } = useApp();
+  const { state, selectedPersona } = useApp();
   const t = T[state.currentLang];
-  const char = state.selectedCharacter;
+  const lang = state.currentLang;
   const user = state.userInfo;
   const [revealed, setRevealed] = useState(0);
 
-  const fromColor = char?.colorFrom ?? "from-violet-600";
-  const toColor = char?.colorTo ?? "to-indigo-500";
+  const fromColor = selectedPersona?.colorFrom ?? "from-violet-600";
+  const toColor = selectedPersona?.colorTo ?? "to-indigo-500";
+  const accentColor = selectedPersona?.accentColor ?? "text-violet-300";
+  const isKo = lang === "ko";
 
-  const isKo = state.currentLang === "ko";
-
-  const fullName =
-    state.currentLang === "ko"
-      ? `${user?.lastName ?? ""}${user?.firstName ?? ""}`
-      : `${user?.firstName ?? ""} ${user?.lastName ?? ""}`.trim();
+  const fullName = isKo
+    ? `${user?.lastName ?? ""}${user?.firstName ?? ""}`
+    : `${user?.firstName ?? ""} ${user?.lastName ?? ""}`.trim();
 
   useEffect(() => {
     if (revealed < READING_SECTIONS.length) {
@@ -90,16 +89,18 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
         <LanguageSwitcher />
       </div>
 
-      <div className={`px-4 pt-8 pb-6 text-center bg-gradient-to-b ${fromColor.replace("from-", "from-").replace("500", "900/30").replace("600", "900/30")} via-transparent to-transparent`}>
+      <div className="px-4 pt-8 pb-6 text-center">
         <div
           className={`w-20 h-20 rounded-full bg-gradient-to-br ${fromColor} ${toColor} flex items-center justify-center text-4xl mx-auto mb-4 shadow-2xl shadow-violet-500/40`}
         >
-          {char?.emoji}
+          {selectedPersona?.emoji ?? "🔮"}
         </div>
-        <p className={`text-xs font-medium mb-1 ${char?.accentColor ?? "text-violet-300"}`}>
-          {char?.koreanName} · {char?.englishName}
+        <p className={`text-xs font-medium mb-1 ${accentColor}`}>
+          {selectedPersona?.display_name_ko} · {selectedPersona?.display_name_en}
         </p>
-        <h1 className="text-2xl font-extrabold">{fullName}님의 점사</h1>
+        <h1 className="text-2xl font-extrabold">
+          {isKo ? `${fullName}님의 점사` : `${fullName}'s Reading`}
+        </h1>
         <p className="text-sm text-white/40 mt-1">
           {user?.birthYear}.{user?.birthMonth}.{user?.birthDay}
         </p>

@@ -6,7 +6,6 @@ import { ProductMenuPage } from "./pages/ProductMenuPage";
 import { PaymentPage } from "./pages/PaymentPage";
 import { ReadingResultPage } from "./pages/ReadingResultPage";
 import { AskAnythingChatPage } from "./pages/AskAnythingChatPage";
-import type { Product } from "./types";
 
 type Step = "select" | "form" | "products" | "payment" | "result" | "chat";
 
@@ -14,8 +13,8 @@ export default function App() {
   const store = useAppStore();
   const [step, setStep] = useState<Step>("select");
 
-  const handleProductSelect = (product: Product) => {
-    store.setProduct(product);
+  const handleProductSelect = (productId: string) => {
+    store.setProductId(productId);
     setStep("payment");
   };
 

@@ -23,22 +23,22 @@ const INTL_PAYMENT_METHODS = [
 ];
 
 export function PaymentPage({ onSuccess, onBack }: Props) {
-  const { state } = useApp();
+  const { state, selectedPersona, selectedProduct } = useApp();
   const t = T[state.currentLang];
   const lang = state.currentLang;
-  const char = state.selectedCharacter;
-  const product = state.selectedProduct;
   const user = state.userInfo;
   const isKo = lang === "ko";
 
   const [selected, setSelected] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const fromColor = char?.colorFrom ?? "from-violet-600";
-  const toColor = char?.colorTo ?? "to-indigo-500";
+  const fromColor = selectedPersona?.colorFrom ?? "from-violet-600";
+  const toColor = selectedPersona?.colorTo ?? "to-indigo-500";
 
-  const isFree = product?.free ?? false;
+  const isFree = selectedProduct?.is_free ?? false;
   const displayedPrice = isFree ? FREE_LABEL[lang] : formatPrice(lang);
+  const productName = isKo ? selectedProduct?.name_ko : selectedProduct?.name_en;
+  const productNameAlt = isKo ? selectedProduct?.name_en : selectedProduct?.name_ko;
 
   const fullName = isKo
     ? `${user?.lastName ?? ""}${user?.firstName ?? ""}`
@@ -55,8 +55,6 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
     }, 1800);
   };
 
-  const productName = isKo ? product?.nameKo : product?.name;
-
   return (
     <div className="min-h-screen bg-gray-950 text-white pb-28">
       <div className="sticky top-0 z-30 px-4 py-3 flex items-center justify-between bg-gray-950/80 backdrop-blur-md border-b border-white/5">
@@ -69,12 +67,12 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
 
       <div className="px-4 pt-6 max-w-md mx-auto space-y-5">
         {/* Order summary */}
-        <div className={`rounded-2xl border border-white/10 bg-white/5 p-5`}>
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
           <div className="flex items-center gap-3 mb-3">
-            <span className="text-3xl">{product?.icon}</span>
+            <span className="text-3xl">{selectedProduct?.icon}</span>
             <div>
               <h2 className="font-bold text-white">{productName}</h2>
-              <p className="text-xs text-white/40">{isKo ? product?.name : product?.nameKo}</p>
+              <p className="text-xs text-white/40">{productNameAlt}</p>
             </div>
           </div>
           <div className="border-t border-white/10 pt-3 flex items-center justify-between">
@@ -99,7 +97,7 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
                   disabled={!method.available}
                   className={`relative py-4 rounded-xl border text-sm font-medium transition-all ${
                     !method.available
-                      ? "opacity-40 cursor-not-allowed border-white/5 bg-white/3"
+                      ? "opacity-40 cursor-not-allowed border-white/5 bg-white/5"
                       : selected === method.id
                       ? `bg-gradient-to-br ${fromColor} ${toColor} border-transparent text-white`
                       : "bg-white/5 border-white/10 text-white/70 hover:bg-white/10"

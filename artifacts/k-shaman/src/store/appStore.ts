@@ -1,31 +1,51 @@
 import { useState, createContext, useContext } from "react";
-import type { AppState, Character, UserInfo, Product, Language } from "../types";
+import type { AppState, UserInfo, Language } from "../types";
+import { getPersonaById } from "../config/personas";
+import { getProductById } from "../config/products";
 
 const defaultState: AppState = {
-  selectedCharacter: null,
+  selectedPersonaId: null,
   userInfo: null,
-  selectedProduct: null,
+  selectedProductId: null,
   currentLang: "ko",
 };
 
 export function useAppStore() {
   const [state, setState] = useState<AppState>(defaultState);
 
-  const setCharacter = (c: Character) =>
-    setState((s) => ({ ...s, selectedCharacter: c }));
+  const setPersonaId = (id: string) =>
+    setState((s) => ({ ...s, selectedPersonaId: id }));
 
   const setUserInfo = (u: UserInfo) =>
     setState((s) => ({ ...s, userInfo: u }));
 
-  const setProduct = (p: Product) =>
-    setState((s) => ({ ...s, selectedProduct: p }));
+  const setProductId = (id: string) =>
+    setState((s) => ({ ...s, selectedProductId: id }));
 
   const setLang = (lang: Language) =>
     setState((s) => ({ ...s, currentLang: lang }));
 
   const reset = () => setState(defaultState);
 
-  return { state, setCharacter, setUserInfo, setProduct, setLang, reset };
+  // Derived convenience getters
+  const selectedPersona = state.selectedPersonaId
+    ? getPersonaById(state.selectedPersonaId)
+    : undefined;
+
+  const selectedProduct = state.selectedProductId
+    ? getProductById(state.selectedProductId)
+    : undefined;
+
+  return {
+    state,
+    selectedPersona,
+    selectedProduct,
+    setPersonaId,
+    setUserInfo,
+    setProductId,
+    setLang,
+    reset,
+  };
 }
 
 export type AppStore = ReturnType<typeof useAppStore>;

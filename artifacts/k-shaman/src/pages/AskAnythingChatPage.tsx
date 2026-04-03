@@ -31,18 +31,18 @@ const SHAMAN_RESPONSES_EN = [
 ];
 
 export function AskAnythingChatPage({ onBack, onReset }: Props) {
-  const { state } = useApp();
+  const { state, selectedPersona } = useApp();
   const t = T[state.currentLang];
-  const char = state.selectedCharacter;
-  const isKo = state.currentLang === "ko";
+  const lang = state.currentLang;
+  const isKo = lang === "ko";
 
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: generateId(),
       role: "shaman",
       content: isKo
-        ? `안녕하세요. 저는 ${char?.koreanName}입니다. 무엇이든 편하게 물어보세요. 기운을 살펴드릴게요.`
-        : `Hello. I am ${char?.englishName}. Feel free to ask me anything. I will read your energy.`,
+        ? `안녕하세요. 저는 ${selectedPersona?.display_name_ko}입니다. 무엇이든 편하게 물어보세요.`
+        : `Hello. I am ${selectedPersona?.display_name_en}. Feel free to ask me anything.`,
       timestamp: new Date(),
     },
   ]);
@@ -51,8 +51,8 @@ export function AskAnythingChatPage({ onBack, onReset }: Props) {
   const bottomRef = useRef<HTMLDivElement>(null);
   const responseIndex = useRef(0);
 
-  const fromColor = char?.colorFrom ?? "from-violet-600";
-  const toColor = char?.colorTo ?? "to-indigo-500";
+  const fromColor = selectedPersona?.colorFrom ?? "from-violet-600";
+  const toColor = selectedPersona?.colorTo ?? "to-indigo-500";
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -97,8 +97,10 @@ export function AskAnythingChatPage({ onBack, onReset }: Props) {
           ← {t.back}
         </button>
         <div className="flex items-center gap-2">
-          <span className="text-lg">{char?.emoji}</span>
-          <span className="text-sm font-semibold text-white/70">{char?.koreanName}</span>
+          <span className="text-lg">{selectedPersona?.emoji}</span>
+          <span className="text-sm font-semibold text-white/70">
+            {selectedPersona?.display_name_ko}
+          </span>
           <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
         </div>
         <LanguageSwitcher />
@@ -115,7 +117,7 @@ export function AskAnythingChatPage({ onBack, onReset }: Props) {
               <div
                 className={`w-9 h-9 rounded-full bg-gradient-to-br ${fromColor} ${toColor} flex items-center justify-center text-lg shadow`}
               >
-                {char?.emoji}
+                {selectedPersona?.emoji}
               </div>
             </div>
             <div className="bg-white/10 border border-white/10 rounded-2xl rounded-tl-none px-4 py-3 flex items-center gap-1">

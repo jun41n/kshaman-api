@@ -16,9 +16,8 @@ const DAYS = Array.from({ length: 31 }, (_, i) => String(i + 1).padStart(2, "0")
 const HOURS = Array.from({ length: 24 }, (_, i) => String(i).padStart(2, "0"));
 
 export function UserInfoFormPage({ onNext, onBack }: Props) {
-  const { state, setUserInfo } = useApp();
+  const { state, setUserInfo, selectedPersona } = useApp();
   const t = T[state.currentLang];
-  const char = state.selectedCharacter;
 
   const [form, setForm] = useState<UserInfo>({
     lastName: "",
@@ -44,8 +43,8 @@ export function UserInfoFormPage({ onNext, onBack }: Props) {
     onNext();
   };
 
-  const fromColor = char?.colorFrom ?? "from-violet-600";
-  const toColor = char?.colorTo ?? "to-indigo-500";
+  const fromColor = selectedPersona?.colorFrom ?? "from-violet-600";
+  const toColor = selectedPersona?.colorTo ?? "to-indigo-500";
 
   return (
     <div className="min-h-screen bg-gray-950 text-white pb-28">
@@ -54,8 +53,10 @@ export function UserInfoFormPage({ onNext, onBack }: Props) {
           ← {t.back}
         </button>
         <div className="text-center">
-          <span className="text-lg">{char?.emoji}</span>
-          <span className="ml-1 text-sm font-semibold text-white/70">{char?.koreanName}</span>
+          <span className="text-lg">{selectedPersona?.emoji}</span>
+          <span className="ml-1 text-sm font-semibold text-white/70">
+            {selectedPersona?.display_name_ko}
+          </span>
         </div>
         <LanguageSwitcher />
       </div>
@@ -64,7 +65,7 @@ export function UserInfoFormPage({ onNext, onBack }: Props) {
         <div
           className={`w-16 h-16 rounded-full bg-gradient-to-br ${fromColor} ${toColor} flex items-center justify-center text-3xl mx-auto mb-4 shadow-lg`}
         >
-          {char?.emoji}
+          {selectedPersona?.emoji}
         </div>
         <h1 className="text-xl font-bold">{t.tellUsAboutYou}</h1>
       </div>

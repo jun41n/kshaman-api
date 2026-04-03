@@ -9,10 +9,9 @@ interface StickyCTAProps {
 }
 
 export function StickyCTA({ label, onClick, icon, disabled }: StickyCTAProps) {
-  const { state } = useApp();
-  const char = state.selectedCharacter;
-  const fromColor = char?.colorFrom ?? "from-violet-600";
-  const toColor = char?.colorTo ?? "to-indigo-500";
+  const { selectedPersona } = useApp();
+  const fromColor = selectedPersona?.colorFrom ?? "from-violet-600";
+  const toColor = selectedPersona?.colorTo ?? "to-indigo-500";
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 p-4 bg-gradient-to-t from-gray-950 via-gray-950/90 to-transparent">
