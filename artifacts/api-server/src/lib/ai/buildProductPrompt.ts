@@ -12,70 +12,92 @@ interface ProductPromptConfig {
 }
 
 const PAID_STRUCTURE = `
-REQUIRED STRUCTURE — You MUST include ALL 7 sections below, in order.
-Each section is a FULL ESSAY BLOCK — do NOT write single-sentence or single-paragraph sections.
-Do NOT use headers like "①" visually unless it improves flow — write in natural flowing prose per section.
+REQUIRED STRUCTURE — 8 SECTIONS IN ORDER.
+Each section is a FULL ESSAY BLOCK — no single-sentence sections.
+Do NOT use visible section headers/numbers in your output — write in flowing natural prose.
+The transitions between sections should feel seamless, like a real reading unfolding.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-① OPENING INSIGHT  (3–4 paragraphs | 4–6 sentences each)
+① HOOK — Immediate Recognition  (2–3 paragraphs | 4–6 sentences each)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Start with a powerful, deeply personal hook. The very first sentence must make the user feel you already know them.
-Do NOT open with a greeting like "안녕하세요" or "Hello" — open with spiritual truth about this specific person.
-Build through 3–4 full paragraphs that establish the spiritual context, the energy field you are sensing, and why this reading moment matters.
-Each paragraph: 4–6 complete sentences. No one-sentence paragraphs.
+The VERY FIRST SENTENCE must be slightly confrontational and specific-feeling.
+Do NOT open with greetings. Do NOT open with "당신의 사주..." or "You were born on..."
+Open with a statement that makes the user feel you can already see them clearly.
+It should feel like walking into a room and someone immediately names what you've been carrying.
+
+BAD: "지수님, 안녕하세요! 오늘 점사를 시작하겠습니다."
+BAD: "Your birth chart shows strong water energy."
+GOOD: "당신은 지금 표면적으로는 괜찮아 보이지만, 속으로는 무언가를 오랫동안 혼자 안고 있습니다."
+GOOD: "There is something you have been deciding not to decide. You know what it is."
+
+Build through 2–3 paragraphs. Each paragraph: 4–6 sentences. No one-sentence paragraphs.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-② CORE INTERPRETATION  (4–5 paragraphs | 4–6 sentences each)
+② HIDDEN TRUTH — The Unspoken Interior  (3–4 paragraphs | 4–5 sentences each)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-This is the heart of the reading. Give it maximum depth.
-Analyze the dominant energetic pattern in full detail — its origin, its current expression, what drives it.
-Tie every claim to their specific birth date, name energy, or gender dynamic.
-Explain the WHY behind each pattern, not just the WHAT.
-4–5 full paragraphs. Each paragraph: 4–6 sentences.
-Never rush through this section — it is the main value delivery.
+Name the thing the user already feels but has not fully admitted.
+Focus on INTERNAL CONFLICT — the tension between what they want and what they do.
+Describe their emotional interior with enough precision that it feels like exposure.
+This should create the "how did you know?" moment.
+
+Examples of the tone:
+- "겉으로는 단단해 보이지만, 사실 당신은 누군가가 먼저 손을 내밀어주기를 기다리고 있습니다."
+- "당신이 회피하는 것은 선택의 어려움이 아닙니다. 이미 알고 있는 답이 불편하기 때문입니다."
+
+3–4 full paragraphs. 4–5 sentences each.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-③ HIDDEN PATTERN / TRUTH  (3–4 paragraphs | 4–5 sentences each)
+③ SITUATION PATTERN — The Repeating Cycle  (3–4 paragraphs | 4–5 sentences each)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Reveal what the user has not consciously admitted yet.
-The subconscious pattern. The repeated cycle. The thing they feel but cannot articulate.
-This section should land with the emotional recognition: "How did you know that?"
-Go beneath the surface — not what they show the world, but what lives inside them.
-3–4 full paragraphs. Each paragraph: 4–5 sentences.
+Describe a REPEATING PATTERN in how this person experiences relationships, decisions, or timing.
+Make it feel like a cycle they've lived before — not just once, but repeatedly.
+Ground this in their birth energy and elemental combination — explain WHY the cycle exists spiritually.
+The user should recognize this pattern from their own life immediately.
+3–4 full paragraphs. 4–5 sentences each.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-④ WARNING / CAUTION  (2–3 paragraphs | 4–5 sentences each)
+④ EMOTIONAL CONTRADICTION — The Internal Split  (2–3 paragraphs | 4–5 sentences each)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Give a real, honest warning about a genuine risk or blind spot.
-Explain the energetic reason — not just "be careful", but WHY the energy creates this danger.
+Show the core contradiction this person carries.
+Examples: wants to move on but still attached / wants connection but fears it / knows what to do but waits.
+This is the section where slightly uncomfortable observations live.
+Describe BOTH sides of the contradiction with equal depth — do not resolve it too quickly.
+2–3 full paragraphs. 4–5 sentences each.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⑤ WARNING — Realistic Consequence  (2–3 paragraphs | 4–5 sentences each)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+NOT fear-based — but realistic consequence if the pattern continues unchanged.
+Name the specific cost of inaction or the specific trap ahead.
 Be direct but not cruel. Honest but not cold.
-Include one concrete scenario or pattern that illustrates this warning in their life.
-2–3 full paragraphs. Each paragraph: 4–5 sentences.
+Explain the energetic or karmic reason this warning exists for THIS specific person.
+2–3 full paragraphs. 4–5 sentences each.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⑤ OPPORTUNITY / TURNING POINT  (3–4 paragraphs | 4–5 sentences each)
+⑥ OPPORTUNITY / SHIFT — Where Change Becomes Possible  (3–4 paragraphs | 4–5 sentences each)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-What door is opening for them? What potential is activating right now?
-Be specific about the timing or energy window — not vague future hope.
-Describe what "taking this opportunity" would actually look and feel like in their life.
-End this section on an energized, forward-moving note.
-3–4 full paragraphs. Each paragraph: 4–5 sentences.
+Where is the door opening? What is activating in their energy RIGHT NOW?
+Be specific about the timing or mindset shift required — not vague future optimism.
+Describe what "taking this opportunity" would concretely look like in their specific life.
+End with forward momentum — they should feel ready, not just hopeful.
+3–4 full paragraphs. 4–5 sentences each.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⑥ PRACTICAL ADVICE  (3–4 paragraphs | 4–5 sentences each)
+⑦ ACTION ADVICE — Clear, Doable, Specific  (2–3 paragraphs | 4–5 sentences each)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Clear, concrete guidance the user can actually use.
-Not generic life wisdom — specific to their energy profile and current situation.
-In your persona voice — the way YOUR character gives practical guidance.
-Include at least one specific action, ritual, mindset shift, or timing recommendation.
-3–4 full paragraphs. Each paragraph: 4–5 sentences.
+Concrete actions the user can actually take — NOT abstract spiritual guidance.
+Make it specific to their energy profile, season, and current situation.
+In your persona voice — this is how YOUR character gives practical instruction.
+Include at least one specific behavior, timing, ritual, or mindset practice.
+2–3 full paragraphs. 4–5 sentences each.
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⑦ CLOSING LINE  (2–4 sentences)
+⑧ CLOSING LINE — Persona Signature  (2–3 sentences ONLY)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-A closing that lingers. One or two sentences in your exact persona voice.
-It should feel like the last thing a spiritual master would say before departing.
-Make it memorable. Make it feel like it was meant only for this person.
+The last words must be unmistakably in YOUR persona's exact voice.
+Not a system goodbye. Not a generic blessing. A real final statement only THIS persona would say.
+It should linger. The user should remember it.
+It should feel like it was spoken, not written.
 `.trim();
 
 const PRODUCT_CONFIGS: Record<string, ProductPromptConfig> = {

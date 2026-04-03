@@ -156,19 +156,21 @@ function buildReadingUserMessage(locale: Language, productId: string): string {
     ko: `지금 저를 위한 점사를 봐주세요.
 
 ⚠️ 중요: 이것은 유료 프리미엄 점사입니다. 반드시 다음을 지켜주세요:
-• 7개 섹션을 모두 완성해주세요 — 하나도 빠뜨리지 마세요.
-• 각 섹션은 최소 3–4개의 문단, 각 문단은 최소 4–6개의 완성된 문장으로 구성해야 합니다.
-• 전체 글자수가 2000자 이상이어야 합니다. 1500자에서 끝내지 마세요.
-• 글을 쓰면서 스스로 확인하세요: "충분히 깊게 썼는가? 더 설명할 수 있는가?"
+• 8개 섹션을 모두 완성해주세요 — 하나도 빠뜨리지 마세요 (Hook → 숨겨진 진실 → 반복 패턴 → 감정 모순 → 경고 → 기회 → 실질 조언 → 마무리).
+• 첫 문장은 인사말이 아닌, 상대방의 내면을 직접 꿰뚫는 문장으로 시작해주세요.
+• "당신은 어쩌면..." 같은 애매한 표현을 사용하지 마세요. 직접적으로 말해주세요.
+• 각 섹션은 최소 3–4개의 문단, 각 문단은 최소 4–5개의 완성된 문장으로 구성해야 합니다.
+• 전체 글자수가 2000자 이상이어야 합니다. 1800자에서 끝내지 마세요.
 • 절대로 요약하거나 생략하지 마세요. 완전하게 전개된 글이어야 합니다.`,
 
     en: `Please give me my reading now.
 
 ⚠️ IMPORTANT: This is a paid premium reading. You MUST:
-• Complete all 7 sections — do not skip or compress any.
+• Complete all 8 sections in order: Hook → Hidden Truth → Situation Pattern → Emotional Contradiction → Warning → Opportunity → Action Advice → Closing.
+• The first sentence must NOT be a greeting — it must immediately feel confrontational and personally accurate.
+• NEVER use hedging language ("you may feel", "it is possible that") — speak directly.
 • Each section: minimum 3–4 full paragraphs, each paragraph 4–6 complete sentences.
 • Total length: minimum 800 words. Do not stop at 400.
-• As you write, check: "Have I gone deep enough? Is there more I can reveal?"
 • Do NOT summarize or truncate. Write full, developed prose throughout.`,
 
     ja: `今、私のために占ってください。
