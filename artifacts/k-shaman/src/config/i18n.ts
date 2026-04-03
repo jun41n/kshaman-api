@@ -1,0 +1,246 @@
+import type { Language } from "../types";
+
+export const LANGUAGES: { code: Language; label: string; flag: string }[] = [
+  { code: "ko", label: "한국어", flag: "🇰🇷" },
+  { code: "en", label: "English", flag: "🇺🇸" },
+  { code: "ja", label: "日本語", flag: "🇯🇵" },
+  { code: "es", label: "Español", flag: "🇪🇸" },
+  { code: "pt", label: "Português", flag: "🇧🇷" },
+  { code: "fr", label: "Français", flag: "🇫🇷" },
+];
+
+type TranslationKey =
+  | "selectGuide"
+  | "selectGuideSubtitle"
+  | "speciality"
+  | "chooseGuide"
+  | "tellUsAboutYou"
+  | "lastName"
+  | "firstName"
+  | "birthYear"
+  | "birthMonth"
+  | "birthDay"
+  | "birthHour"
+  | "gender"
+  | "female"
+  | "male"
+  | "next"
+  | "back"
+  | "chooseReading"
+  | "chooseReadingSubtitle"
+  | "popular"
+  | "premium"
+  | "selectReading"
+  | "paymentTitle"
+  | "paymentSubtitle"
+  | "payWith"
+  | "comingSoon"
+  | "yourReading"
+  | "askAnything"
+  | "askPlaceholder"
+  | "sendMessage"
+  | "newReading"
+  | "hourUnknown";
+
+type Translations = Record<TranslationKey, string>;
+
+export const T: Record<Language, Translations> = {
+  ko: {
+    selectGuide: "누구에게 점사를 볼까요?",
+    selectGuideSubtitle: "마음이 끌리는 신령을 선택하세요",
+    speciality: "전문 분야",
+    chooseGuide: "선택하기",
+    tellUsAboutYou: "기본 정보를 알려주세요",
+    lastName: "성",
+    firstName: "이름",
+    birthYear: "출생연도",
+    birthMonth: "월",
+    birthDay: "일",
+    birthHour: "시",
+    gender: "성별",
+    female: "👩 여성",
+    male: "👨 남성",
+    next: "다음",
+    back: "뒤로",
+    chooseReading: "어떤 점사를 원하세요?",
+    chooseReadingSubtitle: "당신에게 맞는 점사를 선택하세요",
+    popular: "인기",
+    premium: "프리미엄",
+    selectReading: "선택하기",
+    paymentTitle: "결제하기",
+    paymentSubtitle: "안전하게 결제하고 점사를 받으세요",
+    payWith: "결제하기",
+    comingSoon: "준비 중",
+    yourReading: "당신의 점사",
+    askAnything: "무엇이든 물어보세요",
+    askPlaceholder: "신령에게 질문을 입력하세요...",
+    sendMessage: "전송",
+    newReading: "처음부터 다시",
+    hourUnknown: "모름",
+  },
+  en: {
+    selectGuide: "Who will read your destiny?",
+    selectGuideSubtitle: "Choose the spirit guide that calls to your heart",
+    speciality: "Speciality",
+    chooseGuide: "Choose",
+    tellUsAboutYou: "Tell us about yourself",
+    lastName: "Last Name",
+    firstName: "First Name",
+    birthYear: "Birth Year",
+    birthMonth: "Month",
+    birthDay: "Day",
+    birthHour: "Hour",
+    gender: "Gender",
+    female: "👩 Female",
+    male: "👨 Male",
+    next: "Next",
+    back: "Back",
+    chooseReading: "Choose your reading",
+    chooseReadingSubtitle: "Select the reading that resonates with you",
+    popular: "Popular",
+    premium: "Premium",
+    selectReading: "Select",
+    paymentTitle: "Complete Payment",
+    paymentSubtitle: "Secure payment — your reading begins immediately",
+    payWith: "Pay Now",
+    comingSoon: "Coming Soon",
+    yourReading: "Your Reading",
+    askAnything: "Ask Anything",
+    askPlaceholder: "Ask your spirit guide anything...",
+    sendMessage: "Send",
+    newReading: "Start Over",
+    hourUnknown: "Unknown",
+  },
+  ja: {
+    selectGuide: "誰に占ってもらいますか？",
+    selectGuideSubtitle: "心が引かれる神霊を選んでください",
+    speciality: "専門分野",
+    chooseGuide: "選ぶ",
+    tellUsAboutYou: "基本情報を教えてください",
+    lastName: "姓",
+    firstName: "名前",
+    birthYear: "生まれ年",
+    birthMonth: "月",
+    birthDay: "日",
+    birthHour: "時",
+    gender: "性別",
+    female: "👩 女性",
+    male: "👨 男性",
+    next: "次へ",
+    back: "戻る",
+    chooseReading: "占いを選んでください",
+    chooseReadingSubtitle: "あなたに合った占いを選んでください",
+    popular: "人気",
+    premium: "プレミアム",
+    selectReading: "選ぶ",
+    paymentTitle: "お支払い",
+    paymentSubtitle: "安全にお支払いください",
+    payWith: "今すぐ支払う",
+    comingSoon: "近日公開",
+    yourReading: "あなたの占い",
+    askAnything: "何でも聞いてください",
+    askPlaceholder: "神霊に質問してください...",
+    sendMessage: "送信",
+    newReading: "最初からやり直す",
+    hourUnknown: "不明",
+  },
+  es: {
+    selectGuide: "¿Quién leerá tu destino?",
+    selectGuideSubtitle: "Elige la guía espiritual que resuena contigo",
+    speciality: "Especialidad",
+    chooseGuide: "Elegir",
+    tellUsAboutYou: "Cuéntanos sobre ti",
+    lastName: "Apellido",
+    firstName: "Nombre",
+    birthYear: "Año de nacimiento",
+    birthMonth: "Mes",
+    birthDay: "Día",
+    birthHour: "Hora",
+    gender: "Género",
+    female: "👩 Femenino",
+    male: "👨 Masculino",
+    next: "Siguiente",
+    back: "Atrás",
+    chooseReading: "Elige tu lectura",
+    chooseReadingSubtitle: "Selecciona la lectura que resuena contigo",
+    popular: "Popular",
+    premium: "Premium",
+    selectReading: "Seleccionar",
+    paymentTitle: "Completar Pago",
+    paymentSubtitle: "Pago seguro — tu lectura comienza de inmediato",
+    payWith: "Pagar Ahora",
+    comingSoon: "Próximamente",
+    yourReading: "Tu Lectura",
+    askAnything: "Pregunta Cualquier Cosa",
+    askPlaceholder: "Pregunta a tu guía espiritual...",
+    sendMessage: "Enviar",
+    newReading: "Empezar de Nuevo",
+    hourUnknown: "Desconocido",
+  },
+  pt: {
+    selectGuide: "Quem vai ler seu destino?",
+    selectGuideSubtitle: "Escolha o guia espiritual que ressoa com você",
+    speciality: "Especialidade",
+    chooseGuide: "Escolher",
+    tellUsAboutYou: "Nos conte sobre você",
+    lastName: "Sobrenome",
+    firstName: "Nome",
+    birthYear: "Ano de nascimento",
+    birthMonth: "Mês",
+    birthDay: "Dia",
+    birthHour: "Hora",
+    gender: "Gênero",
+    female: "👩 Feminino",
+    male: "👨 Masculino",
+    next: "Próximo",
+    back: "Voltar",
+    chooseReading: "Escolha sua leitura",
+    chooseReadingSubtitle: "Selecione a leitura que ressoa com você",
+    popular: "Popular",
+    premium: "Premium",
+    selectReading: "Selecionar",
+    paymentTitle: "Concluir Pagamento",
+    paymentSubtitle: "Pagamento seguro — sua leitura começa imediatamente",
+    payWith: "Pagar Agora",
+    comingSoon: "Em Breve",
+    yourReading: "Sua Leitura",
+    askAnything: "Pergunte Qualquer Coisa",
+    askPlaceholder: "Pergunte ao seu guia espiritual...",
+    sendMessage: "Enviar",
+    newReading: "Recomeçar",
+    hourUnknown: "Desconhecido",
+  },
+  fr: {
+    selectGuide: "Qui lira votre destin ?",
+    selectGuideSubtitle: "Choisissez le guide spirituel qui résonne avec vous",
+    speciality: "Spécialité",
+    chooseGuide: "Choisir",
+    tellUsAboutYou: "Parlez-nous de vous",
+    lastName: "Nom",
+    firstName: "Prénom",
+    birthYear: "Année de naissance",
+    birthMonth: "Mois",
+    birthDay: "Jour",
+    birthHour: "Heure",
+    gender: "Genre",
+    female: "👩 Féminin",
+    male: "👨 Masculin",
+    next: "Suivant",
+    back: "Retour",
+    chooseReading: "Choisissez votre lecture",
+    chooseReadingSubtitle: "Sélectionnez la lecture qui vous correspond",
+    popular: "Populaire",
+    premium: "Premium",
+    selectReading: "Sélectionner",
+    paymentTitle: "Compléter le Paiement",
+    paymentSubtitle: "Paiement sécurisé — votre lecture commence immédiatement",
+    payWith: "Payer Maintenant",
+    comingSoon: "Bientôt disponible",
+    yourReading: "Votre Lecture",
+    askAnything: "Demandez n'importe quoi",
+    askPlaceholder: "Posez une question à votre guide spirituel...",
+    sendMessage: "Envoyer",
+    newReading: "Recommencer",
+    hourUnknown: "Inconnu",
+  },
+};

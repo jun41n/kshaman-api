@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/k-shaman/"
+title = "K-Shaman"
+version = "1.0.0"
+id = "artifacts/k-shaman"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/k-shaman/" ]
+localPort = 24915
+
+[services.development]
+run = "pnpm --filter @workspace/k-shaman run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/k-shaman", "run", "build" ]
+publicDir = "artifacts/k-shaman/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24915"
+BASE_PATH = "/k-shaman/"
