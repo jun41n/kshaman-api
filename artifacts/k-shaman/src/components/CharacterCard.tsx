@@ -10,6 +10,7 @@ interface CharacterCardProps {
 export function CharacterCard({ character, onSelect }: CharacterCardProps) {
   const { state } = useApp();
   const t = T[state.currentLang];
+  const lang = state.currentLang;
 
   return (
     <div
@@ -26,12 +27,12 @@ export function CharacterCard({ character, onSelect }: CharacterCardProps) {
           <p className={`text-sm font-medium ${character.accentColor} mt-0.5`}>
             {character.englishName}
           </p>
-          <p className="text-xs text-white/50 mt-1">{character.subtitle}</p>
+          <p className="text-xs text-white/50 mt-1">{character.subtitles[lang]}</p>
         </div>
 
         <div className="border-t border-white/10 pt-3 mt-3">
           <p className="text-xs text-white/60 leading-relaxed text-center">
-            {character.description}
+            {character.descriptions[lang]}
           </p>
         </div>
 
@@ -39,7 +40,7 @@ export function CharacterCard({ character, onSelect }: CharacterCardProps) {
           <span className={`text-xs ${character.accentColor} font-medium`}>
             ✦ {t.speciality}:
           </span>
-          <span className="text-xs text-white/70">{character.speciality}</span>
+          <span className="text-xs text-white/70">{character.specialities[lang]}</span>
         </div>
 
         <button

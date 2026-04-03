@@ -1,11 +1,13 @@
+export type Language = "ko" | "en" | "ja" | "es" | "pt" | "fr";
+
 export interface Character {
   id: string;
   koreanName: string;
   englishName: string;
-  subtitle: string;
+  subtitles: Record<Language, string>;
   emoji: string;
-  description: string;
-  speciality: string;
+  descriptions: Record<Language, string>;
+  specialities: Record<Language, string>;
   colorFrom: string;
   colorTo: string;
   glowColor: string;
@@ -25,8 +27,6 @@ export interface Product {
   features: string[];
   icon: string;
 }
-
-export type Language = "ko" | "en" | "ja" | "es" | "pt" | "fr";
 
 export interface UserInfo {
   lastName: string;
