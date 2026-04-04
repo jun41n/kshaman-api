@@ -6,3 +6,9 @@ id = "0DcAyLJvUtI6y9tFYK_zn"
 uri = "file://deploy-combined.tar.gz"
 type = "unspecified"
 title = "deploy-combined.tar.gz (8.9MB)"
+
+[[outputs]]
+id = "kiX7OqWbqxG6S74b7LL3B"
+uri = "file://api-update.tar.gz"
+type = "unspecified"
+title = "api-server 업데이트 (다국어 AI 수정)"
