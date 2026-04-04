@@ -12,6 +12,7 @@ export default function Terms() {
     { title: t('terms.a3title'), body: t('terms.a3body') },
     { title: t('terms.a4title'), body: t('terms.a4body') },
     { title: t('terms.a5title'), body: t('terms.a5body') },
+    { title: t('terms.a6title'), body: t('terms.a6body') },
   ];
 
   return (
