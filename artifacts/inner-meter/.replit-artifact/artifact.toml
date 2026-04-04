@@ -1,6 +1,6 @@
 kind = "web"
 previewPath = "/"
-title = "InnerMeter"
+title = "MyTestType"
 version = "1.0.0"
 id = "artifacts/inner-meter"
 router = "path"
