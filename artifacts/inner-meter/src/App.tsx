@@ -13,7 +13,6 @@ import Tests from "@/pages/tests";
 import TestDetail from "@/pages/test-detail";
 import TestResult from "@/pages/test-result";
 import Tarot from "@/pages/tarot";
-import KShaman from "@/pages/k-shaman";
 import About from "@/pages/about";
 import Privacy from "@/pages/privacy";
 import Terms from "@/pages/terms";
@@ -45,7 +44,6 @@ function Router() {
         <Route path="/tests/:slug" component={TestDetail} />
         <Route path="/results/:slug" component={TestResult} />
         <Route path="/tarot" component={Tarot} />
-        <Route path="/k-shaman" component={KShaman} />
         <Route path="/about" component={About} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/terms" component={Terms} />
