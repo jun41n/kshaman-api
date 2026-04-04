@@ -1,0 +1,95 @@
+Change of direction.
+
+Do NOT fully embed K-Shaman into MyTestType.
+
+Instead, this task is ONLY about connecting navigation.
+
+When the user clicks "내 점사 보기" in MyTestType,
+the app must navigate to the existing K-Shaman start page in the SAME CURRENT TAB.
+
+This is NOT a refactor, NOT a redesign, and NOT a migration.
+It is ONLY a navigation change.
+
+---
+
+STRICT RULES:
+
+- No new window
+- No new tab
+- No iframe
+- No embedding
+- No UI redesign
+- No prompt modification
+- No persona modification
+- No logic changes inside K-Shaman (unless absolutely required to add a return link)
+
+Do NOT improve, rewrite, reorganize, or optimize anything.
+
+---
+
+REQUIRED BEHAVIOR:
+
+1. Clicking "내 점사 보기" must:
+   - NOT open a new tab
+   - NOT open a new window
+   - Navigate in the SAME browser tab only
+   - Directly open the K-Shaman start page ("Who would you like to receive a reading from?")
+
+2. K-Shaman must remain structurally unchanged:
+   - same pages
+   - same flow
+   - same prompt system
+   - same personas
+   - same tone and response style
+
+3. Add ONE simple return mechanism inside K-Shaman:
+   - A "Back to MyTestType" or "Home" button
+   - It must navigate back to MyTestType homepage in the SAME TAB
+
+---
+
+PRESERVE EXACTLY:
+
+- existing K-Shaman structure
+- existing prompt system
+- existing personas
+- existing emotional tone and narrative style
+
+Do NOT replace anything with generic OpenAI behavior.
+
+---
+
+TECHNICAL CONSTRAINT:
+
+Prefer the smallest possible code change.
+
+Do NOT introduce new routing structures unless absolutely necessary.
+
+Do NOT restructure the K-Shaman app.
+
+---
+
+BEFORE IMPLEMENTATION:
+
+Show these FIRST:
+
+1. The exact URL that "내 점사 보기" will open
+2. The exact code change for same-tab navigation in MyTestType
+3. The exact location where the return button will be added in K-Shaman
+4. The exact code for returning to MyTestType in the same tab
+
+Do NOT start implementation until this plan is shown.
+
+---
+
+SUMMARY:
+
+This is NOT development.
+This is NOT integration.
+
+This is a simple SAME-TAB navigation connection:
+
+MyTestType → K-Shaman → back to MyTestType
+
+Nothing more.
+Nothing less.
