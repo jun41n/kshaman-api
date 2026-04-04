@@ -116,11 +116,11 @@ Create a structured context object for this.
 --------------------------------
 
 Create backend API routes for:
-- POST /api/reading/generate
+- POST https://api.mytesttype.com/api/reading/generate
 - POST /api/ask-anything/message
 
 Requirements:
-A. /api/reading/generate
+A. https://api.mytesttype.com/api/reading/generate
 - accepts user profile + personaId + productId
 - returns one generated reading result
 
@@ -183,7 +183,7 @@ If needed, rewrite prompt assembly to reinforce persona style before calling the
 --------------------------------
 
 Connect:
-- ReadingResultPage to /api/reading/generate
+- ReadingResultPage to https://api.mytesttype.com/api/reading/generate
 - AskAnythingChatPage to /api/ask-anything/message
 
 Requirements:

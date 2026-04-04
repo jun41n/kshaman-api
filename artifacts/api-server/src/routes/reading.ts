@@ -64,7 +64,9 @@ router.post("/reading/generate", async (req, res) => {
     const { userProfile } = body;
 
     if (!userProfile.personaId || !userProfile.productId) {
-      res.status(400).json({ error: "personaId and productId are required in userProfile" });
+      res
+        .status(400)
+        .json({ error: "personaId and productId are required in userProfile" });
       return;
     }
 
@@ -74,7 +76,9 @@ router.post("/reading/generate", async (req, res) => {
     const isPaid = !FREE_PRODUCTS.has(userProfile.productId);
     const minChars = MIN_CHARS_BY_PRODUCT[userProfile.productId] ?? 2000;
 
-    console.log(`[reading/generate] persona=${userProfile.personaId} product=${userProfile.productId} max_tokens=${maxTokens}`);
+    console.log(
+      `[reading/generate] persona=${userProfile.personaId} product=${userProfile.productId} max_tokens=${maxTokens}`,
+    );
 
     const completion = await client.chat.completions.create({
       model: "gpt-4o",
@@ -93,10 +97,15 @@ router.post("/reading/generate", async (req, res) => {
 
     // Auto-continuation: if paid reading is too short, append more content
     if (isPaid && content.length < minChars) {
-      console.log(`[reading/generate] Too short (${content.length} < ${minChars}), requesting continuation...`);
+      console.log(
+        `[reading/generate] Too short (${content.length} < ${minChars}), requesting continuation...`,
+      );
 
-      const continuationLocale = (userProfile.locale === "ko" ? "ko" : "en") as keyof typeof CONTINUATION_MESSAGES;
-      const continuationInstruction = CONTINUATION_MESSAGES[continuationLocale] ?? CONTINUATION_MESSAGES.en;
+      const continuationLocale = (
+        userProfile.locale === "ko" ? "ko" : "en"
+      ) as keyof typeof CONTINUATION_MESSAGES;
+      const continuationInstruction =
+        CONTINUATION_MESSAGES[continuationLocale] ?? CONTINUATION_MESSAGES.en;
 
       const continuationMessages = [
         ...messages,
@@ -115,13 +124,19 @@ router.post("/reading/generate", async (req, res) => {
       if (continuation && continuation.trim().length > 100) {
         // Append the continuation to the original (additive — guaranteed to be longer)
         content = content + "\n\n" + continuation;
-        console.log(`[reading/generate] After continuation: ${content.length} chars`);
+        console.log(
+          `[reading/generate] After continuation: ${content.length} chars`,
+        );
       } else {
-        console.log(`[reading/generate] Continuation was empty or too short, using original`);
+        console.log(
+          `[reading/generate] Continuation was empty or too short, using original`,
+        );
       }
     }
 
-    console.log(`[reading/generate] Final: ${content.length} chars for ${userProfile.productId}`);
+    console.log(
+      `[reading/generate] Final: ${content.length} chars for ${userProfile.productId}`,
+    );
 
     const response: ReadingResponse = {
       content,
@@ -142,7 +157,9 @@ router.post("/reading/generate", async (req, res) => {
       return;
     }
 
-    res.status(500).json({ error: "Failed to generate reading", detail: message });
+    res
+      .status(500)
+      .json({ error: "Failed to generate reading", detail: message });
   }
 });
 
