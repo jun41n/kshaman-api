@@ -1,8 +1,10 @@
 import type { UserInfo, Language } from "../types";
 
 // In development, the Vite dev server proxies /api to the API server.
-// In production, the reverse proxy routes /api to the api-server artifact.
-const API_BASE = "/api";
+// In production, VITE_API_URL points to the Oracle API server.
+const API_BASE = import.meta.env.VITE_API_URL
+  ? `${import.meta.env.VITE_API_URL}/api`
+  : "/api";
 
 export interface ReadingRequestBody {
   userProfile: {
