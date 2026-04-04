@@ -249,7 +249,7 @@ export default function Home() {
                 className="rounded-full bg-gradient-to-r from-amber-500 to-yellow-400 hover:from-amber-400 hover:to-yellow-300 text-black font-black border-0 shadow-xl shadow-amber-700/30 h-12 px-8 text-sm mb-3 w-full sm:w-auto"
                 onClick={() => trackEvent('k_shaman_home_click', {})}
               >
-                <Link href="/k-shaman">{t('home.kshamanCta')}</Link>
+                <a href="https://mytesttype.com/k-shaman/">{t('home.kshamanCta')}</a>
               </Button>
 
               {/* Secondary helper text */}
