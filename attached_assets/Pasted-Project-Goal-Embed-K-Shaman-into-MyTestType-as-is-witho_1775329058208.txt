@@ -1,0 +1,107 @@
+Project Goal:
+Embed K-Shaman into MyTestType as-is, without modification, enhancement, or redesign.
+
+This is a strict migration task, not a refactor, not an improvement, and not a rewrite.
+
+---
+
+Core Rule (CRITICAL):
+
+DO NOT add anything new.
+DO NOT improve anything.
+DO NOT redesign anything.
+DO NOT simplify anything.
+DO NOT reinterpret anything.
+
+Only extract and attach the existing K-Shaman flow exactly as it currently works.
+
+---
+
+Scope:
+
+We only need the flow starting from:
+"Who would you like to receive a reading from?"
+
+Everything before that stays in MyTestType.
+Everything after that must be exactly K-Shaman.
+
+---
+
+User Flow:
+
+1. User clicks "내 점사 보기" on MyTestType
+2. App navigates internally (NOT external) to K-Shaman starting screen
+3. From that point forward, the exact K-Shaman flow continues:
+   - character selection
+   - input
+   - processing
+   - AI response
+   - result
+
+---
+
+STRICT REQUIREMENTS:
+
+- No iframe
+- No external redirect
+- No separate app behavior
+- Must run inside MyTestType
+
+---
+
+AI Persona (CRITICAL):
+
+- The AI persona must be IDENTICAL to current K-Shaman
+- Tone, wording style, emotional expression, structure must NOT change
+- Prompt content must NOT be modified
+- Prompt logic must NOT be optimized or rewritten
+- Do NOT replace with generic OpenAI usage
+
+This is a direct reuse of the existing prompt system.
+
+---
+
+Technical Rules:
+
+- Copy only the required files for the flow
+- Do NOT restructure logic unless absolutely required for integration
+- Do NOT rename unnecessarily
+- Do NOT introduce new architecture
+- Do NOT split or merge components unless required to make it run
+
+---
+
+Routing:
+
+- Add a minimal internal route (e.g. /fortune)
+- Connect "내 점사 보기" button to that route
+- From that route, render the original K-Shaman flow
+
+---
+
+Build & Deployment:
+
+- Final result must be ONE app (MyTestType)
+- K-Shaman must NOT exist as a separate deployable app anymore
+
+---
+
+Before making changes:
+
+List:
+1. Exact files to be copied
+2. Exact entry point of K-Shaman flow
+3. Minimal routing change required
+
+DO NOT start coding before showing this plan.
+
+---
+
+Summary:
+
+This is NOT development.
+This is NOT improvement.
+
+This is a strict embedding task:
+Take K-Shaman (from selection screen onward)
+and attach it inside MyTestType WITHOUT ANY CHANGE.
