@@ -21,7 +21,7 @@ export function ProductMenuPage({ onSelect, onBack }: Props) {
       : `${user?.firstName ?? ""} ${user?.lastName ?? ""}`.trim();
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white pb-10">
+    <div className="text-white pb-10">
       <SiteNav
         onBack={onBack}
         backLabel={t.back}

@@ -137,7 +137,7 @@ export function AskAnythingChatPage({ onBack, onReset }: Props) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white flex flex-col">
+    <div className="text-white flex flex-col" style={{ minHeight: "calc(100vh - 120px)" }}>
       {/* Header */}
       <SiteNav
         onBack={onBack}

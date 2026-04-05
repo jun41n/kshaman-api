@@ -62,7 +62,7 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white pb-28">
+    <div className="text-white pb-28">
       {showAd && <AdOverlay onClose={() => { setShowAd(false); onSuccess(); }} />}
       <SiteNav onBack={onBack} backLabel={t.back} />
 

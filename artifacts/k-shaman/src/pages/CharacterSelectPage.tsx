@@ -18,7 +18,7 @@ export function CharacterSelectPage({ onNext }: Props) {
   };
 
   return (
-    <div className="relative min-h-screen bg-gray-950 text-white">
+    <div className="relative text-white">
       <SiteNav />
 
       <div className="px-4 pt-8 pb-6 text-center">

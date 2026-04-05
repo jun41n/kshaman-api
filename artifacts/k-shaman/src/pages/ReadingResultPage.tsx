@@ -78,7 +78,7 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
   const isFullyRevealed = revealedCount >= blocks.length;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white pb-32">
+    <div className="text-white pb-32">
       <SiteNav onBack={onReset} backLabel={t.newReading} />
 
       <div className="px-4 pt-8 pb-6 text-center">
