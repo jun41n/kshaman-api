@@ -159,9 +159,10 @@ export function Layout({ children, showAd = false }: LayoutProps) {
               <p className="text-sm text-muted-foreground max-w-[220px]">
                 {t('footer.tagline')}
               </p>
-              <p className="mt-2 text-xs text-muted-foreground/55 leading-relaxed">
-                최영준 (Choi Young-jun) · 경기도 남양주시 별내동 덕송1로 30 · <em>{t('footer.notice')}</em>
-              </p>
+              <div className="mt-2 text-xs text-muted-foreground/55 leading-relaxed space-y-0.5">
+                <p>Choi Young-jun | 30, Deoksong 1-ro, Namyangju-si, Gyeonggi-do | meaningout_d@naver.com</p>
+                <p>Notice: {t('footer.notice')}</p>
+              </div>
             </div>
 
             {/* Links */}
