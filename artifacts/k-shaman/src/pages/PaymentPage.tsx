@@ -50,6 +50,11 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
 
   const handlePay = () => {
     if (isFree) {
+      window.open(
+        "https://www.profitablecpmratenetwork.com/wyus782qa2?key=3e1412d8e7e4077de0d858bb53fb8b6f",
+        "_blank",
+        "noopener,noreferrer",
+      );
       setShowAd(true);
       return;
     }
