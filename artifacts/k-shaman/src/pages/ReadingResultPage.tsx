@@ -110,13 +110,13 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
         {loading && (
           <div className="space-y-4 pt-2 pb-4">
             {/* Typing bubble */}
-            <div className="relative ml-3">
+            <div className="relative ml-5">
               <div
-                className="absolute -left-[7px] top-[12px] w-0 h-0"
+                className="absolute -left-[18px] top-[8px] w-0 h-0"
                 style={{
-                  borderTop: "7px solid transparent",
-                  borderBottom: "7px solid transparent",
-                  borderRight: "7px solid #1f2937",
+                  borderTop: "5px solid transparent",
+                  borderBottom: "16px solid transparent",
+                  borderRight: "18px solid #1f2937",
                 }}
               />
               <div className="bg-gray-800 rounded-2xl rounded-tl-sm px-5 py-4 inline-flex items-center gap-3">
@@ -161,14 +161,14 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
               }`}
             >
               {/* Chat bubble with tail */}
-              <div className="relative ml-3">
+              <div className="relative ml-5">
                 {/* Tail */}
                 <div
-                  className="absolute -left-[7px] top-[12px] w-0 h-0"
+                  className="absolute -left-[18px] top-[8px] w-0 h-0"
                   style={{
-                    borderTop: "7px solid transparent",
-                    borderBottom: "7px solid transparent",
-                    borderRight: "7px solid #1f2937",
+                    borderTop: "5px solid transparent",
+                    borderBottom: "16px solid transparent",
+                    borderRight: "18px solid #1f2937",
                   }}
                 />
                 {/* Bubble */}

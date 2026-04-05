@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useApp } from "../store/appStore";
 
 interface Props {
@@ -20,20 +20,39 @@ export function AdOverlay({ onClose }: Props) {
   const { state } = useApp();
   const lang = state.currentLang;
   const onCloseRef = useRef(onClose);
+  const [countdown, setCountdown] = useState(DURATION);
 
   useEffect(() => {
+    const interval = setInterval(() => {
+      setCountdown((prev) => {
+        if (prev <= 1) {
+          clearInterval(interval);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
     const timer = setTimeout(() => {
       onCloseRef.current();
     }, DURATION * 1000);
-    return () => clearTimeout(timer);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timer);
+    };
   }, []);
+
+  const circumference = 2 * Math.PI * 34;
+  const progress = (DURATION - countdown) / DURATION;
+  const strokeDashoffset = circumference * (1 - progress);
 
   return (
     <div className="fixed inset-0 z-50 bg-black/90 flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-sm flex flex-col items-center gap-6">
-        {/* Spinner */}
-        <div className="relative w-20 h-20">
-          <svg className="w-20 h-20 animate-spin" viewBox="0 0 80 80">
+        {/* Spinner with countdown inside */}
+        <div className="relative w-24 h-24">
+          <svg className="w-24 h-24 -rotate-90" viewBox="0 0 80 80">
             <circle
               cx="40" cy="40" r="34"
               fill="none"
@@ -46,19 +65,19 @@ export function AdOverlay({ onClose }: Props) {
               stroke="rgba(251,191,36,0.9)"
               strokeWidth="4"
               strokeLinecap="round"
-              strokeDasharray="53 160"
+              strokeDasharray={circumference}
+              strokeDashoffset={strokeDashoffset}
+              style={{ transition: "stroke-dashoffset 1s linear" }}
             />
           </svg>
-          <div className="absolute inset-0 flex items-center justify-center text-3xl">🔮</div>
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="text-white font-bold text-2xl tabular-nums">{countdown}</span>
+          </div>
         </div>
 
         {/* Message */}
         <p className="text-white text-lg font-bold text-center">
           {readingLabel[lang] ?? readingLabel["en"]}
-        </p>
-
-        <p className="text-white/30 text-xs text-center">
-          {DURATION}s
         </p>
       </div>
     </div>
