@@ -157,7 +157,7 @@ export default function Tarot() {
   const positionKeys: ('present' | 'advice' | 'future')[] = ['present', 'advice', 'future'];
 
   return (
-    <Layout>
+    <Layout showAd={phase === 'reading'}>
       <SeoHead title={t('seo.tarot.title')} description={t('seo.tarot.desc')} path="/tarot" />
       <div className="relative min-h-screen -mx-4 sm:-mx-6 -mt-6 px-4 sm:px-6 pt-8 pb-20 overflow-hidden">
         {/* Background */}
