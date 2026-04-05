@@ -6,6 +6,7 @@ import { ProductMenuPage } from "./pages/ProductMenuPage";
 import { PaymentPage } from "./pages/PaymentPage";
 import { ReadingResultPage } from "./pages/ReadingResultPage";
 import { AskAnythingChatPage } from "./pages/AskAnythingChatPage";
+import { ShamanFooter } from "./components/ShamanFooter";
 
 type Step = "select" | "form" | "products" | "payment" | "result" | "chat";
 
@@ -25,40 +26,43 @@ export default function App() {
 
   return (
     <AppContext.Provider value={store}>
-      <div className="min-h-screen bg-gray-950 font-sans antialiased">
-        {step === "select" && (
-          <CharacterSelectPage onNext={() => setStep("form")} />
-        )}
-        {step === "form" && (
-          <UserInfoFormPage
-            onNext={() => setStep("products")}
-            onBack={() => setStep("select")}
-          />
-        )}
-        {step === "products" && (
-          <ProductMenuPage
-            onSelect={handleProductSelect}
-            onBack={() => setStep("form")}
-          />
-        )}
-        {step === "payment" && (
-          <PaymentPage
-            onSuccess={() => setStep("result")}
-            onBack={() => setStep("products")}
-          />
-        )}
-        {step === "result" && (
-          <ReadingResultPage
-            onAskAnything={() => setStep("chat")}
-            onReset={handleReset}
-          />
-        )}
-        {step === "chat" && (
-          <AskAnythingChatPage
-            onBack={() => setStep("result")}
-            onReset={handleReset}
-          />
-        )}
+      <div className="min-h-screen flex flex-col bg-gray-950 font-sans antialiased">
+        <div className="flex-grow">
+          {step === "select" && (
+            <CharacterSelectPage onNext={() => setStep("form")} />
+          )}
+          {step === "form" && (
+            <UserInfoFormPage
+              onNext={() => setStep("products")}
+              onBack={() => setStep("select")}
+            />
+          )}
+          {step === "products" && (
+            <ProductMenuPage
+              onSelect={handleProductSelect}
+              onBack={() => setStep("form")}
+            />
+          )}
+          {step === "payment" && (
+            <PaymentPage
+              onSuccess={() => setStep("result")}
+              onBack={() => setStep("products")}
+            />
+          )}
+          {step === "result" && (
+            <ReadingResultPage
+              onAskAnything={() => setStep("chat")}
+              onReset={handleReset}
+            />
+          )}
+          {step === "chat" && (
+            <AskAnythingChatPage
+              onBack={() => setStep("result")}
+              onReset={handleReset}
+            />
+          )}
+        </div>
+        <ShamanFooter />
       </div>
     </AppContext.Provider>
   );
