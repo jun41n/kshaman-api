@@ -7,6 +7,7 @@ import { PaymentPage } from "./pages/PaymentPage";
 import { ReadingResultPage } from "./pages/ReadingResultPage";
 import { AskAnythingChatPage } from "./pages/AskAnythingChatPage";
 import { ShamanFooter } from "./components/ShamanFooter";
+import { SparkleOrbs } from "./components/SparkleOrbs";
 
 type Step = "select" | "form" | "products" | "payment" | "result" | "chat";
 
@@ -27,6 +28,7 @@ export default function App() {
   return (
     <AppContext.Provider value={store}>
       <div className="min-h-screen flex flex-col bg-gray-950 font-sans antialiased">
+        <SparkleOrbs />
         <div className="flex-grow">
           {step === "select" && (
             <CharacterSelectPage onNext={() => setStep("form")} />
