@@ -3,11 +3,29 @@ import type { AppState, UserInfo, Language } from "../types";
 import { getPersonaById } from "../config/personas";
 import { getProductById } from "../config/products";
 
+const LANG_MAP: Record<string, Language> = {
+  ko: "ko",
+  en: "en",
+  ja: "ja",
+  es: "es",
+  "pt-BR": "pt",
+  pt: "pt",
+  fr: "fr",
+};
+
+function detectInitialLang(): Language {
+  try {
+    const stored = localStorage.getItem("lang");
+    if (stored && LANG_MAP[stored]) return LANG_MAP[stored];
+  } catch {}
+  return "ko";
+}
+
 const defaultState: AppState = {
   selectedPersonaId: null,
   userInfo: null,
   selectedProductId: null,
-  currentLang: "ko",
+  currentLang: detectInitialLang(),
 };
 
 export function useAppStore() {
@@ -22,8 +40,10 @@ export function useAppStore() {
   const setProductId = (id: string) =>
     setState((s) => ({ ...s, selectedProductId: id }));
 
-  const setLang = (lang: Language) =>
+  const setLang = (lang: Language) => {
     setState((s) => ({ ...s, currentLang: lang }));
+    try { localStorage.setItem("lang", lang); } catch {}
+  };
 
   const reset = () => setState(defaultState);
 
