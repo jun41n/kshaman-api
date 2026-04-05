@@ -106,31 +106,31 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
         </p>
       </div>
 
-      <div className="px-4 max-w-md mx-auto space-y-3">
+      <div className="px-4 max-w-md mx-auto space-y-2">
         {loading && (
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-8 text-center">
-            <div className="text-4xl mb-4 animate-pulse">
-              {selectedPersona?.emoji ?? "🔮"}
+          <div className="space-y-4 pt-2 pb-4">
+            {/* Typing bubble */}
+            <div className="relative ml-3">
+              <div
+                className="absolute -left-[7px] top-[12px] w-0 h-0"
+                style={{
+                  borderTop: "7px solid transparent",
+                  borderBottom: "7px solid transparent",
+                  borderRight: "7px solid #1f2937",
+                }}
+              />
+              <div className="bg-gray-800 rounded-2xl rounded-tl-sm px-5 py-4 inline-flex items-center gap-3">
+                <span className="text-xl">{selectedPersona?.emoji ?? "🔮"}</span>
+                <div className="flex gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-white/40 animate-bounce" style={{ animationDelay: "0ms" }} />
+                  <span className="w-2 h-2 rounded-full bg-white/40 animate-bounce" style={{ animationDelay: "150ms" }} />
+                  <span className="w-2 h-2 rounded-full bg-white/40 animate-bounce" style={{ animationDelay: "300ms" }} />
+                </div>
+              </div>
             </div>
-            <p className={`text-sm ${accentColor} animate-pulse`}>
-              {isKo
-                ? "신령이 점사를 보고 있어요..."
-                : "Your spirit guide is reading..."}
+            <p className={`text-xs pl-3 ${accentColor} animate-pulse`}>
+              {isKo ? "신령이 점사를 보고 있어요..." : "Your spirit guide is reading..."}
             </p>
-            <div className="flex justify-center gap-1 mt-4">
-              <span
-                className="w-2 h-2 rounded-full bg-white/40 animate-bounce"
-                style={{ animationDelay: "0ms" }}
-              />
-              <span
-                className="w-2 h-2 rounded-full bg-white/40 animate-bounce"
-                style={{ animationDelay: "150ms" }}
-              />
-              <span
-                className="w-2 h-2 rounded-full bg-white/40 animate-bounce"
-                style={{ animationDelay: "300ms" }}
-              />
-            </div>
           </div>
         )}
 
@@ -154,16 +154,29 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
           blocks.map((block, i) => (
             <div
               key={i}
-              className={`transition-all duration-700 ${
+              className={`transition-all duration-500 ${
                 i < revealedCount
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-4 pointer-events-none h-0 overflow-hidden"
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-0 -translate-x-3 pointer-events-none h-0 overflow-hidden"
               }`}
             >
-              <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm px-5 py-4">
-                <p className="text-[15px] text-white/90 leading-7 whitespace-pre-wrap break-words">
-                  {block}
-                </p>
+              {/* Chat bubble with tail */}
+              <div className="relative ml-3">
+                {/* Tail */}
+                <div
+                  className="absolute -left-[7px] top-[12px] w-0 h-0"
+                  style={{
+                    borderTop: "7px solid transparent",
+                    borderBottom: "7px solid transparent",
+                    borderRight: "7px solid #1f2937",
+                  }}
+                />
+                {/* Bubble */}
+                <div className="bg-gray-800 rounded-2xl rounded-tl-sm px-5 py-4">
+                  <p className="text-[15px] text-white/90 leading-7 whitespace-pre-wrap break-words">
+                    {block}
+                  </p>
+                </div>
               </div>
             </div>
           ))}
