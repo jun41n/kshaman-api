@@ -67,6 +67,12 @@ export function Layout({ children, showAd = false }: LayoutProps) {
                   {link.label}
                 </Link>
               ))}
+              <a
+                href="/k-shaman/"
+                className="text-sm font-bold transition-colors hover:text-primary text-muted-foreground"
+              >
+                {t('nav.shaman')}
+              </a>
               <LanguageSwitcher />
               <Button asChild variant="default" className="rounded-full shadow-md shadow-primary/20 font-bold px-6">
                 <Link href="/tests">{t('nav.start')}</Link>
@@ -105,6 +111,12 @@ export function Layout({ children, showAd = false }: LayoutProps) {
                   {link.label}
                 </Link>
               ))}
+              <a
+                href="/k-shaman/"
+                className="px-4 py-3 rounded-xl text-base font-bold transition-colors hover:bg-muted text-muted-foreground"
+              >
+                {t('nav.shaman')}
+              </a>
               <div className="pt-2 pb-1">
                 <p className="text-xs font-bold text-muted-foreground/50 uppercase tracking-wider px-4 mb-2">Language</p>
                 <LanguageSwitcher compact />

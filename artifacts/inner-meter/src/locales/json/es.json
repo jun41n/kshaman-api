@@ -2,6 +2,7 @@
   "nav": {
     "tests": "Tests",
     "tarot": "Tarot de Hoy",
+    "shaman": "Horóscopo",
     "about": "Acerca de",
     "start": "Empezar",
     "startLong": "Iniciar Test"
