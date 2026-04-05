@@ -3,6 +3,7 @@ import { T } from "../config/i18n";
 import { useApp } from "../store/appStore";
 import { SiteNav } from "../components/SiteNav";
 import { generateReading } from "../lib/apiClient";
+import { KShamanShareButtons } from "../components/KShamanShareButtons";
 
 interface Props {
   onAskAnything: () => void;
@@ -183,20 +184,22 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
       </div>
 
       {isFullyRevealed && !loading && !error && (
-        <div className="fixed bottom-0 left-0 right-0 z-40 p-4 bg-gradient-to-t from-gray-950 via-gray-950/90 to-transparent">
-          <div className="max-w-md mx-auto space-y-3">
-            <button
-              onClick={onAskAnything}
-              className={`w-full py-4 rounded-2xl font-bold text-white text-base bg-gradient-to-r ${fromColor} ${toColor} shadow-xl active:scale-95 transition-transform`}
-            >
-              💬 {t.askAnything}
-            </button>
-            <button
-              onClick={onReset}
-              className="w-full py-3 rounded-2xl font-medium text-white/60 bg-white/5 border border-white/10 text-sm hover:bg-white/10 transition-colors"
-            >
-              {t.newReading}
-            </button>
+        <div className="px-4 pt-6 pb-8 max-w-md mx-auto space-y-3">
+          <button
+            onClick={onAskAnything}
+            className={`w-full py-4 rounded-2xl font-bold text-white text-base bg-gradient-to-r ${fromColor} ${toColor} shadow-xl active:scale-95 transition-transform`}
+          >
+            💬 {t.askAnything}
+          </button>
+          <button
+            onClick={onReset}
+            className="w-full py-3 rounded-2xl font-medium text-white/60 bg-white/5 border border-white/10 text-sm hover:bg-white/10 transition-colors"
+          >
+            {t.newReading}
+          </button>
+
+          <div className="pt-2">
+            <KShamanShareButtons lang={lang} />
           </div>
         </div>
       )}

@@ -168,7 +168,7 @@ export function AskAnythingChatPage({ onBack, onReset }: Props) {
       )}
 
       {/* Chat messages */}
-      <div className="flex-1 overflow-y-auto px-4 py-4 pb-28 max-w-md mx-auto w-full">
+      <div className="flex-1 overflow-y-auto px-4 py-4 pb-44 max-w-md mx-auto w-full">
         {messages.map((msg) => (
           <ChatBubble key={msg.id} message={msg} />
         ))}
@@ -196,7 +196,7 @@ export function AskAnythingChatPage({ onBack, onReset }: Props) {
 
       {/* ───── LIMIT REACHED OVERLAY ───── */}
       {limitReached ? (
-        <div className="fixed bottom-0 left-0 right-0 z-40 bg-gray-950/98 backdrop-blur-lg border-t border-white/10 px-4 py-6">
+        <div className="fixed bottom-[60px] left-0 right-0 z-40 bg-gray-950/98 backdrop-blur-lg border-t border-white/10 px-4 py-6">
           <div className="max-w-md mx-auto flex flex-col items-center text-center gap-4">
             {/* Icon */}
             <div className={`w-14 h-14 rounded-full bg-gradient-to-br ${fromColor} ${toColor} flex items-center justify-center text-2xl shadow-lg`}>
@@ -234,7 +234,7 @@ export function AskAnythingChatPage({ onBack, onReset }: Props) {
         </div>
       ) : (
         /* ───── NORMAL INPUT BAR ───── */
-        <div className="fixed bottom-0 left-0 right-0 z-40 bg-gray-950/95 backdrop-blur-md border-t border-white/5 px-4 py-3">
+        <div className="fixed bottom-[60px] left-0 right-0 z-40 bg-gray-950/95 backdrop-blur-md border-t border-white/5 px-4 py-3">
           <div className="max-w-md mx-auto flex gap-2">
             <input
               type="text"

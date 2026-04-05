@@ -123,11 +123,11 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
       </div>
 
       {/* Bottom CTA */}
-      <div className="fixed bottom-0 left-0 right-0 z-40 p-4 bg-gradient-to-t from-gray-950 via-gray-950/90 to-transparent">
+      <div className="px-4 pb-8 pt-2 max-w-md mx-auto w-full">
         <button
           onClick={handlePay}
           disabled={(!isFree && !selected) || loading}
-          className={`w-full max-w-md mx-auto flex items-center justify-center gap-2 py-4 rounded-2xl font-bold text-white text-lg shadow-2xl transition-all duration-200 ${
+          className={`w-full flex items-center justify-center gap-2 py-4 rounded-2xl font-bold text-white text-lg shadow-2xl transition-all duration-200 ${
             (!isFree && !selected) || loading
               ? "bg-gray-700 cursor-not-allowed opacity-50"
               : isFree
