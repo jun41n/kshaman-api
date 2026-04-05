@@ -186,22 +186,19 @@
     }
   },
   "about": {
-    "title": "Sobre MyTestType",
-    "p1": "MyTestType é uma plataforma que oferece vários testes de personalidade e conteúdo psicológico interessante.",
-    "p2": "Os usuários podem descobrir suas tendências, tipo psicológico e fluxo de vida através de perguntas simples de forma divertida.",
-    "p3": "O conteúdo do MyTestType é projetado para proporcionar experiências de autoexploração e entretenimento.",
-    "testsTitle": "Exemplos de Testes Disponíveis",
+    "title": "Sobre o MyTestType",
+    "p1": "MyTestType é uma plataforma global de entretenimento que oferece uma ampla variedade de testes de personalidade e conteúdo psicológico envolvente. Os usuários podem explorar seu caráter, tipo psicológico e padrões de vida através de relatórios que combinam algoritmos modernos com dados analíticos tradicionais.",
+    "p2": "",
+    "p3": "Todo o conteúdo do MyTestType é criado para proporcionar autoexploração e experiências agradáveis. Nosso objetivo é construir um ambiente digital onde os usuários possam se entender de uma forma mais interessante e compartilhar seus resultados com amigos.",
+    "testsTitle": "Serviços Oferecidos",
     "tests": [
-      "Teste de Personalidade MBTI",
-      "Teste de Estilo de Apego",
-      "Teste de Intuição vs. Lógica",
-      "Teste de Hiperfoco",
-      "Teste Teto vs. Egen",
-      "Teste da Idade do Seu Sucesso",
-      "Leitura K-Shaman"
+      "Teste de Personalidade MBTI / Teste de Estilo de Apego",
+      "Teste de Intuição vs Lógica / Teste de Hiperfixação",
+      "Relatório do Ciclo de Vida Pessoal",
+      "K-Shaman Reading (Análise Cultural Tradicional Coreana)"
     ],
-    "p4": "MyTestType tem como objetivo ajudar as pessoas a se entenderem de maneira mais interessante e compartilhar resultados com amigos.",
-    "disclaimer": "O conteúdo de astrologia e adivinhação neste site é apenas para fins de entretenimento."
+    "p4": "",
+    "disclaimer": "Todo o conteúdo de horóscopo, leitura espiritual e testes psicológicos neste site é fornecido apenas para fins de entretenimento."
   },
   "privacy": {
     "title": "Política de Privacidade",

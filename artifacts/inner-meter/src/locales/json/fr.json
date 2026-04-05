@@ -186,22 +186,19 @@
     }
   },
   "about": {
-    "title": "À propos d'MyTestType",
-    "p1": "MyTestType est une plateforme proposant divers tests de personnalité et du contenu psychologique engageant.",
-    "p2": "Les utilisateurs peuvent découvrir leurs tendances, leur type psychologique et le flux de leur vie à travers des questions simples, de façon amusante.",
-    "p3": "Le contenu d'MyTestType est conçu pour offrir des expériences d'auto-exploration et de divertissement.",
-    "testsTitle": "Tests Disponibles (Exemples)",
+    "title": "À propos de MyTestType",
+    "p1": "MyTestType est une plateforme mondiale de divertissement proposant une large gamme de tests de personnalité et de contenus psychologiques captivants. Les utilisateurs peuvent explorer leur caractère, leur type psychologique et leurs schémas de vie à travers des rapports combinant algorithmes modernes et données analytiques traditionnelles.",
+    "p2": "",
+    "p3": "Tout le contenu de MyTestType est créé pour offrir une auto-exploration et des expériences agréables. Notre objectif est de construire un environnement numérique où les utilisateurs peuvent se comprendre de manière plus intéressante et partager leurs résultats avec leurs amis.",
+    "testsTitle": "Services proposés",
     "tests": [
-      "Quel est mon MBTI ?",
-      "Mon Test de Style d'Attachement",
-      "Intuition vs. Logique",
-      "Jusqu'où va ma Passion ?",
-      "Teto vs. Egen — Lequel Êtes-Vous ?",
-      "À Quel Âge Votre Vie S'Épanouira-t-elle ?",
-      "Lecture K-Shaman"
+      "Test de Personnalité MBTI / Test de Style d'Attachement",
+      "Test Intuition vs Logique / Test d'Hyperfixation",
+      "Rapport du Cycle de Vie Personnel",
+      "K-Shaman Reading (Analyse Culturelle Traditionnelle Coréenne)"
     ],
-    "p4": "MyTestType vise à aider les gens à se comprendre de manière plus intéressante et à partager leurs résultats avec leurs amis.",
-    "disclaimer": "Le contenu de fortune et de divination sur ce site est uniquement à des fins de divertissement."
+    "p4": "",
+    "disclaimer": "Tout le contenu de voyance, lecture spirituelle et tests psychologiques sur ce site est fourni à des fins de divertissement uniquement."
   },
   "privacy": {
     "title": "Politique de Confidentialité",

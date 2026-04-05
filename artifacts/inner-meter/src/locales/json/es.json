@@ -187,21 +187,18 @@
   },
   "about": {
     "title": "Acerca de MyTestType",
-    "p1": "MyTestType es una plataforma que ofrece varios tests de personalidad y contenido psicológico interesante.",
-    "p2": "Los usuarios pueden descubrir sus tendencias, tipo psicológico y flujo de vida a través de preguntas simples de forma divertida.",
-    "p3": "El contenido de MyTestType está diseñado para proporcionar experiencias de autoexploración y entretenimiento.",
-    "testsTitle": "Ejemplos de Tests Disponibles",
+    "p1": "MyTestType es una plataforma de entretenimiento global que ofrece una amplia variedad de tests de personalidad y contenido psicológico interesante. Los usuarios pueden explorar su carácter, tipo psicológico y patrones de vida a través de informes que combinan algoritmos modernos con datos analíticos tradicionales.",
+    "p2": "",
+    "p3": "Todo el contenido de MyTestType está creado para proporcionar autoexploración y experiencias divertidas. Nuestro objetivo es construir un entorno digital donde los usuarios puedan entenderse a sí mismos de una manera más interesante y compartir sus resultados con amigos.",
+    "testsTitle": "Servicios que ofrecemos",
     "tests": [
-      "Test de Personalidad MBTI",
-      "Test de Estilo de Apego",
-      "Test de Intuición vs. Lógica",
-      "Test de Hiperfijación",
-      "Test Teto vs. Egen",
-      "Test de la Edad de Tu Éxito",
-      "K-Shaman Reading"
+      "Test de Personalidad MBTI / Test de Estilo de Apego",
+      "Test de Intuición vs Lógica / Test de Hiperfijación",
+      "Reporte del Ciclo de Vida Personal",
+      "K-Shaman Reading (Análisis Cultural Tradicional Coreano)"
     ],
-    "p4": "MyTestType tiene como objetivo ayudar a las personas a entenderse de manera más interesante y compartir resultados con amigos.",
-    "disclaimer": "El contenido de astrología y adivinación en este sitio es solo para fines de entretenimiento."
+    "p4": "",
+    "disclaimer": "Todo el contenido de horóscopo, lectura espiritual y tests psicológicos en este sitio se proporciona únicamente con fines de entretenimiento."
   },
   "privacy": {
     "title": "Política de Privacidad",

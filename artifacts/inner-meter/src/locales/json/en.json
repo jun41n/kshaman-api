@@ -187,21 +187,18 @@
   },
   "about": {
     "title": "About MyTestType",
-    "p1": "MyTestType is a platform offering various personality tests and engaging psychological content.",
-    "p2": "Users can discover their tendencies, psychological type, and life flow through simple questions in a fun way.",
-    "p3": "MyTestType's content is designed to provide experiences for self-exploration and entertainment.",
-    "testsTitle": "Available Tests (Examples)",
+    "p1": "MyTestType is a global entertainment platform offering a wide range of personality tests and engaging psychological content. Users can explore their character, psychological type, and life patterns through reports that combine modern algorithms with traditional analytical data.",
+    "p2": "",
+    "p3": "All content on MyTestType is created to provide self-exploration and enjoyable experiences. Our goal is to build a digital environment where users can understand themselves in a more interesting way and share their results with friends.",
+    "testsTitle": "Services We Offer",
     "tests": [
-      "What's My MBTI?",
-      "My Attachment Style Test",
-      "Intuition vs. Logic in My Head",
-      "How Deep Is My Hyper-Fixation?",
-      "Teto vs. Egen — Which Are You?",
-      "At What Age Does Your Life Peak?",
-      "K-Shaman Reading"
+      "MBTI Personality Test / Attachment Style Test",
+      "Intuition vs Logic Test / Hyperfixation Test",
+      "Personal Life-Cycle Report",
+      "K-Shaman Reading (Korean Traditional Cultural Analysis)"
     ],
-    "p4": "MyTestType aims to help people understand themselves in a more interesting way and share results with friends.",
-    "disclaimer": "Fortune and divination content on this site is for entertainment purposes only."
+    "p4": "",
+    "disclaimer": "All fortune-telling, spiritual reading, and psychological test content provided on this site is for entertainment purposes only."
   },
   "privacy": {
     "title": "Privacy Policy",

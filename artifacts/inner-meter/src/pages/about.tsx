@@ -24,7 +24,7 @@ export default function About() {
         <div className="bg-card border border-border rounded-3xl p-8 shadow-sm space-y-7 text-foreground/80 leading-relaxed text-base">
 
           <p>{t('about.p1')}</p>
-          <p>{t('about.p2')}</p>
+          {t('about.p2') && <p>{t('about.p2')}</p>}
           <p>{t('about.p3')}</p>
 
           <div>
@@ -39,10 +39,10 @@ export default function About() {
             </ul>
           </div>
 
-          <p>{t('about.p4')}</p>
+          {t('about.p4') && <p>{t('about.p4')}</p>}
 
           <div className="bg-muted/50 border border-border rounded-2xl px-5 py-4 text-sm text-muted-foreground">
-            {t('about.disclaimer')}
+            ⚠️ {t('about.disclaimer')}
           </div>
 
           <p className="text-sm text-muted-foreground/60 text-center pt-2">
