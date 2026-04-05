@@ -202,21 +202,22 @@
   },
   "privacy": {
     "title": "Política de Privacidad",
-    "p1": "MyTestType toma en serio la protección de tu información personal.",
-    "p2": "Este sitio puede recopilar solo la información mínima necesaria para proporcionar nuestros servicios.",
-    "collectedTitle": "Información que Podemos Recopilar",
-    "item1": "Fecha de nacimiento",
-    "item2": "Género",
-    "item3": "País",
-    "p3": "Esta información se utiliza únicamente para generar resultados de tests y mejorar la experiencia del usuario.",
-    "p4": "MyTestType no vende ni comparte tu información personal con terceros.",
-    "p5": "Podemos recopilar estadísticas de visitas a través de herramientas de análisis como Google Analytics.",
-    "p6": "Esta información se utiliza para mejorar el sitio y la calidad del contenido.",
-    "p7": "Los usuarios pueden dejar de usar el sitio en cualquier momento.",
+    "p1": "MyTestType prioriza al máximo la protección de la privacidad de los usuarios.",
+    "collectedTitle": "1. Información recopilada y propósito",
+    "item1": "Datos recopilados: Fecha de nacimiento, hora de nacimiento, género, país",
+    "item2": "Propósito: Generación de informes personalizados y análisis estadístico",
+    "paddleTitle": "2. Protección de datos de pago (Paddle)",
+    "paddleText": "Los pagos de los usuarios son procesados por Paddle, un procesador de pagos profesional. Este sitio no recopila ni almacena directamente números de tarjeta ni información financiera sensible. Todos los datos de pago se gestionan de acuerdo con la política de privacidad de Paddle.",
+    "thirdPartyTitle": "3. Compartición con terceros y publicidad",
+    "thirdPartyItems": [
+      "MyTestType no vende ni comparte información personal de los usuarios con terceros.",
+      "Este sitio muestra anuncios a través de Google AdSense. Los usuarios pueden desactivar los anuncios personalizados desde la página de configuración de anuncios de Google."
+    ],
+    "adLinkText": "Configuración de anuncios de Google",
     "contactLink": "página de contacto",
-    "p8Pre": "Para consultas, contáctanos a través de nuestra ",
+    "p8Pre": "Para consultas, contáctenos a través de nuestra ",
     "p8Post": ".",
-    "emailLabel": "Email de contacto"
+    "emailLabel": "Correo de contacto"
   },
   "contact": {
     "title": "Contáctanos",

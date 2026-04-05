@@ -202,24 +202,22 @@
   },
   "privacy": {
     "title": "Privacy Policy",
-    "p1": "MyTestType takes the protection of your personal information seriously.",
-    "p2": "This site may collect only the minimum information necessary to provide our services.",
-    "collectedTitle": "Information We May Collect",
-    "item1": "Date of birth",
-    "item2": "Gender",
-    "item3": "Country",
-    "p3": "This information is used solely for generating test results and improving user experience.",
-    "p4": "MyTestType does not sell or share your personal information with third parties.",
-    "p5": "Visit statistics may be collected through analytics tools such as Google Analytics.",
-    "p6": "This information is used to improve the site and enhance content quality.",
-    "p7": "Users may discontinue use of the site at any time.",
+    "p1": "MyTestType places the highest priority on protecting user privacy.",
+    "collectedTitle": "1. Information Collected & Purpose",
+    "item1": "Items collected: Date of birth, time of birth, gender, country",
+    "item2": "Purpose: Generating personalized reports and statistical analysis",
+    "paddleTitle": "2. Payment Data Protection (Paddle)",
+    "paddleText": "User payments are processed by Paddle, a professional payment processor. This site does not directly collect or store card numbers or sensitive financial information. All payment data is handled in accordance with Paddle's privacy policy.",
+    "thirdPartyTitle": "3. Third-Party Sharing & Advertising",
+    "thirdPartyItems": [
+      "MyTestType does not sell or share user personal information with third parties.",
+      "This site serves ads through Google AdSense. Users can disable personalized ads from the Google Ads Settings page."
+    ],
+    "adLinkText": "Google Ads Settings",
     "contactLink": "Contact page",
-    "p8Pre": "For inquiries, please contact us via our ",
+    "p8Pre": "For inquiries, please reach out via our ",
     "p8Post": ".",
-    "emailLabel": "Inquiry email",
-    "adTitle": "Advertising (Google AdSense)",
-    "adText": "MyTestType uses Google AdSense to display advertisements. Google and third-party vendors use cookies to serve ads based on your prior visits to this or other websites. You may opt out of personalized advertising by visiting Google Ad Settings.",
-    "adLinkText": "Google Ad Settings"
+    "emailLabel": "Contact email"
   },
   "contact": {
     "title": "Contact Us",

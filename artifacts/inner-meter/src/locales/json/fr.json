@@ -202,24 +202,22 @@
   },
   "privacy": {
     "title": "Politique de Confidentialité",
-    "p1": "MyTestType prend au sérieux la protection de vos informations personnelles.",
-    "p2": "Ce site peut collecter uniquement les informations minimales nécessaires pour fournir nos services.",
-    "collectedTitle": "Informations que Nous Pouvons Collecter",
-    "item1": "Date de naissance",
-    "item2": "Genre",
-    "item3": "Pays",
-    "p3": "Ces informations sont utilisées uniquement pour générer des résultats de tests et améliorer l'expérience utilisateur.",
-    "p4": "MyTestType ne vend ni ne partage vos informations personnelles avec des tiers.",
-    "p5": "Des statistiques de visite peuvent être collectées via des outils d'analyse comme Google Analytics.",
-    "p6": "Ces informations sont utilisées pour améliorer le site et la qualité du contenu.",
-    "p7": "Les utilisateurs peuvent arrêter d'utiliser le site à tout moment.",
+    "p1": "MyTestType accorde la plus haute priorité à la protection de la vie privée des utilisateurs.",
+    "collectedTitle": "1. Informations collectées et finalité",
+    "item1": "Données collectées : Date de naissance, heure de naissance, genre, pays",
+    "item2": "Finalité : Génération de rapports personnalisés et analyse statistique",
+    "paddleTitle": "2. Protection des données de paiement (Paddle)",
+    "paddleText": "Les paiements des utilisateurs sont traités par Paddle, un processeur de paiement professionnel. Ce site ne collecte ni ne stocke directement de numéros de carte ou d'informations financières sensibles. Toutes les données de paiement sont traitées conformément à la politique de confidentialité de Paddle.",
+    "thirdPartyTitle": "3. Partage avec des tiers et publicité",
+    "thirdPartyItems": [
+      "MyTestType ne vend ni ne partage les informations personnelles des utilisateurs avec des tiers.",
+      "Ce site diffuse des publicités via Google AdSense. Les utilisateurs peuvent désactiver les publicités personnalisées depuis la page des paramètres publicitaires de Google."
+    ],
+    "adLinkText": "Paramètres publicitaires Google",
     "contactLink": "page de contact",
-    "p8Pre": "Pour toute demande, contactez-nous via notre ",
+    "p8Pre": "Pour toute question, contactez-nous via notre ",
     "p8Post": ".",
-    "emailLabel": "E-mail de contact",
-    "adTitle": "Publicité (Google AdSense)",
-    "adText": "MyTestType utilise Google AdSense pour afficher des publicités. Google et des fournisseurs tiers utilisent des cookies pour diffuser des annonces basées sur vos visites précédentes sur ce site ou d'autres sites. Vous pouvez désactiver la publicité personnalisée en visitant les Paramètres des Annonces Google.",
-    "adLinkText": "Paramètres des Annonces Google"
+    "emailLabel": "E-mail de contact"
   },
   "contact": {
     "title": "Nous Contacter",
