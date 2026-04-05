@@ -6,13 +6,28 @@ const SCRIPT_SRC =
 
 export function NativeBannerAd() {
   useEffect(() => {
-    if (document.querySelector(`script[src="${SCRIPT_SRC}"]`)) return;
+    const existing = document.querySelector(`script[src="${SCRIPT_SRC}"]`);
+    if (existing) existing.remove();
+
+    const container = document.getElementById(CONTAINER_ID);
+    if (container) container.innerHTML = "";
+
     const script = document.createElement("script");
     script.src = SCRIPT_SRC;
     script.async = true;
     script.setAttribute("data-cfasync", "false");
     document.head.appendChild(script);
+
+    return () => {
+      const s = document.querySelector(`script[src="${SCRIPT_SRC}"]`);
+      if (s) s.remove();
+    };
   }, []);
 
-  return <div id={CONTAINER_ID} style={{ width: "1px", height: "1px" }} />;
+  return (
+    <div
+      id={CONTAINER_ID}
+      style={{ width: "100%", minHeight: "100px" }}
+    />
+  );
 }

@@ -176,7 +176,7 @@ export function Layout({ children, showAd = false }: LayoutProps) {
       </footer>
 
       {showAd && (
-        <div className="w-full flex justify-center py-2">
+        <div className="w-full py-4 px-4">
           <NativeBannerAd />
         </div>
       )}
