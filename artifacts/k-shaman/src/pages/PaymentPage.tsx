@@ -3,6 +3,7 @@ import { T } from "../config/i18n";
 import { useApp } from "../store/appStore";
 import { formatPrice, FREE_LABEL } from "../config/pricing";
 import { SiteNav } from "../components/SiteNav";
+import { AdOverlay } from "../components/AdOverlay";
 
 interface Props {
   onSuccess: () => void;
@@ -31,6 +32,7 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
 
   const [selected, setSelected] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [showAd, setShowAd] = useState(false);
 
   const fromColor = selectedPersona?.colorFrom ?? "from-violet-600";
   const toColor = selectedPersona?.colorTo ?? "to-indigo-500";
@@ -47,7 +49,11 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
   const paymentMethods = isKo ? KO_PAYMENT_METHODS : INTL_PAYMENT_METHODS;
 
   const handlePay = () => {
-    if (!isFree && !selected) return;
+    if (isFree) {
+      setShowAd(true);
+      return;
+    }
+    if (!selected) return;
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -57,6 +63,7 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
 
   return (
     <div className="min-h-screen bg-gray-950 text-white pb-28">
+      {showAd && <AdOverlay onClose={() => { setShowAd(false); onSuccess(); }} />}
       <SiteNav onBack={onBack} backLabel={t.back} />
 
       <div className="px-4 pt-6 max-w-md mx-auto space-y-5">
