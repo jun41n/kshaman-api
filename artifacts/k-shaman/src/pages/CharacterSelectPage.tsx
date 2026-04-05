@@ -4,6 +4,7 @@ import { T } from "../config/i18n";
 import { useApp } from "../store/appStore";
 import { CharacterCard } from "../components/CharacterCard";
 import { SiteNav } from "../components/SiteNav";
+import { SparkleOrbs } from "../components/SparkleOrbs";
 
 interface Props {
   onNext: () => void;
@@ -19,7 +20,8 @@ export function CharacterSelectPage({ onNext }: Props) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="relative min-h-screen bg-gray-950 text-white">
+      <SparkleOrbs />
       <SiteNav />
 
       <div className="px-4 pt-8 pb-6 text-center">
