@@ -16,6 +16,15 @@ const readingLabel: Record<string, string> = {
   fr: "Lecture en cours...",
 };
 
+const guideLabel: Record<string, string> = {
+  ko: "보살이 점사를 보고 있어요",
+  en: "Your spirit guide is reading",
+  ja: "守護霊が占いをしています",
+  es: "Tu guía espiritual está leyendo",
+  pt: "Seu guia espiritual está lendo",
+  fr: "Votre guide spirituel vous lit",
+};
+
 export function AdOverlay({ onClose }: Props) {
   const { state } = useApp();
   const lang = state.currentLang;
@@ -78,6 +87,11 @@ export function AdOverlay({ onClose }: Props) {
         {/* Message */}
         <p className="text-white text-lg font-bold text-center">
           {readingLabel[lang] ?? readingLabel["en"]}
+        </p>
+
+        {/* Subtitle */}
+        <p className="text-white/40 text-xs text-center tracking-wide">
+          {guideLabel[lang] ?? guideLabel["en"]}
         </p>
       </div>
     </div>

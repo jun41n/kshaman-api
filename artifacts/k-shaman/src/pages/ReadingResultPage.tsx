@@ -112,11 +112,11 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
             {/* Typing bubble */}
             <div className="relative ml-5">
               <div
-                className="absolute -left-[18px] top-[8px] w-0 h-0"
+                className="absolute -left-[26px] top-[6px] w-0 h-0"
                 style={{
-                  borderTop: "5px solid transparent",
-                  borderBottom: "16px solid transparent",
-                  borderRight: "18px solid #1f2937",
+                  borderTop: "4px solid transparent",
+                  borderBottom: "20px solid transparent",
+                  borderRight: "26px solid #1f2937",
                 }}
               />
               <div className="bg-gray-800 rounded-2xl rounded-tl-sm px-5 py-4 inline-flex items-center gap-3">
@@ -164,11 +164,11 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
               <div className="relative ml-5">
                 {/* Tail */}
                 <div
-                  className="absolute -left-[18px] top-[8px] w-0 h-0"
+                  className="absolute -left-[26px] top-[6px] w-0 h-0"
                   style={{
-                    borderTop: "5px solid transparent",
-                    borderBottom: "16px solid transparent",
-                    borderRight: "18px solid #1f2937",
+                    borderTop: "4px solid transparent",
+                    borderBottom: "20px solid transparent",
+                    borderRight: "26px solid #1f2937",
                   }}
                 />
                 {/* Bubble */}
