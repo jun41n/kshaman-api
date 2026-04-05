@@ -159,13 +159,9 @@ export function Layout({ children, showAd = false }: LayoutProps) {
               <p className="text-sm text-muted-foreground max-w-[220px]">
                 {t('footer.tagline')}
               </p>
-              <div className="mt-2 flex flex-col gap-0.5 text-xs text-muted-foreground/55 max-w-[260px] leading-relaxed">
-                <span>Owner: 최영준 (Choi Young-joon)</span>
-                <span>경기도 남양주시 별내동 덕송1로 30</span>
-                <span>30, Deoksong 1-ro, Namyangju-si, Gyeonggi-do</span>
-                <span>Contact: meaningout_d@naver.com</span>
-                <span className="mt-1 italic">{t('footer.notice')}</span>
-              </div>
+              <p className="mt-2 text-xs text-muted-foreground/55 leading-relaxed">
+                Owner: 최영준 (Choi Young-joon) · 경기도 남양주시 별내동 덕송1로 30 · Contact: meaningout_d@naver.com · <em>{t('footer.notice')}</em>
+              </p>
             </div>
 
             {/* Links */}
