@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useApp } from "../store/appStore";
 
 interface Props {
@@ -19,13 +19,14 @@ const readingLabel: Record<string, string> = {
 export function AdOverlay({ onClose }: Props) {
   const { state } = useApp();
   const lang = state.currentLang;
+  const onCloseRef = useRef(onClose);
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      onClose();
+      onCloseRef.current();
     }, DURATION * 1000);
     return () => clearTimeout(timer);
-  }, [onClose]);
+  }, []);
 
   return (
     <div className="fixed inset-0 z-50 bg-black/90 flex flex-col items-center justify-center p-4">
