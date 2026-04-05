@@ -47,7 +47,7 @@ export function UserInfoFormPage({ onNext, onBack }: Props) {
   const toColor = selectedPersona?.colorTo ?? "to-indigo-500";
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white pb-28">
+    <div className="min-h-screen bg-gray-950 text-white">
       <SiteNav onBack={onBack} backLabel={t.back} />
 
       <div className="px-4 pt-8 pb-6 text-center">
