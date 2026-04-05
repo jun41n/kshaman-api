@@ -753,18 +753,18 @@
   "terms": {
     "title": "Conditions d'utilisation",
     "effectiveDate": "Date d'entrée en vigueur : 1er janvier 2025",
-    "a1title": "Article 1 – Objet",
-    "a1body": "Les présentes Conditions d'utilisation régissent la relation entre MyTestType (ci-après « la Société ») et les utilisateurs concernant les services de tests psychologiques et de tarot (ci-après « le Service ») fournis par la Société.",
-    "a2title": "Article 2 – Nature du Service",
-    "a2body": "Les tests de personnalité, d'amour et autres tests psychologiques ainsi que le service de tarot proposés par la Société sont conçus principalement à des fins de divertissement et de plaisir. Les résultats du Service ne remplacent pas un diagnostic médical, psychologique ou un conseil professionnel. Les utilisateurs ne doivent pas prendre de décisions importantes en se basant uniquement sur les résultats.",
-    "a2strong": "divertissement et de plaisir",
-    "a3title": "Article 3 – Droits d'auteur",
-    "a3body": "Tout le contenu du Service (questions, descriptions des résultats, images, designs, etc.) est la propriété intellectuelle de la Société. Les utilisateurs ne peuvent pas reproduire, distribuer ou exploiter commercialement ce contenu sans le consentement préalable de la Société. (Le partage sur les réseaux sociaux via la fonction de partage intégrée est autorisé.)",
-    "a4title": "Article 4 – Limitation de responsabilité",
-    "a4body": "La Société décline toute responsabilité pour les dommages subis par les utilisateurs en lien avec l'utilisation gratuite du Service. Elle n'est pas non plus tenue d'intervenir dans les litiges entre utilisateurs découlant de l'utilisation du Service.",
-    "a5title": "Article 5 – Modification des Conditions",
-    "a5body": "La Société peut modifier les présentes Conditions si nécessaire, dans les limites de la législation applicable. Les modifications prennent effet dès leur publication dans le Service.",
-    "a6title": "Article 6 – Politique de remboursement",
-    "a6body": "Tous les achats sont définitifs. En raison de la nature des produits numériques livrés instantanément, nous n'offrons pas de remboursements après l'achat."
+    "a1title": "Article 1 (Objet)",
+    "a1body": "Les présentes Conditions d'utilisation régissent les droits, obligations et responsabilités entre MyTestType (la « Société ») et les utilisateurs en lien avec l'utilisation des tests psychologiques, du Saju et des services liés au tarot (les « Services ») fournis par la Société.",
+    "a2title": "Article 2 (Nature du service et clause de non-responsabilité)",
+    "a2body": "Tous les services fournis par la Société sont créés principalement à des fins de divertissement.\n\nLes résultats de ce service ne peuvent pas remplacer des diagnostics ou des consultations médicaux, psychologiques, juridiques ou professionnels. Les utilisateurs ne doivent pas se fier uniquement aux résultats des tests pour prendre des décisions importantes, et les utilisateurs sont seuls responsables de la manière dont ils utilisent les résultats.",
+    "a2strong": "",
+    "a3title": "Article 3 (Droits d'auteur)",
+    "a3body": "Les droits d'auteur et la propriété intellectuelle de tout le contenu fourni dans le service (questions, descriptions des résultats, images, designs, etc.) appartiennent à la Société. Les utilisateurs n'utiliseront pas les informations obtenues via le service à des fins commerciales ni ne permettront à des tiers de les utiliser sans le consentement préalable de la Société.",
+    "a4title": "Article 4 (Politique de paiement et de remboursement)",
+    "a4body": "Tous les achats de contenu payant sont traités en toute sécurité via Paddle, un prestataire de paiement mondial.\n\nPolitique de remboursement : En raison de la nature du contenu numérique, où les résultats sont livrés immédiatement après l'achat, aucune annulation ni aucun remboursement ne sera effectué après la finalisation du paiement. Toutes les ventes sont définitives. Aucun remboursement ne sera accordé.",
+    "a5title": "Article 5 (Modifications des conditions)",
+    "a5body": "La Société peut réviser les présentes Conditions dans la mesure où cela ne viole pas les lois pertinentes. Les modifications prendront effet lors de leur annonce sur l'écran du service.",
+    "a6title": "",
+    "a6body": ""
   }
 }

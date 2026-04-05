@@ -30,12 +30,16 @@ export default function Terms() {
         </div>
 
         <div className="bg-card border border-border rounded-3xl p-8 shadow-sm space-y-8 text-foreground/80 leading-relaxed text-base">
-          {articles.map((article, i) => (
+          {articles.filter(a => a.title).map((article, i) => (
             <div key={i}>
               <h2 className="text-sm font-bold text-foreground mb-3 uppercase tracking-wider">
                 {article.title}
               </h2>
-              <p>{article.body}</p>
+              <div className="space-y-3">
+                {article.body.split('\n\n').map((para, j) => (
+                  <p key={j}>{para}</p>
+                ))}
+              </div>
             </div>
           ))}
         </div>

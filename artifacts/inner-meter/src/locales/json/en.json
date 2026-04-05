@@ -751,20 +751,20 @@
     "desc": "The page you requested does not exist."
   },
   "terms": {
-    "title": "Terms of Use",
+    "title": "Terms of Service",
     "effectiveDate": "Effective Date: January 1, 2025",
-    "a1title": "Article 1 – Purpose",
-    "a1body": "These Terms of Use govern the relationship between MyTestType (hereinafter \"the Company\") and users with respect to the psychology test and tarot-related services (hereinafter \"the Service\") provided by the Company.",
-    "a2title": "Article 2 – Nature of the Service",
-    "a2body": "The personality, relationship, and other psychology tests and tarot services provided by the Company are designed primarily for entertainment and fun. The results of the Service are not a substitute for medical, psychological, or professional diagnosis or counseling, and users should not make important decisions based solely on test results.",
-    "a2strong": "entertainment and fun",
-    "a3title": "Article 3 – Copyright",
-    "a3body": "All content provided within the Service (questions, result descriptions, images, designs, etc.) is the intellectual property of the Company. Users may not reproduce, distribute, publish, or commercially exploit such content without prior consent from the Company. (Sharing via the in-service share feature on social media is permitted.)",
-    "a4title": "Article 4 – Disclaimer",
-    "a4body": "The Company assumes no liability for any damages incurred by users in connection with the free Service. The Company is also not obligated to intervene in disputes between users arising from use of the Service.",
-    "a5title": "Article 5 – Changes to Terms",
-    "a5body": "The Company may amend these Terms as necessary within the bounds of applicable law. Amended Terms take effect upon being posted within the Service.",
-    "a6title": "Article 6 – Refund Policy",
-    "a6body": "All purchases are final. Due to the nature of digital products delivered instantly, we do not offer refunds after purchase."
+    "a1title": "Article 1 (Purpose)",
+    "a1body": "These Terms of Service govern the rights, obligations, and responsibilities between MyTestType (the \"Company\") and users in connection with the use of psychological tests, Saju, and tarot-related services (the \"Services\") provided by the Company.",
+    "a2title": "Article 2 (Nature of Service & Disclaimer)",
+    "a2body": "All services provided by the Company are created primarily for entertainment purposes.\n\nThe results of this service cannot replace medical, psychological, legal, or professional diagnoses or consultations. Users must not rely solely on test results to make important decisions, and users are solely responsible for how they use the results.",
+    "a2strong": "",
+    "a3title": "Article 3 (Copyright)",
+    "a3body": "The copyright and intellectual property rights for all content provided within the service (questions, result descriptions, images, designs, etc.) belong to the Company. Users shall not use information obtained through the service for commercial purposes or allow third parties to use it without prior consent from the Company.",
+    "a4title": "Article 4 (Payment & Refund Policy)",
+    "a4body": "All paid content purchases are processed securely through Paddle, a global payment provider.\n\nRefund Policy: Due to the nature of digital content where results are delivered immediately upon purchase, no cancellations or refunds will be issued after payment is completed. All sales are final. No refunds will be issued.",
+    "a5title": "Article 5 (Changes to Terms)",
+    "a5body": "The Company may revise these Terms within the scope that does not violate relevant laws. Changes will take effect upon being announced on the service screen.",
+    "a6title": "",
+    "a6body": ""
   }
 }

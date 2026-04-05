@@ -701,20 +701,20 @@
     "desc": "La página que solicitaste no existe."
   },
   "terms": {
-    "title": "Términos de Uso",
-    "effectiveDate": "Fecha de entrada en vigor: 1 de enero de 2025",
-    "a1title": "Artículo 1 – Objeto",
-    "a1body": "Los presentes Términos de Uso regulan la relación entre MyTestType (en adelante «la Empresa») y los usuarios con respecto a los servicios de test psicológicos y tarot (en adelante «el Servicio») proporcionados por la Empresa.",
-    "a2title": "Artículo 2 – Naturaleza del Servicio",
-    "a2body": "Los tests de personalidad, amor y otros test psicológicos, así como el servicio de tarot ofrecidos por la Empresa, están diseñados principalmente con fines de entretenimiento y diversión. Los resultados del Servicio no sustituyen diagnósticos médicos, psicológicos ni asesoramiento profesional. Los usuarios no deben tomar decisiones importantes basándose únicamente en los resultados.",
-    "a2strong": "entretenimiento y diversión",
-    "a3title": "Artículo 3 – Derechos de autor",
-    "a3body": "Todos los contenidos del Servicio (preguntas, descripciones de resultados, imágenes, diseños, etc.) son propiedad intelectual de la Empresa. Los usuarios no podrán reproducir, distribuir ni explotar comercialmente dicho contenido sin el consentimiento previo de la Empresa. (Compartir en redes sociales mediante la función de compartir integrada está permitido.)",
-    "a4title": "Artículo 4 – Exención de responsabilidad",
-    "a4body": "La Empresa no asume ninguna responsabilidad por daños sufridos por los usuarios en relación con el uso gratuito del Servicio, ni está obligada a intervenir en disputas entre usuarios derivadas del uso del Servicio.",
-    "a5title": "Artículo 5 – Modificaciones",
-    "a5body": "La Empresa podrá modificar estos Términos cuando sea necesario, dentro de los límites de la legislación aplicable. Las modificaciones entrarán en vigor una vez publicadas en el Servicio.",
-    "a6title": "Artículo 6 – Política de Reembolso",
-    "a6body": "Todas las compras son definitivas. Debido a la naturaleza de los productos digitales entregados de forma instantánea, no ofrecemos reembolsos después de la compra."
+    "title": "Términos de Servicio",
+    "effectiveDate": "Fecha de vigencia: 1 de enero de 2025",
+    "a1title": "Artículo 1 (Propósito)",
+    "a1body": "Estos Términos de Servicio regulan los derechos, obligaciones y responsabilidades entre MyTestType (la \"Empresa\") y los usuarios en relación con el uso de tests psicológicos, Saju y servicios relacionados con el tarot (los \"Servicios\") proporcionados por la Empresa.",
+    "a2title": "Artículo 2 (Naturaleza del Servicio y Exención de responsabilidad)",
+    "a2body": "Todos los servicios proporcionados por la Empresa se crean principalmente con fines de entretenimiento.\n\nLos resultados de este servicio no pueden reemplazar diagnósticos o consultas médicas, psicológicas, legales o profesionales. Los usuarios no deben basarse únicamente en los resultados de las pruebas para tomar decisiones importantes, y los usuarios son los únicos responsables de cómo utilizan los resultados.",
+    "a2strong": "",
+    "a3title": "Artículo 3 (Derechos de autor)",
+    "a3body": "Los derechos de autor y la propiedad intelectual de todo el contenido proporcionado en el servicio (preguntas, descripciones de resultados, imágenes, diseños, etc.) pertenecen a la Empresa. Los usuarios no utilizarán la información obtenida a través del servicio con fines comerciales ni permitirán que terceros la utilicen sin el consentimiento previo de la Empresa.",
+    "a4title": "Artículo 4 (Política de Pago y Reembolso)",
+    "a4body": "Todas las compras de contenido de pago se procesan de forma segura a través de Paddle, un proveedor de pagos global.\n\nPolítica de reembolso: Debido a la naturaleza del contenido digital, donde los resultados se entregan inmediatamente después de la compra, no se emitirán cancelaciones ni reembolsos una vez completado el pago. Todas las ventas son definitivas. No se emitirán reembolsos.",
+    "a5title": "Artículo 5 (Cambios en los Términos)",
+    "a5body": "La Empresa puede revisar estos Términos dentro del alcance que no viole las leyes pertinentes. Los cambios entrarán en vigor al ser anunciados en la pantalla del servicio.",
+    "a6title": "",
+    "a6body": ""
   }
 }

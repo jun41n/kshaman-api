@@ -701,20 +701,20 @@
     "desc": "A página que você solicitou não existe."
   },
   "terms": {
-    "title": "Termos de Uso",
+    "title": "Termos de Serviço",
     "effectiveDate": "Data de vigência: 1 de janeiro de 2025",
-    "a1title": "Artigo 1 – Objetivo",
-    "a1body": "Estes Termos de Uso regulam a relação entre MyTestType (doravante «a Empresa») e os usuários com relação aos serviços de testes psicológicos e tarô (doravante «o Serviço») fornecidos pela Empresa.",
-    "a2title": "Artigo 2 – Natureza do Serviço",
-    "a2body": "Os testes de personalidade, relacionamento e outros testes psicológicos e o serviço de tarô fornecidos pela Empresa são criados principalmente para entretenimento e diversão. Os resultados do Serviço não substituem diagnósticos médicos, psicológicos ou aconselhamento profissional. Os usuários não devem tomar decisões importantes baseando-se somente nos resultados.",
-    "a2strong": "entretenimento e diversão",
-    "a3title": "Artigo 3 – Direitos Autorais",
-    "a3body": "Todo o conteúdo do Serviço (perguntas, descrições de resultados, imagens, designs, etc.) é propriedade intelectual da Empresa. Os usuários não podem reproduzir, distribuir ou explorar comercialmente tal conteúdo sem o consentimento prévio da Empresa. (Compartilhar em redes sociais através da função de compartilhamento integrada é permitido.)",
-    "a4title": "Artigo 4 – Isenção de Responsabilidade",
-    "a4body": "A Empresa não assume qualquer responsabilidade por danos sofridos pelos usuários em conexão com o uso gratuito do Serviço, nem é obrigada a intervir em disputas entre usuários decorrentes do uso do Serviço.",
-    "a5title": "Artigo 5 – Alterações nos Termos",
-    "a5body": "A Empresa poderá alterar estes Termos quando necessário, dentro dos limites da legislação aplicável. As alterações entrarão em vigor após serem publicadas no Serviço.",
-    "a6title": "Artigo 6 – Política de Reembolso",
-    "a6body": "Todas as compras são definitivas. Devido à natureza dos produtos digitais entregues instantaneamente, não oferecemos reembolsos após a compra."
+    "a1title": "Artigo 1 (Propósito)",
+    "a1body": "Estes Termos de Serviço regem os direitos, obrigações e responsabilidades entre MyTestType (a \"Empresa\") e os usuários em conexão com o uso de testes psicológicos, Saju e serviços relacionados ao tarô (os \"Serviços\") fornecidos pela Empresa.",
+    "a2title": "Artigo 2 (Natureza do Serviço e Isenção de Responsabilidade)",
+    "a2body": "Todos os serviços fornecidos pela Empresa são criados principalmente para fins de entretenimento.\n\nOs resultados deste serviço não podem substituir diagnósticos ou consultas médicas, psicológicas, legais ou profissionais. Os usuários não devem depender exclusivamente dos resultados dos testes para tomar decisões importantes, e os usuários são os únicos responsáveis por como utilizam os resultados.",
+    "a2strong": "",
+    "a3title": "Artigo 3 (Direitos Autorais)",
+    "a3body": "Os direitos autorais e a propriedade intelectual de todo o conteúdo fornecido no serviço (perguntas, descrições de resultados, imagens, designs, etc.) pertencem à Empresa. Os usuários não utilizarão as informações obtidas através do serviço para fins comerciais nem permitirão que terceiros as utilizem sem o consentimento prévio da Empresa.",
+    "a4title": "Artigo 4 (Política de Pagamento e Reembolso)",
+    "a4body": "Todas as compras de conteúdo pago são processadas com segurança através do Paddle, um provedor global de pagamentos.\n\nPolítica de reembolso: Devido à natureza do conteúdo digital, onde os resultados são entregues imediatamente após a compra, não serão emitidos cancelamentos ou reembolsos após a conclusão do pagamento. Todas as vendas são definitivas. Não serão emitidos reembolsos.",
+    "a5title": "Artigo 5 (Alterações nos Termos)",
+    "a5body": "A Empresa pode revisar estes Termos dentro do escopo que não viole as leis pertinentes. As alterações entrarão em vigor ao serem anunciadas na tela do serviço.",
+    "a6title": "",
+    "a6body": ""
   }
 }
