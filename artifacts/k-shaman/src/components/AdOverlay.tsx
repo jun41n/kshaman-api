@@ -5,7 +5,7 @@ interface Props {
   onClose: () => void;
 }
 
-const DURATION = 5;
+const DURATION = 10;
 
 export function AdOverlay({ onClose }: Props) {
   const { state } = useApp();
