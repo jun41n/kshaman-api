@@ -187,7 +187,7 @@ export default function TestResult() {
   ];
 
   return (
-    <Layout>
+    <Layout showAd>
       <SeoHead
         title={seoTitle}
         description={resultSummary}

@@ -4,12 +4,14 @@ import { Menu, X, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { NativeBannerAd } from "@/components/NativeBannerAd";
 
 interface LayoutProps {
   children: ReactNode;
+  showAd?: boolean;
 }
 
-export function Layout({ children }: LayoutProps) {
+export function Layout({ children, showAd = false }: LayoutProps) {
   const { t } = useTranslation();
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -172,6 +174,12 @@ export function Layout({ children }: LayoutProps) {
           </div>
         </div>
       </footer>
+
+      {showAd && (
+        <div className="w-full flex justify-center py-2">
+          <NativeBannerAd />
+        </div>
+      )}
 
     </div>
   );

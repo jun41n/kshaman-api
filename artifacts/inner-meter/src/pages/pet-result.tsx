@@ -123,7 +123,7 @@ export default function PetResult() {
   }
 
   return (
-    <Layout>
+    <Layout showAd>
       <div className="flex-1 flex flex-col items-center pb-10">
         <div className="w-full max-w-xl px-4 pt-6">
           <button
