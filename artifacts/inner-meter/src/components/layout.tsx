@@ -160,22 +160,12 @@ export function Layout({ children, showAd = false }: LayoutProps) {
                 {t('footer.tagline')}
               </p>
               <p className="mt-2 text-xs text-muted-foreground/55 leading-relaxed">
-                Owner: 최영준 (Choi Young-jun) · 경기도 남양주시 별내동 덕송1로 30 · Contact: meaningout_d@naver.com · <em>{t('footer.notice')}</em>
+                최영준 (Choi Young-jun) · 경기도 남양주시 별내동 덕송1로 30 · <em>{t('footer.notice')}</em>
               </p>
             </div>
 
             {/* Links */}
             <div className="flex flex-col sm:flex-row gap-6 sm:gap-12">
-              {/* 서비스 */}
-              <div>
-                <p className="text-xs font-bold text-muted-foreground/60 uppercase tracking-wider mb-3">{t('footer.services')}</p>
-                <div className="flex flex-col gap-2.5 text-sm font-medium text-muted-foreground">
-                  <Link href="/tests"    className="hover:text-primary transition-colors">{t('nav.tests')}</Link>
-                  <Link href="/tarot"    className="hover:text-primary transition-colors">{t('nav.tarot')}</Link>
-                  <Link href="/k-shaman" className="hover:text-primary transition-colors">K-Shaman</Link>
-                </div>
-              </div>
-
               {/* 정보 */}
               <div>
                 <p className="text-xs font-bold text-muted-foreground/60 uppercase tracking-wider mb-3">{t('footer.info')}</p>
