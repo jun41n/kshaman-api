@@ -68,12 +68,12 @@ export function Layout({ children, showAd = false }: LayoutProps) {
               ))}
               <a
                 href="/k-shaman/"
-                className="flex items-center gap-1.5 text-sm font-bold transition-colors hover:text-primary text-muted-foreground group"
+                className="flex items-center gap-1.5 text-sm font-bold group"
               >
                 <div className="w-5 h-5 rounded-md bg-gradient-primary flex items-center justify-center text-white shadow-sm shadow-primary/30 group-hover:shadow-primary/50 transition-shadow">
                   <Sparkles className="w-3 h-3" />
                 </div>
-                {t('nav.shaman')}
+                <span className="shaman-holo">{t('nav.shaman')}</span>
               </a>
               <LanguageSwitcher />
               <Button asChild variant="default" className="rounded-full shadow-md shadow-primary/20 font-bold px-6">
@@ -115,12 +115,12 @@ export function Layout({ children, showAd = false }: LayoutProps) {
               ))}
               <a
                 href="/k-shaman/"
-                className="px-4 py-3 rounded-xl text-base font-bold transition-colors hover:bg-muted text-muted-foreground flex items-center gap-2"
+                className="px-4 py-3 rounded-xl text-base font-bold transition-colors hover:bg-muted flex items-center gap-2"
               >
                 <div className="w-6 h-6 rounded-lg bg-gradient-primary flex items-center justify-center text-white shadow-sm shadow-primary/30">
                   <Sparkles className="w-3.5 h-3.5" />
                 </div>
-                {t('nav.shaman')}
+                <span className="shaman-holo">{t('nav.shaman')}</span>
               </a>
               <div className="pt-2 pb-1">
                 <p className="text-xs font-bold text-muted-foreground/50 uppercase tracking-wider px-4 mb-2">Language</p>

@@ -281,4 +281,28 @@
     word-break: keep-all;
     overflow-wrap: break-word;
   }
+
+  /* Holographic shimmer for shaman nav link */
+  .shaman-holo {
+    background: linear-gradient(
+      90deg,
+      #bf5fff 0%,
+      #ff4fd8 20%,
+      #00e5ff 40%,
+      #7b2fff 60%,
+      #ff4fd8 80%,
+      #bf5fff 100%
+    );
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: holoShift 2.4s linear infinite;
+  }
+
+  @keyframes holoShift {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
+  }
 }
