@@ -220,11 +220,9 @@
     "emailLabel": "E-mail de contact"
   },
   "contact": {
-    "title": "Nous Contacter",
-    "p1": "Pour toute question relative aux services MyTestType, veuillez nous envoyer un e-mail.",
-    "emailLabel": "E-mail",
-    "p2": "Nous répondrons aussi vite que possible.",
-    "p3": "Merci."
+    "title": "Nous contacter",
+    "p1": "Pour toute question relative aux services de MyTestType, veuillez nous envoyer un e-mail. Nous vous répondrons dans les plus brefs délais.",
+    "emailLabel": "E-mail"
   },
   "kshaman": {
     "ui": {

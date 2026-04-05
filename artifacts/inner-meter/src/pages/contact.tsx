@@ -35,9 +35,6 @@ export default function Contact() {
               {CONTACT_EMAIL}
             </a>
           </div>
-
-          <p>{t('contact.p2')}</p>
-          <p>{t('contact.p3')}</p>
         </div>
       </div>
     </Layout>

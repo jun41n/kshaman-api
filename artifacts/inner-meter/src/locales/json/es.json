@@ -221,10 +221,8 @@
   },
   "contact": {
     "title": "Contáctanos",
-    "p1": "Para consultas sobre los servicios de MyTestType, envíanos un correo electrónico.",
-    "emailLabel": "Email",
-    "p2": "Responderemos lo antes posible.",
-    "p3": "Gracias."
+    "p1": "Para cualquier consulta relacionada con los servicios de MyTestType, envíenos un correo electrónico. Le responderemos lo antes posible.",
+    "emailLabel": "Correo electrónico"
   },
   "kshaman": {
     "ui": {

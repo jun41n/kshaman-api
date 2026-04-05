@@ -221,10 +221,8 @@
   },
   "contact": {
     "title": "Contact Us",
-    "p1": "For inquiries related to MyTestType services, please send us an email.",
-    "emailLabel": "Email",
-    "p2": "We will respond as quickly as possible.",
-    "p3": "Thank you."
+    "p1": "For any inquiries related to MyTestType services, please send us an email. We will get back to you as soon as possible.",
+    "emailLabel": "Email"
   },
   "kshaman": {
     "ui": {

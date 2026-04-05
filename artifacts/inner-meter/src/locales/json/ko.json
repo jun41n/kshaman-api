@@ -221,10 +221,8 @@
   },
   "contact": {
     "title": "문의하기",
-    "p1": "MyTestType 서비스와 관련된 문의는 아래 이메일로 보내주세요.",
-    "emailLabel": "Email",
-    "p2": "가능한 빠르게 답변드리겠습니다.",
-    "p3": "감사합니다."
+    "p1": "MyTestType 서비스와 관련된 문의는 아래 이메일로 보내주세요. 가능한 빠르게 답변드리겠습니다.",
+    "emailLabel": "Email"
   },
   "kshaman": {
     "ui": {
