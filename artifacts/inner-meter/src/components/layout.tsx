@@ -160,7 +160,7 @@ export function Layout({ children, showAd = false }: LayoutProps) {
                 {t('footer.tagline')}
               </p>
               <p className="mt-2 text-xs text-muted-foreground/55 leading-relaxed">
-                Owner: 최영준 (Choi Young-joon) · 경기도 남양주시 별내동 덕송1로 30 · Contact: meaningout_d@naver.com · <em>{t('footer.notice')}</em>
+                Owner: 최영준 (Choi Young-jun) · 경기도 남양주시 별내동 덕송1로 30 · Contact: meaningout_d@naver.com · <em>{t('footer.notice')}</em>
               </p>
             </div>
 
