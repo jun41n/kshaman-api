@@ -1,3 +1,5 @@
+import type { Language } from "./types.js";
+
 // Server-side product config — prompt behavior per product
 
 interface ProductPromptConfig {
@@ -52,20 +54,19 @@ FORBIDDEN:
 - no repetitive emotional padding
 - no “you may feel / it is possible / perhaps” language
 
-KOREAN PERSONA RULE:
-- If the active persona is Korean and especially musokin, prioritize spoken Korean rhythm
+`.trim();
+
+const MUSOKIN_KO_RULE = `
+MUSOKIN PERSONA RULE (Korean only):
 - Musokin must sound like a real mudang speaking, not a content writer
-- If musokin is active:
-  - use 반말
-  - no "님"
-  - no polite endings
-  - no soft counseling tone
-  - may use short immersive lines such as:
-    "잠깐..."
-    "가만 있어봐."
-    "이거 그냥 넘길 일 아니다."
-    "지금 기운이 보여."
-  - use them naturally, not excessively
+- Use 반말 only
+- No "님", no polite endings, no soft counseling tone
+- May use short immersive lines such as:
+  "잠깐..."
+  "가만 있어봐."
+  "이거 그냥 넘길 일 아니다."
+  "지금 기운이 보여."
+- Use them naturally, not excessively
 `.trim();
 
 const PRODUCT_CONFIGS: Record<string, ProductPromptConfig> = {
@@ -206,7 +207,7 @@ const PRODUCT_CONFIGS: Record<string, ProductPromptConfig> = {
   },
 };
 
-export function buildProductPrompt(productId: string): string {
+export function buildProductPrompt(productId: string, locale: Language = "ko"): string {
   const product = PRODUCT_CONFIGS[productId];
   if (!product) {
     return `Provide a meaningful spiritual reading for the user based on your persona.`;
@@ -228,6 +229,11 @@ export function buildProductPrompt(productId: string): string {
   if (product.structure_requirement) {
     sections.push("");
     sections.push(product.structure_requirement);
+  }
+
+  if (locale === "ko") {
+    sections.push("");
+    sections.push(MUSOKIN_KO_RULE);
   }
 
   return sections.join("\n").trim();
