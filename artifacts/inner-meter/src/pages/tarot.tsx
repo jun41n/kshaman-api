@@ -35,7 +35,7 @@ function CardIllustration({ id }: { id: string }) {
 }
 
 /* ─── Card Back ───────────────────────────────────────────────── */
-function CardBack({ w = 220, h = 356 }: { w?: number; h?: number }) {
+function CardBack({ w = 220, h = 356 }: { w?: number | string; h?: number | string }) {
   return (
     <img
       src={`${import.meta.env.BASE_URL}images/tarot-back.png`}
@@ -81,7 +81,7 @@ function ReadingCard({ card, locale }: { card: Tarot3Card; locale: CardLocale })
     <div
       className="relative rounded overflow-hidden"
       style={{
-        width: 150, height: 234,
+        width: 'min(150px, 28vw)', height: 'min(234px, 43.7vw)',
         boxShadow: '0 0 0 1.5px #b8860b, 0 8px 32px rgba(0,0,0,0.7)',
       }}
     >
@@ -204,7 +204,7 @@ export default function Tarot() {
                 <div className="flex justify-center gap-3 mb-7 opacity-60">
                   {[0,1,2].map(i => (
                     <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.12 }}>
-                      <CardBack w={150} h={234} />
+                      <CardBack w="min(150px, 28vw)" h="min(234px, 43.7vw)" />
                     </motion.div>
                   ))}
                 </div>
@@ -314,7 +314,7 @@ export default function Tarot() {
                       className="flex flex-col items-center gap-2"
                     >
                       <p className="text-violet-300/60 text-[10px] font-semibold tracking-widest uppercase text-center leading-tight"
-                         style={{ maxWidth: 150 }}>
+                         style={{ maxWidth: 'min(150px, 28vw)' }}>
                         {positions[i]}
                       </p>
                       <ReadingCard card={card} locale={safeLocale} />
