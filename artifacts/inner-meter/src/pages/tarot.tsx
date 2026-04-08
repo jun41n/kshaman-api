@@ -50,7 +50,7 @@ function CardBack({ w = 220, h = 356 }: { w?: number; h?: number }) {
 function MiniCardBack({ selected, selectionOrder, w = 48, h = 76 }: { selected: boolean; selectionOrder?: number; w?: number; h?: number }) {
   return (
     <div
-      className="relative rounded-lg overflow-hidden cursor-pointer"
+      className="relative rounded overflow-hidden cursor-pointer"
       style={{
         width: w, height: h,
         boxShadow: selected
@@ -79,14 +79,14 @@ type CardLocale = 'ko' | 'en' | 'ja' | 'es' | 'pt-BR' | 'fr';
 function ReadingCard({ card, locale }: { card: Tarot3Card; locale: CardLocale }) {
   return (
     <div
-      className="relative rounded-xl overflow-hidden"
+      className="relative rounded overflow-hidden"
       style={{
         width: 100, height: 156,
         boxShadow: '0 0 0 1.5px #b8860b, 0 8px 32px rgba(0,0,0,0.7)',
       }}
     >
       <div className="absolute inset-0 bg-[#0e0620]" />
-      <div className="absolute inset-[4px] border border-[#b8860b] rounded-lg opacity-70" />
+      <div className="absolute inset-[4px] border border-[#b8860b] rounded-sm opacity-70" />
       <div className="absolute top-[4px] left-[4px] right-[4px] h-5 flex items-center justify-center">
         <span className="text-[#ffd700] text-[8px] font-bold tracking-widest font-serif">{card.roman}</span>
       </div>

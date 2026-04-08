@@ -191,7 +191,7 @@ export default function Home() {
               </Button>
             </div>
 
-            <div className="w-28 h-40 md:w-40 md:h-56 shrink-0 rounded-2xl overflow-hidden border-2 border-white/20 shadow-2xl rotate-6 hover:rotate-0 transition-transform duration-500">
+            <div className="w-28 h-40 md:w-40 md:h-56 shrink-0 rounded overflow-hidden border-2 border-white/20 shadow-2xl rotate-6 hover:rotate-0 transition-transform duration-500">
               <img src={`${import.meta.env.BASE_URL}images/tarot-back.png`} alt="Tarot" className="w-full h-full object-cover" />
             </div>
           </div>
