@@ -35,9 +35,7 @@ export function AskAnythingChatPage({ onBack, onReset }: Props) {
     {
       id: generateId(),
       role: "shaman",
-      content: isKo
-        ? `안녕하세요. 저는 ${selectedPersona?.display_name_ko}입니다. 무엇이든 편하게 물어보세요.`
-        : `Hello. I am ${selectedPersona?.display_name_en}. Feel free to ask me anything.`,
+      content: t.chatWelcome,
       timestamp: new Date(),
     },
   ]);

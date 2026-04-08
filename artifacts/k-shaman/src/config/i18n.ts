@@ -42,7 +42,8 @@ type TranslationKey =
   | "newReading"
   | "hourUnknown"
   | "processingPayment"
-  | "securePayment";
+  | "securePayment"
+  | "chatWelcome";
 
 type Translations = Record<TranslationKey, string>;
 
@@ -81,6 +82,7 @@ export const T: Record<Language, Translations> = {
     hourUnknown: "모름",
     processingPayment: "처리 중...",
     securePayment: "SSL 256비트 암호화 — 안전한 결제",
+    chatWelcome: "보살이 네 삶에서 궁금한 걸 물어봐. 연애, 돈, 건강, 직장… 무엇이든 솔직하게 물어봐요. 🔮",
   },
   en: {
     selectGuide: "Who will read your destiny?",
@@ -116,6 +118,7 @@ export const T: Record<Language, Translations> = {
     hourUnknown: "Unknown",
     processingPayment: "Processing...",
     securePayment: "SSL 256-bit encrypted — secure payment",
+    chatWelcome: "Ask me anything about your life — love, money, health, career... I'm here to guide you. 🔮",
   },
   ja: {
     selectGuide: "誰に占ってもらいますか？",
@@ -151,6 +154,7 @@ export const T: Record<Language, Translations> = {
     hourUnknown: "不明",
     processingPayment: "処理中...",
     securePayment: "SSL 256ビット暗号化 — 安全なお支払い",
+    chatWelcome: "あなたの人生について何でも聞いてください。恋愛、お金、健康、仕事… 何でも聞きましょう。🔮",
   },
   es: {
     selectGuide: "¿Quién leerá tu destino?",
@@ -186,6 +190,7 @@ export const T: Record<Language, Translations> = {
     hourUnknown: "Desconocido",
     processingPayment: "Procesando...",
     securePayment: "SSL cifrado 256 bits — pago seguro",
+    chatWelcome: "Pregúntame lo que quieras sobre tu vida — amor, dinero, salud, trabajo… Estoy aquí para guiarte. 🔮",
   },
   pt: {
     selectGuide: "Quem vai ler seu destino?",
@@ -221,6 +226,7 @@ export const T: Record<Language, Translations> = {
     hourUnknown: "Desconhecido",
     processingPayment: "Processando...",
     securePayment: "SSL criptografado 256 bits — pagamento seguro",
+    chatWelcome: "Pergunte-me o que quiser sobre sua vida — amor, dinheiro, saúde, trabalho… Estou aqui para guiar você. 🔮",
   },
   fr: {
     selectGuide: "Qui lira votre destin ?",
@@ -256,5 +262,6 @@ export const T: Record<Language, Translations> = {
     hourUnknown: "Inconnu",
     processingPayment: "Traitement...",
     securePayment: "SSL chiffré 256 bits — paiement sécurisé",
+    chatWelcome: "Demandez-moi ce que vous voulez sur votre vie — amour, argent, santé, travail… Je suis là pour vous guider. 🔮",
   },
 };

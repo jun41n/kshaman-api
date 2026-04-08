@@ -47,7 +47,13 @@ export default function App() {
           )}
           {step === "payment" && (
             <PaymentPage
-              onSuccess={() => setStep("result")}
+              onSuccess={() => {
+                if (store.state.selectedProductId === "ask_anything") {
+                  setStep("chat");
+                } else {
+                  setStep("result");
+                }
+              }}
               onBack={() => setStep("products")}
             />
           )}
