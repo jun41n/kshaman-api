@@ -81,20 +81,20 @@ function ReadingCard({ card, locale }: { card: Tarot3Card; locale: CardLocale })
     <div
       className="relative rounded overflow-hidden"
       style={{
-        width: 100, height: 156,
+        width: 150, height: 234,
         boxShadow: '0 0 0 1.5px #b8860b, 0 8px 32px rgba(0,0,0,0.7)',
       }}
     >
       <div className="absolute inset-0 bg-[#0e0620]" />
-      <div className="absolute inset-[4px] border border-[#b8860b] rounded-sm opacity-70" />
-      <div className="absolute top-[4px] left-[4px] right-[4px] h-5 flex items-center justify-center">
-        <span className="text-[#ffd700] text-[8px] font-bold tracking-widest font-serif">{card.roman}</span>
+      <div className="absolute inset-[6px] border border-[#b8860b] rounded-sm opacity-70" />
+      <div className="absolute top-[6px] left-[6px] right-[6px] h-7 flex items-center justify-center">
+        <span className="text-[#ffd700] text-[11px] font-bold tracking-widest font-serif">{card.roman}</span>
       </div>
-      <div className="absolute top-[24px] left-[5px] right-[5px] bottom-[20px] overflow-hidden rounded border border-[#b8860b] border-opacity-40">
+      <div className="absolute top-[36px] left-[7px] right-[7px] bottom-[28px] overflow-hidden rounded border border-[#b8860b] border-opacity-40">
         <CardIllustration id={card.id} />
       </div>
-      <div className="absolute bottom-[4px] left-[4px] right-[4px] h-4 flex items-center justify-center">
-        <span className="text-[#ffd700] text-[7px] font-bold tracking-wide font-serif text-center leading-tight truncate px-1">{card.name[locale]}</span>
+      <div className="absolute bottom-[6px] left-[6px] right-[6px] h-6 flex items-center justify-center">
+        <span className="text-[#ffd700] text-[10px] font-bold tracking-wide font-serif text-center leading-tight truncate px-1">{card.name[locale]}</span>
       </div>
     </div>
   );
@@ -314,7 +314,7 @@ export default function Tarot() {
                       className="flex flex-col items-center gap-2"
                     >
                       <p className="text-violet-300/60 text-[10px] font-semibold tracking-widest uppercase text-center leading-tight"
-                         style={{ maxWidth: 100 }}>
+                         style={{ maxWidth: 150 }}>
                         {positions[i]}
                       </p>
                       <ReadingCard card={card} locale={safeLocale} />
