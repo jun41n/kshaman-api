@@ -117,6 +117,21 @@ Generated Zod schemas from the OpenAPI spec (e.g. `HealthCheckResponse`). Used b
 
 Generated React Query hooks and fetch client from the OpenAPI spec (e.g. `useHealthCheck`, `healthCheck`).
 
+## Deployment
+
+### 프론트엔드 (GitHub Pages)
+- **레포**: `github.com/jun41n/mytesttype` (GitHub Pages로 자동 배포)
+- **inner-meter 배포**: `PORT=3000 BASE_PATH=/ pnpm run build` → `dist/public/` 파일들을 레포 **루트**에 push
+- **k-shaman 배포**: `PORT=3001 BASE_PATH=/k-shaman/ pnpm run build` → `dist/public/` 파일들을 레포 **`/k-shaman/`** 디렉토리에 push
+- Push 후 GitHub Pages가 1~2분 내 자동 배포
+- **GITHUB_TOKEN** secret으로 Replit에서 직접 push 가능
+
+### 백엔드 API (Oracle Cloud)
+- **URL**: `https://api.mytesttype.com` (포트 3001, PM2, nginx+SSL)
+- **레포**: `github.com/jun41n/kshaman-api`
+- OpenAI API 백엔드만 존재
+- 배포: `pnpm --filter @workspace/api-server run build` → `dist/index.cjs` → SCP to Oracle → `pm2 restart kshaman-api`
+
 ### `scripts` (`@workspace/scripts`)
 
 Utility scripts package. Each script is a `.ts` file in `src/` with a corresponding npm script in `package.json`. Run scripts via `pnpm --filter @workspace/scripts run <script>`. Scripts can import any workspace package (e.g., `@workspace/db`) by adding it as a dependency in `scripts/package.json`.
