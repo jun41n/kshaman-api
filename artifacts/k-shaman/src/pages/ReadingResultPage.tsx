@@ -4,7 +4,6 @@ import { useApp } from "../store/appStore";
 import { SiteNav } from "../components/SiteNav";
 import { generateReading } from "../lib/apiClient";
 import { KShamanShareButtons } from "../components/KShamanShareButtons";
-import { NativeBannerAd } from "../components/NativeBannerAd";
 
 interface Props {
   onAskAnything: () => void;
@@ -203,9 +202,6 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
             <KShamanShareButtons lang={lang} />
           </div>
 
-          <div className="pt-4">
-            <NativeBannerAd />
-          </div>
         </div>
       )}
     </div>
