@@ -5,7 +5,7 @@
 
 set -e
 
-ORACLE_HOST="129.154.51.196"
+ORACLE_HOST="140.245.69.72"
 ORACLE_USER="ubuntu"
 ORACLE_KEY="$HOME/.ssh/replit_deploy"
 REMOTE_DIR="/home/ubuntu/kshaman-api"
