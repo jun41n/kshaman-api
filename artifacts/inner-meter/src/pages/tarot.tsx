@@ -204,7 +204,7 @@ export default function Tarot() {
                 <div className="flex justify-center gap-3 mb-7 opacity-60">
                   {[0,1,2].map(i => (
                     <motion.div key={i} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.12 }}>
-                      <CardBack w={65} h={105} />
+                      <CardBack w={150} h={234} />
                     </motion.div>
                   ))}
                 </div>
