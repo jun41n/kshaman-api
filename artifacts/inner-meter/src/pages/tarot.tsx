@@ -228,10 +228,10 @@ export default function Tarot() {
 
                 {/* 22-card fan spread — 2 rows of 11 */}
                 {(() => {
-                  const CARD_W = 48, CARD_H = 76;
-                  const STEP = 27;       // horizontal step between cards (overlap)
+                  const CARD_W = 64, CARD_H = 106;
+                  const STEP = 33;       // horizontal step between cards (overlap)
                   const MAX_DEG = 9;     // max rotation angle at edges
-                  const ROW_H = CARD_H + 28; // container height per row (space for rotation)
+                  const ROW_H = CARD_H + 34; // container height per row (space for rotation)
 
                   const renderFanRow = (cards: typeof shuffled) => {
                     const n = cards.length;
