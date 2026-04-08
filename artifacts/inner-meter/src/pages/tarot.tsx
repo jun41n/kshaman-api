@@ -226,12 +226,12 @@ export default function Tarot() {
                   {t('tarot3.selectedCount', { count: selectedIds.length })}
                 </p>
 
-                {/* 22-card fan spread — 2 rows of 11 */}
+                {/* 22-card fan spread — 3 rows of 8/7/7 */}
                 {(() => {
-                  const CARD_W = 64, CARD_H = 106;
-                  const STEP = 33;       // horizontal step between cards (overlap)
-                  const MAX_DEG = 9;     // max rotation angle at edges
-                  const ROW_H = CARD_H + 34; // container height per row (space for rotation)
+                  const CARD_W = 72, CARD_H = 114;
+                  const STEP = 36;       // horizontal step between cards (overlap)
+                  const MAX_DEG = 10;    // max rotation angle at edges
+                  const ROW_H = CARD_H + 38; // container height per row (space for rotation)
 
                   const renderFanRow = (cards: typeof shuffled) => {
                     const n = cards.length;
@@ -259,7 +259,7 @@ export default function Tarot() {
                               <motion.div
                                 onClick={() => handleCardClick(card.id)}
                                 whileTap={{ scale: 0.93 }}
-                                animate={sel ? { y: -12 } : { y: 0 }}
+                                animate={sel ? { y: -14 } : { y: 0 }}
                                 transition={{ type: 'spring', stiffness: 320, damping: 22 }}
                               >
                                 <MiniCardBack selected={sel} selectionOrder={sel ? orderIdx + 1 : undefined} w={CARD_W} h={CARD_H} />
@@ -272,9 +272,10 @@ export default function Tarot() {
                   };
 
                   return (
-                    <div className="flex flex-col gap-4 mb-6 items-center overflow-x-auto px-2">
-                      {renderFanRow(shuffled.slice(0, 11))}
-                      {renderFanRow(shuffled.slice(11, 22))}
+                    <div className="flex flex-col gap-3 mb-6 items-center overflow-hidden w-full">
+                      {renderFanRow(shuffled.slice(0, 8))}
+                      {renderFanRow(shuffled.slice(8, 15))}
+                      {renderFanRow(shuffled.slice(15, 22))}
                     </div>
                   );
                 })()}
