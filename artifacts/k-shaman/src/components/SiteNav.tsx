@@ -38,8 +38,8 @@ export function SiteNav({ onBack, backLabel, centre }: Props) {
               className="flex items-center gap-2 group shrink-0"
             >
               {/* MyTestType logo mark */}
-              <div className="w-7 h-7 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow">
-                <Sparkles className="w-4 h-4 text-white" />
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-600 to-pink-500 flex items-center justify-center shadow-md">
+                <Sparkles className="w-5 h-5 text-white" />
               </div>
               <span className="font-bold text-sm text-white group-hover:text-violet-300 transition-colors tracking-tight">
                 MyTestType
