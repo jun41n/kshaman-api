@@ -1,3 +1,4 @@
+import { Sparkles } from "lucide-react";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useApp } from "../store/appStore";
 
@@ -38,7 +39,7 @@ export function SiteNav({ onBack, backLabel, centre }: Props) {
             >
               {/* MyTestType logo mark */}
               <div className="w-7 h-7 rounded-full bg-gradient-to-br from-violet-500 to-indigo-600 flex items-center justify-center shadow">
-                <span className="text-white text-xs font-bold leading-none">✦</span>
+                <Sparkles className="w-4 h-4 text-white" />
               </div>
               <span className="font-bold text-sm text-white group-hover:text-violet-300 transition-colors tracking-tight">
                 MyTestType
