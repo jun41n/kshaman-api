@@ -52,7 +52,8 @@ type TranslationKey =
   | "bokchaePaypalBtn"
   | "bokchaeConfirm"
   | "bokchaeLoading"
-  | "openBokchae";
+  | "openBokchae"
+  | "bokchaeDisclaimer";
 
 type Translations = Record<TranslationKey, string>;
 
@@ -101,6 +102,7 @@ export const T: Record<Language, Translations> = {
     bokchaeConfirm: "복채 던지기 완료! 점사 보기 🔮",
     bokchaeLoading: "보살님이 점궤를 읽는 중입니다...",
     openBokchae: "복채 안내 보기",
+    bokchaeDisclaimer: "본 서비스는 후원금(복채)으로 운영되며, 입금 확인 후 즉시 점궤 풀이가 시작됩니다.",
   },
   en: {
     selectGuide: "Who will read your destiny?",
@@ -146,6 +148,7 @@ export const T: Record<Language, Translations> = {
     bokchaeConfirm: "Offering Sent! See My Reading 🔮",
     bokchaeLoading: "The spirit guide is reading the oracle...",
     openBokchae: "View Offering Guide",
+    bokchaeDisclaimer: "This service is supported by voluntary offerings. Your reading begins immediately after your offering is received.",
   },
   ja: {
     selectGuide: "誰に占ってもらいますか？",
@@ -191,6 +194,7 @@ export const T: Record<Language, Translations> = {
     bokchaeConfirm: "志納完了！占いを見る 🔮",
     bokchaeLoading: "神霊が神託を読んでいます...",
     openBokchae: "志納のご案内",
+    bokchaeDisclaimer: "このサービスは自発的な志納によって運営されており、入金確認後すぐに占い結果が提供されます。",
   },
   es: {
     selectGuide: "¿Quién leerá tu destino?",
@@ -236,6 +240,7 @@ export const T: Record<Language, Translations> = {
     bokchaeConfirm: "¡Ofrenda enviada! Ver mi lectura 🔮",
     bokchaeLoading: "El guía espiritual está leyendo el oráculo...",
     openBokchae: "Ver guía de ofrenda",
+    bokchaeDisclaimer: "Este servicio funciona con ofrendas voluntarias. Tu lectura comienza inmediatamente después de recibir tu ofrenda.",
   },
   pt: {
     selectGuide: "Quem vai ler seu destino?",
@@ -281,6 +286,7 @@ export const T: Record<Language, Translations> = {
     bokchaeConfirm: "Oferenda enviada! Ver minha leitura 🔮",
     bokchaeLoading: "O guia espiritual está lendo o oráculo...",
     openBokchae: "Ver guia de oferenda",
+    bokchaeDisclaimer: "Este serviço funciona com oferendas voluntárias. Sua leitura começa imediatamente após o recebimento de sua oferenda.",
   },
   fr: {
     selectGuide: "Qui lira votre destin ?",
@@ -326,5 +332,6 @@ export const T: Record<Language, Translations> = {
     bokchaeConfirm: "Offrande envoyée ! Voir ma lecture 🔮",
     bokchaeLoading: "Le guide spirituel lit l'oracle...",
     openBokchae: "Voir le guide d'offrande",
+    bokchaeDisclaimer: "Ce service fonctionne grâce aux offrandes volontaires. Votre lecture commence immédiatement après réception de votre offrande.",
   },
 };
