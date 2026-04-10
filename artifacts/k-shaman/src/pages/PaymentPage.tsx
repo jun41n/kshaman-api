@@ -134,7 +134,7 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
         <div className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
           <div className="px-4 pt-4 pb-2 border-b border-white/10">
             <a
-              href="https://paypal.me/YoungjunChoi310/3usd"
+              href="https://paypal.me/YoungjunChoi310/1.99"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-3 w-full py-3 rounded-xl bg-[#003087] hover:bg-[#002070] transition-colors font-bold text-white text-sm shadow"

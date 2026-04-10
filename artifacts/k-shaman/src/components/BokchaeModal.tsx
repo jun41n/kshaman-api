@@ -88,7 +88,7 @@ export function BokchaeModal({ onConfirm, onClose }: Props) {
             <div className="space-y-4">
               {/* PayPal button */}
               <a
-                href="https://paypal.me/YoungjunChoi310/3usd"
+                href="https://paypal.me/YoungjunChoi310/1.99"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-3 w-full py-3.5 rounded-2xl bg-[#003087] hover:bg-[#002070] transition-colors font-bold text-white text-sm"
