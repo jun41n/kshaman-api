@@ -78,7 +78,7 @@ export const T: Record<Language, Translations> = {
     chooseReadingSubtitle: "당신에게 맞는 점사를 선택하세요",
     freeLabel: "무료",
     tryFree: "무료로 보기 (광고시청)",
-    selectReading: "500원에 보기",
+    selectReading: "복채 던지고 점사 보기",
     paymentTitle: "결제하기",
     paymentSubtitle: "안전하게 결제하고 점사를 받으세요",
     payWith: "500원 결제하기",

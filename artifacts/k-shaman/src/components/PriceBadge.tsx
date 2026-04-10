@@ -18,10 +18,21 @@ export function PriceBadge({ lang, isFree }: PriceBadgeProps) {
   const isKo = lang === "ko";
   const formatted = formatPrice(lang);
 
+  if (isKo) {
+    return (
+      <div className="mt-3 space-y-0.5">
+        <div className="flex items-baseline gap-1.5">
+          <span className="text-xl">☕</span>
+          <span className="text-lg font-bold text-white">커피 한 잔 복채</span>
+        </div>
+        <p className="text-xs text-white/40">(₩500 또는 ₩3,000)</p>
+      </div>
+    );
+  }
+
   return (
     <div className="mt-3 inline-flex items-baseline gap-1">
       <span className="text-2xl font-bold text-white">{formatted}</span>
-      {isKo && <span className="text-xs text-white/40">원</span>}
     </div>
   );
 }
