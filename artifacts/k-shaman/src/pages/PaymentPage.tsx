@@ -88,7 +88,7 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
           </div>
           <div className="border-t border-white/10 pt-3 flex items-center justify-between">
             <span className="text-sm text-white/50">{isKo ? `${fullName}님` : fullName}</span>
-            <span className="text-2xl font-bold text-white">{displayedPrice}</span>
+            <span className="text-xs text-white/35 italic">{t.altarEmpty}</span>
           </div>
         </div>
 
