@@ -139,7 +139,7 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-3 w-full py-3 rounded-xl bg-[#003087] hover:bg-[#002070] transition-colors font-bold text-white text-sm shadow"
             >
-              <img src={`${BASE}paypal_logo.jpg`} alt="PayPal" className="h-5 object-contain brightness-0 invert" />
+              <img src={`${BASE}paypal_logo.jpg`} alt="PayPal" className="h-5 object-contain rounded" />
               {t.bokchaePaypalBtn}
             </a>
           </div>
