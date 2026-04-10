@@ -26,29 +26,35 @@ const PRODUCT_COLORS: Record<string, {
     to: "to-yellow-400",
     accent: "text-amber-400",
   },
-  gungap: {
+  compatibility: {
     border: "border-rose-500/50",
     from: "from-rose-600",
     to: "to-pink-500",
     accent: "text-rose-400",
   },
-  jeongsaeng: {
+  luck_cycle: {
     border: "border-indigo-500/50",
     from: "from-indigo-600",
     to: "to-blue-500",
     accent: "text-indigo-400",
   },
-  taegukseon: {
+  date_selection: {
     border: "border-violet-500/50",
     from: "from-violet-600",
     to: "to-purple-500",
     accent: "text-violet-400",
   },
-  dream: {
+  yearly_fortune: {
     border: "border-sky-500/50",
     from: "from-sky-500",
     to: "to-cyan-400",
     accent: "text-sky-400",
+  },
+  ask_anything: {
+    border: "border-fuchsia-500/50",
+    from: "from-fuchsia-600",
+    to: "to-pink-500",
+    accent: "text-fuchsia-400",
   },
 };
 
