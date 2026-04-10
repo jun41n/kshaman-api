@@ -191,8 +191,22 @@ export default function Home() {
               </Button>
             </div>
 
-            <div className="w-28 h-40 md:w-40 md:h-56 shrink-0 rounded overflow-hidden border-2 border-white/20 shadow-2xl rotate-6 hover:rotate-0 transition-transform duration-500">
-              <img src={`${import.meta.env.BASE_URL}images/tarot-back.png`} alt="Tarot" className="w-full h-full object-cover" />
+            <div className="flex items-end gap-3 shrink-0">
+              {[
+                { rotate: '-8deg', h: 148, delay: 0 },
+                { rotate: '2deg',  h: 172, delay: 0.3 },
+                { rotate: '10deg', h: 152, delay: 0.6 },
+              ].map((card, i) => (
+                <motion.div
+                  key={i}
+                  className="rounded-xl overflow-hidden border-2 border-white/20 shadow-2xl"
+                  style={{ width: 80, height: card.h, rotate: card.rotate }}
+                  animate={{ y: [0, -7, 0] }}
+                  transition={{ duration: 2.4 + i * 0.4, repeat: Infinity, ease: 'easeInOut', delay: card.delay }}
+                >
+                  <img src={`${import.meta.env.BASE_URL}images/tarot-back.png`} alt="Tarot" className="w-full h-full object-cover" />
+                </motion.div>
+              ))}
             </div>
           </div>
         </div>
