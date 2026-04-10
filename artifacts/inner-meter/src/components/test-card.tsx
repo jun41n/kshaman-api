@@ -8,30 +8,58 @@ interface TestCardProps {
   test: Test;
 }
 
-const CATEGORY_THEME: Record<string, { card: string; badge: string; catKey: string }> = {
+const CATEGORY_THEME: Record<string, {
+  border: string;
+  gradient: string;
+  badge: string;
+  btn: string;
+  accent: string;
+  iconBg: string;
+  catKey: string;
+}> = {
   '연애 테스트': {
-    card: 'bg-gradient-to-br from-pink-50 to-rose-50/60 dark:from-pink-950/25 dark:to-rose-950/10 border-pink-100/80 dark:border-pink-900/30',
-    badge: 'bg-pink-100 dark:bg-pink-900/40 text-pink-700 dark:text-pink-300',
+    border: 'border-pink-400/40 dark:border-pink-500/50',
+    gradient: 'from-pink-500/10 to-rose-400/5 dark:from-pink-600/20 dark:to-rose-500/5',
+    badge: 'bg-pink-100 dark:bg-pink-500/20 text-pink-700 dark:text-pink-300 border border-pink-200 dark:border-pink-500/30',
+    btn: 'from-pink-500 to-rose-500',
+    accent: 'text-pink-600 dark:text-pink-400',
+    iconBg: 'bg-pink-50 dark:bg-pink-500/20',
     catKey: 'catLove',
   },
   '성격 테스트': {
-    card: 'bg-gradient-to-br from-indigo-50 to-blue-50/60 dark:from-indigo-950/25 dark:to-blue-950/10 border-indigo-100/80 dark:border-indigo-900/30',
-    badge: 'bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300',
+    border: 'border-indigo-400/40 dark:border-indigo-500/50',
+    gradient: 'from-indigo-500/10 to-blue-400/5 dark:from-indigo-600/20 dark:to-blue-500/5',
+    badge: 'bg-indigo-100 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-500/30',
+    btn: 'from-indigo-500 to-blue-500',
+    accent: 'text-indigo-600 dark:text-indigo-400',
+    iconBg: 'bg-indigo-50 dark:bg-indigo-500/20',
     catKey: 'catPersonality',
   },
   '재미 테스트': {
-    card: 'bg-gradient-to-br from-amber-50 to-orange-50/60 dark:from-amber-950/25 dark:to-amber-950/10 border-amber-100/80 dark:border-amber-900/30',
-    badge: 'bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300',
+    border: 'border-orange-400/40 dark:border-orange-500/50',
+    gradient: 'from-orange-500/10 to-amber-400/5 dark:from-orange-600/20 dark:to-amber-500/5',
+    badge: 'bg-orange-100 dark:bg-orange-500/20 text-orange-700 dark:text-orange-300 border border-orange-200 dark:border-orange-500/30',
+    btn: 'from-orange-500 to-amber-400',
+    accent: 'text-orange-600 dark:text-orange-400',
+    iconBg: 'bg-orange-50 dark:bg-orange-500/20',
     catKey: 'catFun',
   },
   'MBTI': {
-    card: 'bg-gradient-to-br from-violet-50 to-purple-50/60 dark:from-violet-950/25 dark:to-purple-950/10 border-violet-100/80 dark:border-violet-900/30',
-    badge: 'bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300',
+    border: 'border-violet-400/40 dark:border-violet-500/50',
+    gradient: 'from-violet-500/10 to-purple-400/5 dark:from-violet-600/20 dark:to-purple-500/5',
+    badge: 'bg-violet-100 dark:bg-violet-500/20 text-violet-700 dark:text-violet-300 border border-violet-200 dark:border-violet-500/30',
+    btn: 'from-violet-500 to-purple-500',
+    accent: 'text-violet-600 dark:text-violet-400',
+    iconBg: 'bg-violet-50 dark:bg-violet-500/20',
     catKey: 'catMbti',
   },
   '운세': {
-    card: 'bg-gradient-to-br from-yellow-50 to-amber-50/60 dark:from-yellow-950/25 dark:to-amber-950/10 border-yellow-100/80 dark:border-yellow-900/30',
-    badge: 'bg-yellow-100 dark:bg-yellow-900/40 text-yellow-700 dark:text-yellow-300',
+    border: 'border-teal-400/40 dark:border-teal-500/50',
+    gradient: 'from-teal-500/10 to-emerald-400/5 dark:from-teal-600/20 dark:to-emerald-500/5',
+    badge: 'bg-teal-100 dark:bg-teal-500/20 text-teal-700 dark:text-teal-300 border border-teal-200 dark:border-teal-500/30',
+    btn: 'from-teal-500 to-emerald-500',
+    accent: 'text-teal-600 dark:text-teal-400',
+    iconBg: 'bg-teal-50 dark:bg-teal-500/20',
     catKey: 'catFortune',
   },
 };
@@ -67,9 +95,12 @@ interface CardBodyProps {
 function CardBody({ test, theme, catLabel, count, title, description, estimatedTime, startLabel }: CardBodyProps) {
   const { t } = useTranslation();
   return (
-    <div className={`h-full rounded-[1.5rem] p-5 md:p-6 flex flex-col border transition-all duration-250 ease-out hover:shadow-xl hover:-translate-y-1 hover:shadow-primary/8 ${theme?.card ?? 'bg-card border-border/50'}`}>
-      <div className="flex items-start justify-between mb-4">
-        <div className="w-14 h-14 rounded-2xl bg-white dark:bg-black/20 shadow-sm flex items-center justify-center text-[1.8rem] group-hover:scale-110 transition-transform duration-250 shrink-0">
+    <div className={`relative h-full rounded-[1.5rem] p-5 md:p-6 flex flex-col border overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 bg-white dark:bg-white/5 backdrop-blur-sm ${theme?.border ?? 'border-border/50'}`}>
+      {/* Gradient overlay */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${theme?.gradient ?? 'from-transparent to-transparent'} pointer-events-none`} />
+
+      <div className="relative flex items-start justify-between mb-4">
+        <div className={`w-14 h-14 rounded-2xl shadow-sm flex items-center justify-center text-[1.8rem] group-hover:scale-110 transition-transform duration-250 shrink-0 ${theme?.iconBg ?? 'bg-muted'}`}>
           {test.emoji}
         </div>
         <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full ${theme?.badge ?? 'bg-muted text-muted-foreground'}`}>
@@ -77,27 +108,27 @@ function CardBody({ test, theme, catLabel, count, title, description, estimatedT
         </span>
       </div>
 
-      <h3 className="text-base md:text-[1.05rem] font-bold text-foreground mb-1 line-clamp-2 leading-snug">
+      <h3 className="relative text-base md:text-[1.05rem] font-bold text-foreground mb-1 line-clamp-2 leading-snug">
         {title}
       </h3>
 
       {count && (
-        <p className="text-[11px] text-muted-foreground/65 mb-2 font-medium">
+        <p className="relative text-[11px] text-muted-foreground/65 mb-2 font-medium">
           👥 {count} {t('card.participants')}
         </p>
       )}
 
-      <p className="text-muted-foreground text-[0.8rem] flex-grow line-clamp-2 mb-4 leading-relaxed">
+      <p className="relative text-muted-foreground text-[0.8rem] flex-grow line-clamp-2 mb-4 leading-relaxed">
         {description}
       </p>
 
-      <div className="flex items-center justify-between pt-3 border-t border-black/[0.06] dark:border-white/[0.06] mt-auto">
-        <div className="flex items-center text-[11px] text-muted-foreground font-medium gap-1">
+      <div className="relative mt-auto">
+        <div className="flex items-center gap-1 text-[11px] text-muted-foreground font-medium mb-3">
           <Clock className="w-3 h-3 opacity-60" />
           {estimatedTime}
         </div>
-        <div className="flex items-center text-[0.8rem] font-bold text-primary group-hover:translate-x-1 transition-transform duration-200">
-          {startLabel} <ChevronRight className="w-3.5 h-3.5 ml-0.5" />
+        <div className={`w-full py-2.5 rounded-xl bg-gradient-to-r ${theme?.btn ?? 'from-primary to-primary'} text-white text-sm font-bold text-center flex items-center justify-center gap-1 shadow-md group-hover:shadow-lg transition-shadow`}>
+          {startLabel} <ChevronRight className="w-3.5 h-3.5" />
         </div>
       </div>
     </div>
