@@ -94,7 +94,7 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
 
         {/* Offering title */}
         <div className="text-center">
-          <h3 className="text-base font-bold text-violet-300">{t.bokchaeTitle}</h3>
+          <h3 className="text-[2rem] font-bold text-violet-300">{t.bokchaeTitle}</h3>
           <p className="text-sm text-white/50 mt-1 leading-relaxed whitespace-pre-line">{t.bokchaeDesc}</p>
         </div>
 
