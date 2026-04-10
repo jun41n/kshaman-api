@@ -157,7 +157,7 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
 
         {/* Disclaimer */}
         <div className="rounded-xl border border-violet-500/20 bg-violet-900/10 px-4 py-3">
-          <p className="text-xs text-violet-200/70 leading-relaxed text-center">
+          <p className="text-xs text-violet-200/70 leading-relaxed text-center whitespace-pre-line">
             {t.bokchaeDisclaimer}
           </p>
         </div>

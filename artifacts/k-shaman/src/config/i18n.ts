@@ -102,7 +102,7 @@ export const T: Record<Language, Translations> = {
     bokchaeConfirm: "복채 던지기 완료! 점사 보기 🔮",
     bokchaeLoading: "보살님이 점궤를 읽는 중입니다...",
     openBokchae: "복채 안내 보기",
-    bokchaeDisclaimer: "본 서비스는 후원금(복채)으로 운영되며, 입금 확인 후 즉시 점궤 풀이가 시작됩니다.",
+    bokchaeDisclaimer: "본 서비스는 후원금(복채)으로 운영되며,\n입금 확인 후 즉시 점궤 풀이가 시작됩니다.",
   },
   en: {
     selectGuide: "Who will read your destiny?",
