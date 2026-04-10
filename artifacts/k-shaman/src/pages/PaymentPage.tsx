@@ -72,7 +72,7 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
   }
 
   return (
-    <div className="text-white pb-28">
+    <div className="text-white pb-36">
       <SiteNav onBack={onBack} backLabel={t.back} />
 
       <div className="px-4 pt-6 max-w-md mx-auto space-y-5">
@@ -98,68 +98,62 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
           <p className="text-sm text-white/50 mt-1 leading-relaxed whitespace-pre-line">{t.bokchaeDesc}</p>
         </div>
 
-        {isKo ? (
-          /* ── Korean: Toss ── */
-          <div className="space-y-4">
-            {/* Toss logo + account */}
-            <div className="bg-white/5 rounded-2xl p-4 border border-white/10">
-              <div className="flex items-center gap-3 mb-3">
-                <img src={`${BASE}toss_logo.jpg`} alt="Toss" className="h-7 object-contain rounded" />
+        {/* ── Toss (항상 표시, 한글 고정) ── */}
+        <div className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
+          <div className="px-4 pt-4 pb-2 border-b border-white/10">
+            <img src={`${BASE}toss_logo.jpg`} alt="Toss" className="h-6 object-contain rounded mb-2" />
+            <div className="flex items-center justify-between gap-3">
+              <div>
+                <p className="text-[11px] text-white/40">토스뱅크</p>
+                <span className="text-sm font-mono text-white font-semibold">1001-8318-9198</span>
+                <span className="text-xs text-white/50 ml-2">(최영준)</span>
               </div>
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <p className="text-[11px] text-white/40 mb-0.5">토스뱅크</p>
-                  <span className="text-sm font-mono text-white font-semibold">1001-8318-9198</span>
-                  <span className="text-xs text-white/50 ml-2">(최영준)</span>
-                </div>
-                <button
-                  onClick={handleCopy}
-                  className={`shrink-0 text-xs px-3 py-1.5 rounded-lg font-semibold transition-all ${
-                    copied
-                      ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
-                      : "bg-white/10 text-white/70 border border-white/20 hover:bg-white/20"
-                  }`}
-                >
-                  {copied ? t.bokchaeCopied : t.bokchaeCopy}
-                </button>
-              </div>
-            </div>
-
-            {/* Toss QR */}
-            <div className="flex flex-col items-center gap-2">
-              <p className="text-xs text-white/40">QR코드로 바로 송금</p>
-              <img
-                src={`${BASE}toss_qr.jpg`}
-                alt="Toss QR Code"
-                className="w-52 h-52 rounded-2xl border border-white/10 shadow-lg"
-              />
+              <button
+                onClick={handleCopy}
+                className={`shrink-0 text-xs px-3 py-1.5 rounded-lg font-semibold transition-all ${
+                  copied
+                    ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
+                    : "bg-white/10 text-white/70 border border-white/20 hover:bg-white/20"
+                }`}
+              >
+                {copied ? t.bokchaeCopied : t.bokchaeCopy}
+              </button>
             </div>
           </div>
-        ) : (
-          /* ── Global: PayPal ── */
-          <div className="space-y-4">
-            {/* PayPal button */}
+          <div className="flex flex-col items-center py-4 gap-1">
+            <p className="text-xs text-white/40">QR코드로 바로 송금</p>
+            <img
+              src={`${BASE}toss_qr.jpg`}
+              alt="Toss QR Code"
+              className="w-44 h-44 rounded-xl border border-white/10"
+            />
+          </div>
+        </div>
+
+        {/* ── PayPal (항상 표시, 텍스트는 다국어) ── */}
+        <div className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
+          <div className="px-4 pt-4 pb-2 border-b border-white/10">
             <a
               href="https://paypal.me/YoungjunChoi310/3usd"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 w-full py-4 rounded-2xl bg-[#003087] hover:bg-[#002070] transition-colors font-bold text-white text-sm shadow-lg"
+              className="flex items-center justify-center gap-3 w-full py-3 rounded-xl bg-[#003087] hover:bg-[#002070] transition-colors font-bold text-white text-sm shadow"
             >
               <img src={`${BASE}paypal_logo.jpg`} alt="PayPal" className="h-5 object-contain brightness-0 invert" />
               {t.bokchaePaypalBtn}
             </a>
-
-            {/* PayPal QR */}
-            <div className="flex flex-col items-center gap-2">
-              <p className="text-xs text-white/40">Scan QR to send via PayPal</p>
-              <img
-                src={`${BASE}paypal_qr.jpg`}
-                alt="PayPal QR Code"
-                className="w-52 h-52 rounded-2xl border border-white/10 shadow-lg"
-              />
-            </div>
           </div>
-        )}
+          <div className="flex flex-col items-center py-4 gap-1">
+            <p className="text-xs text-white/40">
+              {isKo ? "QR코드로 PayPal 바로 연결" : "Scan QR to open PayPal"}
+            </p>
+            <img
+              src={`${BASE}paypal_qr.jpg`}
+              alt="PayPal QR Code"
+              className="w-44 h-44 rounded-xl border border-white/10"
+            />
+          </div>
+        </div>
 
         {/* Disclaimer */}
         <div className="rounded-xl border border-violet-500/20 bg-violet-900/10 px-4 py-3">

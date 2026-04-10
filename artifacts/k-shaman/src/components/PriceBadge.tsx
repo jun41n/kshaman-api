@@ -25,7 +25,7 @@ export function PriceBadge({ lang, isFree }: PriceBadgeProps) {
           <span className="text-xl">☕</span>
           <span className="text-lg font-bold text-white">커피 한 잔 복채</span>
         </div>
-        <p className="text-xs text-white/40">(₩500 또는 ₩3,000)</p>
+        <p className="text-xs text-white/40">(₩3,000)</p>
       </div>
     );
   }
