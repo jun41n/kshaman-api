@@ -191,22 +191,25 @@ export default function Home() {
               </Button>
             </div>
 
-            <div className="flex items-end gap-3 shrink-0">
-              {[
-                { rotate: '-8deg', h: 148, delay: 0 },
-                { rotate: '2deg',  h: 172, delay: 0.3 },
-                { rotate: '10deg', h: 152, delay: 0.6 },
-              ].map((card, i) => (
-                <motion.div
-                  key={i}
-                  className="rounded-xl overflow-hidden border-2 border-white/20 shadow-2xl"
-                  style={{ width: 80, height: card.h, rotate: card.rotate }}
-                  animate={{ y: [0, -7, 0] }}
-                  transition={{ duration: 2.4 + i * 0.4, repeat: Infinity, ease: 'easeInOut', delay: card.delay }}
-                >
-                  <img src={`${import.meta.env.BASE_URL}images/tarot-back.png`} alt="Tarot" className="w-full h-full object-cover" />
-                </motion.div>
-              ))}
+            <div className="relative shrink-0" style={{ width: 110, height: 160 }}>
+              {/* 뒤 카드 */}
+              <motion.div
+                className="absolute inset-0 rounded overflow-hidden border-2 border-white/20 shadow-2xl"
+                style={{ rotate: '10deg', transformOrigin: 'bottom center' }}
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 2.8, repeat: Infinity, ease: 'easeInOut', delay: 0.35 }}
+              >
+                <img src={`${import.meta.env.BASE_URL}images/tarot-back.png`} alt="Tarot" className="w-full h-full object-cover" />
+              </motion.div>
+              {/* 앞 카드 */}
+              <motion.div
+                className="absolute inset-0 rounded overflow-hidden border-2 border-white/20 shadow-2xl"
+                style={{ rotate: '-3deg', transformOrigin: 'bottom center' }}
+                animate={{ y: [0, -6, 0] }}
+                transition={{ duration: 2.4, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                <img src={`${import.meta.env.BASE_URL}images/tarot-back.png`} alt="Tarot" className="w-full h-full object-cover" />
+              </motion.div>
             </div>
           </div>
         </div>
