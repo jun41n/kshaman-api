@@ -1,7 +1,7 @@
 import type { Language } from "../types";
 
-export const PRICE_KRW = 500;
-export const PRICE_USD = 0.49;
+export const PRICE_KRW = 3000;
+export const PRICE_USD = 1.99;
 
 export function isKoreanLocale(lang: Language): boolean {
   return lang === "ko";

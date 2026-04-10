@@ -20,8 +20,8 @@ export function PriceBadge({ lang, isFree }: PriceBadgeProps) {
 
   if (isKo) {
     return (
-      <div className="mt-3 space-y-0.5">
-        <div className="flex items-baseline gap-1.5">
+      <div className="mt-3 space-y-0.5 text-center">
+        <div className="flex items-baseline justify-center gap-1.5">
           <span className="text-xl">☕</span>
           <span className="text-lg font-bold text-white">커피 한 잔 복채</span>
         </div>
