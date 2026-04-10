@@ -100,17 +100,17 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
 
         {/* ── Toss (항상 표시, 한글 고정) ── */}
         <div className="rounded-2xl border border-white/10 bg-white/5 overflow-hidden">
-          <div className="px-4 pt-4 pb-2 border-b border-white/10">
-            <img src={`${BASE}toss_logo.jpg`} alt="Toss" className="h-6 object-contain rounded mb-2" />
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <p className="text-[11px] text-white/40">토스뱅크</p>
-                <span className="text-sm font-mono text-white font-semibold">1001-8318-9198</span>
-                <span className="text-xs text-white/50 ml-2">(최영준)</span>
-              </div>
+          <div className="px-3 py-3 border-b border-white/10">
+            {/* 한 줄: 토스로고 | 🇰🇷 | 토스뱅크 | 계좌번호 | 이름 | 복사버튼 */}
+            <div className="flex items-center gap-2 flex-wrap">
+              <img src={`${BASE}toss_logo.jpg`} alt="Toss" className="h-5 object-contain rounded shrink-0" />
+              <span className="text-base leading-none">🇰🇷</span>
+              <span className="text-[11px] text-white/40 shrink-0">토스뱅크</span>
+              <span className="text-sm font-mono text-white font-bold tracking-wide shrink-0">1001-8318-9198</span>
+              <span className="text-xs text-white/50 shrink-0">최영준</span>
               <button
                 onClick={handleCopy}
-                className={`shrink-0 text-xs px-3 py-1.5 rounded-lg font-semibold transition-all ${
+                className={`ml-auto shrink-0 text-xs px-3 py-1.5 rounded-lg font-semibold transition-all ${
                   copied
                     ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
                     : "bg-white/10 text-white/70 border border-white/20 hover:bg-white/20"
