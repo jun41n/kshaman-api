@@ -130,7 +130,7 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
               </div>
             </div>
             <p className={`text-xs pl-3 ${accentColor} animate-pulse`}>
-              {isKo ? "신령이 점사를 보고 있어요..." : "Your spirit guide is reading..."}
+              {T[lang].bokchaeLoading}
             </p>
           </div>
         )}

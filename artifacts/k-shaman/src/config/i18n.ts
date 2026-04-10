@@ -43,7 +43,16 @@ type TranslationKey =
   | "hourUnknown"
   | "processingPayment"
   | "securePayment"
-  | "chatWelcome";
+  | "chatWelcome"
+  | "bokchaeTitle"
+  | "bokchaeDesc"
+  | "bokchaeAccount"
+  | "bokchaeCopy"
+  | "bokchaeCopied"
+  | "bokchaePaypalBtn"
+  | "bokchaeConfirm"
+  | "bokchaeLoading"
+  | "openBokchae";
 
 type Translations = Record<TranslationKey, string>;
 
@@ -83,6 +92,15 @@ export const T: Record<Language, Translations> = {
     processingPayment: "처리 중...",
     securePayment: "SSL 256비트 암호화 — 안전한 결제",
     chatWelcome: "보살이 네 삶에서 궁금한 걸 물어봐. 연애, 돈, 건강, 직장… 무엇이든 솔직하게 물어봐요. 🔮",
+    bokchaeTitle: "🙏 복채를 올려주세요",
+    bokchaeDesc: "점사를 보기 전에 신령에게 복채를 올려주세요.\n보내신 만큼 운이 트인다고 하지요.\n입금 확인 후 아래 버튼을 눌러주세요.",
+    bokchaeAccount: "토스뱅크 1001-8318-9198 (최영준)",
+    bokchaeCopy: "복사",
+    bokchaeCopied: "복사됨!",
+    bokchaePaypalBtn: "PayPal로 복채 보내기",
+    bokchaeConfirm: "복채 던지기 완료! 점사 보기 🔮",
+    bokchaeLoading: "보살님이 점궤를 읽는 중입니다...",
+    openBokchae: "복채 안내 보기",
   },
   en: {
     selectGuide: "Who will read your destiny?",
@@ -119,6 +137,15 @@ export const T: Record<Language, Translations> = {
     processingPayment: "Processing...",
     securePayment: "SSL 256-bit encrypted — secure payment",
     chatWelcome: "Ask me anything about your life — love, money, health, career... I'm here to guide you. 🔮",
+    bokchaeTitle: "🙏 Spirit Offering",
+    bokchaeDesc: "Before your reading, offer a voluntary tip to the spirit guide.\nThe more generously you give, the more fortune opens up.\nAfter sending, tap the button below.",
+    bokchaeAccount: "Toss Bank 1001-8318-9198 (Choi Youngjun)",
+    bokchaeCopy: "Copy",
+    bokchaeCopied: "Copied!",
+    bokchaePaypalBtn: "Send Offering via PayPal",
+    bokchaeConfirm: "Offering Sent! See My Reading 🔮",
+    bokchaeLoading: "The spirit guide is reading the oracle...",
+    openBokchae: "View Offering Guide",
   },
   ja: {
     selectGuide: "誰に占ってもらいますか？",
@@ -155,6 +182,15 @@ export const T: Record<Language, Translations> = {
     processingPayment: "処理中...",
     securePayment: "SSL 256ビット暗号化 — 安全なお支払い",
     chatWelcome: "あなたの人生について何でも聞いてください。恋愛、お金、健康、仕事… 何でも聞きましょう。🔮",
+    bokchaeTitle: "🙏 お布施（志納）",
+    bokchaeDesc: "占いの前に、霊に志納をお供えください。\n贈った分だけ運が開けると言われています。\n送金後、下のボタンを押してください。",
+    bokchaeAccount: "Toss Bank 1001-8318-9198 (チェ・ヨンジュン)",
+    bokchaeCopy: "コピー",
+    bokchaeCopied: "コピー済！",
+    bokchaePaypalBtn: "PayPalでお布施を送る",
+    bokchaeConfirm: "志納完了！占いを見る 🔮",
+    bokchaeLoading: "神霊が神託を読んでいます...",
+    openBokchae: "志納のご案内",
   },
   es: {
     selectGuide: "¿Quién leerá tu destino?",
@@ -191,6 +227,15 @@ export const T: Record<Language, Translations> = {
     processingPayment: "Procesando...",
     securePayment: "SSL cifrado 256 bits — pago seguro",
     chatWelcome: "Pregúntame lo que quieras sobre tu vida — amor, dinero, salud, trabajo… Estoy aquí para guiarte. 🔮",
+    bokchaeTitle: "🙏 Ofrenda Espiritual",
+    bokchaeDesc: "Antes de tu lectura, ofrece una propina voluntaria al guía espiritual.\nCuanto más generosamente das, más se abre la fortuna.\nDespués de enviar, presiona el botón de abajo.",
+    bokchaeAccount: "Toss Bank 1001-8318-9198 (Choi Youngjun)",
+    bokchaeCopy: "Copiar",
+    bokchaeCopied: "¡Copiado!",
+    bokchaePaypalBtn: "Enviar ofrenda por PayPal",
+    bokchaeConfirm: "¡Ofrenda enviada! Ver mi lectura 🔮",
+    bokchaeLoading: "El guía espiritual está leyendo el oráculo...",
+    openBokchae: "Ver guía de ofrenda",
   },
   pt: {
     selectGuide: "Quem vai ler seu destino?",
@@ -227,6 +272,15 @@ export const T: Record<Language, Translations> = {
     processingPayment: "Processando...",
     securePayment: "SSL criptografado 256 bits — pagamento seguro",
     chatWelcome: "Pergunte-me o que quiser sobre sua vida — amor, dinheiro, saúde, trabalho… Estou aqui para guiar você. 🔮",
+    bokchaeTitle: "🙏 Oferenda Espiritual",
+    bokchaeDesc: "Antes da sua leitura, ofereça uma gorjeta voluntária ao guia espiritual.\nQuanto mais generosamente você dá, mais a fortuna se abre.\nApós enviar, pressione o botão abaixo.",
+    bokchaeAccount: "Toss Bank 1001-8318-9198 (Choi Youngjun)",
+    bokchaeCopy: "Copiar",
+    bokchaeCopied: "Copiado!",
+    bokchaePaypalBtn: "Enviar oferenda pelo PayPal",
+    bokchaeConfirm: "Oferenda enviada! Ver minha leitura 🔮",
+    bokchaeLoading: "O guia espiritual está lendo o oráculo...",
+    openBokchae: "Ver guia de oferenda",
   },
   fr: {
     selectGuide: "Qui lira votre destin ?",
@@ -263,5 +317,14 @@ export const T: Record<Language, Translations> = {
     processingPayment: "Traitement...",
     securePayment: "SSL chiffré 256 bits — paiement sécurisé",
     chatWelcome: "Demandez-moi ce que vous voulez sur votre vie — amour, argent, santé, travail… Je suis là pour vous guider. 🔮",
+    bokchaeTitle: "🙏 Offrande Spirituelle",
+    bokchaeDesc: "Avant votre lecture, offrez un pourboire volontaire au guide spirituel.\nPlus vous donnez généreusement, plus la fortune s'ouvre.\nAprès avoir envoyé, appuyez sur le bouton ci-dessous.",
+    bokchaeAccount: "Toss Bank 1001-8318-9198 (Choi Youngjun)",
+    bokchaeCopy: "Copier",
+    bokchaeCopied: "Copié !",
+    bokchaePaypalBtn: "Envoyer l'offrande via PayPal",
+    bokchaeConfirm: "Offrande envoyée ! Voir ma lecture 🔮",
+    bokchaeLoading: "Le guide spirituel lit l'oracle...",
+    openBokchae: "Voir le guide d'offrande",
   },
 };

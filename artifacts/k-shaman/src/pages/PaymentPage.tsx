@@ -4,24 +4,12 @@ import { useApp } from "../store/appStore";
 import { formatPrice, FREE_LABEL } from "../config/pricing";
 import { SiteNav } from "../components/SiteNav";
 import { AdOverlay } from "../components/AdOverlay";
+import { BokchaeModal } from "../components/BokchaeModal";
 
 interface Props {
   onSuccess: () => void;
   onBack: () => void;
 }
-
-const KO_PAYMENT_METHODS = [
-  { id: "kakao", label: "카카오페이", icon: "💛", available: true },
-  { id: "toss", label: "토스페이", icon: "💙", available: true },
-  { id: "card", label: "신용카드", icon: "💳", available: true },
-];
-
-const INTL_PAYMENT_METHODS = [
-  { id: "card", label: "Credit Card", icon: "💳", available: true },
-  { id: "paypal", label: "PayPal", icon: "🅿️", available: true },
-  { id: "apple", label: "Apple Pay", icon: "🍎", available: false },
-  { id: "google", label: "Google Pay", icon: "🟢", available: false },
-];
 
 export function PaymentPage({ onSuccess, onBack }: Props) {
   const { state, selectedPersona, selectedProduct } = useApp();
@@ -30,9 +18,8 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
   const user = state.userInfo;
   const isKo = lang === "ko";
 
-  const [selected, setSelected] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
   const [showAd, setShowAd] = useState(false);
+  const [showBokchae, setShowBokchae] = useState(false);
 
   const fromColor = selectedPersona?.colorFrom ?? "from-violet-600";
   const toColor = selectedPersona?.colorTo ?? "to-indigo-500";
@@ -46,24 +33,24 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
     ? `${user?.lastName ?? ""}${user?.firstName ?? ""}`
     : `${user?.firstName ?? ""} ${user?.lastName ?? ""}`.trim();
 
-  const paymentMethods = isKo ? KO_PAYMENT_METHODS : INTL_PAYMENT_METHODS;
-
   const handlePay = () => {
     if (isFree) {
       setShowAd(true);
-      return;
+    } else {
+      setShowBokchae(true);
     }
-    if (!selected) return;
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      onSuccess();
-    }, 1800);
   };
 
   return (
     <div className="text-white pb-28">
       {showAd && <AdOverlay onClose={() => { setShowAd(false); onSuccess(); }} />}
+      {showBokchae && (
+        <BokchaeModal
+          onConfirm={() => { setShowBokchae(false); onSuccess(); }}
+          onClose={() => setShowBokchae(false)}
+        />
+      )}
+
       <SiteNav onBack={onBack} backLabel={t.back} />
 
       <div className="px-4 pt-6 max-w-md mx-auto space-y-5">
@@ -86,63 +73,32 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
           </div>
         </div>
 
-        {/* Payment methods — skip if free */}
+        {/* Bokchae info card — for paid products */}
         {!isFree && (
-          <div>
-            <p className="text-xs text-white/50 mb-3">{t.payWith}</p>
-            <div className="grid grid-cols-2 gap-3">
-              {paymentMethods.map((method) => (
-                <button
-                  key={method.id}
-                  onClick={() => method.available && setSelected(method.id)}
-                  disabled={!method.available}
-                  className={`relative py-4 rounded-xl border text-sm font-medium transition-all ${
-                    !method.available
-                      ? "opacity-40 cursor-not-allowed border-white/5 bg-white/5"
-                      : selected === method.id
-                      ? `bg-gradient-to-br ${fromColor} ${toColor} border-transparent text-white`
-                      : "bg-white/5 border-white/10 text-white/70 hover:bg-white/10"
-                  }`}
-                >
-                  <span className="text-2xl block mb-1">{method.icon}</span>
-                  {method.label}
-                  {!method.available && (
-                    <span className="absolute top-1.5 right-1.5 text-[9px] text-white/30 bg-white/5 rounded px-1">
-                      {t.comingSoon}
-                    </span>
-                  )}
-                </button>
-              ))}
-            </div>
+          <div className="rounded-2xl border border-violet-500/20 bg-violet-900/10 p-5 space-y-2">
+            <p className="text-sm font-semibold text-violet-300">
+              {isKo ? "🙏 복채(자발적 후원)로 운영됩니다" : "🙏 This service runs on voluntary offerings"}
+            </p>
+            <p className="text-xs text-white/50 leading-relaxed">
+              {isKo
+                ? "본 서비스는 개인 프로젝트로 운영되며, 결제 정보를 직접 저장하지 않습니다. 복채를 올려주시면 신령의 기운이 더욱 강해집니다."
+                : "This is an independent project. No payment data is stored. Your voluntary offering strengthens the spirit's energy."}
+            </p>
           </div>
         )}
-
-        <div className="text-center text-xs text-white/30 flex items-center justify-center gap-1">
-          🔒 {t.securePayment}
-        </div>
       </div>
 
       {/* Bottom CTA */}
-      <div className="px-4 pb-8 pt-2 max-w-md mx-auto w-full">
+      <div className="fixed bottom-0 left-0 right-0 px-4 pb-8 pt-4 bg-gradient-to-t from-gray-950 via-gray-950/95 to-transparent max-w-md mx-auto w-full">
         <button
           onClick={handlePay}
-          disabled={(!isFree && !selected) || loading}
-          className={`w-full flex items-center justify-center gap-2 py-4 rounded-2xl font-bold text-white text-lg shadow-2xl transition-all duration-200 ${
-            (!isFree && !selected) || loading
-              ? "bg-gray-700 cursor-not-allowed opacity-50"
-              : isFree
-              ? "bg-emerald-600 active:scale-95"
-              : `bg-gradient-to-r ${fromColor} ${toColor} active:scale-95`
+          className={`w-full flex items-center justify-center gap-2 py-4 rounded-2xl font-bold text-white text-lg shadow-2xl transition-all duration-200 active:scale-95 ${
+            isFree
+              ? "bg-emerald-600 hover:bg-emerald-500"
+              : `bg-gradient-to-r ${fromColor} ${toColor}`
           }`}
         >
-          {loading ? (
-            <span className="flex items-center gap-2">
-              <span className="animate-spin text-xl">🔮</span>
-              {t.processingPayment}
-            </span>
-          ) : (
-            <>🔮 {isFree ? t.tryFree : t.payWith}</>
-          )}
+          {isFree ? <>🎁 {t.tryFree}</> : <>🔮 {t.openBokchae}</>}
         </button>
       </div>
     </div>
