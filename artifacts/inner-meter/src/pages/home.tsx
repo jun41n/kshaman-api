@@ -283,23 +283,23 @@ export default function Home() {
             </div>
 
             {/* Shaman visual — floating persona cards */}
-            <div className="flex gap-2.5 shrink-0 items-end justify-center">
+            <div className="flex gap-3 shrink-0 items-end justify-center self-end">
               {[
-                { emoji: '🌸', label: '애기보살', h: 80 },
-                { emoji: '🌙', label: '선녀보살', h: 96 },
-                { emoji: '⚡', label: '천신도령', h: 110 },
-                { emoji: '🔮', label: '무속인', h: 94 },
-                { emoji: '📿', label: '법사', h: 78 },
+                { emoji: '🌸', label: '애기보살', h: 104 },
+                { emoji: '🌙', label: '선녀보살', h: 125 },
+                { emoji: '⚡', label: '천신도령', h: 143 },
+                { emoji: '🔮', label: '무속인', h: 122 },
+                { emoji: '📿', label: '법사', h: 101 },
               ].map((card, i) => (
                 <motion.div
                   key={i}
                   className="flex flex-col items-center justify-end rounded-2xl border border-amber-400/15 bg-white/[0.04] backdrop-blur-sm shadow-xl"
-                  style={{ width: 46, height: card.h }}
+                  style={{ width: 60, height: card.h }}
                   animate={{ y: [0, -5, 0] }}
                   transition={{ duration: 2.2 + i * 0.35, repeat: Infinity, ease: 'easeInOut', delay: i * 0.18 }}
                 >
-                  <span className="pb-1.5 text-[1.4rem]">{card.emoji}</span>
-                  <span className="pb-2 text-[8px] text-amber-300/50 font-medium leading-none">{card.label}</span>
+                  <span className="pb-2 text-[1.8rem]">{card.emoji}</span>
+                  <span className="pb-2.5 text-[10px] text-amber-300/50 font-medium leading-none">{card.label}</span>
                 </motion.div>
               ))}
             </div>
