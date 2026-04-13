@@ -98,7 +98,6 @@ export default function PetResult() {
       await saveResultCardImage(
         cardRef.current,
         `pet-result-${resultKey}`,
-        () => toast({ title: t('result.iosSaveHint'), description: t('result.iosSaveHintDesc') }),
       );
       setSaved(true);
       setTimeout(() => setSaved(false), 2800);

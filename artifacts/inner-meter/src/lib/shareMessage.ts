@@ -36,10 +36,27 @@ function isIos(): boolean {
   return /iPhone|iPad|iPod/i.test(navigator.userAgent);
 }
 
+async function blobToDataUrl(blob: Blob): Promise<string> {
+  return new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+}
+
+function downloadViaAnchor(href: string, filename: string) {
+  const a = document.createElement('a');
+  a.href = href;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+}
+
 export async function saveResultCardImage(
   el: HTMLDivElement,
   filename: string,
-  onIosFallback?: () => void,
 ): Promise<void> {
   const blob = await generateResultCardImage(el);
   if (!blob) throw new Error('Image capture failed');
@@ -47,57 +64,21 @@ export async function saveResultCardImage(
   const file = new File([blob], `${filename}.png`, { type: 'image/png' });
 
   if (isIos()) {
-    const canShareFile =
-      typeof navigator.canShare === 'function' && navigator.canShare({ files: [file] });
-
-    if (canShareFile) {
-      await navigator.share({ files: [file] });
-      return;
+    if (typeof navigator.share === 'function') {
+      try {
+        await navigator.share({ files: [file] });
+        return;
+      } catch (err) {
+        if (err instanceof Error && err.name === 'AbortError') return;
+      }
     }
-
-    onIosFallback?.();
-
-    const dataUrl = await new Promise<string>((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = reject;
-      reader.readAsDataURL(blob);
-    });
-
-    const overlay = document.createElement('div');
-    overlay.style.cssText =
-      'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.85);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;';
-
-    const hint = document.createElement('p');
-    hint.textContent = '이미지를 길게 눌러 저장하세요';
-    hint.style.cssText = 'color:#fff;font-size:15px;font-weight:600;text-align:center;margin:0;';
-
-    const img = document.createElement('img');
-    img.src = dataUrl;
-    img.style.cssText =
-      'max-width:100%;max-height:65vh;border-radius:16px;object-fit:contain;';
-
-    const closeBtn = document.createElement('button');
-    closeBtn.textContent = '닫기';
-    closeBtn.style.cssText =
-      'background:rgba(255,255,255,0.15);color:#fff;border:none;border-radius:12px;padding:10px 32px;font-size:15px;font-weight:600;margin-top:4px;cursor:pointer;';
-    closeBtn.onclick = () => document.body.removeChild(overlay);
-    overlay.onclick = (e) => { if (e.target === overlay) document.body.removeChild(overlay); };
-
-    overlay.appendChild(hint);
-    overlay.appendChild(img);
-    overlay.appendChild(closeBtn);
-    document.body.appendChild(overlay);
+    const dataUrl = await blobToDataUrl(blob);
+    downloadViaAnchor(dataUrl, `${filename}.png`);
     return;
   }
 
   const objectUrl = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = objectUrl;
-  a.download = `${filename}.png`;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  downloadViaAnchor(objectUrl, `${filename}.png`);
   setTimeout(() => URL.revokeObjectURL(objectUrl), 5000);
 }
 

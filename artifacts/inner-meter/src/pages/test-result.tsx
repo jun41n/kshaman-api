@@ -140,7 +140,6 @@ export default function TestResult() {
       await saveResultCardImage(
         cardRef.current,
         `mytesttype-${result.key}`,
-        () => toast({ title: t('result.iosSaveHint'), description: t('result.iosSaveHintDesc') }),
       );
       setSaved(true);
       setTimeout(() => setSaved(false), 2800);
