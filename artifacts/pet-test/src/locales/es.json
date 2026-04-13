@@ -22,10 +22,10 @@
   },
   "home": {
     "title": "¿Cuál es la personalidad\nde tu mascota?",
-    "subtitle": "Descubre la naturaleza oculta\nde tu compañero en 15 preguntas",
+    "subtitle": "¡Descubre la personalidad oculta de tu mascota!\nPerro: 12 preguntas · Gato: 15 preguntas",
     "dog": "Test para perros",
     "cat": "Test para gatos",
-    "footer": "15 preguntas · aprox. 3 min"
+    "footer": "Perro: 12 preguntas · Gato: 15 preguntas"
   },
   "quiz": {
     "dogLabel": "Perro",
