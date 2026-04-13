@@ -427,64 +427,88 @@
   },
   "dog": {
     "q1": {
-      "text": "When meeting another dog in the park?",
-      "a0": "I rush over first to say hi",
-      "a1": "I carefully watch from beside my owner"
+      "text": "Quand je rencontre un chien pour la première fois au parc?",
+      "a0": "Je fonce la queue en l'air pour le saluer en premier",
+      "a1": "Je m'approche avec enthousiasme mais je jette un coup d'œil à mon maître",
+      "a2": "Je me cache derrière mon maître et pointe juste mon museau",
+      "a3": "Je fais semblant de ne pas m'y intéresser et pars renifler de mon côté"
     },
     "q2": {
-      "text": "When a stranger visits home?",
-      "a0": "I run over wagging my tail right away",
-      "a1": "I hide in a corner and watch"
+      "text": "Quand un inconnu arrive à la maison?",
+      "a0": "Je cours, saute dessus et le lèche immédiatement",
+      "a1": "J'aboie un peu puis m'approche rapidement pour saluer",
+      "a2": "Je regarde un moment puis m'approche doucement en reniflant",
+      "a3": "Je reste dans mon coin et reste méfiant"
     },
     "q3": {
-      "text": "When my owner comes home?",
-      "a0": "I go wild with excitement all over",
-      "a1": "Happy, but I just quietly wag my tail"
+      "text": "Quand mon maître rentre après une longue absence?",
+      "a0": "J'aboie, je cours et l'accueille avec tout mon corps",
+      "a1": "Je remue fortement la queue et saute pour dire bonjour",
+      "a2": "Je m'approche calmement et remue doucement la queue",
+      "a3": "Je lève la tête de là où je dormais et l'accueille des yeux"
     },
     "q4": {
-      "text": "When going for a walk?",
-      "a0": "I like the familiar route we always take",
-      "a1": "I want to explore a new route today"
+      "text": "Comment suis-je au parc pour chiens?",
+      "a0": "Je cours vers chaque chien pour les inviter à jouer",
+      "a1": "Je choisis un ami qui me plaît et joue avec lui intensément",
+      "a2": "Je reste près de mon maître et participe de temps en temps",
+      "a3": "J'explore seul dans un coin en reniflant"
     },
     "q5": {
-      "text": "When I get a new toy?",
-      "a0": "I play with it the usual way",
-      "a1": "I try all sorts of new ways to play"
+      "text": "Quand un nouveau chemin apparaît pendant la promenade?",
+      "a0": "J'y entre sans hésiter — zéro peur",
+      "a1": "Je renifle prudemment et avance petit à petit",
+      "a2": "Je jette un coup d'œil et reviens au chemin habituel",
+      "a3": "Je n'y vais pas à moins que mon maître y aille d'abord"
     },
     "q6": {
-      "text": "At mealtime?",
-      "a0": "Amount matters more than taste—I eat fast",
-      "a1": "I sniff and savor, eating slowly"
+      "text": "Quand je reçois un nouveau jouet pour la première fois?",
+      "a0": "Je le mâche et le démonte pour comprendre comment il fonctionne",
+      "a1": "Je le roule dans tous les sens et essaie différentes façons",
+      "a2": "Je joue comme d'habitude — je le prends et le rapporte",
+      "a3": "Je préfère mes vieux jouets et regarde à peine le nouveau"
     },
     "q7": {
-      "text": "When my owner looks tired?",
-      "a0": "I bring a toy to cheer them up",
-      "a1": "I snuggle close and lick them for comfort"
+      "text": "L'heure du repas! Quel est mon style?",
+      "a0": "Je renifle bien et mange de façon sélective",
+      "a1": "Je mâche lentement et savoure chaque bouchée",
+      "a2": "Je mange le plus vite possible dès que c'est servi",
+      "a3": "Je trie certains ingrédients et mange seulement ce que j'aime"
     },
     "q8": {
-      "text": "When another dog takes my spot?",
-      "a0": "I go get it back right away",
-      "a1": "I'm sad, but I find somewhere else"
+      "text": "Quand je vois une petite créature dans les buissons?",
+      "a0": "Je l'encercle stratégiquement pour l'attraper",
+      "a1": "Je l'explore curieusement en la touchant du museau",
+      "a2": "Je renifle doucement et m'éloigne",
+      "a3": "Aucun intérêt — je continue ce que je faisais"
     },
     "q9": {
-      "text": "During training?",
-      "a0": "I learn quickly and efficiently",
-      "a1": "Praise from my owner is what drives me"
+      "text": "Quand mon maître a l'air triste?",
+      "a0": "Je cours le lécher et grimper sur lui pour le consoler",
+      "a1": "Je me couche doucement à ses côtés pour partager la chaleur",
+      "a2": "Je lui apporte un jouet pour le distraire",
+      "a3": "Je ne sais pas trop — j'agis normalement"
     },
     "q10": {
-      "text": "My walk, meal, and sleep schedule?",
-      "a0": "I like the same time every day",
-      "a1": "It's fine if it changes day to day"
+      "text": "Lors de l'entraînement, si je fais une erreur?",
+      "a0": "Je continue d'essayer même après la gronde jusqu'à réussir",
+      "a1": "J'abandonne rapidement et cherche une façon plus facile",
+      "a2": "Je surveille mon maître nerveusement et reste abattu",
+      "a3": "Je suis très triste et reste déprimé un bon moment"
     },
     "q11": {
-      "text": "When my owner suddenly changes plans?",
-      "a0": "I'm flustered—broken routines make me anxious",
-      "a1": "I get excited—something new is happening!"
+      "text": "Quand un autre chien prend mon jouet?",
+      "a0": "Je le récupère immédiatement sans négocier",
+      "a1": "J'essaie de le convaincre et propose un échange",
+      "a2": "Je suis triste mais j'abandonne et trouve autre chose",
+      "a3": "Je cours me plaindre à mon maître"
     },
     "q12": {
-      "text": "Before bed?",
-      "a0": "I sleep in the same spot every night",
-      "a1": "I move around based on my mood"
+      "text": "Quand le temps de jeu avec mon maître se termine?",
+      "a0": "Je suis un peu déçu mais j'accepte calmement",
+      "a1": "Je reviens avec le jouet en demandant encore",
+      "a2": "Je tourne autour de mon maître avec un regard suppliant",
+      "a3": "Je suis très triste et reste collé à lui"
     },
     "results": {
       "istj": {
@@ -647,6 +671,27 @@
         "compatibleOwner": "An owner with strong leadership who sets clear direction",
         "ownerTip": "Goal-oriented training works best. Give them a challenge and watch them excel!"
       }
+    },
+    "q13": {
+      "text": "Ma routine matinale! Comment commence ma journée?",
+      "a0": "Je me lève à l'heure fixe et presse mon maître pour la balade",
+      "a1": "Je me lève avec mon maître et suis une routine régulière",
+      "a2": "Je fais la grasse matinée parfois, ou me lève tôt — selon l'humeur",
+      "a3": "Je suis totalement libre — aucune routine"
+    },
+    "q14": {
+      "text": "Quand mon maître change les plans brusquement?",
+      "a0": "Je suis très perturbé et anxieux — la routine est primordiale",
+      "a1": "Je suis un peu déstabilisé mais m'adapte vite",
+      "a2": "Je suis même excité — il se passe quelque chose de nouveau?",
+      "a3": "J'adore les changements! Heureux d'aller n'importe où"
+    },
+    "q15": {
+      "text": "Avant de dormir, comment je choisis où dormir?",
+      "a0": "Même endroit, même position, chaque nuit",
+      "a1": "J'ai mon endroit habituel mais change parfois de position",
+      "a2": "Je me déplace selon mon humeur du soir",
+      "a3": "Canapé, lit, sol — où c'est le mieux ce soir-là"
     }
   },
   "cat": {

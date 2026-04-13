@@ -380,64 +380,88 @@
   },
   "dog": {
     "q1": {
-      "text": "When meeting another dog in the park?",
-      "a0": "I rush over first to say hi",
-      "a1": "I carefully watch from beside my owner"
+      "text": "公園で初めて会う犬に出会ったら？",
+      "a0": "尻尾を立てて自分から駆け寄って挨拶する",
+      "a1": "嬉しそうに近づくが、飼い主の様子もちらっと見る",
+      "a2": "飼い主の後ろに隠れて鼻先だけ出す",
+      "a3": "興味ないふりをして一人で匂いを嗅ぎに行く"
     },
     "q2": {
-      "text": "When a stranger visits home?",
-      "a0": "I run over wagging my tail right away",
-      "a1": "I hide in a corner and watch"
+      "text": "見知らぬお客さんが来たら？",
+      "a0": "全身で駆け寄ってジャンプして舐める",
+      "a1": "吠えてからすぐに近づいて挨拶する",
+      "a2": "しばらく見てから匂いを嗅いでゆっくり近づく",
+      "a3": "部屋の隅から出ずにずっと警戒する"
     },
     "q3": {
-      "text": "When my owner comes home?",
-      "a0": "I go wild with excitement all over",
-      "a1": "Happy, but I just quietly wag my tail"
+      "text": "飼い主が久しぶりに帰ってきたら？",
+      "a0": "吠えながら走り回って全身で歓迎する",
+      "a1": "大きく尻尾を振ってジャンプして挨拶する",
+      "a2": "静かに近づいてゆっくり尻尾を振る",
+      "a3": "寝ていた場所から頭を上げて目で迎える"
     },
     "q4": {
-      "text": "When going for a walk?",
-      "a0": "I like the familiar route we always take",
-      "a1": "I want to explore a new route today"
+      "text": "ドッグランでの自分の様子は？",
+      "a0": "全ての犬に駆け寄って一緒に遊ぼうと誘う",
+      "a1": "気に入った子を選んで集中的に遊ぶ",
+      "a2": "飼い主のそばで見ていてたまに参加する",
+      "a3": "一人で隅で匂いを嗅ぎながら探索を楽しむ"
     },
     "q5": {
-      "text": "When I get a new toy?",
-      "a0": "I play with it the usual way",
-      "a1": "I try all sorts of new ways to play"
+      "text": "お散歩中に初めての道が現れたら？",
+      "a0": "とにかく入って探検！恐怖ゼロ",
+      "a1": "匂いを嗅ぎながら少しずつ前へ",
+      "a2": "ちょっと見てから慣れた道に戻る",
+      "a3": "飼い主が先に行かなければ絶対に行かない"
     },
     "q6": {
-      "text": "At mealtime?",
-      "a0": "Amount matters more than taste—I eat fast",
-      "a1": "I sniff and savor, eating slowly"
+      "text": "新しいおもちゃをもらったときの反応は？",
+      "a0": "噛んで分解して構造を確かめる",
+      "a1": "いろいろ転がして色々な使い方を試す",
+      "a2": "いつもの方法でくわえてフェッチする",
+      "a3": "古いおもちゃの方が好き、新しいのはほぼ見ない"
     },
     "q7": {
-      "text": "When my owner looks tired?",
-      "a0": "I bring a toy to cheer them up",
-      "a1": "I snuggle close and lick them for comfort"
+      "text": "ごはんの時間！食事スタイルは？",
+      "a0": "匂いを嗅いで選びながらゆっくり食べる",
+      "a1": "よく噛んで食事そのものを楽しむ",
+      "a2": "目の前にあれば即座に素早く食べる",
+      "a3": "特定の食材だけ選んで好きなものだけ食べる"
     },
     "q8": {
-      "text": "When another dog takes my spot?",
-      "a0": "I go get it back right away",
-      "a1": "I'm sad, but I find somewhere else"
+      "text": "草むらで小さな生き物を見つけたら？",
+      "a0": "戦略的に囲んで捕まえようとする",
+      "a1": "面白そうに鼻でつんつんして探求する",
+      "a2": "慎重に匂いだけ嗅いでその場を離れる",
+      "a3": "全く興味なし、もとのことを続ける"
     },
     "q9": {
-      "text": "During training?",
-      "a0": "I learn quickly and efficiently",
-      "a1": "Praise from my owner is what drives me"
+      "text": "飼い主が悲しそうなとき私は？",
+      "a0": "すぐに近づいて舐めて乗って慰める",
+      "a1": "そっと隣に寝て温かさを分かち合う",
+      "a2": "おもちゃを持ってきて気分転換を促す",
+      "a3": "よくわからない、いつも通りに行動する"
     },
     "q10": {
-      "text": "My walk, meal, and sleep schedule?",
-      "a0": "I like the same time every day",
-      "a1": "It's fine if it changes day to day"
+      "text": "トレーニング中、失敗したとき私は？",
+      "a0": "叱られても挑戦を続けてやり遂げる",
+      "a1": "素早く諦めてより簡単な方法を探す",
+      "a2": "飼い主の顔色を伺いながらしょんぼりする",
+      "a3": "叱られてとても悲しく長い間落ち込む"
     },
     "q11": {
-      "text": "When my owner suddenly changes plans?",
-      "a0": "I'm flustered—broken routines make me anxious",
-      "a1": "I get excited—something new is happening!"
+      "text": "他の犬が自分のおもちゃを取ったとき？",
+      "a0": "すぐに取り返しに行く、交渉なし",
+      "a1": "相手を説得して交換を提案する",
+      "a2": "悲しいけど諦めて他のものを探す",
+      "a3": "飼い主に駆け寄って訴える"
     },
     "q12": {
-      "text": "Before bed?",
-      "a0": "I sleep in the same spot every night",
-      "a1": "I move around based on my mood"
+      "text": "飼い主との遊び時間が終わったとき？",
+      "a0": "名残惜しいけどすっきり受け入れる",
+      "a1": "おもちゃをくわえてまた持ってきてもっとやろうと誘う",
+      "a2": "飼い主のまわりをうろうろして目で訴える",
+      "a3": "とても悲しくて飼い主にくっついたまま"
     },
     "results": {
       "istj": {
@@ -600,6 +624,27 @@
         "compatibleOwner": "An owner with strong leadership who sets clear direction",
         "ownerTip": "Goal-oriented training works best. Give them a challenge and watch them excel!"
       }
+    },
+    "q13": {
+      "text": "朝のルーティン！一日の始まりは？",
+      "a0": "決まった時間に起きてお散歩の準備をせかす",
+      "a1": "飼い主が起きたら一緒に起きて規則正しく行動する",
+      "a2": "その日の気分によって寝坊したり早起きしたり",
+      "a3": "完全に自由派、ルーティンなんてない"
+    },
+    "q14": {
+      "text": "飼い主が突然計画を変えたら？",
+      "a0": "とても戸惑いと不安を感じる、ルーティンが一番",
+      "a1": "少し混乱するけどすぐに適応する",
+      "a2": "むしろ嬉しい、何か新しいことが起きる？",
+      "a3": "変化大歓迎！どこでもついていくのが好き"
+    },
+    "q15": {
+      "text": "寝る前、寝る場所の選択は？",
+      "a0": "毎晩同じ場所、同じ姿勢で寝る",
+      "a1": "決まった場所があるが位置が変わることもある",
+      "a2": "その日の気分に合わせてあちこち移動する",
+      "a3": "ソファ、ベッド、床、その夜最高の場所に"
     }
   },
   "cat": {

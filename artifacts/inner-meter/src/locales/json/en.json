@@ -427,64 +427,88 @@
   },
   "dog": {
     "q1": {
-      "text": "When meeting another dog in the park?",
-      "a0": "I rush over first to say hi",
-      "a1": "I carefully watch from beside my owner"
+      "text": "When meeting another dog for the first time at the park?",
+      "a0": "Rush over tail-up and greet them first",
+      "a1": "Excitedly approach but glance back at my owner",
+      "a2": "Hide behind my owner and just peek my nose out",
+      "a3": "Pretend not to care and sniff around on my own"
     },
     "q2": {
-      "text": "When a stranger visits home?",
-      "a0": "I run over wagging my tail right away",
-      "a1": "I hide in a corner and watch"
+      "text": "When a stranger visits the house?",
+      "a0": "Run over, jump up, and lick them right away",
+      "a1": "Bark a bit then quickly go say hello",
+      "a2": "Watch for a while, then slowly approach after sniffing",
+      "a3": "Stay in the corner and keep my guard up"
     },
     "q3": {
-      "text": "When my owner comes home?",
-      "a0": "I go wild with excitement all over",
-      "a1": "Happy, but I just quietly wag my tail"
+      "text": "When my owner comes home after a long time away?",
+      "a0": "Bark and run around welcoming them with my whole body",
+      "a1": "Wag my tail big and jump up to greet them",
+      "a2": "Quietly approach and gently wag my tail",
+      "a3": "Lift my head from where I was sleeping and greet with my eyes"
     },
     "q4": {
-      "text": "When going for a walk?",
-      "a0": "I like the familiar route we always take",
-      "a1": "I want to explore a new route today"
+      "text": "How do I behave at a dog park?",
+      "a0": "Run to every dog and ask them to play",
+      "a1": "Pick a friend I like and play with them intensely",
+      "a2": "Stay near my owner and only join in occasionally",
+      "a3": "Explore alone in the corner, enjoying all the new smells"
     },
     "q5": {
-      "text": "When I get a new toy?",
-      "a0": "I play with it the usual way",
-      "a1": "I try all sorts of new ways to play"
+      "text": "When a new path appears during a walk?",
+      "a0": "Go in without hesitation — zero fear",
+      "a1": "Sniff cautiously and slowly move forward",
+      "a2": "Take a quick look then return to the familiar path",
+      "a3": "Won't go unless my owner goes first"
     },
     "q6": {
-      "text": "At mealtime?",
-      "a0": "Amount matters more than taste—I eat fast",
-      "a1": "I sniff and savor, eating slowly"
+      "text": "When I get a new toy for the first time?",
+      "a0": "Chew it up and take it apart to figure it out",
+      "a1": "Roll it around and try different ways to use it",
+      "a2": "Play with it the usual way — fetch and carry",
+      "a3": "I prefer my old toys and barely look at the new one"
     },
     "q7": {
-      "text": "When my owner looks tired?",
-      "a0": "I bring a toy to cheer them up",
-      "a1": "I snuggle close and lick them for comfort"
+      "text": "Mealtime! What is my eating style?",
+      "a0": "Sniff carefully and eat selectively, checking twice",
+      "a1": "Chew slowly and savor each bite",
+      "a2": "Eat as fast as possible the moment it appears",
+      "a3": "Pick out specific ingredients and only eat favorites"
     },
     "q8": {
-      "text": "When another dog takes my spot?",
-      "a0": "I go get it back right away",
-      "a1": "I'm sad, but I find somewhere else"
+      "text": "When I spot a small creature in the bushes?",
+      "a0": "Strategically surround it and try to catch it",
+      "a1": "Curiously poke at it with my nose to investigate",
+      "a2": "Carefully sniff and then move away",
+      "a3": "No interest — just keep doing what I was doing"
     },
     "q9": {
-      "text": "During training?",
-      "a0": "I learn quickly and efficiently",
-      "a1": "Praise from my owner is what drives me"
+      "text": "When my owner looks sad?",
+      "a0": "Immediately run over, lick them, and climb on them",
+      "a1": "Quietly lie beside them and share warmth",
+      "a2": "Bring a toy to cheer them up",
+      "a3": "Not sure — I just act normally"
     },
     "q10": {
-      "text": "My walk, meal, and sleep schedule?",
-      "a0": "I like the same time every day",
-      "a1": "It's fine if it changes day to day"
+      "text": "During training, when I make a mistake?",
+      "a0": "Keep trying even after being scolded until I get it",
+      "a1": "Give up quickly and look for an easier way",
+      "a2": "Watch my owner nervously and feel deflated",
+      "a3": "Feel very upset and sulk for a long time"
     },
     "q11": {
-      "text": "When my owner suddenly changes plans?",
-      "a0": "I'm flustered—broken routines make me anxious",
-      "a1": "I get excited—something new is happening!"
+      "text": "When another dog takes my toy?",
+      "a0": "Go get it right back — no negotiation",
+      "a1": "Try to persuade them and propose a swap",
+      "a2": "Sad, but give up and find something else",
+      "a3": "Run to my owner to complain"
     },
     "q12": {
-      "text": "Before bed?",
-      "a0": "I sleep in the same spot every night",
-      "a1": "I move around based on my mood"
+      "text": "When playtime with my owner ends?",
+      "a0": "A little sad, but I accept it calmly",
+      "a1": "Bring the toy back asking for more",
+      "a2": "Wander around my owner giving puppy eyes",
+      "a3": "Very upset — I stick right to their side"
     },
     "results": {
       "istj": {
@@ -647,6 +671,27 @@
         "compatibleOwner": "An owner with strong leadership who sets clear direction",
         "ownerTip": "Goal-oriented training works best. Give them a challenge and watch them excel!"
       }
+    },
+    "q13": {
+      "text": "My morning routine — how does the day start?",
+      "a0": "Wake up at a set time and rush my owner for a walk",
+      "a1": "Wake up when my owner does and follow a regular routine",
+      "a2": "Sleep in sometimes, wake up early other times — depends on mood",
+      "a3": "Totally free spirit — no routine at all"
+    },
+    "q14": {
+      "text": "When my owner suddenly changes plans?",
+      "a0": "Very confused and anxious — routine is everything",
+      "a1": "A little thrown off but I adapt quickly",
+      "a2": "Actually excited — is something new happening?",
+      "a3": "Love changes! Happy to follow anywhere"
+    },
+    "q15": {
+      "text": "Before bed — choosing where to sleep?",
+      "a0": "Same spot, same position, every single night",
+      "a1": "I have a usual spot but sometimes shift position",
+      "a2": "Move around based on mood",
+      "a3": "Sofa, bed, floor — wherever feels best that night"
     }
   },
   "cat": {

@@ -380,64 +380,88 @@
   },
   "dog": {
     "q1": {
-      "text": "When meeting another dog in the park?",
-      "a0": "I rush over first to say hi",
-      "a1": "I carefully watch from beside my owner"
+      "text": "¿Qué hago cuando conozco a un perro por primera vez en el parque?",
+      "a0": "Me acerco corriendo con la cola en alto para saludar",
+      "a1": "Me acerco emocionado pero miro a mi dueño por si acaso",
+      "a2": "Me escondo detrás de mi dueño y solo asomo la nariz",
+      "a3": "Finjo no importarme y me voy a olfatear por mi cuenta"
     },
     "q2": {
-      "text": "When a stranger visits home?",
-      "a0": "I run over wagging my tail right away",
-      "a1": "I hide in a corner and watch"
+      "text": "¿Qué hago cuando un extraño visita la casa?",
+      "a0": "Corro a saludar, salto y lamo sin pensarlo",
+      "a1": "Ladro un poco y luego me acerco a saludar",
+      "a2": "Observo un rato, luego me acerco olfateando poco a poco",
+      "a3": "Me quedo en un rincón y sigo desconfiando"
     },
     "q3": {
-      "text": "When my owner comes home?",
-      "a0": "I go wild with excitement all over",
-      "a1": "Happy, but I just quietly wag my tail"
+      "text": "¿Cuándo mi dueño vuelve a casa después de mucho tiempo?",
+      "a0": "Ladro, corro y le doy la bienvenida con todo mi cuerpo",
+      "a1": "Muevo la cola fuerte y salto a saludar",
+      "a2": "Me acerco tranquilo y muevo la cola suavemente",
+      "a3": "Levanto la cabeza donde estaba y le saludo con la mirada"
     },
     "q4": {
-      "text": "When going for a walk?",
-      "a0": "I like the familiar route we always take",
-      "a1": "I want to explore a new route today"
+      "text": "¿Cómo soy en el parque de perros?",
+      "a0": "Me acerco a todos los perros y los invito a jugar",
+      "a1": "Elijo un amigo que me guste y juego con él intensamente",
+      "a2": "Me quedo cerca de mi dueño y participo solo de vez en cuando",
+      "a3": "Exploro solo por un rincón oliendo todo"
     },
     "q5": {
-      "text": "When I get a new toy?",
-      "a0": "I play with it the usual way",
-      "a1": "I try all sorts of new ways to play"
+      "text": "¿Qué pasa cuando aparece un camino nuevo en el paseo?",
+      "a0": "Entro sin dudar — sin miedo ninguno",
+      "a1": "Olfateo con cuidado y avanzo poco a poco",
+      "a2": "Miro un momento y vuelvo al camino de siempre",
+      "a3": "No voy a menos que mi dueño vaya primero"
     },
     "q6": {
-      "text": "At mealtime?",
-      "a0": "Amount matters more than taste—I eat fast",
-      "a1": "I sniff and savor, eating slowly"
+      "text": "¿Cuál es mi reacción cuando me dan un juguete nuevo?",
+      "a0": "Lo muerdo y lo desmonto para entender cómo funciona",
+      "a1": "Lo ruedo por todos lados y pruebo diferentes formas de usarlo",
+      "a2": "Juego como siempre — lo agarro y lo traigo",
+      "a3": "Prefiero mis juguetes viejos y casi no miro el nuevo"
     },
     "q7": {
-      "text": "When my owner looks tired?",
-      "a0": "I bring a toy to cheer them up",
-      "a1": "I snuggle close and lick them for comfort"
+      "text": "¡Hora de comer! ¿Cuál es mi estilo?",
+      "a0": "Olfateo bien y como de forma selectiva",
+      "a1": "Mastico despacio y disfruto cada bocado",
+      "a2": "Como lo más rápido posible en cuanto aparece",
+      "a3": "Elijo ciertos ingredientes y solo como lo que me gusta"
     },
     "q8": {
-      "text": "When another dog takes my spot?",
-      "a0": "I go get it back right away",
-      "a1": "I'm sad, but I find somewhere else"
+      "text": "¿Qué hago si veo un pequeño ser vivo en los arbustos?",
+      "a0": "Lo rodeo estratégicamente e intento atraparlo",
+      "a1": "Lo investigo curioso dándole golpecitos con la nariz",
+      "a2": "Solo lo olfateo con cuidado y me alejo",
+      "a3": "Nada de interés — sigo con lo que estaba haciendo"
     },
     "q9": {
-      "text": "During training?",
-      "a0": "I learn quickly and efficiently",
-      "a1": "Praise from my owner is what drives me"
+      "text": "¿Qué hago cuando mi dueño parece triste?",
+      "a0": "Corro a su lado, lo lamo y me subo a consolarlo",
+      "a1": "Me tumbo tranquilo a su lado para compartir el calor",
+      "a2": "Le traigo un juguete para animarle",
+      "a3": "No sé muy bien — actúo como siempre"
     },
     "q10": {
-      "text": "My walk, meal, and sleep schedule?",
-      "a0": "I like the same time every day",
-      "a1": "It's fine if it changes day to day"
+      "text": "¿Qué hago durante el entrenamiento si cometo un error?",
+      "a0": "Sigo intentándolo aunque me regañen hasta lograrlo",
+      "a1": "Me rindo rápido y busco una forma más fácil",
+      "a2": "Miro a mi dueño nervioso y me quedo cabizbajo",
+      "a3": "Me pongo muy triste y me quedo abatido un buen rato"
     },
     "q11": {
-      "text": "When my owner suddenly changes plans?",
-      "a0": "I'm flustered—broken routines make me anxious",
-      "a1": "I get excited—something new is happening!"
+      "text": "¿Qué hago cuando otro perro me quita el juguete?",
+      "a0": "Voy a recuperarlo sin negociar",
+      "a1": "Intento convencerle y proponer un intercambio",
+      "a2": "Me da pena pero lo dejo y busco otra cosa",
+      "a3": "Corro a quejarme con mi dueño"
     },
     "q12": {
-      "text": "Before bed?",
-      "a0": "I sleep in the same spot every night",
-      "a1": "I move around based on my mood"
+      "text": "¿Qué hago cuando termina el tiempo de juego con mi dueño?",
+      "a0": "Me da un poco de pena pero lo acepto con calma",
+      "a1": "Vuelvo con el juguete pidiendo más",
+      "a2": "Doy vueltas alrededor de mi dueño con cara de pena",
+      "a3": "Me quedo muy triste pegado a su lado"
     },
     "results": {
       "istj": {
@@ -600,6 +624,27 @@
         "compatibleOwner": "An owner with strong leadership who sets clear direction",
         "ownerTip": "Goal-oriented training works best. Give them a challenge and watch them excel!"
       }
+    },
+    "q13": {
+      "text": "¡Rutina matutina! ¿Cómo empieza mi día?",
+      "a0": "Me levanto a la hora fija y apremio a mi dueño para el paseo",
+      "a1": "Me levanto cuando mi dueño se levanta y sigo una rutina fija",
+      "a2": "A veces duermo más, otras me levanto pronto — depende del humor",
+      "a3": "Soy totalmente libre — sin ninguna rutina"
+    },
+    "q14": {
+      "text": "¿Qué pasa cuando mi dueño cambia los planes de golpe?",
+      "a0": "Me descoloca mucho — la rutina es lo más importante",
+      "a1": "Me cuesta un poco pero me adapto rápido",
+      "a2": "¡Me emociona! ¿Va a pasar algo nuevo?",
+      "a3": "¡Bienvenidos los cambios! Feliz de ir a cualquier parte"
+    },
+    "q15": {
+      "text": "Antes de dormir, ¿cómo elijo dónde dormir?",
+      "a0": "El mismo sitio, la misma postura, cada noche",
+      "a1": "Tengo mi sitio habitual pero a veces cambio de posición",
+      "a2": "Me muevo según el humor del día",
+      "a3": "Sofá, cama, suelo — donde mejor me parezca esa noche"
     }
   },
   "cat": {
