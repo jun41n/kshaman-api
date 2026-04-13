@@ -342,10 +342,10 @@
     },
     "home": {
       "title": "うちの子の\n性格タイプは？",
-      "subtitle": "15問であなたのペットの\n隠れた個性を発見しよう！",
+      "subtitle": "ペットの隠れた性格を発見！\n犬: 12問 · 猫: 15問",
       "dog": "わんこ性格テスト",
       "cat": "にゃんこ性格テスト",
-      "footer": "全15問 · 約3分"
+      "footer": "犬: 12問 · 猫: 15問"
     },
     "quiz": {
       "dogLabel": "わんこ",
@@ -380,160 +380,225 @@
   },
   "dog": {
     "q1": {
-      "text": "飼い主さんがお出かけの準備をしていたら？",
-      "a0": "一緒に行こうと玄関で大興奮して走り回る",
-      "a1": "しっぽを振ってお腹を見せ、褒めてもらおうとする",
-      "a2": "おやつかな？においを嗅ぎながらついていく",
-      "a3": "行ってきていいよ、僕は一人で大丈夫"
+      "text": "When meeting another dog in the park?",
+      "a0": "I rush over first to say hi",
+      "a1": "I carefully watch from beside my owner"
     },
     "q2": {
-      "text": "散歩中に他のわんこと会ったら？",
-      "a0": "先に駆け寄ってにおいを嗅ぎ、一緒に遊ぼうと誘う",
-      "a1": "しっぽを振ってすぐに友達になる",
-      "a2": "ほとんど興味なし、地面に落ちているものを探す",
-      "a3": "後ろに隠れたり、飼い主の足の間に入る"
+      "text": "When a stranger visits home?",
+      "a0": "I run over wagging my tail right away",
+      "a1": "I hide in a corner and watch"
     },
     "q3": {
-      "text": "新しいおもちゃが登場！",
-      "a0": "くわえてぶんぶん振り回し、床に投げてはしゃぐ",
-      "a1": "飼い主さんのところへ持っていって一緒に遊ぼうとする",
-      "a2": "においを嗅いで食べられるか確認する",
-      "a3": "においを一回嗅いですぐに興味を失う"
+      "text": "When my owner comes home?",
+      "a0": "I go wild with excitement all over",
+      "a1": "Happy, but I just quietly wag my tail"
     },
     "q4": {
-      "text": "ご飯の時間！",
-      "a0": "待ちきれなくてお皿の前でぐるぐる回る",
-      "a1": "食べるより飼い主さんと目を合わせる方が好き",
-      "a2": "食べ終わってもまだほしくてお皿を舐める",
-      "a3": "あれば食べる、なければ黙って待つ"
+      "text": "When going for a walk?",
+      "a0": "I like the familiar route we always take",
+      "a1": "I want to explore a new route today"
     },
     "q5": {
-      "text": "飼い主さんがソファに座ったら？",
-      "a0": "すぐ隣にぴったりくっついて座る",
-      "a1": "すきを見て飛び乗って場所を確保する",
-      "a2": "おやつを持ってきてくれるのを待つ",
-      "a3": "自分のクッションで各自のんびり"
+      "text": "When I get a new toy?",
+      "a0": "I play with it the usual way",
+      "a1": "I try all sorts of new ways to play"
     },
     "q6": {
-      "text": "知らない人が家に来たら？",
-      "a0": "吠えながら走り寄ってにおいを嗅いで探索する",
-      "a1": "しっぽを振ってすぐにお腹を見せる",
-      "a2": "後ろに隠れて吠えるだけ",
-      "a3": "興味なし、寝ていたのでそのまま寝続ける"
+      "text": "At mealtime?",
+      "a0": "Amount matters more than taste—I eat fast",
+      "a1": "I sniff and savor, eating slowly"
     },
     "q7": {
-      "text": "飼い主さんがつらそうにしていたら？",
-      "a0": "近寄ってなめながらくっついている",
-      "a1": "おもちゃを持ってきて元気づけようとする",
-      "a2": "そっと横に座っている",
-      "a3": "何かおかしい？固まって見つめる"
+      "text": "When my owner looks tired?",
+      "a0": "I bring a toy to cheer them up",
+      "a1": "I snuggle close and lick them for comfort"
     },
     "q8": {
-      "text": "お風呂の日…",
-      "a0": "逃げ回って捕まったら諦める",
-      "a1": "仕方ないのでそのまま立っている",
-      "a2": "震えながらおやつだけ見ている",
-      "a3": "お風呂場の近くにも行かない"
+      "text": "When another dog takes my spot?",
+      "a0": "I go get it back right away",
+      "a1": "I'm sad, but I find somewhere else"
     },
     "q9": {
-      "text": "家の中でうっかりしてしまったとき？",
-      "a0": "飼い主さんの表情が変わるのを見てしっぽを下げる",
-      "a1": "悪いと気づかずに走り回って遊ぶ",
-      "a2": "何も気にせず飼い主さんをなめにいく",
-      "a3": "飼い主さんが片付けるまで遠くから眺める"
+      "text": "During training?",
+      "a0": "I learn quickly and efficiently",
+      "a1": "Praise from my owner is what drives me"
     },
     "q10": {
-      "text": "長い間一人でいて、飼い主さんが帰ってきたとき？",
-      "a0": "跳び回り吠えながら全身で出迎える",
-      "a1": "爆発的な甘え攻勢をくり広げる",
-      "a2": "においを嗅ぎながらバッグをあさる",
-      "a3": "嬉しいけど、しっぽをちょっとだけ振る"
+      "text": "My walk, meal, and sleep schedule?",
+      "a0": "I like the same time every day",
+      "a1": "It's fine if it changes day to day"
     },
     "q11": {
-      "text": "公園で自由に走れる時間！",
-      "a0": "全力疾走して四方八方を探索する",
-      "a1": "いろんな人のところへ走っていって挨拶する",
-      "a2": "落ちているものを探して食べようとする",
-      "a3": "飼い主さんの横を少し歩いてから休む"
+      "text": "When my owner suddenly changes plans?",
+      "a0": "I'm flustered—broken routines make me anxious",
+      "a1": "I get excited—something new is happening!"
     },
     "q12": {
-      "text": "家で一人でいるとき？",
-      "a0": "家の中を探検しておもちゃで遊ぶ",
-      "a1": "飼い主さんの洋服やバッグのにおいを嗅ぎに行く",
-      "a2": "ご飯のお皿のあたりをうろうろする",
-      "a3": "特にやることないから寝る"
-    },
-    "q13": {
-      "text": "トレーニング（おすわり、まてなど）をするとき？",
-      "a0": "反応が早くてテンションが上がる",
-      "a1": "飼い主さんの褒め言葉に反応して一生懸命やる",
-      "a2": "おやつなしではやらない",
-      "a3": "最初は聞こえないふりをしてから、結局やる"
-    },
-    "q14": {
-      "text": "散歩中に知らない音がしたら？",
-      "a0": "音の方向に勇気をもって突進する",
-      "a1": "飼い主さんの後ろにぴったりくっつく",
-      "a2": "立ち止まって確認してからまた歩く",
-      "a3": "興味なし、嗅いでいたものを嗅ぎ続ける"
-    },
-    "q15": {
-      "text": "今この瞬間、一番幸せなのは？",
-      "a0": "飼い主さんと一緒に走り回ること",
-      "a1": "家族みんなが集まって抱っこされてのんびりすること",
-      "a2": "おいしいおやつをもらうこと",
-      "a3": "自分の場所で静かに寝ること"
+      "text": "Before bed?",
+      "a0": "I sleep in the same spot every night",
+      "a1": "I move around based on my mood"
     },
     "results": {
-      "active": {
-        "title": "元気いっぱいアクティブ犬",
-        "summary": "走って、探検して、冒険があってこそ幸せなエネルギー塊！",
-        "description": "エネルギー満点の冒険家タイプ。一日中走り回って探検し、新しい刺激を求めています。散歩が長ければ長いほど、遊び時間が多ければ多いほど幸せ。退屈すると物を噛んだりいたずらすることもあるので、毎日の運動は必須です！",
-        "trait0": "活発なアウトドア生活が大好き",
-        "trait1": "新しい場所やにおいの探索が最高",
-        "trait2": "速い遊びやかけっこを楽しむ",
-        "compatibleOwner": "活発でアウトドア活動好きな飼い主さん",
-        "ownerTip": "毎日十分な運動が必要です。散歩、ランニング、フリスビーがぴったり！"
+      "istj": {
+        "title": "The Principled Pupper",
+        "summary": "The icon of routine and trust",
+        "description": "A top-of-the-class type who remembers walk times precisely and feels most at ease following set rules. Prefers familiar routines over sudden changes.",
+        "trait0": "Strict routine preference",
+        "trait1": "Calm and careful",
+        "trait2": "Strong sense of duty",
+        "compatibleOwner": "A calm owner who keeps a regular daily schedule",
+        "ownerTip": "Keep meal and walk times consistent. A steady routine is your pup's greatest comfort!"
       },
-      "social": {
-        "title": "愛情たっぷりの甘えん坊",
-        "summary": "飼い主さんが世界のすべて！一緒にいるときが一番幸せ",
-        "description": "人が大好きな社交的なタイプ。飼い主さんの関心と愛情がエネルギーの源で、一人でいるのが苦手なことも。初対面の人ともすぐ友達になれる魅力的な性格で、世界中の人を仲間にする力があります！",
-        "trait0": "飼い主さんとのスキンシップが特に好き",
-        "trait1": "初対面の人ともすぐ仲良くなれる",
-        "trait2": "分離不安になることがある",
-        "compatibleOwner": "家にいる時間が多く、愛情表現が上手な飼い主さん",
-        "ownerTip": "一人でいる練習が必要かもしれません。たっぷりの関心と愛情を！"
+      "isfj": {
+        "title": "The Devoted Guardian",
+        "summary": "The loyal bodyguard by your side",
+        "description": "Quietly leans their head against you, carefully reading your mood. Incredibly devoted with a powerful instinct to protect the family.",
+        "trait0": "Sensitive empathy",
+        "trait1": "Excellent memory",
+        "trait2": "Deeply devoted",
+        "compatibleOwner": "A warm owner who treasures family time",
+        "ownerTip": "Show your affection with plenty of cuddles. Family is this pup's whole world!"
       },
-      "foodie": {
-        "title": "食いしん坊万歳！フード大好き犬",
-        "summary": "食べ物の前では我慢できない、おやつさえあれば最高！",
-        "description": "食べ物が最大の動機づけ。おやつがあればすぐに覚える実用派！においに非常に敏感で、食べ物に関連した状況で最も活き活きと反応します。",
-        "trait0": "おやつが最大のモチベーション",
-        "trait1": "においで食べ物を素早く見つける",
-        "trait2": "おやつがあれば瞬く間に天才犬になる",
-        "compatibleOwner": "規則正しい食事管理ができ、おやつトレーニングを楽しむ飼い主さん",
-        "ownerTip": "食べ過ぎに注意！体重管理が健康の鍵です。"
+      "infj": {
+        "title": "The Insightful Advocate",
+        "summary": "Reads your heart without a word",
+        "description": "Radiates a mysterious aura as if lost in thought. Highly sensitive to your emotional shifts and values deep emotional bonds above all.",
+        "trait0": "Cherishes deep bonds",
+        "trait1": "Quiet and reflective",
+        "trait2": "Sensitive and empathetic",
+        "compatibleOwner": "A calm owner who appreciates quiet environments",
+        "ownerTip": "Avoid loud noises and sudden stimuli. A peaceful setting is where this pup thrives!"
       },
-      "calm": {
-        "title": "のんびり独立派",
-        "summary": "一人でも大丈夫、自分のペースが大事",
-        "description": "独立心が強くのんびりした性格で、一人でいることをそれほど苦にしません。自分のペースを大切にし、強制されるのが嫌いな個性派。穏やかで安定した性格のおかげで、一緒に暮らしやすい最高のルームメイト！",
-        "trait0": "一人の時間を気楽に過ごせる",
-        "trait1": "自分だけのルーティンと場所を大切にする",
-        "trait2": "穏やかでストレスを受けにくい",
-        "compatibleOwner": "犬の自律性を尊重する忙しい飼い主さん",
-        "ownerTip": "無理に遊ばせようとしないで。子のペースを尊重してあげてください！"
+      "intj": {
+        "title": "The Strategic Mastermind",
+        "summary": "The clever, independent genius",
+        "description": "Prefers nose work and puzzle toys over simple repetition. Handles alone time well and is a quick-thinking smart partner.",
+        "trait0": "High intelligence and analysis",
+        "trait1": "Independent nature",
+        "trait2": "Strategic learner",
+        "compatibleOwner": "An owner who enjoys mental challenges and respects independence",
+        "ownerTip": "Offer puzzle toys and nose work games. This pup loves a good brain workout!"
       },
-      "anxious": {
-        "title": "繊細な心配性さん",
-        "summary": "知らないものは全部怖い…飼い主さんだけを信じてる",
-        "description": "新しいものにびっくりしやすく不安を感じやすい繊細なタイプ。知らない人、音、環境に慣れるまで時間が必要。でも心を開いた飼い主さんには誰よりも忠実で、深い絆を結ぶ純粋な子です。",
-        "trait0": "知らない環境で不安を感じやすい",
-        "trait1": "飼い主さんへの依存度が高い",
-        "trait2": "ゆっくりとした社会化が必要",
-        "compatibleOwner": "忍耐強く穏やかで、感受性を理解してくれる飼い主さん",
-        "ownerTip": "ゆっくり新しいものに触れさせ、ポジティブな強化で自信をつけてあげて！"
+      "istp": {
+        "title": "The Versatile Virtuoso",
+        "summary": "Master of adaptation, cool adventurer",
+        "description": "Fearless when exploring new objects or leaping over obstacles. Prefers quietly staying by your side over over-the-top affection.",
+        "trait0": "Outstanding adaptability",
+        "trait1": "Tool-using ability",
+        "trait2": "Bold and composed",
+        "compatibleOwner": "An active owner who also respects personal space",
+        "ownerTip": "Expose them to varied environments. New stimuli bring out their best!"
+      },
+      "isfp": {
+        "title": "The Curious Artist",
+        "summary": "A pacifist curious about every smell",
+        "description": "A free spirit who loves sniffing everything on walks. Dislikes conflict and gets along well with everyone.",
+        "trait0": "Rich emotions",
+        "trait1": "Gentle and kind",
+        "trait2": "Lives in the moment",
+        "compatibleOwner": "An owner who enjoys leisurely walks and exploration",
+        "ownerTip": "Don't rush them! Sniff-time is the most precious part of their walk."
+      },
+      "infp": {
+        "title": "The Passionate Mediator",
+        "summary": "A dreamy, romantic partner",
+        "description": "Incredibly soft-hearted, reacting strongly even to the tone of your voice. Imaginative with a vivid inner world of their own.",
+        "trait0": "Idealistic tendencies",
+        "trait1": "Extremely gentle",
+        "trait2": "Deep inner love",
+        "compatibleOwner": "An owner with a soft voice and warm energy",
+        "ownerTip": "Lead with praise, not scolding. Positive energy is the key to this sensitive heart!"
+      },
+      "intp": {
+        "title": "The Logical Thinker",
+        "summary": "A quietly brilliant eccentric",
+        "description": "Their behavior may seem odd at times, but they are actually constantly observing and analyzing the world around them. Quiet yet endlessly curious.",
+        "trait0": "Creative thinking",
+        "trait1": "Objective observer",
+        "trait2": "Free spirit",
+        "compatibleOwner": "An owner who understands quirky behavior and is patient",
+        "ownerTip": "Create an environment full of things to explore. Stimulating toys are their favorite!"
+      },
+      "estp": {
+        "title": "The Bold Entrepreneur",
+        "summary": "Full-throttle energy machine!",
+        "description": "Acts without hesitation. A total social butterfly who greets strangers and dogs alike, and never backs down from rough play.",
+        "trait0": "High energy",
+        "trait1": "Overflowing confidence",
+        "trait2": "Spontaneous and sociable",
+        "compatibleOwner": "An active, outdoorsy owner with plenty of energy",
+        "ownerTip": "Give them plenty of exercise and playtime. They need to burn off that energy to be happy!"
+      },
+      "esfp": {
+        "title": "The Entertainer",
+        "summary": "The life of the party everywhere they go!",
+        "description": "Loves being the center of attention. Bubbling with affection, always seeking joy in every moment, with a natural gift for making their owner smile.",
+        "trait0": "Born optimist",
+        "trait1": "Loves the spotlight",
+        "trait2": "Radiantly bright energy",
+        "compatibleOwner": "A fun-loving, laughter-filled owner",
+        "ownerTip": "Arrange playdates with dogs and people. Socializing is this pup's power source!"
+      },
+      "enfp": {
+        "title": "The Enthusiastic Campaigner",
+        "summary": "The master of love and tail-wagging",
+        "description": "An eternal optimist for whom everything is new and exciting. Proposes creative play ideas and wears their heart on their sleeve.",
+        "trait0": "Infinite positive energy",
+        "trait1": "Top-tier sociability",
+        "trait2": "Expressive emotions",
+        "compatibleOwner": "An upbeat owner who loves sharing new experiences",
+        "ownerTip": "Keep offering fresh experiences and games. This pup thrives on variety!"
+      },
+      "entp": {
+        "title": "The Witty Debater",
+        "summary": "The clever, mischievous strategist",
+        "description": "Can't stand boredom and is constantly scheming new pranks. Enjoys a playful push-and-pull with their owner and picks up even tough tricks like a game.",
+        "trait0": "Loves a challenge",
+        "trait1": "Quick thinker",
+        "trait2": "Clever little trickster",
+        "compatibleOwner": "A humorous owner who enjoys creative training",
+        "ownerTip": "Use trick training and games as rewards. This smart pup loves a good challenge!"
+      },
+      "estj": {
+        "title": "The Commanding Manager",
+        "summary": "The discipline enforcer of the household",
+        "description": "Understands and follows household rules clearly. Likes to take the lead on walks, with strong leadership and a preference for predictable situations.",
+        "trait0": "Leadership and order",
+        "trait1": "Clear communication",
+        "trait2": "Decisive and honest",
+        "compatibleOwner": "An owner with consistent training and clear rules",
+        "ownerTip": "Consistency is key! Clear rules help this pup shine at their best."
+      },
+      "esfj": {
+        "title": "The Social Diplomat",
+        "summary": "The warm caretaker of everyone",
+        "description": "Attentively looks after every family member and loves a harmonious atmosphere. Loves being praised and strives to live up to their owner's expectations.",
+        "trait0": "Cooperative and kind",
+        "trait1": "Social adaptability",
+        "trait2": "Thoughtful consideration",
+        "compatibleOwner": "An owner generous with praise who spends lots of time together",
+        "ownerTip": "Shower them with praise and affection. Recognition is what makes them happiest!"
+      },
+      "enfj": {
+        "title": "The Righteous Hero",
+        "summary": "The warm leader who moves hearts",
+        "description": "Builds deep friendships with both people and other dogs. Charismatic yet gentle, with an uncanny ability to brighten every room they enter.",
+        "trait0": "Influential on others",
+        "trait1": "Altruistic attitude",
+        "trait2": "Social leadership",
+        "compatibleOwner": "A social, active owner who welcomes other pets",
+        "ownerTip": "Create opportunities to meet dog friends. This pup forms genuine, heartfelt bonds!"
+      },
+      "entj": {
+        "title": "The Daring Commander",
+        "summary": "The confident, commanding charisma",
+        "description": "Goal-oriented and sees every challenge through to the end. Known for a proud stride and confident demeanor—a reliable partner with clear leadership.",
+        "trait0": "Decisiveness and drive",
+        "trait1": "Confident attitude",
+        "trait2": "Clear goal-orientation",
+        "compatibleOwner": "An owner with strong leadership who sets clear direction",
+        "ownerTip": "Goal-oriented training works best. Give them a challenge and watch them excel!"
       }
     }
   },
