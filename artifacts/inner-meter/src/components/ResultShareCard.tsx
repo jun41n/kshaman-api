@@ -135,10 +135,11 @@ export interface ResultShareCardProps {
   localTitle?: string;
   localSummary?: string;
   localTestTitle?: string;
+  characterSrc?: string;
 }
 
 export const ResultShareCard = forwardRef<HTMLDivElement, ResultShareCardProps>(
-  ({ test, result, localTitle, localSummary, localTestTitle }, ref) => {
+  ({ test, result, localTitle, localSummary, localTestTitle, characterSrc }, ref) => {
     const { t } = useTranslation();
     const theme = getTheme(test.category);
     const displayTitle = localTitle ?? result.title;
@@ -219,9 +220,9 @@ export const ResultShareCard = forwardRef<HTMLDivElement, ResultShareCardProps>(
             padding: '0 8px',
           }}>
             {/* character image (MBTI) or emoji */}
-            {test.category === 'MBTI' ? (
+            {characterSrc ? (
               <img
-                src={`${typeof window !== 'undefined' ? window.location.origin : 'https://mytesttype.com'}/characters/${result.key.toLowerCase()}.webp`}
+                src={characterSrc}
                 alt={result.key}
                 crossOrigin="anonymous"
                 style={{

@@ -22,6 +22,14 @@ import {
   shareResultComparison,
 } from "@/lib/shareMessage";
 
+// MBTI 캐릭터 이미지 맵 — 여러 장이면 결과 표시 시 랜덤 1장 선택 (세션 내 고정)
+const MBTI_CHARACTERS: Record<string, string[]> = {
+  ENTJ: ['entj'], ENTP: ['entp'], ENFJ: ['enfj'], ENFP: ['enfp'],
+  ESTJ: ['estj'], ESTP: ['estp'], ESFJ: ['esfj'], ESFP: ['esfp'],
+  INTJ: ['intj'], INTP: ['intp'], INFJ: ['infj'], INFP: ['infp'],
+  ISTJ: ['istj'], ISTP: ['istp'], ISFJ: ['isfj'], ISFP: ['isfp'],
+};
+
 const CATEGORY_GRADIENTS: Record<string, string> = {
   '연애 테스트': 'from-pink-500 via-rose-500 to-fuchsia-500',
   '성격 테스트': 'from-violet-600 via-purple-500 to-indigo-500',
@@ -59,6 +67,7 @@ export default function TestResult() {
   const [isSharing, setIsSharing] = useState(false);
   const [shared, setShared] = useState(false);
   const [cardScale, setCardScale] = useState(1);
+  const [charSrc, setCharSrc] = useState<string | null>(null);
   const cardRef = useRef<HTMLDivElement>(null!);
   const previewWrapperRef = useRef<HTMLDivElement>(null);
   const test = getTestBySlug(slug);
@@ -67,6 +76,14 @@ export default function TestResult() {
     const key = new URLSearchParams(window.location.search).get('result');
     if (!key || !test) { setLocation('/tests'); return; }
     setResultKey(key);
+
+    // 캐릭터 이미지 랜덤 선택 (MBTI 카테고리만)
+    if (test.category === 'MBTI') {
+      const options = MBTI_CHARACTERS[key] ?? [key.toLowerCase()];
+      const idx = Math.floor(Math.random() * options.length);
+      const origin = typeof window !== 'undefined' ? window.location.origin : 'https://mytesttype.com';
+      setCharSrc(`${origin}/characters/${options[idx]}.webp`);
+    }
 
     const end = Date.now() + 2200;
     const rng = (min: number, max: number) => Math.random() * (max - min) + min;
@@ -212,14 +229,18 @@ export default function TestResult() {
             <div className="inline-flex items-center gap-1 px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/25 text-white text-xs font-bold mb-5">
               {t('result.resultBadge', { title: localTest?.title ?? test.title })}
             </div>
-            {test.category === 'MBTI' ? (
-              <div className="w-40 h-40 md:w-52 md:h-52 mb-5 select-none">
+            {charSrc ? (
+              <motion.div
+                className="w-40 h-40 md:w-52 md:h-52 mb-5 select-none"
+                animate={{ y: [0, -10, 0] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              >
                 <img
-                  src={`/characters/${result.key.toLowerCase()}.webp`}
+                  src={charSrc}
                   alt={result.key}
                   className="w-full h-full object-contain drop-shadow-2xl"
                 />
-              </div>
+              </motion.div>
             ) : (
               <div className="text-[5rem] md:text-[7rem] mb-5 drop-shadow-xl select-none leading-none">
                 {RESULT_EMOJIS[result.key] ?? test.emoji}
@@ -376,6 +397,7 @@ export default function TestResult() {
                     localTitle={resultTitle}
                     localSummary={resultSummary}
                     localTestTitle={localTest?.title ?? test.title}
+                    characterSrc={charSrc ?? undefined}
                   />
                 </div>
               </div>
