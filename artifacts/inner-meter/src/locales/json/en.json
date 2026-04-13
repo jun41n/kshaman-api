@@ -389,10 +389,10 @@
     },
     "home": {
       "title": "What's Your Pet's\nPersonality Type?",
-      "subtitle": "Discover your pet's hidden nature!\nDog: 12 questions · Cat: 15 questions",
+      "subtitle": "Discover your pet's hidden nature!\nDog: 15 questions · Cat: 15 questions",
       "dog": "Dog Personality Test",
       "cat": "Cat Personality Test",
-      "footer": "Dog: 12 questions · Cat: 15 questions"
+      "footer": "Dog: 15 questions · Cat: 15 questions"
     },
     "quiz": {
       "dogLabel": "Dog",

@@ -389,10 +389,10 @@
     },
     "home": {
       "title": "Quel est le type de\npersonnalité de votre animal ?",
-      "subtitle": "Découvrez la vraie personnalité de votre animal!\nChien: 12 questions · Chat: 15 questions",
+      "subtitle": "Découvrez la vraie personnalité de votre animal!\nChien: 15 questions · Chat: 15 questions",
       "dog": "Test pour chiens",
       "cat": "Test pour chats",
-      "footer": "Chien: 12 questions · Chat: 15 questions"
+      "footer": "Chien: 15 questions · Chat: 15 questions"
     },
     "quiz": {
       "dogLabel": "Chien",

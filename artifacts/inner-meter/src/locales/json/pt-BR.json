@@ -342,10 +342,10 @@
     },
     "home": {
       "title": "Qual é a personalidade\ndo seu pet?",
-      "subtitle": "Descubra a personalidade oculta do seu pet!\nCachorro: 12 perguntas · Gato: 15 perguntas",
+      "subtitle": "Descubra a personalidade oculta do seu pet!\nCachorro: 15 perguntas · Gato: 15 perguntas",
       "dog": "Teste para cachorros",
       "cat": "Teste para gatos",
-      "footer": "Cachorro: 12 perguntas · Gato: 15 perguntas"
+      "footer": "Cachorro: 15 perguntas · Gato: 15 perguntas"
     },
     "quiz": {
       "dogLabel": "Cachorro",
