@@ -212,9 +212,19 @@ export default function TestResult() {
             <div className="inline-flex items-center gap-1 px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/25 text-white text-xs font-bold mb-5">
               {t('result.resultBadge', { title: localTest?.title ?? test.title })}
             </div>
-            <div className="text-[5rem] md:text-[7rem] mb-5 drop-shadow-xl select-none leading-none">
-              {RESULT_EMOJIS[result.key] ?? test.emoji}
-            </div>
+            {test.category === 'MBTI' ? (
+              <div className="w-40 h-40 md:w-52 md:h-52 mb-5 select-none">
+                <img
+                  src={`/characters/${result.key.toLowerCase()}.webp`}
+                  alt={result.key}
+                  className="w-full h-full object-contain drop-shadow-2xl"
+                />
+              </div>
+            ) : (
+              <div className="text-[5rem] md:text-[7rem] mb-5 drop-shadow-xl select-none leading-none">
+                {RESULT_EMOJIS[result.key] ?? test.emoji}
+              </div>
+            )}
             <h1 className="text-3xl md:text-[2.6rem] font-black text-white mb-3 leading-tight tracking-tight">
               {resultTitle}
             </h1>

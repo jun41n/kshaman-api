@@ -218,11 +218,26 @@ export const ResultShareCard = forwardRef<HTMLDivElement, ResultShareCardProps>(
             alignItems: 'center', justifyContent: 'center', textAlign: 'center',
             padding: '0 8px',
           }}>
-            {/* emoji — use result-specific icon if available */}
-            <div style={{
-              fontSize: '68px', lineHeight: '1', marginBottom: '20px',
-              filter: 'drop-shadow(0 6px 18px rgba(0,0,0,0.30))',
-            }}>{RESULT_EMOJIS[result.key] ?? test.emoji}</div>
+            {/* character image (MBTI) or emoji */}
+            {test.category === 'MBTI' ? (
+              <img
+                src={`${typeof window !== 'undefined' ? window.location.origin : 'https://mytesttype.com'}/characters/${result.key.toLowerCase()}.webp`}
+                alt={result.key}
+                crossOrigin="anonymous"
+                style={{
+                  width: '130px',
+                  height: '130px',
+                  objectFit: 'contain',
+                  marginBottom: '16px',
+                  filter: 'drop-shadow(0 6px 18px rgba(0,0,0,0.30))',
+                }}
+              />
+            ) : (
+              <div style={{
+                fontSize: '68px', lineHeight: '1', marginBottom: '20px',
+                filter: 'drop-shadow(0 6px 18px rgba(0,0,0,0.30))',
+              }}>{RESULT_EMOJIS[result.key] ?? test.emoji}</div>
+            )}
 
             {/* result title */}
             <h2 style={{
