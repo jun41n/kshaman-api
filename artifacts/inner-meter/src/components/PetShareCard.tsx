@@ -77,12 +77,27 @@ export default function PetShareCard({ result, petType }: Props) {
           color: "white",
           textAlign: "center",
           lineHeight: 1.2,
-          marginBottom: 8,
+          marginBottom: petType === 'dog' ? 4 : 8,
           textShadow: "0 2px 12px rgba(0,0,0,0.18)",
         }}
       >
         {t(`${rKey}.title`)}
       </div>
+
+      {petType === 'dog' && (
+        <div
+          style={{
+            fontSize: 16,
+            fontWeight: 800,
+            color: "rgba(255,255,255,0.85)",
+            textAlign: "center",
+            letterSpacing: 2,
+            marginBottom: 8,
+          }}
+        >
+          ({result.key.toUpperCase()})
+        </div>
+      )}
 
       <div
         style={{
