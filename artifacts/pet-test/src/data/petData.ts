@@ -14,12 +14,13 @@ export interface PetQuestion {
 export interface PetResult {
   key: string;
   emoji: string;
+  image?: string;
   title: string;
   summary: string;
   description: string;
   traits: string[];
-  compatibleOwner: string;
-  ownerTip: string;
+  compatibleOwner?: string;
+  ownerTip?: string;
   gradient: string;
   cardBg: string;
 }
@@ -42,250 +43,287 @@ export const DOG_TEST: PetTest = {
   questions: [
     {
       id: 1,
-      text: '보호자가 외출 준비를 하면 나는?',
+      text: '공원에서 다른 강아지를 만나면?',
       options: [
-        { label: '같이 나가려고 현관에서 흥분하며 뛴다', scores: { active: 3 } },
-        { label: '꼬리 치고 배 보여주며 칭찬 달라고 한다', scores: { social: 3 } },
-        { label: '간식이 생기나? 냄새 맡으며 따라다닌다', scores: { foodie: 3 } },
-        { label: '가도 돼, 나 혼자 잘 있을게', scores: { calm: 3 } },
+        { label: '먼저 달려가서 인사한다', scores: { E: 2 } },
+        { label: '보호자 옆에서 조심스럽게 살펴본다', scores: { I: 2 } },
       ],
     },
     {
       id: 2,
-      text: '산책 중 다른 강아지를 만나면?',
+      text: '낯선 사람이 집에 방문하면?',
       options: [
-        { label: '먼저 달려가서 냄새 맡고 같이 놀자고 한다', scores: { active: 2, social: 1 } },
-        { label: '꼬리 흔들며 바로 친구가 된다', scores: { social: 3 } },
-        { label: '별 관심 없고 땅에 떨어진 것만 찾는다', scores: { foodie: 3 } },
-        { label: '뒤로 숨거나 보호자 다리 사이로 들어간다', scores: { anxious: 3 } },
+        { label: '꼬리 치며 먼저 달려간다', scores: { E: 2 } },
+        { label: '구석에 숨어서 지켜본다', scores: { I: 2 } },
       ],
     },
     {
       id: 3,
-      text: '새로운 장난감이 생겼다!',
+      text: '보호자가 퇴근하면?',
       options: [
-        { label: '물어서 흔들고 바닥에 던지며 난리 친다', scores: { active: 3 } },
-        { label: '보호자한테 가져와 같이 놀자고 한다', scores: { social: 3 } },
-        { label: '냄새 맡고 먹을 건지 확인한다', scores: { foodie: 3 } },
-        { label: '냄새 한 번 맡고 바로 관심을 끈다', scores: { calm: 3 } },
+        { label: '온몸으로 흥분해서 반긴다', scores: { E: 2 } },
+        { label: '반갑지만 조용히 꼬리만 흔든다', scores: { I: 2 } },
       ],
     },
     {
       id: 4,
-      text: '밥 먹을 시간!',
+      text: '산책할 때 나는?',
       options: [
-        { label: '기다리다 못해 그릇 앞에서 원을 그린다', scores: { active: 2, foodie: 1 } },
-        { label: '밥보다 보호자랑 눈 맞추는 게 더 좋다', scores: { social: 3 } },
-        { label: '다 먹고도 더 달라고 그릇을 핥는다', scores: { foodie: 3 } },
-        { label: '주면 먹고 안 주면 말고, 그냥 기다린다', scores: { calm: 3 } },
+        { label: '매일 가는 익숙한 길이 좋다', scores: { S: 2 } },
+        { label: '오늘은 새로운 길을 가고 싶다', scores: { N: 2 } },
       ],
     },
     {
       id: 5,
-      text: '보호자가 소파에 앉으면?',
+      text: '새 장난감이 생기면?',
       options: [
-        { label: '옆에 바짝 붙어 같이 앉는다', scores: { social: 3 } },
-        { label: '그 틈을 노려 뛰어올라 자리를 차지한다', scores: { active: 3 } },
-        { label: '간식 들고 오길 기다린다', scores: { foodie: 3 } },
-        { label: '자기 방석에서 각자 쉰다', scores: { calm: 3 } },
+        { label: '하던 방식대로 잘 논다', scores: { S: 2 } },
+        { label: '이리저리 새로운 방법을 시도한다', scores: { N: 2 } },
       ],
     },
     {
       id: 6,
-      text: '낯선 사람이 집에 방문하면?',
+      text: '밥 먹을 때 나는?',
       options: [
-        { label: '짖으면서 달려가 냄새 맡고 탐험한다', scores: { active: 2, social: 1 } },
-        { label: '꼬리 치며 바로 배를 보여준다', scores: { social: 3 } },
-        { label: '뒤에 숨어서 짖기만 한다', scores: { anxious: 3 } },
-        { label: '관심 없고 자던 중이라 계속 잔다', scores: { calm: 3 } },
+        { label: '맛보다 양이 중요하다, 빨리 먹는다', scores: { S: 2 } },
+        { label: '냄새 맡고 천천히, 먹는 것 자체를 즐긴다', scores: { N: 2 } },
       ],
     },
     {
       id: 7,
       text: '보호자가 힘들어 보이면?',
       options: [
-        { label: '다가가서 핥고 붙어있는다', scores: { social: 3 } },
-        { label: '장난감 물고 와서 기분 풀어주려 한다', scores: { active: 2, social: 1 } },
-        { label: '옆에 조용히 앉아있는다', scores: { calm: 3 } },
-        { label: '뭔가 잘못됐나? 얼어서 바라본다', scores: { anxious: 3 } },
+        { label: '장난감 물고 와서 기분 전환시킨다', scores: { T: 2 } },
+        { label: '다가가서 핥고 붙어서 위로한다', scores: { F: 2 } },
       ],
     },
     {
       id: 8,
-      text: '목욕하는 날...',
+      text: '다른 강아지가 내 자리를 차지하면?',
       options: [
-        { label: '도망 다니다가 잡히면 포기한다', scores: { active: 3 } },
-        { label: '어쩔 수 없으니 그냥 서있는다', scores: { calm: 3 } },
-        { label: '떠는 동안 간식만 보고 있다', scores: { foodie: 2, anxious: 1 } },
-        { label: '욕조 근처도 안 간다', scores: { anxious: 3 } },
+        { label: '바로 가서 내 자리를 돌려받는다', scores: { T: 2 } },
+        { label: '속상하지만 다른 자리를 찾는다', scores: { F: 2 } },
       ],
     },
     {
       id: 9,
-      text: '실수로 집 안에서 배변 사고가 났을 때?',
+      text: '훈련할 때 나는?',
       options: [
-        { label: '보호자 표정이 변하는 걸 보고 꼬리를 내린다', scores: { anxious: 3 } },
-        { label: '잘못인지도 모르고 뛰어논다', scores: { active: 3 } },
-        { label: '눈치가 없어서 보호자를 핥는다', scores: { social: 2 } },
-        { label: '보호자가 치울 때까지 멀리서 본다', scores: { calm: 3 } },
+        { label: '빠릿빠릿, 효율적으로 배운다', scores: { T: 2 } },
+        { label: '보호자 칭찬이 있어야 열심히 한다', scores: { F: 2 } },
       ],
     },
     {
       id: 10,
-      text: '오랜 시간 혼자 있다가 보호자가 돌아왔을 때?',
+      text: '산책, 밥, 수면 시간이?',
       options: [
-        { label: '뛰면서 짖고 온몸으로 반긴다', scores: { active: 2, social: 1 } },
-        { label: '폭발적인 애교 공세를 퍼붓는다', scores: { social: 3 } },
-        { label: '간식 냄새 맡으며 가방을 뒤진다', scores: { foodie: 3 } },
-        { label: '반갑지만 꼬리만 살짝 흔든다', scores: { calm: 3 } },
+        { label: '매일 정해진 시간에 하는 게 좋다', scores: { J: 2 } },
+        { label: '그날그날 분위기에 따라 달라도 괜찮다', scores: { P: 2 } },
       ],
     },
     {
       id: 11,
-      text: '공원에서 뛰어다닐 수 있는 자유 시간!',
+      text: '보호자가 갑자기 계획을 바꾸면?',
       options: [
-        { label: '전력질주, 사방을 탐험하고 다닌다', scores: { active: 3 } },
-        { label: '사람들한테 계속 달려가 인사한다', scores: { social: 3 } },
-        { label: '떨어진 뭔가를 찾아서 먹으려 한다', scores: { foodie: 3 } },
-        { label: '보호자 옆에서 조금 걷다가 쉰다', scores: { calm: 3 } },
+        { label: '당황스럽다, 루틴이 깨지면 불안하다', scores: { J: 2 } },
+        { label: '오히려 신난다, 뭔가 새로운 거 생기나?', scores: { P: 2 } },
       ],
     },
     {
       id: 12,
-      text: '집에 혼자 있으면?',
+      text: '자기 전 나는?',
       options: [
-        { label: '집 안 탐험하다 장난감 가지고 논다', scores: { active: 3 } },
-        { label: '보호자 냄새 맡으러 옷이나 가방 근처에 있는다', scores: { social: 2, anxious: 1 } },
-        { label: '밥그릇 주변을 맴돈다', scores: { foodie: 3 } },
-        { label: '특별히 할 것 없어서 잔다', scores: { calm: 3 } },
-      ],
-    },
-    {
-      id: 13,
-      text: '훈련(앉아, 기다려 등)을 할 때?',
-      options: [
-        { label: '빠릿빠릿, 반응 빠르고 신난다', scores: { active: 2 } },
-        { label: '보호자 칭찬에 반응해서 열심히 한다', scores: { social: 3 } },
-        { label: '간식 없으면 안 한다', scores: { foodie: 3 } },
-        { label: '처음엔 안 들은 척하다가 결국 한다', scores: { calm: 2 } },
-      ],
-    },
-    {
-      id: 14,
-      text: '산책 중 낯선 소리가 나면?',
-      options: [
-        { label: '소리 향해 호기롭게 달려간다', scores: { active: 3 } },
-        { label: '보호자 뒤에 바짝 숨는다', scores: { anxious: 3 } },
-        { label: '잠깐 멈추고 확인 후 다시 걷는다', scores: { calm: 3 } },
-        { label: '관심 없고 냄새 맡던 거 계속한다', scores: { foodie: 2 } },
-      ],
-    },
-    {
-      id: 15,
-      text: '지금 이 순간 나의 행복은?',
-      options: [
-        { label: '보호자와 함께 달리거나 뛰노는 것', scores: { active: 3 } },
-        { label: '온 가족이 모여 안겨서 쉬는 것', scores: { social: 3 } },
-        { label: '맛있는 간식을 받는 것', scores: { foodie: 3 } },
-        { label: '내 자리에서 조용히 자는 것', scores: { calm: 3 } },
+        { label: '매일 같은 자리, 같은 자세로 잔다', scores: { J: 2 } },
+        { label: '그날 기분에 따라 여기저기 자리 바꾼다', scores: { P: 2 } },
       ],
     },
   ],
   calculateResult: (scores) => {
-    const dims = ['active', 'social', 'foodie', 'calm', 'anxious'] as const;
-    let best: (typeof dims)[number] = dims[0];
-    for (const d of dims) {
-      if ((scores[d] || 0) > (scores[best] || 0)) best = d;
-    }
-    return best;
+    const EI = (scores['E'] || 0) >= (scores['I'] || 0) ? 'e' : 'i';
+    const SN = (scores['S'] || 0) >= (scores['N'] || 0) ? 's' : 'n';
+    const TF = (scores['T'] || 0) >= (scores['F'] || 0) ? 't' : 'f';
+    const JP = (scores['J'] || 0) >= (scores['P'] || 0) ? 'j' : 'p';
+    return `${EI}${SN}${TF}${JP}`;
   },
   results: [
     {
-      key: 'active',
-      emoji: '🏃',
-      title: '씩씩한 활동왕',
-      summary: '뛰고, 탐험하고, 모험이 있어야 행복한 에너지 덩어리!',
-      description:
-        '에너지가 넘치는 모험가 타입이에요. 하루 종일 뛰어다니고 탐험하며 새로운 자극을 찾아다니는 것을 가장 좋아합니다. 산책 시간이 길수록, 놀이 시간이 많을수록 더 행복해지는 타입이에요. 지루할 때는 물건을 씹거나 장난을 치기도 하니 충분한 운동이 필수예요!',
-      traits: [
-        '활발한 야외 생활을 사랑해요',
-        '새로운 장소와 냄새 탐험이 최고예요',
-        '빠른 놀이와 달리기를 즐겨요',
-      ],
-      compatibleOwner: '활발하고 야외 활동을 즐기는 보호자',
-      ownerTip: '매일 충분한 운동이 필요해요. 산책, 달리기, 프리스비가 딱이에요!',
-      gradient: 'linear-gradient(150deg, #f97316 0%, #fb923c 50%, #fbbf24 100%)',
-      cardBg: '#f97316',
+      key: 'istj',
+      emoji: '🐕',
+      image: '/images/istj.webp',
+      title: '청렴결백한 원칙주의자',
+      summary: '규칙적인 생활과 신뢰의 아이콘',
+      description: '약속된 산책 시간을 정확히 기억하며, 정해진 규칙을 지킬 때 가장 편안함을 느끼는 모범생 타입입니다. 낯선 변화보다는 익숙한 루틴을 선호합니다.',
+      traits: ['정확한 루틴 선호', '차분하고 신중함', '강한 책임감'],
+      gradient: 'linear-gradient(150deg, #4b5563 0%, #6b7280 100%)',
+      cardBg: '#4b5563'
     },
     {
-      key: 'social',
-      emoji: '🥰',
-      title: '사랑이 넘치는 애교쟁이',
-      summary: '보호자가 세상의 전부! 같이 있을 때가 가장 행복해',
-      description:
-        '사람을 너무나 좋아하는 사교적인 타입이에요. 보호자의 관심과 사랑이 에너지의 원천이고, 혼자 있는 것을 힘들어할 수 있어요. 처음 만난 사람과도 금방 친구가 되는 매력적인 성격으로, 온 세상 모든 사람을 내 편으로 만드는 능력을 갖고 있어요!',
-      traits: [
-        '보호자와의 스킨십을 특히 좋아해요',
-        '처음 만난 사람과도 금방 친해져요',
-        '분리 불안이 있을 수 있어요',
-      ],
-      compatibleOwner: '집에 있는 시간이 많고 애정 표현을 잘 하는 보호자',
-      ownerTip: '혼자 있는 훈련이 필요할 수 있어요. 충분한 관심과 사랑을 주세요!',
-      gradient: 'linear-gradient(150deg, #ec4899 0%, #f472b6 50%, #fb7185 100%)',
-      cardBg: '#ec4899',
+      key: 'isfj',
+      emoji: '🐕',
+      image: '/images/isfj.webp',
+      title: '용감한 수호자',
+      summary: '보호자 곁을 지키는 든든한 보디가드',
+      description: '조용히 다가와 머리를 기대는 등 세심하게 보호자의 기분을 살핍니다. 헌신적이며 가족을 보호하려는 본능이 매우 강한 따뜻한 수호천사입니다.',
+      traits: ['섬세한 공감능력', '기억력이 좋음', '매우 헌신적임'],
+      gradient: 'linear-gradient(150deg, #10b981 0%, #34d399 100%)',
+      cardBg: '#10b981'
     },
     {
-      key: 'foodie',
-      emoji: '🍖',
-      title: '세상에서 밥이 최고! 먹보',
-      summary: '밥 앞에서는 참을 수 없어, 간식만 있으면 세상 최고야',
-      description:
-        '음식 앞에서는 그 어떤 것도 이겨낼 수 없는 음식 동기 유발 타입이에요. 훈련도 간식만 있으면 금방 배우는 실속파! 냄새에 매우 민감하고 음식 관련 상황에서 가장 활기차게 반응합니다. 먹을 것을 위해서라면 어떤 재주도 부릴 준비가 돼있어요.',
-      traits: [
-        '간식이 최고의 동기 부여예요',
-        '냄새로 먹을 것을 귀신같이 찾아요',
-        '간식이 있으면 순식간에 천재견이 돼요',
-      ],
-      compatibleOwner: '규칙적인 식사 관리를 잘 하고 간식 트릭 훈련을 즐기는 보호자',
-      ownerTip: '과식을 조심하세요! 체중 관리가 건강의 핵심이에요.',
-      gradient: 'linear-gradient(150deg, #a16207 0%, #ca8a04 50%, #eab308 100%)',
-      cardBg: '#ca8a04',
+      key: 'infj',
+      emoji: '🐕',
+      image: '/images/infj.webp',
+      title: '선의의 옹호자',
+      summary: '말하지 않아도 마음을 읽는 통찰가',
+      description: '가끔은 혼자만의 사색을 즐기는 듯 신비로운 분위기를 풍깁니다. 보호자의 감정 변화에 매우 민감하게 반응하며 깊은 정서적 유대감을 중요시합니다.',
+      traits: ['깊은 유대감 중시', '조용하고 사색적', '예민한 감수성'],
+      gradient: 'linear-gradient(150deg, #8b5cf6 0%, #a78bfa 100%)',
+      cardBg: '#8b5cf6'
     },
     {
-      key: 'calm',
-      emoji: '😴',
-      title: '느긋한 독립파',
-      summary: '혼자도 잘 있어, 내 페이스가 중요해',
-      description:
-        '독립적이고 느긋한 성격으로, 혼자 있는 것을 크게 불편해하지 않아요. 자기 페이스를 중요하게 생각하며, 강요받는 것을 싫어하는 개성 강한 타입이에요. 차분하고 안정적인 성격 덕분에 함께 지내기 편안한 최고의 룸메이트예요!',
-      traits: [
-        '혼자 있는 시간을 편안하게 보내요',
-        '자기만의 루틴과 자리를 소중히 여겨요',
-        '차분하고 스트레스를 잘 받지 않아요',
-      ],
-      compatibleOwner: '강아지의 자율성을 존중하며 바쁜 일상을 가진 보호자',
-      ownerTip: '억지로 놀이를 강요하지 마세요. 아이의 페이스를 존중해 주세요!',
-      gradient: 'linear-gradient(150deg, #0369a1 0%, #0284c7 50%, #38bdf8 100%)',
-      cardBg: '#0284c7',
+      key: 'intj',
+      emoji: '🐕',
+      image: '/images/intj.webp',
+      title: '용의주도한 전략가',
+      summary: '똑똑하고 독립적인 지능형 캐릭터',
+      description: '단순한 반복보다는 머리를 쓰는 노즈워크나 퍼즐 장난감을 즐깁니다. 혼자 있는 시간도 잘 견디며, 상황 판단이 매우 빠른 똑똑한 파트너입니다.',
+      traits: ['높은 지능과 분석력', '독립적인 성향', '전략적인 학습력'],
+      gradient: 'linear-gradient(150deg, #6366f1 0%, #818cf8 100%)',
+      cardBg: '#6366f1'
     },
     {
-      key: 'anxious',
-      emoji: '🐾',
-      title: '마음이 여린 겁쟁이',
-      summary: '낯선 건 다 무서워... 보호자만 믿어요',
-      description:
-        '새로운 것에 쉽게 놀라고 불안해하는 예민한 타입이에요. 낯선 사람, 소리, 환경에 적응하는 데 시간이 필요합니다. 하지만 마음을 연 보호자에게는 누구보다 충성스럽고 깊은 유대감을 형성하는 순수한 아이예요.',
-      traits: [
-        '낯선 환경에서 불안감을 느껴요',
-        '보호자에게 큰 의지를 해요',
-        '천천히 사회화 과정이 필요해요',
-      ],
-      compatibleOwner: '인내심 있고 차분하며 감수성을 이해하는 보호자',
-      ownerTip: '천천히 새로운 것에 노출시키고, 긍정 강화로 자신감을 키워주세요!',
-      gradient: 'linear-gradient(150deg, #7c3aed 0%, #8b5cf6 50%, #a78bfa 100%)',
-      cardBg: '#7c3aed',
+      key: 'istp',
+      emoji: '🐕',
+      image: '/images/istp.webp',
+      title: '만능 재주꾼',
+      summary: '적응력 끝판왕, 쿨한 모험가',
+      description: '새로운 물건을 탐구하거나 장애물을 뛰어넘는 것에 두려움이 없습니다. 과한 애정 표현보다는 묵묵히 곁을 지키는 쿨한 매력을 가진 타입입니다.',
+      traits: ['뛰어난 상황 적응력', '도구 활용 능력', '대담하고 침착함'],
+      gradient: 'linear-gradient(150deg, #0d9488 0%, #14b8a6 100%)',
+      cardBg: '#0d9488'
     },
-  ],
+    {
+      key: 'isfp',
+      emoji: '🐕',
+      image: '/images/isfp.webp',
+      title: '호기심 많은 예술가',
+      summary: '세상의 모든 냄새가 궁금한 평화주의자',
+      description: '자유로운 영혼으로, 산책 시 여기저기 냄새를 맡으며 세상을 탐색하는 것을 즐깁니다. 갈등을 싫어하고 모든 사람과 원만하게 지내는 성격입니다.',
+      traits: ['풍부한 감성', '온순하고 친절함', '현재를 즐기는 타입'],
+      gradient: 'linear-gradient(150deg, #fbbf24 0%, #fcd34d 100%)',
+      cardBg: '#fbbf24'
+    },
+    {
+      key: 'infp',
+      emoji: '🐕',
+      image: '/images/infp.webp',
+      title: '열정적인 중재자',
+      summary: '꿈꾸는 댕댕이, 낭만적인 파트너',
+      description: '마음이 매우 여리고 착해서 보호자의 목소리 톤 하나에도 크게 반응합니다. 상상력이 풍부하며 자신만의 세계가 뚜렷한 내향형 사랑둥이입니다.',
+      traits: ['이상주의적 성향', '매우 부드러움', '깊은 내적 애정'],
+      gradient: 'linear-gradient(150deg, #34d399 0%, #6ee7b7 100%)',
+      cardBg: '#34d399'
+    },
+    {
+      key: 'intp',
+      emoji: '🐕',
+      image: '/images/intp.webp',
+      title: '논리적인 사색가',
+      summary: '엉뚱한 매력의 조용한 천재',
+      description: '가끔은 왜 저러나 싶을 정도로 독특한 행동을 하지만, 사실은 주변 환경을 끊임없이 관찰하고 분석하는 중입니다. 조용하지만 호기심이 많습니다.',
+      traits: ['창의적인 사고', '객관적인 관찰자', '자유로운 영혼'],
+      gradient: 'linear-gradient(150deg, #0ea5e9 0%, #38bdf8 100%)',
+      cardBg: '#0ea5e9'
+    },
+    {
+      key: 'estp',
+      emoji: '🐕',
+      image: '/images/estp.webp',
+      title: '모험을 즐기는 사업가',
+      summary: '직진 본능! 에너자이저 활동가',
+      description: '망설임 없이 행동으로 옮기는 타입입니다. 낯선 강아지나 사람에게도 먼저 다가가 인사하는 핵인싸이며, 거친 놀이도 마다하지 않는 용감한 성격입니다.',
+      traits: ['강한 활동력', '자신감 넘침', '즉흥적이고 사교적'],
+      gradient: 'linear-gradient(150deg, #f59e0b 0%, #fbbf24 100%)',
+      cardBg: '#f59e0b'
+    },
+    {
+      key: 'esfp',
+      emoji: '🐕',
+      image: '/images/esfp.webp',
+      title: '자유로운 영혼의 연예인',
+      summary: '어디서나 주인공! 분위기 메이커',
+      description: '사람들의 관심을 받는 것을 무엇보다 즐깁니다. 애교가 넘치고 매 순간 즐거움을 찾으려 노력하며, 보호자를 웃게 만드는 천부적인 재능이 있습니다.',
+      traits: ['천성적인 낙천가', '주의 집중 즐김', '에너지가 매우 밝음'],
+      gradient: 'linear-gradient(150deg, #ec4899 0%, #f472b6 100%)',
+      cardBg: '#ec4899'
+    },
+    {
+      key: 'enfp',
+      emoji: '🐕',
+      image: '/images/enfp.webp',
+      title: '재기발랄한 활동가',
+      summary: '사랑과 열정의 꼬리치기 마스터',
+      description: '모든 것이 새롭고 즐거운 긍정 왕입니다. 창의적인 방법으로 보호자에게 놀이를 제안하며, 풍부한 표정 변화로 자신의 감정을 확실하게 표현합니다.',
+      traits: ['무한한 긍정 에너지', '사교성 최고', '풍부한 감정표현'],
+      gradient: 'linear-gradient(150deg, #f97316 0%, #fb923c 100%)',
+      cardBg: '#f97316'
+    },
+    {
+      key: 'entp',
+      emoji: '🐕',
+      image: '/images/entp.webp',
+      title: '뜨거운 논쟁을 즐기는 변론가',
+      summary: '영리하고 장난기 가득한 지략가',
+      description: '지루한 것을 참지 못하며 끊임없이 새로운 장난을 생각합니다. 보호자와의 밀당을 즐기기도 하며, 어려운 훈련도 게임처럼 재미있게 습득합니다.',
+      traits: ['도전적인 성향', '빠른 상황 대처', '영리한 장난꾸러기'],
+      gradient: 'linear-gradient(150deg, #f43f5e 0%, #fb7185 100%)',
+      cardBg: '#f43f5e'
+    },
+    {
+      key: 'estj',
+      emoji: '🐕',
+      image: '/images/estj.webp',
+      title: '엄격한 관리자',
+      summary: '우리 집의 기강을 잡는 질서 반장',
+      description: '집안의 규칙을 명확히 이해하고 따릅니다. 산책 시에도 앞장서서 길을 안내하려 하며, 리더십이 강하고 예측 가능한 상황을 선호하는 듬직한 타입입니다.',
+      traits: ['리더십과 질서', '명확한 의사 표현', '단호하고 정직함'],
+      gradient: 'linear-gradient(150deg, #1d4ed8 0%, #3b82f6 100%)',
+      cardBg: '#1d4ed8'
+    },
+    {
+      key: 'esfj',
+      emoji: '🐕',
+      image: '/images/esfj.webp',
+      title: '사교적인 외교관',
+      summary: '모두를 챙기는 따뜻한 배려 대장',
+      description: '가족 구성원 모두를 살뜰히 챙기며 화목한 분위기를 좋아합니다. 칭찬받는 것을 매우 좋아하며, 보호자의 기대에 부응하려고 노력하는 다정다감한 성격입니다.',
+      traits: ['협조적이고 친절함', '사회적 적응력', '세심한 배려심'],
+      gradient: 'linear-gradient(150deg, #06b6d4 0%, #22d3ee 100%)',
+      cardBg: '#06b6d4'
+    },
+    {
+      key: 'enfj',
+      emoji: '🐕',
+      image: '/images/enfj.webp',
+      title: '정의로운 사회운동가',
+      summary: '마음을 움직이는 따뜻한 리더',
+      description: '사람뿐만 아니라 다른 강아지 친구들과도 깊은 우정을 쌓습니다. 카리스마 넘치면서도 다정한 성품을 지녔으며, 주변을 항상 밝게 만드는 매력이 있습니다.',
+      traits: ['타인에게 영향력', '이타적인 태도', '사교적 리더십'],
+      gradient: 'linear-gradient(150deg, #facc15 0%, #fbbf24 100%)',
+      cardBg: '#facc15'
+    },
+    {
+      key: 'entj',
+      emoji: '🐕',
+      image: '/images/entj.webp',
+      title: '대담한 통솔자',
+      summary: '자신감 넘치는 당당한 카리스마',
+      description: '목표 지향적인 성격으로 어려운 과제도 끝까지 해냅니다. 당당한 걸음걸이와 자신감 있는 태도가 특징이며, 확실한 리더십을 가진 든든한 동반자입니다.',
+      traits: ['결단력과 추진력', '자신감 있는 태도', '명확한 목표 의식'],
+      gradient: 'linear-gradient(150deg, #7e22ce 0%, #a855f7 100%)',
+      cardBg: '#7e22ce'
+    }
+  ]
+
 };
 
 export const CAT_TEST: PetTest = {

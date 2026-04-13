@@ -42,9 +42,23 @@ export default function PetShareCard({ result, petType }: Props) {
         {result.emoji} {t(labelKey)} {t('app.name')}
       </div>
 
-      <div style={{ fontSize: 68, lineHeight: 1, marginBottom: 12 }}>
-        {result.emoji}
-      </div>
+      {result.image ? (
+        <img
+          src={result.image}
+          alt={result.title}
+          style={{
+            width: 110,
+            height: 110,
+            objectFit: 'contain',
+            marginBottom: 12,
+            filter: 'drop-shadow(0 4px 16px rgba(0,0,0,0.25))',
+          }}
+        />
+      ) : (
+        <div style={{ fontSize: 68, lineHeight: 1, marginBottom: 12 }}>
+          {result.emoji}
+        </div>
+      )}
 
       <div
         style={{
