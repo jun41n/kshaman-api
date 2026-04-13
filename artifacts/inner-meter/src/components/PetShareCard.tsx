@@ -9,27 +9,30 @@ interface Props {
 export default function PetShareCard({ result, petType }: Props) {
   const { t } = useTranslation();
   const rKey = `${petType}.results.${result.key}`;
-  const labelKey = petType === 'dog' ? 'quiz.dogLabel' : 'quiz.catLabel';
-  const isDog = petType === 'dog';
+  const labelKey = petType === "dog" ? "quiz.dogLabel" : "quiz.catLabel";
+  const isDog = petType === "dog";
+
+  const title = t(`${rKey}.title`);
+  const summary = t(`${rKey}.summary`);
+  const isLongTitle = title.length > 14;
+  const isLongSummary = summary.length > 36;
 
   return (
     <div
       style={{
+        width: "360px",
+        height: "480px",
         background: result.gradient,
-        width: "100%",
-        minHeight: 340,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "40px 28px",
-        boxSizing: "border-box",
-        fontFamily: "'Noto Sans KR', sans-serif",
+        borderRadius: "28px",
         position: "relative",
         overflow: "hidden",
+        fontFamily: "'Inter', -apple-system, 'Malgun Gothic', sans-serif",
+        display: "flex",
+        flexDirection: "column",
+        flexShrink: 0,
       }}
     >
-      {/* ── Background watermark: large MBTI code (dog only) ── */}
+      {/* ── Watermark: large MBTI code (dog only) ── */}
       {isDog && (
         <svg
           aria-hidden="true"
@@ -45,171 +48,239 @@ export default function PetShareCard({ result, petType }: Props) {
         >
           <text
             x="50%"
-            y="60%"
+            y="58%"
             textAnchor="middle"
             fontSize="180"
             fontWeight="900"
             fill="rgba(255,255,255,0.08)"
             fontFamily="Inter, sans-serif"
-            letterSpacing="-8"
+            letterSpacing="-10"
           >
             {result.key.toUpperCase()}
           </text>
         </svg>
       )}
 
-      {/* ── All content sits above the watermark ── */}
+      {/* ── Ambient glows ── */}
+      <div
+        style={{
+          position: "absolute",
+          top: "-80px",
+          right: "-80px",
+          width: "260px",
+          height: "260px",
+          borderRadius: "50%",
+          background: "rgba(255,255,255,0.08)",
+          filter: "blur(50px)",
+          pointerEvents: "none",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          bottom: "-60px",
+          left: "-60px",
+          width: "200px",
+          height: "200px",
+          borderRadius: "50%",
+          background: "rgba(255,255,255,0.05)",
+          filter: "blur(40px)",
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* ── Content ── */}
       <div
         style={{
           position: "relative",
-          zIndex: 1,
+          zIndex: 10,
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
-          width: "100%",
+          height: "100%",
+          padding: "26px 26px 22px",
         }}
       >
-        {/* Badge */}
+        {/* Header row */}
         <div
           style={{
-            background: "rgba(255,255,255,0.18)",
-            borderRadius: 999,
-            padding: "6px 16px",
-            marginBottom: 12,
-            fontSize: 11,
-            fontWeight: 700,
-            letterSpacing: 2,
-            color: "rgba(255,255,255,0.9)",
-            textTransform: "uppercase",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            marginBottom: "18px",
+            gap: "8px",
           }}
         >
-          {t(labelKey)} {t('pet.appName')}
-        </div>
-
-        {/* Dog/Cat image or emoji */}
-        {result.image ? (
           <div
             style={{
-              width: 180,
-              height: 180,
-              marginBottom: 10,
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
+              gap: "6px",
+              flexShrink: 0,
             }}
           >
-            <img
-              src={result.image}
-              alt={result.title}
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "contain",
-                filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.22))",
-              }}
-            />
-          </div>
-        ) : (
-          <div style={{ fontSize: 68, lineHeight: 1, marginBottom: 12 }}>
-            {result.emoji}
-          </div>
-        )}
-
-        {/* ── Horizontal divider ── */}
-        <div
-          style={{
-            width: "80%",
-            height: 1,
-            background: "rgba(255,255,255,0.30)",
-            marginBottom: 14,
-          }}
-        />
-
-        {/* Title */}
-        <div
-          style={{
-            fontSize: 24,
-            fontWeight: 900,
-            color: "white",
-            textAlign: "center",
-            lineHeight: 1.2,
-            marginBottom: isDog ? 4 : 8,
-            textShadow: "0 2px 12px rgba(0,0,0,0.18)",
-          }}
-        >
-          {t(`${rKey}.title`)}
-        </div>
-
-        {/* MBTI type code (dog only) */}
-        {isDog && (
-          <div
-            style={{
-              fontSize: 16,
-              fontWeight: 800,
-              color: "rgba(255,255,255,0.85)",
-              textAlign: "center",
-              letterSpacing: 3,
-              marginBottom: 8,
-            }}
-          >
-            ({result.key.toUpperCase()})
-          </div>
-        )}
-
-        {/* Summary */}
-        <div
-          style={{
-            fontSize: 12,
-            color: "rgba(255,255,255,0.88)",
-            textAlign: "center",
-            lineHeight: 1.5,
-            maxWidth: 220,
-            marginBottom: 18,
-          }}
-        >
-          {t(`${rKey}.summary`)}
-        </div>
-
-        {/* Traits */}
-        <div
-          style={{
-            background: "rgba(255,255,255,0.22)",
-            borderRadius: 16,
-            padding: "10px 18px",
-            display: "flex",
-            flexDirection: "column",
-            gap: 6,
-            width: "100%",
-            maxWidth: 260,
-          }}
-        >
-          {[0, 1, 2].map((i) => (
             <div
-              key={i}
               style={{
-                fontSize: 11,
-                color: "white",
+                width: "24px",
+                height: "24px",
+                borderRadius: "7px",
+                background: "rgba(255,255,255,0.20)",
                 display: "flex",
-                alignItems: "flex-start",
-                gap: 6,
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "11px",
+                color: "#fff",
+                flexShrink: 0,
               }}
             >
-              <span style={{ opacity: 0.7 }}>✦</span>
-              <span>{t(`${rKey}.trait${i}`)}</span>
+              ✦
             </div>
-          ))}
+            <span
+              style={{
+                fontSize: "13px",
+                fontWeight: "800",
+                color: "#ffffff",
+                letterSpacing: "-0.2px",
+                whiteSpace: "nowrap",
+              }}
+            >
+              MyTestType
+            </span>
+          </div>
+          <div
+            style={{
+              padding: "4px 10px",
+              borderRadius: "100px",
+              background: "rgba(255,255,255,0.18)",
+              border: "1px solid rgba(255,255,255,0.30)",
+              fontSize: "10px",
+              fontWeight: "700",
+              color: "#ffffff",
+              letterSpacing: "0.3px",
+              whiteSpace: "nowrap",
+              flexShrink: 0,
+            }}
+          >
+            {t(labelKey)}
+          </div>
+        </div>
+
+        {/* Main content */}
+        <div
+          style={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            textAlign: "center",
+            padding: "0 8px",
+          }}
+        >
+          {/* Dog image or emoji */}
+          {result.image ? (
+            <img
+              src={result.image}
+              alt={result.key}
+              crossOrigin="anonymous"
+              style={{
+                width: "130px",
+                height: "130px",
+                objectFit: "contain",
+                marginBottom: "16px",
+                filter: "drop-shadow(0 6px 18px rgba(0,0,0,0.30))",
+              }}
+            />
+          ) : (
+            <div
+              style={{
+                fontSize: "68px",
+                lineHeight: "1",
+                marginBottom: "20px",
+                filter: "drop-shadow(0 6px 18px rgba(0,0,0,0.30))",
+              }}
+            >
+              {result.emoji}
+            </div>
+          )}
+
+          {/* Title */}
+          <h2
+            style={{
+              fontSize: isLongTitle ? "20px" : "26px",
+              fontWeight: "900",
+              color: "#ffffff",
+              lineHeight: "1.2",
+              marginBottom: isDog ? "4px" : "14px",
+              letterSpacing: "-0.5px",
+              textShadow: "0 2px 10px rgba(0,0,0,0.18)",
+              wordBreak: "keep-all",
+              maxWidth: "290px",
+            }}
+          >
+            {title}
+          </h2>
+
+          {/* MBTI type code (dog only) */}
+          {isDog && (
+            <div
+              style={{
+                fontSize: "16px",
+                fontWeight: "800",
+                color: "rgba(255,255,255,0.85)",
+                letterSpacing: "3px",
+                marginBottom: "14px",
+              }}
+            >
+              ({result.key.toUpperCase()})
+            </div>
+          )}
+
+          {/* Accent line */}
+          <div
+            style={{
+              width: "36px",
+              height: "2.5px",
+              background: "rgba(255,255,255,0.28)",
+              borderRadius: "100px",
+              marginBottom: "14px",
+            }}
+          />
+
+          {/* Summary */}
+          <p
+            style={{
+              fontSize: isLongSummary ? "12px" : "13px",
+              fontWeight: "600",
+              color: "rgba(255,255,255,0.72)",
+              lineHeight: "1.6",
+              maxWidth: "270px",
+              wordBreak: "keep-all",
+            }}
+          >
+            "{summary}"
+          </p>
         </div>
 
         {/* Footer */}
         <div
           style={{
-            marginTop: 18,
-            fontSize: 10,
-            color: "rgba(255,255,255,0.55)",
-            letterSpacing: 1,
+            borderTop: "1px solid rgba(255,255,255,0.15)",
+            paddingTop: "13px",
           }}
         >
-          {t('pet.appName')}
+          <span
+            style={{
+              fontSize: "10.5px",
+              color: "rgba(255,255,255,0.72)",
+              fontWeight: "600",
+              display: "block",
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+            }}
+          >
+            {t("pet.appName")}
+          </span>
         </div>
       </div>
     </div>

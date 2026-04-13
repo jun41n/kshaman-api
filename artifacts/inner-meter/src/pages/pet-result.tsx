@@ -142,8 +142,10 @@ export default function PetResult() {
               {test.emoji} {t('pet.result.heading', { label: t(labelKey) })}
             </p>
 
-            <div className="rounded-3xl overflow-hidden shadow-xl mb-5">
-              <PetShareCard result={result} petType={petType} />
+            <div className="flex justify-center mb-5">
+              <div style={{ borderRadius: '28px', overflow: 'hidden', boxShadow: '0 20px 60px rgba(0,0,0,0.18)', flexShrink: 0 }}>
+                <PetShareCard result={result} petType={petType} />
+              </div>
             </div>
 
             <div className="bg-card rounded-[1.5rem] p-6 border border-border shadow-sm mb-4">
