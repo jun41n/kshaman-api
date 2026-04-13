@@ -47,3 +47,9 @@ Thumbs.db
 # Replit
 .cache/
 .local/
+
+# Agent-generated temporary assets
+attached_assets/
+
+# Temporary archives
+*.tar.gz
