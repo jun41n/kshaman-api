@@ -32,6 +32,10 @@ export async function generateResultCardImage(el: HTMLDivElement): Promise<Blob 
   return Promise.race([blobPromise, timeout]);
 }
 
+function isIos(): boolean {
+  return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
+
 export async function saveResultCardImage(
   el: HTMLDivElement,
   filename: string,
@@ -40,6 +44,53 @@ export async function saveResultCardImage(
   const blob = await generateResultCardImage(el);
   if (!blob) throw new Error('Image capture failed');
 
+  const file = new File([blob], `${filename}.png`, { type: 'image/png' });
+
+  if (isIos()) {
+    const canShareFile =
+      typeof navigator.canShare === 'function' && navigator.canShare({ files: [file] });
+
+    if (canShareFile) {
+      await navigator.share({ files: [file] });
+      return;
+    }
+
+    onIosFallback?.();
+
+    const dataUrl = await new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+
+    const overlay = document.createElement('div');
+    overlay.style.cssText =
+      'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.85);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;';
+
+    const hint = document.createElement('p');
+    hint.textContent = '이미지를 길게 눌러 저장하세요';
+    hint.style.cssText = 'color:#fff;font-size:15px;font-weight:600;text-align:center;margin:0;';
+
+    const img = document.createElement('img');
+    img.src = dataUrl;
+    img.style.cssText =
+      'max-width:100%;max-height:65vh;border-radius:16px;object-fit:contain;';
+
+    const closeBtn = document.createElement('button');
+    closeBtn.textContent = '닫기';
+    closeBtn.style.cssText =
+      'background:rgba(255,255,255,0.15);color:#fff;border:none;border-radius:12px;padding:10px 32px;font-size:15px;font-weight:600;margin-top:4px;cursor:pointer;';
+    closeBtn.onclick = () => document.body.removeChild(overlay);
+    overlay.onclick = (e) => { if (e.target === overlay) document.body.removeChild(overlay); };
+
+    overlay.appendChild(hint);
+    overlay.appendChild(img);
+    overlay.appendChild(closeBtn);
+    document.body.appendChild(overlay);
+    return;
+  }
+
   const objectUrl = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = objectUrl;
@@ -47,16 +98,7 @@ export async function saveResultCardImage(
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
-
-  const isIos = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-  if (isIos) {
-    onIosFallback?.();
-    setTimeout(() => {
-      window.open(objectUrl, '_blank');
-    }, 300);
-  } else {
-    setTimeout(() => URL.revokeObjectURL(objectUrl), 5000);
-  }
+  setTimeout(() => URL.revokeObjectURL(objectUrl), 5000);
 }
 
 export async function shareResultComparison(
@@ -76,7 +118,6 @@ export async function shareResultComparison(
         typeof navigator.canShare === 'function' && navigator.canShare({ files: [file] });
 
       if (canShareFile) {
-        // iOS rejects share() when both files + url are passed; url is already in shareText
         await navigator.share({ files: [file], text: shareText });
         return;
       }
