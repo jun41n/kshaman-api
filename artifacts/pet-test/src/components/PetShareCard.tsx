@@ -12,6 +12,14 @@ export default function PetShareCard({ result, petType }: Props) {
   const labelKey = petType === 'dog' ? 'quiz.dogLabel' : 'quiz.catLabel';
 
   return (
+    <>
+    <style>{`
+      @keyframes petFloat {
+        0%,100% { transform: translateY(0px); }
+        50% { transform: translateY(-8px); }
+      }
+      .pet-char-img { animation: petFloat 2.8s ease-in-out infinite; }
+    `}</style>
     <div
       style={{
         background: result.gradient,
@@ -46,6 +54,7 @@ export default function PetShareCard({ result, petType }: Props) {
         <img
           src={result.image}
           alt={result.title}
+          className="pet-char-img"
           style={{
             width: 110,
             height: 110,
@@ -127,5 +136,6 @@ export default function PetShareCard({ result, petType }: Props) {
         {t('app.name')}
       </div>
     </div>
+    </>
   );
 }

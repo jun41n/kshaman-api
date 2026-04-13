@@ -26,7 +26,7 @@ export function Layout({ children }: LayoutProps) {
               <PawPrint className="w-4 h-4" />
             </div>
             <span className="font-bold text-lg text-foreground">
-              {t('pet.appName')}
+              {t('app.name')}
             </span>
           </a>
         </div>
