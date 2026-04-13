@@ -229,6 +229,7 @@ export default function PetShareCard({ result, petType }: Props) {
                 color: "rgba(255,255,255,0.85)",
                 letterSpacing: "3px",
                 marginBottom: "14px",
+                whiteSpace: "nowrap",
               }}
             >
               ({result.key.toUpperCase()})
