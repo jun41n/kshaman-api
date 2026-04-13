@@ -368,6 +368,7 @@ export const DOG_TEST: PetTest = {
     {
       key: 'entj',
       emoji: '🐕',
+      image: '/images/entj.webp',
       title: '대담한 통솔자',
       summary: '자신감 넘치는 당당한 카리스마',
       description: '목표 지향적인 성격으로 어려운 과제도 끝까지 해냅니다. 당당한 걸음걸이와 자신감 있는 태도가 특징이며, 확실한 리더십을 가진 든든한 동반자입니다.',
