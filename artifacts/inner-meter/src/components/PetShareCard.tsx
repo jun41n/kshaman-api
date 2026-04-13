@@ -39,12 +39,36 @@ export default function PetShareCard({ result, petType }: Props) {
           textTransform: "uppercase",
         }}
       >
-        {result.emoji} {t(labelKey)} {t('pet.appName')}
+        {t(labelKey)} {t('pet.appName')}
       </div>
 
-      <div style={{ fontSize: 68, lineHeight: 1, marginBottom: 12 }}>
-        {result.emoji}
-      </div>
+      {result.image ? (
+        <div
+          style={{
+            width: 180,
+            height: 180,
+            marginBottom: 10,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <img
+            src={result.image}
+            alt={result.title}
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+              filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.18))",
+            }}
+          />
+        </div>
+      ) : (
+        <div style={{ fontSize: 68, lineHeight: 1, marginBottom: 12 }}>
+          {result.emoji}
+        </div>
+      )}
 
       <div
         style={{
