@@ -54,7 +54,7 @@ export default function PetQuiz() {
   return (
     <Layout>
       <div className="flex-1 flex flex-col">
-        <div className="px-4 pt-6 pb-2 max-w-sm mx-auto w-full">
+        <div className="px-4 pt-6 pb-2 max-w-xl mx-auto w-full">
           <button
             className="text-[#8B6650] dark:text-muted-foreground text-sm mb-4 flex items-center gap-1"
             onClick={() => navigate("/pet-test")}
@@ -84,7 +84,7 @@ export default function PetQuiz() {
           </div>
         </div>
 
-        <div className="flex-1 flex flex-col px-4 pb-8 max-w-sm mx-auto w-full">
+        <div className="flex-1 flex flex-col px-4 pb-8 max-w-xl mx-auto w-full">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={current}
