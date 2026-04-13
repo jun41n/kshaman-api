@@ -32,10 +32,12 @@ export default function Result() {
 
   useEffect(() => {
     const completed = sessionStorage.getItem(`pet_quiz_done_${petType}`);
-    if (!completed) {
+    const validKey = test.results.some((r) => r.key === resultKey);
+    if (!completed || !validKey) {
+      sessionStorage.removeItem(`pet_quiz_done_${petType}`);
       navigate(`/quiz/${petType}`);
     }
-  }, [petType, navigate]);
+  }, [petType, navigate, resultKey, test.results]);
 
   const updateCardScale = useCallback(() => {
     if (!previewWrapperRef.current) return;
