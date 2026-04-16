@@ -173,6 +173,7 @@ export function Layout({ children, showAd = false }: LayoutProps) {
                   <Link href="/privacy" className="hover:text-primary transition-colors">{t('footer.privacy')}</Link>
                   <Link href="/terms"   className="hover:text-primary transition-colors">{t('footer.terms')}</Link>
                   <Link href="/contact" className="hover:text-primary transition-colors">{t('footer.contact')}</Link>
+                  <Link href="/blog"    className="hover:text-primary transition-colors font-semibold text-foreground/70">심리 칼럼</Link>
                 </div>
               </div>
             </div>
