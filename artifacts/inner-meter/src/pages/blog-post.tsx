@@ -27,7 +27,7 @@ function renderContent(content: string) {
       elements.push(
         <h2
           key={i}
-          className="text-xl font-black text-foreground mt-10 mb-3 leading-snug"
+          className="text-xl font-black text-foreground mt-10 mb-3 leading-snug break-keep"
         >
           {line.slice(3)}
         </h2>
@@ -55,7 +55,7 @@ function renderContent(content: string) {
               loading="lazy"
             />
           </div>
-          <p className="text-[15px] text-foreground/80 leading-[1.85] flex-1 pt-1">
+          <p className="text-[15px] text-foreground/80 leading-[1.85] flex-1 pt-1 break-keep">
             {text}
           </p>
         </div>
@@ -68,7 +68,7 @@ function renderContent(content: string) {
       elements.push(
         <p
           key={i}
-          className="text-[15px] text-foreground/80 leading-[1.85] mb-0"
+          className="text-[15px] text-foreground/80 leading-[1.85] mb-0 break-keep"
         >
           {line}
         </p>
@@ -163,12 +163,12 @@ export default function BlogPost() {
         </div>
 
         {/* Title */}
-        <h1 className="text-2xl sm:text-3xl font-black text-foreground leading-snug mb-4">
+        <h1 className="text-2xl sm:text-3xl font-black text-foreground leading-snug mb-4 break-keep">
           {post.title}
         </h1>
 
         {/* Description lead */}
-        <p className="text-base text-muted-foreground leading-relaxed mb-8 pb-8 border-b border-border">
+        <p className="text-base text-muted-foreground leading-relaxed mb-8 pb-8 border-b border-border break-keep">
           {post.description}
         </p>
 
@@ -197,7 +197,7 @@ export default function BlogPost() {
                   </div>
                   <div className="flex flex-col justify-center gap-1 min-w-0">
                     <span className="text-[10px] font-bold text-primary">{r.category}</span>
-                    <p className="text-sm font-semibold text-foreground line-clamp-2 group-hover:text-primary transition-colors leading-snug">
+                    <p className="text-sm font-semibold text-foreground line-clamp-2 group-hover:text-primary transition-colors leading-snug break-keep">
                       {r.title}
                     </p>
                   </div>

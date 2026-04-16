@@ -67,10 +67,10 @@ export default function Blog() {
                   <span className="inline-flex items-center text-[11px] font-bold text-primary bg-primary/8 px-2 py-0.5 rounded-full w-fit">
                     {post.category}
                   </span>
-                  <h2 className="text-base font-bold text-foreground leading-snug line-clamp-2 group-hover:text-primary transition-colors">
+                  <h2 className="text-base font-bold text-foreground leading-snug line-clamp-2 group-hover:text-primary transition-colors break-keep">
                     {post.title}
                   </h2>
-                  <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed hidden sm:block">
+                  <p className="text-xs text-muted-foreground line-clamp-2 leading-relaxed hidden sm:block break-keep">
                     {post.description}
                   </p>
                   <p className="text-[11px] text-muted-foreground/60 mt-0.5">
