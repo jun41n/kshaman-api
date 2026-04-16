@@ -32,6 +32,36 @@ function renderContent(content: string) {
           {line.slice(3)}
         </h2>
       );
+    } else if (line.startsWith("[POSTER:")) {
+      const inner = line.slice(8, line.lastIndexOf("]"));
+      const colonIdx = inner.lastIndexOf(":");
+      const url = inner.slice(0, colonIdx);
+      const alt = inner.slice(colonIdx + 1);
+      // consume next non-empty line as the text
+      let j = i + 1;
+      while (j < lines.length && lines[j].trim() === "") j++;
+      const text = j < lines.length ? lines[j] : "";
+      elements.push(
+        <div
+          key={i}
+          className="flex gap-4 items-start py-3 border-b border-border/50 last:border-0"
+        >
+          <div className="shrink-0 w-[90px] rounded-lg overflow-hidden shadow-md bg-muted">
+            <img
+              src={url}
+              alt={alt}
+              className="w-full h-auto object-cover"
+              referrerPolicy="no-referrer"
+              loading="lazy"
+            />
+          </div>
+          <p className="text-[15px] text-foreground/80 leading-[1.85] flex-1 pt-1">
+            {text}
+          </p>
+        </div>
+      );
+      i = j + 1;
+      continue;
     } else if (line.trim() === "") {
       // skip blank lines between paragraphs
     } else {
