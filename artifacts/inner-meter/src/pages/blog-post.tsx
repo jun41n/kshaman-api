@@ -119,6 +119,7 @@ export default function BlogPost() {
             src={post.imageUrl}
             alt={post.title}
             className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
           />
         </div>
 
@@ -160,6 +161,7 @@ export default function BlogPost() {
                       alt={r.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       loading="lazy"
+                      referrerPolicy="no-referrer"
                     />
                   </div>
                   <div className="flex flex-col justify-center gap-1 min-w-0">
