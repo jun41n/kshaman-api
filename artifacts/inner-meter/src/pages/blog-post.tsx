@@ -9,6 +9,7 @@ interface Post {
   title: string;
   description: string;
   imageUrl: string;
+  heroUrl?: string;
   date: string;
   category: string;
   content: string;
@@ -116,7 +117,7 @@ export default function BlogPost() {
         {/* Hero image */}
         <div className="w-full aspect-[16/9] rounded-2xl overflow-hidden mb-8 bg-muted">
           <img
-            src={post.imageUrl}
+            src={post.heroUrl || post.imageUrl}
             alt={post.title}
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
