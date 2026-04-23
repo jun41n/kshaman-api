@@ -127,9 +127,12 @@ export default function BlogPost() {
       <Helmet>
         <title>{post.title} | 심리 칼럼 · MyTestType</title>
         <meta name="description" content={post.description} />
+        <link rel="canonical" href={`https://mytesttype.com/blog/${post.id}`} />
         <meta property="og:title" content={`${post.title} | MyTestType`} />
         <meta property="og:description" content={post.description} />
         <meta property="og:image" content={post.imageUrl} />
+        <meta property="og:url" content={`https://mytesttype.com/blog/${post.id}`} />
+        <meta property="og:type" content="article" />
       </Helmet>
 
       <article className="max-w-2xl mx-auto px-4 pb-16">

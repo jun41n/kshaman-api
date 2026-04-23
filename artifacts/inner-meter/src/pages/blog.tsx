@@ -31,6 +31,7 @@ export default function Blog() {
           name="description"
           content="MBTI, 색채 심리학, 애착 이론, 타로 심리학 등 현대 심리학의 최신 통찰을 전문적으로 다루는 심리 칼럼입니다."
         />
+        <link rel="canonical" href="https://mytesttype.com/blog" />
       </Helmet>
 
       <div className="max-w-3xl mx-auto px-4 py-10">
