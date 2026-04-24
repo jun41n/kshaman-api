@@ -120,11 +120,16 @@ Generated React Query hooks and fetch client from the OpenAPI spec (e.g. `useHea
 ## Deployment
 
 ### 프론트엔드 (GitHub Pages)
+- **파이프라인**: Replit → GitHub Pages 직결. Cloudflare 미사용 (제거됨)
 - **레포**: `github.com/jun41n/mytesttype` (GitHub Pages로 자동 배포)
-- **inner-meter 배포**: `PORT=3000 BASE_PATH=/ pnpm run build` → `dist/public/` 파일들을 레포 **루트**에 push
-- **k-shaman 배포**: `PORT=3001 BASE_PATH=/k-shaman/ pnpm run build` → `dist/public/` 파일들을 레포 **`/k-shaman/`** 디렉토리에 push
+- **도메인 DNS**: mytesttype.com → GitHub Pages IP 직접 연결 (Cloudflare 프록시 없음)
+- **inner-meter 배포**: `bash deploy.sh` 한 번으로 빌드+prerender+push 자동화
+  - 또는 수동: `PORT=3000 BASE_PATH=/ pnpm run build` (prerender 포함) → 레포 **루트**에 push
+  - `pnpm run build` = `vite build && node prerender.mjs` (blog/1~15, /blog, /pet-test 정적 HTML 생성)
+- **k-shaman 배포**: `PORT=3001 BASE_PATH=/k-shaman/ pnpm run build` → 레포 **`/k-shaman/`** 디렉토리에 push
 - Push 후 GitHub Pages가 1~2분 내 자동 배포
 - **GITHUB_TOKEN** secret으로 Replit에서 직접 push 가능
+- **prerender**: 블로그/펫테스트 페이지는 `artifacts/inner-meter/prerender.mjs`가 정적 HTML 생성 → 애드센스 봇이 빈 페이지 인식 방지
 
 ### 백엔드 API (Oracle Cloud)
 - **URL**: `https://api.mytesttype.com` (포트 3001, PM2, nginx+SSL)
