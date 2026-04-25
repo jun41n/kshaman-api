@@ -13,6 +13,16 @@ export interface UserProfile {
   productId: string;
 }
 
+export interface PartnerProfile {
+  firstName: string;
+  lastName: string;
+  birthYear: string;
+  birthMonth: string;
+  birthDay: string;
+  birthHour?: string;
+  gender: "female" | "male";
+}
+
 export interface ChatMessage {
   role: "user" | "assistant";
   content: string;
@@ -34,6 +44,7 @@ export interface AskAnythingSession {
 
 export interface ReadingRequest {
   userProfile: UserProfile;
+  partnerProfile?: PartnerProfile;
 }
 
 export interface ReadingResponse {

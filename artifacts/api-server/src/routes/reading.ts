@@ -61,7 +61,7 @@ router.post("/reading/generate", async (req, res) => {
       return;
     }
 
-    const { userProfile } = body;
+    const { userProfile, partnerProfile } = body;
 
     if (!userProfile.personaId || !userProfile.productId) {
       res
@@ -71,7 +71,7 @@ router.post("/reading/generate", async (req, res) => {
     }
 
     const client = getOpenAIClient();
-    const { messages } = buildReadingMessages(userProfile);
+    const { messages } = buildReadingMessages(userProfile, partnerProfile);
     const maxTokens = getMaxTokens(userProfile.productId);
     const isPaid = !FREE_PRODUCTS.has(userProfile.productId);
     const minChars = MIN_CHARS_BY_PRODUCT[userProfile.productId] ?? 2000;

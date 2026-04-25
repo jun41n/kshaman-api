@@ -3,13 +3,14 @@ import { AppContext, useAppStore } from "./store/appStore";
 import { CharacterSelectPage } from "./pages/CharacterSelectPage";
 import { UserInfoFormPage } from "./pages/UserInfoFormPage";
 import { ProductMenuPage } from "./pages/ProductMenuPage";
+import { PartnerInfoFormPage } from "./pages/PartnerInfoFormPage";
 import { PaymentPage } from "./pages/PaymentPage";
 import { ReadingResultPage } from "./pages/ReadingResultPage";
 import { AskAnythingChatPage } from "./pages/AskAnythingChatPage";
 import { ShamanFooter } from "./components/ShamanFooter";
 import { SparkleOrbs } from "./components/SparkleOrbs";
 
-type Step = "select" | "form" | "products" | "payment" | "result" | "chat";
+type Step = "select" | "form" | "products" | "partner-form" | "payment" | "result" | "chat";
 
 export default function App() {
   const store = useAppStore();
@@ -17,7 +18,11 @@ export default function App() {
 
   const handleProductSelect = (productId: string) => {
     store.setProductId(productId);
-    setStep("payment");
+    if (productId === "compatibility") {
+      setStep("partner-form");
+    } else {
+      setStep("payment");
+    }
   };
 
   const handleReset = () => {
@@ -45,6 +50,12 @@ export default function App() {
               onBack={() => setStep("form")}
             />
           )}
+          {step === "partner-form" && (
+            <PartnerInfoFormPage
+              onNext={() => setStep("payment")}
+              onBack={() => setStep("products")}
+            />
+          )}
           {step === "payment" && (
             <PaymentPage
               onSuccess={() => {
@@ -54,7 +65,13 @@ export default function App() {
                   setStep("result");
                 }
               }}
-              onBack={() => setStep("products")}
+              onBack={() => {
+                if (store.state.selectedProductId === "compatibility") {
+                  setStep("partner-form");
+                } else {
+                  setStep("products");
+                }
+              }}
             />
           )}
           {step === "result" && (

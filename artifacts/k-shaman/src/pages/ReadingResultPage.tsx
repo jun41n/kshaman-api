@@ -42,6 +42,7 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
       lang,
       state.selectedPersonaId,
       state.selectedProductId,
+      state.partnerInfo,
     )
       .then((result) => {
         const normalized = (result.content ?? "")

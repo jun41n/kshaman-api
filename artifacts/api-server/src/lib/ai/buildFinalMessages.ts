@@ -1,8 +1,10 @@
-import type { ChatMessage, Language, UserProfile } from "./types.js";
+import type { ChatMessage, Language, PartnerProfile, UserProfile } from "./types.js";
 import { buildGlobalSystemPrompt } from "./globalPrompt.js";
 import { buildPersonaPrompt } from "./buildPersonaPrompt.js";
 import { buildProductPrompt } from "./buildProductPrompt.js";
 import { buildSessionContext } from "./buildSessionContext.js";
+import { buildCompatibilityContext, calcPartnerSaju } from "./buildCompatibilityContext.js";
+import { calcSaju } from "./sajuCalc.js";
 
 export interface FinalMessages {
   messages: Array<{ role: "system" | "user" | "assistant"; content: string }>;
@@ -285,7 +287,26 @@ User must:
 /**
  * One-time reading
  */
-export function buildReadingMessages(profile: UserProfile): FinalMessages {
+export function buildReadingMessages(profile: UserProfile, partnerProfile?: PartnerProfile): FinalMessages {
+  const isCompatibility = profile.productId === "compatibility" && !!partnerProfile;
+
+  let contextBlock: string;
+  if (isCompatibility) {
+    const userYear = parseInt(profile.birthYear, 10);
+    const userMonth = parseInt(profile.birthMonth, 10);
+    const userDay = parseInt(profile.birthDay, 10);
+    const userHour = profile.birthHour ? parseInt(profile.birthHour, 10) : undefined;
+    const userSaju = calcSaju(userYear, userMonth, userDay, userHour);
+    const partnerSaju = calcPartnerSaju(partnerProfile!);
+    const userName = profile.locale === "ko"
+      ? `${profile.lastName}${profile.firstName}`
+      : `${profile.firstName} ${profile.lastName}`.trim();
+    const partnerName = `${partnerProfile!.lastName}${partnerProfile!.firstName}`;
+    contextBlock = buildCompatibilityContext(userSaju, partnerSaju, userName, partnerName);
+  } else {
+    contextBlock = buildSessionContext(profile);
+  }
+
   const systemContent = [
     buildGlobalSystemPrompt(profile.locale),
     "",
@@ -303,7 +324,7 @@ export function buildReadingMessages(profile: UserProfile): FinalMessages {
     "",
     "---",
     "",
-    buildSessionContext(profile),
+    contextBlock,
   ].join("\n");
 
   const userMessage = buildReadingUserMessage(

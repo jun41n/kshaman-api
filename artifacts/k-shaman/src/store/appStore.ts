@@ -1,5 +1,5 @@
 import { useState, createContext, useContext } from "react";
-import type { AppState, UserInfo, Language } from "../types";
+import type { AppState, UserInfo, PartnerInfo, Language } from "../types";
 import { getPersonaById } from "../config/personas";
 import { getProductById } from "../config/products";
 
@@ -24,6 +24,7 @@ function detectInitialLang(): Language {
 const defaultState: AppState = {
   selectedPersonaId: null,
   userInfo: null,
+  partnerInfo: null,
   selectedProductId: null,
   currentLang: detectInitialLang(),
 };
@@ -37,6 +38,9 @@ export function useAppStore() {
   const setUserInfo = (u: UserInfo) =>
     setState((s) => ({ ...s, userInfo: u }));
 
+  const setPartnerInfo = (p: PartnerInfo) =>
+    setState((s) => ({ ...s, partnerInfo: p }));
+
   const setProductId = (id: string) =>
     setState((s) => ({ ...s, selectedProductId: id }));
 
@@ -47,7 +51,6 @@ export function useAppStore() {
 
   const reset = () => setState(defaultState);
 
-  // Derived convenience getters
   const selectedPersona = state.selectedPersonaId
     ? getPersonaById(state.selectedPersonaId)
     : undefined;
@@ -62,6 +65,7 @@ export function useAppStore() {
     selectedProduct,
     setPersonaId,
     setUserInfo,
+    setPartnerInfo,
     setProductId,
     setLang,
     reset,

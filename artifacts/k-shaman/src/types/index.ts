@@ -10,6 +10,16 @@ export interface UserInfo {
   gender: "female" | "male" | null;
 }
 
+export interface PartnerInfo {
+  lastName: string;
+  firstName: string;
+  birthYear: string;
+  birthMonth: string;
+  birthDay: string;
+  birthHour: string;
+  gender: "female" | "male" | null;
+}
+
 export interface ChatMessage {
   id: string;
   role: "user" | "shaman";
@@ -20,6 +30,7 @@ export interface ChatMessage {
 export interface AppState {
   selectedPersonaId: string | null;
   userInfo: UserInfo | null;
+  partnerInfo: PartnerInfo | null;
   selectedProductId: string | null;
   currentLang: Language;
 }

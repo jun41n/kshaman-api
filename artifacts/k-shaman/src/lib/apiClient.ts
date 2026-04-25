@@ -1,24 +1,35 @@
-import type { UserInfo, Language } from "../types";
+import type { UserInfo, PartnerInfo, Language } from "../types";
 
-// In development, the Vite dev server proxies /api to the API server.
-// In production, VITE_API_URL points to the Oracle API server.
 const API_BASE = import.meta.env.VITE_API_URL
   ? `${import.meta.env.VITE_API_URL}/api`
   : "/api";
 
+export interface UserProfilePayload {
+  firstName: string;
+  lastName: string;
+  birthYear: string;
+  birthMonth: string;
+  birthDay: string;
+  birthHour?: string;
+  gender: "female" | "male";
+  locale: Language;
+  personaId: string;
+  productId: string;
+}
+
+export interface PartnerProfilePayload {
+  firstName: string;
+  lastName: string;
+  birthYear: string;
+  birthMonth: string;
+  birthDay: string;
+  birthHour?: string;
+  gender: "female" | "male";
+}
+
 export interface ReadingRequestBody {
-  userProfile: {
-    firstName: string;
-    lastName: string;
-    birthYear: string;
-    birthMonth: string;
-    birthDay: string;
-    birthHour?: string;
-    gender: "female" | "male";
-    locale: Language;
-    personaId: string;
-    productId: string;
-  };
+  userProfile: UserProfilePayload;
+  partnerProfile?: PartnerProfilePayload;
 }
 
 export interface ReadingResult {
@@ -30,7 +41,7 @@ export interface ReadingResult {
 export interface MessageRequestBody {
   sessionId?: string;
   userMessage: string;
-  userProfile: ReadingRequestBody["userProfile"];
+  userProfile: UserProfilePayload;
 }
 
 export interface MessageResult {
@@ -45,7 +56,7 @@ function buildUserProfile(
   locale: Language,
   personaId: string,
   productId: string
-): ReadingRequestBody["userProfile"] {
+): UserProfilePayload {
   return {
     firstName: userInfo.firstName,
     lastName: userInfo.lastName,
@@ -60,14 +71,30 @@ function buildUserProfile(
   };
 }
 
+function buildPartnerProfile(partnerInfo: PartnerInfo): PartnerProfilePayload {
+  return {
+    firstName: partnerInfo.firstName,
+    lastName: partnerInfo.lastName,
+    birthYear: partnerInfo.birthYear,
+    birthMonth: partnerInfo.birthMonth,
+    birthDay: partnerInfo.birthDay,
+    birthHour: partnerInfo.birthHour || undefined,
+    gender: partnerInfo.gender as "female" | "male",
+  };
+}
+
 export async function generateReading(
   userInfo: UserInfo,
   locale: Language,
   personaId: string,
-  productId: string
+  productId: string,
+  partnerInfo?: PartnerInfo | null,
 ): Promise<ReadingResult> {
   const body: ReadingRequestBody = {
     userProfile: buildUserProfile(userInfo, locale, personaId, productId),
+    ...(partnerInfo && productId === "compatibility"
+      ? { partnerProfile: buildPartnerProfile(partnerInfo) }
+      : {}),
   };
 
   const res = await fetch(`${API_BASE}/reading/generate`, {
@@ -88,7 +115,6 @@ export async function generateReading(
   return res.json() as Promise<ReadingResult>;
 }
 
-// Special error thrown when the session question limit is reached on the server
 export class LimitReachedError extends Error {
   constructor(public readonly sessionId?: string) {
     super("limit_reached");
@@ -117,7 +143,6 @@ export async function sendMessage(
   });
 
   if (res.status === 429) {
-    // Server-side limit enforcement — user has used all questions
     const err = await res.json().catch(() => ({}));
     throw new LimitReachedError((err as { sessionId?: string }).sessionId);
   }
