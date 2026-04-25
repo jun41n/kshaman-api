@@ -10,7 +10,7 @@ import { AskAnythingChatPage } from "./pages/AskAnythingChatPage";
 import { ShamanFooter } from "./components/ShamanFooter";
 import { SparkleOrbs } from "./components/SparkleOrbs";
 
-type Step = "select" | "form" | "products" | "partner-form" | "payment" | "result" | "chat";
+type Step = "select" | "form" | "products" | "payment" | "partner-form" | "result" | "chat";
 
 export default function App() {
   const store = useAppStore();
@@ -18,10 +18,17 @@ export default function App() {
 
   const handleProductSelect = (productId: string) => {
     store.setProductId(productId);
-    if (productId === "compatibility") {
+    setStep("payment");
+  };
+
+  const handlePaymentSuccess = () => {
+    const productId = store.state.selectedProductId;
+    if (productId === "ask_anything") {
+      setStep("chat");
+    } else if (productId === "compatibility") {
       setStep("partner-form");
     } else {
-      setStep("payment");
+      setStep("result");
     }
   };
 
@@ -50,28 +57,16 @@ export default function App() {
               onBack={() => setStep("form")}
             />
           )}
-          {step === "partner-form" && (
-            <PartnerInfoFormPage
-              onNext={() => setStep("payment")}
+          {step === "payment" && (
+            <PaymentPage
+              onSuccess={handlePaymentSuccess}
               onBack={() => setStep("products")}
             />
           )}
-          {step === "payment" && (
-            <PaymentPage
-              onSuccess={() => {
-                if (store.state.selectedProductId === "ask_anything") {
-                  setStep("chat");
-                } else {
-                  setStep("result");
-                }
-              }}
-              onBack={() => {
-                if (store.state.selectedProductId === "compatibility") {
-                  setStep("partner-form");
-                } else {
-                  setStep("products");
-                }
-              }}
+          {step === "partner-form" && (
+            <PartnerInfoFormPage
+              onNext={() => setStep("result")}
+              onBack={() => setStep("payment")}
             />
           )}
           {step === "result" && (
