@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { AppContext, useAppStore } from "./store/appStore";
 import { CharacterSelectPage } from "./pages/CharacterSelectPage";
 import { UserInfoFormPage } from "./pages/UserInfoFormPage";
@@ -15,17 +15,14 @@ type Step = "select" | "form" | "products" | "payment" | "partner-form" | "resul
 export default function App() {
   const store = useAppStore();
   const [step, setStep] = useState<Step>("select");
-  // Ref to always have the latest productId available in callbacks
-  const selectedProductIdRef = useRef<string | null>(null);
 
   const handleProductSelect = (productId: string) => {
-    selectedProductIdRef.current = productId;
     store.setProductId(productId);
     setStep("payment");
   };
 
-  const handlePaymentSuccess = () => {
-    const productId = selectedProductIdRef.current;
+  // productId is passed directly from PaymentPage via store context — no stale closure risk
+  const handlePaymentSuccess = (productId: string) => {
     if (productId === "ask_anything") {
       setStep("chat");
     } else if (productId === "compatibility") {
@@ -36,7 +33,6 @@ export default function App() {
   };
 
   const handleReset = () => {
-    selectedProductIdRef.current = null;
     store.reset();
     setStep("select");
   };
