@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AppContext, useAppStore } from "./store/appStore";
 import { CharacterSelectPage } from "./pages/CharacterSelectPage";
 import { UserInfoFormPage } from "./pages/UserInfoFormPage";
@@ -16,18 +16,29 @@ export default function App() {
   const store = useAppStore();
   const [step, setStep] = useState<Step>("select");
 
+  useEffect(() => {
+    console.log("[App] step changed →", step);
+  }, [step]);
+
+  useEffect(() => {
+    console.log("[App] store.state.selectedProductId changed →", store.state.selectedProductId);
+  }, [store.state.selectedProductId]);
+
   const handleProductSelect = (productId: string) => {
+    console.log("[App] handleProductSelect:", productId);
     store.setProductId(productId);
     setStep("payment");
   };
 
-  // productId is passed directly from PaymentPage via store context — no stale closure risk
   const handlePaymentSuccess = (productId: string) => {
+    console.log("[App] handlePaymentSuccess productId:", productId);
     if (productId === "ask_anything") {
       setStep("chat");
     } else if (productId === "compatibility") {
+      console.log("[App] → setStep partner-form");
       setStep("partner-form");
     } else {
+      console.log("[App] → setStep result (productId was:", productId, ")");
       setStep("result");
     }
   };
@@ -41,7 +52,13 @@ export default function App() {
     <AppContext.Provider value={store}>
       <div className="min-h-screen flex flex-col bg-gray-950 font-sans antialiased">
         <SparkleOrbs />
-        <div className="flex-grow">
+
+        {/* DEBUG BANNER */}
+        <div className="fixed top-0 left-0 right-0 z-[9999] bg-yellow-400 text-black text-xs font-mono text-center py-1 px-2">
+          step=<b>{step}</b> | productId=<b>{store.state.selectedProductId ?? "null"}</b>
+        </div>
+
+        <div className="flex-grow pt-6">
           {step === "select" && (
             <CharacterSelectPage onNext={() => setStep("form")} />
           )}

@@ -44,7 +44,7 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
   if (isFree) {
     return (
       <div className="text-white pb-28">
-        {showAd && <AdOverlay onClose={() => { setShowAd(false); onSuccess(state.selectedProductId ?? ""); }} />}
+        {showAd && <AdOverlay onClose={() => { setShowAd(false); console.log("[PaymentPage] AdOverlay closed, productId:", state.selectedProductId); onSuccess(state.selectedProductId ?? ""); }} />}
         <SiteNav onBack={onBack} backLabel={t.back} />
         <div className="px-4 pt-6 max-w-md mx-auto">
           <div className="rounded-2xl border border-white/10 bg-white/5 p-5 mb-6">
@@ -167,7 +167,10 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
       <div className="fixed bottom-0 left-0 right-0 px-4 pb-8 pt-4 bg-gradient-to-t from-gray-950 via-gray-950/95 to-transparent">
         <div className="max-w-md mx-auto">
           <button
-            onClick={() => onSuccess(state.selectedProductId ?? "")}
+            onClick={() => {
+              console.log("[PaymentPage] CTA clicked, state.selectedProductId:", state.selectedProductId);
+              onSuccess(state.selectedProductId ?? "");
+            }}
             className={`w-full py-4 rounded-2xl font-bold text-white text-lg shadow-2xl active:scale-95 transition-all bg-gradient-to-r ${fromColor} ${toColor}`}
           >
             {t.bokchaeConfirm}
