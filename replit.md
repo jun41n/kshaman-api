@@ -133,9 +133,17 @@ Generated React Query hooks and fetch client from the OpenAPI spec (e.g. `useHea
 
 ### 백엔드 API (Oracle Cloud)
 - **URL**: `https://api.mytesttype.com` (포트 3001, PM2, nginx+SSL)
-- **레포**: `github.com/jun41n/kshaman-api`
-- OpenAI API 백엔드만 존재
-- 배포: `pnpm --filter @workspace/api-server run build` → `dist/index.cjs` → SCP to Oracle → `pm2 restart kshaman-api`
+- **서버 IP**: `158.180.67.117` (Oracle Cloud, ap-chuncheon-1, Ubuntu 20.04)
+- **SSH**: `ORACLE_SSH_USER=ubuntu@158.180.67.117`, key=`ORACLE_SSH_KEY` secret
+- **레포**: `github.com/jun41n/kshaman-api` → 서버 `/home/ubuntu/app/`
+- **PM2 설정**: `/home/ubuntu/ecosystem.config.cjs` (PORT=3001, OPENAI_API_KEY, SESSION_SECRET 포함)
+- **자동시작**: PM2 systemd 등록됨 (`pm2 startup` 완료)
+- **SSL**: Let's Encrypt (certbot), 자동갱신 타이머 활성
+- **nginx**: `/etc/nginx/sites-available/api.mytesttype.com` (HTTP→HTTPS 리다이렉트)
+- **iptables**: 포트 22, 80, 443, 3001 허용 (REJECT 규칙 앞에 위치)
+- OpenAI API 백엔드만 존재 (OPENAI_API_KEY 필요)
+- 라우트: `GET /api/healthz`, `POST /api/reading/generate`, `POST /api/ask-anything/message`, `POST /api/gongsu/generate`
+- 코드 업데이트 시: 서버에서 `cd /home/ubuntu/app && git pull && pnpm --filter @workspace/api-server run build && pm2 restart kshaman-api`
 
 ### `scripts` (`@workspace/scripts`)
 
