@@ -10,7 +10,7 @@ import { trackEvent } from "@/lib/analytics";
 import { useTranslation } from "react-i18next";
 
 const TRENDING_SLUGS = ['mbti-test', 'love-language-test', 'narcissist-test'];
-const NEW_SLUGS = ['teto-egen-test', 'pet-type-test', 'psychopath-test'];
+const NEW_SLUGS = ['sbti-test', 'teto-egen-test', 'pet-type-test', 'psychopath-test'];
 
 export default function Home() {
   const { t } = useTranslation();
