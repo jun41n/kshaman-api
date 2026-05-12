@@ -65,6 +65,16 @@ export function Layout({ children, showAd = false }: LayoutProps) {
                   {link.label}
                 </Link>
               ))}
+              <Link
+                href="/gwansang"
+                className="flex items-center gap-1.5 text-sm font-bold group"
+              >
+                <div className="w-5 h-5 rounded-md flex items-center justify-center text-white shadow-sm transition-shadow"
+                  style={{ background: "linear-gradient(135deg, hsl(15,70%,24%) 0%, hsl(10,65%,20%) 100%)" }}>
+                  <span className="text-[10px]">🔮</span>
+                </div>
+                <span className="text-muted-foreground hover:text-foreground transition-colors">관상</span>
+              </Link>
               <a
                 href="/k-shaman/"
                 className="flex items-center gap-1.5 text-sm font-bold group"
@@ -112,6 +122,16 @@ export function Layout({ children, showAd = false }: LayoutProps) {
                   {link.label}
                 </Link>
               ))}
+              <Link
+                href="/gwansang"
+                className="px-4 py-3 rounded-xl text-base font-bold transition-colors hover:bg-muted flex items-center gap-2 text-muted-foreground"
+              >
+                <div className="w-6 h-6 rounded-lg flex items-center justify-center text-white shadow-sm"
+                  style={{ background: "linear-gradient(135deg, hsl(15,70%,24%) 0%, hsl(10,65%,20%) 100%)" }}>
+                  <span className="text-[12px]">🔮</span>
+                </div>
+                <span>관상</span>
+              </Link>
               <a
                 href="/k-shaman/"
                 className="px-4 py-3 rounded-xl text-base font-bold transition-colors hover:bg-muted flex items-center gap-2"

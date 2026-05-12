@@ -23,6 +23,7 @@ import PetQuiz from "@/pages/pet-quiz";
 import PetResult from "@/pages/pet-result";
 import Blog from "@/pages/blog";
 import BlogPost from "@/pages/blog-post";
+import Gwansang from "@/pages/gwansang";
 
 const queryClient = new QueryClient();
 
@@ -55,6 +56,7 @@ function Router() {
         <Route path="/pet-test/result/:type/:key" component={PetResult} />
         <Route path="/blog" component={Blog} />
         <Route path="/blog/:id" component={BlogPost} />
+        <Route path="/gwansang" component={Gwansang} />
         <Route component={NotFound} />
       </Switch>
     </>
