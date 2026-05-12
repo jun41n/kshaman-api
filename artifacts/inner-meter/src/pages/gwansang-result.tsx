@@ -170,9 +170,9 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
   const tierColor = result.dragonface?.tier ? (TIER_COLORS[result.dragonface.tier] ?? "hsl(15,65%,28%)") : "hsl(15,65%,28%)";
 
   return (
-    <div className="flex flex-col h-full overflow-y-auto scrollbar-hide pb-10" style={{ background: PAGE_BG }}>
+    <div className="pb-12" style={{ background: PAGE_BG }}>
 
-      <div className="relative px-5 pt-12 pb-4 flex flex-col items-center">
+      <div className="relative px-5 pt-8 pb-4 flex flex-col items-center">
         {image && (
           <motion.div className="w-20 h-20 rounded-full overflow-hidden mb-3"
             style={{ border: "2.5px solid rgba(140,70,15,0.5)", boxShadow: "0 4px 16px rgba(60,20,5,0.3)" }}
@@ -192,7 +192,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
         </motion.div>
       </div>
 
-      <div className="px-4 md:px-8 lg:px-16 xl:px-24">
+      <div className="px-4 sm:px-6 md:px-8 lg:px-16 xl:px-24">
 
         {result.dragonface && (
           <motion.div className="rounded-3xl p-5 mb-4" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18 }}

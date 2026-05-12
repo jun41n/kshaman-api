@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { GwansangHome } from "@/pages/gwansang-home";
 import { GwansangReading } from "@/pages/gwansang-reading";
 import { GwansangResult } from "@/pages/gwansang-result";
+import { Layout } from "@/components/layout";
 
 export interface FacePart {
   title: string;
@@ -49,27 +50,33 @@ export default function Gwansang() {
   };
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex flex-col"
-      style={{ background: "linear-gradient(175deg, #D4A96A 0%, #C49050 40%, #B8813A 100%)" }}
-    >
-      <AnimatePresence mode="wait">
-        {view === "home" && (
-          <motion.div key="home" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.25 }} className="absolute inset-0">
-            <GwansangHome onStart={() => setView("reading")} />
-          </motion.div>
-        )}
-        {view === "reading" && (
-          <motion.div key="reading" initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.25 }} className="absolute inset-0">
-            <GwansangReading onResult={handleResult} onBack={() => setView("home")} />
-          </motion.div>
-        )}
-        {view === "result" && result && (
-          <motion.div key="result" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 30 }} transition={{ duration: 0.3 }} className="absolute inset-0">
-            <GwansangResult result={result} image={uploadedImage} onReset={handleReset} />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+    <Layout>
+      {/* full-bleed golden background — cancels Layout's max-w padding */}
+      <div className="-mx-4 sm:-mx-6 -my-6 md:-my-10 overflow-hidden">
+        <AnimatePresence mode="wait">
+          {view === "home" && (
+            <motion.div key="home"
+              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.25 }}>
+              <GwansangHome onStart={() => setView("reading")} />
+            </motion.div>
+          )}
+          {view === "reading" && (
+            <motion.div key="reading"
+              initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.25 }}>
+              <GwansangReading onResult={handleResult} onBack={() => setView("home")} />
+            </motion.div>
+          )}
+          {view === "result" && result && (
+            <motion.div key="result"
+              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 30 }} transition={{ duration: 0.3 }}>
+              <GwansangResult result={result} image={uploadedImage} onReset={handleReset} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </Layout>
   );
 }

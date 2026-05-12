@@ -18,12 +18,12 @@ const PAGE_BG = "linear-gradient(175deg, #D4A96A 0%, #C49050 40%, #B8813A 100%)"
 
 export function GwansangHome({ onStart }: GwansangHomeProps) {
   return (
-    <div className="flex flex-col h-full overflow-y-auto scrollbar-hide" style={{ background: PAGE_BG }}>
-      <div className="flex flex-col md:flex-row md:items-center md:justify-center md:gap-12 md:h-full md:px-16 lg:px-24 xl:px-40 flex-1">
+    <div className="flex flex-col" style={{ background: PAGE_BG, minHeight: "80vh" }}>
+      <div className="flex flex-col md:flex-row md:items-center md:justify-center md:gap-12 px-4 sm:px-6 md:px-16 lg:px-24 xl:px-40 py-8 md:py-16 flex-1">
 
         {/* 왼쪽: 헤더 + CTA */}
         <div className="flex flex-col md:flex-shrink-0 md:w-[340px] lg:w-[400px]">
-          <motion.div className="px-5 pt-12 md:pt-0 pb-1 flex items-center gap-2"
+          <motion.div className="pb-1 flex items-center gap-2"
             initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}>
             <div className="px-3 py-1 rounded-full text-[11px] font-bold tracking-[0.14em] uppercase"
               style={{ background: "rgba(120,50,10,0.15)", color: "hsl(15,65%,28%)", border: "1px solid rgba(120,50,10,0.2)" }}>
@@ -31,7 +31,7 @@ export function GwansangHome({ onStart }: GwansangHomeProps) {
             </div>
           </motion.div>
 
-          <motion.div className="px-5 pt-3 pb-4"
+          <motion.div className="pt-3 pb-4"
             initial={{ opacity: 0, scale: 0.93 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.12, duration: 0.35 }}>
             <img
               src={`${import.meta.env.BASE_URL}gwansang.png`}
@@ -48,7 +48,7 @@ export function GwansangHome({ onStart }: GwansangHomeProps) {
             </p>
           </motion.div>
 
-          <div className="px-5 hidden md:block">
+          <div className="hidden md:block">
             <motion.button
               onClick={onStart}
               className="w-full h-[56px] rounded-2xl font-bold text-[16px] flex items-center justify-center gap-2.5 transition-all"
@@ -65,8 +65,8 @@ export function GwansangHome({ onStart }: GwansangHomeProps) {
         </div>
 
         {/* 오른쪽: 피처 그리드 */}
-        <div className="px-4 md:px-0 md:flex-1 md:max-w-[520px]">
-          <div className="grid grid-cols-2 gap-2.5 mb-5 md:mb-0">
+        <div className="md:flex-1 md:max-w-[520px] mt-6 md:mt-0">
+          <div className="grid grid-cols-2 gap-2.5">
             {FEATURES.map((f, i) => (
               <motion.div key={i} className="rounded-2xl px-3.5 py-3 md:px-4 md:py-4"
                 style={{ background: "rgba(255,235,185,0.48)", border: "1px solid rgba(140,90,20,0.22)" }}
@@ -81,7 +81,7 @@ export function GwansangHome({ onStart }: GwansangHomeProps) {
       </div>
 
       {/* CTA — 모바일 하단 */}
-      <div className="px-4 pb-10 mt-auto md:hidden">
+      <div className="px-4 pb-10 mt-4 md:hidden">
         <motion.button
           onClick={onStart}
           className="w-full h-[56px] rounded-2xl font-bold text-[16px] flex items-center justify-center gap-2.5 transition-all"

@@ -250,8 +250,8 @@ export function GwansangReading({ onResult, onBack }: ReadingProps) {
   if (stage === "analyzing") {
     const step = STEPS[Math.min(stepIndex, STEPS.length - 1)];
     return (
-      <div className="flex flex-col h-full items-center justify-center px-6"
-        style={{ background: "linear-gradient(175deg, #0A0A12 0%, #0D0D18 60%, #080810 100%)" }}>
+      <div className="flex flex-col items-center justify-center px-6 py-20"
+        style={{ background: "linear-gradient(175deg, #0A0A12 0%, #0D0D18 60%, #080810 100%)", minHeight: "75vh" }}>
         {preview && (
           <motion.div className="w-14 h-14 rounded-full overflow-hidden mb-6 flex-shrink-0"
             style={{ border: "1.5px solid rgba(0,200,170,0.4)", boxShadow: "0 0 16px rgba(0,200,170,0.2)" }}
@@ -291,9 +291,9 @@ export function GwansangReading({ onResult, onBack }: ReadingProps) {
   }
 
   return (
-    <div className="flex flex-col h-full overflow-y-auto scrollbar-hide" style={{ background: PAGE_BG }}>
-      <div className="w-full max-w-xl md:max-w-2xl mx-auto flex flex-col flex-1">
-        <div className="flex items-center gap-4 px-5 pt-14 pb-6">
+    <div className="flex flex-col" style={{ background: PAGE_BG, minHeight: "75vh" }}>
+      <div className="w-full max-w-xl md:max-w-2xl mx-auto flex flex-col flex-1 px-4 sm:px-6">
+        <div className="flex items-center gap-4 pt-8 pb-6">
           <button onClick={onBack}
             className="w-10 h-10 rounded-full flex items-center justify-center transition-colors"
             style={{ background: "rgba(100,55,10,0.15)", color: "hsl(25,60%,15%)" }}>
@@ -305,7 +305,7 @@ export function GwansangReading({ onResult, onBack }: ReadingProps) {
           </div>
         </div>
 
-        <div className="px-4 flex-1">
+        <div className="flex-1">
           {!preview ? (
             <motion.div
               className="relative rounded-3xl flex flex-col items-center justify-center cursor-pointer transition-all"
@@ -357,7 +357,7 @@ export function GwansangReading({ onResult, onBack }: ReadingProps) {
           )}
         </div>
 
-        <div className="px-4 pb-12 pt-6">
+        <div className="pb-10 pt-6">
           <motion.button
             onClick={handleAnalyze}
             disabled={!preview}
