@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import { useLocalizedTest } from "@/hooks/useLocalizedTest";
 import { MbtiSeoContent } from "@/components/MbtiSeoContent";
 import { useToast } from "@/hooks/use-toast";
+import { NativeBannerAd } from "@/components/NativeBannerAd";
 import {
   buildShareMessage,
   generateResultCardImage,
@@ -477,6 +478,11 @@ export default function TestResult() {
               <Grid2x2 className="w-4 h-4 mr-2" />{t('common.takeOther')}
             </Link>
           </Button>
+        </div>
+
+        {/* ── Ad Banner ── */}
+        <div className="mb-6">
+          <NativeBannerAd />
         </div>
 
         {/* ── MBTI SEO Content ── */}

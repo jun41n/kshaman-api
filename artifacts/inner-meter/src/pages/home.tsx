@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { trackEvent } from "@/lib/analytics";
 import { useTranslation } from "react-i18next";
+import { NativeBannerAd } from "@/components/NativeBannerAd";
 
 const TRENDING_SLUGS = ['mbti-test', 'love-language-test', 'narcissist-test'];
 const NEW_SLUGS = ['sbti-test', 'teto-egen-test', 'pet-type-test', 'psychopath-test'];
@@ -114,6 +115,11 @@ export default function Home() {
           </Button>
         </div>
       </section>
+
+      {/* ── Ad Banner ── */}
+      <div className="mb-10">
+        <NativeBannerAd />
+      </div>
 
       {/* ── 카테고리 ── */}
       <section className="mb-12">

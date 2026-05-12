@@ -4,6 +4,7 @@ import { Menu, X, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { NativeBannerAd } from "@/components/NativeBannerAd";
 interface LayoutProps {
   children: ReactNode;
   showAd?: boolean;
@@ -139,6 +140,11 @@ export function Layout({ children, showAd = false }: LayoutProps) {
         <div className="w-full max-w-5xl px-4 sm:px-6 py-6 md:py-10">
           {children}
         </div>
+        {showAd && (
+          <div className="w-full max-w-xl px-4 pb-6">
+            <NativeBannerAd />
+          </div>
+        )}
       </main>
 
       {/* ── Footer ── */}
