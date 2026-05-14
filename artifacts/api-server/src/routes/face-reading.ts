@@ -1,12 +1,11 @@
 import { Router, type IRouter } from "express";
 import Anthropic from "@anthropic-ai/sdk";
-import { logger } from "../lib/logger.js";
 
 const router: IRouter = Router();
 
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
 if (!ANTHROPIC_API_KEY) {
-  logger.warn("[관상] ANTHROPIC_API_KEY 환경변수 없음 — 관상 라우트 비활성");
+  console.warn("[관상] ANTHROPIC_API_KEY 환경변수 없음 — 관상 라우트 비활성");
 }
 
 const MODEL = "claude-opus-4-5";
@@ -59,7 +58,7 @@ router.post("/face-reading", async (req, res): Promise<void> => {
     base64Data = match[2];
   }
 
-  req.log.info({ model: MODEL }, "[관상] Claude API 호출 시작");
+  req.log?.info({ model: MODEL }, "[관상] Claude API 호출 시작");
 
   let message;
   try {
@@ -77,12 +76,12 @@ router.post("/face-reading", async (req, res): Promise<void> => {
     });
   } catch (apiErr: unknown) {
     const msg = apiErr instanceof Error ? apiErr.message : String(apiErr);
-    req.log.error({ err: msg }, "[관상] Claude API 호출 실패");
+    req.log?.error({ err: msg }, "[관상] Claude API 호출 실패");
     res.status(502).json({ error: `AI 분석 중 오류가 발생했습니다: ${msg.slice(0, 120)}` });
     return;
   }
 
-  req.log.info({ inputTokens: message.usage.input_tokens, outputTokens: message.usage.output_tokens }, "[관상] Claude 응답 완료");
+  req.log?.info({ inputTokens: message.usage.input_tokens, outputTokens: message.usage.output_tokens }, "[관상] Claude 응답 완료");
 
   const content = message.content[0];
   if (content.type !== "text") { res.status(500).json({ error: "분석 결과를 받지 못했습니다." }); return; }
@@ -93,7 +92,7 @@ router.post("/face-reading", async (req, res): Promise<void> => {
   try {
     analysis = JSON.parse(text);
   } catch {
-    req.log.error({ raw: text.slice(0, 300) }, "[관상] JSON 파싱 실패");
+    req.log?.error({ raw: text.slice(0, 300) }, "[관상] JSON 파싱 실패");
     res.status(500).json({ error: "분석 결과 처리 중 오류가 발생했습니다." });
     return;
   }

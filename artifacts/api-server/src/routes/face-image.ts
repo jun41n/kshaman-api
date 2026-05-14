@@ -34,7 +34,7 @@ router.post("/generate-face-image", async (req, res): Promise<void> => {
 
     const openai = new OpenAI({ apiKey });
 
-    req.log.info({ type }, "[이미지생성] gpt-image-1 편집 시작");
+    req.log?.info({ type }, "[이미지생성] gpt-image-1 편집 시작");
 
     const response = await openai.images.edit({
       model: "gpt-image-1",
@@ -49,10 +49,10 @@ router.post("/generate-face-image", async (req, res): Promise<void> => {
 
     const resultBase64 = `data:image/png;base64,${b64}`;
 
-    req.log.info({ type }, "[이미지생성] 완료");
+    req.log?.info({ type }, "[이미지생성] 완료");
     res.json({ imageBase64: resultBase64 });
   } catch (err) {
-    req.log.error({ err, type }, "[이미지생성] 오류");
+    req.log?.error({ err, type }, "[이미지생성] 오류");
     res.status(500).json({ error: "이미지 생성 중 오류가 발생했습니다." });
   } finally {
     if (fs.existsSync(tmpFile)) fs.unlinkSync(tmpFile);

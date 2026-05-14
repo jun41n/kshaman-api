@@ -4,6 +4,7 @@ import { GwansangHome } from "@/pages/gwansang-home";
 import { GwansangReading } from "@/pages/gwansang-reading";
 import { GwansangResult } from "@/pages/gwansang-result";
 import { Layout } from "@/components/layout";
+import { SeoHead } from "@/components/SeoHead";
 
 export interface FacePart {
   title: string;
@@ -50,7 +51,21 @@ export default function Gwansang() {
   };
 
   return (
-    <Layout>
+    <Layout showAd>
+      <SeoHead
+        title="AI 관상 분석 · 내 얼굴로 운명 읽기"
+        description="사진 한 장으로 재물운·연애운·성격·직업·역사적 인물 매칭까지! AI 관상 알고리즘이 당신의 얼굴에서 운명을 읽어드립니다."
+        path="/gwansang"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebApplication",
+          name: "AI 관상 분석",
+          description: "사진 한 장으로 재물운, 연애운, 성격, 직업 추천, 역사적 인물 매칭을 AI로 분석",
+          url: "https://mytesttype.com/gwansang",
+          applicationCategory: "EntertainmentApplication",
+          offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
+        }}
+      />
       {/* full-bleed golden background — cancels Layout's max-w padding */}
       <div className="-mx-4 sm:-mx-6 -my-6 md:-my-10 overflow-hidden">
         <AnimatePresence mode="wait">
