@@ -2,6 +2,7 @@ import { useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
+import { SeoHead } from "@/components/SeoHead";
 
 export default function PetHome() {
   const [, navigate] = useLocation();
@@ -9,6 +10,11 @@ export default function PetHome() {
 
   return (
     <Layout>
+      <SeoHead
+        title="강아지 고양이 유형 테스트"
+        description="나는 강아지상? 고양이상? 사진 없이 질문으로 알아보는 반려동물 성향 테스트. 귀여운 결과 카드로 친구에게 공유해보세요!"
+        path="/pet-test"
+      />
       <div className="flex-1 flex flex-col items-center justify-center px-4 py-10 min-h-[60vh]">
         <motion.div
           className="w-full max-w-sm text-center"
