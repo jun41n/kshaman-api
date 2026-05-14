@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import { useTranslation } from "react-i18next";
 
 interface SeoHeadProps {
   title?: string;
@@ -19,6 +20,26 @@ const DEFAULT_DESCRIPTION =
 
 const DEFAULT_OG_IMAGE = `${BASE_URL}/opengraph.jpg`;
 
+const HREFLANG_CODES = ["ko", "en", "ja", "es", "pt-BR", "fr"] as const;
+
+const LOCALE_MAP: Record<string, string> = {
+  ko:      "ko_KR",
+  en:      "en_US",
+  ja:      "ja_JP",
+  es:      "es_ES",
+  "pt-BR": "pt_BR",
+  fr:      "fr_FR",
+};
+
+const HTML_LANG_MAP: Record<string, string> = {
+  ko:      "ko",
+  en:      "en",
+  ja:      "ja",
+  es:      "es",
+  "pt-BR": "pt-BR",
+  fr:      "fr",
+};
+
 export function SeoHead({
   title,
   description = DEFAULT_DESCRIPTION,
@@ -26,28 +47,20 @@ export function SeoHead({
   ogImage = DEFAULT_OG_IMAGE,
   jsonLd,
 }: SeoHeadProps) {
+  const { i18n } = useTranslation();
+  const lang = i18n.language ?? "ko";
+
   const normalizedPath = path.startsWith("/") ? path : `/${path}`;
   const canonicalUrl = `${BASE_URL}${normalizedPath}`;
   const finalTitle = title?.trim() ? `${title} | ${SITE_NAME}` : DEFAULT_TITLE;
+  const htmlLang = HTML_LANG_MAP[lang] ?? lang;
+  const ogLocale = LOCALE_MAP[lang] ?? "ko_KR";
 
   const schemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
   return (
     <Helmet>
-      <html lang="en" />
-
-      <script
-        async
-        src="https://www.googletagmanager.com/gtag/js?id=G-X5N345WH91"
-      ></script>
-      <script>
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-X5N345WH91');
-        `}
-      </script>
+      <html lang={htmlLang} />
 
       <title>{finalTitle}</title>
 
@@ -55,7 +68,18 @@ export function SeoHead({
 
       <link rel="canonical" href={canonicalUrl} />
 
-      <meta property="og:locale" content="en_US" />
+      {/* hreflang: 6개 언어 모두 동일 URL 선언 — 각 언어 검색엔진에 노출 */}
+      {HREFLANG_CODES.map((code) => (
+        <link
+          key={code}
+          rel="alternate"
+          hrefLang={code === "pt-BR" ? "pt-BR" : code}
+          href={canonicalUrl}
+        />
+      ))}
+      <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
+
+      <meta property="og:locale" content={ogLocale} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:title" content={finalTitle} />
