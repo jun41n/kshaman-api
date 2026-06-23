@@ -7,6 +7,7 @@ import { PartnerInfoFormPage } from "./pages/PartnerInfoFormPage";
 import { PaymentPage } from "./pages/PaymentPage";
 import { ReadingResultPage } from "./pages/ReadingResultPage";
 import { AskAnythingChatPage } from "./pages/AskAnythingChatPage";
+import { BottomBannerAd } from "./components/BottomBannerAd";
 import { ShamanFooter } from "./components/ShamanFooter";
 import { SparkleOrbs } from "./components/SparkleOrbs";
 
@@ -80,6 +81,9 @@ export default function App() {
               onReset={handleReset}
             />
           )}
+        </div>
+        <div className="w-full max-w-xl mx-auto px-4 pb-6">
+          <BottomBannerAd />
         </div>
         <ShamanFooter />
       </div>
