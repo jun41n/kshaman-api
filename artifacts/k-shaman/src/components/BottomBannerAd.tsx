@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 const CONTAINER_ID = "container-12cdf4ce15fbd319a5a65c7f165496a7";
 const SCRIPT_SRC =
-  "https://pl29040556.profitablecpmratenetwork.com/12cdf4ce15fbd319a5a65c7f165496a7/invoke.js";
+  "https://pl29040556.effectivecpmnetwork.com/12cdf4ce15fbd319a5a65c7f165496a7/invoke.js";
 
 export function BottomBannerAd() {
   useEffect(() => {

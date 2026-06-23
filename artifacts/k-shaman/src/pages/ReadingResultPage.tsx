@@ -4,6 +4,7 @@ import { useApp } from "../store/appStore";
 import { SiteNav } from "../components/SiteNav";
 import { generateReading } from "../lib/apiClient";
 import { KShamanShareButtons } from "../components/KShamanShareButtons";
+import { BottomBannerAd } from "../components/BottomBannerAd";
 
 interface Props {
   onAskAnything: () => void;
@@ -133,6 +134,9 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
             <p className={`text-xs pl-3 ${accentColor} animate-pulse`}>
               {T[lang].bokchaeLoading}
             </p>
+            <div className="pt-2">
+              <BottomBannerAd />
+            </div>
           </div>
         )}
 

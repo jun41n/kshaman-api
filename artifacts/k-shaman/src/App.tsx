@@ -82,9 +82,11 @@ export default function App() {
             />
           )}
         </div>
-        <div className="w-full max-w-xl mx-auto px-4 pb-6">
-          <BottomBannerAd />
-        </div>
+        {step !== "result" && (
+          <div className="w-full max-w-xl mx-auto px-4 pb-6">
+            <BottomBannerAd />
+          </div>
+        )}
         <ShamanFooter />
       </div>
     </AppContext.Provider>
