@@ -1,7 +1,6 @@
-import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 
-const CONTAINER_ID = "container-12cdf4ce15fbd319a5a65c7f165496a7-shaman-bottom";
+const CONTAINER_ID = "container-12cdf4ce15fbd319a5a65c7f165496a7";
 const SCRIPT_SRC =
   "https://pl29040556.profitablecpmratenetwork.com/12cdf4ce15fbd319a5a65c7f165496a7/invoke.js";
 
@@ -11,6 +10,9 @@ export function BottomBannerAd() {
   useEffect(() => {
     if (!isVisible) return;
 
+    const existing = document.querySelector(`script[src="${SCRIPT_SRC}"]`);
+    if (existing) existing.remove();
+
     const container = document.getElementById(CONTAINER_ID);
     if (container) container.innerHTML = "";
 
@@ -18,30 +20,31 @@ export function BottomBannerAd() {
     script.src = SCRIPT_SRC;
     script.async = true;
     script.setAttribute("data-cfasync", "false");
-    script.dataset.kShamanBottomAd = "true";
     document.head.appendChild(script);
 
+    const observer = new MutationObserver(() => {
+      const closeButton = document.querySelector<HTMLElement>(
+        `#${CONTAINER_ID} [class*="close"], #${CONTAINER_ID} [id*="close"]`,
+      );
+      if (!closeButton) return;
+
+      closeButton.addEventListener("click", () => setIsVisible(false), {
+        once: true,
+      });
+    });
+
+    if (container) {
+      observer.observe(container, { childList: true, subtree: true });
+    }
+
     return () => {
-      const scripts = document.querySelectorAll('script[data-k-shaman-bottom-ad="true"]');
-      scripts.forEach((item) => item.remove());
+      observer.disconnect();
+      const s = document.querySelector(`script[src="${SCRIPT_SRC}"]`);
+      if (s) s.remove();
     };
   }, [isVisible]);
 
   if (!isVisible) return null;
 
-  return (
-    <div className="fixed inset-x-0 bottom-0 z-40 flex justify-center px-3 pb-2 pointer-events-none">
-      <div className="relative w-full max-w-[728px] min-h-[90px] overflow-hidden rounded-t-xl border border-white/10 bg-gray-950/95 shadow-2xl shadow-black/60 pointer-events-auto">
-        <button
-          type="button"
-          onClick={() => setIsVisible(false)}
-          aria-label="Close ad"
-          className="absolute right-1 top-1 z-10 flex h-6 w-6 items-center justify-center rounded-sm bg-black/70 text-white/80 transition hover:bg-black hover:text-white"
-        >
-          <X className="h-4 w-4" aria-hidden="true" />
-        </button>
-        <div id={CONTAINER_ID} className="flex min-h-[90px] w-full items-center justify-center" />
-      </div>
-    </div>
-  );
+  return <div id={CONTAINER_ID} />;
 }
