@@ -1,5 +1,5 @@
 import { Router, type IRouter } from "express";
-import OpenAI from "openai";
+import OpenAI, { toFile } from "openai";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
@@ -36,9 +36,13 @@ router.post("/generate-face-image", async (req, res): Promise<void> => {
 
     req.log?.info({ type }, "[이미지생성] gpt-image-1 편집 시작");
 
+    const imageFile = await toFile(fs.createReadStream(tmpFile), "face.png", {
+      type: "image/png",
+    });
+
     const response = await openai.images.edit({
       model: "gpt-image-1",
-      image: fs.createReadStream(tmpFile),
+      image: imageFile,
       prompt: PROMPTS[type],
       n: 1,
       size: "1024x1024",
@@ -52,6 +56,8 @@ router.post("/generate-face-image", async (req, res): Promise<void> => {
     req.log?.info({ type }, "[이미지생성] 완료");
     res.json({ imageBase64: resultBase64 });
   } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    console.error("[face-image] generation failed", { type, message });
     req.log?.error({ err, type }, "[이미지생성] 오류");
     res.status(500).json({ error: "이미지 생성 중 오류가 발생했습니다." });
   } finally {
