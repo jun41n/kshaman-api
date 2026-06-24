@@ -8,6 +8,7 @@ import { PaymentPage } from "./pages/PaymentPage";
 import { ReadingResultPage } from "./pages/ReadingResultPage";
 import { AskAnythingChatPage } from "./pages/AskAnythingChatPage";
 import { BottomBannerAd } from "./components/BottomBannerAd";
+import { FixedBannerAd } from "./components/FixedBannerAd";
 import { ShamanFooter } from "./components/ShamanFooter";
 import { SparkleOrbs } from "./components/SparkleOrbs";
 
@@ -88,6 +89,7 @@ export default function App() {
           </div>
         )}
         <ShamanFooter />
+        <FixedBannerAd />
       </div>
     </AppContext.Provider>
   );
