@@ -107,7 +107,7 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
               <span className="text-base leading-none">🇰🇷</span>
               <span className="text-[11px] text-white/40 shrink-0">토스뱅크</span>
               <span className="text-sm font-mono text-white font-bold tracking-wide shrink-0">1001-8318-9198</span>
-              <span className="text-xs text-white/50 shrink-0">최영준</span>
+              <span className="text-xs text-white/50 shrink-0">Choi Youngjun</span>
               <button
                 onClick={handleCopy}
                 className={`ml-auto shrink-0 text-xs px-3 py-1.5 rounded-lg font-semibold transition-all ${

@@ -96,7 +96,7 @@ export const T: Record<Language, Translations> = {
     chatWelcome: "보살이 네 삶에서 궁금한 걸 물어봐. 연애, 돈, 건강, 직장… 무엇이든 솔직하게 물어봐요. 🔮",
     bokchaeTitle: "🙏 복채를 올려주세요",
     bokchaeDesc: "점사를 보기 전에 신령에게 복채를 올려주세요.\n보내신 만큼 운이 트인다고 하지요.\n입금 확인 후 아래 버튼을 눌러주세요.",
-    bokchaeAccount: "토스뱅크 1001-8318-9198 (최영준)",
+    bokchaeAccount: "토스뱅크 1001-8318-9198 (Choi Youngjun)",
     bokchaeCopy: "복사",
     bokchaeCopied: "복사됨!",
     bokchaePaypalBtn: "PayPal로 복채 보내기",

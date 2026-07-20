@@ -184,7 +184,7 @@ export function Layout({ children, showAd = false }: LayoutProps) {
                 {t('footer.tagline')}
               </p>
               <div className="mt-2 text-xs text-muted-foreground/55 leading-relaxed space-y-0.5">
-                <p>Choi Young-jun | 30, Deoksong 1-ro, Namyangju-si, Gyeonggi-do | meaningout_d@naver.com</p>
+                <p>Lee Hyejin | 30, Deoksong 1-ro, Namyangju-si, Gyeonggi-do | proofcom26@gmail.com</p>
                 <p>Notice: {t('footer.notice')}</p>
               </div>
             </div>

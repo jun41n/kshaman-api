@@ -72,7 +72,7 @@ Korean-first, mobile-first personality test web app. Fully static React + Vite S
 - **Tests**: `src/data/tests.ts` (15+ test definitions), `src/pages/test-detail.tsx`, `src/pages/test-result.tsx`
 - **MBTI SEO**: `src/data/mbti-seo.ts` (ko/en/ja/es/'pt-BR' sections), `src/components/MbtiSeoContent.tsx`
 - **Analytics**: GA4 `G-X5N345WH91` in `index.html`; AdSense `ca-pub-7780005617186465` in `index.html`; Microsoft Clarity `vwgi22igp2` in `index.html` — ID 절대 변경 금지
-- **Contact**: `meaningout_d@naver.com`
+- **Contact**: `proofcom26@gmail.com`
 - **OG**: default image `/opengraph.jpg`; per-test images can go in `public/og/` (SeoHead accepts `ogImage` prop)
 - Port: `24578` (reads `PORT` env)
 

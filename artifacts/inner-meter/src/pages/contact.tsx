@@ -3,7 +3,7 @@ import { Mail } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { SeoHead } from "@/components/SeoHead";
 
-const CONTACT_EMAIL = "meaningout_d@naver.com";
+const CONTACT_EMAIL = "proofcom26@gmail.com";
 
 export default function Contact() {
   const { t } = useTranslation();
