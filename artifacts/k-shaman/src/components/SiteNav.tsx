@@ -11,8 +11,7 @@ interface Props {
   centre?: React.ReactNode;
 }
 
-const MYTESTTYPE_HOME = "https://mytesttype.com";
-const MYTESTTYPE_TESTS = "https://mytesttype.com/tests";
+const K_SHAMAN_HOME = "https://mytesttype.com/k-shaman/";
 
 export function SiteNav({ onBack, backLabel, centre }: Props) {
   const { state } = useApp();
@@ -34,7 +33,7 @@ export function SiteNav({ onBack, backLabel, centre }: Props) {
             </button>
           ) : (
             <a
-              href={MYTESTTYPE_HOME}
+              href={K_SHAMAN_HOME}
               className="flex items-center gap-2 group shrink-0"
             >
               {/* MyTestType logo mark */}
@@ -61,33 +60,21 @@ export function SiteNav({ onBack, backLabel, centre }: Props) {
           </div>
         )}
 
-        {/* ── RIGHT: nav links + language ── */}
+        {/* ── RIGHT: language ── */}
         <div className="flex items-center gap-1 sm:gap-3 shrink-0">
-          {/* Nav links — hidden on tiny screens */}
-          <nav className="hidden sm:flex items-center gap-1">
-            <a
-              href={MYTESTTYPE_HOME}
-              className="px-3 py-1.5 rounded-lg text-sm text-white/50 hover:text-white hover:bg-white/5 transition-colors"
-            >
-              {isKo ? "홈" : "Home"}
-            </a>
-            <a
-              href={MYTESTTYPE_TESTS}
-              className="px-3 py-1.5 rounded-lg text-sm text-white/50 hover:text-white hover:bg-white/5 transition-colors"
-            >
-              {isKo ? "테스트 모음" : "All Tests"}
-            </a>
-          </nav>
-
-          {/* Mobile-only: compact home icon */}
           <a
-            href={MYTESTTYPE_HOME}
-            className="sm:hidden p-1.5 rounded-lg text-white/40 hover:text-white/80 hover:bg-white/5 transition-colors text-base"
-            aria-label="Home"
+            href="https://mytesttype.com/gwansang"
+            className="hidden sm:inline-flex px-3 py-1.5 rounded-lg text-sm text-white/55 hover:text-white hover:bg-white/5 transition-colors"
           >
-            🏠
+            {isKo ? "관상" : "Face Reading"}
           </a>
-
+          <a
+            href="https://mytesttype.com/gwansang"
+            className="sm:hidden p-1.5 rounded-lg text-white/55 hover:text-white hover:bg-white/5 transition-colors"
+            aria-label={isKo ? "관상" : "Face Reading"}
+          >
+            🔮
+          </a>
           <LanguageSwitcher />
         </div>
       </div>

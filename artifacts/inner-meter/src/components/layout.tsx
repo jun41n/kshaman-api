@@ -1,7 +1,6 @@
 import { ReactNode, useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { NativeBannerAd } from "@/components/NativeBannerAd";
@@ -26,11 +25,6 @@ export function Layout({ children, showAd = false }: LayoutProps) {
     setIsMobileMenuOpen(false);
   }, [location]);
 
-  const navLinks = [
-    { href: "/tests",  label: t('nav.tests') },
-    { href: "/tarot",  label: t('nav.tarot') },
-  ];
-
   return (
     <div className="min-h-screen flex flex-col bg-background font-sans text-foreground">
 
@@ -43,28 +37,17 @@ export function Layout({ children, showAd = false }: LayoutProps) {
         <div className="container max-w-5xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <a href="/k-shaman/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <div className="w-8 h-8 rounded-xl bg-gradient-primary flex items-center justify-center text-white shadow-md shadow-primary/20">
                 <Sparkles className="w-5 h-5" />
               </div>
               <span className="font-display font-bold text-xl tracking-tight text-foreground">
                 MyTestType
               </span>
-            </Link>
+            </a>
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-6">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`text-sm font-bold transition-colors hover:text-primary ${
-                    location.startsWith(link.href) ? "text-primary" : "text-muted-foreground"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
               <Link
                 href="/gwansang"
                 className="flex items-center gap-1.5 text-sm font-bold group"
@@ -85,9 +68,6 @@ export function Layout({ children, showAd = false }: LayoutProps) {
                 <span className="shaman-holo">{t('nav.shaman')}</span>
               </a>
               <LanguageSwitcher />
-              <Button asChild variant="default" className="rounded-full shadow-md shadow-primary/20 font-bold px-6">
-                <Link href="/tests">{t('nav.start')}</Link>
-              </Button>
             </nav>
 
             {/* Mobile: language switcher + hamburger */}
@@ -111,17 +91,6 @@ export function Layout({ children, showAd = false }: LayoutProps) {
         {isMobileMenuOpen && (
           <div className="md:hidden absolute top-[calc(100%+1px)] left-0 w-full bg-background/95 backdrop-blur-xl border-b border-border shadow-xl animate-in slide-in-from-top-2">
             <nav className="flex flex-col p-4 gap-2">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`px-4 py-3 rounded-xl text-base font-bold transition-colors ${
-                    location.startsWith(link.href) ? "bg-primary/10 text-primary" : "hover:bg-muted text-muted-foreground"
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
               <Link
                 href="/gwansang"
                 className="px-4 py-3 rounded-xl text-base font-bold transition-colors hover:bg-muted flex items-center gap-2 text-muted-foreground"
@@ -144,11 +113,6 @@ export function Layout({ children, showAd = false }: LayoutProps) {
               <div className="pt-2 pb-1">
                 <p className="text-xs font-bold text-muted-foreground/50 uppercase tracking-wider px-4 mb-2">Language</p>
                 <LanguageSwitcher compact />
-              </div>
-              <div className="pt-2 pb-2 border-t border-border mt-1">
-                <Button asChild className="w-full bg-gradient-primary text-white font-bold h-13 rounded-2xl shadow-lg text-base">
-                  <Link href="/tests">{t('nav.startLong')}</Link>
-                </Button>
               </div>
             </nav>
           </div>
