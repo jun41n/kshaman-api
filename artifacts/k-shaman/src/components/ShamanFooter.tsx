@@ -11,6 +11,14 @@ export function ShamanFooter() {
             Notice: All content on MyTestType is provided for entertainment
             purposes only.
           </p>
+          <p className="mt-1">
+            <a
+              href="https://mytesttype.com/privacy/"
+              className="underline underline-offset-2 hover:text-gray-300 transition-colors"
+            >
+              개인정보 처리방침
+            </a>
+          </p>
           <p className="mt-1.5 text-gray-600">
             &copy; 2026 MyTestType. All rights reserved.
           </p>

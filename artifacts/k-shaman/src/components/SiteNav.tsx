@@ -63,13 +63,13 @@ export function SiteNav({ onBack, backLabel, centre }: Props) {
         {/* ── RIGHT: language ── */}
         <div className="flex items-center gap-1 sm:gap-3 shrink-0">
           <a
-            href="https://mytesttype.com/gwansang"
+            href="https://mytesttype.com/gwansang/"
             className="hidden sm:inline-flex px-3 py-1.5 rounded-lg text-sm text-white/55 hover:text-white hover:bg-white/5 transition-colors"
           >
             {isKo ? "관상" : "Face Reading"}
           </a>
           <a
-            href="https://mytesttype.com/gwansang"
+            href="https://mytesttype.com/gwansang/"
             className="sm:hidden p-1.5 rounded-lg text-white/55 hover:text-white hover:bg-white/5 transition-colors"
             aria-label={isKo ? "관상" : "Face Reading"}
           >

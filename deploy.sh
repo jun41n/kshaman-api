@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
-# deploy.sh — inner-meter + k-shaman 빌드 후 GitHub Pages에 배포
+# deploy.sh — 관상 + K-Shaman만 빌드 후 GitHub Pages에 배포
 set -e
 
 DEPLOY_DIR="/tmp/mytesttype-deploy"
 INNER_METER="artifacts/inner-meter"
 K_SHAMAN="artifacts/k-shaman"
+DEPLOY_STATIC="deploy-static"
 
 echo "── 1. GitHub Pages 레포 클론/갱신 ──"
 if [ -d "$DEPLOY_DIR/.git" ]; then
@@ -32,36 +33,54 @@ cd -
 
 K_DIST="$K_SHAMAN/dist/public"
 
-echo "── 3. assets 교체 ──"
+echo "── 3. 관상 assets 교체 ──"
 rm -rf "$DEPLOY_DIR/assets"
 cp -r "$DIST/assets" "$DEPLOY_DIR/assets"
 
-echo "── 4. index.html 교체 ──"
-cp "$DIST/index.html" "$DEPLOY_DIR/index.html"
+echo "── 4. 관상 페이지 교체 ──"
+rm -rf "$DEPLOY_DIR/gwansang"
+mkdir -p "$DEPLOY_DIR/gwansang"
+cp "$DIST/index.html" "$DEPLOY_DIR/gwansang/index.html"
+cp "$INNER_METER/public/favicon.svg" "$DEPLOY_DIR/favicon.svg"
+cp "$INNER_METER/public/gwansang.png" "$DEPLOY_DIR/gwansang.png"
 
-echo "── 5. prerender 페이지 복사 (blog/, pet-test/) ──"
-rm -rf "$DEPLOY_DIR/blog"
-cp -r "$DIST/blog" "$DEPLOY_DIR/blog"
-
-rm -rf "$DEPLOY_DIR/pet-test"
-cp -r "$DIST/pet-test" "$DEPLOY_DIR/pet-test"
-
-echo "── 6. public 파일 동기화 (이미지·sitemap·robots 등) ──"
-for f in "$INNER_METER/public"/*; do
-  name=$(basename "$f")
-  [ "$name" = "assets" ] && continue
-  cp -r "$f" "$DEPLOY_DIR/$name"
-done
-
-echo "── 7. k-shaman 폴더 교체 ──"
+echo "── 5. k-shaman 폴더 교체 ──"
 rm -rf "$DEPLOY_DIR/k-shaman"
 mkdir -p "$DEPLOY_DIR/k-shaman"
 cp -r "$K_DIST/"* "$DEPLOY_DIR/k-shaman/"
 
+echo "── 6. 공통 SEO·안내 파일 교체 ──"
+cp "$DEPLOY_STATIC/index.html" "$DEPLOY_DIR/index.html"
+cp "$DEPLOY_STATIC/404.html" "$DEPLOY_DIR/404.html"
+cp "$DEPLOY_STATIC/robots.txt" "$DEPLOY_DIR/robots.txt"
+cp "$DEPLOY_STATIC/sitemap.xml" "$DEPLOY_DIR/sitemap.xml"
+cp "$DEPLOY_STATIC/llms.txt" "$DEPLOY_DIR/llms.txt"
+rm -rf "$DEPLOY_DIR/privacy"
+cp -r "$DEPLOY_STATIC/privacy" "$DEPLOY_DIR/privacy"
+
+echo "── 7. 구형 공개 경로 제거 및 안전 검사 ──"
+rm -rf "$DEPLOY_DIR/blog" "$DEPLOY_DIR/pet-test" "$DEPLOY_DIR/tests" "$DEPLOY_DIR/results"
+rm -f "$DEPLOY_DIR/posts.json"
+
+for forbidden in blog pet-test tests results; do
+  if [ -e "$DEPLOY_DIR/$forbidden" ]; then
+    echo "금지 경로가 남아 있습니다: $forbidden" >&2
+    exit 1
+  fi
+done
+
+test -f "$DEPLOY_DIR/index.html"
+test -f "$DEPLOY_DIR/robots.txt"
+test -f "$DEPLOY_DIR/sitemap.xml"
+test -f "$DEPLOY_DIR/gwansang/index.html"
+test -f "$DEPLOY_DIR/k-shaman/index.html"
+test -f "$DEPLOY_DIR/privacy/index.html"
+test -f "$DEPLOY_DIR/assets/gwansang-loading-widget.js"
+
 echo "── 8. 커밋 & 푸시 ──"
 cd "$DEPLOY_DIR"
 git add -A
-git commit -m "deploy: $(date '+%Y-%m-%d %H:%M') — k-shaman 궁합 상대방 입력폼 수정" || echo "(변경사항 없음)"
+git commit -m "deploy: $(date '+%Y-%m-%d %H:%M') — K-Shaman 및 관상 갱신" || echo "(변경사항 없음)"
 git push origin main
 cd -
 

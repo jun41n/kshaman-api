@@ -10,7 +10,8 @@ interface LayoutProps {
 }
 
 export function Layout({ children, showAd = false }: LayoutProps) {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isKo = i18n.language?.startsWith("ko");
   const [location] = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -49,7 +50,7 @@ export function Layout({ children, showAd = false }: LayoutProps) {
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-6">
               <Link
-                href="/gwansang"
+                href="/gwansang/"
                 className="flex items-center gap-1.5 text-sm font-bold group"
               >
                 <div className="w-5 h-5 rounded-md flex items-center justify-center text-white shadow-sm transition-shadow"
@@ -92,7 +93,7 @@ export function Layout({ children, showAd = false }: LayoutProps) {
           <div className="md:hidden absolute top-[calc(100%+1px)] left-0 w-full bg-background/95 backdrop-blur-xl border-b border-border shadow-xl animate-in slide-in-from-top-2">
             <nav className="flex flex-col p-4 gap-2">
               <Link
-                href="/gwansang"
+                href="/gwansang/"
                 className="px-4 py-3 rounded-xl text-base font-bold transition-colors hover:bg-muted flex items-center gap-2 text-muted-foreground"
               >
                 <div className="w-6 h-6 rounded-lg flex items-center justify-center text-white shadow-sm"
@@ -145,7 +146,9 @@ export function Layout({ children, showAd = false }: LayoutProps) {
                 MyTestType
               </span>
               <p className="text-sm text-muted-foreground max-w-[220px]">
-                {t('footer.tagline')}
+                {isKo
+                  ? "K-Shaman AI 사주와 AI 관상을 문화·오락 목적으로 제공합니다."
+                  : "Cultural, entertainment-oriented K-Shaman AI Saju and AI face reading."}
               </p>
               <div className="mt-2 text-xs text-muted-foreground/55 leading-relaxed space-y-0.5">
                 <p>Lee Hyejin | 30, Deoksong 1-ro, Namyangju-si, Gyeonggi-do | proofcom26@gmail.com</p>
@@ -153,17 +156,28 @@ export function Layout({ children, showAd = false }: LayoutProps) {
               </div>
             </div>
 
-            {/* Links */}
+            {/* Public services and contact */}
             <div className="flex flex-col sm:flex-row gap-6 sm:gap-12">
-              {/* 정보 */}
               <div>
-                <p className="text-xs font-bold text-muted-foreground/60 uppercase tracking-wider mb-3">{t('footer.info')}</p>
+                <p className="text-xs font-bold text-muted-foreground/60 uppercase tracking-wider mb-3">
+                  {isKo ? "서비스" : "Services"}
+                </p>
                 <div className="flex flex-col gap-2.5 text-sm font-medium text-muted-foreground">
-                  <Link href="/about"   className="hover:text-primary transition-colors">{t('footer.about')}</Link>
-                  <Link href="/privacy" className="hover:text-primary transition-colors">{t('footer.privacy')}</Link>
-                  <Link href="/terms"   className="hover:text-primary transition-colors">{t('footer.terms')}</Link>
-                  <Link href="/contact" className="hover:text-primary transition-colors">{t('footer.contact')}</Link>
-                  <Link href="/blog"    className="hover:text-primary transition-colors font-semibold text-foreground/70">심리 칼럼</Link>
+                  <a href="/k-shaman/" className="hover:text-primary transition-colors">
+                    K-Shaman AI {isKo ? "사주" : "Saju"}
+                  </a>
+                  <Link href="/gwansang/" className="hover:text-primary transition-colors">
+                    {isKo ? "AI 관상" : "AI Face Reading"}
+                  </Link>
+                  <a href="/privacy/" className="hover:text-primary transition-colors">
+                    {isKo ? "개인정보 처리방침" : "Privacy Policy"}
+                  </a>
+                  <a
+                    href="mailto:proofcom26@gmail.com"
+                    className="hover:text-primary transition-colors"
+                  >
+                    {isKo ? "문의" : "Contact"}
+                  </a>
                 </div>
               </div>
             </div>

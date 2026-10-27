@@ -13,13 +13,13 @@ type Stage = "upload" | "analyzing";
 const STEPS = [
   { label: "AI 관상 알고리즘 초기화 중", pct: 8 },
   { label: "얼굴 구조 매핑 중", pct: 18 },
-  { label: "재물운 기운 감지 중", pct: 30 },
-  { label: "연애운 흐름 포착 중", pct: 42 },
+  { label: "생활 습관 상징을 정리하는 중", pct: 30 },
+  { label: "관계 인상 키워드를 찾는 중", pct: 42 },
   { label: "역사적 인물 데이터 매칭 중", pct: 54 },
   { label: "성격·직업 적성 산출 중", pct: 64 },
   { label: "노화 패턴 시뮬레이션 중", pct: 74 },
-  { label: "미래 아기·애니 변환 중", pct: 84 },
-  { label: "관상 대가 최종 판정 중", pct: 95 },
+  { label: "이미지 콘셉트를 상상하는 중", pct: 84 },
+  { label: "오락용 해설을 마무리하는 중", pct: 95 },
 ];
 
 function CosmicWatch({ stepIndex }: { stepIndex: number }) {
@@ -267,7 +267,7 @@ export function GwansangReading({ onResult, onBack }: ReadingProps) {
             className="h-7 w-auto object-contain opacity-80"
             style={{ filter: "drop-shadow(0 0 6px rgba(0,210,180,0.3)) brightness(3)" }}
           />
-          <p className="text-[11px] tracking-[0.2em] uppercase" style={{ color: "rgba(0,200,170,0.6)" }}>AI 관상 알고리즘</p>
+          <p className="text-[11px] tracking-[0.2em] uppercase" style={{ color: "rgba(0,200,170,0.6)" }}>AI 인상 해설 생성 중</p>
         </motion.div>
         <AnimatePresence mode="wait">
           <motion.p key={stepIndex}
@@ -371,6 +371,9 @@ export function GwansangReading({ onResult, onBack }: ReadingProps) {
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             {preview ? "AI 관상 분석 시작" : "사진을 먼저 선택해주세요"}
           </motion.button>
+          <p className="mt-3 text-[11px] leading-relaxed text-center" style={{ color: "hsl(25,35%,38%)" }}>
+            사진은 요청한 AI 분석 처리를 위해 외부 AI 제공업체로 전송될 수 있습니다. 결과는 전통문화 기반의 오락·참고용이며 실제 성격·건강·재산·운명 또는 유전 정보를 판정하지 않습니다.
+          </p>
         </div>
       </div>
     </div>

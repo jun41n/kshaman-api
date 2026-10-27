@@ -12,15 +12,12 @@ interface SeoHeadProps {
 const BASE_URL = "https://mytesttype.com";
 const SITE_NAME = "MyTestType";
 
-const DEFAULT_TITLE =
-  "Personality Test · Love Test · Psychology Quiz | MyTestType";
+const DEFAULT_TITLE = "K-Shaman AI 사주·AI 관상 | MyTestType";
 
 const DEFAULT_DESCRIPTION =
-  "Discover your personality, love style, and hidden traits through fun and simple psychology tests.";
+  "한국 전통 명리 문화를 현대적으로 풀어낸 K-Shaman AI 사주와 문화·오락 목적의 AI 관상을 만나보세요.";
 
 const DEFAULT_OG_IMAGE = `${BASE_URL}/opengraph.jpg`;
-
-const HREFLANG_CODES = ["ko", "en", "ja", "es", "pt-BR", "fr"] as const;
 
 const LOCALE_MAP: Record<string, string> = {
   ko:      "ko_KR",
@@ -67,17 +64,6 @@ export function SeoHead({
       <meta name="description" content={description} />
 
       <link rel="canonical" href={canonicalUrl} />
-
-      {/* hreflang: 6개 언어 모두 동일 URL 선언 — 각 언어 검색엔진에 노출 */}
-      {HREFLANG_CODES.map((code) => (
-        <link
-          key={code}
-          rel="alternate"
-          hrefLang={code === "pt-BR" ? "pt-BR" : code}
-          href={canonicalUrl}
-        />
-      ))}
-      <link rel="alternate" hrefLang="x-default" href={canonicalUrl} />
 
       <meta property="og:locale" content={ogLocale} />
       <meta property="og:type" content="website" />

@@ -6,12 +6,12 @@ interface GwansangHomeProps {
 }
 
 const FEATURES = [
-  { icon: "🐉", title: "AI 운명 등급 판별", desc: "황금룡·청룡 등 운명의 기운 판별" },
-  { icon: "💰", title: "재물운 · 연애운", desc: "재물 기운과 인연의 깊이 분석" },
-  { icon: "🏛️", title: "역사적 인물 매칭", desc: "가장 닮은 역사 인물과 운명 비교" },
-  { icon: "🔮", title: "성격 · 직업 · 궁합", desc: "기질·적성·관계 맞춤 분석" },
-  { icon: "⏳", title: "노화 시뮬레이션", desc: "20년 후 얼굴 변화 예측" },
-  { icon: "✨", title: "미래 아기 · 애니 변환", desc: "유전 예측 + 애니 캐릭터화" },
+  { icon: "🐉", title: "AI 인상 유형 분석", desc: "얼굴 특징과 분위기를 유형별로 살펴보기" },
+  { icon: "💰", title: "생활 · 관계 인상", desc: "생활 방식과 관계 분위기에 관한 문화적 참고 해석" },
+  { icon: "🏛️", title: "역사 인물 분위기 매칭", desc: "비슷한 인상 요소를 가진 역사 인물 이미지 비교" },
+  { icon: "🔮", title: "인상 · 활동 · 관계", desc: "표정과 이미지에 관한 문화적 참고 해석" },
+  { icon: "⏳", title: "미래 스타일 상상", desc: "AI로 표현한 창작 이미지 예시" },
+  { icon: "✨", title: "아기 · 애니 창작 이미지", desc: "오락용 이미지 생성과 캐릭터화" },
 ];
 
 const PAGE_BG = "linear-gradient(175deg, #D4A96A 0%, #C49050 40%, #B8813A 100%)";
@@ -41,10 +41,10 @@ export function GwansangHome({ onStart }: GwansangHomeProps) {
             />
             <p className="mt-2 text-[19px] md:text-[26px] lg:text-[32px] font-bold leading-snug"
               style={{ color: "hsl(25,65%,10%)" }}>
-              내가 부자가 될 상인가?
+              내 얼굴에는 어떤 인상이 담겼을까?
             </p>
             <p className="mt-1 text-sm md:text-base" style={{ color: "hsl(25,40%,38%)" }}>
-              사진 한 장으로 운명을 읽다
+              사진 한 장으로 표정과 인상을 살펴보다
             </p>
           </motion.div>
 
@@ -59,7 +59,7 @@ export function GwansangHome({ onStart }: GwansangHomeProps) {
               관상 보기
             </motion.button>
             <p className="text-center text-[11px] mt-2.5" style={{ color: "hsl(25,35%,45%)" }}>
-              사진은 분석 후 즉시 삭제됩니다 · AI 관상학 기반
+              사진은 AI 분석 요청에 사용됩니다 · 결과는 오락·참고용
             </p>
           </div>
         </div>
@@ -92,7 +92,7 @@ export function GwansangHome({ onStart }: GwansangHomeProps) {
           관상 보기
         </motion.button>
         <p className="text-center text-[11px] mt-2.5" style={{ color: "hsl(25,35%,45%)" }}>
-          사진은 분석 후 즉시 삭제됩니다 · AI 관상학 기반
+          사진은 AI 분석 요청에 사용됩니다 · 결과는 오락·참고용
         </p>
       </div>
     </div>

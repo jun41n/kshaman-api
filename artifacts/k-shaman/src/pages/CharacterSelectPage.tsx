@@ -23,7 +23,7 @@ export function CharacterSelectPage({ onNext }: Props) {
 
       <div className="px-4 pt-8 pb-6 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-900/40 border border-violet-500/30 text-violet-300 text-xs font-medium mb-4">
-          ✦ 신령 채널링 ✦
+          ✦ AI 사주 · K-Shaman ✦
         </div>
         <h1 className="text-2xl font-extrabold leading-tight mb-2">
           {t.selectGuide}

@@ -23,7 +23,7 @@ export interface GwansangAnalysisResult {
   career: { title: string; jobs: string[]; reading: string };
   compatibility: { title: string; best: string; reading: string };
   dragonface: { title: string; tier: string; score: number; reading: string };
-  historical: { title: string; person: string; era: string; similarity: number; reading: string };
+  historical: { title: string; person: string; era: string; reading: string };
   aging: { title: string; decade: string; reading: string };
   baby: { title: string; reading: string };
   anime: { title: string; character: string; reading: string };
@@ -53,15 +53,16 @@ export default function Gwansang() {
   return (
     <Layout showAd>
       <SeoHead
-        title="AI 관상 분석 · 내 얼굴로 운명 읽기"
-        description="사진 한 장으로 재물운·연애운·성격·직업·역사적 인물 매칭까지! AI 관상 알고리즘이 당신의 얼굴에서 운명을 읽어드립니다."
-        path="/gwansang"
+        title="AI 관상 분석"
+        description="사진 한 장을 바탕으로 얼굴 특징과 인상에서 보이는 성향을 살펴보는 MyTestType AI 관상입니다. 한국 전통 관상 문화를 현대적으로 풀어낸 오락·참고용 서비스입니다."
+        path="/gwansang/"
+        ogImage="https://mytesttype.com/gwansang.png"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "WebApplication",
           name: "AI 관상 분석",
-          description: "사진 한 장으로 재물운, 연애운, 성격, 직업 추천, 역사적 인물 매칭을 AI로 분석",
-          url: "https://mytesttype.com/gwansang",
+          description: "사진 한 장을 바탕으로 얼굴 특징과 인상에서 보이는 성향을 살펴보는 문화·오락 목적의 AI 관상 분석",
+          url: "https://mytesttype.com/gwansang/",
           applicationCategory: "EntertainmentApplication",
           offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
         }}

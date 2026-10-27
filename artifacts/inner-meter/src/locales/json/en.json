@@ -205,13 +205,13 @@
     "title": "Privacy Policy",
     "p1": "MyTestType places the highest priority on protecting user privacy.",
     "collectedTitle": "1. Information Collected & Purpose",
-    "item1": "Items collected: Date of birth, time of birth, gender, country",
-    "item2": "Purpose: Generating personalized reports and statistical analysis",
+    "item1": "Data processed: Saju input data and a face photo voluntarily uploaded for face reading",
+    "item2": "Purpose: Generating the requested Saju or face-reading result and operating the service",
     "paddleTitle": "2. Voluntary Support (Tip / Offering)",
     "paddleText": "This service is operated as an independent personal project. We do not directly collect or store any payment information. The service is sustained through voluntary tips and offerings from users.",
     "thirdPartyTitle": "3. Third-Party Sharing & Advertising",
     "thirdPartyItems": [
-      "MyTestType does not sell or share user personal information with third parties.",
+      "MyTestType does not sell personal information. When face reading is requested, the uploaded photo may be sent to an external AI API provider solely to generate that result.",
       "This site serves ads through Google AdSense. Users can disable personalized ads from the Google Ads Settings page."
     ],
     "adLinkText": "Google Ads Settings",

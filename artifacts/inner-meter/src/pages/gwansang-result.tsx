@@ -17,16 +17,6 @@ const TIER_COLORS: Record<string, string> = {
 
 const API_BASE = "https://api.mytesttype.com";
 
-function ScoreBar({ score, color }: { score: number; color: string }) {
-  return (
-    <div className="h-1.5 rounded-full mt-1.5 mb-3 overflow-hidden" style={{ background: "rgba(100,55,10,0.15)" }}>
-      <motion.div className="h-full rounded-full" style={{ backgroundColor: color }}
-        initial={{ width: 0 }} animate={{ width: `${score}%` }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }} />
-    </div>
-  );
-}
-
 function SectionCard({ icon, title, children, delay = 0, accent = "hsl(15,65%,28%)" }: {
   icon: string; title: string; children: React.ReactNode; delay?: number; accent?: string;
 }) {
@@ -194,19 +184,23 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
 
       <div className="px-4 sm:px-6 md:px-8 lg:px-16 xl:px-24">
 
+        <p className="mb-4 rounded-2xl px-4 py-3 text-[11px] leading-relaxed text-center"
+          style={{ background: "rgba(255,245,220,0.55)", color: "hsl(25,35%,32%)", border: "1px solid rgba(140,90,20,0.2)" }}>
+          AI가 생성한 전통문화 기반의 오락·참고용 해석입니다. 실제 성격·건강·재산·운명 또는 유전 정보를 판정하지 않습니다.
+        </p>
+
         {result.dragonface && (
           <motion.div className="rounded-3xl p-5 mb-4" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18 }}
             style={{ background: "linear-gradient(135deg, rgba(140,65,15,0.15), rgba(100,45,10,0.12))", border: `1.5px solid ${tierColor}44` }}>
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <span style={{ fontSize: 18 }}>🐉</span>
-                <p className="text-[11px] font-bold tracking-wider uppercase" style={{ color: "hsl(15,60%,30%)" }}>운명 등급</p>
+                <p className="text-[11px] font-bold tracking-wider uppercase" style={{ color: "hsl(15,60%,30%)" }}>인상 유형</p>
               </div>
               <div className="px-3 py-1 rounded-full text-xs font-black" style={{ background: `${tierColor}22`, color: tierColor, border: `1px solid ${tierColor}66` }}>
                 {result.dragonface.tier}
               </div>
             </div>
-            <ScoreBar score={result.dragonface.score} color={tierColor} />
             <p className="text-[13px] leading-relaxed" style={{ color: "hsl(25,45%,22%)" }}>{result.dragonface.reading}</p>
           </motion.div>
         )}
@@ -224,10 +218,8 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
               initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
               <div className="flex items-center gap-1 mb-0.5">
                 <span style={{ fontSize: 13 }}>💰</span>
-                <p className="text-[10px] font-bold tracking-wider uppercase" style={{ color: "hsl(15,60%,30%)" }}>재물운</p>
+                <p className="text-[10px] font-bold tracking-wider uppercase" style={{ color: "hsl(15,60%,30%)" }}>생활 습관 상징</p>
               </div>
-              <p className="text-2xl font-black mb-1" style={{ color: "hsl(35,75%,30%)" }}>{result.wealth.score}</p>
-              <ScoreBar score={result.wealth.score} color="hsl(35,70%,38%)" />
               <p className="text-[12px] leading-relaxed" style={{ color: "hsl(25,45%,25%)" }}>{result.wealth.reading}</p>
             </motion.div>
           )}
@@ -237,10 +229,8 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
               initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.33 }}>
               <div className="flex items-center gap-1 mb-0.5">
                 <span style={{ fontSize: 13 }}>💕</span>
-                <p className="text-[10px] font-bold tracking-wider uppercase" style={{ color: "hsl(350,60%,32%)" }}>연애운</p>
+                <p className="text-[10px] font-bold tracking-wider uppercase" style={{ color: "hsl(350,60%,32%)" }}>관계 인상 상징</p>
               </div>
-              <p className="text-2xl font-black mb-1" style={{ color: "hsl(350,65%,35%)" }}>{result.love.score}</p>
-              <ScoreBar score={result.love.score} color="hsl(350,60%,42%)" />
               <p className="text-[12px] leading-relaxed" style={{ color: "hsl(25,45%,25%)" }}>{result.love.reading}</p>
             </motion.div>
           )}
@@ -253,9 +243,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
                   <span style={{ color: "hsl(15,65%,30%)", fontSize: 13 }}>◈</span>
                   <span className="text-[11px] font-bold tracking-wider uppercase" style={{ color: "hsl(15,65%,30%)" }}>{result.eyes.title}</span>
                 </div>
-                <span className="text-xs font-black" style={{ color: "hsl(15,65%,30%)" }}>{result.eyes.score}점</span>
               </div>
-              <ScoreBar score={result.eyes.score} color="hsl(15,65%,30%)" />
               <p className="text-[13px] leading-relaxed" style={{ color: "hsl(25,40%,25%)" }}>{result.eyes.reading}</p>
             </motion.div>
           )}
@@ -268,9 +256,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
                   <span style={{ color: "hsl(25,60%,32%)", fontSize: 13 }}>◇</span>
                   <span className="text-[11px] font-bold tracking-wider uppercase" style={{ color: "hsl(25,60%,32%)" }}>{result.nose.title}</span>
                 </div>
-                <span className="text-xs font-black" style={{ color: "hsl(25,60%,32%)" }}>{result.nose.score}점</span>
               </div>
-              <ScoreBar score={result.nose.score} color="hsl(25,60%,32%)" />
               <p className="text-[13px] leading-relaxed" style={{ color: "hsl(25,40%,25%)" }}>{result.nose.reading}</p>
             </motion.div>
           )}
@@ -283,21 +269,15 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
                   <span style={{ color: "hsl(5,62%,32%)", fontSize: 13 }}>◉</span>
                   <span className="text-[11px] font-bold tracking-wider uppercase" style={{ color: "hsl(5,62%,32%)" }}>{result.mouth.title}</span>
                 </div>
-                <span className="text-xs font-black" style={{ color: "hsl(5,62%,32%)" }}>{result.mouth.score}점</span>
               </div>
-              <ScoreBar score={result.mouth.score} color="hsl(5,62%,32%)" />
               <p className="text-[13px] leading-relaxed" style={{ color: "hsl(25,40%,25%)" }}>{result.mouth.reading}</p>
             </motion.div>
           )}
 
           {result.historical && (
-            <SectionCard icon="🏛️" title="역사적 인물 매칭" delay={0.55} accent="hsl(25,55%,28%)">
-              <div className="flex items-center justify-between mb-2">
+            <SectionCard icon="🏛️" title="역사 인물 분위기 매칭" delay={0.55} accent="hsl(25,55%,28%)">
+              <div className="mb-2">
                 <p className="text-base font-black" style={{ color: "hsl(25,60%,14%)" }}>{result.historical.person}</p>
-                <div className="px-2.5 py-0.5 rounded-full text-[11px] font-bold"
-                  style={{ background: "rgba(140,70,15,0.15)", color: "hsl(25,55%,30%)" }}>
-                  유사도 {result.historical.similarity}%
-                </div>
               </div>
               <p className="text-[11px] mb-2" style={{ color: "hsl(25,35%,42%)" }}>{result.historical.era}</p>
               <p className="text-[13px] leading-relaxed" style={{ color: "hsl(25,45%,22%)" }}>{result.historical.reading}</p>
@@ -305,7 +285,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
           )}
 
           {result.personality && (
-            <SectionCard icon="🔮" title="성격 분석" delay={0.6} accent="hsl(260,45%,38%)">
+            <SectionCard icon="🔮" title="인상 키워드" delay={0.6} accent="hsl(260,45%,38%)">
               <div className="flex flex-wrap items-center gap-2 mb-2">
                 <p className="text-sm font-black" style={{ color: "hsl(260,45%,30%)" }}>{result.personality.type}</p>
                 {result.personality.traits?.map((t) => (
@@ -318,7 +298,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
           )}
 
           {result.career && (
-            <SectionCard icon="💼" title="직업 추천" delay={0.64} accent="hsl(200,55%,28%)">
+            <SectionCard icon="💼" title="활동 환경 아이디어" delay={0.64} accent="hsl(200,55%,28%)">
               <div className="flex flex-wrap gap-1.5 mb-2.5">
                 {result.career.jobs?.map((job) => (
                   <span key={job} className="px-3 py-1 rounded-full text-[12px] font-semibold"
@@ -332,15 +312,15 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
           )}
 
           {result.compatibility && (
-            <AccordionCard icon="🤝" title="관계 궁합" delay={0.68} accent="hsl(140,45%,28%)">
-              <p className="text-sm font-bold mb-1.5" style={{ color: "hsl(140,45%,25%)" }}>최적 파트너: {result.compatibility.best}</p>
+            <AccordionCard icon="🤝" title="관계 스타일 참고" delay={0.68} accent="hsl(140,45%,28%)">
+              <p className="text-sm font-bold mb-1.5" style={{ color: "hsl(140,45%,25%)" }}>대조적인 인상형: {result.compatibility.best}</p>
               <p className="text-[13px] leading-relaxed" style={{ color: "hsl(25,40%,22%)" }}>{result.compatibility.reading}</p>
             </AccordionCard>
           )}
 
           {result.aging && (
             <FaceImageCard
-              icon="⏳" title="노화 시뮬레이션" type="aging"
+              icon="⏳" title="미래 스타일 상상" type="aging"
               description={`${result.aging.decade} — ${result.aging.reading}`}
               accent="hsl(35,55%,28%)" delay={0.72} uploadedImage={image}
             />
@@ -348,7 +328,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
 
           {result.baby && (
             <FaceImageCard
-              icon="👶" title="미래 아기 예측" type="baby"
+              icon="👶" title="아기 이미지 상상" type="baby"
               description={result.baby.reading}
               accent="hsl(350,50%,32%)" delay={0.75} uploadedImage={image}
             />
@@ -365,7 +345,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
 
         {result.fortune && (
           <div className="mb-3">
-            <SectionCard icon="🌟" title={result.fortune.title || "전체 운세"} delay={0.82} accent="hsl(15,60%,30%)">
+            <SectionCard icon="🌟" title="오늘의 참고 테마" delay={0.82} accent="hsl(15,60%,30%)">
               <p className="text-[13px] leading-relaxed" style={{ color: "hsl(25,45%,22%)" }}>{result.fortune.reading}</p>
             </SectionCard>
           </div>
@@ -376,7 +356,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
             style={{ background: "linear-gradient(135deg, rgba(140,65,15,0.15), rgba(100,45,10,0.1))", border: "1px solid rgba(140,65,15,0.25)" }}>
             <div className="flex items-center gap-1.5 mb-2">
               <span style={{ color: "hsl(15,65%,30%)", fontSize: 12 }}>✦</span>
-              <p className="text-[11px] font-bold tracking-wider uppercase" style={{ color: "hsl(15,60%,30%)" }}>관상 대가의 조언</p>
+              <p className="text-[11px] font-bold tracking-wider uppercase" style={{ color: "hsl(15,60%,30%)" }}>오늘의 작은 행동</p>
             </div>
             <p className="text-[13px] leading-relaxed" style={{ color: "hsl(25,50%,18%)" }}>{result.advice}</p>
           </motion.div>
