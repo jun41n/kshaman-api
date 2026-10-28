@@ -66,9 +66,9 @@ function buildPage({ title, description, canonical, bodyHtml }) {
   // <title> 교체
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${esc(title)}</title>`);
 
-  // description
+  // description (Vite may format this meta tag across multiple lines)
   html = html.replace(
-    /<meta name="description"[^>]*>/,
+    /<meta\s+name="description"[\s\S]*?\/?>/,
     `<meta name="description" content="${esc(description)}">`
   );
   if (!html.includes('<meta name="description"')) {
@@ -85,7 +85,7 @@ function buildPage({ title, description, canonical, bodyHtml }) {
   }
 
   // OG tags — 기존 OG 태그 제거 후 재삽입
-  html = html.replace(/<meta property="og:[^"]*"[^>]*>\n?/g, "");
+  html = html.replace(/<meta\s+property="og:[^"]*"[\s\S]*?\/?>\s*/g, "");
   html = html.replace(
     "</head>",
     `<meta property="og:type" content="article">
@@ -95,9 +95,18 @@ function buildPage({ title, description, canonical, bodyHtml }) {
 </head>`
   );
 
+  html = html.replace(
+    /<meta\s+name="twitter:title"[\s\S]*?\/?>/,
+    `<meta name="twitter:title" content="${esc(title)}">`
+  );
+  html = html.replace(
+    /<meta\s+name="twitter:description"[\s\S]*?\/?>/,
+    `<meta name="twitter:description" content="${esc(description)}">`
+  );
+
   // pre-rendered 콘텐츠 + 숨김 스크립트
   const prerender = `
-<div id="prerender-seo" style="max-width:768px;margin:0 auto;padding:24px 16px;font-family:sans-serif">
+<div id="prerender-seo" style="display:none;max-width:768px;margin:0 auto;padding:24px 16px;font-family:sans-serif">
 ${bodyHtml}
 </div>
 <script>

@@ -1,15 +1,10 @@
 import { Router, type IRouter } from "express";
-import Anthropic from "@anthropic-ai/sdk";
+import { getOpenAIClient } from "../lib/ai/openaiClient.js";
+import { buildKnowledgeContext } from "../lib/knowledge/index.js";
 
 const router: IRouter = Router();
 
-const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
-if (!ANTHROPIC_API_KEY) {
-  console.warn("[관상] ANTHROPIC_API_KEY 환경변수 없음 — 관상 라우트 비활성");
-}
-
-const MODEL = "claude-opus-4-5";
-const anthropic = ANTHROPIC_API_KEY ? new Anthropic({ apiKey: ANTHROPIC_API_KEY }) : null;
+const MODEL = "gpt-4o";
 
 const SYSTEM_PROMPT = `당신은 한국 전통 관상 문화를 현대적으로 풀어내는 오락용 AI 해설자입니다.
 사진에서 직접 관찰 가능한 표정과 얼굴의 시각적 특징만 묘사하고, 전통 관상에서 해당 특징을 상징적으로 어떻게 해석하는지 조건부 표현으로 설명하세요.
@@ -42,63 +37,99 @@ const USER_PROMPT = `이 얼굴 사진에서 관찰 가능한 인상과 전통 �
 }`;
 
 router.post("/face-reading", async (req, res): Promise<void> => {
-  if (!anthropic) {
-    res.status(503).json({ error: "관상 분석 서비스를 사용할 수 없습니다." });
-    return;
-  }
-
-  const { imageBase64 } = req.body;
+  const { imageBase64, language = "ko" } = req.body;
   if (!imageBase64 || typeof imageBase64 !== "string") {
     res.status(400).json({ error: "이미지 데이터가 필요합니다." });
     return;
   }
 
-  let base64Data = imageBase64;
-  let mediaType: "image/jpeg" | "image/png" | "image/gif" | "image/webp" = "image/jpeg";
+  const knowledge = buildKnowledgeContext(
+    "face",
+    [
+      "face-regions",
+      "forehead",
+      "eyes",
+      "nose",
+      "mouth",
+      "samjeong",
+      "ogwan",
+      "face-image-quality",
+      "lighting",
+      "camera-angle",
+      "occlusion",
+      "asymmetry",
+    ],
+    language,
+  );
+  const languageInstruction =
+    language === "ko"
+      ? "모든 JSON 문자열 값은 한국어로 작성하세요."
+      : `모든 JSON 문자열 값은 ${language} 언어로 작성하세요. JSON 키는 기존 구조를 유지하세요.`;
 
-  if (imageBase64.startsWith("data:")) {
-    const match = imageBase64.match(/^data:(image\/[a-zA-Z+]+);base64,(.+)$/);
-    if (!match) { res.status(400).json({ error: "잘못된 이미지 형식입니다." }); return; }
-    const t = match[1];
-    if (t === "image/jpeg" || t === "image/png" || t === "image/gif" || t === "image/webp") mediaType = t;
-    base64Data = match[2];
-  }
+  const imageUrl = imageBase64.startsWith("data:")
+    ? imageBase64
+    : `data:image/jpeg;base64,${imageBase64}`;
 
-  req.log?.info({ model: MODEL }, "[관상] Claude API 호출 시작");
+  console.info("[관상] OpenAI API 호출 시작", { model: MODEL });
 
-  let message;
+  let completion;
   try {
-    message = await anthropic.messages.create({
+    const client = getOpenAIClient();
+    completion = await client.chat.completions.create({
       model: MODEL,
       max_tokens: 8192,
-      system: SYSTEM_PROMPT,
-      messages: [{
-        role: "user",
-        content: [
-          { type: "image", source: { type: "base64", media_type: mediaType, data: base64Data } },
-          { type: "text", text: USER_PROMPT },
-        ],
-      }],
+      messages: [
+        { role: "system", content: SYSTEM_PROMPT },
+        {
+          role: "user",
+          content: [
+            {
+              type: "image_url",
+              image_url: { url: imageUrl, detail: "high" },
+            },
+            {
+              type: "text",
+              text: `${USER_PROMPT}\n${languageInstruction}\n${knowledge.text}`,
+            },
+          ],
+        },
+      ],
     });
   } catch (apiErr: unknown) {
     const msg = apiErr instanceof Error ? apiErr.message : String(apiErr);
-    req.log?.error({ err: msg }, "[관상] Claude API 호출 실패");
-    res.status(502).json({ error: "AI 분석 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요." });
+    console.error("[관상] OpenAI API 호출 실패", { err: msg });
+    if (msg.includes("OPENAI_API_KEY")) {
+      res.status(503).json({ error: "AI 관상 서비스가 아직 설정되지 않았습니다." });
+      return;
+    }
+    res.status(502).json({
+      error: "AI 분석 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.",
+    });
     return;
   }
 
-  req.log?.info({ inputTokens: message.usage.input_tokens, outputTokens: message.usage.output_tokens }, "[관상] Claude 응답 완료");
+  console.info("[관상] OpenAI 응답 완료", {
+    inputTokens: completion.usage?.prompt_tokens,
+    outputTokens: completion.usage?.completion_tokens,
+  });
 
-  const content = message.content[0];
-  if (content.type !== "text") { res.status(500).json({ error: "분석 결과를 받지 못했습니다." }); return; }
+  const textContent = completion.choices[0]?.message?.content;
+  if (typeof textContent !== "string" || !textContent.trim()) {
+    res.status(500).json({ error: "분석 결과를 받지 못했습니다." });
+    return;
+  }
 
-  const text = content.text.trim().replace(/^```(?:json)?\n?/, "").replace(/\n?```$/, "").trim();
+  const text = textContent
+    .trim()
+    .replace(/^```(?:json)?\n?/, "")
+    .replace(/\n?```$/, "")
+    .trim();
 
   let analysis;
   try {
     analysis = JSON.parse(text);
   } catch {
-    req.log?.error({ raw: text.slice(0, 300) }, "[관상] JSON 파싱 실패");
+    console.error("[관상] JSON 파싱 실패", { raw: text.slice(0, 300) });
     res.status(500).json({ error: "분석 결과 처리 중 오류가 발생했습니다." });
     return;
   }

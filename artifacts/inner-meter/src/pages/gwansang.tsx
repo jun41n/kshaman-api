@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useLocation } from "wouter";
 import { GwansangHome } from "@/pages/gwansang-home";
 import { GwansangReading } from "@/pages/gwansang-reading";
 import { GwansangResult } from "@/pages/gwansang-result";
@@ -34,6 +35,7 @@ export interface GwansangAnalysisResult {
 type ViewType = "home" | "reading" | "result";
 
 export default function Gwansang() {
+  const [location] = useLocation();
   const [view, setView] = useState<ViewType>("home");
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [result, setResult] = useState<GwansangAnalysisResult | null>(null);
@@ -50,19 +52,21 @@ export default function Gwansang() {
     setView("home");
   };
 
+  const canonicalPath = location === "/" ? "/" : "/gwansang/";
+
   return (
     <Layout showAd>
       <SeoHead
         title="AI 관상 분석"
         description="사진 한 장을 바탕으로 얼굴 특징과 인상에서 보이는 성향을 살펴보는 MyTestType AI 관상입니다. 한국 전통 관상 문화를 현대적으로 풀어낸 오락·참고용 서비스입니다."
-        path="/gwansang/"
+        path={canonicalPath}
         ogImage="https://mytesttype.com/gwansang.png"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "WebApplication",
           name: "AI 관상 분석",
           description: "사진 한 장을 바탕으로 얼굴 특징과 인상에서 보이는 성향을 살펴보는 문화·오락 목적의 AI 관상 분석",
-          url: "https://mytesttype.com/gwansang/",
+          url: `https://mytesttype.com${canonicalPath}`,
           applicationCategory: "EntertainmentApplication",
           offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
         }}

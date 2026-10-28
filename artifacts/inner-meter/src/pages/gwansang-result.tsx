@@ -17,6 +17,12 @@ const TIER_COLORS: Record<string, string> = {
 
 const API_BASE = "https://api.mytesttype.com";
 
+const IMAGE_EXPERIENCE_COPY: Record<"aging" | "baby" | "anime", { action: string; loading: string; again: string }> = {
+  aging: { action: "20년 후의 나, 미리 상상해보기", loading: "미래의 모습을 상상하는 중…", again: "다른 미래의 모습 상상해보기" },
+  baby: { action: "따뜻한 아기 모습으로 만나보기", loading: "따뜻한 장면을 그리는 중…", again: "다른 아기 이미지 만나보기" },
+  anime: { action: "나를 애니 캐릭터로 변신시켜보기", loading: "나만의 캐릭터를 만드는 중…", again: "다른 캐릭터로 변신해보기" },
+};
+
 function SectionCard({ icon, title, children, delay = 0, accent = "hsl(15,65%,28%)" }: {
   icon: string; title: string; children: React.ReactNode; delay?: number; accent?: string;
 }) {
@@ -28,6 +34,28 @@ function SectionCard({ icon, title, children, delay = 0, accent = "hsl(15,65%,28
         <p className="text-[11px] font-bold tracking-wider uppercase" style={{ color: accent }}>{title}</p>
       </div>
       {children}
+    </motion.div>
+  );
+}
+
+function SupportUnlockCard({ onUnlock }: { onUnlock: () => void }) {
+  return (
+    <motion.div
+      className="my-4 rounded-3xl p-5 text-center"
+      style={{ background: "linear-gradient(135deg, rgba(118,55,180,0.12), rgba(230,85,140,0.12))", border: "1px solid rgba(118,55,180,0.25)" }}
+      initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
+    >
+      <p className="text-[11px] font-bold tracking-wider uppercase" style={{ color: "hsl(270,45%,38%)" }}>여기서부터는 더 깊은 해설</p>
+      <h3 className="mt-1 text-lg font-black" style={{ color: "hsl(270,40%,22%)" }}>내 얼굴의 숨은 반전 포인트가 궁금하다면?</h3>
+      <p className="mt-2 text-[13px] leading-relaxed" style={{ color: "hsl(270,25%,35%)" }}>
+        재물 습관 스타일, 관계에서의 매력 포인트, 미래·애니메이션 이미지까지 이어서 확인할 수 있어요.
+      </p>
+      <div className="mt-4 flex flex-wrap justify-center gap-2 text-xs">
+        <a href="https://mytesttype.com/k-shaman/toss_qr.jpg" target="_blank" rel="noreferrer" className="rounded-full border border-primary/25 bg-background/70 px-3 py-2 font-semibold">Toss 후원 QR</a>
+        <a href="https://mytesttype.com/k-shaman/paypal_qr.jpg" target="_blank" rel="noreferrer" className="rounded-full border border-primary/25 bg-background/70 px-3 py-2 font-semibold">PayPal 후원 QR</a>
+      </div>
+      <button type="button" onClick={onUnlock} className="mt-4 h-11 rounded-xl bg-primary px-5 text-sm font-bold text-primary-foreground">후원 후 상세 해설 보기</button>
+      <p className="mt-2 text-[10px] text-muted-foreground">자발적 후원 방식이며 후원 여부는 자동 확인되지 않습니다.</p>
     </motion.div>
   );
 }
@@ -69,6 +97,7 @@ function FaceImageCard({
   const [loading, setLoading] = useState(false);
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const copy = IMAGE_EXPERIENCE_COPY[type];
 
   const generate = useCallback(async () => {
     if (!uploadedImage) return;
@@ -123,9 +152,9 @@ function FaceImageCard({
                     border: "none",
                   }}>
                   {loading ? (
-                    <><Loader2 size={15} className="animate-spin" /> AI 이미지 생성 중… (30초 내외)</>
+                    <><Loader2 size={15} className="animate-spin" /> {copy.loading} (30초 내외)</>
                   ) : (
-                    <><Sparkles size={15} /> ✦ AI 이미지 생성하기</>
+                    <><Sparkles size={15} /> ✦ {copy.action}</>
                   )}
                 </button>
               ) : (
@@ -143,7 +172,7 @@ function FaceImageCard({
                     onClick={() => { setGeneratedImage(null); }}
                     className="w-full h-9 rounded-xl text-[12px] font-semibold"
                     style={{ background: "rgba(100,55,10,0.1)", color: "hsl(25,40%,38%)" }}>
-                    다시 생성하기
+                    {copy.again}
                   </button>
                 </div>
               )}
@@ -157,6 +186,7 @@ function FaceImageCard({
 }
 
 export function GwansangResult({ result, image, onReset }: ResultProps) {
+  const [premiumUnlocked, setPremiumUnlocked] = useState(false);
   const tierColor = result.dragonface?.tier ? (TIER_COLORS[result.dragonface.tier] ?? "hsl(15,65%,28%)") : "hsl(15,65%,28%)";
 
   return (
@@ -218,7 +248,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
               initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
               <div className="flex items-center gap-1 mb-0.5">
                 <span style={{ fontSize: 13 }}>💰</span>
-                <p className="text-[10px] font-bold tracking-wider uppercase" style={{ color: "hsl(15,60%,30%)" }}>생활 습관 상징</p>
+                <p className="text-[10px] font-bold tracking-wider uppercase" style={{ color: "hsl(15,60%,30%)" }}>💰 재물 습관 미리보기</p>
               </div>
               <p className="text-[12px] leading-relaxed" style={{ color: "hsl(25,45%,25%)" }}>{result.wealth.reading}</p>
             </motion.div>
@@ -274,7 +304,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
             </motion.div>
           )}
 
-          {result.historical && (
+          {premiumUnlocked && result.historical && (
             <SectionCard icon="🏛️" title="역사 인물 분위기 매칭" delay={0.55} accent="hsl(25,55%,28%)">
               <div className="mb-2">
                 <p className="text-base font-black" style={{ color: "hsl(25,60%,14%)" }}>{result.historical.person}</p>
@@ -284,7 +314,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
             </SectionCard>
           )}
 
-          {result.personality && (
+          {premiumUnlocked && result.personality && (
             <SectionCard icon="🔮" title="인상 키워드" delay={0.6} accent="hsl(260,45%,38%)">
               <div className="flex flex-wrap items-center gap-2 mb-2">
                 <p className="text-sm font-black" style={{ color: "hsl(260,45%,30%)" }}>{result.personality.type}</p>
@@ -297,7 +327,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
             </SectionCard>
           )}
 
-          {result.career && (
+          {premiumUnlocked && result.career && (
             <SectionCard icon="💼" title="활동 환경 아이디어" delay={0.64} accent="hsl(200,55%,28%)">
               <div className="flex flex-wrap gap-1.5 mb-2.5">
                 {result.career.jobs?.map((job) => (
@@ -311,14 +341,14 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
             </SectionCard>
           )}
 
-          {result.compatibility && (
+          {premiumUnlocked && result.compatibility && (
             <AccordionCard icon="🤝" title="관계 스타일 참고" delay={0.68} accent="hsl(140,45%,28%)">
               <p className="text-sm font-bold mb-1.5" style={{ color: "hsl(140,45%,25%)" }}>대조적인 인상형: {result.compatibility.best}</p>
               <p className="text-[13px] leading-relaxed" style={{ color: "hsl(25,40%,22%)" }}>{result.compatibility.reading}</p>
             </AccordionCard>
           )}
 
-          {result.aging && (
+          {premiumUnlocked && result.aging && (
             <FaceImageCard
               icon="⏳" title="미래 스타일 상상" type="aging"
               description={`${result.aging.decade} — ${result.aging.reading}`}
@@ -326,7 +356,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
             />
           )}
 
-          {result.baby && (
+          {premiumUnlocked && result.baby && (
             <FaceImageCard
               icon="👶" title="아기 이미지 상상" type="baby"
               description={result.baby.reading}
@@ -334,7 +364,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
             />
           )}
 
-          {result.anime && (
+          {premiumUnlocked && result.anime && (
             <FaceImageCard
               icon="✨" title="애니메이션 캐릭터 변환" type="anime"
               description={`${result.anime.character} — ${result.anime.reading}`}
@@ -342,6 +372,8 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
             />
           )}
         </div>
+
+        {!premiumUnlocked && <SupportUnlockCard onUnlock={() => setPremiumUnlocked(true)} />}
 
         {result.fortune && (
           <div className="mb-3">

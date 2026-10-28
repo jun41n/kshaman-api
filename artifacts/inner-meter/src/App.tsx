@@ -8,7 +8,6 @@ import { initAnalytics, trackPageView } from "@/lib/analytics";
 import "@/lib/i18n";
 
 // Pages
-import Home from "@/pages/home";
 import Tests from "@/pages/tests";
 import TestDetail from "@/pages/test-detail";
 import TestResult from "@/pages/test-result";
@@ -24,6 +23,7 @@ import PetResult from "@/pages/pet-result";
 import Blog from "@/pages/blog";
 import BlogPost from "@/pages/blog-post";
 import Gwansang from "@/pages/gwansang";
+import PalmReading from "@/pages/palm-reading";
 
 const queryClient = new QueryClient();
 
@@ -42,7 +42,7 @@ function Router() {
     <>
       <RouteTracker />
       <Switch>
-        <Route path="/" component={Home} />
+        <Route path="/" component={Gwansang} />
         <Route path="/tests" component={Tests} />
         <Route path="/tests/:slug" component={TestDetail} />
         <Route path="/results/:slug" component={TestResult} />
@@ -57,6 +57,7 @@ function Router() {
         <Route path="/blog" component={Blog} />
         <Route path="/blog/:id" component={BlogPost} />
         <Route path="/gwansang" component={Gwansang} />
+        <Route path="/palm-reading" component={PalmReading} />
         <Route component={NotFound} />
       </Switch>
     </>

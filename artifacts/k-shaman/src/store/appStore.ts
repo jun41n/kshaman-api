@@ -46,10 +46,11 @@ export function useAppStore() {
 
   const setLang = (lang: Language) => {
     setState((s) => ({ ...s, currentLang: lang }));
-    try { localStorage.setItem("lang", lang); } catch {}
+    try { localStorage.setItem("lang", lang === "pt" ? "pt-BR" : lang); } catch {}
   };
 
-  const reset = () => setState(defaultState);
+  const reset = () =>
+    setState((s) => ({ ...defaultState, currentLang: s.currentLang }));
 
   const selectedPersona = state.selectedPersonaId
     ? getPersonaById(state.selectedPersonaId)

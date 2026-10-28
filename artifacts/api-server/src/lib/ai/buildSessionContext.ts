@@ -1,5 +1,6 @@
 import type { Language, UserProfile } from "./types.js";
 import { calcSaju } from "./sajuCalc.js";
+import { buildKnowledgeContext } from "../knowledge/index.js";
 
 const GENDER_LABEL: Record<Language, Record<"female" | "male", string>> = {
   ko: { female: "여성", male: "남성" },
@@ -22,15 +23,26 @@ export function buildSessionContext(profile: UserProfile): string {
   const birthYear = parseInt(profile.birthYear, 10);
   const birthMonth = parseInt(profile.birthMonth, 10);
   const birthDay = parseInt(profile.birthDay, 10);
-  const birthHour = profile.birthHour && profile.birthHour !== ""
-    ? parseInt(profile.birthHour, 10)
-    : undefined;
+  const birthHour =
+    profile.birthHour && profile.birthHour !== ""
+      ? parseInt(profile.birthHour, 10)
+      : undefined;
 
   const saju = calcSaju(birthYear, birthMonth, birthDay, birthHour);
+  const knowledge = buildKnowledgeContext(
+    "saju",
+    ["five-elements", "branch-relation", "year-flow", saju.branchRelation.type],
+    locale,
+  );
 
-  const hourLabel = birthHour != null
-    ? (locale === "ko" ? `${birthHour}시` : `${birthHour}:00`)
-    : (locale === "ko" ? "미상" : "unknown");
+  const hourLabel =
+    birthHour != null
+      ? locale === "ko"
+        ? `${birthHour}시`
+        : `${birthHour}:00`
+      : locale === "ko"
+        ? "미상"
+        : "unknown";
 
   if (locale === "ko") {
     return `
@@ -45,6 +57,9 @@ export function buildSessionContext(profile: UserProfile): string {
 
 【사주 원소 — 반드시 이것을 해석에 활용할 것】
 ${saju.summaryForPrompt}
+
+【근거 기반 지식 저장소】
+${knowledge.text}
 
 【오행 성격 특성】
 ${saju.yearStem}(${saju.yearElement} ${saju.yearYinYang}) 기운의 특성:
@@ -72,6 +87,9 @@ Birth Hour: ${hourLabel}
 [SAJU ELEMENTS — Must use in reading]
 ${saju.summaryForPrompt}
 
+[CURATED KNOWLEDGE]
+${knowledge.text}
+
 [Element Personality Traits]
 ${saju.yearStem} (${saju.yearElement} ${saju.yearYinYang}) energy:
 ${getStemTraits(saju.yearElement)}
@@ -88,11 +106,11 @@ ${getStemTraits(saju.yearElement)}
 function getStemTraits(element: string): string {
   const el = element.replace(/\(.*\)/, "").trim();
   const traits: Record<string, string> = {
-    "목": "창의적·성장 지향적이나 고집이 세고 마무리가 약함. 인정욕구가 강해 상처를 쉽게 받고, 새 시작에는 에너지가 넘치지만 지속력이 부족함.",
-    "화": "열정적·카리스마 있으나 충동적으로 쉽게 달아올라 쉽게 식음. 인간관계 폭은 넓으나 깊이가 얕고, 자존심이 강해 사과와 양보가 어려움.",
-    "토": "안정적·신뢰감 있으나 우유부단하고 변화를 극도로 싫어함. 오래 참다가 한 번에 폭발하는 패턴이 있고, 자기 방식을 쉽게 포기하지 않음.",
-    "금": "원칙적·결단력 있으나 냉정하고 완벽주의적. 기준이 높아 스스로도 타인도 지치게 하고, 감정을 억누르다 갑자기 터뜨리는 경향.",
-    "수": "직관력·적응력이 뛰어나지만 우유부단하고 감정 기복이 심함. 아이디어는 많으나 실행이 약하고, 불안감이 커서 혼자 끙끙 앓는 경향.",
+    목: "창의적·성장 지향적이나 고집이 세고 마무리가 약함. 인정욕구가 강해 상처를 쉽게 받고, 새 시작에는 에너지가 넘치지만 지속력이 부족함.",
+    화: "열정적·카리스마 있으나 충동적으로 쉽게 달아올라 쉽게 식음. 인간관계 폭은 넓으나 깊이가 얕고, 자존심이 강해 사과와 양보가 어려움.",
+    토: "안정적·신뢰감 있으나 우유부단하고 변화를 극도로 싫어함. 오래 참다가 한 번에 폭발하는 패턴이 있고, 자기 방식을 쉽게 포기하지 않음.",
+    금: "원칙적·결단력 있으나 냉정하고 완벽주의적. 기준이 높아 스스로도 타인도 지치게 하고, 감정을 억누르다 갑자기 터뜨리는 경향.",
+    수: "직관력·적응력이 뛰어나지만 우유부단하고 감정 기복이 심함. 아이디어는 많으나 실행이 약하고, 불안감이 커서 혼자 끙끙 앓는 경향.",
   };
   return traits[el] ?? "복합적인 기운을 지님.";
 }

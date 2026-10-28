@@ -20,6 +20,14 @@ export const LANGUAGES = [
 
 const supportedCodes = LANGUAGES.map(l => l.code);
 
+// K-Shaman historically stored Brazilian Portuguese as `pt`. Normalize the
+// shared preference so navigation between products keeps the selected locale.
+try {
+  if (localStorage.getItem('lang') === 'pt') {
+    localStorage.setItem('lang', 'pt-BR');
+  }
+} catch {}
+
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
@@ -33,12 +41,12 @@ i18n
       fr:      { translation: fr },
     },
     detection: {
-      order: ['localStorage', 'navigator'],
+      order: ['localStorage'],
       lookupLocalStorage: 'lang',
       caches: ['localStorage'],
     },
     supportedLngs: supportedCodes,
-    fallbackLng: 'en',
+    fallbackLng: 'ko',
     interpolation: { escapeValue: false },
     returnNull: false,
   });

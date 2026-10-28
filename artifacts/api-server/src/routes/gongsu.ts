@@ -4,6 +4,7 @@ import { pickRandomPersona } from "../lib/ai/gongsuPersonas.js";
 import { calcSaju } from "../lib/ai/sajuCalc.js";
 import type { ReadingRequest } from "../lib/ai/types.js";
 import type { Language } from "../lib/ai/types.js";
+import { buildKnowledgeContext } from "../lib/knowledge/index.js";
 
 const router = Router();
 
@@ -24,8 +25,17 @@ interface GongsuResponse {
 // ─────────────────────────────────────────────────────────────────────────────
 // 핵심 개선: 사주 데이터 기반 "팩트 폭격" 컨텍스트
 // ─────────────────────────────────────────────────────────────────────────────
-function buildSajuContext(saju: ReturnType<typeof calcSaju>, name: string, locale: Language): string {
+function buildSajuContext(
+  saju: ReturnType<typeof calcSaju>,
+  name: string,
+  locale: Language,
+): string {
   const isKo = locale === "ko";
+  const knowledge = buildKnowledgeContext(
+    "saju",
+    ["five-elements", "branch-relation", "year-flow", saju.branchRelation.type],
+    locale,
+  );
 
   if (isKo) {
     return `
@@ -35,6 +45,9 @@ function buildSajuContext(saju: ReturnType<typeof calcSaju>, name: string, local
 
 이름: ${name}
 ${saju.summaryForPrompt}
+
+【지식 저장소에서 검색된 근거】
+${knowledge.text}
 
 【오행 성격 특성】
 출생 천간 ${saju.yearStem} = ${saju.yearElement} ${saju.yearYinYang}의 기운:
@@ -87,6 +100,9 @@ SUBJECT'S SAJU DATA — Use this as the factual basis for all readings
 Name: ${name}
 ${saju.summaryForPrompt}
 
+[CURATED KNOWLEDGE RETRIEVED FROM THE REPOSITORY]
+${knowledge.text}
+
 [Element Personality]
 Birth stem ${saju.yearStem} = ${saju.yearElement} ${saju.yearYinYang} energy:
 ${getStemPersonality(saju.yearElement, "en")}
@@ -132,52 +148,76 @@ function getStemPersonality(element: string, lang: "ko" | "en"): string {
   const el = element.replace(/\(.*\)/, "").trim();
   if (lang === "ko") {
     const map: Record<string, string> = {
-      "목": "창의적이고 성장 지향적이나 고집이 세고 유연성이 부족함. 새 시작은 잘 하지만 마무리가 약하고, 인정받으려는 욕구가 강해 상처를 잘 받음.",
-      "화": "열정적이고 카리스마 있으나 충동적이고 쉽게 달아올라 쉽게 식음. 인간관계 폭은 넓으나 깊이가 얕고, 자존심이 강해서 사과가 어려움.",
-      "토": "안정적이고 신뢰감 있으나 우유부단하고 변화를 극도로 싫어함. 한 자리에 오래 앉아 있지만 그 안에서 쌓인 불만이 폭발할 때 무섭게 터짐.",
-      "금": "원칙적이고 결단력 있으나 냉정하고 완벽주의적. 기준이 높아서 스스로도 타인도 힘들게 하고, 감정 표현을 억누르다 갑자기 폭발하는 패턴.",
-      "수": "직관력이 뛰어나고 적응력 강하나 우유부단하고 감정 기복이 심함. 아이디어가 많지만 실행력이 약하고, 불안감이 크며 혼자 끙끙 앓는 경향.",
+      목: "창의적이고 성장 지향적이나 고집이 세고 유연성이 부족함. 새 시작은 잘 하지만 마무리가 약하고, 인정받으려는 욕구가 강해 상처를 잘 받음.",
+      화: "열정적이고 카리스마 있으나 충동적이고 쉽게 달아올라 쉽게 식음. 인간관계 폭은 넓으나 깊이가 얕고, 자존심이 강해서 사과가 어려움.",
+      토: "안정적이고 신뢰감 있으나 우유부단하고 변화를 극도로 싫어함. 한 자리에 오래 앉아 있지만 그 안에서 쌓인 불만이 폭발할 때 무섭게 터짐.",
+      금: "원칙적이고 결단력 있으나 냉정하고 완벽주의적. 기준이 높아서 스스로도 타인도 힘들게 하고, 감정 표현을 억누르다 갑자기 폭발하는 패턴.",
+      수: "직관력이 뛰어나고 적응력 강하나 우유부단하고 감정 기복이 심함. 아이디어가 많지만 실행력이 약하고, 불안감이 크며 혼자 끙끙 앓는 경향.",
     };
     return map[el] ?? "복합적인 오행 기운을 지님.";
   }
   const map: Record<string, string> = {
-    "목": "Creative and growth-oriented but stubborn and inflexible. Great at starting things but weak at finishing. Sensitive to recognition and easily wounded.",
-    "화": "Passionate and charismatic but impulsive — burns hot then cools fast. Wide social circle but lacks depth. Strong pride makes apology difficult.",
-    "토": "Stable and trustworthy but indecisive and averse to change. Bottles frustration for long periods, then explodes without warning.",
-    "금": "Principled and decisive but cold and perfectionistic. High standards exhaust both self and others. Suppresses emotion until sudden eruption.",
-    "수": "Intuitive and adaptable but indecisive with emotional volatility. Rich in ideas but weak in execution. Prone to anxiety and silent suffering.",
+    목: "Creative and growth-oriented but stubborn and inflexible. Great at starting things but weak at finishing. Sensitive to recognition and easily wounded.",
+    화: "Passionate and charismatic but impulsive — burns hot then cools fast. Wide social circle but lacks depth. Strong pride makes apology difficult.",
+    토: "Stable and trustworthy but indecisive and averse to change. Bottles frustration for long periods, then explodes without warning.",
+    금: "Principled and decisive but cold and perfectionistic. High standards exhaust both self and others. Suppresses emotion until sudden eruption.",
+    수: "Intuitive and adaptable but indecisive with emotional volatility. Rich in ideas but weak in execution. Prone to anxiety and silent suffering.",
   };
   return map[el] ?? "Complex elemental energy.";
 }
 
 function getMonthPersonality(monthBranch: string, lang: "ko" | "en"): string {
   const SEASON_DESC_KO: Record<string, string> = {
-    "인(寅)": "봄이 막 시작되는 시기에 태어나 추진력과 개척 정신이 강하다. 새로운 것에 본능적으로 달려들지만 끝맺음이 부족하다.",
-    "묘(卯)": "봄 한복판에 태어나 감수성과 미적 감각이 풍부하다. 그러나 타인의 시선에 예민하고 쉽게 흔들린다.",
-    "진(辰)": "봄이 무르익을 때 태어나 현실 감각과 실행력이 강하다. 고집이 세고 자기 방식을 쉽게 바꾸지 않는다.",
-    "사(巳)": "여름이 시작될 때 태어나 총명하고 전략적이다. 그러나 속을 잘 드러내지 않아 주변과 오해가 생기기 쉽다.",
-    "오(午)": "여름 한복판에 태어나 에너지가 넘치고 존재감이 강하다. 충동적이고 참을성이 부족한 면이 있다.",
-    "미(未)": "여름이 끝날 때 태어나 온화하고 배려심이 깊다. 그러나 결정을 못 내리고 미루는 경향이 강하다.",
-    "신(申)": "가을이 시작될 때 태어나 영리하고 실리적이다. 이익을 계산하는 경향이 있어 타인에게 차갑게 느껴지기도 한다.",
-    "유(酉)": "가을 한복판에 태어나 완벽주의적이고 예리하다. 비판적 시선이 강해 본인도 타인도 피곤하게 만드는 면이 있다.",
-    "술(戌)": "가을이 끝날 때 태어나 충직하고 의리가 강하다. 한 번 상처받으면 오래 품고, 겉으로는 안 내색해도 마음속에 오래 남긴다.",
-    "해(亥)": "겨울이 시작될 때 태어나 자유를 사랑하고 독립적이다. 구속을 싫어하고 예측 불가한 행동으로 주변을 당황하게 만든다.",
-    "자(子)": "겨울 한복판에 태어나 영리하고 자원 관리 능력이 뛰어나다. 겉으로 쿨해 보이지만 속으로 많은 것을 계산하고 있다.",
-    "축(丑)": "겨울이 끝날 때 태어나 인내심이 강하고 묵묵히 해낸다. 그러나 변화를 극히 싫어하고 고집 부리다 기회를 놓치는 패턴이 있다.",
+    "인(寅)":
+      "봄이 막 시작되는 시기에 태어나 추진력과 개척 정신이 강하다. 새로운 것에 본능적으로 달려들지만 끝맺음이 부족하다.",
+    "묘(卯)":
+      "봄 한복판에 태어나 감수성과 미적 감각이 풍부하다. 그러나 타인의 시선에 예민하고 쉽게 흔들린다.",
+    "진(辰)":
+      "봄이 무르익을 때 태어나 현실 감각과 실행력이 강하다. 고집이 세고 자기 방식을 쉽게 바꾸지 않는다.",
+    "사(巳)":
+      "여름이 시작될 때 태어나 총명하고 전략적이다. 그러나 속을 잘 드러내지 않아 주변과 오해가 생기기 쉽다.",
+    "오(午)":
+      "여름 한복판에 태어나 에너지가 넘치고 존재감이 강하다. 충동적이고 참을성이 부족한 면이 있다.",
+    "미(未)":
+      "여름이 끝날 때 태어나 온화하고 배려심이 깊다. 그러나 결정을 못 내리고 미루는 경향이 강하다.",
+    "신(申)":
+      "가을이 시작될 때 태어나 영리하고 실리적이다. 이익을 계산하는 경향이 있어 타인에게 차갑게 느껴지기도 한다.",
+    "유(酉)":
+      "가을 한복판에 태어나 완벽주의적이고 예리하다. 비판적 시선이 강해 본인도 타인도 피곤하게 만드는 면이 있다.",
+    "술(戌)":
+      "가을이 끝날 때 태어나 충직하고 의리가 강하다. 한 번 상처받으면 오래 품고, 겉으로는 안 내색해도 마음속에 오래 남긴다.",
+    "해(亥)":
+      "겨울이 시작될 때 태어나 자유를 사랑하고 독립적이다. 구속을 싫어하고 예측 불가한 행동으로 주변을 당황하게 만든다.",
+    "자(子)":
+      "겨울 한복판에 태어나 영리하고 자원 관리 능력이 뛰어나다. 겉으로 쿨해 보이지만 속으로 많은 것을 계산하고 있다.",
+    "축(丑)":
+      "겨울이 끝날 때 태어나 인내심이 강하고 묵묵히 해낸다. 그러나 변화를 극히 싫어하고 고집 부리다 기회를 놓치는 패턴이 있다.",
   };
   const SEASON_DESC_EN: Record<string, string> = {
-    "인(寅)": "Born at spring's start — strong drive and pioneer spirit, but tends to leave things unfinished.",
-    "묘(卯)": "Born in mid-spring — rich sensitivity and aesthetics, but easily swayed by others' opinions.",
-    "진(辰)": "Born as spring peaks — practical and action-oriented, but stubborn and resistant to changing methods.",
-    "사(巳)": "Born at summer's start — intelligent and strategic, but guarded, causing frequent misunderstandings.",
-    "오(午)": "Born in midsummer — overflowing energy and strong presence, but impulsive with low patience.",
-    "미(未)": "Born as summer ends — warm and considerate, but chronically indecisive and prone to procrastination.",
-    "신(申)": "Born at autumn's start — clever and pragmatic, but calculating in ways that feel cold to others.",
-    "유(酉)": "Born in mid-autumn — perfectionistic and sharp, but critical in ways that exhaust everyone including themselves.",
-    "술(戌)": "Born as autumn ends — loyal and deeply committed, but holds wounds silently for a long time.",
-    "해(亥)": "Born at winter's start — freedom-loving and independent, with unpredictable behavior that surprises others.",
-    "자(子)": "Born in midwinter — intelligent and resourceful, but always calculating more than they let on.",
-    "축(丑)": "Born as winter ends — patient and steadfast, but stubbornness causes missed opportunities.",
+    "인(寅)":
+      "Born at spring's start — strong drive and pioneer spirit, but tends to leave things unfinished.",
+    "묘(卯)":
+      "Born in mid-spring — rich sensitivity and aesthetics, but easily swayed by others' opinions.",
+    "진(辰)":
+      "Born as spring peaks — practical and action-oriented, but stubborn and resistant to changing methods.",
+    "사(巳)":
+      "Born at summer's start — intelligent and strategic, but guarded, causing frequent misunderstandings.",
+    "오(午)":
+      "Born in midsummer — overflowing energy and strong presence, but impulsive with low patience.",
+    "미(未)":
+      "Born as summer ends — warm and considerate, but chronically indecisive and prone to procrastination.",
+    "신(申)":
+      "Born at autumn's start — clever and pragmatic, but calculating in ways that feel cold to others.",
+    "유(酉)":
+      "Born in mid-autumn — perfectionistic and sharp, but critical in ways that exhaust everyone including themselves.",
+    "술(戌)":
+      "Born as autumn ends — loyal and deeply committed, but holds wounds silently for a long time.",
+    "해(亥)":
+      "Born at winter's start — freedom-loving and independent, with unpredictable behavior that surprises others.",
+    "자(子)":
+      "Born in midwinter — intelligent and resourceful, but always calculating more than they let on.",
+    "축(丑)":
+      "Born as winter ends — patient and steadfast, but stubbornness causes missed opportunities.",
   };
   return lang === "ko"
     ? (SEASON_DESC_KO[monthBranch] ?? "월지 기운을 지님.")
@@ -187,7 +227,11 @@ function getMonthPersonality(monthBranch: string, lang: "ko" | "en"): string {
 // ─────────────────────────────────────────────────────────────────────────────
 // JSON 스키마 지시문
 // ─────────────────────────────────────────────────────────────────────────────
-function buildSchemaInstruction(locale: Language, introLine: string, saju: ReturnType<typeof calcSaju>): string {
+function buildSchemaInstruction(
+  locale: Language,
+  introLine: string,
+  saju: ReturnType<typeof calcSaju>,
+): string {
   if (locale === "ko") {
     return `
 반드시 아래 JSON 스키마를 정확히 따라 응답하라.
@@ -247,12 +291,15 @@ router.post("/gongsu/generate", async (req, res) => {
     const birthYear = parseInt(userProfile.birthYear, 10);
     const birthMonth = parseInt(userProfile.birthMonth, 10);
     const birthDay = parseInt(userProfile.birthDay, 10);
-    const birthHour = userProfile.birthHour ? parseInt(userProfile.birthHour, 10) : undefined;
+    const birthHour = userProfile.birthHour
+      ? parseInt(userProfile.birthHour, 10)
+      : undefined;
     const saju = calcSaju(birthYear, birthMonth, birthDay, birthHour);
 
-    const fullName = locale === "ko"
-      ? `${userProfile.lastName}${userProfile.firstName}`
-      : `${userProfile.firstName} ${userProfile.lastName}`.trim();
+    const fullName =
+      locale === "ko"
+        ? `${userProfile.lastName}${userProfile.firstName}`
+        : `${userProfile.firstName} ${userProfile.lastName}`.trim();
 
     console.log(
       `[gongsu] locale=${locale} persona=${persona.id} name=${fullName} saju=${saju.yearPillar} age=${saju.currentAge} relation=${saju.branchRelation.type}`,
@@ -285,9 +332,10 @@ router.post("/gongsu/generate", async (req, res) => {
     ].join("\n");
 
     // 4. 사용자 메시지
-    const userMessage = locale === "ko"
-      ? `${fullName}(${saju.yearZodiac}띠, 만 ${saju.currentAge}세)의 공수를 봐줘. ${saju.currentYear}년 ${saju.branchRelation.type} 기운이 이 사람한테 어떻게 작용하는지를 중심으로, 네 캐릭터 그대로 팩트를 날려줘.`
-      : `Read ${fullName}'s fortune. They are a ${saju.yearZodiac} (age ${saju.currentAge}) with ${saju.branchRelation.type} energy hitting in ${saju.currentYear}. Deliver sharp, specific insights completely in character.`;
+    const userMessage =
+      locale === "ko"
+        ? `${fullName}(${saju.yearZodiac}띠, 만 ${saju.currentAge}세)의 공수를 봐줘. ${saju.currentYear}년 ${saju.branchRelation.type} 기운이 이 사람한테 어떻게 작용하는지를 중심으로, 네 캐릭터 그대로 팩트를 날려줘.`
+        : `Read ${fullName}'s fortune. They are a ${saju.yearZodiac} (age ${saju.currentAge}) with ${saju.branchRelation.type} energy hitting in ${saju.currentYear}. Deliver sharp, specific insights completely in character.`;
 
     // 5. OpenAI 호출
     const client = getOpenAIClient();
@@ -314,23 +362,35 @@ router.post("/gongsu/generate", async (req, res) => {
       result = JSON.parse(rawContent) as GongsuOutput;
     } catch {
       console.error("[gongsu] JSON parse failed:", rawContent.slice(0, 300));
-      res.status(500).json({ error: "AI returned invalid JSON", raw: rawContent });
+      res
+        .status(500)
+        .json({ error: "AI returned invalid JSON", raw: rawContent });
       return;
     }
 
     // 7. 필드 검증
-    const required: (keyof GongsuOutput)[] = ["intro_gongsu", "past_cause", "future_warning", "solution_bibang"];
+    const required: (keyof GongsuOutput)[] = [
+      "intro_gongsu",
+      "past_cause",
+      "future_warning",
+      "solution_bibang",
+    ];
     const missing = required.filter((k) => !result[k]);
     if (missing.length > 0) {
-      res.status(500).json({ error: `Missing fields: ${missing.join(", ")}`, raw: result });
+      res
+        .status(500)
+        .json({ error: `Missing fields: ${missing.join(", ")}`, raw: result });
       return;
     }
 
-    console.log(`[gongsu] success persona=${persona.id} chars=${rawContent.length}`);
+    console.log(
+      `[gongsu] success persona=${persona.id} chars=${rawContent.length}`,
+    );
 
     const response: GongsuResponse = {
       personaId: persona.id,
-      displayName: locale === "ko" ? persona.display_name_ko : persona.display_name_en,
+      displayName:
+        locale === "ko" ? persona.display_name_ko : persona.display_name_en,
       locale,
       result,
     };
@@ -345,7 +405,9 @@ router.post("/gongsu/generate", async (req, res) => {
       return;
     }
 
-    res.status(500).json({ error: "Failed to generate gongsu", detail: message });
+    res
+      .status(500)
+      .json({ error: "Failed to generate gongsu", detail: message });
   }
 });
 

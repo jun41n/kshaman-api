@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactElement } from "react";
 import { Link, useRoute } from "wouter";
 import { Helmet } from "react-helmet-async";
 import { ChevronLeft } from "lucide-react";
@@ -17,7 +17,7 @@ interface Post {
 
 function renderContent(content: string) {
   const lines = content.split("\n");
-  const elements: JSX.Element[] = [];
+  const elements: ReactElement[] = [];
   let i = 0;
 
   while (i < lines.length) {

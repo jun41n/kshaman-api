@@ -11,6 +11,14 @@ interface Props {
   onReset: () => void;
 }
 
+function groupBubbleBlocks(blocks: string[], groupSize = 3): string[] {
+  const grouped: string[] = [];
+  for (let index = 0; index < blocks.length; index += groupSize) {
+    grouped.push(blocks.slice(index, index + groupSize).join("\n\n"));
+  }
+  return grouped;
+}
+
 export function ReadingResultPage({ onAskAnything, onReset }: Props) {
   const { state, selectedPersona, selectedProduct } = useApp();
   const t = T[state.currentLang];
@@ -58,7 +66,13 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
           .map((block) => block.trim())
           .filter(Boolean);
 
-        setBlocks(parsedBlocks.length > 0 ? parsedBlocks : [normalized || ""]);
+        // Keep the spoken rhythm inside the text, but reveal three response
+        // blocks per bubble so long readings do not become a wall of bubbles.
+        setBlocks(
+          parsedBlocks.length > 0
+            ? groupBubbleBlocks(parsedBlocks)
+            : [normalized || ""],
+        );
         setLoading(false);
       })
       .catch((err: Error) => {
@@ -74,6 +88,7 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
       }, 450);
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [loading, blocks, revealedCount]);
 
   const isFullyRevealed = revealedCount >= blocks.length;

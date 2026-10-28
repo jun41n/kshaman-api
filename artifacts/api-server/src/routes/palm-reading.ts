@@ -1,8 +1,20 @@
 import { Router } from "express";
 import { getOpenAIClient } from "../lib/ai/openaiClient.js";
+import { buildKnowledgeContext } from "../lib/knowledge/index.js";
 
 const router = Router();
 type Tier = "free" | "premium";
+type ReadingMode = "solo" | "compatibility";
+type OutputLanguage = "ko" | "en" | "ja" | "es" | "pt-BR" | "fr";
+
+const LANGUAGE_NAMES: Record<OutputLanguage, string> = {
+  ko: "한국어",
+  en: "English",
+  ja: "日本語",
+  es: "Español",
+  "pt-BR": "Português do Brasil",
+  fr: "Français",
+};
 
 const SYSTEM_PROMPT = `당신은 손금 전통을 현대적인 자기성찰 콘텐츠로 설명하는 오락용 AI 해설자입니다.
 이미지에서 실제로 보이는 손바닥의 선과 형태만 관찰하고, 전통 수상학의 상징을 조건부 표현으로 설명하세요.
@@ -18,6 +30,7 @@ const FREE_SCHEMA = `{
     {"name": "감정선", "reading": "선의 형태를 관찰하고 전통 상징을 조건부로 설명하는 2문장"}
   ],
   "observation": "사진에서 보이는 손바닥 상태와 촬영 품질에 대한 짧은 안내",
+  "moneyStyle": {"title": "재물 습관 스타일", "reading": "부를 예언하지 않고 소비·저축·계획 습관을 돌아보게 하는 오락용 해설 2문장"},
   "reflection": "오늘 시도해 볼 수 있는 안전한 자기성찰 질문 1개"
 }`;
 
@@ -31,14 +44,28 @@ const PREMIUM_SCHEMA = `{
 }`;
 
 function cleanJson(text: string): string {
-  return text.trim().replace(/^```(?:json)?\s*/, "").replace(/\s*```$/, "").trim();
+  return text
+    .trim()
+    .replace(/^```(?:json)?\s*/, "")
+    .replace(/\s*```$/, "")
+    .trim();
 }
 
 router.post("/palm-reading", async (req, res): Promise<void> => {
-  const { images, tier = "free" } = req.body as {
-    images?: Array<{ side?: string; imageBase64?: string }>;
+  const {
+    images,
+    tier = "free",
+    mode = "solo",
+    language = "ko",
+  } = req.body as {
+    images?: Array<{ person?: string; side?: string; imageBase64?: string }>;
     tier?: Tier;
+    mode?: ReadingMode;
+    language?: string;
   };
+  const outputLanguage = (
+    Object.hasOwn(LANGUAGE_NAMES, language) ? language : "ko"
+  ) as OutputLanguage;
 
   if (!Array.isArray(images) || images.length < 1 || images.length > 2) {
     res.status(400).json({ error: "손바닥 이미지가 한 장 이상 필요합니다." });
@@ -48,22 +75,72 @@ router.post("/palm-reading", async (req, res): Promise<void> => {
     res.status(400).json({ error: "tier는 free 또는 premium이어야 합니다." });
     return;
   }
-  if (images.some((image) => typeof image.imageBase64 !== "string" || !image.imageBase64.startsWith("data:image/"))) {
+  if (
+    images.some(
+      (image) =>
+        typeof image.imageBase64 !== "string" ||
+        !image.imageBase64.startsWith("data:image/"),
+    )
+  ) {
     res.status(400).json({ error: "지원되는 이미지 데이터가 필요합니다." });
     return;
   }
 
-  const prompt = tier === "free"
-    ? `손바닥 이미지에서 무료 기본 해설을 작성하세요. 양손 이미지가 있으면 공통점만 조심스럽게 비교하세요.\nJSON 구조:\n${FREE_SCHEMA}`
-    : `손바닥 이미지에서 프리미엄 상세 해설을 작성하세요. 무료 기본 항목보다 관찰 가능한 특징, 선 사이의 관계, 생활 속 실천을 구체화하세요. 건강·수명·재산·미래를 판정하지 마세요.\nJSON 구조:\n${PREMIUM_SCHEMA}`;
+  const languageInstruction = `모든 JSON 문자열 값은 반드시 ${LANGUAGE_NAMES[outputLanguage]}로 작성하세요. 선 이름도 해당 언어로 번역하세요.`;
+  const knowledge = buildKnowledgeContext(
+    "palm",
+    mode === "compatibility"
+      ? [
+          "major-lines",
+          "money-habits",
+          "compatibility",
+          "person-pair",
+          "dominant-hand",
+          "left-hand",
+          "right-hand",
+          "two-hand-comparison",
+          "palm-image-quality",
+          "line-visibility",
+          "lighting",
+        ]
+      : [
+          "major-lines",
+          "heart-line",
+          "head-line",
+          "life-line",
+          "money-habits",
+          "palm-image-quality",
+          "palm-open",
+          "line-visibility",
+          "lighting",
+          "left-hand",
+          "right-hand",
+        ],
+    outputLanguage,
+  );
+  const modeInstruction =
+    mode === "compatibility"
+      ? "이것은 두 사람의 손금 궁합입니다. person 값이 me인 손과 partner인 손을 비교하여 끌리는 지점, 대화 방식, 소비·계획 성향의 차이와 맞춰갈 점을 중심으로 작성하세요. 운명이나 관계의 성패를 단정하지 마세요."
+      : "이것은 한 사람의 손금 읽기입니다. 개인의 관찰 가능한 특징과 전통적 상징을 중심으로 작성하세요.";
+  const prompt =
+    tier === "free"
+      ? `손바닥 이미지에서 무료 기본 해설을 작성하세요.\n${modeInstruction}\n${languageInstruction}\n${knowledge.text}\nJSON 구조:\n${FREE_SCHEMA}`
+      : `손바닥 이미지에서 프리미엄 상세 해설을 작성하세요. 무료 기본 항목보다 관찰 가능한 특징, 선 사이의 관계, 생활 속 실천을 구체화하세요. 건강·수명·재산·미래를 판정하지 마세요.\n${modeInstruction}\n${languageInstruction}\n${knowledge.text}\nJSON 구조:\n${PREMIUM_SCHEMA}`;
 
   try {
     const client = getOpenAIClient();
+    const imageOrder =
+      mode === "compatibility"
+        ? `이미지 순서: ${images.map((image, index) => `${index + 1}번은 ${image.person === "partner" ? "상대방" : "나"}의 손입니다.`).join(" ")}`
+        : "이미지는 한 사람의 손금 분석용입니다.";
     const content = [
-      { type: "text" as const, text: prompt },
+      { type: "text" as const, text: `${prompt}\n${imageOrder}` },
       ...images.map((image) => ({
         type: "image_url" as const,
-        image_url: { url: image.imageBase64 as string, detail: "high" as const },
+        image_url: {
+          url: image.imageBase64 as string,
+          detail: "high" as const,
+        },
       })),
     ];
 
@@ -79,15 +156,24 @@ router.post("/palm-reading", async (req, res): Promise<void> => {
     const text = completion.choices[0]?.message?.content;
     if (!text) throw new Error("Empty palm reading response");
     const result = JSON.parse(cleanJson(text));
-    res.json({ tier, result, disclaimer: "문화·오락 목적의 참고 안내이며 전문적인 판단을 대신하지 않습니다." });
+    res.json({
+      tier,
+      result,
+      disclaimer:
+        "문화·오락 목적의 참고 안내이며 전문적인 판단을 대신하지 않습니다.",
+    });
   } catch (err: unknown) {
     const message = err instanceof Error ? err.message : String(err);
     console.error("[손금] OpenAI 분석 실패", { tier, message });
     if (message.includes("OPENAI_API_KEY")) {
-      res.status(503).json({ error: "AI 손금 서비스가 아직 설정되지 않았습니다." });
+      res
+        .status(503)
+        .json({ error: "AI 손금 서비스가 아직 설정되지 않았습니다." });
       return;
     }
-    res.status(502).json({ error: "손금 분석 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요." });
+    res.status(502).json({
+      error: "손금 분석 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.",
+    });
   }
 });
 

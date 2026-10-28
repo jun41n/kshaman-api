@@ -5,6 +5,7 @@
  */
 
 import { calcSaju, type SajuData } from "./sajuCalc.js";
+import { buildKnowledgeContext } from "../knowledge/index.js";
 import type { PartnerProfile } from "./types.js";
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -12,45 +13,78 @@ import type { PartnerProfile } from "./types.js";
 // ─────────────────────────────────────────────────────────────────────────────
 
 type BranchCompatType =
-  | "삼합(三合)"     // 최상 — 같은 오행 군
-  | "육합(六合)"     // 상 — 부드럽게 결합
-  | "원진(怨嗔)"     // 최하 — 서로를 원망
-  | "충(沖)"         // 하 — 정면 충돌
-  | "동갑(同甲)"     // 중상 — 같은 띠
-  | "중립";          // 무난
+  | "삼합(三合)" // 최상 — 같은 오행 군
+  | "육합(六合)" // 상 — 부드럽게 결합
+  | "원진(怨嗔)" // 최하 — 서로를 원망
+  | "충(沖)" // 하 — 정면 충돌
+  | "동갑(同甲)" // 중상 — 같은 띠
+  | "중립"; // 무난
 
 interface BranchCompat {
   type: BranchCompatType;
-  score: number;    // 100점 만점
-  label: string;    // 한글 한 줄 요약
-  detail: string;   // 상세 해석
+  score: number; // 100점 만점
+  label: string; // 한글 한 줄 요약
+  detail: string; // 상세 해석
 }
 
 const SAMHAP_GROUPS = [
-  [2, 6, 10],   // 인오술 — 火局
-  [5, 9, 1],    // 사유축 — 金局
-  [8, 0, 4],    // 신자진 — 水局
-  [11, 3, 7],   // 해묘미 — 木局
+  [2, 6, 10], // 인오술 — 火局
+  [5, 9, 1], // 사유축 — 金局
+  [8, 0, 4], // 신자진 — 水局
+  [11, 3, 7], // 해묘미 — 木局
 ];
 const SAMHAP_NAMES = ["화(火)국", "금(金)국", "수(水)국", "목(木)국"];
 
 const YUKHAP_PAIRS: [number, number][] = [
-  [0, 1], [2, 11], [3, 10], [4, 9], [5, 8], [6, 7],
+  [0, 1],
+  [2, 11],
+  [3, 10],
+  [4, 9],
+  [5, 8],
+  [6, 7],
 ];
 
 // 원진: 자미, 축오, 인유, 묘신, 진해, 사술
 const WONJIN_PAIRS: [number, number][] = [
-  [0, 7], [1, 6], [2, 9], [3, 8], [4, 11], [5, 10],
+  [0, 7],
+  [1, 6],
+  [2, 9],
+  [3, 8],
+  [4, 11],
+  [5, 10],
 ];
 
 // 충
 const CHUNG_PAIRS: [number, number][] = [
-  [0, 6], [1, 7], [2, 8], [3, 9], [4, 10], [5, 11],
+  [0, 6],
+  [1, 7],
+  [2, 8],
+  [3, 9],
+  [4, 10],
+  [5, 11],
 ];
 
-const ZODIAC_NAMES = ["쥐", "소", "호랑이", "토끼", "용", "뱀", "말", "양", "원숭이", "닭", "개", "돼지"];
+const ZODIAC_NAMES = [
+  "쥐",
+  "소",
+  "호랑이",
+  "토끼",
+  "용",
+  "뱀",
+  "말",
+  "양",
+  "원숭이",
+  "닭",
+  "개",
+  "돼지",
+];
 
-function getBranchCompat(aIdx: number, bIdx: number, aZodiac: string, bZodiac: string): BranchCompat {
+function getBranchCompat(
+  aIdx: number,
+  bIdx: number,
+  aZodiac: string,
+  bZodiac: string,
+): BranchCompat {
   if (aIdx === bIdx) {
     return {
       type: "동갑(同甲)",
@@ -60,8 +94,8 @@ function getBranchCompat(aIdx: number, bIdx: number, aZodiac: string, bZodiac: s
     };
   }
 
-  const isChung = CHUNG_PAIRS.some(([a, b]) =>
-    (a === aIdx && b === bIdx) || (b === aIdx && a === bIdx)
+  const isChung = CHUNG_PAIRS.some(
+    ([a, b]) => (a === aIdx && b === bIdx) || (b === aIdx && a === bIdx),
   );
   if (isChung) {
     return {
@@ -72,8 +106,8 @@ function getBranchCompat(aIdx: number, bIdx: number, aZodiac: string, bZodiac: s
     };
   }
 
-  const isWonjin = WONJIN_PAIRS.some(([a, b]) =>
-    (a === aIdx && b === bIdx) || (b === aIdx && a === bIdx)
+  const isWonjin = WONJIN_PAIRS.some(
+    ([a, b]) => (a === aIdx && b === bIdx) || (b === aIdx && a === bIdx),
   );
   if (isWonjin) {
     return {
@@ -84,7 +118,9 @@ function getBranchCompat(aIdx: number, bIdx: number, aZodiac: string, bZodiac: s
     };
   }
 
-  const samhapGroup = SAMHAP_GROUPS.findIndex(g => g.includes(aIdx) && g.includes(bIdx));
+  const samhapGroup = SAMHAP_GROUPS.findIndex(
+    (g) => g.includes(aIdx) && g.includes(bIdx),
+  );
   if (samhapGroup !== -1) {
     return {
       type: "삼합(三合)",
@@ -94,8 +130,8 @@ function getBranchCompat(aIdx: number, bIdx: number, aZodiac: string, bZodiac: s
     };
   }
 
-  const isYukhap = YUKHAP_PAIRS.some(([a, b]) =>
-    (a === aIdx && b === bIdx) || (b === aIdx && a === bIdx)
+  const isYukhap = YUKHAP_PAIRS.some(
+    ([a, b]) => (a === aIdx && b === bIdx) || (b === aIdx && a === bIdx),
   );
   if (isYukhap) {
     return {
@@ -121,7 +157,13 @@ function getBranchCompat(aIdx: number, bIdx: number, aZodiac: string, bZodiac: s
 type Element = "목" | "화" | "토" | "금" | "수";
 
 function extractEl(elementStr: string): Element {
-  const map: Record<string, Element> = { 목: "목", 화: "화", 토: "토", 금: "금", 수: "수" };
+  const map: Record<string, Element> = {
+    목: "목",
+    화: "화",
+    토: "토",
+    금: "금",
+    수: "수",
+  };
   for (const [k, v] of Object.entries(map)) {
     if (elementStr.includes(k)) return v;
   }
@@ -143,10 +185,27 @@ interface StemCompat {
   detail: string;
 }
 
-const SHENG: Record<Element, Element> = { 목: "화", 화: "토", 토: "금", 금: "수", 수: "목" };
-const KEUK: Record<Element, Element> = { 목: "토", 토: "수", 수: "화", 화: "금", 금: "목" };
+const SHENG: Record<Element, Element> = {
+  목: "화",
+  화: "토",
+  토: "금",
+  금: "수",
+  수: "목",
+};
+const KEUK: Record<Element, Element> = {
+  목: "토",
+  토: "수",
+  수: "화",
+  화: "금",
+  금: "목",
+};
 
-function getStemCompat(aEl: Element, bEl: Element, aName: string, bName: string): StemCompat {
+function getStemCompat(
+  aEl: Element,
+  bEl: Element,
+  aName: string,
+  bName: string,
+): StemCompat {
   if (aEl === bEl) {
     return {
       relation: "비화(比和)",
@@ -210,13 +269,42 @@ function getMonthBranchNote(aMonth: string, bMonth: string): string {
 // 종합 점수 + 등급
 // ─────────────────────────────────────────────────────────────────────────────
 
-function totalScore(branchScore: number, stemScore: number): { total: number; grade: string; summary: string } {
+function totalScore(
+  branchScore: number,
+  stemScore: number,
+): { total: number; grade: string; summary: string } {
   const total = Math.round(branchScore * 0.55 + stemScore * 0.45);
-  if (total >= 85) return { total, grade: "천생연분(天生緣分)", summary: "운명이 미리 짜놓은 관계다. 이 조합은 드물다." };
-  if (total >= 72) return { total, grade: "좋은 궁합", summary: "자연스럽게 맞는 구조다. 노력 없이도 편안한 관계." };
-  if (total >= 58) return { total, grade: "보통 궁합", summary: "큰 장애도 없고 큰 시너지도 없다. 두 사람의 노력이 결과를 결정한다." };
-  if (total >= 42) return { total, grade: "주의가 필요한 궁합", summary: "구조적으로 마찰이 생기기 쉽다. 인정과 양보가 없으면 쌓인다." };
-  return { total, grade: "어려운 궁합", summary: "두 기운이 충돌한다. 강한 의지와 서로에 대한 깊은 이해 없이는 유지가 어렵다." };
+  if (total >= 85)
+    return {
+      total,
+      grade: "천생연분(天生緣分)",
+      summary: "운명이 미리 짜놓은 관계다. 이 조합은 드물다.",
+    };
+  if (total >= 72)
+    return {
+      total,
+      grade: "좋은 궁합",
+      summary: "자연스럽게 맞는 구조다. 노력 없이도 편안한 관계.",
+    };
+  if (total >= 58)
+    return {
+      total,
+      grade: "보통 궁합",
+      summary:
+        "큰 장애도 없고 큰 시너지도 없다. 두 사람의 노력이 결과를 결정한다.",
+    };
+  if (total >= 42)
+    return {
+      total,
+      grade: "주의가 필요한 궁합",
+      summary: "구조적으로 마찰이 생기기 쉽다. 인정과 양보가 없으면 쌓인다.",
+    };
+  return {
+    total,
+    grade: "어려운 궁합",
+    summary:
+      "두 기운이 충돌한다. 강한 의지와 서로에 대한 깊은 이해 없이는 유지가 어렵다.",
+  };
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -230,20 +318,49 @@ export function buildCompatibilityContext(
   partnerName: string,
 ): string {
   // 연지 인덱스 추출 (e.g. "오(午)" → find by zodiac)
-  const BRANCH_ZODIACS = ["쥐", "소", "호랑이", "토끼", "용", "뱀", "말", "양", "원숭이", "닭", "개", "돼지"];
+  const BRANCH_ZODIACS = [
+    "쥐",
+    "소",
+    "호랑이",
+    "토끼",
+    "용",
+    "뱀",
+    "말",
+    "양",
+    "원숭이",
+    "닭",
+    "개",
+    "돼지",
+  ];
   const aIdx = BRANCH_ZODIACS.indexOf(userSaju.yearZodiac);
   const bIdx = BRANCH_ZODIACS.indexOf(partnerSaju.yearZodiac);
 
-  const branchCompat = getBranchCompat(aIdx, bIdx, userSaju.yearZodiac, partnerSaju.yearZodiac);
+  const branchCompat = getBranchCompat(
+    aIdx,
+    bIdx,
+    userSaju.yearZodiac,
+    partnerSaju.yearZodiac,
+  );
 
   const aEl = extractEl(userSaju.yearElement);
   const bEl = extractEl(partnerSaju.yearElement);
   const stemCompat = getStemCompat(aEl, bEl, userName, partnerName);
 
-  const monthNote = getMonthBranchNote(userSaju.monthBranch, partnerSaju.monthBranch);
-  const { total, grade, summary } = totalScore(branchCompat.score, stemCompat.score);
+  const monthNote = getMonthBranchNote(
+    userSaju.monthBranch,
+    partnerSaju.monthBranch,
+  );
+  const { total, grade, summary } = totalScore(
+    branchCompat.score,
+    stemCompat.score,
+  );
 
   const ageDiff = Math.abs(userSaju.currentAge - partnerSaju.currentAge);
+  const knowledge = buildKnowledgeContext(
+    "saju",
+    ["five-elements", "branch-relation", "year-flow", "compatibility"],
+    "ko",
+  );
 
   return `
 ══════════════════════════════════════════
@@ -263,6 +380,9 @@ export function buildCompatibilityContext(
 오행 성격: ${ELEMENT_TRAITS[bEl]}
 
 나이 차이: ${ageDiff}세
+
+【지식 저장소에서 검색된 근거】
+${knowledge.text}
 
 【연지(年支) 궁합 — 띠 관계】
 결과: ${branchCompat.label}

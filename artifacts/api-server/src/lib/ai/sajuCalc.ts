@@ -1,275 +1,87 @@
-/**
- * sajuCalc.ts
- * 생년월일로 사주 핵심 원소(천간·지지·오행·띠)를 계산해 AI에게 주입할 재료를 생성한다.
- * 정밀 절기 계산은 생략하고 양력 기준 연/월/시 주를 산출한다.
- */
-
+/** Deterministic Four Pillars calculation. Product policy is documented in the returned metadata. */
+export interface SajuCalculationOptions {
+  birthMinute?: number;
+  timezoneOffsetMinutes?: number;
+  dayBoundaryPolicy?: "jeongjasi" | "midnight";
+}
+export interface BranchRelation { type: "충(沖)"|"삼합(三合)"|"육합(六合)"|"형(刑)"|"동일(同一)"|"중립"; description: string; energy: "매우 강함"|"강함"|"보통"|"약함"; }
+export interface StemRelation { type: "상생(相生)"|"상극(相剋)"|"비화(比和)"; description: string; }
 export interface SajuData {
-  // 연주
-  yearPillar: string;       // e.g. "경오(庚午)"
-  yearStem: string;         // e.g. "경(庚)"
-  yearBranch: string;       // e.g. "오(午)"
-  yearZodiac: string;       // e.g. "말"
-  yearElement: string;      // e.g. "금(金)"
-  yearYinYang: string;      // e.g. "양" | "음"
-
-  // 월주 (양력 월 기준 월지)
-  monthBranch: string;      // e.g. "묘(卯)"
-  monthSeason: string;      // e.g. "봄 초"
-
-  // 시주 (출생시간)
-  hourBranch: string | null; // e.g. "자(子)" | null
-
-  // 나이
-  currentAge: number;       // 만 나이
-  koreanAge: number;        // 세는 나이
-
-  // 현재 연도
-  currentYear: number;
-  currentYearPillar: string; // e.g. "병오(丙午)"
-  currentYearElement: string;// e.g. "화(火)"
-
-  // 연지(年支) 2026 오(午)와의 관계
-  branchRelation: BranchRelation;
-
-  // 천간(年干) 2026 병(丙)과의 관계
-  stemRelation: StemRelation;
-
-  // 오행 상생·상극 요약
-  elementInteraction: string;
-
-  // 요약 문장 (AI 프롬프트에 직접 삽입)
-  summaryForPrompt: string;
+  yearPillar:string; yearStem:string; yearBranch:string; yearZodiac:string; yearElement:string; yearYinYang:string;
+  monthPillar:string; monthStem:string; monthBranch:string; monthSeason:string;
+  dayPillar:string; dayStem:string; dayBranch:string; hourPillar:string|null; hourBranch:string|null;
+  currentAge:number; koreanAge:number; currentYear:number; currentYearPillar:string; currentYearElement:string;
+  branchRelation:BranchRelation; stemRelation:StemRelation; elementInteraction:string;
+  calculationPolicy:{yearBoundary:"ipchun";monthBoundary:"12jie";dayBoundary:"jeongjasi"|"midnight";timezoneOffsetMinutes:number;timeUnknown:boolean;boundaryCase:boolean};
+  summaryForPrompt:string;
 }
-
-export interface BranchRelation {
-  type: "충(沖)" | "삼합(三合)" | "육합(六合)" | "형(刑)" | "동일(同一)" | "중립";
-  description: string;
-  energy: "매우 강함" | "강함" | "보통" | "약함";
-}
-
-export interface StemRelation {
-  type: "상생(相生)" | "상극(相剋)" | "비화(比和)";
-  description: string;
-}
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 기초 데이터
-// ─────────────────────────────────────────────────────────────────────────────
 
 const STEMS = [
-  { ko: "갑(甲)", element: "목(木)", yinYang: "양" },
-  { ko: "을(乙)", element: "목(木)", yinYang: "음" },
-  { ko: "병(丙)", element: "화(火)", yinYang: "양" },
-  { ko: "정(丁)", element: "화(火)", yinYang: "음" },
-  { ko: "무(戊)", element: "토(土)", yinYang: "양" },
-  { ko: "기(己)", element: "토(土)", yinYang: "음" },
-  { ko: "경(庚)", element: "금(金)", yinYang: "양" },
-  { ko: "신(辛)", element: "금(金)", yinYang: "음" },
-  { ko: "임(壬)", element: "수(水)", yinYang: "양" },
-  { ko: "계(癸)", element: "수(水)", yinYang: "음" },
-];
-
+  {ko:"갑(甲)",element:"목(木)",yinYang:"양"},{ko:"을(乙)",element:"목(木)",yinYang:"음"},
+  {ko:"병(丙)",element:"화(火)",yinYang:"양"},{ko:"정(丁)",element:"화(火)",yinYang:"음"},
+  {ko:"무(戊)",element:"토(土)",yinYang:"양"},{ko:"기(己)",element:"토(土)",yinYang:"음"},
+  {ko:"경(庚)",element:"금(金)",yinYang:"양"},{ko:"신(辛)",element:"금(金)",yinYang:"음"},
+  {ko:"임(壬)",element:"수(水)",yinYang:"양"},{ko:"계(癸)",element:"수(水)",yinYang:"음"},
+] as const;
 const BRANCHES = [
-  { ko: "자(子)", zodiac: "쥐", element: "수(水)", season: "겨울 한복판" },
-  { ko: "축(丑)", zodiac: "소", element: "토(土)", season: "겨울 끝" },
-  { ko: "인(寅)", zodiac: "호랑이", element: "목(木)", season: "봄 초" },
-  { ko: "묘(卯)", zodiac: "토끼", element: "목(木)", season: "봄 한복판" },
-  { ko: "진(辰)", zodiac: "용", element: "토(土)", season: "봄 끝" },
-  { ko: "사(巳)", zodiac: "뱀", element: "화(火)", season: "여름 초" },
-  { ko: "오(午)", zodiac: "말", element: "화(火)", season: "여름 한복판" },
-  { ko: "미(未)", zodiac: "양", element: "토(土)", season: "여름 끝" },
-  { ko: "신(申)", zodiac: "원숭이", element: "금(金)", season: "가을 초" },
-  { ko: "유(酉)", zodiac: "닭", element: "금(金)", season: "가을 한복판" },
-  { ko: "술(戌)", zodiac: "개", element: "토(土)", season: "가을 끝" },
-  { ko: "해(亥)", zodiac: "돼지", element: "수(水)", season: "겨울 초" },
-];
-
-// 월지 (1월~12월, 양력 기준 근사값)
-const MONTH_BRANCH_IDX = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 0, 1]; // Jan→인, Feb→묘, ...
-
-// 시지 (2시간 단위)
-const HOUR_BRANCH_IDX = [0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11]; // 0시=자, 2시=축, ...
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 충·합·형 관계 테이블 (2026 오午 기준)
-// ─────────────────────────────────────────────────────────────────────────────
-
-function getBranchRelation(birthBranchIdx: number): BranchRelation {
-  const currentBranchIdx = 6; // 오(午) = 2026
-
-  // 충 (서로 마주보는 관계)
-  const CHUNG_PAIRS: [number, number][] = [[0,6],[1,7],[2,8],[3,9],[4,10],[5,11]];
-  const isChung = CHUNG_PAIRS.some(([a,b]) => (a === birthBranchIdx && b === currentBranchIdx) || (b === birthBranchIdx && a === currentBranchIdx));
-
-  // 삼합 (인오술 = 2,6,10 / 사유축 = 5,9,1 / 신자진 = 8,0,4 / 해묘미 = 11,3,7)
-  const SAMHAP_GROUPS = [[2,6,10],[5,9,1],[8,0,4],[11,3,7]];
-  const mySamhap = SAMHAP_GROUPS.find(g => g.includes(birthBranchIdx));
-  const isSamhap = mySamhap?.includes(currentBranchIdx) && birthBranchIdx !== currentBranchIdx;
-
-  // 육합 (자축, 인해, 묘술, 진유, 사신, 오미)
-  const YUKHAP_PAIRS: [number, number][] = [[0,1],[2,11],[3,10],[4,9],[5,8],[6,7]];
-  const isYukhap = YUKHAP_PAIRS.some(([a,b]) => (a === birthBranchIdx && b === currentBranchIdx) || (b === birthBranchIdx && a === currentBranchIdx));
-
-  // 동일
-  if (birthBranchIdx === currentBranchIdx) {
-    return {
-      type: "동일(同一)",
-      description: `출생 연지와 ${new Date().getFullYear()}년의 연지가 같은 오(午)다. 36년 만에 돌아온 기운의 귀환으로, 태어날 때의 에너지가 그대로 부활한다. 변화의 기폭제가 되는 해.`,
-      energy: "매우 강함",
-    };
-  }
-
-  if (isChung) {
-    return {
-      type: "충(沖)",
-      description: `출생 연지가 ${new Date().getFullYear()}년 오(午) 기운과 정면으로 충돌한다. 안정된 것이 흔들리고, 억눌렸던 것이 터진다. 변화를 강제당하는 해.`,
-      energy: "매우 강함",
-    };
-  }
-
-  if (isSamhap && mySamhap) {
-    const isFire = mySamhap.includes(6);
-    return {
-      type: "삼합(三合)",
-      description: `출생 연지가 ${new Date().getFullYear()}년 오(午)와 ${isFire ? "화(火) 삼합" : "삼합"}을 이룬다. 같은 무리의 기운이 합쳐져 에너지가 배가된다.`,
-      energy: "강함",
-    };
-  }
-
-  if (isYukhap) {
-    return {
-      type: "육합(六合)",
-      description: `출생 연지가 ${new Date().getFullYear()}년 오(午)와 육합한다. 부드럽게 연결되어 흐름이 순조롭고 인연이 이어지는 기운.`,
-      energy: "강함",
-    };
-  }
-
-  // 형(刑) - 인사신, 축술미, 자묘
-  const HYUNG = [[2,5,8],[1,10,7],[0,3]];
-  const myHyung = HYUNG.find(g => g.includes(birthBranchIdx));
-  if (myHyung?.includes(currentBranchIdx)) {
-    return {
-      type: "형(刑)",
-      description: `출생 연지가 ${new Date().getFullYear()}년 오(午)와 형(刑)의 관계다. 갑작스러운 사건, 법적·신체적 문제가 발생할 수 있어 각별히 주의해야 한다.`,
-      energy: "강함",
-    };
-  }
-
-  return {
-    type: "중립",
-    description: `출생 연지와 ${new Date().getFullYear()}년 오(午) 기운이 특별한 간섭 없이 병존한다. 큰 외부 충격보다는 내면의 변화가 주요 동력이 된다.`,
-    energy: "보통",
-  };
+  {ko:"자(子)",zodiac:"쥐",element:"수(水)",season:"겨울 한복판"},{ko:"축(丑)",zodiac:"소",element:"토(土)",season:"겨울 끝"},
+  {ko:"인(寅)",zodiac:"호랑이",element:"목(木)",season:"봄 초"},{ko:"묘(卯)",zodiac:"토끼",element:"목(木)",season:"봄 한복판"},
+  {ko:"진(辰)",zodiac:"용",element:"토(土)",season:"봄 끝"},{ko:"사(巳)",zodiac:"뱀",element:"화(火)",season:"여름 초"},
+  {ko:"오(午)",zodiac:"말",element:"화(火)",season:"여름 한복판"},{ko:"미(未)",zodiac:"양",element:"토(土)",season:"여름 끝"},
+  {ko:"신(申)",zodiac:"원숭이",element:"금(金)",season:"가을 초"},{ko:"유(酉)",zodiac:"닭",element:"금(金)",season:"가을 한복판"},
+  {ko:"술(戌)",zodiac:"개",element:"토(土)",season:"가을 끝"},{ko:"해(亥)",zodiac:"돼지",element:"수(水)",season:"겨울 초"},
+] as const;
+const TERM_TARGETS = [285,315,345,15,45,75,105,135,165,195,225,255] as const;
+const TERM_APPROX = [[1,6],[2,4],[3,6],[4,5],[5,6],[6,6],[7,7],[8,7],[9,7],[10,8],[11,7],[12,7]] as const;
+const TERM_BRANCH: Record<number,number> = {285:1,315:2,345:3,15:4,45:5,75:6,105:7,135:8,165:9,195:10,225:11,255:0};
+const mod=(n:number,d:number)=>((n%d)+d)%d;
+const norm=(n:number)=>mod(n,360);
+const signed=(n:number)=>{const x=norm(n);return x>180?x-360:x;};
+function jd(date:Date){return date.getTime()/86400000+2440587.5;}
+function solarLongitude(date:Date){
+  const t=(jd(date)-2451545)/36525, r=Math.PI/180;
+  const l=norm(280.46646+36000.76983*t+0.0003032*t*t), m=norm(357.52911+35999.05029*t-0.0001537*t*t);
+  const c=(1.914602-0.004817*t-0.000014*t*t)*Math.sin(m*r)+(0.019993-0.000101*t)*Math.sin(2*m*r)+0.000289*Math.sin(3*m*r);
+  return norm(l+c-0.00569-0.00478*Math.sin((125.04-1934.136*t)*r));
 }
-
-// ─────────────────────────────────────────────────────────────────────────────
-// 오행 상생·상극
-// ─────────────────────────────────────────────────────────────────────────────
-
-type Element = "목" | "화" | "토" | "금" | "수";
-
-function extractElement(elementStr: string): Element {
-  const map: Record<string, Element> = { 목: "목", 화: "화", 토: "토", 금: "금", 수: "수" };
-  for (const [k, v] of Object.entries(map)) {
-    if (elementStr.includes(k)) return v;
+function findSolarTerm(year:number,target:number){
+  const i=TERM_TARGETS.indexOf(target as typeof TERM_TARGETS[number]), [month,day]=TERM_APPROX[i<0?0:i], center=Date.UTC(year,month-1,day);
+  let prev=new Date(center-8*86400000), prevVal=signed(solarLongitude(prev)-target);
+  for(let h=1;h<=16*24;h++){
+    const cur=new Date(center-8*86400000+h*3600000), curVal=signed(solarLongitude(cur)-target);
+    if(prevVal<=0&&curVal>=0){let lo=prev.getTime(),hi=cur.getTime();for(let n=0;n<45;n++){const mid=(lo+hi)/2,v=signed(solarLongitude(new Date(mid))-target);if(v>=0)hi=mid;else lo=mid;}return new Date(hi);}
+    prev=cur;prevVal=curVal;
   }
-  return "토";
+  throw new Error(`Solar term not found: ${year}-${target}`);
 }
-
-function getStemRelation(birthStemEl: Element, currentStemEl: Element): StemRelation {
-  if (birthStemEl === currentStemEl) {
-    return { type: "비화(比和)", description: `출생 천간 오행(${birthStemEl})과 ${new Date().getFullYear()}년 천간 오행(${currentStemEl})이 같다. 같은 기운이 겹쳐 개성이 더욱 두드러지는 해.` };
-  }
-  // 상생: 목→화, 화→토, 토→금, 금→수, 수→목
-  const SHENG: Record<Element, Element> = { 목: "화", 화: "토", 토: "금", 금: "수", 수: "목" };
-  if (SHENG[birthStemEl] === currentStemEl) {
-    return { type: "상생(相生)", description: `출생 천간 오행(${birthStemEl})이 ${new Date().getFullYear()}년 천간 오행(${currentStemEl})을 생(生)한다. 자신의 에너지가 이 해를 돕는 형국으로, 주도적 기운이 강해진다.` };
-  }
-  if (SHENG[currentStemEl] === birthStemEl) {
-    return { type: "상생(相生)", description: `${new Date().getFullYear()}년 천간 오행(${currentStemEl})이 출생 천간 오행(${birthStemEl})을 생(生)한다. 외부에서 에너지를 받아 성장하는 해.` };
-  }
-  // 상극: 목→토, 토→수, 수→화, 화→금, 금→목
-  const KEUK: Record<Element, Element> = { 목: "토", 토: "수", 수: "화", 화: "금", 금: "목" };
-  if (KEUK[birthStemEl] === currentStemEl || KEUK[currentStemEl] === birthStemEl) {
-    return { type: "상극(相剋)", description: `출생 천간 오행(${birthStemEl})과 ${new Date().getFullYear()}년 천간 오행(${currentStemEl})이 서로 극(剋)한다. 에너지 충돌로 결정 장면에서 갈등이 심화될 수 있다.` };
-  }
-  return { type: "비화(比和)", description: `오행 간 직접적 생극 관계가 없어 독자적으로 흐른다.` };
+function localInstant(y:number,m:number,d:number,h:number,min:number,offset:number){return new Date(Date.UTC(y,m-1,d,h,min)-offset*60000);}
+function nextDay(y:number,m:number,d:number){const x=new Date(Date.UTC(y,m-1,d)+86400000);return [x.getUTCFullYear(),x.getUTCMonth()+1,x.getUTCDate()];}
+function dayCycle(y:number,m:number,d:number){return mod(Math.floor(Date.UTC(y,m-1,d)/86400000+2440587.5)+49,60);}
+function sajuYear(instant:Date,year:number){return instant>=findSolarTerm(year,315)?year:year-1;}
+function monthTerm(instant:Date,year:number){
+  const all=[-1,0,1].flatMap(delta=>TERM_TARGETS.map(target=>({target,instant:findSolarTerm(year+delta,target)}))).sort((a,b)=>a.instant.getTime()-b.instant.getTime());
+  const hit=all.filter(x=>x.instant<=instant).at(-1);if(!hit)throw new Error("Month solar term not found");return {branch:TERM_BRANCH[hit.target],instant:hit.instant};
 }
+function branchRelation(birth:number,year:number):BranchRelation{
+  const current=mod(year-4,12), pairs=(xs:number[][])=>xs.some(([a,b])=>(a===birth&&b===current)||(b===birth&&a===current));
+  if(birth===current)return{type:"동일(同一)",description:`출생 연지와 ${year}년 연지가 같은 기운으로 겹친다.`,energy:"매우 강함"};
+  if(pairs([[0,6],[1,7],[2,8],[3,9],[4,10],[5,11]]))return{type:"충(沖)",description:`출생 연지와 ${year}년 연지가 충의 관계로 만난다.`,energy:"매우 강함"};
+  if(pairs([[0,1],[2,11],[3,10],[4,9],[5,8],[6,7]]))return{type:"육합(六合)",description:`출생 연지와 ${year}년 연지가 육합의 관계로 만난다.`,energy:"강함"};
+  if([[2,6,10],[5,9,1],[8,0,4],[11,3,7]].some(g=>g.includes(birth)&&g.includes(current)))return{type:"삼합(三合)",description:`출생 연지와 ${year}년 연지가 삼합의 흐름으로 만난다.`,energy:"강함"};
+  if([[2,5,8],[1,10,7],[0,3]].some(g=>g.includes(birth)&&g.includes(current)))return{type:"형(刑)",description:`출생 연지와 ${year}년 연지가 형의 관계로 만난다.`,energy:"강함"};
+  return{type:"중립",description:`출생 연지와 ${year}년 연지가 특별한 충합 없이 병존한다.`,energy:"보통"};
+}
+type Element="목"|"화"|"토"|"금"|"수";
+const element=(s:string):Element=>(["목","화","토","금","수"] as Element[]).find(x=>s.includes(x))??"토";
+function stemRelation(a:Element,b:Element):StemRelation{const sh:Record<Element,Element>={목:"화",화:"토",토:"금",금:"수",수:"목"},ke:Record<Element,Element>={목:"토",토:"수",수:"화",화:"금",금:"목"};if(a===b)return{type:"비화(比和)",description:`출생 천간과 현재 연도 천간의 오행이 같다.`};if(sh[a]===b||sh[b]===a)return{type:"상생(相生)",description:`출생 천간과 현재 연도 천간이 상생 관계다.`};if(ke[a]===b||ke[b]===a)return{type:"상극(相剋)",description:`출생 천간과 현재 연도 천간이 상극 관계다.`};return{type:"비화(比和)",description:"두 천간 사이에 직접적인 생극 관계가 없다."};}
 
-// ─────────────────────────────────────────────────────────────────────────────
-// 메인 계산 함수
-// ─────────────────────────────────────────────────────────────────────────────
-
-export function calcSaju(
-  birthYear: number,
-  birthMonth: number,
-  birthDay: number,
-  birthHour?: number,
-): SajuData {
-  const stemIdx = ((birthYear - 4) % 10 + 10) % 10;
-  const branchIdx = ((birthYear - 4) % 12 + 12) % 12;
-
-  const stem = STEMS[stemIdx];
-  const branch = BRANCHES[branchIdx];
-
-  const monthBranchIdx = MONTH_BRANCH_IDX[birthMonth - 1];
-  const monthBranchData = BRANCHES[monthBranchIdx];
-
-  const hourBranchData = birthHour != null ? BRANCHES[HOUR_BRANCH_IDX[birthHour]] : null;
-
-  const today = new Date();
-  const currentYear = today.getFullYear();
-  const currentMonth = today.getMonth() + 1;
-  const currentDay = today.getDate();
-
-  let age = currentYear - birthYear;
-  if (currentMonth < birthMonth || (currentMonth === birthMonth && currentDay < birthDay)) {
-    age--;
-  }
-
-  const curStemIdx = ((currentYear - 4) % 10 + 10) % 10;
-  const curBranchIdx = ((currentYear - 4) % 12 + 12) % 12;
-  const curStem = STEMS[curStemIdx];
-  const curBranch = BRANCHES[curBranchIdx];
-  const currentYearPillar = `${curStem.ko}${curBranch.ko}`;
-
-  const branchRelation = getBranchRelation(branchIdx);
-  const stemRelation = getStemRelation(
-    extractElement(stem.element),
-    extractElement(curStem.element),
-  );
-
-  const elementInteraction = `${stem.element}(출생 천간) × ${curStem.element}(${currentYear}년 천간) → ${stemRelation.type}`;
-
-  const summaryForPrompt = `
-▶ 연주(年柱): ${stem.ko}${branch.ko} → 띠: ${branch.zodiac}띠 / 오행: ${stem.element} / ${stem.yinYang}
-▶ 월지(月支): ${monthBranchData.ko} — ${monthBranchData.season}에 태어난 기운
-${hourBranchData ? `▶ 시지(時支): ${hourBranchData.ko}` : "▶ 시지(時支): 미상"}
-▶ 만 나이: ${age}세 (세는나이 ${age + 1}세)
-▶ ${currentYear}년 연주: ${currentYearPillar} — ${curBranch.zodiac}띠 해, 오행 ${curStem.element}
-▶ 연지 관계: ${branchRelation.type} — ${branchRelation.description}
-▶ 천간 오행 관계: ${elementInteraction} — ${stemRelation.description}
-`.trim();
-
-  return {
-    yearPillar: `${stem.ko}${branch.ko}`,
-    yearStem: stem.ko,
-    yearBranch: branch.ko,
-    yearZodiac: branch.zodiac,
-    yearElement: stem.element,
-    yearYinYang: stem.yinYang,
-    monthBranch: monthBranchData.ko,
-    monthSeason: monthBranchData.season,
-    hourBranch: hourBranchData?.ko ?? null,
-    currentAge: age,
-    koreanAge: age + 1,
-    currentYear,
-    currentYearPillar,
-    currentYearElement: curStem.element,
-    branchRelation,
-    stemRelation,
-    elementInteraction,
-    summaryForPrompt,
-  };
+export function calcSaju(y:number,m:number,d:number,h?:number,options:SajuCalculationOptions={}):SajuData{
+  const offset=options.timezoneOffsetMinutes??540, minute=options.birthMinute??0, policy=options.dayBoundaryPolicy??"jeongjasi", unknown=h==null||Number.isNaN(h), hour=unknown?12:Math.max(0,Math.min(23,h as number));
+  const instant=localInstant(y,m,d,hour,minute,offset), sy=sajuYear(instant,y), ys=mod(sy-4,10), yb=mod(sy-4,12), mt=monthTerm(instant,y), mb=mt.branch;
+  const ms=mod([2,4,6,8,0][Math.floor(ys/2)]+mod(mb-2,12),10), rollover=!unknown&&policy==="jeongjasi"&&hour>=23, date=rollover?nextDay(y,m,d):[y,m,d], di=dayCycle(date[0],date[1],date[2]), ds=di%10, db=di%12;
+  const hb=unknown?null:(hour===23||hour===0?0:Math.floor((hour+1)/2)), hs=hb==null?null:mod([0,2,4,6,8][Math.floor(ds/2)]+hb,10);
+  const now=new Date(), cy=sajuYear(now,now.getUTCFullYear()), cs=STEMS[mod(cy-4,10)], cb=BRANCHES[mod(cy-4,12)];let age=cy-y;if(now.getUTCMonth()+1<m||(now.getUTCMonth()+1===m&&now.getUTCDate()<d))age--;
+  const relation=branchRelation(yb,cy), stem=stemRelation(element(STEMS[ys].element),element(cs.element)), boundary=Math.min(Math.abs(instant.getTime()-findSolarTerm(y,315).getTime()),Math.abs(instant.getTime()-mt.instant.getTime()))<30*60000||(!unknown&&(hour===23||hour===0));
+  const summary=[`▶ 연주(年柱): ${STEMS[ys].ko}${BRANCHES[yb].ko} → ${BRANCHES[yb].zodiac}띠 / ${STEMS[ys].element} / ${STEMS[ys].yinYang}`,`▶ 월주(月柱): ${STEMS[ms].ko}${BRANCHES[mb].ko} → ${BRANCHES[mb].season} / 12절 절입시 기준`,`▶ 일주(日柱): ${STEMS[ds].ko}${BRANCHES[db].ko} → ${rollover?"23시 정자시 기준 다음 날":"출생일 기준"}`,`▶ 시주(時柱): ${hs==null?"미상":`${STEMS[hs].ko}${BRANCHES[hb as number].ko}`}`,`▶ 만 나이: ${age}세`,`▶ ${cy}년 연주: ${cs.ko}${cb.ko}`,`▶ 연지 관계: ${relation.type} — ${relation.description}`,`▶ 계산 계약: 입춘·12절 절입시·UTC+${offset/60}·${policy==="jeongjasi"?"정자시":"자정"} 경계`].join("\n");
+  return {yearPillar:`${STEMS[ys].ko}${BRANCHES[yb].ko}`,yearStem:STEMS[ys].ko,yearBranch:BRANCHES[yb].ko,yearZodiac:BRANCHES[yb].zodiac,yearElement:STEMS[ys].element,yearYinYang:STEMS[ys].yinYang,monthPillar:`${STEMS[ms].ko}${BRANCHES[mb].ko}`,monthStem:STEMS[ms].ko,monthBranch:BRANCHES[mb].ko,monthSeason:BRANCHES[mb].season,dayPillar:`${STEMS[ds].ko}${BRANCHES[db].ko}`,dayStem:STEMS[ds].ko,dayBranch:BRANCHES[db].ko,hourPillar:hs==null?null:`${STEMS[hs].ko}${BRANCHES[hb as number].ko}`,hourBranch:hb==null?null:BRANCHES[hb].ko,currentAge:age,koreanAge:age+1,currentYear:cy,currentYearPillar:`${cs.ko}${cb.ko}`,currentYearElement:cs.element,branchRelation:relation,stemRelation:stem,elementInteraction:`${STEMS[ys].element}(출생 천간) × ${cs.element}(${cy}년) → ${stem.type}`,calculationPolicy:{yearBoundary:"ipchun",monthBoundary:"12jie",dayBoundary:policy,timezoneOffsetMinutes:offset,timeUnknown:unknown,boundaryCase:boundary},summaryForPrompt:summary};
 }
