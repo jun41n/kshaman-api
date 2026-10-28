@@ -14,6 +14,7 @@ import { Link } from "wouter";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SeoHead } from "@/components/SeoHead";
+import { ResultShareButtons } from "@/components/ResultShareButtons";
 
 type HandSide = "left" | "right";
 type PalmMode = "solo" | "compatibility";
@@ -679,6 +680,11 @@ function ResultView({
             ),
         )}
       </div>
+      <ResultShareButtons
+        lang={i18n.language}
+        title={free.moneyStyle?.title ?? ui.flow}
+        url="https://mytesttype.com/palm-reading/"
+      />
     </div>
   );
 }
@@ -830,52 +836,56 @@ export default function PalmReading() {
         description={ui.seoDescription}
         path="/palm-reading/"
       />
-      <main className="mx-auto w-full max-w-xl pb-8">
-        <section className="relative mb-6 overflow-hidden rounded-[1.75rem] border border-amber-200/80 bg-gradient-to-br from-[#fff8e6] via-[#fffdf7] to-[#fcecff] px-5 py-7 text-center shadow-lg shadow-primary/10">
-          <span className="pointer-events-none absolute left-3 top-2 text-2xl text-amber-400/70">
-            ✦
-          </span>
-          <span className="pointer-events-none absolute right-4 top-5 text-xl text-fuchsia-300/80">
-            ✧
-          </span>
-          <span className="pointer-events-none absolute bottom-3 left-8 text-lg text-violet-300/70">
-            ✦
-          </span>
-          <span className="pointer-events-none absolute bottom-2 right-8 text-2xl text-amber-300/70">
-            ◇
-          </span>
-          <div className="relative mx-auto max-w-md">
-            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-amber-700/80">
+      <main className="paper-grain palm-reading-page mx-auto w-full max-w-6xl pb-8">
+        <section className="relative mb-6 overflow-hidden border border-[#9b5a3b]/35 bg-[#e8c88f] px-5 py-8 text-[#2a1b16] shadow-[6px_7px_0_rgba(101,54,33,0.16)] md:px-12 md:py-14">
+          <div className="pointer-events-none absolute inset-0 opacity-25" style={{ backgroundImage: "radial-gradient(#70442b 0.7px, transparent 0.7px)", backgroundSize: "17px 17px" }} />
+          <span className="pointer-events-none absolute left-4 top-3 font-serif text-2xl text-[#8c3f2b]/60">印</span>
+          <span className="pointer-events-none absolute right-5 top-4 font-serif text-xl text-[#8c3f2b]/60">相</span>
+          <span className="pointer-events-none absolute bottom-3 left-8 font-serif text-lg text-[#8c3f2b]/50">手</span>
+          <span className="pointer-events-none absolute bottom-2 right-8 font-serif text-2xl text-[#8c3f2b]/50">掌</span>
+          <div className="relative mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.05fr_0.95fr] md:items-center">
+            <div>
+            <img src={`${import.meta.env.BASE_URL}palm-calligraphy.png`} alt="손금" className="h-[74px] w-auto object-contain object-left mix-blend-multiply md:h-[104px]" style={{ filter: "sepia(0.18) contrast(1.08) drop-shadow(1px 2px 3px rgba(60,30,5,0.25))" }} />
+            <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-[#7b3f2b]">
               {hero.eyebrow}
             </p>
-            <h1 className="font-display text-3xl font-black leading-tight tracking-tight sm:text-4xl">
+            <h1 className="font-serif text-3xl font-semibold leading-tight tracking-[-0.03em] sm:text-4xl">
               {mode === "compatibility" ? (
                 <>
-                  <span className="block text-slate-800">{modeCopy.pair}</span>
-                  <span className="mt-1 block bg-gradient-to-r from-amber-600 via-orange-500 to-fuchsia-500 bg-clip-text text-4xl font-black text-transparent drop-shadow-sm sm:text-5xl">
+                  <span className="block text-[#281915]">{modeCopy.pair}</span>
+                  <span className="mt-1 block text-4xl font-semibold text-[#8c3f2b] sm:text-5xl">
                     ♥
                   </span>
                 </>
               ) : (
                 <>
-                  <span className="block text-slate-800">{hero.lead}</span>
-                  <span className="mt-1 block bg-gradient-to-r from-amber-600 via-orange-500 to-fuchsia-500 bg-clip-text text-4xl font-black text-transparent drop-shadow-sm sm:text-5xl">
+                  <span className="block text-[#281915]">{hero.lead}</span>
+                  <span className="mt-1 block text-4xl font-semibold text-[#8c3f2b] sm:text-5xl">
                     {hero.title}
                   </span>
                 </>
               )}
             </h1>
-            <p className="mx-auto mt-4 max-w-sm text-sm font-semibold leading-relaxed text-slate-600">
+            <p className="mx-auto mt-4 max-w-sm text-sm font-semibold leading-relaxed text-[#684a3e]">
               {mode === "compatibility" ? modeCopy.pairDesc : hero.subtitle}
               <br />
-              <span className="font-normal text-slate-500">
+              <span className="font-normal text-[#79594b]">
                 {mode === "compatibility"
                   ? modeCopy.pairInstruction
                   : hero.instruction}
               </span>
             </p>
-            <div className="mx-auto mt-5 inline-flex rounded-full bg-slate-900 px-4 py-2 text-xs font-bold text-white shadow-md">
+            <div className="mx-auto mt-5 inline-flex rounded-sm bg-[#281915] px-4 py-2 text-xs font-bold text-[#f8e7bd] shadow-[3px_3px_0_#9b5a3b]">
               ✦ {hero.badge} ✦
+            </div>
+            </div>
+            <div className="relative border-[10px] border-[#f1d8a5] bg-[#f3dfb4] p-2 shadow-[8px_10px_0_rgba(101,54,33,0.22)]">
+              <div className="relative flex aspect-[4/3] flex-col items-center justify-center overflow-hidden border border-[#9b5a3b]/45 bg-[#d5b27a] text-center">
+                <Hand className="h-24 w-24 text-[#6d3c2d] opacity-80" strokeWidth={1.2} />
+                <p className="mt-3 font-serif text-2xl font-semibold text-[#f7e6be]">手相</p>
+                <p className="mt-1 text-[11px] tracking-[0.16em] text-[#f7e6be]">손바닥의 결을 살피는 시간</p>
+              </div>
+              <div className="mt-3 flex items-center justify-between border-t border-[#9b5a3b]/25 pt-3 text-[11px] text-[#79594b]"><span className="flex items-center gap-1.5"><Sparkles size={13} /> 전통 기록 × AI 해석</span><span>手 · 相 · 心</span></div>
             </div>
           </div>
         </section>
