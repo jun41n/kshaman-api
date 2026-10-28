@@ -53,32 +53,33 @@ export default function Gwansang() {
   };
 
   const canonicalPath = location === "/" ? "/" : "/gwansang/";
+  const isPastLife = location === "/";
 
   return (
     <Layout showAd>
       <SeoHead
-        title="AI 관상 분석"
-        description="사진 한 장을 바탕으로 얼굴 특징과 인상에서 보이는 성향을 살펴보는 MyTestType AI 관상입니다. 한국 전통 관상 문화를 현대적으로 풀어낸 오락·참고용 서비스입니다."
+        title={isPastLife ? "AI 전생 캐릭터 테스트" : "AI 관상 분석"}
+        description={isPastLife ? "관상 문화의 언어로 살펴보는 나의 전생 캐릭터 테스트. 왕이었을까, 무사였을까? 오락·문화 참고용 서비스입니다." : "사진 한 장을 바탕으로 얼굴 특징과 인상에서 보이는 성향을 살펴보는 MyTestType AI 관상입니다. 한국 전통 관상 문화를 현대적으로 풀어낸 오락·참고용 서비스입니다."}
         path={canonicalPath}
-        ogImage="https://mytesttype.com/gwansang.png"
+        ogImage={isPastLife ? "https://mytesttype.com/past-life.png" : "https://mytesttype.com/gwansang.png"}
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "WebApplication",
-          name: "AI 관상 분석",
-          description: "사진 한 장을 바탕으로 얼굴 특징과 인상에서 보이는 성향을 살펴보는 문화·오락 목적의 AI 관상 분석",
+          name: isPastLife ? "AI 전생 캐릭터 테스트" : "AI 관상 분석",
+          description: isPastLife ? "관상 문화의 언어로 살펴보는 나의 전생 캐릭터 테스트" : "사진 한 장을 바탕으로 얼굴 특징과 인상에서 보이는 성향을 살펴보는 문화·오락 목적의 AI 관상 분석",
           url: `https://mytesttype.com${canonicalPath}`,
           applicationCategory: "EntertainmentApplication",
           offers: { "@type": "Offer", price: "0", priceCurrency: "KRW" },
         }}
       />
       {/* full-bleed golden background — cancels Layout's max-w padding */}
-      <div className="-mx-4 sm:-mx-6 -my-6 md:-my-10 overflow-hidden">
+      <div className="-mx-4 sm:-mx-6 overflow-hidden">
         <AnimatePresence mode="wait">
           {view === "home" && (
             <motion.div key="home"
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.25 }}>
-              <GwansangHome onStart={() => setView("reading")} />
+              <GwansangHome variant={isPastLife ? "pastLife" : "face"} onStart={() => setView("reading")} />
             </motion.div>
           )}
           {view === "reading" && (

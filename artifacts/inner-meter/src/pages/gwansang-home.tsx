@@ -1,100 +1,57 @@
 import { motion } from "framer-motion";
-import { Camera } from "lucide-react";
+import { ArrowRight, Camera, Sparkles } from "lucide-react";
 
 interface GwansangHomeProps {
   onStart: () => void;
+  variant?: "face" | "pastLife";
 }
 
 const FEATURES = [
-  { icon: "🐉", title: "AI 인상 유형 분석", desc: "얼굴 특징과 분위기를 유형별로 살펴보기" },
-  { icon: "💰", title: "생활 · 관계 인상", desc: "생활 방식과 관계 분위기에 관한 문화적 참고 해석" },
-  { icon: "🏛️", title: "역사 인물 분위기 매칭", desc: "비슷한 인상 요소를 가진 역사 인물 이미지 비교" },
-  { icon: "🔮", title: "인상 · 활동 · 관계", desc: "표정과 이미지에 관한 문화적 참고 해석" },
-  { icon: "⏳", title: "미래 스타일 상상", desc: "AI로 표현한 창작 이미지 예시" },
-  { icon: "✨", title: "아기 · 애니 창작 이미지", desc: "오락용 이미지 생성과 캐릭터화" },
+  { mark: "一", title: "인상 유형", desc: "얼굴의 결을 따라 읽는 첫인상" },
+  { mark: "二", title: "관계의 기운", desc: "생활과 관계에서 드러나는 분위기" },
+  { mark: "三", title: "옛 기록과 대조", desc: "전통 관상 언어를 오늘의 말로 풀어보기" },
+  { mark: "四", title: "표정의 흐름", desc: "사진 속 표정과 시선에 담긴 인상" },
 ];
 
-const PAGE_BG = "linear-gradient(175deg, #D4A96A 0%, #C49050 40%, #B8813A 100%)";
+export function GwansangHome({ onStart, variant = "face" }: GwansangHomeProps) {
+  const isPastLife = variant === "pastLife";
 
-export function GwansangHome({ onStart }: GwansangHomeProps) {
   return (
-    <div className="flex flex-col" style={{ background: PAGE_BG, minHeight: "80vh" }}>
-      <div className="flex flex-col md:flex-row md:items-center md:justify-center md:gap-12 px-4 sm:px-6 md:px-16 lg:px-24 xl:px-40 py-8 md:py-16 flex-1">
+    <div className="paper-grain relative overflow-hidden bg-[#e8c88f] text-[#2a1b16]" style={{ minHeight: "80vh" }}>
+      <div className="pointer-events-none absolute inset-0 opacity-35" style={{ backgroundImage: "radial-gradient(#70442b 0.7px, transparent 0.7px)", backgroundSize: "17px 17px" }} />
+      <div className="pointer-events-none absolute -right-24 top-16 h-72 w-72 rounded-full border border-[#9b5a3b]/20" />
+      <div className="pointer-events-none absolute -right-16 top-24 h-56 w-56 rounded-full border border-[#9b5a3b]/15" />
 
-        {/* 왼쪽: 헤더 + CTA */}
-        <div className="flex flex-col md:flex-shrink-0 md:w-[340px] lg:w-[400px]">
-          <motion.div className="pb-1 flex items-center gap-2"
-            initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}>
-            <div className="px-3 py-1 rounded-full text-[11px] font-bold tracking-[0.14em] uppercase"
-              style={{ background: "rgba(120,50,10,0.15)", color: "hsl(15,65%,28%)", border: "1px solid rgba(120,50,10,0.2)" }}>
-              AI · 관상 분석
-            </div>
+      <div className="relative mx-auto grid max-w-6xl gap-10 px-5 py-9 md:grid-cols-[1.05fr_0.95fr] md:items-center md:px-12 md:py-16 lg:px-20">
+        <div>
+          <motion.div className="mb-5 flex items-center gap-3 text-[11px] font-bold tracking-[0.22em] text-[#7b3f2b]" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}>
+            <span className="h-px w-10 bg-[#9b5a3b]" /> {isPastLife ? "AI 전생 캐릭터 테스트" : "AI FACE READING · 관상첩"}
           </motion.div>
-
-          <motion.div className="pt-3 pb-4"
-            initial={{ opacity: 0, scale: 0.93 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.12, duration: 0.35 }}>
-            <img
-              src={`${import.meta.env.BASE_URL}gwansang.png`}
-              alt="관상"
-              className="h-[68px] md:h-[90px] lg:h-[110px] w-auto object-contain"
-              style={{ filter: "drop-shadow(1px 2px 5px rgba(60,30,5,0.4))" }}
-            />
-            <p className="mt-2 text-[19px] md:text-[26px] lg:text-[32px] font-bold leading-snug"
-              style={{ color: "hsl(25,65%,10%)" }}>
-              내 얼굴에는 어떤 인상이 담겼을까?
-            </p>
-            <p className="mt-1 text-sm md:text-base" style={{ color: "hsl(25,40%,38%)" }}>
-              사진 한 장으로 표정과 인상을 살펴보다
-            </p>
+          <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.12, duration: 0.35 }}>
+            <img src={`${import.meta.env.BASE_URL}${isPastLife ? "past-life.png" : "gwansang.png"}`} alt={isPastLife ? "전생" : "관상"} className="h-[74px] w-auto object-contain object-left mix-blend-multiply md:h-[104px]" style={{ filter: "sepia(0.18) contrast(1.08) drop-shadow(1px 2px 3px rgba(60,30,5,0.25))" }} />
+            {isPastLife ? (
+              <h1 className="mt-4 max-w-[720px] font-serif text-[40px] font-semibold leading-[1.12] tracking-[-0.04em] text-[#281915] md:text-[68px]">난 왕이었을까, <span className="text-[#8c3f2b]">무사였을까?</span></h1>
+            ) : (
+              <h1 className="mt-4 max-w-[560px] font-serif text-[32px] font-semibold leading-[1.18] tracking-[-0.04em] text-[#281915] md:text-[50px]">얼굴에 남은 결을<br /><span className="text-[#8c3f2b]">오늘의 말로 읽다</span></h1>
+            )}
+            <p className="mt-5 max-w-[500px] text-[14px] leading-7 text-[#684a3e] md:text-[16px]">{isPastLife ? "관상으로 알아보는 나의 전생은?" : "한 장의 사진 속 표정과 인상을 전통 관상 문화의 언어로 살펴봅니다. 정답을 단정하기보다, 나를 바라보는 새로운 단서를 건넵니다."}</p>
           </motion.div>
-
-          <div className="hidden md:block">
-            <motion.button
-              onClick={onStart}
-              className="w-full h-[56px] rounded-2xl font-bold text-[16px] flex items-center justify-center gap-2.5 transition-all"
-              style={{ background: "linear-gradient(135deg, hsl(15,70%,24%) 0%, hsl(10,65%,20%) 100%)", color: "hsl(36,80%,92%)", boxShadow: "2px 3px 12px rgba(80,30,5,0.4)" }}
-              initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.58 }}
-              whileTap={{ scale: 0.97 }}>
-              <Camera size={20} />
-              관상 보기
-            </motion.button>
-            <p className="text-center text-[11px] mt-2.5" style={{ color: "hsl(25,35%,45%)" }}>
-              사진은 AI 분석 요청에 사용됩니다 · 결과는 오락·참고용
-            </p>
-          </div>
+          <motion.div className="mt-8 flex flex-col items-start gap-3 sm:flex-row sm:items-center" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.32 }}>
+            <button onClick={onStart} className="group flex h-14 items-center justify-center gap-3 rounded-sm bg-[#281915] px-7 text-[15px] font-bold text-[#f8e7bd] shadow-[5px_5px_0_#9b5a3b] transition-transform hover:-translate-y-0.5 active:translate-y-0"><Camera size={19} />{isPastLife ? "내 전생 확인하기" : "관상첩 펼쳐보기"}<ArrowRight className="transition-transform group-hover:translate-x-1" size={18} /></button>
+            {!isPastLife && <span className="text-[11px] leading-5 text-[#79594b]">사진은 분석 요청에 사용됩니다<br />오락·문화 참고용</span>}
+          </motion.div>
         </div>
 
-        {/* 오른쪽: 피처 그리드 */}
-        <div className="md:flex-1 md:max-w-[520px] mt-6 md:mt-0">
-          <div className="grid grid-cols-2 gap-2.5">
-            {FEATURES.map((f, i) => (
-              <motion.div key={i} className="rounded-2xl px-3.5 py-3 md:px-4 md:py-4"
-                style={{ background: "rgba(255,235,185,0.48)", border: "1px solid rgba(140,90,20,0.22)" }}
-                initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18 + i * 0.06 }}>
-                <span className="text-xl md:text-2xl mb-1.5 block">{f.icon}</span>
-                <p className="text-[12px] md:text-[14px] font-bold leading-tight mb-0.5" style={{ color: "hsl(25,55%,12%)" }}>{f.title}</p>
-                <p className="text-[11px] md:text-[12px] leading-tight" style={{ color: "hsl(25,35%,42%)" }}>{f.desc}</p>
-              </motion.div>
-            ))}
+        <motion.div className="relative" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2, duration: 0.4 }}>
+          <div className="relative border-[10px] border-[#f1d8a5] bg-[#f3dfb4] p-2 shadow-[8px_10px_0_rgba(101,54,33,0.22)] md:rotate-[1.5deg]">
+            <div className="relative aspect-[4/3] overflow-hidden border border-[#9b5a3b]/45 bg-[#d5b27a]"><img src={`${import.meta.env.BASE_URL}gwansang-thumb.png`} alt="전통 관상도" className="h-full w-full object-cover sepia-[.18]" /><div className="absolute inset-0 bg-gradient-to-t from-[#2a1b16]/70 via-transparent to-transparent" /><div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-[#f7e6be]"><div><p className="font-serif text-2xl font-semibold">觀相</p><p className="mt-1 text-[11px] tracking-[0.16em]">얼굴의 인상을 살피는 시간</p></div><span className="border border-[#f7e6be]/60 px-2 py-1 text-[10px]">MYTESTTYPE</span></div></div>
+            <div className="mt-3 flex items-center justify-between border-t border-[#9b5a3b]/25 pt-3 text-[11px] text-[#79594b]"><span className="flex items-center gap-1.5"><Sparkles size={13} /> 전통 기록 × AI 해석</span><span>相 · 面 · 心</span></div>
           </div>
-        </div>
+          <span className="absolute -bottom-5 -left-3 font-serif text-5xl text-[#9b5a3b]/45">印</span>
+        </motion.div>
       </div>
 
-      {/* CTA — 모바일 하단 */}
-      <div className="px-4 pb-10 mt-4 md:hidden">
-        <motion.button
-          onClick={onStart}
-          className="w-full h-[56px] rounded-2xl font-bold text-[16px] flex items-center justify-center gap-2.5 transition-all"
-          style={{ background: "linear-gradient(135deg, hsl(15,70%,24%) 0%, hsl(10,65%,20%) 100%)", color: "hsl(36,80%,92%)", boxShadow: "2px 3px 12px rgba(80,30,5,0.4)" }}
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.58 }}
-          whileTap={{ scale: 0.97 }}>
-          <Camera size={20} />
-          관상 보기
-        </motion.button>
-        <p className="text-center text-[11px] mt-2.5" style={{ color: "hsl(25,35%,45%)" }}>
-          사진은 AI 분석 요청에 사용됩니다 · 결과는 오락·참고용
-        </p>
-      </div>
+      <div className="relative mx-auto max-w-6xl border-t border-[#9b5a3b]/30 px-5 py-7 md:px-12 lg:px-20"><div className="grid gap-0 sm:grid-cols-2 lg:grid-cols-4">{FEATURES.map((feature, index) => <motion.div key={feature.mark} className="flex gap-3 border-b border-[#9b5a3b]/25 py-4 sm:border-r sm:px-5 sm:first:pl-0 lg:border-b-0 lg:first:pl-0 lg:last:border-r-0" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.38 + index * 0.06 }}><span className="font-serif text-xl text-[#8c3f2b]">{feature.mark}</span><div><p className="text-[13px] font-bold text-[#3a241c]">{feature.title}</p><p className="mt-1 text-[11px] leading-5 text-[#79594b]">{feature.desc}</p></div></motion.div>)}</div></div>
     </div>
   );
 }
