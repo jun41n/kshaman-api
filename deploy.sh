@@ -55,7 +55,10 @@ mkdir -p "$DEPLOY_DIR/k-shaman"
 cp -r "$K_DIST/"* "$DEPLOY_DIR/k-shaman/"
 
 echo "── 6. 공통 SEO·안내 파일 교체 ──"
-cp "$DEPLOY_STATIC/index.html" "$DEPLOY_DIR/index.html"
+# The root URL is the primary AI face-reading experience. Keep the built app
+# entrypoint at / so the browser mounts the real React page instead of only
+# receiving the SEO fallback document.
+cp "$DIST/index.html" "$DEPLOY_DIR/index.html"
 cp "$DEPLOY_STATIC/404.html" "$DEPLOY_DIR/404.html"
 cp "$DEPLOY_STATIC/robots.txt" "$DEPLOY_DIR/robots.txt"
 cp "$DEPLOY_STATIC/sitemap.xml" "$DEPLOY_DIR/sitemap.xml"
