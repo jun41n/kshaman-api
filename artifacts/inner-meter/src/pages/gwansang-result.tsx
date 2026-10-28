@@ -1,7 +1,9 @@
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { RotateCcw, ChevronDown, Sparkles, Loader2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { GwansangAnalysisResult } from "@/pages/gwansang";
+import { ResultShareButtons } from "@/components/ResultShareButtons";
 
 interface ResultProps {
   result: GwansangAnalysisResult;
@@ -186,6 +188,7 @@ function FaceImageCard({
 }
 
 export function GwansangResult({ result, image, onReset }: ResultProps) {
+  const { i18n } = useTranslation();
   const [premiumUnlocked, setPremiumUnlocked] = useState(false);
   const tierColor = result.dragonface?.tier ? (TIER_COLORS[result.dragonface.tier] ?? "hsl(15,65%,28%)") : "hsl(15,65%,28%)";
 
@@ -393,6 +396,14 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
             <p className="text-[13px] leading-relaxed" style={{ color: "hsl(25,50%,18%)" }}>{result.advice}</p>
           </motion.div>
         )}
+
+        <div className="mb-4">
+          <ResultShareButtons
+            lang={i18n.language}
+            title={result.dragonface?.tier ? `내 관상 유형은 ${result.dragonface.tier}` : "내 AI 관상 결과"}
+            url="https://mytesttype.com/"
+          />
+        </div>
 
         <motion.button
           onClick={onReset}

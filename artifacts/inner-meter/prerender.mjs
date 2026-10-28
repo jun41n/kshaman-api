@@ -230,4 +230,21 @@ ${listItems}
   console.log("✓  palm-reading/index.html");
 }
 
-console.log("\n✅ Pre-render 완료! 총", posts.length + 2, "페이지 생성");
+/* ── /gwansang ─────────────────────────────── */
+{
+  const dir = join(distDir, "gwansang");
+  mkdirSync(dir, { recursive: true });
+  const html = buildPage({
+    title: "AI 관상 분석 | MyTestType",
+    description:
+      "사진 한 장을 바탕으로 얼굴 특징과 인상에서 보이는 성향을 전통 관상 문화의 언어로 살펴보는 AI 관상 서비스입니다.",
+    canonical: "https://mytesttype.com/gwansang/",
+    bodyHtml: `
+<h1 style="font-size:1.7em;font-weight:900;margin:0 0 0.5em;color:#111">AI 관상 분석</h1>
+<p style="color:#555;margin-bottom:1.2em;line-height:1.7">사진 속 표정과 인상을 전통 관상 문화의 언어로 살펴보고, 나를 바라보는 새로운 단서를 건네는 문화·오락 목적의 서비스입니다.</p>`,
+  });
+  writeFileSync(join(dir, "index.html"), html, "utf-8");
+  console.log("✓  gwansang/index.html");
+}
+
+console.log("\n✅ Pre-render 완료! 총", posts.length + 3, "페이지 생성");

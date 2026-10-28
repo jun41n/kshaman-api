@@ -11,7 +11,7 @@ interface Props {
   centre?: React.ReactNode;
 }
 
-const K_SHAMAN_HOME = "https://mytesttype.com/k-shaman/";
+const MAIN_HOME = "https://mytesttype.com/";
 const PALM_READING_HOME =
   typeof window !== "undefined" && window.location.hostname === "localhost"
     ? "http://localhost:4176/palm-reading/"
@@ -37,7 +37,7 @@ export function SiteNav({ onBack, backLabel, centre }: Props) {
             </button>
           ) : (
             <a
-              href={K_SHAMAN_HOME}
+              href={MAIN_HOME}
               className="flex items-center gap-2 group shrink-0"
             >
               {/* MyTestType logo mark */}
