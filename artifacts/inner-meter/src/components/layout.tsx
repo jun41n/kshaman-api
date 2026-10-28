@@ -1,6 +1,6 @@
 import { ReactNode, useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Hand, Menu, X, Sparkles } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { NativeBannerAd } from "@/components/NativeBannerAd";
@@ -8,6 +8,8 @@ interface LayoutProps {
   children: ReactNode;
   showAd?: boolean;
 }
+
+const K_SHAMAN_URL = "https://mytesttype.com/k-shaman/";
 
 export function Layout({ children, showAd = false }: LayoutProps) {
   const { t, i18n } = useTranslation();
@@ -38,7 +40,7 @@ export function Layout({ children, showAd = false }: LayoutProps) {
         <div className="container max-w-5xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <a href="/k-shaman/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <a href="/gwansang/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <div className="w-8 h-8 rounded-xl bg-gradient-primary flex items-center justify-center text-white shadow-md shadow-primary/20">
                 <Sparkles className="w-5 h-5" />
               </div>
@@ -50,17 +52,17 @@ export function Layout({ children, showAd = false }: LayoutProps) {
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-6">
               <Link
-                href="/gwansang/"
-                className="flex items-center gap-1.5 text-sm font-bold group"
+                href="/palm-reading/"
+                className="flex items-center gap-1.5 text-sm font-bold text-muted-foreground hover:text-foreground transition-colors"
+                title={isKo ? "손금 서비스 준비 중" : "Palm reading coming soon"}
               >
-                <div className="w-5 h-5 rounded-md flex items-center justify-center text-white shadow-sm transition-shadow"
-                  style={{ background: "linear-gradient(135deg, hsl(15,70%,24%) 0%, hsl(10,65%,20%) 100%)" }}>
-                  <span className="text-[10px]">🔮</span>
+                <div className="w-5 h-5 rounded-md bg-muted flex items-center justify-center">
+                  <Hand className="w-3 h-3" />
                 </div>
-                <span className="text-muted-foreground hover:text-foreground transition-colors">관상</span>
+                <span>{isKo ? "손금" : "Palm Reading"}</span>
               </Link>
               <a
-                href="/k-shaman/"
+                href={K_SHAMAN_URL}
                 className="flex items-center gap-1.5 text-sm font-bold group"
               >
                 <div className="w-5 h-5 rounded-md bg-gradient-primary flex items-center justify-center text-white shadow-sm shadow-primary/30 group-hover:shadow-primary/50 transition-shadow">
@@ -93,17 +95,17 @@ export function Layout({ children, showAd = false }: LayoutProps) {
           <div className="md:hidden absolute top-[calc(100%+1px)] left-0 w-full bg-background/95 backdrop-blur-xl border-b border-border shadow-xl animate-in slide-in-from-top-2">
             <nav className="flex flex-col p-4 gap-2">
               <Link
-                href="/gwansang/"
-                className="px-4 py-3 rounded-xl text-base font-bold transition-colors hover:bg-muted flex items-center gap-2 text-muted-foreground"
+                href="/palm-reading/"
+                className="px-4 py-3 rounded-xl text-base font-bold flex items-center gap-2 text-muted-foreground hover:bg-muted transition-colors"
+                title={isKo ? "손금 서비스 준비 중" : "Palm reading coming soon"}
               >
-                <div className="w-6 h-6 rounded-lg flex items-center justify-center text-white shadow-sm"
-                  style={{ background: "linear-gradient(135deg, hsl(15,70%,24%) 0%, hsl(10,65%,20%) 100%)" }}>
-                  <span className="text-[12px]">🔮</span>
+                <div className="w-6 h-6 rounded-lg bg-muted flex items-center justify-center">
+                  <Hand className="w-3.5 h-3.5" />
                 </div>
-                <span>관상</span>
+                <span>{isKo ? "손금" : "Palm Reading"}</span>
               </Link>
               <a
-                href="/k-shaman/"
+                href={K_SHAMAN_URL}
                 className="px-4 py-3 rounded-xl text-base font-bold transition-colors hover:bg-muted flex items-center gap-2"
               >
                 <div className="w-6 h-6 rounded-lg bg-gradient-primary flex items-center justify-center text-white shadow-sm shadow-primary/30">
@@ -147,8 +149,8 @@ export function Layout({ children, showAd = false }: LayoutProps) {
               </span>
               <p className="text-sm text-muted-foreground max-w-[220px]">
                 {isKo
-                  ? "K-Shaman AI 사주와 AI 관상을 문화·오락 목적으로 제공합니다."
-                  : "Cultural, entertainment-oriented K-Shaman AI Saju and AI face reading."}
+                  ? "AI 관상과 K-Shaman AI 사주를 문화·오락 목적으로 제공합니다."
+                  : "Cultural, entertainment-oriented AI face reading and K-Shaman AI Saju."}
               </p>
               <div className="mt-2 text-xs text-muted-foreground/55 leading-relaxed space-y-0.5">
                 <p>Lee Hyejin | 30, Deoksong 1-ro, Namyangju-si, Gyeonggi-do | proofcom26@gmail.com</p>
@@ -163,12 +165,15 @@ export function Layout({ children, showAd = false }: LayoutProps) {
                   {isKo ? "서비스" : "Services"}
                 </p>
                 <div className="flex flex-col gap-2.5 text-sm font-medium text-muted-foreground">
-                  <a href="/k-shaman/" className="hover:text-primary transition-colors">
-                    K-Shaman AI {isKo ? "사주" : "Saju"}
-                  </a>
                   <Link href="/gwansang/" className="hover:text-primary transition-colors">
                     {isKo ? "AI 관상" : "AI Face Reading"}
                   </Link>
+                  <Link href="/palm-reading/" className="hover:text-primary transition-colors">
+                    {isKo ? "AI 손금" : "AI Palm Reading"}
+                  </Link>
+                  <a href={K_SHAMAN_URL} className="hover:text-primary transition-colors">
+                    K-Shaman AI {isKo ? "사주" : "Saju"}
+                  </a>
                   <a href="/privacy/" className="hover:text-primary transition-colors">
                     {isKo ? "개인정보 처리방침" : "Privacy Policy"}
                   </a>

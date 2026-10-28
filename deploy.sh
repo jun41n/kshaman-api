@@ -44,6 +44,11 @@ cp "$DIST/index.html" "$DEPLOY_DIR/gwansang/index.html"
 cp "$INNER_METER/public/favicon.svg" "$DEPLOY_DIR/favicon.svg"
 cp "$INNER_METER/public/gwansang.png" "$DEPLOY_DIR/gwansang.png"
 
+echo "── 4b. 손금 페이지 교체 ──"
+rm -rf "$DEPLOY_DIR/palm-reading"
+mkdir -p "$DEPLOY_DIR/palm-reading"
+cp "$DIST/palm-reading/index.html" "$DEPLOY_DIR/palm-reading/index.html"
+
 echo "── 5. k-shaman 폴더 교체 ──"
 rm -rf "$DEPLOY_DIR/k-shaman"
 mkdir -p "$DEPLOY_DIR/k-shaman"

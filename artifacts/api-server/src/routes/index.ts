@@ -5,6 +5,7 @@ import askAnythingRouter from "./askAnything.js";
 import gongsuRouter from "./gongsu.js";
 import faceReadingRouter from "./face-reading.js";
 import faceImageRouter from "./face-image.js";
+import palmReadingRouter from "./palm-reading.js";
 
 const router: IRouter = Router();
 
@@ -14,5 +15,6 @@ router.use(askAnythingRouter);
 router.use(gongsuRouter);
 router.use(faceReadingRouter);
 router.use(faceImageRouter);
+router.use(palmReadingRouter);
 
 export default router;

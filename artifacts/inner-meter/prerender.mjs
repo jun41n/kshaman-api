@@ -203,4 +203,22 @@ ${listItems}
   console.log("✓  pet-test/index.html");
 }
 
+/* ── /palm-reading ──────────────────────────── */
+{
+  const dir = join(distDir, "palm-reading");
+  mkdirSync(dir, { recursive: true });
+  const html = buildPage({
+    title: "AI 손금 분석 | MyTestType",
+    description:
+      "손바닥 사진에서 보이는 선과 형태를 바탕으로 손금 전통을 문화·오락 관점에서 살펴보는 AI 손금 서비스입니다.",
+    canonical: "https://mytesttype.com/palm-reading/",
+    bodyHtml: `
+<h1 style="font-size:1.7em;font-weight:900;margin:0 0 0.5em;color:#111">AI 손금 분석</h1>
+<p style="color:#555;margin-bottom:1.2em;line-height:1.7">손을 펼친 정면 사진을 바탕으로 생명선·두뇌선·감정선과 손바닥 형태를 전통 수상학의 상징으로 살펴보는 문화·오락 목적의 서비스입니다.</p>
+<p style="color:#555;line-height:1.7">결과는 건강·수명·재산·미래를 확정하는 판단이 아니며, 자기성찰을 위한 참고 안내로만 제공됩니다.</p>`,
+  });
+  writeFileSync(join(dir, "index.html"), html, "utf-8");
+  console.log("✓  palm-reading/index.html");
+}
+
 console.log("\n✅ Pre-render 완료! 총", posts.length + 2, "페이지 생성");

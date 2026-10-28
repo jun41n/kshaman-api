@@ -1,4 +1,4 @@
-import { Sparkles } from "lucide-react";
+import { Hand, ScanFace, Sparkles } from "lucide-react";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useApp } from "../store/appStore";
 
@@ -12,6 +12,10 @@ interface Props {
 }
 
 const K_SHAMAN_HOME = "https://mytesttype.com/k-shaman/";
+const PALM_READING_HOME =
+  typeof window !== "undefined" && window.location.hostname === "localhost"
+    ? "http://localhost:4176/palm-reading/"
+    : "https://mytesttype.com/palm-reading/";
 
 export function SiteNav({ onBack, backLabel, centre }: Props) {
   const { state } = useApp();
@@ -63,9 +67,24 @@ export function SiteNav({ onBack, backLabel, centre }: Props) {
         {/* ── RIGHT: language ── */}
         <div className="flex items-center gap-1 sm:gap-3 shrink-0">
           <a
-            href="https://mytesttype.com/gwansang/"
-            className="hidden sm:inline-flex px-3 py-1.5 rounded-lg text-sm text-white/55 hover:text-white hover:bg-white/5 transition-colors"
+            href={PALM_READING_HOME}
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-white/55 hover:text-white hover:bg-white/5 transition-colors"
           >
+            <Hand className="w-4 h-4" />
+            {isKo ? "손금" : "Palm Reading"}
+          </a>
+          <a
+            href={PALM_READING_HOME}
+            className="sm:hidden p-1.5 rounded-lg text-white/55 hover:text-white hover:bg-white/5 transition-colors"
+            aria-label={isKo ? "손금" : "Palm Reading"}
+          >
+            <Hand className="w-4 h-4" />
+          </a>
+          <a
+            href="https://mytesttype.com/gwansang/"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-white/55 hover:text-white hover:bg-white/5 transition-colors"
+          >
+            <ScanFace className="w-4 h-4" />
             {isKo ? "관상" : "Face Reading"}
           </a>
           <a
@@ -73,7 +92,7 @@ export function SiteNav({ onBack, backLabel, centre }: Props) {
             className="sm:hidden p-1.5 rounded-lg text-white/55 hover:text-white hover:bg-white/5 transition-colors"
             aria-label={isKo ? "관상" : "Face Reading"}
           >
-            🔮
+            <ScanFace className="w-4 h-4" />
           </a>
           <LanguageSwitcher />
         </div>
