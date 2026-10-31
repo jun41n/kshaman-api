@@ -83,14 +83,14 @@ router.post("/generate-face-image", async (req, res): Promise<void> => {
 
     const openai = new OpenAI({ apiKey });
 
-    console.info("[이미지생성] gpt-image-1 편집 시작", { type });
+    console.info("[이미지생성] gpt-image-2 편집 시작", { type });
 
     const imageFile = await toFile(fs.createReadStream(tmpFile), "face.png", {
       type: "image/png",
     });
 
     const response = await openai.images.edit({
-      model: "gpt-image-1",
+      model: "gpt-image-2",
       image: imageFile,
       prompt,
       n: 1,
