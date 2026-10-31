@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLocation } from "wouter";
 import { GwansangHome } from "@/pages/gwansang-home";
 import { GwansangReading } from "@/pages/gwansang-reading";
 import { GwansangResult } from "@/pages/gwansang-result";
+import { PastLifeResult } from "@/pages/past-life-result";
 import { Layout } from "@/components/layout";
 import { SeoHead } from "@/components/SeoHead";
 
@@ -52,6 +53,14 @@ export default function Gwansang() {
     setView("home");
   };
 
+  // Past-life and face-reading share one component, so changing the route must
+  // always start the selected service at its own landing view.
+  useEffect(() => {
+    setUploadedImage(null);
+    setResult(null);
+    setView("home");
+  }, [location]);
+
   const canonicalPath = location === "/" ? "/" : "/gwansang/";
   const isPastLife = location === "/";
 
@@ -86,14 +95,16 @@ export default function Gwansang() {
             <motion.div key="reading"
               initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -40 }} transition={{ duration: 0.25 }}>
-              <GwansangReading onResult={handleResult} onBack={() => setView("home")} />
+              <GwansangReading pastLife={isPastLife} onResult={handleResult} onBack={() => setView("home")} />
             </motion.div>
           )}
           {view === "result" && result && (
             <motion.div key="result"
               initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 30 }} transition={{ duration: 0.3 }}>
-              <GwansangResult result={result} image={uploadedImage} onReset={handleReset} />
+              {isPastLife
+                ? <PastLifeResult result={result} image={uploadedImage} onReset={handleReset} />
+                : <GwansangResult result={result} image={uploadedImage} onReset={handleReset} />}
             </motion.div>
           )}
         </AnimatePresence>

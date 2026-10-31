@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Check, Link2, Share2, X } from "lucide-react";
 
-type Props = { lang: string; title: string; url: string };
+type Props = { lang: string; title: string; url: string; variant?: "default" | "paper" };
 
 const COPY: Record<string, { heading: string; copy: string; copied: string; prompt: string }> = {
   ko: { heading: "SNS로 결과 공유", copy: "링크 복사", copied: "복사됨!", prompt: "내 결과도 나왔어 👀 너도 해보고 비교해봐" },
@@ -11,7 +11,7 @@ const COPY: Record<string, { heading: string; copy: string; copied: string; prom
   fr: { heading: "Partager le résultat", copy: "Copier le lien", copied: "Copié", prompt: "Voici mon résultat 👀 Essaie aussi" },
 };
 
-export function ResultShareButtons({ lang, title, url }: Props) {
+export function ResultShareButtons({ lang, title, url, variant = "default" }: Props) {
   const [copied, setCopied] = useState(false);
   const [guide, setGuide] = useState<"instagram" | "tiktok" | null>(null);
   const copy = COPY[lang.split("-")[0]] ?? COPY.en;
@@ -22,7 +22,7 @@ export function ResultShareButtons({ lang, title, url }: Props) {
   };
   const buttons = [
     { label: copied ? copy.copied : copy.copy, className: copied ? "bg-emerald-500" : "bg-[#33251f]", icon: copied ? <Check size={17} /> : <Link2 size={17} />, onClick: copyLink },
-    { label: "X", className: "bg-black", icon: <svg className="h-4 w-4 fill-white" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>, onClick: () => open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(copy.prompt)}&url=${encodeURIComponent(url)}`) },
+    { label: "X", className: "bg-black", icon: <svg className="h-4 w-4 fill-white" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>, onClick: () => open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${copy.prompt}\n${title}`)}&url=${encodeURIComponent(url)}`) },
     { label: lang.startsWith("ko") ? "페북" : "Facebook", className: "bg-[#1877F2]", icon: <svg className="h-5 w-5 fill-white" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073C24 5.446 18.627.073 12 .073S0 5.446 0 12.073c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>, onClick: () => open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`) },
     { label: lang.startsWith("ko") ? "인스타" : "Instagram", className: "bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]", icon: <svg className="h-5 w-5 fill-none stroke-white" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none" /></svg>, onClick: async () => { try { await navigator.clipboard.writeText(text); } catch { /* ignore */ } setGuide(guide === "instagram" ? null : "instagram"); } },
     { label: lang.startsWith("ko") ? "카카오" : "KakaoTalk", className: "bg-[#FEE500] text-[#3C1E1E]", icon: <svg className="h-5 w-5 fill-[#3C1E1E]" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.728 1.614 5.13 4.073 6.605-.18.664-.65 2.415-.744 2.786-.116.46.169.454.356.33.146-.097 2.325-1.577 3.264-2.214.32.047.648.073.982.073C15.523 18.38 22 14.832 22 10.8 22 6.477 17.523 3 12 3z" /></svg>, onClick: () => open(`https://sharer.kakao.com/talk/friends/picker/link?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`) },
@@ -32,8 +32,8 @@ export function ResultShareButtons({ lang, title, url }: Props) {
   ];
 
   return (
-    <section className="rounded-3xl border border-border bg-card p-5 shadow-sm">
-      <div className="mb-4 flex items-center justify-center gap-2 text-sm font-bold"><Share2 className="h-4 w-4 text-primary" />{copy.heading}</div>
+    <section className={variant === "paper" ? "border border-[#8e5a38]/35 bg-[#f6dda2]/85 p-5 shadow-[4px_4px_0_rgba(104,59,32,.14)]" : "rounded-3xl border border-border bg-card p-5 shadow-sm"}>
+      <div className={`mb-4 flex items-center justify-center gap-2 text-sm font-bold ${variant === "paper" ? "text-[#4a2517]" : ""}`}><Share2 className={`h-4 w-4 ${variant === "paper" ? "text-[#8e3f2b]" : "text-primary"}`} />{copy.heading}</div>
       <div className="grid grid-cols-4 gap-3">
         {buttons.map((button) => <button key={button.label} type="button" onClick={button.onClick} className="group flex min-w-0 flex-col items-center gap-1.5 text-[10px] font-medium text-muted-foreground"><span className={`flex h-11 w-11 items-center justify-center rounded-full text-white shadow-sm transition-transform group-active:scale-95 ${button.className}`}>{button.icon}</span><span className="max-w-full truncate">{button.label}</span></button>)}
       </div>

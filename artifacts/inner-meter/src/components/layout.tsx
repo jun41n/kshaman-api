@@ -19,7 +19,13 @@ export function Layout({ children, showAd = false }: LayoutProps) {
   const isFacePage = location.startsWith("/gwansang");
   const isPalmPage = location.startsWith("/palm-reading");
   const isPaperPage = isPastLifePage || isFacePage || isPalmPage;
-  const currentServiceLabel = isPastLifePage ? "Past Life" : isFacePage ? "Face Reading" : isPalmPage ? "Palm Reading" : null;
+  const currentServiceLabel = isPastLifePage
+    ? isKo ? "전생" : "Past Life"
+    : isFacePage
+      ? isKo ? "관상" : "Face Reading"
+      : isPalmPage
+        ? isKo ? "손금" : "Palm Reading"
+        : null;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -51,14 +57,14 @@ export function Layout({ children, showAd = false }: LayoutProps) {
         <div className="container max-w-5xl mx-auto px-4 sm:px-6">
           <div className="flex h-12 items-center justify-between">
             {/* Logo */}
-            <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+            <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
               <div className="w-8 h-8 rounded-xl bg-gradient-primary flex items-center justify-center text-white shadow-md shadow-primary/20">
                 <Sparkles className="w-5 h-5" />
               </div>
               <span className="font-display text-sm font-bold tracking-tight text-foreground">
                 MyTestType
               </span>
-            </a>
+            </Link>
             {currentServiceLabel && (
               <span className="hidden sm:inline-flex items-center rounded-full border border-[#6f2f24]/30 bg-[#3b1d17]/10 px-2.5 py-1 text-[11px] font-semibold tracking-tight text-[#3b1d17]">
                 {currentServiceLabel}
@@ -67,7 +73,7 @@ export function Layout({ children, showAd = false }: LayoutProps) {
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-6">
-              {!isPastLifePage && <a
+              {!isPastLifePage && <Link
                 href="/"
                 className="flex items-center gap-1.5 text-sm font-bold text-muted-foreground hover:text-foreground transition-colors"
               >
@@ -75,8 +81,8 @@ export function Layout({ children, showAd = false }: LayoutProps) {
                   <ScrollText className="w-3 h-3" />
                 </div>
                 <span>{isKo ? "전생" : "Past Life"}</span>
-              </a>}
-              {!isFacePage && <a
+              </Link>}
+              {!isFacePage && <Link
                 href="/gwansang/"
                 className="flex items-center gap-1.5 text-sm font-bold text-muted-foreground hover:text-foreground transition-colors"
               >
@@ -84,11 +90,10 @@ export function Layout({ children, showAd = false }: LayoutProps) {
                   <ScanFace className="w-3 h-3" />
                 </div>
                 <span>{isKo ? "관상" : "Face Reading"}</span>
-              </a>}
+              </Link>}
               {!isPalmPage && <Link
                 href="/palm-reading/"
                 className="flex items-center gap-1.5 text-sm font-bold text-muted-foreground hover:text-foreground transition-colors"
-                title={isKo ? "손금 서비스 준비 중" : "Palm reading coming soon"}
               >
                 <div className="w-5 h-5 rounded-md bg-muted flex items-center justify-center">
                   <Hand className="w-3 h-3" />
@@ -109,35 +114,31 @@ export function Layout({ children, showAd = false }: LayoutProps) {
 
             {/* Mobile: language switcher + hamburger */}
             <div className="md:hidden flex items-center gap-2">
-              {!isPastLifePage && <a
+              {!isPastLifePage && <Link
                 href="/"
                 className="p-2 text-foreground"
                 aria-label={isKo ? "전생으로 이동" : "Go to past life"}
-                title={isKo ? "전생" : "Past Life"}
               >
                 <ScrollText className="w-5 h-5" />
-              </a>}
-              {!isFacePage && <a
+              </Link>}
+              {!isFacePage && <Link
                 href="/gwansang/"
                 className="p-2 text-foreground"
                 aria-label={isKo ? "관상으로 이동" : "Go to face reading"}
-                title={isKo ? "관상" : "Face Reading"}
               >
                 <ScanFace className="w-5 h-5" />
-              </a>}
-              {!isPalmPage && <a
+              </Link>}
+              {!isPalmPage && <Link
                 href="/palm-reading/"
                 className="p-2 text-foreground"
                 aria-label={isKo ? "손금으로 이동" : "Go to palm reading"}
-                title={isKo ? "손금" : "Palm Reading"}
               >
                 <Hand className="w-5 h-5" />
-              </a>}
+              </Link>}
               <a
                 href={K_SHAMAN_URL}
                 className="p-2 text-foreground"
                 aria-label={t('nav.shaman')}
-                title={t('nav.shaman')}
               >
                 <Sparkles className="w-5 h-5" />
               </a>
@@ -153,7 +154,7 @@ export function Layout({ children, showAd = false }: LayoutProps) {
         {isMobileMenuOpen && (
           <div className={`md:hidden absolute top-[calc(100%+1px)] left-0 w-full ${isPaperPage ? "bg-[#e8c88f]/95" : "bg-background/95"} backdrop-blur-xl border-b border-border shadow-xl animate-in slide-in-from-top-2`}>
             <nav className="flex flex-col p-4 gap-2">
-              {!isFacePage && <a
+              {!isFacePage && <Link
                 href="/gwansang/"
                 className="px-4 py-3 rounded-xl text-base font-bold flex items-center gap-2 text-muted-foreground hover:bg-muted transition-colors"
               >
@@ -161,11 +162,10 @@ export function Layout({ children, showAd = false }: LayoutProps) {
                   <ScanFace className="w-3.5 h-3.5" />
                 </div>
                 <span>{isKo ? "관상" : "Face Reading"}</span>
-              </a>}
+              </Link>}
               {!isPalmPage && <Link
                 href="/palm-reading/"
                 className="px-4 py-3 rounded-xl text-base font-bold flex items-center gap-2 text-muted-foreground hover:bg-muted transition-colors"
-                title={isKo ? "손금 서비스 준비 중" : "Palm reading coming soon"}
               >
                 <div className="w-6 h-6 rounded-lg bg-muted flex items-center justify-center">
                   <Hand className="w-3.5 h-3.5" />

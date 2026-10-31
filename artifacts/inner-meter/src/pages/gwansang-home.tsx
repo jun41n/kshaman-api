@@ -30,9 +30,9 @@ export function GwansangHome({ onStart, variant = "face" }: GwansangHomeProps) {
           <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.12, duration: 0.35 }}>
             <img src={`${import.meta.env.BASE_URL}${isPastLife ? "past-life.png" : "gwansang.png"}`} alt={isPastLife ? "전생" : "관상"} className="h-[74px] w-auto object-contain object-left mix-blend-multiply md:h-[104px]" style={{ filter: "sepia(0.18) contrast(1.08) drop-shadow(1px 2px 3px rgba(60,30,5,0.25))" }} />
             {isPastLife ? (
-              <h1 className="mt-4 max-w-[720px] font-serif text-[40px] font-semibold leading-[1.12] tracking-[-0.04em] text-[#281915] md:text-[68px]">난 왕이었을까, <span className="text-[#8c3f2b]">무사였을까?</span></h1>
+              <h1 className="mt-4 max-w-[720px] font-serif text-[40px] font-semibold leading-[1.12] tracking-normal text-[#281915] md:text-[68px]">난 왕이었을까, <span className="text-[#8c3f2b]">무사였을까?</span></h1>
             ) : (
-              <h1 className="mt-4 max-w-[560px] font-serif text-[32px] font-semibold leading-[1.18] tracking-[-0.04em] text-[#281915] md:text-[50px]">얼굴에 남은 결을<br /><span className="text-[#8c3f2b]">오늘의 말로 읽다</span></h1>
+              <h1 className="mt-4 max-w-[560px] font-serif text-[32px] font-semibold leading-[1.18] tracking-normal text-[#281915] md:text-[50px]">얼굴에 남은 결을<br /><span className="text-[#8c3f2b]">오늘의 말로 읽다</span></h1>
             )}
             <p className="mt-5 max-w-[500px] text-[14px] leading-7 text-[#684a3e] md:text-[16px]">{isPastLife ? "관상으로 알아보는 나의 전생은?" : "한 장의 사진 속 표정과 인상을 전통 관상 문화의 언어로 살펴봅니다. 정답을 단정하기보다, 나를 바라보는 새로운 단서를 건넵니다."}</p>
           </motion.div>

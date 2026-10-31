@@ -458,7 +458,7 @@ const PALM_HERO_COPY = {
     title: "부자테스트",
     subtitle: "내 손금에 숨은 재물운은 어떤 모습일까?",
     instruction: "손을 펼친 정면 사진으로 부자테스트를 시작해보세요.",
-    badge: "당신의 손금에 숨겨진 가능성은?",
+    badge: "손바닥 촬영하기",
   },
   en: {
     eyebrow: "✦ AI PALM READING ✦",
@@ -467,7 +467,7 @@ const PALM_HERO_COPY = {
     subtitle: "What does your palm reveal about your money energy?",
     instruction:
       "Start your wealth test with a clear, front-facing palm photo.",
-    badge: "What possibility is hidden in your palm?",
+    badge: "Capture your palm",
   },
   ja: {
     eyebrow: "✦ AI 手相リーディング ✦",
@@ -475,7 +475,7 @@ const PALM_HERO_COPY = {
     title: "お金のタイプ診断",
     subtitle: "あなたの手相に隠れた金運の傾向は？",
     instruction: "手のひらを正面から撮影して診断を始めましょう。",
-    badge: "あなたの手相に隠れた可能性は？",
+    badge: "手のひらを撮影する",
   },
   es: {
     eyebrow: "✦ LECTURA DE PALMA CON IA ✦",
@@ -483,7 +483,7 @@ const PALM_HERO_COPY = {
     title: "TU ESTILO DE RIQUEZA",
     subtitle: "¿Qué tendencia financiera muestra tu palma?",
     instruction: "Empieza con una foto clara de tu palma de frente.",
-    badge: "¿Qué posibilidad esconde tu palma?",
+    badge: "Fotografiar mi palma",
   },
   "pt-BR": {
     eyebrow: "✦ LEITURA DA PALMA COM IA ✦",
@@ -491,7 +491,7 @@ const PALM_HERO_COPY = {
     title: "SEU ESTILO DE RIQUEZA",
     subtitle: "O que sua palma mostra sobre sua relação com o dinheiro?",
     instruction: "Comece com uma foto nítida da palma voltada para a câmera.",
-    badge: "Que possibilidade está escondida na sua palma?",
+    badge: "Fotografar minha palma",
   },
   fr: {
     eyebrow: "✦ LECTURE DE PAUME PAR IA ✦",
@@ -500,7 +500,7 @@ const PALM_HERO_COPY = {
     subtitle: "Que révèle votre paume sur votre rapport à l'argent ?",
     instruction:
       "Commencez avec une photo nette de votre paume face à l'objectif.",
-    badge: "Quelle possibilité se cache dans votre paume ?",
+    badge: "Photographier ma paume",
   },
 } as const;
 
@@ -836,9 +836,11 @@ export default function PalmReading() {
         description={ui.seoDescription}
         path="/palm-reading/"
       />
-      <main className="paper-grain palm-reading-page mx-auto w-full max-w-6xl pb-8">
-        <section className="relative mb-6 overflow-hidden border border-[#9b5a3b]/35 bg-[#e8c88f] px-5 py-8 text-[#2a1b16] shadow-[6px_7px_0_rgba(101,54,33,0.16)] md:px-12 md:py-14">
-          <div className="pointer-events-none absolute inset-0 opacity-25" style={{ backgroundImage: "radial-gradient(#70442b 0.7px, transparent 0.7px)", backgroundSize: "17px 17px" }} />
+      <main className="paper-grain palm-reading-page relative -mx-4 w-[calc(100%+2rem)] overflow-hidden bg-[#e8c88f] pb-8 sm:-mx-6 sm:w-[calc(100%+3rem)]">
+        <div className="pointer-events-none absolute inset-0 opacity-35" style={{ backgroundImage: "radial-gradient(#70442b 0.7px, transparent 0.7px)", backgroundSize: "17px 17px" }} />
+        <div className="pointer-events-none absolute -right-24 top-16 h-72 w-72 rounded-full border border-[#9b5a3b]/20" />
+        <div className="pointer-events-none absolute -right-16 top-24 h-56 w-56 rounded-full border border-[#9b5a3b]/15" />
+        <section className="relative mb-6 overflow-hidden bg-transparent px-5 py-9 text-[#2a1b16] md:px-12 md:py-16 lg:px-20">
           <span className="pointer-events-none absolute left-4 top-3 font-serif text-2xl text-[#8c3f2b]/60">印</span>
           <span className="pointer-events-none absolute right-5 top-4 font-serif text-xl text-[#8c3f2b]/60">相</span>
           <span className="pointer-events-none absolute bottom-3 left-8 font-serif text-lg text-[#8c3f2b]/50">手</span>
@@ -849,24 +851,24 @@ export default function PalmReading() {
             <p className="mb-3 text-xs font-bold uppercase tracking-[0.16em] text-[#7b3f2b]">
               {hero.eyebrow}
             </p>
-            <h1 className="font-serif text-3xl font-semibold leading-tight tracking-[-0.03em] sm:text-4xl">
+            <h1 className="font-serif text-[40px] font-semibold leading-[1.12] tracking-normal md:text-[68px]">
               {mode === "compatibility" ? (
                 <>
                   <span className="block text-[#281915]">{modeCopy.pair}</span>
-                  <span className="mt-1 block text-4xl font-semibold text-[#8c3f2b] sm:text-5xl">
+                  <span className="mt-1 block text-[40px] font-semibold text-[#8c3f2b] md:text-[68px]">
                     ♥
                   </span>
                 </>
               ) : (
                 <>
                   <span className="block text-[#281915]">{hero.lead}</span>
-                  <span className="mt-1 block text-4xl font-semibold text-[#8c3f2b] sm:text-5xl">
+                  <span className="mt-1 block text-[40px] font-semibold text-[#8c3f2b] md:text-[68px]">
                     {hero.title}
                   </span>
                 </>
               )}
             </h1>
-            <p className="mx-auto mt-4 max-w-sm text-sm font-semibold leading-relaxed text-[#684a3e]">
+            <p className="mt-4 max-w-sm text-sm font-semibold leading-relaxed text-[#684a3e]">
               {mode === "compatibility" ? modeCopy.pairDesc : hero.subtitle}
               <br />
               <span className="font-normal text-[#79594b]">
@@ -875,15 +877,13 @@ export default function PalmReading() {
                   : hero.instruction}
               </span>
             </p>
-            <div className="mx-auto mt-5 inline-flex rounded-sm bg-[#281915] px-4 py-2 text-xs font-bold text-[#f8e7bd] shadow-[3px_3px_0_#9b5a3b]">
-              ✦ {hero.badge} ✦
-            </div>
+            <button type="button" onClick={() => setStage("camera")} className="mt-5 inline-flex h-11 items-center justify-center gap-2 rounded-sm bg-[#281915] px-5 text-xs font-bold text-[#f8e7bd] shadow-[3px_3px_0_#9b5a3b] transition-transform hover:-translate-y-0.5 active:translate-y-0">
+              <Camera className="h-4 w-4" /> {hero.badge}
+            </button>
             </div>
             <div className="relative border-[10px] border-[#f1d8a5] bg-[#f3dfb4] p-2 shadow-[8px_10px_0_rgba(101,54,33,0.22)]">
               <div className="relative flex aspect-[4/3] flex-col items-center justify-center overflow-hidden border border-[#9b5a3b]/45 bg-[#d5b27a] text-center">
-                <Hand className="h-24 w-24 text-[#6d3c2d] opacity-80" strokeWidth={1.2} />
-                <p className="mt-3 font-serif text-2xl font-semibold text-[#f7e6be]">手相</p>
-                <p className="mt-1 text-[11px] tracking-[0.16em] text-[#f7e6be]">손바닥의 결을 살피는 시간</p>
+                <img src={`${import.meta.env.BASE_URL}palm-lines.png`} alt="생명선, 두뇌선, 감정선, 운명선, 재물선, 결혼선을 표시한 전통 손금 운세 도해" className="h-full w-full object-cover sepia-[.08] mix-blend-multiply" />
               </div>
               <div className="mt-3 flex items-center justify-between border-t border-[#9b5a3b]/25 pt-3 text-[11px] text-[#79594b]"><span className="flex items-center gap-1.5"><Sparkles size={13} /> 전통 기록 × AI 해석</span><span>手 · 相 · 心</span></div>
             </div>
@@ -1000,17 +1000,7 @@ export default function PalmReading() {
                     </p>
                   </div>
                 </div>
-                <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setError(null);
-                      setStage("camera");
-                    }}
-                    className="flex min-h-12 items-center justify-center gap-2 rounded-xl bg-primary px-3 py-3 text-sm font-semibold text-primary-foreground"
-                  >
-                    <Camera className="h-5 w-5" /> {ui.camera}
-                  </button>
+                <div className="mt-5">
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}

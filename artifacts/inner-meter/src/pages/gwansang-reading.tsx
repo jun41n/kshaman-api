@@ -4,6 +4,7 @@ import { ArrowLeft, Upload, Camera } from "lucide-react";
 import { GwansangAnalysisResult } from "@/pages/gwansang";
 
 interface ReadingProps {
+  pastLife?: boolean;
   onResult: (imageBase64: string, data: GwansangAnalysisResult) => void;
   onBack: () => void;
 }
@@ -195,7 +196,7 @@ function CosmicWatch({ stepIndex }: { stepIndex: number }) {
 const PAGE_BG = "linear-gradient(175deg, #D4A96A 0%, #C49050 40%, #B8813A 100%)";
 const API_URL = "https://api.mytesttype.com/api/face-reading";
 
-export function GwansangReading({ onResult, onBack }: ReadingProps) {
+export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingProps) {
   const [stage, setStage] = useState<Stage>("upload");
   const [preview, setPreview] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -300,8 +301,8 @@ export function GwansangReading({ onResult, onBack }: ReadingProps) {
             <ArrowLeft size={20} />
           </button>
           <div>
-            <h2 className="font-bold text-lg" style={{ color: "hsl(25,60%,10%)" }}>사진 업로드</h2>
-            <p className="text-xs" style={{ color: "hsl(25,35%,40%)" }}>얼굴이 잘 보이는 정면 사진을 올려주세요</p>
+            <h2 className="font-bold text-lg" style={{ color: "hsl(25,60%,10%)" }}>{pastLife ? "전생 캐릭터 사진" : "사진 업로드"}</h2>
+            <p className="text-xs" style={{ color: "hsl(25,35%,40%)" }}>{pastLife ? "전생 캐릭터를 찾을 얼굴 정면 사진을 올려주세요" : "얼굴이 잘 보이는 정면 사진을 올려주세요"}</p>
           </div>
         </div>
 
@@ -369,7 +370,7 @@ export function GwansangReading({ onResult, onBack }: ReadingProps) {
             }}
             whileTap={preview ? { scale: 0.97 } : undefined}
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            {preview ? "AI 관상 분석 시작" : "사진을 먼저 선택해주세요"}
+            {preview ? (pastLife ? "내 전생 직업 확인하기" : "AI 관상 분석 시작") : "사진을 먼저 선택해주세요"}
           </motion.button>
           <p className="mt-3 text-[11px] leading-relaxed text-center" style={{ color: "hsl(25,35%,38%)" }}>
             사진은 요청한 AI 분석 처리를 위해 외부 AI 제공업체로 전송될 수 있습니다. 결과는 전통문화 기반의 오락·참고용이며 실제 성격·건강·재산·운명 또는 유전 정보를 판정하지 않습니다.

@@ -332,9 +332,6 @@
     background-size: 5px 5px, 7px 7px, 100% 6px, 8px 100%;
     background-blend-mode: multiply, screen, multiply, multiply;
     color: var(--palm-ink);
-    padding: 1.25rem;
-    border: 1px solid rgba(155, 90, 59, 0.28);
-    box-shadow: 6px 7px 0 rgba(101, 54, 33, 0.12);
   }
 
   .palm-reading-page .bg-card,
