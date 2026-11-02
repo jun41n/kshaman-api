@@ -30,7 +30,7 @@ function esc(str) {
  * #root 앞에 pre-rendered 콘텐츠를 삽입합니다.
  * React 앱이 마운트된 후 prerender 영역을 숨깁니다.
  */
-function buildPage({ title, description, canonical, bodyHtml }) {
+function buildPage({ title, description, canonical, bodyHtml, ogImage }) {
   let html = baseTemplate;
 
   // <title> 교체
@@ -62,12 +62,17 @@ function buildPage({ title, description, canonical, bodyHtml }) {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${canonical}">
+<meta property="og:image" content="${ogImage}">
 </head>`
   );
 
   html = html.replace(
     /<meta\s+name="twitter:title"[\s\S]*?\/?>/,
     `<meta name="twitter:title" content="${esc(title)}">`
+  );
+  html = html.replace(
+    /<meta\s+name="twitter:image"[\s\S]*?\/?>/,
+    `<meta name="twitter:image" content="${ogImage}">`
   );
   html = html.replace(
     /<meta\s+name="twitter:description"[\s\S]*?\/?>/,
@@ -106,6 +111,7 @@ ${bodyHtml}
     description:
       "손바닥 사진에서 보이는 선과 형태를 바탕으로 손금 전통을 문화·오락 관점에서 살펴보는 AI 손금 서비스입니다.",
     canonical: "https://mytesttype.com/palm-reading/",
+    ogImage: "https://mytesttype.com/palm-calligraphy.png",
     bodyHtml: `
 <h1 style="font-size:1.7em;font-weight:900;margin:0 0 0.5em;color:#111">AI 손금 분석</h1>
 <p style="color:#555;margin-bottom:1.2em;line-height:1.7">손을 펼친 정면 사진을 바탕으로 생명선·두뇌선·감정선과 손바닥 형태를 전통 수상학의 상징으로 살펴보는 문화·오락 목적의 서비스입니다.</p>
@@ -124,6 +130,7 @@ ${bodyHtml}
     description:
       "사진 한 장을 바탕으로 얼굴 특징과 인상에서 보이는 성향을 전통 관상 문화의 언어로 살펴보는 AI 관상 서비스입니다.",
     canonical: "https://mytesttype.com/gwansang/",
+    ogImage: "https://mytesttype.com/gwansang.png",
     bodyHtml: `
 <h1 style="font-size:1.7em;font-weight:900;margin:0 0 0.5em;color:#111">AI 관상 분석</h1>
 <p style="color:#555;margin-bottom:1.2em;line-height:1.7">사진 속 표정과 인상을 전통 관상 문화의 언어로 살펴보고, 나를 바라보는 새로운 단서를 건네는 문화·오락 목적의 서비스입니다.</p>`,
@@ -142,3 +149,10 @@ writeFileSync(
   "utf8",
 );
 console.log("✓  legacy URL fallback redirect");
+
+for (const legacyPath of ["tests", "tarot", "pet-test", "blog"]) {
+  const directory = join(distDir, legacyPath);
+  mkdirSync(directory, { recursive: true });
+  writeFileSync(join(directory, "index.html"), `<!doctype html><meta http-equiv="refresh" content="0; url=/"><script>location.replace("/")</script>`, "utf8");
+}
+console.log("✓  legacy root redirect pages");
