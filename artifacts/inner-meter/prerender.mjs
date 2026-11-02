@@ -1,20 +1,21 @@
 /**
  * prerender.mjs
- * 빌드 후 실행 — 각 블로그 포스트 / 주요 페이지의 정적 HTML을 생성합니다.
- * GitHub Pages가 /blog/1 요청 시 404.html 대신 실제 콘텐츠를 서빙할 수 있게 합니다.
- * AdSense / 검색봇은 <body>에서 실제 텍스트를 인식합니다.
+ * Builds static SEO entry pages for the three active web services.
  */
 
-import { readFileSync, writeFileSync, mkdirSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, rmSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const distDir = join(__dirname, "dist/public");
-const publicDir = join(__dirname, "public");
-
-const posts = JSON.parse(readFileSync(join(publicDir, "posts.json"), "utf-8"));
 const baseTemplate = readFileSync(join(distDir, "index.html"), "utf-8");
+
+// These files belong to retired MBTI, tarot, pet, and blog products. Keep
+// source history locally if needed, but do not publish them with the live site.
+for (const legacyPath of ["blog", "pet-test", "images/tarot", "images/tarot-back.png", "tarot-blog.png", "posts.json"]) {
+  rmSync(join(distDir, legacyPath), { recursive: true, force: true });
+}
 
 function esc(str) {
   return String(str)
@@ -22,37 +23,6 @@ function esc(str) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
-}
-
-function renderContent(content) {
-  const lines = content.split("\n");
-  const parts = [];
-  let i = 0;
-  while (i < lines.length) {
-    const line = lines[i];
-    if (line.startsWith("## ")) {
-      parts.push(
-        `<h2 style="font-size:1.15em;font-weight:900;margin:2em 0 0.5em 0;color:#111">${esc(line.slice(3))}</h2>`
-      );
-    } else if (line.startsWith("[POSTER:")) {
-      // POSTER 라인 다음에 오는 텍스트 줄도 단락으로 처리
-      let j = i + 1;
-      while (j < lines.length && lines[j].trim() === "") j++;
-      if (j < lines.length && lines[j].trim() !== "") {
-        parts.push(
-          `<p style="line-height:1.8;margin-bottom:0.9em;color:#333">${esc(lines[j])}</p>`
-        );
-        i = j + 1;
-        continue;
-      }
-    } else if (line.trim() !== "") {
-      parts.push(
-        `<p style="line-height:1.8;margin-bottom:0.9em;color:#333">${esc(line)}</p>`
-      );
-    }
-    i++;
-  }
-  return parts.join("\n");
 }
 
 /**
@@ -127,91 +97,6 @@ ${bodyHtml}
   return html;
 }
 
-/* ── 블로그 포스트 1~15 ───────────────────────── */
-for (const post of posts) {
-  const dir = join(distDir, "blog", post.id);
-  mkdirSync(dir, { recursive: true });
-
-  const bodyHtml = `
-<p style="font-size:0.78em;color:#888;margin-bottom:0.4em">${esc(post.category)} · ${esc(post.date)}</p>
-<h1 style="font-size:1.7em;font-weight:900;margin:0 0 0.5em;color:#111;line-height:1.3">${esc(post.title)}</h1>
-<p style="font-size:1em;color:#555;margin-bottom:1.5em;line-height:1.7">${esc(post.description)}</p>
-<hr style="border:none;border-top:1px solid #e5e5e5;margin-bottom:1.5em"/>
-${renderContent(post.content)}`;
-
-  const html = buildPage({
-    title: `${post.title} | 심리 칼럼 · MyTestType`,
-    description: post.description,
-    canonical: `https://mytesttype.com/blog/${post.id}`,
-    bodyHtml,
-  });
-
-  writeFileSync(join(dir, "index.html"), html, "utf-8");
-  console.log(`✓  blog/${post.id}/index.html`);
-}
-
-/* ── /blog 목록 페이지 ───────────────────────── */
-{
-  const dir = join(distDir, "blog");
-  const listItems = posts
-    .map(
-      (p) =>
-        `<li style="padding:14px 0;border-bottom:1px solid #eee">
-  <a href="/blog/${p.id}" style="font-weight:700;color:#6c3fc8;text-decoration:none;font-size:1em">${esc(p.title)}</a>
-  <p style="margin:4px 0 0;font-size:0.88em;color:#555;line-height:1.6">${esc(p.description)}</p>
-</li>`
-    )
-    .join("\n");
-
-  const bodyHtml = `
-<h1 style="font-size:1.7em;font-weight:900;margin:0 0 0.3em;color:#111">심리 칼럼</h1>
-<p style="color:#555;margin-bottom:1.5em">심리학·자기계발·인간관계에 관한 깊이 있는 칼럼을 만나보세요.</p>
-<ul style="list-style:none;padding:0;margin:0">
-${listItems}
-</ul>`;
-
-  const html = buildPage({
-    title: "심리 칼럼 | MyTestType",
-    description:
-      "MBTI, 심리학, 자기계발에 관한 전문 심리 칼럼. 과학적 근거를 바탕으로 자신을 더 깊이 이해하세요.",
-    canonical: "https://mytesttype.com/blog",
-    bodyHtml,
-  });
-
-  writeFileSync(join(dir, "index.html"), html, "utf-8");
-  console.log("✓  blog/index.html");
-}
-
-/* ── /pet-test ───────────────────────────────── */
-{
-  const dir = join(distDir, "pet-test");
-  mkdirSync(dir, { recursive: true });
-
-  const bodyHtml = `
-<h1 style="font-size:1.7em;font-weight:900;margin:0 0 0.5em;color:#111">반려동물 성격 유형 테스트 (Pet MBTI)</h1>
-<p style="color:#555;margin-bottom:1.2em;line-height:1.7">
-  우리 강아지·고양이의 성격은 어떤 유형일까요? 반려동물의 행동 패턴을 분석하여 MBTI 유형으로 알려드립니다.
-  강아지와 고양이의 사회성, 호기심, 에너지 수준, 루틴 선호도를 바탕으로 16가지 성격 유형 중 하나를 찾아보세요.
-</p>
-<ul style="color:#333;line-height:2;padding-left:1.2em">
-  <li>강아지·고양이 모두 지원</li>
-  <li>행동 패턴 기반 15문항 테스트</li>
-  <li>16가지 펫 성격 유형 분석</li>
-  <li>반려동물과의 케어 팁 제공</li>
-</ul>`;
-
-  const html = buildPage({
-    title: "반려동물 성격 유형 테스트 (Pet MBTI) | MyTestType",
-    description:
-      "우리 강아지·고양이의 성격은 어떤 유형일까요? 반려동물의 행동 패턴을 분석하여 16가지 MBTI 유형으로 알려드립니다.",
-    canonical: "https://mytesttype.com/pet-test",
-    bodyHtml,
-  });
-
-  writeFileSync(join(dir, "index.html"), html, "utf-8");
-  console.log("✓  pet-test/index.html");
-}
-
 /* ── /palm-reading ──────────────────────────── */
 {
   const dir = join(distDir, "palm-reading");
@@ -247,4 +132,13 @@ ${listItems}
   console.log("✓  gwansang/index.html");
 }
 
-console.log("\n✅ Pre-render 완료! 총", posts.length + 3, "페이지 생성");
+console.log("\n✅ Pre-render 완료! 운영 서비스 2페이지 생성");
+
+// GitHub Pages has no server-side redirect layer. Its 404 document handles
+// old, indexed MBTI/tarot/pet/blog URLs before the SPA has a chance to load.
+writeFileSync(
+  join(distDir, "404.html"),
+  `<!doctype html><meta charset="utf-8"><script>(function(){var legacy=/^\\/(tests|results|tarot|pet-test|blog)(?:\\/|$)/;location.replace(legacy.test(location.pathname)?"/":"/");}())</script>`,
+  "utf8",
+);
+console.log("✓  legacy URL fallback redirect");

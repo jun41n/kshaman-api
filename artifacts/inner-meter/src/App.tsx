@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Switch, Route, Router as WouterRouter, useLocation } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { HelmetProvider } from "react-helmet-async";
@@ -7,23 +7,16 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { initAnalytics, trackPageView } from "@/lib/analytics";
 import "@/lib/i18n";
 
-// Pages
-import Tests from "@/pages/tests";
-import TestDetail from "@/pages/test-detail";
-import TestResult from "@/pages/test-result";
-import Tarot from "@/pages/tarot";
-import About from "@/pages/about";
-import Privacy from "@/pages/privacy";
-import Terms from "@/pages/terms";
-import Contact from "@/pages/contact";
-import NotFound from "@/pages/not-found";
-import PetHome from "@/pages/pet-home";
-import PetQuiz from "@/pages/pet-quiz";
-import PetResult from "@/pages/pet-result";
-import Blog from "@/pages/blog";
-import BlogPost from "@/pages/blog-post";
-import Gwansang from "@/pages/gwansang";
-import PalmReading from "@/pages/palm-reading";
+// Only the four live services are loaded on demand. Legacy test, tarot, pet,
+// and blog modules intentionally stay out of the production entry bundle.
+const Gwansang = lazy(() => import("@/pages/gwansang"));
+const PalmReading = lazy(() => import("@/pages/palm-reading"));
+const About = lazy(() => import("@/pages/about"));
+const Privacy = lazy(() => import("@/pages/privacy"));
+const Terms = lazy(() => import("@/pages/terms"));
+const Contact = lazy(() => import("@/pages/contact"));
+const NotFound = lazy(() => import("@/pages/not-found"));
+const SharedResult = lazy(() => import("@/pages/shared-result"));
 
 const queryClient = new QueryClient();
 
@@ -41,27 +34,41 @@ function Router() {
   return (
     <>
       <RouteTracker />
-      <Switch>
-        <Route path="/" component={Gwansang} />
-        <Route path="/tests" component={Tests} />
-        <Route path="/tests/:slug" component={TestDetail} />
-        <Route path="/results/:slug" component={TestResult} />
-        <Route path="/tarot" component={Tarot} />
-        <Route path="/about" component={About} />
-        <Route path="/privacy" component={Privacy} />
-        <Route path="/terms" component={Terms} />
-        <Route path="/contact" component={Contact} />
-        <Route path="/pet-test" component={PetHome} />
-        <Route path="/pet-test/quiz/:type" component={PetQuiz} />
-        <Route path="/pet-test/result/:type/:key" component={PetResult} />
-        <Route path="/blog" component={Blog} />
-        <Route path="/blog/:id" component={BlogPost} />
-        <Route path="/gwansang" component={Gwansang} />
-        <Route path="/palm-reading" component={PalmReading} />
-        <Route component={NotFound} />
-      </Switch>
+      <Suspense fallback={<main aria-busy="true" className="min-h-screen bg-[#ecd094]" />}>
+        <Switch>
+          <Route path="/" component={RootPage} />
+          <Route path="/tests/:rest*"><LegacyRedirect /></Route>
+          <Route path="/tests"><LegacyRedirect /></Route>
+          <Route path="/results/:rest*"><LegacyRedirect /></Route>
+          <Route path="/tarot"><LegacyRedirect /></Route>
+          <Route path="/pet-test/:rest*"><LegacyRedirect /></Route>
+          <Route path="/pet-test"><LegacyRedirect /></Route>
+          <Route path="/blog/:rest*"><LegacyRedirect /></Route>
+          <Route path="/blog"><LegacyRedirect /></Route>
+          <Route path="/about" component={About} />
+          <Route path="/privacy" component={Privacy} />
+          <Route path="/terms" component={Terms} />
+          <Route path="/contact" component={Contact} />
+          <Route path="/gwansang" component={Gwansang} />
+          <Route path="/palm-reading" component={PalmReading} />
+          <Route component={NotFound} />
+        </Switch>
+      </Suspense>
     </>
   );
+}
+
+function RootPage() {
+  const shareId = new URLSearchParams(window.location.search).get("share");
+  return shareId ? <SharedResult id={shareId} /> : <Gwansang />;
+}
+
+function LegacyRedirect() {
+  const [, setLocation] = useLocation();
+  useEffect(() => {
+    setLocation("/", { replace: true });
+  }, [setLocation]);
+  return null;
 }
 
 function App() {

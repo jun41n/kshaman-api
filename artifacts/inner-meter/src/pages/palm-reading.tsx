@@ -98,9 +98,9 @@ const PALM_UI_COPY: Record<string, PalmUiCopy> = {
       "무료 결과는 기본 선 해설을 제공합니다. 후원 후 상세 패턴과 생활 적용 아이디어를 확인할 수 있습니다.",
     toss: "Toss QR 보기",
     paypal: "PayPal QR 보기",
-    unlock: "후원 후 상세 해설 보기",
+    unlock: "테스트로 상세 해설 열기",
     donationNote:
-      "현재 후원 여부는 자동 검증되지 않으며, 자발적 후원 방식입니다.",
+      "테스트 기간에는 후원 확인 없이 상세 결과를 열 수 있습니다.",
     freeBasic: "무료 기본 해설",
     flow: "당신의 손바닥에 보이는 흐름",
     moneyNote:
@@ -526,14 +526,14 @@ function PaymentSheet({
       className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 p-3 sm:items-center"
       onClick={(event) => event.target === event.currentTarget && onClose()}
     >
-      <div className="w-full max-w-sm rounded-3xl bg-card p-5 shadow-2xl">
+      <div className="w-full max-w-sm border border-[#8e5a38]/40 bg-[#f6dda2] p-5 text-[#3f281d] shadow-[6px_6px_0_rgba(57,29,23,.35)]">
         <div className="flex items-center justify-between">
           <h2 className="text-lg font-bold">{ui.detailTitle}</h2>
           <button type="button" onClick={onClose} aria-label={ui.close}>
             <X />
           </button>
         </div>
-        <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+        <p className="mt-3 text-sm leading-relaxed text-[#604133]">
           {ui.detailIntro}
         </p>
         <div className="mt-4 grid grid-cols-2 gap-3">
@@ -541,7 +541,7 @@ function PaymentSheet({
             href="https://mytesttype.com/k-shaman/toss_qr.jpg"
             target="_blank"
             rel="noreferrer"
-            className="rounded-2xl border p-3 text-center text-sm font-semibold"
+            className="border border-[#8e5a38]/35 bg-[#f9e5b5] p-3 text-center text-sm font-semibold text-[#4a2517]"
           >
             {ui.toss}
           </a>
@@ -549,7 +549,7 @@ function PaymentSheet({
             href="https://mytesttype.com/k-shaman/paypal_qr.jpg"
             target="_blank"
             rel="noreferrer"
-            className="rounded-2xl border p-3 text-center text-sm font-semibold"
+            className="border border-[#8e5a38]/35 bg-[#f9e5b5] p-3 text-center text-sm font-semibold text-[#4a2517]"
           >
             {ui.paypal}
           </a>
@@ -557,11 +557,11 @@ function PaymentSheet({
         <button
           type="button"
           onClick={onUnlock}
-          className="mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary font-semibold text-primary-foreground"
+          className="mt-4 flex h-12 w-full items-center justify-center gap-2 border border-[#4a2517] bg-[#3b1d17] font-semibold text-[#fff0c8] shadow-[3px_3px_0_#9b5a3b]"
         >
           <Sparkles className="h-5 w-5" /> {ui.unlock}
         </button>
-        <p className="mt-3 text-center text-xs text-muted-foreground">
+        <p className="mt-3 text-center text-xs text-[#705244]">
           {ui.donationNote}
         </p>
       </div>
@@ -571,11 +571,13 @@ function PaymentSheet({
 
 function ResultView({
   images,
+  mode,
   free,
   premium,
   onPremium,
 }: {
   images: Record<HandSide, string | null>;
+  mode: PalmMode;
   free: FreeResult;
   premium: PremiumResult | null;
   onPremium: () => void;
@@ -584,10 +586,10 @@ function ResultView({
   const ui = getPalmUiCopy(i18n.language);
   return (
     <div className="space-y-4">
-      <section className="rounded-3xl border border-border bg-card p-5 shadow-sm">
-        <p className="text-sm font-semibold text-primary">{ui.freeBasic}</p>
-        <h1 className="mt-1 text-2xl font-bold">{ui.flow}</h1>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
+      <section className="border border-[#8e5a38]/25 bg-[#f9e5b5]/80 p-5 text-[#3f281d]">
+        <p className="text-sm font-semibold text-[#7e3c2a]">{ui.freeBasic}</p>
+        <h1 className="mt-1 font-serif text-2xl font-bold">{ui.flow}</h1>
+        <p className="mt-3 leading-relaxed text-[#604133]">
           {free.summary}
         </p>
       </section>
@@ -595,35 +597,35 @@ function ResultView({
         {free.lines.map((line) => (
           <article
             key={line.name}
-            className="rounded-2xl border border-border bg-card p-4"
+            className="border border-[#8e5a38]/25 bg-[#f9e5b5]/80 p-4 text-[#3f281d]"
           >
             <h2 className="font-bold">{line.name}</h2>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-2 text-sm leading-relaxed text-[#604133]">
               {line.reading}
             </p>
           </article>
         ))}
       </section>
       {free.moneyStyle && (
-        <section className="rounded-2xl border border-amber-200 bg-amber-50 p-4">
-          <p className="text-xs font-bold tracking-wide text-amber-800">
+        <section className="border border-[#8e5a38]/25 bg-[#f9e5b5]/80 p-4 text-[#3f281d]">
+          <p className="text-xs font-bold tracking-wide text-[#7e3c2a]">
             💰 {free.moneyStyle.title}
           </p>
-          <p className="mt-2 text-sm leading-relaxed text-amber-950">
+          <p className="mt-2 text-sm leading-relaxed text-[#604133]">
             {free.moneyStyle.reading}
           </p>
-          <p className="mt-2 text-[11px] text-amber-800/70">{ui.moneyNote}</p>
+          <p className="mt-2 text-[11px] text-[#85513b]">{ui.moneyNote}</p>
         </section>
       )}
-      <section className="rounded-2xl bg-muted/50 p-4 text-sm leading-relaxed text-muted-foreground">
+      <section className="border border-[#8e5a38]/25 bg-[#f9e5b5]/80 p-4 text-sm leading-relaxed text-[#604133]">
         <b>{ui.observation}:</b> {free.observation}
         <br />
         <b>{ui.question}:</b> {free.reflection}
       </section>
       {premium ? (
         <>
-          <section className="rounded-3xl border border-primary/30 bg-primary/5 p-5">
-            <p className="text-sm font-semibold text-primary">{ui.detailed}</p>
+          <section className="border border-[#8e5a38]/25 bg-[#f9e5b5]/80 p-5 text-[#3f281d]">
+            <p className="text-sm font-semibold text-[#7e3c2a]">{ui.detailed}</p>
             <p className="mt-2 leading-relaxed">{premium.summary}</p>
           </section>
           <section className="grid gap-3 sm:grid-cols-2">
@@ -631,37 +633,49 @@ function ResultView({
               (item, index) => (
                 <article
                   key={`${item.name}-${index}`}
-                  className="rounded-2xl border border-border bg-card p-4"
+                  className="border border-[#8e5a38]/25 bg-[#f9e5b5]/80 p-4 text-[#3f281d]"
                 >
                   <h2 className="font-bold">{item.name}</h2>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-2 text-sm leading-relaxed text-[#604133]">
                     {item.reading}
                   </p>
                 </article>
               ),
             )}
           </section>
-          <section className="rounded-2xl border border-border bg-card p-5">
+          <section className="border border-[#8e5a38]/25 bg-[#f9e5b5]/80 p-5 text-[#3f281d]">
             <h2 className="font-bold">{ui.everyday}</h2>
-            <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted-foreground">
+            <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-[#604133]">
               {(premium.everyday ?? []).map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
-            <p className="mt-4 text-sm text-muted-foreground">
+            <p className="mt-4 text-sm text-[#604133]">
               {premium.reflection}
             </p>
           </section>
+          <div className="text-[#3f281d]">
+            <p className="text-[11px] font-bold tracking-[.14em] text-[#85513b]">{mode === "compatibility" ? "우리 손금 상세 기록" : "나의 손금 상세 기록"}</p>
+            <h2 className="mt-1 font-serif text-xl font-bold">{mode === "compatibility" ? "두 손에서 찾은 관계 리듬" : "내 손금으로 만든 생활 리듬"}</h2>
+            <div className="mt-4 grid gap-3 sm:grid-cols-3">
+              <PalmValueCard title="일과 집중" text={premium.everyday?.[0] ?? premium.summary} />
+              <PalmValueCard title={mode === "compatibility" ? "둘의 대화법" : "관계의 거리"} text={premium.everyday?.[1] ?? premium.reflection} />
+              <PalmValueCard title="이번 주 미션" text={premium.everyday?.[2] ?? free.reflection} />
+            </div>
+          </div>
         </>
       ) : (
-        <section className="rounded-3xl border border-primary/30 bg-primary/5 p-5 text-center">
-          <Sparkles className="mx-auto h-7 w-7 text-primary" />
-          <h2 className="mt-2 font-bold">{ui.richer}</h2>
-          <p className="mt-2 text-sm text-muted-foreground">{ui.richerIntro}</p>
+        <section className="border border-[#8e5a38]/25 bg-[#f9e5b5]/80 p-5 text-center text-[#3f281d]">
+          <Sparkles className="mx-auto h-7 w-7 text-[#7e3c2a]" />
+          <h2 className="mt-2 font-bold">{mode === "compatibility" ? "우리 손금 궁합 리포트를 열어 보세요" : ui.richer}</h2>
+          <p className="mt-2 text-sm text-[#604133]">{mode === "compatibility" ? "두 손의 관계 리듬, 대화가 어긋나는 순간, 함께 잘 맞는 생활 미션과 소장용 궁합 카드를 확인할 수 있어요." : "일·관계·생활 리듬 미션과 소장용 개인 결과 카드를 확인할 수 있어요."}</p>
+          <div className="mt-4 grid grid-cols-3 gap-2 text-left text-[11px] text-muted-foreground">
+            {[mode === "compatibility" ? "관계 리듬" : "일과 집중", mode === "compatibility" ? "대화 거리" : "관계 거리", "이번 주 미션"].map((item) => <div key={item} className="border border-[#8e5a38]/25 bg-[#fff0c8]/60 px-2 py-2 blur-[1px]">{item}</div>)}
+          </div>
           <button
             type="button"
             onClick={onPremium}
-            className="mt-4 h-11 rounded-xl bg-primary px-5 font-semibold text-primary-foreground"
+            className="mt-4 h-11 bg-[#281915] px-5 font-semibold text-[#f8e7bd]"
           >
             {ui.openDetail}
           </button>
@@ -675,7 +689,7 @@ function ResultView({
                 key={hand}
                 src={images[hand] as string}
                 alt={`${handLabel(hand, ui)} analysis photo`}
-                className="aspect-square rounded-2xl border border-border object-cover"
+                className="aspect-square border border-[#8e5a38]/25 object-cover"
               />
             ),
         )}
@@ -684,10 +698,18 @@ function ResultView({
         lang={i18n.language}
         title={free.moneyStyle?.title ?? ui.flow}
         url="https://mytesttype.com/palm-reading/"
+        summary={free.summary}
+        service="palm"
+        variant="paper"
       />
     </div>
   );
 }
+
+function PalmValueCard({ title, text }: { title: string; text: string }) {
+  return <article className="border border-[#8e5a38]/20 bg-[#fff0c8]/70 p-3"><p className="text-xs font-bold text-[#7e3c2a]">{title}</p><p className="mt-2 text-xs leading-5 text-[#604133]">{text}</p></article>;
+}
+
 
 export default function PalmReading() {
   const { i18n } = useTranslation();
@@ -901,7 +923,7 @@ export default function PalmReading() {
                 setFree(null);
                 setPremium(null);
               }}
-              className={`rounded-2xl border p-4 text-left transition ${mode === "solo" ? "border-primary bg-primary/5 shadow-sm" : "border-border bg-card"}`}
+              className={`border p-4 text-left transition ${mode === "solo" ? "border-[#8e3f2b] bg-[#f9e5b5] shadow-[3px_3px_0_rgba(104,59,32,.12)]" : "border-[#8e5a38]/35 bg-[#f6dda2]/75"}`}
             >
               <span className="block font-bold">{modeCopy.solo}</span>
               <span className="mt-1 block text-xs text-muted-foreground">
@@ -919,7 +941,7 @@ export default function PalmReading() {
                 setFree(null);
                 setPremium(null);
               }}
-              className={`rounded-2xl border p-4 text-left transition ${mode === "compatibility" ? "border-primary bg-primary/5 shadow-sm" : "border-border bg-card"}`}
+              className={`border p-4 text-left transition ${mode === "compatibility" ? "border-[#8e3f2b] bg-[#f9e5b5] shadow-[3px_3px_0_rgba(104,59,32,.12)]" : "border-[#8e5a38]/35 bg-[#f6dda2]/75"}`}
             >
               <span className="block font-bold">{modeCopy.pair}</span>
               <span className="mt-1 block text-xs text-muted-foreground">
@@ -935,13 +957,14 @@ export default function PalmReading() {
                 ? captures
                 : { right: pairCaptures.me, left: pairCaptures.partner }
             }
+            mode={mode}
             free={free}
             premium={premium}
             onPremium={() => setPaymentOpen(true)}
           />
         ) : stage === "analyzing" ? (
-          <section className="rounded-3xl border border-border bg-card p-10 text-center shadow-sm">
-            <Loader2 className="mx-auto h-10 w-10 animate-spin text-primary" />
+          <section className="border border-[#8e5a38]/35 bg-[#f6dda2]/85 p-10 text-center shadow-[4px_4px_0_rgba(104,59,32,.14)]">
+            <Loader2 className="mx-auto h-10 w-10 animate-spin text-[#8e3f2b]" />
             <h2 className="mt-4 font-bold">{ui.analyzing}</h2>
             <p className="mt-2 text-sm text-muted-foreground">
               {ui.analyzingIntro}
@@ -949,7 +972,7 @@ export default function PalmReading() {
           </section>
         ) : (
           <>
-            <div className="mb-4 flex gap-2 rounded-2xl bg-muted/60 p-1">
+            <div className="mb-4 flex gap-2 border border-[#8e5a38]/25 bg-[#f6dda2]/70 p-1">
               {(mode === "solo"
                 ? (["right", "left"] as HandSide[])
                 : (["me", "partner"] as PairPerson[])
@@ -964,7 +987,7 @@ export default function PalmReading() {
                     setPreview(null);
                     setError(null);
                   }}
-                  className={`flex-1 rounded-xl px-4 py-2.5 text-sm font-semibold ${(mode === "solo" ? side === item : pairPerson === item) ? "bg-background text-foreground shadow-sm" : "text-muted-foreground"}`}
+                  className={`flex-1 px-4 py-2.5 text-sm font-semibold ${(mode === "solo" ? side === item : pairPerson === item) ? "bg-[#fff0c8] text-[#3f281d] shadow-sm" : "text-[#85513b]"}`}
                 >
                   {mode === "solo"
                     ? handLabel(item as HandSide, ui)
@@ -980,8 +1003,8 @@ export default function PalmReading() {
               ))}
             </div>
             {stage === "guide" && (
-              <section className="rounded-3xl border border-border bg-card p-5 shadow-sm">
-                <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl bg-muted/40">
+              <section className="border border-[#8e5a38]/35 bg-[#f6dda2]/85 p-5 shadow-[4px_4px_0_rgba(104,59,32,.14)]">
+                <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-[#fff0c8]/75">
                   <div className="absolute inset-7 rounded-[38%] border-2 border-dashed border-primary/50" />
                   <div className="relative flex flex-col items-center gap-3 text-center text-muted-foreground">
                     <Hand
@@ -1004,7 +1027,7 @@ export default function PalmReading() {
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-border px-3 py-3 text-sm font-semibold"
+                    className="flex min-h-12 items-center justify-center gap-2 border border-[#8e5a38]/35 bg-[#f9e5b5] px-3 py-3 text-sm font-semibold text-[#4a2517]"
                   >
                     <Upload className="h-5 w-5" /> {ui.choosePhoto}
                   </button>
@@ -1021,8 +1044,8 @@ export default function PalmReading() {
               </section>
             )}
             {stage === "camera" && (
-              <section className="rounded-3xl border border-border bg-card p-4 shadow-sm">
-                <div className="relative overflow-hidden rounded-2xl bg-black">
+              <section className="border border-[#8e5a38]/35 bg-[#f6dda2]/85 p-4 shadow-[4px_4px_0_rgba(104,59,32,.14)]">
+                <div className="relative overflow-hidden bg-black">
                   <video
                     ref={videoRef}
                     className="aspect-square w-full object-cover"
@@ -1037,18 +1060,18 @@ export default function PalmReading() {
                 <button
                   type="button"
                   onClick={capturePhoto}
-                  className="mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-primary font-semibold text-primary-foreground"
+                  className="mt-4 flex h-12 w-full items-center justify-center gap-2 border border-[#4a2517] bg-[#3b1d17] font-semibold text-[#fff0c8] shadow-[3px_3px_0_#9b5a3b]"
                 >
                   <Camera className="h-5 w-5" /> {ui.takePhoto}
                 </button>
               </section>
             )}
             {stage === "preview" && preview && (
-              <section className="rounded-3xl border border-border bg-card p-4 shadow-sm">
+              <section className="border border-[#8e5a38]/35 bg-[#f6dda2]/85 p-4 shadow-[4px_4px_0_rgba(104,59,32,.14)]">
                 <img
                   src={preview}
                   alt={`${handLabel(side, ui)} palm preview`}
-                  className="aspect-square w-full rounded-2xl bg-muted object-contain"
+                  className="aspect-square w-full bg-[#fff0c8] object-contain"
                 />
                 <div className="mt-4 grid grid-cols-2 gap-3">
                   <button
@@ -1057,14 +1080,14 @@ export default function PalmReading() {
                       setPreview(null);
                       setStage("guide");
                     }}
-                    className="flex h-12 items-center justify-center gap-2 rounded-xl border border-border font-semibold"
+                    className="flex h-12 items-center justify-center gap-2 border border-[#8e5a38]/35 bg-[#f9e5b5] font-semibold text-[#4a2517]"
                   >
                     <RotateCcw className="h-5 w-5" /> {ui.retake}
                   </button>
                   <button
                     type="button"
                     onClick={confirmCapture}
-                    className="flex h-12 items-center justify-center gap-2 rounded-xl bg-primary font-semibold text-primary-foreground"
+                    className="flex h-12 items-center justify-center gap-2 border border-[#4a2517] bg-[#3b1d17] font-semibold text-[#fff0c8] shadow-[3px_3px_0_#9b5a3b]"
                   >
                     <Check className="h-5 w-5" /> {ui.usePhoto}
                   </button>
@@ -1072,7 +1095,7 @@ export default function PalmReading() {
               </section>
             )}
             {stage === "complete" && (
-              <section className="rounded-3xl border border-emerald-200 bg-emerald-50 p-5 text-center dark:border-emerald-900 dark:bg-emerald-950/30">
+              <section className="border border-[#8e5a38]/35 bg-[#f6dda2]/85 p-5 text-center shadow-[4px_4px_0_rgba(104,59,32,.14)]">
                 <Check className="mx-auto h-8 w-8 text-emerald-600" />
                 <h2 className="mt-2 font-bold">
                   {mode === "compatibility"
@@ -1094,7 +1117,7 @@ export default function PalmReading() {
                       setPreview(null);
                       setStage("guide");
                     }}
-                    className="flex h-11 items-center justify-center gap-2 rounded-xl border border-border bg-background font-semibold"
+                    className="flex h-11 items-center justify-center gap-2 border border-[#8e5a38]/35 bg-[#f9e5b5] font-semibold text-[#4a2517]"
                   >
                     <ImagePlus className="h-5 w-5" />{" "}
                     {mode === "compatibility"
@@ -1110,7 +1133,7 @@ export default function PalmReading() {
                       mode === "compatibility" &&
                       !(pairCaptures.me && pairCaptures.partner)
                     }
-                    className="h-11 rounded-xl bg-primary font-semibold text-primary-foreground disabled:cursor-not-allowed disabled:opacity-40"
+                    className="h-11 border border-[#4a2517] bg-[#3b1d17] font-semibold text-[#fff0c8] shadow-[3px_3px_0_#9b5a3b] disabled:cursor-not-allowed disabled:opacity-40"
                   >
                     {ui.startFree}
                   </button>
@@ -1122,12 +1145,12 @@ export default function PalmReading() {
         {error && (
           <p
             role="alert"
-            className="mt-4 rounded-xl bg-destructive/10 px-4 py-3 text-center text-sm text-destructive"
+            className="mt-4 border border-[#8e3f2b]/45 bg-[#f9dfb1] px-4 py-3 text-center text-sm text-[#8e3f2b]"
           >
             {error}
           </p>
         )}
-        <div className="mt-5 rounded-2xl bg-muted/50 px-4 py-3 text-xs leading-relaxed text-muted-foreground">
+        <div className="mt-5 border border-[#8e5a38]/25 bg-[#f6dda2]/65 px-4 py-3 text-xs leading-relaxed text-[#705244]">
           {ui.privacy}
         </div>
         <Link

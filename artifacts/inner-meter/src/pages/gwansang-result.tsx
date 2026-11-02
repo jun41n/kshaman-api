@@ -29,7 +29,7 @@ function SectionCard({ icon, title, children, delay = 0, accent = "hsl(15,65%,28
   icon: string; title: string; children: React.ReactNode; delay?: number; accent?: string;
 }) {
   return (
-    <motion.div className="rounded-2xl p-4" style={{ background: "rgba(255,235,185,0.5)", border: "1px solid rgba(140,90,20,0.22)" }}
+    <motion.div className="p-4" style={{ background: "rgba(255,235,185,0.5)", border: "1px solid rgba(140,90,20,0.22)" }}
       initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay }}>
       <div className="flex items-center gap-1.5 mb-2.5">
         <span style={{ fontSize: 14 }}>{icon}</span>
@@ -43,21 +43,21 @@ function SectionCard({ icon, title, children, delay = 0, accent = "hsl(15,65%,28
 function SupportUnlockCard({ onUnlock }: { onUnlock: () => void }) {
   return (
     <motion.div
-      className="my-4 rounded-3xl p-5 text-center"
-      style={{ background: "linear-gradient(135deg, rgba(118,55,180,0.12), rgba(230,85,140,0.12))", border: "1px solid rgba(118,55,180,0.25)" }}
+      className="my-4 p-5 text-center"
+      style={{ background: "rgba(255,235,185,0.62)", border: "1px solid rgba(140,90,20,0.30)", boxShadow: "4px 4px 0 rgba(104,59,32,.12)" }}
       initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
     >
-      <p className="text-[11px] font-bold tracking-wider uppercase" style={{ color: "hsl(270,45%,38%)" }}>여기서부터는 더 깊은 해설</p>
-      <h3 className="mt-1 text-lg font-black" style={{ color: "hsl(270,40%,22%)" }}>내 얼굴의 숨은 반전 포인트가 궁금하다면?</h3>
-      <p className="mt-2 text-[13px] leading-relaxed" style={{ color: "hsl(270,25%,35%)" }}>
+      <p className="text-[11px] font-bold tracking-wider uppercase" style={{ color: "hsl(15,60%,30%)" }}>여기서부터는 더 깊은 해설</p>
+      <h3 className="mt-1 text-lg font-black" style={{ color: "hsl(25,50%,18%)" }}>내 얼굴의 숨은 반전 포인트가 궁금하다면?</h3>
+      <p className="mt-2 text-[13px] leading-relaxed" style={{ color: "hsl(25,35%,32%)" }}>
         재물 습관 스타일, 관계에서의 매력 포인트, 미래·애니메이션 이미지까지 이어서 확인할 수 있어요.
       </p>
       <div className="mt-4 flex flex-wrap justify-center gap-2 text-xs">
-        <a href="https://mytesttype.com/k-shaman/toss_qr.jpg" target="_blank" rel="noreferrer" className="rounded-full border border-primary/25 bg-background/70 px-3 py-2 font-semibold">Toss 후원 QR</a>
-        <a href="https://mytesttype.com/k-shaman/paypal_qr.jpg" target="_blank" rel="noreferrer" className="rounded-full border border-primary/25 bg-background/70 px-3 py-2 font-semibold">PayPal 후원 QR</a>
+        <a href="https://mytesttype.com/k-shaman/toss_qr.jpg" target="_blank" rel="noreferrer" className="border border-[#8e5a38]/35 bg-[#f9e5b5] px-3 py-2 font-semibold text-[#4a2517]">Toss 후원 QR</a>
+        <a href="https://mytesttype.com/k-shaman/paypal_qr.jpg" target="_blank" rel="noreferrer" className="border border-[#8e5a38]/35 bg-[#f9e5b5] px-3 py-2 font-semibold text-[#4a2517]">PayPal 후원 QR</a>
       </div>
-      <button type="button" onClick={onUnlock} className="mt-4 h-11 rounded-xl bg-primary px-5 text-sm font-bold text-primary-foreground">후원 후 상세 해설 보기</button>
-      <p className="mt-2 text-[10px] text-muted-foreground">자발적 후원 방식이며 후원 여부는 자동 확인되지 않습니다.</p>
+      <button type="button" onClick={onUnlock} className="mt-4 h-11 border border-[#4a2517] bg-[#3b1d17] px-5 text-sm font-bold text-[#fff0c8] shadow-[3px_3px_0_#9b5a3b]">테스트로 상세 해설 열기</button>
+      <p className="mt-2 text-[10px] text-[#705244]">테스트 기간에는 후원 확인 없이 상세 결과를 열 수 있습니다.</p>
     </motion.div>
   );
 }
@@ -67,7 +67,7 @@ function AccordionCard({ icon, title, children, delay = 0, accent = "hsl(15,65%,
 }) {
   const [open, setOpen] = useState(false);
   return (
-    <motion.div className="rounded-2xl overflow-hidden" style={{ background: "rgba(255,235,185,0.5)", border: "1px solid rgba(140,90,20,0.22)" }}
+    <motion.div className="overflow-hidden" style={{ background: "rgba(255,235,185,0.5)", border: "1px solid rgba(140,90,20,0.22)" }}
       initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay }}>
       <button className="w-full flex items-center justify-between px-4 py-3.5" onClick={() => setOpen((o) => !o)}>
         <div className="flex items-center gap-1.5">
@@ -122,7 +122,7 @@ function FaceImageCard({
   }, [uploadedImage, type]);
 
   return (
-    <motion.div className="rounded-2xl overflow-hidden"
+    <motion.div className="overflow-hidden"
       style={{ background: "rgba(255,235,185,0.5)", border: "1px solid rgba(140,90,20,0.22)" }}
       initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay }}>
       <button className="w-full flex items-center justify-between px-4 py-3.5" onClick={() => setOpen((o) => !o)}>
@@ -217,13 +217,8 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
 
       <div className="px-4 sm:px-6 md:px-8 lg:px-16 xl:px-24">
 
-        <p className="mb-4 rounded-2xl px-4 py-3 text-[11px] leading-relaxed text-center"
-          style={{ background: "rgba(255,245,220,0.55)", color: "hsl(25,35%,32%)", border: "1px solid rgba(140,90,20,0.2)" }}>
-          AI가 생성한 전통문화 기반의 오락·참고용 해석입니다. 실제 성격·건강·재산·운명 또는 유전 정보를 판정하지 않습니다.
-        </p>
-
         {result.dragonface && (
-          <motion.div className="rounded-3xl p-5 mb-4" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18 }}
+          <motion.div className="p-5 mb-4" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18 }}
             style={{ background: "linear-gradient(135deg, rgba(140,65,15,0.15), rgba(100,45,10,0.12))", border: `1.5px solid ${tierColor}44` }}>
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
@@ -247,7 +242,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
 
           {result.wealth && (
-            <motion.div className="rounded-2xl p-4" style={{ background: "rgba(255,235,185,0.5)", border: "1px solid rgba(140,90,20,0.22)" }}
+            <motion.div className="p-4" style={{ background: "rgba(255,235,185,0.5)", border: "1px solid rgba(140,90,20,0.22)" }}
               initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
               <div className="flex items-center gap-1 mb-0.5">
                 <span style={{ fontSize: 13 }}>💰</span>
@@ -258,7 +253,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
           )}
 
           {result.love && (
-            <motion.div className="rounded-2xl p-4" style={{ background: "rgba(255,235,185,0.5)", border: "1px solid rgba(140,90,20,0.22)" }}
+            <motion.div className="p-4" style={{ background: "rgba(255,235,185,0.5)", border: "1px solid rgba(140,90,20,0.22)" }}
               initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.33 }}>
               <div className="flex items-center gap-1 mb-0.5">
                 <span style={{ fontSize: 13 }}>💕</span>
@@ -269,7 +264,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
           )}
 
           {result.eyes && (
-            <motion.div className="rounded-2xl p-4" style={{ background: "rgba(255,235,185,0.5)", border: "1px solid rgba(140,90,20,0.22)" }}
+            <motion.div className="p-4" style={{ background: "rgba(255,235,185,0.5)", border: "1px solid rgba(140,90,20,0.22)" }}
               initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.37 }}>
               <div className="flex items-center justify-between mb-0.5">
                 <div className="flex items-center gap-1.5">
@@ -282,7 +277,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
           )}
 
           {result.nose && (
-            <motion.div className="rounded-2xl p-4" style={{ background: "rgba(255,235,185,0.5)", border: "1px solid rgba(140,90,20,0.22)" }}
+            <motion.div className="p-4" style={{ background: "rgba(255,235,185,0.5)", border: "1px solid rgba(140,90,20,0.22)" }}
               initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
               <div className="flex items-center justify-between mb-0.5">
                 <div className="flex items-center gap-1.5">
@@ -295,7 +290,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
           )}
 
           {result.mouth && (
-            <motion.div className="rounded-2xl p-4" style={{ background: "rgba(255,235,185,0.5)", border: "1px solid rgba(140,90,20,0.22)" }}
+            <motion.div className="p-4" style={{ background: "rgba(255,235,185,0.5)", border: "1px solid rgba(140,90,20,0.22)" }}
               initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.43 }}>
               <div className="flex items-center justify-between mb-0.5">
                 <div className="flex items-center gap-1.5">
@@ -378,6 +373,23 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
 
         {!premiumUnlocked && <SupportUnlockCard onUnlock={() => setPremiumUnlocked(true)} />}
 
+        {premiumUnlocked && (
+          <div className="mb-4">
+            <p className="text-[11px] font-bold tracking-[.16em] text-[#7e3c2a]">개인 인상 상세 기록</p>
+            <h2 className="mt-1 font-serif text-xl font-bold text-[#3f281d]">첫인상, 연애, 일상에서의 내 이미지</h2>
+            <div className="mt-4 grid gap-3 md:grid-cols-3">
+              <FacePremiumCard title="첫 만남의 3초" text={result.premium?.firstMeeting ?? result.personality?.reading ?? result.eyes?.reading ?? result.summary} />
+              <FacePremiumCard title="관계에서 보이는 매력" text={result.premium?.relationshipRhythm ?? result.compatibility?.reading ?? result.mouth?.reading ?? "관계 인상 리포트를 준비 중입니다."} />
+              <FacePremiumCard title="직장에서의 존재감" text={result.premium?.workPresence ?? result.career?.reading ?? result.historical?.reading ?? "활동 환경 리포트를 준비 중입니다."} />
+            </div>
+            {result.premium && <div className="mt-3 grid gap-3 md:grid-cols-2">
+              <FacePremiumCard title="나를 살리는 스타일 힌트" text={result.premium.styleDirection} />
+              <FacePremiumCard title="7일 자기표현 실험" text={result.premium.sevenDayPrompt} />
+            </div>}
+            <p className="mt-4 text-sm leading-6 text-[#604133]">사진에서 느껴지는 인상과 전통 관상 문화의 상징을 가볍게 연결한 개인화 결과입니다.</p>
+          </div>
+        )}
+
         {result.fortune && (
           <div className="mb-3">
             <SectionCard icon="🌟" title="오늘의 참고 테마" delay={0.82} accent="hsl(15,60%,30%)">
@@ -387,7 +399,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
         )}
 
         {result.advice && (
-          <motion.div className="rounded-2xl p-5 mb-3" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.86 }}
+          <motion.div className="p-5 mb-3" initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.86 }}
             style={{ background: "linear-gradient(135deg, rgba(140,65,15,0.15), rgba(100,45,10,0.1))", border: "1px solid rgba(140,65,15,0.25)" }}>
             <div className="flex items-center gap-1.5 mb-2">
               <span style={{ color: "hsl(15,65%,30%)", fontSize: 12 }}>✦</span>
@@ -401,13 +413,16 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
           <ResultShareButtons
             lang={i18n.language}
             title={result.dragonface?.tier ? `내 관상 유형은 ${result.dragonface.tier}` : "내 AI 관상 결과"}
-            url="https://mytesttype.com/"
+            url="https://mytesttype.com/gwansang/"
+            summary={result.summary}
+            service="face"
+            variant="paper"
           />
         </div>
 
         <motion.button
           onClick={onReset}
-          className="w-full h-[50px] rounded-2xl font-semibold text-sm flex items-center justify-center gap-2 transition-colors"
+          className="w-full h-[50px] font-semibold text-sm flex items-center justify-center gap-2 transition-colors"
           style={{ background: "rgba(100,55,10,0.14)", border: "1px solid rgba(140,90,20,0.3)", color: "hsl(25,40%,32%)" }}
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.9 }}
           whileTap={{ scale: 0.97 }}>
@@ -417,4 +432,8 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
       </div>
     </div>
   );
+}
+
+function FacePremiumCard({ title, text }: { title: string; text: string }) {
+  return <article className="border border-[#8e5a38]/20 bg-[#fff0c8]/70 p-4"><h3 className="text-sm font-bold text-[#7e3c2a]">{title}</h3><p className="mt-2 text-xs leading-6 text-[#604133]">{text}</p></article>;
 }

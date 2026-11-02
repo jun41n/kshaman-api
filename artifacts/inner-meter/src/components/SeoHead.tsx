@@ -12,10 +12,10 @@ interface SeoHeadProps {
 const BASE_URL = "https://mytesttype.com";
 const SITE_NAME = "MyTestType";
 
-const DEFAULT_TITLE = "AI 관상·AI 손금·사주팔자 | MyTestType";
+const DEFAULT_TITLE = "AI 전생·AI 관상·AI 손금·사주팔자 | MyTestType";
 
 const DEFAULT_DESCRIPTION =
-  "사진 한 장으로 인상을 살펴보는 AI 관상을 중심으로 AI 손금과 K-Shaman 사주팔자를 제공하는 문화·오락 목적의 서비스입니다.";
+  "전생 캐릭터, 사진 한 장으로 인상을 살펴보는 AI 관상, AI 손금과 K-Shaman 사주팔자를 제공하는 문화·오락 목적의 서비스입니다.";
 
 const DEFAULT_OG_IMAGE = `${BASE_URL}/opengraph.jpg`;
 

@@ -57,6 +57,15 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist/public"),
     emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          react: ["react", "react-dom", "react-dom/client"],
+          motion: ["framer-motion"],
+          i18n: ["i18next", "react-i18next", "i18next-browser-languagedetector"],
+        },
+      },
+    },
   },
   server: {
     port,

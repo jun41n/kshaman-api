@@ -31,6 +31,7 @@ export interface GwansangAnalysisResult {
   anime: { title: string; character: string; reading: string };
   fortune: { title: string; reading: string };
   advice: string;
+  premium?: { firstMeeting: string; relationshipRhythm: string; workPresence: string; styleDirection: string; sevenDayPrompt: string };
 }
 
 type ViewType = "home" | "reading" | "result";

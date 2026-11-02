@@ -105,29 +105,39 @@ export function PastLifeResult({ result, image, onReset }: Props) {
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
           <StoryCard eyebrow="전생 기록" title="그 시절의 당신" text={story.past} />
           <StoryCard eyebrow="사람들이 기억한 방식" title="관계의 기질" text={story.relationship} />
-          <StoryCard eyebrow="현생으로 이어진 강점" title="재물 감각" text={story.wealth} />
-          <StoryCard eyebrow="오늘의 전생 미션" title="이 기질을 쓰는 법" text={story.mission} accent />
         </div>
 
         {!premiumUnlocked ? (
           <section className="mt-4 border border-[#7e3c2a]/35 bg-[#432116] p-5 text-[#fff0c8] shadow-[4px_4px_0_rgba(104,59,32,.18)]">
             <p className="text-[11px] font-bold tracking-[0.16em] text-[#eabf72]">후원으로 여는 상세 전생 기록</p>
-            <h2 className="mt-2 font-serif text-xl font-bold">당신이 끝까지 지키려 했던 것은 무엇이었을까?</h2>
-            <p className="mt-2 text-sm leading-6 text-[#f4dca4]/85">전생의 결정적 장면, 숨겨진 라이벌, 사랑의 인연, 현생에서 다시 만난 과제를 이어서 확인하세요.</p>
+            <h2 className="mt-2 font-serif text-xl font-bold">전생의 결정적 장면을 열어 보세요</h2>
+            <p className="mt-2 text-sm leading-6 text-[#f4dca4]/85">재물 감각과 사랑의 인연, 지금 다시 꺼내 쓸 전생 미션, 내 얼굴 기반 소장 카드까지 한 번에 확인하세요.</p>
+            <div className="mt-4 grid grid-cols-2 gap-2 text-left text-xs text-[#f8d99b]">
+              {["재물과 생존 전략", "사랑에서 지킨 약속", "현생 전생 미션", "내 전생 소장 포스터"].map((item) => <div key={item} className="border border-[#f4dca4]/15 bg-black/10 px-3 py-2 blur-[1.2px]">{item}</div>)}
+            </div>
             <div className="mt-4 grid grid-cols-2 gap-2 text-center text-xs font-bold">
               <a href="https://mytesttype.com/k-shaman/toss_qr.jpg" target="_blank" rel="noreferrer" className="border border-[#f4dca4]/30 bg-[#fff0c8]/10 px-3 py-3">Toss 후원 QR</a>
               <a href="https://mytesttype.com/k-shaman/paypal_qr.jpg" target="_blank" rel="noreferrer" className="border border-[#f4dca4]/30 bg-[#fff0c8]/10 px-3 py-3">PayPal 후원 QR</a>
             </div>
-            <button type="button" onClick={() => setPremiumUnlocked(true)} className="mt-3 h-11 w-full bg-[#f1c970] text-sm font-black text-[#3a1f14]">후원 후 상세 기록 보기</button>
-            <p className="mt-2 text-center text-[10px] text-[#f4dca4]/60">자발적 후원이며 자동 결제·자동 확인은 하지 않습니다.</p>
+            <button type="button" onClick={() => setPremiumUnlocked(true)} className="mt-3 h-11 w-full bg-[#f1c970] text-sm font-black text-[#3a1f14]">테스트로 상세 기록 열기</button>
+            <p className="mt-2 text-center text-[10px] text-[#f4dca4]/60">테스트 기간에는 후원 확인 없이 상세 결과를 열 수 있습니다.</p>
           </section>
         ) : (
-          <section className="mt-4 border border-[#8e5a38]/35 bg-[#f7dfaa]/85 p-5">
+          <div className="mt-4">
             <p className="text-[11px] font-bold tracking-[0.16em] text-[#7e3c2a]">상세 전생 기록</p>
-            <h2 className="mt-2 font-serif text-xl font-bold">당신의 숨은 전생 장면</h2>
-            <p className="mt-3 text-sm leading-7 text-[#523427]">{story.secret}</p>
-            <p className="mt-3 border-t border-[#8e5a38]/20 pt-3 text-sm leading-7 text-[#523427]">{story.love}</p>
-          </section>
+            <h2 className="mt-2 font-serif text-xl font-bold">당신의 전생 기록 완성본</h2>
+            <div className="mt-4 grid gap-3 sm:grid-cols-2">
+              <StoryCard eyebrow="결정적 장면" title="숨겨진 전생의 선택" text={story.secret} />
+              <StoryCard eyebrow="생활력 기록" title="재물 감각과 생존 방식" text={story.wealth} />
+              <StoryCard eyebrow="사랑의 인연" title="관계에서 끝까지 지킨 것" text={story.love} />
+              <StoryCard eyebrow="현생 미션" title="이번 주에 꺼내 쓸 기질" text={story.mission} accent />
+            </div>
+            <div className="mt-4 border border-[#8e5a38]/25 bg-[#f4d89e] p-4 text-center">
+              <p className="text-[10px] font-bold tracking-[.16em] text-[#85513b]">소장용 전생 포스터</p>
+              <p className="mt-1 font-serif text-lg font-bold text-[#4a2517]">{career.title}로 남긴 나의 전생 기록</p>
+              <p className="mt-2 text-xs leading-5 text-[#684a3e]">위 전생 캐릭터 이미지와 함께 SNS 결과 카드에 담아 공유할 수 있습니다.</p>
+            </div>
+          </div>
         )}
 
         {imageError && (
@@ -139,7 +149,7 @@ export function PastLifeResult({ result, image, onReset }: Props) {
         <p className="mt-4 px-3 text-center text-[11px] leading-5 text-[#705244]">당시 보상은 직업·시대·지역별 차이가 큰 현물 중심 체계였습니다. ‘현대 생활력 환산’은 역사적 급여를 확정하는 수치가 아닌, AI 전생 캐릭터 놀이를 위한 생활력 비유입니다.</p>
 
         <div className="mt-5">
-          <ResultShareButtons lang={i18n.language} title={`나는 전생에 ${career.title}이었다`} url={url} variant="paper" />
+          <ResultShareButtons lang={i18n.language} title={`나는 전생에 ${career.title}이었다`} url={url} summary={result.summary} service="past-life" variant="paper" />
         </div>
 
         <button type="button" onClick={onReset} className="mt-4 flex h-12 w-full items-center justify-center gap-2 border border-[#815039]/35 bg-[#f7dfaa]/75 text-sm font-bold text-[#50291c]">

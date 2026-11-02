@@ -1,4 +1,4 @@
-import { Hand, ScanFace, Sparkles } from "lucide-react";
+import { Hand, ScanFace, ScrollText, Sparkles } from "lucide-react";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { useApp } from "../store/appStore";
 
@@ -12,6 +12,10 @@ interface Props {
 }
 
 const MAIN_HOME = "https://mytesttype.com/";
+const PAST_LIFE_HOME =
+  typeof window !== "undefined" && window.location.hostname === "localhost"
+    ? "http://localhost:4176/"
+    : MAIN_HOME;
 const PALM_READING_HOME =
   typeof window !== "undefined" && window.location.hostname === "localhost"
     ? "http://localhost:4176/palm-reading/"
@@ -64,8 +68,22 @@ export function SiteNav({ onBack, backLabel, centre }: Props) {
           </div>
         )}
 
-        {/* ── RIGHT: language ── */}
+        {/* ── RIGHT: direct links to the three non-Saju services ── */}
         <div className="flex items-center gap-1 sm:gap-3 shrink-0">
+          <a
+            href={PAST_LIFE_HOME}
+            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-white/55 hover:text-white hover:bg-white/5 transition-colors"
+          >
+            <ScrollText className="w-4 h-4" />
+            {isKo ? "전생" : "Past Life"}
+          </a>
+          <a
+            href={PAST_LIFE_HOME}
+            className="sm:hidden p-1.5 rounded-lg text-white/55 hover:text-white hover:bg-white/5 transition-colors"
+            aria-label={isKo ? "전생" : "Past Life"}
+          >
+            <ScrollText className="w-4 h-4" />
+          </a>
           <a
             href={PALM_READING_HOME}
             className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-white/55 hover:text-white hover:bg-white/5 transition-colors"

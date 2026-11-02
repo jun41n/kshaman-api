@@ -1,6 +1,6 @@
-import { ReactNode, useState, useEffect } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Hand, Menu, X, Sparkles, ScanFace, ScrollText } from "lucide-react";
+import { Hand, Sparkles, ScanFace, ScrollText } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { NativeBannerAd } from "@/components/NativeBannerAd";
@@ -26,7 +26,6 @@ export function Layout({ children, showAd = false }: LayoutProps) {
       : isPalmPage
         ? isKo ? "손금" : "Palm Reading"
         : null;
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -34,10 +33,6 @@ export function Layout({ children, showAd = false }: LayoutProps) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-  }, [location]);
 
   return (
     <div className={`min-h-screen flex flex-col font-sans text-foreground ${isPaperPage ? "bg-[#e8c88f]" : "bg-background"}`}>
@@ -112,7 +107,7 @@ export function Layout({ children, showAd = false }: LayoutProps) {
               <LanguageSwitcher />
             </nav>
 
-            {/* Mobile: language switcher + hamburger */}
+            {/* Mobile: direct category links. The menu is intentionally omitted. */}
             <div className="md:hidden flex items-center gap-2">
               {!isPastLifePage && <Link
                 href="/"
@@ -150,44 +145,6 @@ export function Layout({ children, showAd = false }: LayoutProps) {
         {/* Gradient line when scrolled */}
         <div className={`absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent transition-opacity duration-300 ${isScrolled ? 'opacity-100' : 'opacity-0'}`} />
 
-        {/* Mobile Nav */}
-        {isMobileMenuOpen && (
-          <div className={`md:hidden absolute top-[calc(100%+1px)] left-0 w-full ${isPaperPage ? "bg-[#e8c88f]/95" : "bg-background/95"} backdrop-blur-xl border-b border-border shadow-xl animate-in slide-in-from-top-2`}>
-            <nav className="flex flex-col p-4 gap-2">
-              {!isFacePage && <Link
-                href="/gwansang/"
-                className="px-4 py-3 rounded-xl text-base font-bold flex items-center gap-2 text-muted-foreground hover:bg-muted transition-colors"
-              >
-                <div className="w-6 h-6 rounded-lg bg-muted flex items-center justify-center">
-                  <ScanFace className="w-3.5 h-3.5" />
-                </div>
-                <span>{isKo ? "관상" : "Face Reading"}</span>
-              </Link>}
-              {!isPalmPage && <Link
-                href="/palm-reading/"
-                className="px-4 py-3 rounded-xl text-base font-bold flex items-center gap-2 text-muted-foreground hover:bg-muted transition-colors"
-              >
-                <div className="w-6 h-6 rounded-lg bg-muted flex items-center justify-center">
-                  <Hand className="w-3.5 h-3.5" />
-                </div>
-                <span>{isKo ? "손금" : "Palm Reading"}</span>
-              </Link>}
-              <a
-                href={K_SHAMAN_URL}
-                className="px-4 py-3 rounded-xl text-base font-bold transition-colors hover:bg-muted flex items-center gap-2"
-              >
-                <div className="w-6 h-6 rounded-lg bg-gradient-primary flex items-center justify-center text-white shadow-sm shadow-primary/30">
-                  <Sparkles className="w-3.5 h-3.5" />
-                </div>
-                <span className="shaman-holo">{t('nav.shaman')}</span>
-              </a>
-              <div className="pt-2 pb-1">
-                <p className="text-xs font-bold text-muted-foreground/50 uppercase tracking-wider px-4 mb-2">Language</p>
-                <LanguageSwitcher compact />
-              </div>
-            </nav>
-          </div>
-        )}
       </header>
 
       {/* ── Main ── */}
@@ -217,8 +174,8 @@ export function Layout({ children, showAd = false }: LayoutProps) {
               </span>
               <p className="text-sm text-muted-foreground max-w-[220px]">
                 {isKo
-                  ? "AI 관상과 K-Shaman AI 사주를 문화·오락 목적으로 제공합니다."
-                  : "Cultural, entertainment-oriented AI face reading and K-Shaman AI Saju."}
+                  ? "AI 전생·관상·손금과 K-Shaman AI 사주를 문화·오락 목적으로 제공합니다."
+                  : "Cultural, entertainment-oriented AI past-life, face-reading, palm-reading, and K-Shaman AI Saju."}
               </p>
               <div className="mt-2 text-xs text-muted-foreground/55 leading-relaxed space-y-0.5">
                 <p>Lee Hyejin | 30, Deoksong 1-ro, Namyangju-si, Gyeonggi-do | proofcom26@gmail.com</p>

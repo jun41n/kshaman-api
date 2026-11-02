@@ -2,6 +2,7 @@ import { useState, useRef, useCallback, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Upload, Camera } from "lucide-react";
 import { GwansangAnalysisResult } from "@/pages/gwansang";
+import { useTranslation } from "react-i18next";
 
 interface ReadingProps {
   pastLife?: boolean;
@@ -197,6 +198,7 @@ const PAGE_BG = "linear-gradient(175deg, #D4A96A 0%, #C49050 40%, #B8813A 100%)"
 const API_URL = "https://api.mytesttype.com/api/face-reading";
 
 export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingProps) {
+  const { i18n } = useTranslation();
   const [stage, setStage] = useState<Stage>("upload");
   const [preview, setPreview] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -233,7 +235,7 @@ export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingP
       const res = await fetch(API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ imageBase64: preview }),
+        body: JSON.stringify({ imageBase64: preview, language: i18n.language }),
       });
       if (!res.ok) {
         const d = await res.json().catch(() => ({}));
