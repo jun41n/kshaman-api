@@ -8,6 +8,8 @@ import { PastLifeResult } from "@/pages/past-life-result";
 import { Layout } from "@/components/layout";
 import { SeoHead } from "@/components/SeoHead";
 import { trackTestComplete, trackTestStart } from "@/lib/analytics";
+import { useTranslation } from "react-i18next";
+import { getFaceReadingCopy } from "@/lib/face-reading-copy";
 
 export interface FacePart {
   title: string;
@@ -39,6 +41,7 @@ type ViewType = "home" | "reading" | "result";
 
 export default function Gwansang() {
   const [location] = useLocation();
+  const { i18n } = useTranslation();
   const [view, setView] = useState<ViewType>("home");
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
   const [result, setResult] = useState<GwansangAnalysisResult | null>(null);
@@ -72,12 +75,18 @@ export default function Gwansang() {
 
   const canonicalPath = location === "/" ? "/" : "/gwansang/";
   const isPastLife = location === "/";
+  const copy = getFaceReadingCopy(i18n.language).home;
+  const isKo = i18n.language.startsWith("ko");
+  const seoTitle = isPastLife
+    ? `${copy.pastEyebrow} | MyTestType`
+    : `${isKo ? "AI 관상 분석" : copy.faceEyebrow} | MyTestType`;
+  const seoDescription = isPastLife ? copy.pastDescription : copy.faceDescription;
 
   return (
     <Layout showAd>
       <SeoHead
-        title={isPastLife ? "AI 전생 캐릭터 테스트" : "AI 관상 분석"}
-        description={isPastLife ? "관상 문화의 언어로 살펴보는 나의 전생 캐릭터 테스트. 왕이었을까, 무사였을까? 오락·문화 참고용 서비스입니다." : "사진 한 장을 바탕으로 얼굴 특징과 인상에서 보이는 성향을 살펴보는 MyTestType AI 관상입니다. 한국 전통 관상 문화를 현대적으로 풀어낸 오락·참고용 서비스입니다."}
+        title={seoTitle}
+        description={seoDescription}
         path={canonicalPath}
         ogImage={isPastLife ? "https://mytesttype.com/past-life.png" : "https://mytesttype.com/gwansang.png"}
         jsonLd={{

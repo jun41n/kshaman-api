@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Upload, Camera } from "lucide-react";
 import { GwansangAnalysisResult } from "@/pages/gwansang";
 import { useTranslation } from "react-i18next";
+import { getFaceReadingCopy } from "@/lib/face-reading-copy";
 
 interface ReadingProps {
   pastLife?: boolean;
@@ -12,19 +13,9 @@ interface ReadingProps {
 
 type Stage = "upload" | "analyzing";
 
-const STEPS = [
-  { label: "AI 관상 알고리즘 초기화 중", pct: 8 },
-  { label: "얼굴 구조 매핑 중", pct: 18 },
-  { label: "생활 습관 상징을 정리하는 중", pct: 30 },
-  { label: "관계 인상 키워드를 찾는 중", pct: 42 },
-  { label: "역사적 인물 데이터 매칭 중", pct: 54 },
-  { label: "성격·직업 적성 산출 중", pct: 64 },
-  { label: "노화 패턴 시뮬레이션 중", pct: 74 },
-  { label: "이미지 콘셉트를 상상하는 중", pct: 84 },
-  { label: "오락용 해설을 마무리하는 중", pct: 95 },
-];
+const STEP_PROGRESS = [8, 18, 30, 42, 54, 64, 74, 84, 95];
 
-function CosmicWatch({ stepIndex }: { stepIndex: number }) {
+function CosmicWatch({ stepIndex, progress }: { stepIndex: number; progress: number }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const animRef = useRef<number>(0);
 
@@ -155,9 +146,6 @@ function CosmicWatch({ stepIndex }: { stepIndex: number }) {
     return () => cancelAnimationFrame(animRef.current);
   }, []);
 
-  const step = STEPS[Math.min(stepIndex, STEPS.length - 1)];
-  const progress = step.pct;
-
   return (
     <div className="flex flex-col items-center">
       <div className="relative" style={{ width: 200, height: 200 }}>
@@ -199,6 +187,8 @@ const API_URL = "https://api.mytesttype.com/api/face-reading";
 
 export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingProps) {
   const { i18n } = useTranslation();
+  const copy = getFaceReadingCopy(i18n.language).upload;
+  const steps = copy.steps.map((label, index) => ({ label, pct: STEP_PROGRESS[index] }));
   const [stage, setStage] = useState<Stage>("upload");
   const [preview, setPreview] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -208,13 +198,13 @@ export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingP
   const stepTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const handleFile = useCallback((file: File) => {
-    if (!file.type.startsWith("image/")) { setError("이미지 파일만 업로드할 수 있습니다."); return; }
-    if (file.size > 10 * 1024 * 1024) { setError("파일 크기는 10MB 이하여야 합니다."); return; }
+    if (!file.type.startsWith("image/")) { setError(copy.imageOnly); return; }
+    if (file.size > 10 * 1024 * 1024) { setError(copy.maxSize); return; }
     setError(null);
     const reader = new FileReader();
     reader.onload = (e) => setPreview(e.target?.result as string);
     reader.readAsDataURL(file);
-  }, []);
+  }, [copy]);
 
   const handleDrop = useCallback((e: React.DragEvent) => {
     e.preventDefault();
@@ -229,7 +219,7 @@ export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingP
     setError(null);
 
     stepTimerRef.current = setInterval(() => {
-      setStepIndex((p) => Math.min(p + 1, STEPS.length - 1));
+      setStepIndex((p) => Math.min(p + 1, steps.length - 1));
     }, 2200);
 
     try {
@@ -240,11 +230,11 @@ export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingP
       });
       if (!res.ok) {
         const d = await res.json().catch(() => ({}));
-        throw new Error(d.error || "분석 중 오류가 발생했습니다.");
+        throw new Error(d.error || copy.analysisError);
       }
       onResult(preview, await res.json());
     } catch (err) {
-      setError(err instanceof Error ? err.message : "분석 중 오류가 발생했습니다.");
+      setError(err instanceof Error ? err.message : copy.analysisError);
       setStage("upload");
     } finally {
       if (stepTimerRef.current) clearInterval(stepTimerRef.current);
@@ -252,7 +242,7 @@ export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingP
   };
 
   if (stage === "analyzing") {
-    const step = STEPS[Math.min(stepIndex, STEPS.length - 1)];
+    const step = steps[Math.min(stepIndex, steps.length - 1)];
     return (
       <div className="flex flex-col items-center justify-center px-6 py-20"
         style={{ background: "linear-gradient(175deg, #0A0A12 0%, #0D0D18 60%, #080810 100%)", minHeight: "75vh" }}>
@@ -263,15 +253,15 @@ export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingP
             <img src={preview} alt="face" className="w-full h-full object-cover" />
           </motion.div>
         )}
-        <CosmicWatch stepIndex={stepIndex} />
+        <CosmicWatch stepIndex={stepIndex} progress={step.pct} />
         <motion.div className="mt-6 flex flex-col items-center gap-1" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
           <img
             src={`${import.meta.env.BASE_URL}gwansang.png`}
-            alt="관상"
+            alt="Face reading"
             className="h-7 w-auto object-contain opacity-80"
             style={{ filter: "drop-shadow(0 0 6px rgba(0,210,180,0.3)) brightness(3)" }}
           />
-          <p className="text-[11px] tracking-[0.2em] uppercase" style={{ color: "rgba(0,200,170,0.6)" }}>AI 인상 해설 생성 중</p>
+          <p className="text-[11px] tracking-[0.2em] uppercase" style={{ color: "rgba(0,200,170,0.6)" }}>{copy.loadingTitle}</p>
         </motion.div>
         <AnimatePresence mode="wait">
           <motion.p key={stepIndex}
@@ -304,8 +294,8 @@ export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingP
             <ArrowLeft size={20} />
           </button>
           <div>
-            <h2 className="font-bold text-lg" style={{ color: "hsl(25,60%,10%)" }}>{pastLife ? "전생 캐릭터 사진" : "사진 업로드"}</h2>
-            <p className="text-xs" style={{ color: "hsl(25,35%,40%)" }}>{pastLife ? "전생 캐릭터를 찾을 얼굴 정면 사진을 올려주세요" : "얼굴이 잘 보이는 정면 사진을 올려주세요"}</p>
+            <h2 className="font-bold text-lg" style={{ color: "hsl(25,60%,10%)" }}>{pastLife ? copy.pastHeading : copy.faceHeading}</h2>
+            <p className="text-xs" style={{ color: "hsl(25,35%,40%)" }}>{pastLife ? copy.pastSubheading : copy.faceSubheading}</p>
           </div>
         </div>
 
@@ -324,8 +314,8 @@ export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingP
                 style={{ background: "rgba(140,70,15,0.15)" }}>
                 <Upload size={28} style={{ color: "hsl(15,65%,32%)" }} />
               </div>
-              <p className="font-semibold text-base mb-1.5" style={{ color: "hsl(25,55%,14%)" }}>사진을 드래그하거나 탭하세요</p>
-              <p className="text-sm" style={{ color: "hsl(25,35%,45%)" }}>JPG, PNG, HEIC · 최대 10MB</p>
+              <p className="font-semibold text-base mb-1.5" style={{ color: "hsl(25,55%,14%)" }}>{copy.dropzone}</p>
+              <p className="text-sm" style={{ color: "hsl(25,35%,45%)" }}>JPG, PNG, HEIC · 10MB</p>
               <input ref={fileInputRef} type="file" accept="image/*" className="hidden"
                 onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFile(f); }} />
             </motion.div>
@@ -336,7 +326,7 @@ export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingP
               <button className="absolute bottom-4 right-4 text-xs px-4 py-2 rounded-full flex items-center gap-1.5 transition"
                 style={{ background: "rgba(20,10,5,0.7)", backdropFilter: "blur(8px)", color: "#f5e8cc" }}
                 onClick={() => { setPreview(null); setError(null); }}>
-                <Camera size={13} />다시 선택
+                <Camera size={13} />{copy.change}
               </button>
             </motion.div>
           )}
@@ -345,19 +335,19 @@ export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingP
             <motion.div className="mt-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}>
               <div className="grid grid-cols-2 gap-3">
                 <button type="button" onClick={() => fileInputRef.current?.click()} className="flex h-12 items-center justify-center gap-2 rounded-xl border font-bold text-sm" style={{ background: "#FFF0C8", borderColor: "rgba(110,58,37,.45)", color: "#4A2517" }}>
-                  <Upload size={17} /> 갤러리에서 선택
+                  <Upload size={17} /> {copy.gallery}
                 </button>
                 <button type="button" onClick={() => cameraInputRef.current?.click()} className="flex h-12 items-center justify-center gap-2 rounded-xl border font-bold text-sm" style={{ background: "#5B2D1E", borderColor: "#5B2D1E", color: "#FFF0C8" }}>
-                  <Camera size={17} /> 사진 촬영
+                  <Camera size={17} /> {copy.camera}
                 </button>
               </div>
               <input ref={cameraInputRef} type="file" accept="image/*" capture="user" className="hidden"
                 onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFile(f); }} />
               <div className="mt-4 space-y-2">
-                {["정면을 바라보는 사진", "밝은 조명 아래 찍은 사진", "선글라스·마스크 없는 사진"].map((tip, i) => (
+                {copy.tips.map((tip, i) => (
                   <div key={i} className="flex items-center gap-3 px-1">
                     <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "hsl(15,60%,40%)" }} />
-                    <p className="text-sm" style={{ color: "hsl(25,35%,40%)" }}>{tip}이 좋습니다</p>
+                    <p className="text-sm" style={{ color: "hsl(25,35%,40%)" }}>{tip}</p>
                   </div>
                 ))}
               </div>
@@ -385,10 +375,10 @@ export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingP
             }}
             whileTap={preview ? { scale: 0.97 } : undefined}
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            {preview ? (pastLife ? "내 전생 직업 확인하기" : "AI 관상 분석 시작") : "사진을 먼저 선택해주세요"}
+            {preview ? (pastLife ? copy.pastStart : copy.faceStart) : copy.chooseFirst}
           </motion.button>
           <p className="mt-3 text-[11px] leading-relaxed text-center" style={{ color: "hsl(25,35%,38%)" }}>
-            사진은 요청한 AI 분석 처리를 위해 외부 AI 제공업체로 전송될 수 있습니다. 결과는 전통문화 기반의 오락·참고용이며 실제 성격·건강·재산·운명 또는 유전 정보를 판정하지 않습니다.
+            {copy.privacy}
           </p>
         </div>
       </div>
