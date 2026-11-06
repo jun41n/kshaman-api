@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Check, Download, Link2, Share2, X } from "lucide-react";
+import { Check, Link2, Share2, X } from "lucide-react";
 import { trackResultShareClick } from "@/lib/analytics";
+import { FaFacebookF, FaInstagram, FaLine, FaTiktok, FaThreads, FaWhatsapp, FaXTwitter } from "react-icons/fa6";
+import { SiKakaotalk } from "react-icons/si";
 
 type Service = "past-life" | "face" | "palm";
 type Props = { lang: string; title: string; url: string; summary?: string; service?: Service; variant?: "default" | "paper" };
@@ -37,19 +39,21 @@ export function ResultShareButtons({ lang, title, url, summary = "", service = "
   const [copied, setCopied] = useState(false); const [guide, setGuide] = useState<"instagram" | "kakao" | "tiktok" | null>(null); const [sharing, setSharing] = useState(false);
   const copy = COPY[lang.split("-")[0]] ?? COPY.en;
   const saveShare = async () => { setSharing(true); try { const cardImageDataUrl = createCard(title, summary || title, service); const response = await fetch(`${API_BASE}/share-results`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ service, language: lang, title, summary: summary || title, cardImageDataUrl }) }); const data = await response.json(); if (!response.ok) throw new Error(data.error); return { cardImageDataUrl, shareUrl: `${API_BASE}/share/${data.id}` }; } finally { setSharing(false); } };
-  const share = async (target: "copy" | "x" | "facebook" | "instagram" | "kakao" | "tiktok" | "download") => {
+  const share = async (target: "copy" | "x" | "facebook" | "instagram" | "kakao" | "tiktok" | "line" | "threads" | "whatsapp") => {
     // Social networks block popups opened after an asynchronous network request.
     const popup = target === "x" || target === "facebook" ? window.open("about:blank", "_blank", "width=640,height=520") : null;
-    try { const { cardImageDataUrl, shareUrl } = await saveShare(); const text = `${copy.prompt}\n${title}\n${shareUrl}`; const shareType = target === "copy" ? "copy_link" : target; trackResultShareClick({ test_slug: service, result_key: title, share_type: shareType }); if (target === "download") { const link = document.createElement("a"); link.href = cardImageDataUrl; link.download = "mytesttype_result_card.png"; link.click(); return; } if (target === "copy") { await navigator.clipboard.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 2200); return; } if (target === "x") popup?.location.assign(`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${copy.prompt}\n${title}`)}&url=${encodeURIComponent(shareUrl)}`); if (target === "facebook") popup?.location.assign(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`); if (target === "instagram" || target === "kakao" || target === "tiktok") { await navigator.clipboard.writeText(text); setGuide(target); } } catch { popup?.close(); }
+    try { const { shareUrl } = await saveShare(); const text = `${copy.prompt}\n${title}\n${shareUrl}`; const shareType = target === "copy" ? "copy_link" : target; trackResultShareClick({ test_slug: service, result_key: title, share_type: shareType }); if (target === "copy") { await navigator.clipboard.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 2200); return; } if (target === "x") popup?.location.assign(`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${copy.prompt}\n${title}`)}&url=${encodeURIComponent(shareUrl)}`); if (target === "facebook") popup?.location.assign(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`); if (target === "line") window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}`, "_blank", "width=640,height=520"); if (target === "threads") window.open(`https://www.threads.net/intent/post?text=${encodeURIComponent(`${copy.prompt} ${title} ${shareUrl}`)}`, "_blank", "width=640,height=520"); if (target === "whatsapp") window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank", "width=640,height=520"); if (target === "instagram" || target === "kakao" || target === "tiktok") { await navigator.clipboard.writeText(text); setGuide(target); } } catch { popup?.close(); }
   };
   const buttons = [
     { label: copied ? copy.copied : copy.copy, theme: copied ? "bg-emerald-500" : "bg-[#33251f]", icon: copied ? <Check size={17} /> : <Link2 size={17} />, click: () => share("copy") },
-    { label: "X", theme: "bg-black", icon: <span className="font-black">X</span>, click: () => share("x") },
-    { label: "Facebook", theme: "bg-[#1877F2]", icon: <span className="font-black">f</span>, click: () => share("facebook") },
-    { label: "Instagram", theme: "bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]", icon: <span>◎</span>, click: () => share("instagram") },
-    { label: "카카오", theme: "bg-[#FEE500]", icon: <svg className="h-5 w-5 fill-[#3C1E1E]" viewBox="0 0 24 24"><path d="M12 3C6.477 3 2 6.477 2 10.8c0 2.728 1.614 5.13 4.073 6.605-.18.664-.65 2.415-.744 2.786-.116.46.169.454.356.33.146-.097 2.325-1.577 3.264-2.214.32.047.648.073.982.073C15.523 18.38 22 14.832 22 10.8 22 6.477 17.523 3 12 3z" /></svg>, click: () => share("kakao") },
-    { label: "TikTok", theme: "bg-black", icon: <span>♪</span>, click: () => share("tiktok") },
-    { label: copy.image, theme: "bg-[#6a3a27]", icon: <Download size={17} />, click: () => share("download") },
+    { label: "X", theme: "bg-black", icon: <FaXTwitter size={17} />, click: () => share("x") },
+    { label: "Facebook", theme: "bg-[#1877F2]", icon: <FaFacebookF size={17} />, click: () => share("facebook") },
+    { label: "Instagram", theme: "bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7]", icon: <FaInstagram size={18} />, click: () => share("instagram") },
+    { label: "카카오", theme: "bg-[#FEE500] text-[#3C1E1E]", icon: <SiKakaotalk size={18} />, click: () => share("kakao") },
+    { label: "TikTok", theme: "bg-black", icon: <FaTiktok size={17} />, click: () => share("tiktok") },
+    { label: "LINE", theme: "bg-[#00B900]", icon: <FaLine size={18} />, click: () => share("line") },
+    { label: "Threads", theme: "bg-[#101010]", icon: <FaThreads size={18} />, click: () => share("threads") },
+    { label: "WhatsApp", theme: "bg-[#25D366]", icon: <FaWhatsapp size={19} />, click: () => share("whatsapp") },
   ];
   return <section className={variant === "paper" ? "border border-[#8e5a38]/35 bg-[#f6dda2]/85 p-5 shadow-[4px_4px_0_rgba(104,59,32,.14)]" : "border border-border bg-card p-5 shadow-sm"}>
     <div className={`mb-4 flex items-center justify-center gap-2 text-sm font-bold ${variant === "paper" ? "text-[#4a2517]" : ""}`}><Share2 className="h-4 w-4" />{sharing ? "..." : copy.heading}</div>
