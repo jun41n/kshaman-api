@@ -30,7 +30,7 @@ function esc(str) {
  * #root 앞에 pre-rendered 콘텐츠를 삽입합니다.
  * React 앱이 마운트된 후 prerender 영역을 숨깁니다.
  */
-function buildPage({ title, description, canonical, bodyHtml, ogImage }) {
+function buildPage({ title, description, canonical, bodyHtml, ogImage, jsonLd }) {
   let html = baseTemplate;
 
   // <title> 교체
@@ -79,6 +79,14 @@ function buildPage({ title, description, canonical, bodyHtml, ogImage }) {
     `<meta name="twitter:description" content="${esc(description)}">`
   );
 
+  // The source template contains the root service schema. Replace it for every
+  // generated route so crawlers do not see the past-life application on face
+  // and palm URLs.
+  html = html.replace(
+    /<script\s+type="application\/ld\+json">[\s\S]*?<\/script>/,
+    `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`
+  );
+
   // pre-rendered 콘텐츠 + 숨김 스크립트
   const prerender = `
 <div id="prerender-seo" style="display:none;max-width:768px;margin:0 auto;padding:24px 16px;font-family:sans-serif">
@@ -112,6 +120,16 @@ ${bodyHtml}
       "손바닥 사진에서 보이는 선과 형태를 바탕으로 손금 전통을 문화·오락 관점에서 살펴보는 AI 손금 서비스입니다.",
     canonical: "https://mytesttype.com/palm-reading/",
     ogImage: "https://mytesttype.com/palm-calligraphy.png",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      name: "MyTestType AI 손금 분석",
+      url: "https://mytesttype.com/palm-reading/",
+      applicationCategory: "EntertainmentApplication",
+      operatingSystem: "Any",
+      description: "손바닥 사진의 선과 형태를 전통 수상학 상징으로 살펴보는 문화·오락 목적의 AI 손금 서비스",
+      inLanguage: ["ko", "en", "ja", "es", "pt", "fr"],
+    },
     bodyHtml: `
 <h1 style="font-size:1.7em;font-weight:900;margin:0 0 0.5em;color:#111">AI 손금 분석</h1>
 <p style="color:#555;margin-bottom:1.2em;line-height:1.7">손을 펼친 정면 사진을 바탕으로 생명선·두뇌선·감정선과 손바닥 형태를 전통 수상학의 상징으로 살펴보는 문화·오락 목적의 서비스입니다.</p>
@@ -131,6 +149,16 @@ ${bodyHtml}
       "사진 한 장을 바탕으로 얼굴 특징과 인상에서 보이는 성향을 전통 관상 문화의 언어로 살펴보는 AI 관상 서비스입니다.",
     canonical: "https://mytesttype.com/gwansang/",
     ogImage: "https://mytesttype.com/gwansang.png",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      name: "MyTestType AI 관상 분석",
+      url: "https://mytesttype.com/gwansang/",
+      applicationCategory: "EntertainmentApplication",
+      operatingSystem: "Any",
+      description: "사진 속 표정과 인상을 전통 관상 문화의 언어로 살펴보는 문화·오락 목적의 AI 관상 서비스",
+      inLanguage: ["ko", "en", "ja", "es", "pt", "fr"],
+    },
     bodyHtml: `
 <h1 style="font-size:1.7em;font-weight:900;margin:0 0 0.5em;color:#111">AI 관상 분석</h1>
 <p style="color:#555;margin-bottom:1.2em;line-height:1.7">사진 속 표정과 인상을 전통 관상 문화의 언어로 살펴보고, 나를 바라보는 새로운 단서를 건네는 문화·오락 목적의 서비스입니다.</p>`,
