@@ -2,8 +2,9 @@
  * analytics.ts
  * Lightweight GA4 (gtag.js) wrapper for the Vite/React app.
  *
- * Set VITE_GA_ID in your .env file to enable tracking.
- * When the variable is missing the module is a full no-op — the app never crashes.
+ * The public measurement ID is intentionally compiled into the static client,
+ * matching the Saju app. Event payloads must never include photos, names,
+ * birth data, analysis text, or other personal data.
  *
  * Usage:
  *   initAnalytics()           — call once at app start
@@ -11,7 +12,7 @@
  *   trackEvent('test_start', { test_slug: '...' })
  */
 
-const GA_ID: string | undefined = import.meta.env.VITE_GA_ID;
+const GA_ID = "G-X5N345WH91";
 
 /* ── internal gtag shim ───────────────────────────────────── */
 type GtagArgs = [string, ...unknown[]];
@@ -27,7 +28,7 @@ let _initialized = false;
 
 /** Call once at app boot. Safe to call multiple times. */
 export function initAnalytics(): void {
-  if (!GA_ID || _initialized || typeof window === 'undefined') return;
+  if (_initialized || typeof window === 'undefined') return;
   _initialized = true;
 
   const w = window as Window & {
@@ -52,7 +53,7 @@ export function initAnalytics(): void {
 
 /** Call whenever the route changes. */
 export function trackPageView(path: string): void {
-  if (!GA_ID || !_initialized) return;
+  if (!_initialized) return;
   gtag('event', 'page_view', {
     page_path: path,
     page_location: window.location.href,
@@ -65,7 +66,7 @@ export function trackEvent(
   name: string,
   params?: Record<string, string | number | boolean>,
 ): void {
-  if (!GA_ID || !_initialized) return;
+  if (!_initialized) return;
   gtag('event', name, params ?? {});
 }
 

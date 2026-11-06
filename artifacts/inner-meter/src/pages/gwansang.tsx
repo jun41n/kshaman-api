@@ -7,6 +7,7 @@ import { GwansangResult } from "@/pages/gwansang-result";
 import { PastLifeResult } from "@/pages/past-life-result";
 import { Layout } from "@/components/layout";
 import { SeoHead } from "@/components/SeoHead";
+import { trackTestComplete, trackTestStart } from "@/lib/analytics";
 
 export interface FacePart {
   title: string;
@@ -46,6 +47,13 @@ export default function Gwansang() {
     setUploadedImage(imageBase64);
     setResult(data);
     setView("result");
+    trackTestComplete({
+      test_slug: isPastLife ? "past_life" : "face_reading",
+      test_title: isPastLife ? "AI 전생 캐릭터 테스트" : "AI 관상 분석",
+      result_key: isPastLife ? "past_life_result" : "face_result",
+      result_title: isPastLife ? "전생 캐릭터 결과" : "관상 분석 결과",
+      category: isPastLife ? "past_life" : "face",
+    });
   };
 
   const handleReset = () => {
@@ -89,7 +97,14 @@ export default function Gwansang() {
             <motion.div key="home"
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }} transition={{ duration: 0.25 }}>
-              <GwansangHome variant={isPastLife ? "pastLife" : "face"} onStart={() => setView("reading")} />
+              <GwansangHome variant={isPastLife ? "pastLife" : "face"} onStart={() => {
+                trackTestStart({
+                  test_slug: isPastLife ? "past_life" : "face_reading",
+                  test_title: isPastLife ? "AI 전생 캐릭터 테스트" : "AI 관상 분석",
+                  category: isPastLife ? "past_life" : "face",
+                });
+                setView("reading");
+              }} />
             </motion.div>
           )}
           {view === "reading" && (

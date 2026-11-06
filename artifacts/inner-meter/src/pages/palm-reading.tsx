@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SeoHead } from "@/components/SeoHead";
 import { ResultShareButtons } from "@/components/ResultShareButtons";
+import { trackEvent, trackTestComplete, trackTestStart } from "@/lib/analytics";
 
 type HandSide = "left" | "right";
 type PalmMode = "solo" | "compatibility";
@@ -835,6 +836,15 @@ export default function PalmReading() {
     setPaymentOpen(false);
     setError(null);
     setStage("analyzing");
+    if (tier === "free") {
+      trackTestStart({
+        test_slug: mode === "compatibility" ? "palm_compatibility" : "palm_reading",
+        test_title: mode === "compatibility" ? "너와 나의 손금 궁합" : "AI 손금 분석",
+        category: "palm",
+      });
+    } else {
+      trackEvent("premium_unlock_start", { service: "palm", mode });
+    }
     try {
       const response = await fetch(API_URL, {
         method: "POST",
@@ -846,6 +856,17 @@ export default function PalmReading() {
       if (tier === "free") setFree(data.result);
       else setPremium(data.result);
       setStage("result");
+      if (tier === "free") {
+        trackTestComplete({
+          test_slug: mode === "compatibility" ? "palm_compatibility" : "palm_reading",
+          test_title: mode === "compatibility" ? "너와 나의 손금 궁합" : "AI 손금 분석",
+          result_key: mode,
+          result_title: "손금 분석 결과",
+          category: "palm",
+        });
+      } else {
+        trackEvent("premium_unlock_complete", { service: "palm", mode });
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : ui.analysisError);
       setStage(free ? "result" : "complete");
