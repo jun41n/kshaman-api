@@ -54,4 +54,12 @@ app.use(express.urlencoded({ extended: true, limit: "20mb" }));
 
 app.use("/api", router);
 
+app.use((error: unknown, _req: express.Request, res: express.Response, next: express.NextFunction) => {
+  if (error instanceof Error && error.message === "Origin is not allowed") {
+    res.status(403).json({ error: "허용되지 않은 출처입니다." });
+    return;
+  }
+  next(error);
+});
+
 export default app;
