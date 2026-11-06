@@ -5,6 +5,7 @@ import { SiteNav } from "../components/SiteNav";
 import { generateReading } from "../lib/apiClient";
 import { KShamanShareButtons } from "../components/KShamanShareButtons";
 import { BottomBannerAd } from "../components/BottomBannerAd";
+import { trackEvent } from "../lib/analytics";
 
 interface Props {
   onAskAnything: () => void;
@@ -73,9 +74,15 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
             ? groupBubbleBlocks(parsedBlocks)
             : [normalized || ""],
         );
+        trackEvent("saju_reading_complete", {
+          language: lang,
+          product_id: state.selectedProductId ?? "unknown",
+          persona_id: state.selectedPersonaId ?? "unknown",
+        });
         setLoading(false);
       })
       .catch((err: Error) => {
+        trackEvent("saju_reading_error", { language: lang });
         setError(err.message ?? "Failed to generate reading.");
         setLoading(false);
       });

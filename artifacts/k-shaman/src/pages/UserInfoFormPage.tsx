@@ -4,6 +4,7 @@ import { useApp } from "../store/appStore";
 import type { UserInfo } from "../types";
 import { StickyCTA } from "../components/StickyCTA";
 import { SiteNav } from "../components/SiteNav";
+import { trackEvent } from "../lib/analytics";
 
 interface Props {
   onNext: () => void;
@@ -40,6 +41,10 @@ export function UserInfoFormPage({ onNext, onBack }: Props) {
   const handleSubmit = () => {
     if (!isValid) return;
     setUserInfo(form);
+    trackEvent("saju_reading_start", {
+      language: state.currentLang,
+      has_birth_hour: Boolean(form.birthHour),
+    });
     onNext();
   };
 

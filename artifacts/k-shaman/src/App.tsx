@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AppContext, useAppStore } from "./store/appStore";
 import { CharacterSelectPage } from "./pages/CharacterSelectPage";
 import { UserInfoFormPage } from "./pages/UserInfoFormPage";
@@ -11,6 +11,7 @@ import { BottomBannerAd } from "./components/BottomBannerAd";
 import { FixedBannerAd } from "./components/FixedBannerAd";
 import { ShamanFooter } from "./components/ShamanFooter";
 import { SparkleOrbs } from "./components/SparkleOrbs";
+import { initAnalytics, trackEvent } from "./lib/analytics";
 
 type Step = "select" | "form" | "products" | "payment" | "partner-form" | "result" | "chat";
 
@@ -18,8 +19,17 @@ export default function App() {
   const store = useAppStore();
   const [step, setStep] = useState<Step>("select");
 
+  useEffect(() => {
+    initAnalytics();
+  }, []);
+
+  useEffect(() => {
+    trackEvent("saju_flow_step_view", { step });
+  }, [step]);
+
   const handleProductSelect = (productId: string) => {
     store.setProductId(productId);
+    trackEvent("saju_product_selected", { product_id: productId });
     handlePaymentSuccess(productId);
   };
 
