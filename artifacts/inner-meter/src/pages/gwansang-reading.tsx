@@ -204,6 +204,7 @@ export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingP
   const [error, setError] = useState<string | null>(null);
   const [stepIndex, setStepIndex] = useState(0);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
   const stepTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const handleFile = useCallback((file: File) => {
@@ -325,7 +326,7 @@ export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingP
               </div>
               <p className="font-semibold text-base mb-1.5" style={{ color: "hsl(25,55%,14%)" }}>사진을 드래그하거나 탭하세요</p>
               <p className="text-sm" style={{ color: "hsl(25,35%,45%)" }}>JPG, PNG, HEIC · 최대 10MB</p>
-              <input ref={fileInputRef} type="file" accept="image/*" capture="user" className="hidden"
+              <input ref={fileInputRef} type="file" accept="image/*" className="hidden"
                 onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFile(f); }} />
             </motion.div>
           ) : (
@@ -341,13 +342,25 @@ export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingP
           )}
 
           {!preview && (
-            <motion.div className="mt-4 space-y-2" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}>
-              {["정면을 바라보는 사진", "밝은 조명 아래 찍은 사진", "선글라스·마스크 없는 사진"].map((tip, i) => (
-                <div key={i} className="flex items-center gap-3 px-1">
-                  <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "hsl(15,60%,40%)" }} />
-                  <p className="text-sm" style={{ color: "hsl(25,35%,40%)" }}>{tip}이 좋습니다</p>
-                </div>
-              ))}
+            <motion.div className="mt-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.15 }}>
+              <div className="grid grid-cols-2 gap-3">
+                <button type="button" onClick={() => fileInputRef.current?.click()} className="flex h-12 items-center justify-center gap-2 rounded-xl border font-bold text-sm" style={{ background: "#FFF0C8", borderColor: "rgba(110,58,37,.45)", color: "#4A2517" }}>
+                  <Upload size={17} /> 갤러리에서 선택
+                </button>
+                <button type="button" onClick={() => cameraInputRef.current?.click()} className="flex h-12 items-center justify-center gap-2 rounded-xl border font-bold text-sm" style={{ background: "#5B2D1E", borderColor: "#5B2D1E", color: "#FFF0C8" }}>
+                  <Camera size={17} /> 사진 촬영
+                </button>
+              </div>
+              <input ref={cameraInputRef} type="file" accept="image/*" capture="user" className="hidden"
+                onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFile(f); }} />
+              <div className="mt-4 space-y-2">
+                {["정면을 바라보는 사진", "밝은 조명 아래 찍은 사진", "선글라스·마스크 없는 사진"].map((tip, i) => (
+                  <div key={i} className="flex items-center gap-3 px-1">
+                    <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "hsl(15,60%,40%)" }} />
+                    <p className="text-sm" style={{ color: "hsl(25,35%,40%)" }}>{tip}이 좋습니다</p>
+                  </div>
+                ))}
+              </div>
             </motion.div>
           )}
 
@@ -364,10 +377,10 @@ export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingP
           <motion.button
             onClick={handleAnalyze}
             disabled={!preview}
-            className="w-full h-14 rounded-2xl font-bold text-[16px] flex items-center justify-center gap-2 transition-all disabled:opacity-35 disabled:cursor-not-allowed"
+            className="w-full h-14 rounded-2xl font-bold text-[16px] flex items-center justify-center gap-2 transition-all disabled:cursor-not-allowed"
             style={{
-              background: preview ? "linear-gradient(135deg, hsl(15,70%,24%) 0%, hsl(10,65%,20%) 100%)" : "rgba(100,55,10,0.18)",
-              color: preview ? "hsl(36,80%,92%)" : "hsl(25,40%,45%)",
+              background: preview ? "linear-gradient(135deg, hsl(15,70%,24%) 0%, hsl(10,65%,20%) 100%)" : "#71412A",
+              color: "#FFF0C8",
               boxShadow: preview ? "2px 3px 12px rgba(60,20,5,0.4)" : "none",
             }}
             whileTap={preview ? { scale: 0.97 } : undefined}
