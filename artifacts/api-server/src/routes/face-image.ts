@@ -78,24 +78,37 @@ router.post("/generate-face-image", async (req, res): Promise<void> => {
   const tmpFile = path.join(os.tmpdir(), `face-${Date.now()}.png`);
 
   try {
-    const base64Data = imageBase64.replace(/^data:image\/\w+;base64,/, "");
+    const mimeMatch = imageBase64.match(/^data:(image\/(?:png|jpeg|jpg|webp));base64,/i);
+    const mimeType = mimeMatch?.[1].toLowerCase() ?? "image/jpeg";
+    const base64Data = imageBase64.replace(/^data:image\/[^;]+;base64,/i, "");
     fs.writeFileSync(tmpFile, Buffer.from(base64Data, "base64"));
 
     const openai = new OpenAI({ apiKey });
 
     console.info("[이미지생성] gpt-image-2 편집 시작", { type });
 
-    const imageFile = await toFile(fs.createReadStream(tmpFile), "face.png", {
-      type: "image/png",
+    const imageFile = await toFile(fs.createReadStream(tmpFile), `face.${mimeType === "image/png" ? "png" : mimeType === "image/webp" ? "webp" : "jpg"}`, {
+      type: mimeType,
     });
 
-    const response = await openai.images.edit({
-      model: "gpt-image-2",
+    const editImage = (model: "gpt-image-2" | "gpt-image-1.5") => openai.images.edit({
+      model,
       image: imageFile,
       prompt,
       n: 1,
       size: "1024x1024",
     });
+
+    let response;
+    try {
+      response = await editImage("gpt-image-2");
+    } catch (firstError) {
+      const firstMessage = firstError instanceof Error ? firstError.message : String(firstError);
+      const useCompatibilityModel = /model|unsupported|not found|does not exist/i.test(firstMessage);
+      if (!useCompatibilityModel) throw firstError;
+      console.warn("[이미지생성] gpt-image-2 호환성 오류, gpt-image-1.5로 재시도", { type, firstMessage });
+      response = await editImage("gpt-image-1.5");
+    }
 
     const b64 = response.data?.[0]?.b64_json;
     if (!b64) throw new Error("응답에 이미지 데이터가 없습니다.");
@@ -108,7 +121,7 @@ router.post("/generate-face-image", async (req, res): Promise<void> => {
     const message = err instanceof Error ? err.message : String(err);
     console.error("[face-image] generation failed", { type, message });
     console.error("[이미지생성] 오류", { err, type });
-    res.status(500).json({ error: "이미지 생성 중 오류가 발생했습니다." });
+    res.status(500).json({ error: "이미지 생성 중 오류가 발생했습니다.", detail: message.slice(0, 240) });
   } finally {
     if (fs.existsSync(tmpFile)) fs.unlinkSync(tmpFile);
   }
