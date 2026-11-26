@@ -28,7 +28,7 @@ export function GwansangHome({ onStart, variant = "face" }: GwansangHomeProps) {
           <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.12, duration: 0.35 }}>
             {!isPastLife && <img src={`${import.meta.env.BASE_URL}gwansang.png`} alt={copy.faceEyebrow} className="h-[74px] w-auto object-contain object-left mix-blend-multiply md:h-[104px]" style={{ filter: "sepia(0.18) contrast(1.08) drop-shadow(1px 2px 3px rgba(60,30,5,0.25))" }} />}
             {isPastLife ? (
-              <h1 className="mt-4 max-w-[720px] font-serif text-[40px] font-semibold leading-[1.12] tracking-normal text-[#281915] md:text-[68px]">{copy.pastTitleFirst}<br /><span className="text-[#8c3f2b]">{copy.pastTitleAccent}</span></h1>
+              <h1 className="mt-4 max-w-[720px] font-serif text-[40px] font-semibold leading-[1.12] tracking-normal text-[#281915] md:text-[52px]"><span className="whitespace-nowrap">{copy.pastTitleFirst}</span><br /><span className="whitespace-nowrap text-[#8c3f2b]">{copy.pastTitleAccent}</span></h1>
             ) : (
               <h1 className="mt-4 max-w-[560px] font-serif text-[32px] font-semibold leading-[1.18] tracking-normal text-[#281915] md:text-[50px]">{copy.faceTitleFirst}<br /><span className="text-[#8c3f2b]">{copy.faceTitleAccent}</span></h1>
             )}
