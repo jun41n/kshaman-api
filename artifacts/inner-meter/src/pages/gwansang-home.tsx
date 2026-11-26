@@ -47,7 +47,7 @@ export function GwansangHome({ onStart, variant = "face" }: GwansangHomeProps) {
               <img src={`${import.meta.env.BASE_URL}past-life-archive.png`} alt="조선시대 전생 직업 기록화" className="block h-auto w-full sepia-[.08]" />
               <div className="pointer-events-none absolute left-[24%] top-[25%] flex h-[40%] w-[52%] items-center justify-center">
                 <img src={`${import.meta.env.BASE_URL}past-life.png`} alt="전생" className="max-h-[64%] max-w-[86%] object-contain mix-blend-multiply" style={{ filter: "sepia(0.18) contrast(1.08) drop-shadow(1px 2px 2px rgba(60,30,5,0.22))" }} />
-                <p className="absolute bottom-[4%] left-0 right-0 whitespace-nowrap text-center font-serif text-[8px] font-semibold tracking-[0.04em] text-[#5f3624] sm:text-[10px] md:text-[13px]">조선시대에 나는 어떤 사람이었을까?</p>
+                <p className="absolute bottom-[3%] left-0 right-0 text-center font-serif text-[8px] font-semibold leading-[1.35] tracking-[0.04em] text-[#5f3624] sm:text-[10px] md:text-[13px]">조선시대에 나는<br />어떤 사람이었을까?</p>
               </div>
             </div>
           ) : (
