@@ -45,6 +45,15 @@ type PremiumResult = {
 };
 
 const API_URL = "https://api.mytesttype.com/api/palm-reading";
+const PALM_RESULT_COPY = {
+  ko: { record: "나의 손금 상세 기록", heading: "내 손금으로 만든 생활 리듬", focus: "일과 집중", relation: "관계의 거리", pairRecord: "우리 손금 상세 기록", pairHeading: "두 손에서 찾은 관계 리듬", pairRelation: "둘의 대화법", unlock: "더 풍부한 상세 해설", pairUnlock: "우리 손금 궁합 리포트를 열어 보세요", personalBody: "일·관계·생활 리듬 미션과 소장용 개인 결과 카드를 확인할 수 있어요.", pairBody: "두 손의 관계 리듬, 대화가 어긋나는 순간, 함께 잘 맞는 생활 미션과 소장용 궁합 카드를 확인할 수 있어요.", rhythm: "관계 리듬", distance: "대화 거리", mission: "이번 주 미션", chartFooter: "전통 기록 × AI 해석" },
+  en: { record: "My palm record", heading: "A life rhythm shaped by your palm", focus: "Work and focus", relation: "Relationship distance", pairRecord: "Our palm record", pairHeading: "The rhythm between two palms", pairRelation: "How you communicate", unlock: "Open a richer reading", pairUnlock: "Open your palm compatibility report", personalBody: "Explore work, relationship and lifestyle missions plus a collectible personal result card.", pairBody: "Explore your shared rhythm, moments of friction, practical missions and a collectible compatibility card.", rhythm: "Shared rhythm", distance: "Conversation distance", mission: "This week’s mission", chartFooter: "Traditional record × AI interpretation" },
+  ja: { record: "自分の手相詳細記録", heading: "手相から見る暮らしのリズム", focus: "仕事と集中", relation: "関係の距離", pairRecord: "ふたりの手相詳細記録", pairHeading: "ふたつの手に見る関係のリズム", pairRelation: "ふたりの会話法", unlock: "さらに詳しい解説を開く", pairUnlock: "ふたりの手相相性レポートを見る", personalBody: "仕事・関係・生活リズムのミッションと、保存できる結果カードを確認できます。", pairBody: "ふたりのリズム、会話のずれ、一緒に試せるミッションと相性カードを確認できます。", rhythm: "関係のリズム", distance: "会話の距離", mission: "今週のミッション", chartFooter: "伝統記録 × AI解釈" },
+  es: { record: "Registro detallado de mi palma", heading: "Tu ritmo de vida según la palma", focus: "Trabajo y concentración", relation: "Distancia en las relaciones", pairRecord: "Registro detallado de nuestras palmas", pairHeading: "El ritmo entre dos palmas", pairRelation: "Cómo se comunican", unlock: "Abrir una lectura más completa", pairUnlock: "Abrir el informe de compatibilidad", personalBody: "Descubre misiones de trabajo, relaciones y hábitos, además de una tarjeta personal coleccionable.", pairBody: "Descubre vuestro ritmo, los momentos de fricción, misiones prácticas y una tarjeta de compatibilidad.", rhythm: "Ritmo compartido", distance: "Distancia al conversar", mission: "Misión de esta semana", chartFooter: "Registro tradicional × interpretación IA" },
+  "pt-BR": { record: "Registro detalhado da minha palma", heading: "Um ritmo de vida moldado pela sua palma", focus: "Trabalho e foco", relation: "Distância nos relacionamentos", pairRecord: "Registro detalhado das nossas palmas", pairHeading: "O ritmo entre duas palmas", pairRelation: "Como vocês conversam", unlock: "Abrir uma leitura mais completa", pairUnlock: "Abrir o relatório de compatibilidade", personalBody: "Explore missões de trabalho, relacionamentos e rotina, além de um cartão pessoal colecionável.", pairBody: "Explore o ritmo compartilhado, os momentos de atrito, missões práticas e um cartão de compatibilidade.", rhythm: "Ritmo compartilhado", distance: "Distância na conversa", mission: "Missão desta semana", chartFooter: "Registro tradicional × interpretação por IA" },
+  fr: { record: "Dossier détaillé de ma paume", heading: "Un rythme de vie dessiné par votre paume", focus: "Travail et concentration", relation: "Distance relationnelle", pairRecord: "Dossier détaillé de nos paumes", pairHeading: "Le rythme entre deux paumes", pairRelation: "Votre façon de dialoguer", unlock: "Ouvrir une lecture plus riche", pairUnlock: "Ouvrir le rapport de compatibilité", personalBody: "Découvrez des missions de travail, de relations et de rythme de vie, ainsi qu’une carte personnelle à conserver.", pairBody: "Découvrez votre rythme commun, les moments de friction, des missions pratiques et une carte de compatibilité.", rhythm: "Rythme commun", distance: "Distance dans la conversation", mission: "Mission de la semaine", chartFooter: "Archive traditionnelle × interprétation IA" },
+} as const;
+const getPalmResultCopy = (language: string) => PALM_RESULT_COPY[language as keyof typeof PALM_RESULT_COPY] ?? PALM_RESULT_COPY[language.split("-")[0] as keyof typeof PALM_RESULT_COPY] ?? PALM_RESULT_COPY.en;
 type PalmUiCopy = {
   rightHand: string;
   leftHand: string;
@@ -585,6 +594,7 @@ function ResultView({
 }) {
   const { i18n } = useTranslation();
   const ui = getPalmUiCopy(i18n.language);
+  const resultCopy = getPalmResultCopy(i18n.language);
   return (
     <div className="space-y-4">
       <section className="border border-[#8e5a38]/25 bg-[#f9e5b5]/80 p-5 text-[#3f281d]">
@@ -656,22 +666,22 @@ function ResultView({
             </p>
           </section>
           <div className="text-[#3f281d]">
-            <p className="text-[11px] font-bold tracking-[.14em] text-[#85513b]">{mode === "compatibility" ? "우리 손금 상세 기록" : "나의 손금 상세 기록"}</p>
-            <h2 className="mt-1 font-serif text-xl font-bold">{mode === "compatibility" ? "두 손에서 찾은 관계 리듬" : "내 손금으로 만든 생활 리듬"}</h2>
+            <p className="text-[11px] font-bold tracking-[.14em] text-[#85513b]">{mode === "compatibility" ? resultCopy.pairRecord : resultCopy.record}</p>
+            <h2 className="mt-1 font-serif text-xl font-bold">{mode === "compatibility" ? resultCopy.pairHeading : resultCopy.heading}</h2>
             <div className="mt-4 grid gap-3 sm:grid-cols-3">
-              <PalmValueCard title="일과 집중" text={premium.everyday?.[0] ?? premium.summary} />
-              <PalmValueCard title={mode === "compatibility" ? "둘의 대화법" : "관계의 거리"} text={premium.everyday?.[1] ?? premium.reflection} />
-              <PalmValueCard title="이번 주 미션" text={premium.everyday?.[2] ?? free.reflection} />
+              <PalmValueCard title={resultCopy.focus} text={premium.everyday?.[0] ?? premium.summary} />
+              <PalmValueCard title={mode === "compatibility" ? resultCopy.pairRelation : resultCopy.relation} text={premium.everyday?.[1] ?? premium.reflection} />
+              <PalmValueCard title={resultCopy.mission} text={premium.everyday?.[2] ?? free.reflection} />
             </div>
           </div>
         </>
       ) : (
         <section className="border border-[#8e5a38]/25 bg-[#f9e5b5]/80 p-5 text-center text-[#3f281d]">
           <Sparkles className="mx-auto h-7 w-7 text-[#7e3c2a]" />
-          <h2 className="mt-2 font-bold">{mode === "compatibility" ? "우리 손금 궁합 리포트를 열어 보세요" : ui.richer}</h2>
-          <p className="mt-2 text-sm text-[#604133]">{mode === "compatibility" ? "두 손의 관계 리듬, 대화가 어긋나는 순간, 함께 잘 맞는 생활 미션과 소장용 궁합 카드를 확인할 수 있어요." : "일·관계·생활 리듬 미션과 소장용 개인 결과 카드를 확인할 수 있어요."}</p>
+          <h2 className="mt-2 font-bold">{mode === "compatibility" ? resultCopy.pairUnlock : resultCopy.unlock}</h2>
+          <p className="mt-2 text-sm text-[#604133]">{mode === "compatibility" ? resultCopy.pairBody : resultCopy.personalBody}</p>
           <div className="mt-4 grid grid-cols-3 gap-2 text-left text-[11px] text-muted-foreground">
-            {[mode === "compatibility" ? "관계 리듬" : "일과 집중", mode === "compatibility" ? "대화 거리" : "관계 거리", "이번 주 미션"].map((item) => <div key={item} className="border border-[#8e5a38]/25 bg-[#fff0c8]/60 px-2 py-2 blur-[1px]">{item}</div>)}
+            {[mode === "compatibility" ? resultCopy.rhythm : resultCopy.focus, mode === "compatibility" ? resultCopy.distance : resultCopy.relation, resultCopy.mission].map((item) => <div key={item} className="border border-[#8e5a38]/25 bg-[#fff0c8]/60 px-2 py-2 blur-[1px]">{item}</div>)}
           </div>
           <button
             type="button"
@@ -939,7 +949,7 @@ export default function PalmReading() {
               <div className="relative flex aspect-[4/3] flex-col items-center justify-center overflow-hidden border border-[#9b5a3b]/45 bg-[#d5b27a] text-center">
                 <img src={`${import.meta.env.BASE_URL}palm-lines.png`} alt="생명선, 두뇌선, 감정선, 운명선, 재물선, 결혼선을 표시한 전통 손금 운세 도해" className="h-full w-full object-cover sepia-[.08] mix-blend-multiply" />
               </div>
-              <div className="mt-3 flex items-center justify-between border-t border-[#9b5a3b]/25 pt-3 text-[11px] text-[#79594b]"><span className="flex items-center gap-1.5"><Sparkles size={13} /> 전통 기록 × AI 해석</span><span>手 · 相 · 心</span></div>
+              <div className="mt-3 flex items-center justify-between border-t border-[#9b5a3b]/25 pt-3 text-[11px] text-[#79594b]"><span className="flex items-center gap-1.5"><Sparkles size={13} /> {getPalmResultCopy(i18n.language).chartFooter}</span><span>手 · 相 · 心</span></div>
             </div>
           </div>
         </section>

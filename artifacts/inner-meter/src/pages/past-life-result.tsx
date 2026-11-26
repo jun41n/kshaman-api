@@ -53,9 +53,58 @@ const EN_RESULT_COPY = {
   result: "AI past-life character result", careerLabel: "Your past-life role was", eraPay: "Historical reward", modernPay: "AI livelihood equivalent", wealthStyle: "How wealth was built", traits: "Past-life qualities carried into today", record: "Past-life record", then: "You in that era", remembered: "How people remembered you", unlockEyebrow: "Unlock a deeper past-life record", unlockTitle: "Open the defining scene of your past life", unlockBody: "See your wealth instincts, love story, a mission to carry forward and a collectible card based on your face.", detail: "Detailed past-life record", complete: "Your complete past-life record", poster: "Collectible past-life poster", retry: "Try the past-life image again", reset: "Check another past life", delayed: "The past-life image is taking longer than expected. Your result card is still ready to share.", disclaimer: "Historical rewards varied by occupation, era and region. The modern equivalent is an entertainment analogy, not a confirmed historical wage." 
 } as const;
 
+const PAST_RESULT_COPY = {
+  en: EN_RESULT_COPY,
+  ja: { result: "AI前世キャラクター結果", careerLabel: "あなたの前世の役割は", eraPay: "当時の報酬", modernPay: "AIによる現代生活力換算", wealthStyle: "財産を築いた方法", traits: "今に続く前世の気質", unlockEyebrow: "さらに詳しい前世記録を開く", unlockTitle: "前世の決定的な場面を見てみませんか？", unlockBody: "財産感覚、愛の記憶、今に活かせるミッション、顔をもとにしたカードを確認できます。", detail: "詳しい前世記録", complete: "あなたの前世記録・完全版", poster: "コレクション用前世ポスター", retry: "前世画像をもう一度作る", reset: "別の前世を確認する", delayed: "前世画像の生成に時間がかかっています。結果カードはそのまま共有できます。", disclaimer: "当時の報酬は職業・時代・地域によって異なります。現代生活力換算は歴史的賃金ではなく、娯楽のための比喩です。" },
+  es: { result: "Resultado del personaje de vida pasada con IA", careerLabel: "Tu papel en una vida pasada fue", eraPay: "Recompensa histórica", modernPay: "Equivalente de vida actual con IA", wealthStyle: "Cómo construías tu patrimonio", traits: "Rasgos de tu vida pasada que siguen contigo", unlockEyebrow: "Desbloquea un registro más profundo", unlockTitle: "Descubre la escena decisiva de tu vida pasada", unlockBody: "Consulta tus instintos financieros, tu historia de amor, una misión para el presente y una tarjeta basada en tu rostro.", detail: "Registro detallado de vida pasada", complete: "Tu registro completo de vida pasada", poster: "Póster coleccionable de vida pasada", retry: "Crear otra imagen de vida pasada", reset: "Ver otra vida pasada", delayed: "La imagen de vida pasada está tardando. Tu tarjeta de resultado sigue lista para compartir.", disclaimer: "Las recompensas históricas variaban según oficio, época y región. El equivalente actual es una analogía de entretenimiento, no un salario histórico confirmado." },
+  "pt-BR": { result: "Resultado do personagem de vida passada com IA", careerLabel: "Seu papel em uma vida passada foi", eraPay: "Recompensa histórica", modernPay: "Equivalente de vida atual com IA", wealthStyle: "Como você construía seu patrimônio", traits: "Traços da vida passada que continuam com você", unlockEyebrow: "Desbloqueie um registro mais profundo", unlockTitle: "Abra a cena decisiva da sua vida passada", unlockBody: "Veja seus instintos financeiros, sua história de amor, uma missão para o presente e um cartão baseado no seu rosto.", detail: "Registro detalhado da vida passada", complete: "Seu registro completo de vida passada", poster: "Pôster colecionável de vida passada", retry: "Criar outra imagem de vida passada", reset: "Ver outra vida passada", delayed: "A imagem da vida passada está demorando. Seu cartão de resultado continua pronto para compartilhar.", disclaimer: "As recompensas históricas variavam por profissão, época e região. O equivalente atual é uma analogia de entretenimento, não um salário histórico confirmado." },
+  fr: { result: "Résultat de personnage de vie antérieure par IA", careerLabel: "Dans une vie antérieure, vous étiez", eraPay: "Récompense historique", modernPay: "Équivalent de niveau de vie actuel par IA", wealthStyle: "Comment vous construisiez votre richesse", traits: "Les traits de votre vie antérieure qui vous suivent", unlockEyebrow: "Ouvrez un dossier plus approfondi", unlockTitle: "Découvrez la scène décisive de votre vie antérieure", unlockBody: "Explorez vos instincts financiers, votre histoire d’amour, une mission pour le présent et une carte basée sur votre visage.", detail: "Dossier détaillé de vie antérieure", complete: "Votre dossier complet de vie antérieure", poster: "Affiche de vie antérieure à collectionner", retry: "Créer une autre image de vie antérieure", reset: "Voir une autre vie antérieure", delayed: "La génération de l’image prend plus de temps. Votre carte de résultat peut tout de même être partagée.", disclaimer: "Les récompenses historiques variaient selon le métier, l’époque et la région. L’équivalent actuel est une analogie ludique, pas un salaire historique confirmé." },
+} as const;
+
+function getPastLifeResultCopy(language: string) {
+  const locale = language.toLowerCase().startsWith("pt") ? "pt-BR" : language.split("-")[0];
+  return PAST_RESULT_COPY[locale as keyof typeof PAST_RESULT_COPY] ?? PAST_RESULT_COPY.en;
+}
+
+const PAST_LABELS: Record<string, Record<string, string>> = {
+  en: { record: "Past-life record", then: "You in that era", remembered: "How people remembered you", toss: "Toss support QR", paypal: "PayPal support QR", testOpen: "Open full record (test)", testNote: "During testing, the detailed result opens without support verification.", scene: "Defining scene", hidden: "A hidden past-life choice", livelihood: "Livelihood record", wealth: "Wealth instincts and survival", love: "Love and bonds", protected: "What you protected in relationships", mission: "Today’s mission", quality: "A quality to use this week", posterShare: "Share it as an SNS result card with your past-life character image", faceBased: "Character based on my face", transforming: "Creating your character", failed: "The character image could not be loaded" },
+  ja: { record: "前世の記録", then: "その時代のあなた", remembered: "人々の記憶に残った姿", toss: "Toss支援QR", paypal: "PayPal支援QR", testOpen: "完全版を開く（テスト）", testNote: "テスト期間中は支援確認なしで詳細結果を開けます。", scene: "決定的な場面", hidden: "隠された前世の選択", livelihood: "暮らしの記録", wealth: "財産感覚と生き抜く力", love: "愛と縁", protected: "関係で守り続けたもの", mission: "今週のミッション", quality: "今週活かしたい気質", posterShare: "前世キャラクター画像と一緒にSNS結果カードとして共有できます。", faceBased: "顔をもとにしたキャラクター", transforming: "キャラクターを作成中", failed: "キャラクター画像を読み込めませんでした" },
+  es: { record: "Registro de vida pasada", then: "Tú en aquella época", remembered: "Cómo te recordaban", toss: "QR de apoyo Toss", paypal: "QR de apoyo PayPal", testOpen: "Abrir registro completo (prueba)", testNote: "Durante la prueba, el resultado detallado se abre sin verificar apoyo.", scene: "Escena decisiva", hidden: "Una elección oculta de tu vida pasada", livelihood: "Registro de subsistencia", wealth: "Instinto financiero y supervivencia", love: "Amor y vínculos", protected: "Lo que protegías en tus relaciones", mission: "Misión para hoy", quality: "Un rasgo que usar esta semana", posterShare: "Compártelo como tarjeta de resultado con tu imagen de vida pasada.", faceBased: "Personaje basado en mi rostro", transforming: "Creando tu personaje", failed: "No se pudo cargar la imagen del personaje" },
+  "pt-BR": { record: "Registro da vida passada", then: "Você naquela época", remembered: "Como as pessoas se lembravam de você", toss: "QR de apoio Toss", paypal: "QR de apoio PayPal", testOpen: "Abrir registro completo (teste)", testNote: "Durante o teste, o resultado detalhado abre sem confirmação de apoio.", scene: "Cena decisiva", hidden: "Uma escolha oculta da vida passada", livelihood: "Registro de subsistência", wealth: "Instinto financeiro e sobrevivência", love: "Amor e vínculos", protected: "O que você protegeu nos relacionamentos", mission: "Missão de hoje", quality: "Um traço para usar nesta semana", posterShare: "Compartilhe como cartão de resultado com sua imagem de vida passada.", faceBased: "Personagem baseado no meu rosto", transforming: "Criando seu personagem", failed: "Não foi possível carregar a imagem do personagem" },
+  fr: { record: "Dossier de vie antérieure", then: "Vous à cette époque", remembered: "La façon dont on se souvenait de vous", toss: "QR de soutien Toss", paypal: "QR de soutien PayPal", testOpen: "Ouvrir le dossier complet (test)", testNote: "Pendant le test, le résultat détaillé s’ouvre sans vérification de soutien.", scene: "Scène décisive", hidden: "Un choix caché de votre vie antérieure", livelihood: "Dossier de subsistance", wealth: "Instinct financier et survie", love: "Amour et liens", protected: "Ce que vous protégiez dans vos relations", mission: "Mission du jour", quality: "Un trait à utiliser cette semaine", posterShare: "Partagez-la comme carte de résultat avec votre image de vie antérieure.", faceBased: "Personnage basé sur mon visage", transforming: "Création de votre personnage", failed: "Impossible de charger l’image du personnage" },
+};
+
+function pastLabel(language: string, key: string) {
+  const locale = language.toLowerCase().startsWith("pt") ? "pt-BR" : language.split("-")[0];
+  return PAST_LABELS[locale]?.[key] ?? PAST_LABELS.en[key] ?? key;
+}
+
+const CAREER_TITLES: Record<string, Record<string, string>> = {
+  ja: { "조선의 임금": "朝鮮王朝の王", "왕실의 책사": "王室の軍師", "암행어사": "秘密監察官", "포도대장": "都の治安隊長", "전장의 무사": "戦場の武士", "명궁": "名弓の射手", "수군 장수": "水軍の将", "유학자 선비": "儒学者", "서당 훈장": "村の先生", "궁중 화원": "宮廷画家", "궁중 악사": "宮廷音楽家", "왕실 의관": "王室の医師", "궁중 의녀": "宮廷の女医", "마을의 무당": "村の巫者", "풍수지리사": "風水師", "대장간 장인": "鍛冶職人", "도자기 장인": "陶芸職人", "대목장": "大工の棟梁", "한지 장인": "韓紙職人", "염색 장인": "染色職人", "보부상": "旅商人", "객주 주인": "宿場の主人", "약초상": "薬草商", "농사꾼": "農夫", "바다의 어부": "海の漁師", "산의 사냥꾼": "山の猟師", "나루터 뱃사공": "渡し守", "떠돌이 광대": "旅芸人", "궁중 예인": "宮廷芸人", "성실한 살림지기": "家の世話役", "비밀 정보원": "密偵" },
+  es: { "조선의 임금": "Rey de Joseon", "왕실의 책사": "Estratega real", "암행어사": "Inspector secreto", "포도대장": "Comandante de seguridad", "전장의 무사": "Guerrero del campo de batalla", "명궁": "Arquero experto", "수군 장수": "Comandante naval", "유학자 선비": "Erudito confuciano", "서당 훈장": "Maestro de aldea", "궁중 화원": "Pintor de la corte", "궁중 악사": "Músico de la corte", "왕실 의관": "Médico real", "궁중 의녀": "Médica de la corte", "마을의 무당": "Chamán del pueblo", "풍수지리사": "Consejero de geomancia", "대장간 장인": "Herrero", "도자기 장인": "Artesano de cerámica", "대목장": "Maestro carpintero", "한지 장인": "Artesano del papel hanji", "염색 장인": "Artesano tintorero", "보부상": "Mercader ambulante", "객주 주인": "Dueño de posada", "약초상": "Vendedor de hierbas", "농사꾼": "Agricultor", "바다의 어부": "Pescador", "산의 사냥꾼": "Cazador de montaña", "나루터 뱃사공": "Barquero", "떠돌이 광대": "Artista ambulante", "궁중 예인": "Artista de la corte", "성실한 살림지기": "Encargado del hogar", "비밀 정보원": "Informante secreto" },
+  "pt-BR": { "조선의 임금": "Rei de Joseon", "왕실의 책사": "Estrategista real", "암행어사": "Inspetor secreto", "포도대장": "Comandante de segurança", "전장의 무사": "Guerreiro do campo de batalha", "명궁": "Arqueiro habilidoso", "수군 장수": "Comandante naval", "유학자 선비": "Estudioso confucionista", "서당 훈장": "Professor da aldeia", "궁중 화원": "Pintor da corte", "궁중 악사": "Músico da corte", "왕실 의관": "Médico real", "궁중 의녀": "Médica da corte", "마을의 무당": "Xamã da aldeia", "풍수지리사": "Conselheiro de geomancia", "대장간 장인": "Ferreiro", "도자기 장인": "Artesão de cerâmica", "대목장": "Mestre carpinteiro", "한지 장인": "Artesão de papel hanji", "염색 장인": "Artesão de tingimento", "보부상": "Mercador viajante", "객주 주인": "Dono de hospedaria", "약초상": "Comerciante de ervas", "농사꾼": "Agricultor", "바다의 어부": "Pescador do mar", "산의 사냥꾼": "Caçador da montanha", "나루터 뱃사공": "Barqueiro", "떠돌이 광대": "Artista itinerante", "궁중 예인": "Artista da corte", "성실한 살림지기": "Cuidador do lar", "비밀 정보원": "Informante secreto" },
+  fr: { "조선의 임금": "Roi de Joseon", "왕실의 책사": "Stratège royal", "암행어사": "Inspecteur secret", "포도대장": "Commandant de la sécurité", "전장의 무사": "Guerrier du champ de bataille", "명궁": "Archer expert", "수군 장수": "Commandant naval", "유학자 선비": "Érudit confucéen", "서당 훈장": "Maître du village", "궁중 화원": "Peintre de la cour", "궁중 악사": "Musicien de la cour", "왕실 의관": "Médecin royal", "궁중 의녀": "Médecin de la cour", "마을의 무당": "Chaman du village", "풍수지리사": "Conseiller en géomancie", "대장간 장인": "Forgeron", "도자기 장인": "Céramiste", "대목장": "Maître charpentier", "한지 장인": "Artisan du papier hanji", "염색 장인": "Artisan teinturier", "보부상": "Marchand itinérant", "객주 주인": "Aubergiste", "약초상": "Herboriste", "농사꾼": "Agriculteur", "바다의 어부": "Pêcheur en mer", "산의 사냥꾼": "Chasseur de montagne", "나루터 뱃사공": "Passeur", "떠돌이 광대": "Artiste ambulant", "궁중 예인": "Artiste de cour", "성실한 살림지기": "Intendant du foyer", "비밀 정보원": "Informateur secret" },
+};
+
+function getLocalizedCareer(career: ReturnType<typeof getPastLifeCareer>, language: string) {
+  const locale = language.toLowerCase().startsWith("pt") ? "pt-BR" : language.split("-")[0];
+  if (locale === "en") return EN_CAREER_COPY[career.title] ?? { title: career.title, eraPay: career.eraPay, wealthStyle: career.wealthStyle, description: career.description };
+  const title = CAREER_TITLES[locale]?.[career.title];
+  if (!title) return null;
+  const fields = {
+    ja: { eraPay: "現物・手当・依頼料などの時代の報酬", wealthStyle: "技術と信頼を積み上げる型", description: `${title}として、周囲を観察しながら自分の役割を着実に果たした人。` },
+    es: { eraPay: "Recompensa histórica en bienes, honorarios o apoyo", wealthStyle: "Construir con habilidad y confianza", description: `Como ${title}, cumplías tu papel con constancia y observabas lo que otros pasaban por alto.` },
+    "pt-BR": { eraPay: "Recompensa histórica em bens, taxas ou apoio", wealthStyle: "Construir com habilidade e confiança", description: `Como ${title}, você cumpria seu papel com constância e percebia o que outros não viam.` },
+    fr: { eraPay: "Récompense historique en biens, honoraires ou soutien", wealthStyle: "Construire par le savoir-faire et la confiance", description: `En tant que ${title}, vous teniez votre rôle avec constance et remarquiez ce que les autres manquaient.` },
+  } as const;
+  return { title, ...fields[locale as keyof typeof fields] };
+}
+
 export function PastLifeResult({ result, image, onReset }: Props) {
   const { i18n } = useTranslation();
   const isEnglish = i18n.language.toLowerCase().startsWith("en");
+  const isKorean = i18n.language.toLowerCase().startsWith("ko");
+  const copy = getPastLifeResultCopy(i18n.language);
   // The uploaded image is the stable seed. AI wording can vary between calls,
   // but the same source image should keep its past-life character.
   const career = getPastLifeCareer(image ?? [
@@ -70,12 +119,12 @@ export function PastLifeResult({ result, image, onReset }: Props) {
   const [generating, setGenerating] = useState(Boolean(image));
   const [generationAttempt, setGenerationAttempt] = useState(0);
   const [premiumUnlocked, setPremiumUnlocked] = useState(false);
-  const careerCopy = isEnglish ? EN_CAREER_COPY[career.title] : null;
+  const careerCopy = isKorean ? null : getLocalizedCareer(career, i18n.language);
   const displayTitle = careerCopy?.title ?? career.title;
   const displayEraPay = careerCopy?.eraPay ?? career.eraPay;
   const displayWealthStyle = careerCopy?.wealthStyle ?? career.wealthStyle;
   const displayDescription = careerCopy?.description ?? career.description;
-  const story = getStory(career.title, career.wealthStyle, isEnglish);
+  const story = getStory(career.title, career.wealthStyle, i18n.language);
 
   useEffect(() => {
     if (!image) return;
@@ -111,7 +160,7 @@ export function PastLifeResult({ result, image, onReset }: Props) {
         >
           <div className="absolute inset-3 border border-[#9b5a3b]/25" />
           <div className="relative text-center">
-            <p className="text-[11px] font-bold tracking-[0.18em] text-[#84422e]">{isEnglish ? EN_RESULT_COPY.result : "AI 전생 캐릭터 결과"}</p>
+            <p className="text-[11px] font-bold tracking-[0.18em] text-[#84422e]">{isKorean ? "AI 전생 캐릭터 결과" : copy.result}</p>
             <div className="relative mt-4 overflow-hidden border border-[#8e5a38]/30 bg-[#e3be7d]">
               {generatedImage ? (
                 <img src={generatedImage} alt={`${displayTitle} past-life character`} className="aspect-[4/3] w-full object-cover sm:aspect-square" />
@@ -120,26 +169,26 @@ export function PastLifeResult({ result, image, onReset }: Props) {
                   <img src={image} alt="전생 캐릭터 생성에 사용할 얼굴" className="h-full w-full object-cover blur-[2px] opacity-55" />
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#4a2517]/45 px-5 text-[#fff0c8]">
                     {generating ? <Loader2 className="h-7 w-7 animate-spin" /> : <span className="text-2xl">{career.icon}</span>}
-                    <p className="text-center text-sm font-bold">{generating ? (isEnglish ? `Creating your ${displayTitle} character` : `${career.title}의 모습으로 변신 중`) : (isEnglish ? "The character image could not be loaded." : "전생 캐릭터 이미지를 불러오지 못했습니다")}</p>
+                    <p className="text-center text-sm font-bold">{generating ? (isKorean ? `${career.title}의 모습으로 변신 중` : `${pastLabel(i18n.language, "transforming")} · ${displayTitle}`) : (isKorean ? "전생 캐릭터 이미지를 불러오지 못했습니다" : pastLabel(i18n.language, "failed"))}</p>
                   </div>
                 </div>
               ) : <div className="flex aspect-[4/3] items-center justify-center text-6xl sm:aspect-square">{career.icon}</div>}
-              {image && <div className="absolute bottom-3 left-3 flex items-center gap-2 border border-[#f4dca4]/60 bg-[#342016]/80 px-2 py-1.5 text-left text-[10px] font-bold text-[#fff0c8]"><img src={image} alt="Original face" className="h-7 w-7 rounded-full object-cover" />{isEnglish ? "Character based on my face" : "내 얼굴 기반 전생 캐릭터"}</div>}
+              {image && <div className="absolute bottom-3 left-3 flex items-center gap-2 border border-[#f4dca4]/60 bg-[#342016]/80 px-2 py-1.5 text-left text-[10px] font-bold text-[#fff0c8]"><img src={image} alt={isKorean ? "원본 얼굴" : "Original face"} className="h-7 w-7 rounded-full object-cover" />{isKorean ? "내 얼굴 기반 전생 캐릭터" : pastLabel(i18n.language, "faceBased")}</div>}
             </div>
-            <h1 className="mt-5 font-serif text-3xl font-bold sm:text-4xl">{isEnglish ? EN_RESULT_COPY.careerLabel : "당신의 전생 직업은"}</h1>
+            <h1 className="mt-5 font-serif text-3xl font-bold sm:text-4xl">{isKorean ? "당신의 전생 직업은" : copy.careerLabel}</h1>
             <p className="mt-1 font-serif text-4xl font-bold text-[#914430] sm:text-5xl">{displayTitle}</p>
             <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-[#5d4031]">{displayDescription}</p>
           </div>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .1 }} className="mt-5 grid gap-3 sm:grid-cols-3">
-          <InfoCard label={isEnglish ? EN_RESULT_COPY.eraPay : "당시 보상"} value={displayEraPay} />
-          <InfoCard label={isEnglish ? EN_RESULT_COPY.modernPay : "AI 전생 생활력 환산"} value={career.modernPay} emphasis />
-          <InfoCard label={isEnglish ? EN_RESULT_COPY.wealthStyle : "재산을 쌓는 방식"} value={displayWealthStyle} />
+          <InfoCard label={isKorean ? "당시 보상" : copy.eraPay} value={displayEraPay} />
+          <InfoCard label={isKorean ? "AI 전생 생활력 환산" : copy.modernPay} value={career.modernPay} emphasis />
+          <InfoCard label={isKorean ? "재산을 쌓는 방식" : copy.wealthStyle} value={displayWealthStyle} />
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .18 }} className="mt-4 border border-[#8e5a38]/25 bg-[#fff0c8]/70 p-5">
-          <div className="flex items-center gap-2 text-sm font-bold text-[#7e3c2a]"><Sparkles className="h-4 w-4" />{isEnglish ? EN_RESULT_COPY.traits : "현생에 이어진 전생 기질"}</div>
+          <div className="flex items-center gap-2 text-sm font-bold text-[#7e3c2a]"><Sparkles className="h-4 w-4" />{isKorean ? "현생에 이어진 전생 기질" : copy.traits}</div>
           <p className="mt-3 text-sm leading-7 text-[#523427]">{result.summary}</p>
           <div className="mt-4 flex flex-wrap gap-2">
             {(result.personality?.traits ?? []).slice(0, 4).map((trait) => <span key={trait} className="rounded-full border border-[#8e5a38]/25 bg-[#f6dca4] px-3 py-1 text-xs font-semibold text-[#6e3929]">{trait}</span>)}
@@ -147,50 +196,50 @@ export function PastLifeResult({ result, image, onReset }: Props) {
         </motion.div>
 
         <div className="mt-4 grid gap-3 sm:grid-cols-2">
-          <StoryCard eyebrow={isEnglish ? "Past-life record" : "전생 기록"} title={isEnglish ? "You in that era" : "그 시절의 당신"} text={story.past} />
-          <StoryCard eyebrow={isEnglish ? "How people remembered you" : "사람들이 기억한 방식"} title={isEnglish ? "Your relationship style" : "관계의 기질"} text={story.relationship} />
+          <StoryCard eyebrow={isKorean ? "전생 기록" : pastLabel(i18n.language, "record")} title={isKorean ? "그 시절의 당신" : pastLabel(i18n.language, "then")} text={story.past} />
+          <StoryCard eyebrow={isKorean ? "사람들이 기억한 방식" : pastLabel(i18n.language, "remembered")} title={isKorean ? "관계의 기질" : pastLabel(i18n.language, "record")} text={story.relationship} />
         </div>
 
         {!premiumUnlocked ? (
           <section className="mt-4 border border-[#7e3c2a]/35 bg-[#432116] p-5 text-[#fff0c8] shadow-[4px_4px_0_rgba(104,59,32,.18)]">
-            <p className="text-[11px] font-bold tracking-[0.16em] text-[#eabf72]">{isEnglish ? EN_RESULT_COPY.unlockEyebrow : "후원으로 여는 상세 전생 기록"}</p>
-            <h2 className="mt-2 font-serif text-xl font-bold">{isEnglish ? EN_RESULT_COPY.unlockTitle : "전생의 결정적 장면을 열어 보세요"}</h2>
-            <p className="mt-2 text-sm leading-6 text-[#f4dca4]/85">{isEnglish ? EN_RESULT_COPY.unlockBody : "재물 감각과 사랑의 인연, 지금 다시 꺼내 쓸 전생 미션, 내 얼굴 기반 소장 카드까지 한 번에 확인하세요."}</p>
+            <p className="text-[11px] font-bold tracking-[0.16em] text-[#eabf72]">{isKorean ? "후원으로 여는 상세 전생 기록" : copy.unlockEyebrow}</p>
+            <h2 className="mt-2 font-serif text-xl font-bold">{isKorean ? "전생의 결정적 장면을 열어 보세요" : copy.unlockTitle}</h2>
+            <p className="mt-2 text-sm leading-6 text-[#f4dca4]/85">{isKorean ? "재물 감각과 사랑의 인연, 지금 다시 꺼내 쓸 전생 미션, 내 얼굴 기반 소장 카드까지 한 번에 확인하세요." : copy.unlockBody}</p>
             <div className="mt-4 grid grid-cols-2 gap-2 text-left text-xs text-[#f8d99b]">
               {["재물과 생존 전략", "사랑에서 지킨 약속", "현생 전생 미션", "내 전생 소장 포스터"].map((item) => <div key={item} className="border border-[#f4dca4]/15 bg-black/10 px-3 py-2 blur-[1.2px]">{item}</div>)}
             </div>
             <div className="mt-4 grid grid-cols-2 gap-2 text-center text-xs font-bold">
-              <a href="https://mytesttype.com/k-shaman/toss_qr.jpg" target="_blank" rel="noreferrer" className="border border-[#f4dca4]/30 bg-[#fff0c8]/10 px-3 py-3">{isEnglish ? "Toss support QR" : "Toss 후원 QR"}</a>
-              <a href="https://mytesttype.com/k-shaman/paypal_qr.jpg" target="_blank" rel="noreferrer" className="border border-[#f4dca4]/30 bg-[#fff0c8]/10 px-3 py-3">{isEnglish ? "PayPal support QR" : "PayPal 후원 QR"}</a>
+              <a href="https://mytesttype.com/k-shaman/toss_qr.jpg" target="_blank" rel="noreferrer" className="border border-[#f4dca4]/30 bg-[#fff0c8]/10 px-3 py-3">{isKorean ? "Toss 후원 QR" : pastLabel(i18n.language, "toss")}</a>
+              <a href="https://mytesttype.com/k-shaman/paypal_qr.jpg" target="_blank" rel="noreferrer" className="border border-[#f4dca4]/30 bg-[#fff0c8]/10 px-3 py-3">{isKorean ? "PayPal 후원 QR" : pastLabel(i18n.language, "paypal")}</a>
             </div>
-            <button type="button" onClick={() => setPremiumUnlocked(true)} className="mt-3 h-11 w-full bg-[#f1c970] text-sm font-black text-[#3a1f14]">{isEnglish ? "Open full record (test)" : "테스트로 상세 기록 열기"}</button>
-            <p className="mt-2 text-center text-[10px] text-[#f4dca4]/60">{isEnglish ? "During testing, the detailed result opens without support verification." : "테스트 기간에는 후원 확인 없이 상세 결과를 열 수 있습니다."}</p>
+            <button type="button" onClick={() => setPremiumUnlocked(true)} className="mt-3 h-11 w-full bg-[#f1c970] text-sm font-black text-[#3a1f14]">{isKorean ? "테스트로 상세 기록 열기" : pastLabel(i18n.language, "testOpen")}</button>
+            <p className="mt-2 text-center text-[10px] text-[#f4dca4]/60">{isKorean ? "테스트 기간에는 후원 확인 없이 상세 결과를 열 수 있습니다." : pastLabel(i18n.language, "testNote")}</p>
           </section>
         ) : (
           <div className="mt-4">
-            <p className="text-[11px] font-bold tracking-[0.16em] text-[#7e3c2a]">{isEnglish ? EN_RESULT_COPY.detail : "상세 전생 기록"}</p>
-            <h2 className="mt-2 font-serif text-xl font-bold">{isEnglish ? EN_RESULT_COPY.complete : "당신의 전생 기록 완성본"}</h2>
+            <p className="text-[11px] font-bold tracking-[0.16em] text-[#7e3c2a]">{isKorean ? "상세 전생 기록" : copy.detail}</p>
+            <h2 className="mt-2 font-serif text-xl font-bold">{isKorean ? "당신의 전생 기록 완성본" : copy.complete}</h2>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              <StoryCard eyebrow={isEnglish ? "Defining scene" : "결정적 장면"} title={isEnglish ? "A hidden past-life choice" : "숨겨진 전생의 선택"} text={story.secret} />
-              <StoryCard eyebrow={isEnglish ? "Livelihood record" : "생활력 기록"} title={isEnglish ? "Wealth instincts and survival" : "재물 감각과 생존 방식"} text={story.wealth} />
-              <StoryCard eyebrow={isEnglish ? "Love and bonds" : "사랑의 인연"} title={isEnglish ? "What you protected in relationships" : "관계에서 끝까지 지킨 것"} text={story.love} />
-              <StoryCard eyebrow={isEnglish ? "Today’s mission" : "현생 미션"} title={isEnglish ? "A quality to use this week" : "이번 주에 꺼내 쓸 기질"} text={story.mission} accent />
+              <StoryCard eyebrow={isKorean ? "결정적 장면" : pastLabel(i18n.language, "scene")} title={isKorean ? "숨겨진 전생의 선택" : pastLabel(i18n.language, "hidden")} text={story.secret} />
+              <StoryCard eyebrow={isKorean ? "생활력 기록" : pastLabel(i18n.language, "livelihood")} title={isKorean ? "재물 감각과 생존 방식" : pastLabel(i18n.language, "wealth")} text={story.wealth} />
+              <StoryCard eyebrow={isKorean ? "사랑의 인연" : pastLabel(i18n.language, "love")} title={isKorean ? "관계에서 끝까지 지킨 것" : pastLabel(i18n.language, "protected")} text={story.love} />
+              <StoryCard eyebrow={isKorean ? "현생 미션" : pastLabel(i18n.language, "mission")} title={isKorean ? "이번 주에 꺼내 쓸 기질" : pastLabel(i18n.language, "quality")} text={story.mission} accent />
             </div>
             <div className="mt-4 border border-[#8e5a38]/25 bg-[#f4d89e] p-4 text-center">
-              <p className="text-[10px] font-bold tracking-[.16em] text-[#85513b]">{isEnglish ? EN_RESULT_COPY.poster : "소장용 전생 포스터"}</p>
+              <p className="text-[10px] font-bold tracking-[.16em] text-[#85513b]">{isKorean ? "소장용 전생 포스터" : copy.poster}</p>
               <p className="mt-1 font-serif text-lg font-bold text-[#4a2517]">{isEnglish ? `My past-life record as a ${displayTitle}` : `${career.title}로 남긴 나의 전생 기록`}</p>
-              <p className="mt-2 text-xs leading-5 text-[#684a3e]">{isEnglish ? "Share it as an SNS result card with your past-life character image." : "위 전생 캐릭터 이미지와 함께 SNS 결과 카드에 담아 공유할 수 있습니다."}</p>
+              <p className="mt-2 text-xs leading-5 text-[#684a3e]">{isKorean ? "위 전생 캐릭터 이미지와 함께 SNS 결과 카드에 담아 공유할 수 있습니다." : pastLabel(i18n.language, "posterShare")}</p>
             </div>
           </div>
         )}
 
         {imageError && (
           <div className="mt-3 text-center">
-            <p className="px-3 text-[11px] leading-5 text-[#8e3f2b]">{isEnglish ? EN_RESULT_COPY.delayed : "전생 이미지 생성이 일시적으로 지연되었습니다. 결과 카드는 그대로 공유할 수 있습니다."}</p>
-            <button type="button" onClick={() => setGenerationAttempt((attempt) => attempt + 1)} className="mt-2 border border-[#815039]/35 bg-[#f7dfaa]/75 px-4 py-2 text-xs font-bold text-[#50291c]">{isEnglish ? EN_RESULT_COPY.retry : "전생 이미지 다시 만들기"}</button>
+            <p className="px-3 text-[11px] leading-5 text-[#8e3f2b]">{isKorean ? "전생 이미지 생성이 일시적으로 지연되었습니다. 결과 카드는 그대로 공유할 수 있습니다." : copy.delayed}</p>
+            <button type="button" onClick={() => setGenerationAttempt((attempt) => attempt + 1)} className="mt-2 border border-[#815039]/35 bg-[#f7dfaa]/75 px-4 py-2 text-xs font-bold text-[#50291c]">{isKorean ? "전생 이미지 다시 만들기" : copy.retry}</button>
           </div>
         )}
-        <p className="mt-4 px-3 text-center text-[11px] leading-5 text-[#705244]">{isEnglish ? EN_RESULT_COPY.disclaimer : "당시 보상은 직업·시대·지역별 차이가 큰 현물 중심 체계였습니다. ‘현대 생활력 환산’은 역사적 급여를 확정하는 수치가 아닌, AI 전생 캐릭터 놀이를 위한 생활력 비유입니다."}</p>
+        <p className="mt-4 px-3 text-center text-[11px] leading-5 text-[#705244]">{isKorean ? "당시 보상은 직업·시대·지역별 차이가 큰 현물 중심 체계였습니다. ‘현대 생활력 환산’은 역사적 급여를 확정하는 수치가 아닌, AI 전생 캐릭터 놀이를 위한 생활력 비유입니다." : copy.disclaimer}</p>
 
         <div className="mt-5">
           <ResultShareButtons lang={i18n.language} title={isEnglish ? `I was a ${displayTitle} in a past life` : `나는 전생에 ${career.title}이었다`} url={url} summary={result.summary} service="past-life" variant="paper" />
@@ -212,10 +261,43 @@ function StoryCard({ eyebrow, title, text, accent = false }: { eyebrow: string; 
   </section>;
 }
 
-function getStory(career: string, wealthStyle: string, english = false) {
-  if (english) {
-    const title = EN_CAREER_COPY[career]?.title ?? career;
+function getStory(career: string, wealthStyle: string, language = "ko") {
+  const locale = language.toLowerCase().startsWith("pt") ? "pt-BR" : language.split("-")[0];
+  if (locale !== "ko") {
+    const title = CAREER_TITLES[locale]?.[career] ?? EN_CAREER_COPY[career]?.title ?? career;
     const style = EN_CAREER_COPY[career]?.wealthStyle ?? wealthStyle;
+    if (locale === "ja") return {
+      past: `${title}として、周囲が見落とす小さな変化に気づきながら、自分の役割を着実に果たしました。忙しい時ほど中心を保ち、足りないところを先に埋める人でした。`,
+      relationship: "言葉より行動で気持ちを示す人として記憶されています。静かに見えても、一度大切だと思った人を簡単には手放しませんでした。",
+      wealth: "技術と信頼を積み重ね、ひとつの大勝負ではなく続けられる強みを価値に変える感覚です。",
+      mission: "今週は先延ばしにしていたことをひとつ完成させてみましょう。",
+      secret: "大変さよりも、任されたことが崩れてしまう瞬間を恐れていました。だから重要な場面では自分で確認してから決断しました。",
+      love: "華やかな言葉より、現実を一緒に過ごせる安心感を大切にしました。必要な気持ちも少しずつ言葉にすると、縁が深まります。",
+    };
+    if (locale === "es") return {
+      past: `Como ${title}, construías confianza al mantenerte firme en tu papel y notar lo que otros no veían. En los momentos difíciles, mantenías el centro y cubrías primero los pequeños huecos.`,
+      relationship: "Te recordaban como alguien que demostraba cariño con hechos. Podías parecer reservado al principio, pero no abandonabas fácilmente a quien considerabas de los tuyos.",
+      wealth: "Tu forma de construir riqueza convertía una habilidad repetible en valor duradero, en vez de depender de una sola apuesta.",
+      mission: "Esta semana termina una tarea que llevas demasiado tiempo posponiendo.",
+      secret: "Temías más que se desordenara un encargo de confianza que el trabajo duro. Por eso comprobabas los detalles importantes antes de decidir.",
+      love: "En el amor valorabas compartir la vida real más que las palabras llamativas. A medida que el vínculo crece, expresa también lo que necesitas.",
+    };
+    if (locale === "pt-BR") return {
+      past: `Como ${title}, você construía confiança ao cumprir seu papel com firmeza e perceber o que outros não viam. Nos momentos difíceis, mantinha o equilíbrio e preenchia primeiro as pequenas lacunas.`,
+      relationship: "As pessoas se lembravam de você por demonstrar carinho com atitudes. Podia parecer reservado no início, mas não abandonava quem considerava parte da sua equipe.",
+      wealth: "Sua forma de construir riqueza transformava uma habilidade repetível em valor duradouro, em vez de depender de uma única aposta.",
+      mission: "Nesta semana, conclua uma tarefa que você vem adiando há muito tempo.",
+      secret: "Você temia mais que um compromisso de confiança saísse do controle do que o trabalho difícil. Por isso verificava os detalhes antes da decisão final.",
+      love: "No amor, você valorizava compartilhar a vida real mais do que palavras impressionantes. Conforme o vínculo cresce, diga também o que você precisa.",
+    };
+    if (locale === "fr") return {
+      past: `En tant que ${title}, vous inspiriez confiance en tenant votre rôle avec constance et en remarquant ce que les autres ne voyaient pas. Dans les moments difficiles, vous gardiez le cap et combliez d’abord les petits manques.`,
+      relationship: "On se souvenait de vous comme d’une personne qui exprimait son attention par ses actes. Réservé au début, vous ne laissiez pas facilement partir les personnes importantes.",
+      wealth: "Votre façon de construire votre richesse transformait une force répétable en valeur durable plutôt que de miser sur un seul grand coup.",
+      mission: "Cette semaine, terminez une tâche que vous repoussez depuis trop longtemps.",
+      secret: "Vous craigniez davantage qu’une mission confiée se désorganise que le travail difficile. Vous vérifiiez donc vous-même les détails importants avant de décider.",
+      love: "En amour, vous privilégiez le partage de la vie réelle aux belles paroles. Quand le lien se renforce, pensez aussi à exprimer vos besoins.",
+    };
     return {
       past: `As a ${title}, you built trust by staying steady in your role and noticing what others missed. When work became demanding, you kept the center and filled the gaps first.`,
       relationship: "People remembered you as someone who showed care through actions. You could seem quiet at first, but once someone was on your side, you did not let them go easily.",

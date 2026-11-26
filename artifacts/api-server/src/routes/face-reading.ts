@@ -5,6 +5,7 @@ import { buildKnowledgeContext } from "../lib/knowledge/index.js";
 const router: IRouter = Router();
 
 const MODEL = "gpt-4o";
+const LANGUAGE_NAMES: Record<string, string> = { ko: "한국어", en: "English", ja: "日本語", es: "Español", "pt-BR": "Português do Brasil", fr: "Français" };
 
 const SYSTEM_PROMPT = `당신은 한국 전통 관상 문화를 현대적으로 풀어내는 오락용 AI 해설자입니다.
 사진에서 직접 관찰 가능한 표정과 얼굴의 시각적 특징만 묘사하고, 전통 관상에서 해당 특징을 상징적으로 어떻게 해석하는지 조건부 표현으로 설명하세요.
@@ -50,6 +51,7 @@ router.post("/face-reading", async (req, res): Promise<void> => {
     return;
   }
 
+  const outputLanguage = LANGUAGE_NAMES[language] ? language : "en";
   const knowledge = buildKnowledgeContext(
     "face",
     [
@@ -66,12 +68,12 @@ router.post("/face-reading", async (req, res): Promise<void> => {
       "occlusion",
       "asymmetry",
     ],
-    language,
+    outputLanguage,
   );
   const languageInstruction =
-    language === "ko"
+    outputLanguage === "ko"
       ? "모든 JSON 문자열 값은 한국어로 작성하세요."
-      : `모든 JSON 문자열 값은 ${language} 언어로 작성하세요. JSON 키는 기존 구조를 유지하세요.`;
+      : `모든 JSON 문자열 값은 반드시 ${LANGUAGE_NAMES[outputLanguage]}로 작성하세요. JSON 키는 기존 구조를 유지하고, 한국어 문장은 사용하지 마세요. 고유명사만 원어 표기를 허용합니다.`;
 
   const imageUrl = imageBase64.startsWith("data:")
     ? imageBase64

@@ -36,7 +36,7 @@ function createCard(title: string, summary: string, service: Service) {
 
 export function ResultShareButtons({ lang, title, url, summary = "", service = "face", variant = "default" }: Props) {
   const [copied, setCopied] = useState(false); const [guide, setGuide] = useState<"instagram" | "kakao" | "tiktok" | null>(null); const [sharing, setSharing] = useState(false);
-  const copy = COPY[lang.split("-")[0]] ?? COPY.en;
+  const copy = COPY[lang] ?? COPY[lang.split("-")[0]] ?? COPY.en;
   const saveShare = async () => { setSharing(true); try { const cardImageDataUrl = createCard(title, summary || title, service); const response = await fetch(`${API_BASE}/share-results`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ service, language: lang, title, summary: summary || title, cardImageDataUrl }) }); const data = await response.json(); if (!response.ok) throw new Error(data.error); return { cardImageDataUrl, shareUrl: `${API_BASE}/share/${data.id}` }; } finally { setSharing(false); } };
   const share = async (target: "copy" | "x" | "facebook" | "instagram" | "kakao" | "tiktok" | "line" | "threads" | "whatsapp") => {
     // Social networks block popups opened after an asynchronous network request.
