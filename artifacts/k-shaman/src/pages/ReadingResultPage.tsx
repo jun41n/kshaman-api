@@ -270,7 +270,11 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
           </button>
 
           <div className="pt-2">
-            <KShamanShareButtons lang={lang} />
+            <KShamanShareButtons
+              lang={lang}
+              title={isKo ? `${fullName}님의 사주 결과` : `${fullName}'s K-Shaman reading`}
+              summary={blocks.join("\n\n").slice(0, 500)}
+            />
           </div>
 
         </div>

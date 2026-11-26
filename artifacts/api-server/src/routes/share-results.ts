@@ -8,7 +8,7 @@ const MAX_IMAGE_LENGTH = 1_500_000;
 const EXPIRY_MS = 30 * 24 * 60 * 60 * 1000;
 const storePath = path.join(process.env.SHARE_STORE_DIR ?? "/home/ubuntu/mytesttype-data", "share-results.json");
 
-type ShareRecord = { id: string; createdAt: string; expiresAt: string; service: "past-life" | "face" | "palm"; language: string; title: string; summary: string; cardImageDataUrl: string };
+type ShareRecord = { id: string; createdAt: string; expiresAt: string; service: "past-life" | "face" | "palm" | "saju"; language: string; title: string; summary: string; cardImageDataUrl: string };
 
 async function readRecords(): Promise<ShareRecord[]> {
   try { return (JSON.parse(await readFile(storePath, "utf8")) as ShareRecord[]).filter((record) => Date.parse(record.expiresAt) > Date.now()); }
@@ -20,7 +20,7 @@ function escapeHtml(value: string) { return value.replace(/[&<>'"]/g, (character
 
 router.post("/share-results", async (req, res): Promise<void> => {
   const { service, language, title, summary, cardImageDataUrl } = req.body as Partial<ShareRecord>;
-  if (!["past-life", "face", "palm"].includes(service ?? "") || !title || !summary || !cardImageDataUrl?.startsWith("data:image/png;base64,") || cardImageDataUrl.length > MAX_IMAGE_LENGTH) { res.status(400).json({ error: "유효한 결과 카드 데이터가 필요합니다." }); return; }
+  if (!["past-life", "face", "palm", "saju"].includes(service ?? "") || !title || !summary || !cardImageDataUrl?.startsWith("data:image/png;base64,") || cardImageDataUrl.length > MAX_IMAGE_LENGTH) { res.status(400).json({ error: "유효한 결과 카드 데이터가 필요합니다." }); return; }
   const now = new Date();
   const record: ShareRecord = { id: randomUUID().replace(/-/g, "").slice(0, 16), createdAt: now.toISOString(), expiresAt: new Date(now.getTime() + EXPIRY_MS).toISOString(), service: service as ShareRecord["service"], language: typeof language === "string" ? language.slice(0, 12) : "ko", title: title.slice(0, 120), summary: summary.slice(0, 500), cardImageDataUrl };
   try { const records = await readRecords(); records.push(record); await writeRecords(records); res.status(201).json({ id: record.id, expiresAt: record.expiresAt }); }

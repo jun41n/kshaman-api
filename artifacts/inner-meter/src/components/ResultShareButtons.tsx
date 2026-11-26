@@ -3,7 +3,7 @@ import { Check, Link2, Share2, X } from "lucide-react";
 import { trackResultShareClick } from "@/lib/analytics";
 
 type Service = "past-life" | "face" | "palm";
-type Props = { lang: string; title: string; url: string; summary?: string; service?: Service; variant?: "default" | "paper" };
+type Props = { lang: string; title: string; url: string; summary?: string; image?: string | null; service?: Service; variant?: "default" | "paper" };
 const API_BASE = "https://api.mytesttype.com/api";
 
 const COPY: Record<string, { heading: string; copy: string; copied: string; prompt: string; image: string; kakao: string; instagramGuide: string; kakaoGuide: string; tiktokGuide: string }> = {
@@ -21,27 +21,40 @@ function wrap(context: CanvasRenderingContext2D, text: string, maxWidth: number,
   if (line && lines.length < maxLines) lines.push(line); return lines;
 }
 
-function createCard(title: string, summary: string, service: Service) {
-  const canvas = document.createElement("canvas"); canvas.width = 1200; canvas.height = 630;
+async function createCard(title: string, summary: string, service: Service, image?: string | null) {
+  const canvas = document.createElement("canvas"); canvas.width = 1200; canvas.height = 800;
   const context = canvas.getContext("2d"); if (!context) throw new Error("card canvas unavailable");
   const palette = service === "past-life" ? ["#2f1914", "#8d412d"] : service === "palm" ? ["#6a381f", "#c98c42"] : ["#4b291f", "#c57438"];
   const gradient = context.createLinearGradient(0, 0, 1200, 630); gradient.addColorStop(0, palette[0]); gradient.addColorStop(1, palette[1]); context.fillStyle = gradient; context.fillRect(0, 0, 1200, 630);
-  context.strokeStyle = "rgba(255,235,187,.6)"; context.lineWidth = 3; context.strokeRect(36, 36, 1128, 558);
+  context.strokeStyle = "rgba(255,235,187,.6)"; context.lineWidth = 3; context.strokeRect(36, 36, 1128, 728);
   context.fillStyle = "#f8e8c1"; context.font = "700 28px serif"; context.fillText("MYTESTTYPE · AI CULTURAL ENTERTAINMENT", 78, 105);
-  context.font = "700 62px serif"; wrap(context, title, 980, 2).forEach((line, index) => context.fillText(line, 78, 230 + index * 76));
-  context.fillStyle = "rgba(255,239,205,.88)"; context.font = "400 31px sans-serif"; wrap(context, summary, 980, 3).forEach((line, index) => context.fillText(line, 78, 445 + index * 42));
-  context.fillStyle = "rgba(255,239,205,.65)"; context.font = "400 24px sans-serif"; context.fillText("mytesttype.com", 78, 560);
+  let textTop = 230;
+  if (image) {
+    try {
+      const loaded = await new Promise<HTMLImageElement>((resolve, reject) => { const img = new Image(); img.onload = () => resolve(img); img.onerror = reject; img.src = image; });
+      const box = { x: 78, y: 135, width: 1044, height: 360 };
+      const scale = Math.max(box.width / loaded.naturalWidth, box.height / loaded.naturalHeight);
+      const width = loaded.naturalWidth * scale; const height = loaded.naturalHeight * scale;
+      context.save(); context.beginPath(); context.rect(box.x, box.y, box.width, box.height); context.clip();
+      context.drawImage(loaded, box.x + (box.width - width) / 2, box.y + (box.height - height) / 2, width, height); context.restore();
+      textTop = 575;
+    } catch { /* keep a text-only card if the source image cannot be loaded */ }
+  }
+  context.font = "700 62px serif"; wrap(context, title, 980, 2).forEach((line, index) => context.fillText(line, 78, textTop + index * 68));
+  const summaryTop = textTop + (wrap(context, title, 980, 2).length * 68) + 32;
+  context.fillStyle = "rgba(255,239,205,.88)"; context.font = "400 31px sans-serif"; wrap(context, summary, 980, 3).forEach((line, index) => context.fillText(line, 78, summaryTop + index * 38));
+  context.fillStyle = "rgba(255,239,205,.65)"; context.font = "400 24px sans-serif"; context.fillText("mytesttype.com", 78, 742);
   return canvas.toDataURL("image/png");
 }
 
-export function ResultShareButtons({ lang, title, url, summary = "", service = "face", variant = "default" }: Props) {
+export function ResultShareButtons({ lang, title, url, summary = "", image = null, service = "face", variant = "default" }: Props) {
   const [copied, setCopied] = useState(false); const [guide, setGuide] = useState<"instagram" | "kakao" | "tiktok" | null>(null); const [sharing, setSharing] = useState(false);
   const copy = COPY[lang] ?? COPY[lang.split("-")[0]] ?? COPY.en;
-  const saveShare = async () => { setSharing(true); try { const cardImageDataUrl = createCard(title, summary || title, service); const response = await fetch(`${API_BASE}/share-results`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ service, language: lang, title, summary: summary || title, cardImageDataUrl }) }); const data = await response.json(); if (!response.ok) throw new Error(data.error); return { cardImageDataUrl, shareUrl: `${API_BASE}/share/${data.id}` }; } finally { setSharing(false); } };
+  const saveShare = async () => { setSharing(true); try { const cardImageDataUrl = await createCard(title, summary || title, service, image); const response = await fetch(`${API_BASE}/share-results`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ service, language: lang, title, summary: summary || title, cardImageDataUrl }) }); const data = await response.json(); if (!response.ok) throw new Error(data.error); return { cardImageDataUrl, shareUrl: `${API_BASE}/share/${data.id}` }; } finally { setSharing(false); } };
   const share = async (target: "copy" | "x" | "facebook" | "instagram" | "kakao" | "tiktok" | "line" | "threads" | "whatsapp") => {
     // Social networks block popups opened after an asynchronous network request.
     const popup = target === "x" || target === "facebook" ? window.open("about:blank", "_blank", "width=640,height=520") : null;
-    try { const { shareUrl } = await saveShare(); const text = `${copy.prompt}\n${title}\n${shareUrl}`; const shareType = target === "copy" ? "copy_link" : target; trackResultShareClick({ test_slug: service, result_key: title, share_type: shareType }); if (target === "copy") { await navigator.clipboard.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 2200); return; } if (target === "x") popup?.location.assign(`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${copy.prompt}\n${title}`)}&url=${encodeURIComponent(shareUrl)}`); if (target === "facebook") popup?.location.assign(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`); if (target === "line") window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}`, "_blank", "width=640,height=520"); if (target === "threads") window.open(`https://www.threads.net/intent/post?text=${encodeURIComponent(`${copy.prompt} ${title} ${shareUrl}`)}`, "_blank", "width=640,height=520"); if (target === "whatsapp") window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank", "width=640,height=520"); if (target === "instagram" || target === "kakao" || target === "tiktok") { await navigator.clipboard.writeText(text); setGuide(target); } } catch { popup?.close(); }
+    try { const { shareUrl } = await saveShare(); const text = `${copy.prompt}\n${title}\n${summary || title}\n${shareUrl}`; const shareType = target === "copy" ? "copy_link" : target; trackResultShareClick({ test_slug: service, result_key: title, share_type: shareType }); if (target === "copy") { await navigator.clipboard.writeText(text); setCopied(true); setTimeout(() => setCopied(false), 2200); return; } if (target === "x") popup?.location.assign(`https://twitter.com/intent/tweet?text=${encodeURIComponent(`${copy.prompt}\n${title}\n${summary || title}`)}&url=${encodeURIComponent(shareUrl)}`); if (target === "facebook") popup?.location.assign(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`); if (target === "line") window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(shareUrl)}`, "_blank", "width=640,height=520"); if (target === "threads") window.open(`https://www.threads.net/intent/post?text=${encodeURIComponent(text)}`, "_blank", "width=640,height=520"); if (target === "whatsapp") window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank", "width=640,height=520"); if (target === "instagram" || target === "kakao" || target === "tiktok") { await navigator.clipboard.writeText(text); setGuide(target); } } catch { popup?.close(); }
   };
   const buttons = [
     { label: copied ? copy.copied : copy.copy, theme: copied ? "bg-emerald-500" : "bg-[#33251f]", icon: copied ? <Check size={17} /> : <Link2 size={17} />, click: () => share("copy") },

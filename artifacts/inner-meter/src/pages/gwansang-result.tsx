@@ -444,6 +444,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
             title={result.dragonface?.tier ? `${copy.impression}: ${tierName}` : copy.complete}
             url="https://mytesttype.com/gwansang/"
             summary={result.summary}
+            image={image}
             service="face"
             variant="paper"
           />

@@ -710,6 +710,7 @@ function ResultView({
         title={free.moneyStyle?.title ?? ui.flow}
         url="https://mytesttype.com/palm-reading/"
         summary={free.summary}
+        image={images.right ?? images.left}
         service="palm"
         variant="paper"
       />

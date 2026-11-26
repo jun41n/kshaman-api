@@ -242,7 +242,12 @@ export function PastLifeResult({ result, image, onReset }: Props) {
         <p className="mt-4 px-3 text-center text-[11px] leading-5 text-[#705244]">{isKorean ? "당시 보상은 직업·시대·지역별 차이가 큰 현물 중심 체계였습니다. ‘현대 생활력 환산’은 역사적 급여를 확정하는 수치가 아닌, AI 전생 캐릭터 놀이를 위한 생활력 비유입니다." : copy.disclaimer}</p>
 
         <div className="mt-5">
-          <ResultShareButtons lang={i18n.language} title={isEnglish ? `I was a ${displayTitle} in a past life` : `나는 전생에 ${career.title}이었다`} url={url} summary={result.summary} service="past-life" variant="paper" />
+          <ResultShareButtons lang={i18n.language} title={isEnglish ? `I was a ${displayTitle} in a past life` : `나는 전생에 ${career.title}이었다`} url={url} summary={result.summary} image={generatedImage ?? image} service="past-life" variant="paper" />
+          {(generatedImage ?? image) && (
+            <a className="mt-3 flex h-11 w-full items-center justify-center border border-[#815039]/35 bg-[#f7dfaa]/75 text-sm font-bold text-[#50291c]" href={generatedImage ?? image ?? undefined} download="mytesttype-past-life-result.png">
+              {isKorean ? "전생 결과 이미지 저장" : copy.poster}
+            </a>
+          )}
         </div>
 
         <button type="button" onClick={onReset} className="mt-4 flex h-12 w-full items-center justify-center gap-2 border border-[#815039]/35 bg-[#f7dfaa]/75 text-sm font-bold text-[#50291c]">

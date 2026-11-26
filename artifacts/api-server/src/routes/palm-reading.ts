@@ -20,6 +20,7 @@ const SYSTEM_PROMPT = `당신은 손금 전통을 현대적인 자기성찰 콘�
 이미지에서 실제로 보이는 손바닥의 선과 형태만 관찰하고, 전통 수상학의 상징을 조건부 표현으로 설명하세요.
 손금으로 건강, 수명, 임신·출산, 재산, 투자, 법률, 진로 성공, 연애 결과를 확정하거나 예측하지 마세요.
 의학적·심리학적 근거가 있는 진단처럼 표현하지 말고, 모든 내용은 문화·오락 목적의 참고 안내로 작성하세요.
+진지한 점괘 보고서보다 친구와 웃으며 비교할 수 있는 콘텐츠가 되도록, 각 핵심 해설에 과하지 않은 재치와 짧은 반전을 넣으세요. 손 모양이나 사람을 조롱하지 말고 관찰과 자기성찰을 중심으로 유머를 만드세요.
 반드시 순수 JSON만 반환하세요.`;
 
 const FREE_SCHEMA = `{
@@ -124,8 +125,8 @@ router.post("/palm-reading", async (req, res): Promise<void> => {
       : "이것은 한 사람의 손금 읽기입니다. 개인의 관찰 가능한 특징과 전통적 상징을 중심으로 작성하세요.";
   const prompt =
     tier === "free"
-      ? `손바닥 이미지에서 무료 기본 해설을 작성하세요.\n${modeInstruction}\n${languageInstruction}\n${knowledge.text}\nJSON 구조:\n${FREE_SCHEMA}`
-      : `손바닥 이미지에서 프리미엄 상세 해설을 작성하세요. 무료 기본 항목보다 관찰 가능한 특징, 선 사이의 관계, 생활 속 실천을 구체화하세요. 건강·수명·재산·미래를 판정하지 마세요.\n${modeInstruction}\n${languageInstruction}\n${knowledge.text}\nJSON 구조:\n${PREMIUM_SCHEMA}`;
+      ? `손바닥 이미지에서 무료 기본 해설을 작성하세요. 총평과 각 reading에는 한 번씩 짧고 쉬운 유머 또는 친구에게 보내고 싶은 반전 문장을 넣으세요.\n${modeInstruction}\n${languageInstruction}\n${knowledge.text}\nJSON 구조:\n${FREE_SCHEMA}`
+      : `손바닥 이미지에서 프리미엄 상세 해설을 작성하세요. 무료 기본 항목보다 관찰 가능한 특징, 선 사이의 관계, 생활 속 실천을 구체화하세요. 건강·수명·재산·미래를 판정하지 마세요. 총평과 각 reading에는 한 번씩 짧고 쉬운 유머 또는 친구에게 보내고 싶은 반전 문장을 넣으세요.\n${modeInstruction}\n${languageInstruction}\n${knowledge.text}\nJSON 구조:\n${PREMIUM_SCHEMA}`;
 
   try {
     const client = getOpenAIClient();

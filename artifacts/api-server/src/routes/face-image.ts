@@ -51,7 +51,7 @@ const PAST_LIFE_CAREERS: Record<string, string> = {
 function buildPastLifePrompt(career: string): string | null {
   const scene = PAST_LIFE_CAREERS[career];
   if (!scene) return null;
-  return `업로드된 사람의 얼굴 정체성, 얼굴 비율, 눈·코·입·표정을 최대한 유지한 고품질 조선시대 전생 캐릭터 인물화입니다. 이 인물은 ${scene}입니다. 복식·배경·소품으로 직업을 분명히 보여 주세요. 실사 기반의 영화 스틸처럼 자연스럽고 존중감 있게 표현하세요. 얼굴을 다른 사람으로 바꾸지 말고, 글자·워터마크·현대 물건은 넣지 마세요.`;
+  return `업로드된 사람의 얼굴 정체성, 얼굴 비율, 눈·코·입·표정을 최대한 유지한 고품질 조선시대 전생 캐릭터 인물화입니다. 이 인물은 ${scene}입니다. 복식·배경·소품으로 직업을 분명히 보여 주세요. 실사 기반의 영화 스틸처럼 자연스럽고 존중감 있게 표현하되, 친구에게 보여주면 미소가 나는 생활감 있는 표정과 작은 유머를 담아 주세요. 얼굴을 다른 사람으로 바꾸지 말고, 글자·워터마크·현대 물건은 넣지 마세요.`;
 }
 
 router.post("/generate-face-image", async (req, res): Promise<void> => {
