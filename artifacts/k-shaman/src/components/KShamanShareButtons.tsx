@@ -49,10 +49,16 @@ export function KShamanShareButtons({ lang, title = "K-Shaman AI 사주 결과",
   const shareText = SHARE_TEXT[lang] ?? SHARE_TEXT["en"];
   const getShareUrl = async () => {
     if (shareUrlRef.current) return shareUrlRef.current;
-    const cardImageDataUrl = await createSajuCard(title, summary || shareText);
-    const response = await fetch(`${API_BASE}/share-results`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ service: "saju", language: lang, title, summary: summary || shareText, cardImageDataUrl }) });
-    const data = await response.json(); if (!response.ok) throw new Error(data.error);
-    shareUrlRef.current = `${API_BASE}/share/${data.id}`; return shareUrlRef.current;
+    try {
+      const cardImageDataUrl = await createSajuCard(title, summary || shareText);
+      const response = await fetch(`${API_BASE}/share-results`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ service: "saju", language: lang, title, summary: summary || shareText, cardImageDataUrl }) });
+      const data = await response.json(); if (!response.ok) throw new Error(data.error);
+      shareUrlRef.current = `${API_BASE}/share/${data.id}`;
+    } catch {
+      // Keep sharing usable while an older API instance is being restarted.
+      shareUrlRef.current = SHARE_URL;
+    }
+    return shareUrlRef.current;
   };
 
   const copyLink = async () => {
