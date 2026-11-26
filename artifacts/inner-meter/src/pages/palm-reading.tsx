@@ -1035,9 +1035,9 @@ export default function PalmReading() {
               ))}
             </div>
             {stage === "guide" && (
-              <section className="border border-[#8e5a38]/35 bg-[#f6dda2]/85 p-5 shadow-[4px_4px_0_rgba(104,59,32,.14)]">
-                <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden bg-[#fff0c8]/75">
-                  <div className="absolute inset-7 rounded-[38%] border-2 border-dashed border-primary/50" />
+              <section className="overflow-hidden rounded-[28px] border border-[#8e5a38]/35 bg-[#f6dda2]/85 p-5 shadow-[4px_4px_0_rgba(104,59,32,.14)]">
+                <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-[28px] bg-[#fff0c8]/75">
+                  <div className="absolute inset-7 rounded-[28px] border-2 border-dashed border-primary/50" />
                   <div className="relative flex flex-col items-center gap-3 text-center text-muted-foreground">
                     <Hand
                       className={`h-28 w-28 text-primary/70 ${side === "right" ? "-scale-x-100" : ""}`}
@@ -1059,7 +1059,7 @@ export default function PalmReading() {
                   <button
                     type="button"
                     onClick={() => fileInputRef.current?.click()}
-                    className="flex min-h-12 items-center justify-center gap-2 border border-[#8e5a38]/35 bg-[#f9e5b5] px-3 py-3 text-sm font-semibold text-[#4a2517]"
+                    className="flex min-h-12 items-center justify-center gap-2 rounded-[14px] border border-[#8e5a38]/35 bg-[#f9e5b5] px-3 py-3 text-sm font-semibold text-[#4a2517]"
                   >
                     <Upload className="h-5 w-5" /> {ui.choosePhoto}
                   </button>
@@ -1078,16 +1078,16 @@ export default function PalmReading() {
             {stage === "camera" && (
               <section
                 ref={captureSectionRef}
-                className="scroll-mt-20 border border-[#8e5a38]/35 bg-[#f6dda2]/85 p-4 shadow-[4px_4px_0_rgba(104,59,32,.14)]"
+                className="scroll-mt-20 overflow-hidden rounded-[28px] border border-[#8e5a38]/35 bg-[#f6dda2]/85 p-4 shadow-[4px_4px_0_rgba(104,59,32,.14)]"
               >
-                <div className="relative overflow-hidden bg-black">
+                <div className="relative overflow-hidden rounded-[28px] bg-black">
                   <video
                     ref={videoRef}
                     className="aspect-square w-full object-cover"
                     playsInline
                     muted
                   />
-                  <div className="pointer-events-none absolute inset-[9%] rounded-[38%] border-2 border-dashed border-white/80" />
+                  <div className="pointer-events-none absolute inset-[9%] rounded-[28px] border-2 border-dashed border-white/80" />
                   <p className="absolute bottom-3 left-0 right-0 text-center text-xs font-semibold text-white">
                     {ui.fitHand}
                   </p>
@@ -1095,18 +1095,18 @@ export default function PalmReading() {
                 <button
                   type="button"
                   onClick={capturePhoto}
-                  className="mt-4 flex h-12 w-full items-center justify-center gap-2 border border-[#4a2517] bg-[#3b1d17] font-semibold text-[#fff0c8] shadow-[3px_3px_0_#9b5a3b]"
+                  className="mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-[14px] border border-[#4a2517] bg-[#3b1d17] font-semibold text-[#fff0c8] shadow-[3px_3px_0_#9b5a3b]"
                 >
                   <Camera className="h-5 w-5" /> {ui.takePhoto}
                 </button>
               </section>
             )}
             {stage === "preview" && preview && (
-              <section className="border border-[#8e5a38]/35 bg-[#f6dda2]/85 p-4 shadow-[4px_4px_0_rgba(104,59,32,.14)]">
+              <section className="overflow-hidden rounded-[28px] border border-[#8e5a38]/35 bg-[#f6dda2]/85 p-4 shadow-[4px_4px_0_rgba(104,59,32,.14)]">
                 <img
                   src={preview}
                   alt={`${handLabel(side, ui)} palm preview`}
-                  className="aspect-square w-full bg-[#fff0c8] object-contain"
+                  className="aspect-square w-full rounded-[28px] bg-[#fff0c8] object-contain"
                 />
                 <div className="mt-4 grid grid-cols-2 gap-3">
                   <button
@@ -1115,14 +1115,14 @@ export default function PalmReading() {
                       setPreview(null);
                       setStage("guide");
                     }}
-                    className="flex h-12 items-center justify-center gap-2 border border-[#8e5a38]/35 bg-[#f9e5b5] font-semibold text-[#4a2517]"
+                    className="flex h-12 items-center justify-center gap-2 rounded-[14px] border border-[#8e5a38]/35 bg-[#f9e5b5] font-semibold text-[#4a2517]"
                   >
                     <RotateCcw className="h-5 w-5" /> {ui.retake}
                   </button>
                   <button
                     type="button"
                     onClick={confirmCapture}
-                    className="flex h-12 items-center justify-center gap-2 border border-[#4a2517] bg-[#3b1d17] font-semibold text-[#fff0c8] shadow-[3px_3px_0_#9b5a3b]"
+                    className="flex h-12 items-center justify-center gap-2 rounded-[14px] border border-[#4a2517] bg-[#3b1d17] font-semibold text-[#fff0c8] shadow-[3px_3px_0_#9b5a3b]"
                   >
                     <Check className="h-5 w-5" /> {ui.usePhoto}
                   </button>
