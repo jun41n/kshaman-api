@@ -26,7 +26,7 @@ export function GwansangHome({ onStart, variant = "face" }: GwansangHomeProps) {
             <span className="h-px w-10 bg-[#9b5a3b]" /> {isPastLife ? copy.pastEyebrow : copy.faceEyebrow}
           </motion.div>
           <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.12, duration: 0.35 }}>
-            <img src={`${import.meta.env.BASE_URL}${isPastLife ? "past-life.png" : "gwansang.png"}`} alt={isPastLife ? copy.pastEyebrow : copy.faceEyebrow} className="h-[74px] w-auto object-contain object-left mix-blend-multiply md:h-[104px]" style={{ filter: "sepia(0.18) contrast(1.08) drop-shadow(1px 2px 3px rgba(60,30,5,0.25))" }} />
+            {!isPastLife && <img src={`${import.meta.env.BASE_URL}gwansang.png`} alt={copy.faceEyebrow} className="h-[74px] w-auto object-contain object-left mix-blend-multiply md:h-[104px]" style={{ filter: "sepia(0.18) contrast(1.08) drop-shadow(1px 2px 3px rgba(60,30,5,0.25))" }} />}
             {isPastLife ? (
               <h1 className="mt-4 max-w-[720px] font-serif text-[40px] font-semibold leading-[1.12] tracking-normal text-[#281915] md:text-[68px]">{copy.pastTitleFirst} <span className="text-[#8c3f2b]">{copy.pastTitleAccent}</span></h1>
             ) : (
@@ -42,7 +42,16 @@ export function GwansangHome({ onStart, variant = "face" }: GwansangHomeProps) {
 
         <motion.div className="relative" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2, duration: 0.4 }}>
           <div className="relative border-[10px] border-[#f1d8a5] bg-[#f3dfb4] p-2 shadow-[8px_10px_0_rgba(101,54,33,0.22)] md:rotate-[1.5deg]">
-          <div className="relative aspect-[4/3] overflow-hidden border border-[#9b5a3b]/45 bg-[#d5b27a]"><img src={`${import.meta.env.BASE_URL}gwansang-thumb.png`} alt={copy.chartCaption} className="h-full w-full object-cover sepia-[.18]" /><div className="absolute inset-0 bg-gradient-to-t from-[#2a1b16]/70 via-transparent to-transparent" /><div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-[#f7e6be]"><div><p className="font-serif text-2xl font-semibold">觀相</p><p className="mt-1 text-[11px] tracking-[0.16em]">{copy.chartCaption}</p></div><span className="border border-[#f7e6be]/60 px-2 py-1 text-[10px]">MYTESTTYPE</span></div></div>
+          {isPastLife ? (
+            <div className="relative overflow-hidden border border-[#9b5a3b]/45 bg-[#d5b27a]">
+              <img src={`${import.meta.env.BASE_URL}past-life-archive.png`} alt="조선시대 전생 직업 기록화" className="block h-auto w-full sepia-[.08]" />
+              <div className="pointer-events-none absolute left-[24%] top-[25%] flex h-[40%] w-[52%] items-center justify-center">
+                <img src={`${import.meta.env.BASE_URL}past-life.png`} alt="전생" className="max-h-[42%] max-w-[74%] object-contain mix-blend-multiply" style={{ filter: "sepia(0.18) contrast(1.08) drop-shadow(1px 2px 2px rgba(60,30,5,0.22))" }} />
+              </div>
+            </div>
+          ) : (
+            <div className="relative aspect-[4/3] overflow-hidden border border-[#9b5a3b]/45 bg-[#d5b27a]"><img src={`${import.meta.env.BASE_URL}gwansang-thumb.png`} alt={copy.chartCaption} className="h-full w-full object-cover sepia-[.18]" /><div className="absolute inset-0 bg-gradient-to-t from-[#2a1b16]/70 via-transparent to-transparent" /><div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-[#f7e6be]"><div><p className="font-serif text-2xl font-semibold">觀相</p><p className="mt-1 text-[11px] tracking-[0.16em]">{copy.chartCaption}</p></div><span className="border border-[#f7e6be]/60 px-2 py-1 text-[10px]">MYTESTTYPE</span></div></div>
+          )}
             <div className="mt-3 flex items-center justify-between border-t border-[#9b5a3b]/25 pt-3 text-[11px] text-[#79594b]"><span className="flex items-center gap-1.5"><Sparkles size={13} /> {copy.chartFooter}</span><span>相 · 面 · 心</span></div>
           </div>
           <span className="absolute -bottom-5 -left-3 font-serif text-5xl text-[#9b5a3b]/45">印</span>
