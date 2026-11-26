@@ -20,7 +20,7 @@ export function GwansangHome({ onStart, variant = "face" }: GwansangHomeProps) {
       <div className="pointer-events-none absolute -right-24 top-16 h-72 w-72 rounded-full border border-[#9b5a3b]/20" />
       <div className="pointer-events-none absolute -right-16 top-24 h-56 w-56 rounded-full border border-[#9b5a3b]/15" />
 
-      <div className="relative mx-auto grid max-w-6xl gap-10 px-5 py-9 md:grid-cols-[1.05fr_0.95fr] md:items-center md:px-12 md:py-16 lg:px-20">
+      <div className={`relative mx-auto grid max-w-6xl ${isPastLife ? "gap-4 md:gap-10" : "gap-10"} px-5 py-9 md:grid-cols-[1.05fr_0.95fr] md:items-center md:px-12 md:py-16 lg:px-20`}>
         <div>
           <motion.div className="mb-5 flex items-center gap-3 text-[11px] font-bold tracking-[0.22em] text-[#7b3f2b]" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.08 }}>
             <span className="h-px w-10 bg-[#9b5a3b]" /> {isPastLife ? copy.pastEyebrow : copy.faceEyebrow}
