@@ -79,6 +79,76 @@ function pastLabel(language: string, key: string) {
   return PAST_LABELS[locale]?.[key] ?? PAST_LABELS.en[key] ?? key;
 }
 
+function getPremiumHooks(title: string, language: string) {
+  const locale = language.toLowerCase().startsWith("pt") ? "pt-BR" : language.split("-")[0];
+  if (locale === "ja") return {
+    scene: "決定的な場面",
+    sceneTitle: `${title}として迎えた勝負の一日`,
+    sceneText: `${title}として過ごしたある日、周囲が慌てるほどあなたは小さな違和感を先に見つけました。大きな声で指示するより、最後に必要な一手を置いて場を動かすタイプです。`,
+    punch: "前世の一言",
+    punchTitle: "友だちに送るなら",
+    punchText: `「前世は${title}。偉そうに見えて、実は全員の忘れ物を回収していた人。」`,
+    today: "現世で使う一手",
+    todayTitle: "今週の実験",
+    todayText: "先延ばしにした仕事をひとつだけ選び、25分で終わるところまで進めてみましょう。あなたの強みは開始より完了で光ります。",
+  };
+  if (locale === "es") return {
+    scene: "Escena decisiva",
+    sceneTitle: `El día de ${title} en que todo dependía de ti`,
+    sceneText: `En una jornada de ${title}, detectabas el pequeño problema antes de que todos entraran en pánico. No necesitabas gritar: aparecías con la solución justo cuando hacía falta.`,
+    punch: "Frase de tu vida pasada",
+    punchTitle: "Para enviárselo a un amigo",
+    punchText: `«En otra vida fui ${title}. Parecía importante, pero también recogía los paraguas de todos.»`,
+    today: "Una jugada para hoy",
+    todayTitle: "Experimento de esta semana",
+    todayText: "Elige una tarea pendiente y llévala hasta un final pequeño y concreto. Tu fuerza aparece más al cerrar ciclos que al empezar diez cosas.",
+  };
+  if (locale === "pt-BR") return {
+    scene: "Cena decisiva",
+    sceneTitle: `O dia de ${title} em que tudo passou pelas suas mãos`,
+    sceneText: `Em uma jornada como ${title}, você percebia o pequeno problema antes de todo mundo entrar em pânico. Não precisava gritar: chegava com a solução na hora certa.`,
+    punch: "Frase da vida passada",
+    punchTitle: "Para mandar a um amigo",
+    punchText: `“Em outra vida eu fui ${title}. Parecia importante, mas também guardava o guarda-chuva de todo mundo.”`,
+    today: "Uma jogada para hoje",
+    todayTitle: "Experimento da semana",
+    todayText: "Escolha uma tarefa adiada e leve-a até um final pequeno e concreto. Sua força aparece mais ao concluir do que ao começar dez coisas.",
+  };
+  if (locale === "fr") return {
+    scene: "Scène décisive",
+    sceneTitle: `Le jour où ${title} devait tout remettre d’aplomb`,
+    sceneText: `Dans une journée de ${title}, vous repériez le petit détail qui allait tout compliquer avant les autres. Pas besoin de crier : vous arriviez avec la bonne solution au bon moment.`,
+    punch: "La phrase de votre vie antérieure",
+    punchTitle: "À envoyer à un ami",
+    punchText: `« Dans une autre vie, j’étais ${title}. Très important en apparence, mais je gardais aussi les parapluies de tout le monde. »`,
+    today: "Un geste pour aujourd’hui",
+    todayTitle: "Expérience de la semaine",
+    todayText: "Choisissez une tâche repoussée et amenez-la jusqu’à une petite fin concrète. Votre force brille davantage dans l’achèvement que dans le démarrage.",
+  };
+  if (locale === "en") return {
+    scene: "Defining scene",
+    sceneTitle: `The day ${title} had to save the situation`,
+    sceneText: `As a ${title}, you noticed the tiny problem before everyone else started panicking. You did not need to shout; you simply arrived with the missing move at exactly the right moment.`,
+    punch: "Past-life one-liner",
+    punchTitle: "Send this to a friend",
+    punchText: `“In a past life I was a ${title}. Very important-looking, but I also held everyone’s umbrellas.”`,
+    today: "One move for today",
+    todayTitle: "This week’s experiment",
+    todayText: "Choose one delayed task and take it to a small, concrete finish. Your strength shows up more in completion than in starting ten things.",
+  };
+  return {
+    scene: "결정적 장면",
+    sceneTitle: `${title}였던 당신의 가장 바쁜 하루`,
+    sceneText: `${title}였던 당신은 모두가 허둥대기 전에 작은 문제를 먼저 발견했습니다. 큰소리로 지시하기보다, 꼭 필요한 한 수를 마지막에 꺼내 상황을 정리하는 사람이었습니다.`,
+    punch: "전생 한 줄 평",
+    punchTitle: "친구에게 보내는 한마디",
+    punchText: `“전생에 ${title}였대. 중요한 사람처럼 보이지만 친구들 우산도 챙겨주던 타입.”`,
+    today: "현생에서 쓰는 한 수",
+    todayTitle: "이번 주 실험",
+    todayText: "미뤄 둔 일 하나를 골라 작게라도 끝내 보세요. 당신의 강점은 열 가지를 시작할 때보다 하나를 완성할 때 더 잘 드러납니다.",
+  };
+}
+
 const CAREER_TITLES: Record<string, Record<string, string>> = {
   ja: { "조선의 임금": "朝鮮王朝の王", "왕실의 책사": "王室の軍師", "암행어사": "秘密監察官", "포도대장": "都の治安隊長", "전장의 무사": "戦場の武士", "명궁": "名弓の射手", "수군 장수": "水軍の将", "유학자 선비": "儒学者", "서당 훈장": "村の先生", "궁중 화원": "宮廷画家", "궁중 악사": "宮廷音楽家", "왕실 의관": "王室の医師", "궁중 의녀": "宮廷の女医", "마을의 무당": "村の巫者", "풍수지리사": "風水師", "대장간 장인": "鍛冶職人", "도자기 장인": "陶芸職人", "대목장": "大工の棟梁", "한지 장인": "韓紙職人", "염색 장인": "染色職人", "보부상": "旅商人", "객주 주인": "宿場の主人", "약초상": "薬草商", "농사꾼": "農夫", "바다의 어부": "海の漁師", "산의 사냥꾼": "山の猟師", "나루터 뱃사공": "渡し守", "떠돌이 광대": "旅芸人", "궁중 예인": "宮廷芸人", "성실한 살림지기": "家の世話役", "비밀 정보원": "密偵" },
   es: { "조선의 임금": "Rey de Joseon", "왕실의 책사": "Estratega real", "암행어사": "Inspector secreto", "포도대장": "Comandante de seguridad", "전장의 무사": "Guerrero del campo de batalla", "명궁": "Arquero experto", "수군 장수": "Comandante naval", "유학자 선비": "Erudito confuciano", "서당 훈장": "Maestro de aldea", "궁중 화원": "Pintor de la corte", "궁중 악사": "Músico de la corte", "왕실 의관": "Médico real", "궁중 의녀": "Médica de la corte", "마을의 무당": "Chamán del pueblo", "풍수지리사": "Consejero de geomancia", "대장간 장인": "Herrero", "도자기 장인": "Artesano de cerámica", "대목장": "Maestro carpintero", "한지 장인": "Artesano del papel hanji", "염색 장인": "Artesano tintorero", "보부상": "Mercader ambulante", "객주 주인": "Dueño de posada", "약초상": "Vendedor de hierbas", "농사꾼": "Agricultor", "바다의 어부": "Pescador", "산의 사냥꾼": "Cazador de montaña", "나루터 뱃사공": "Barquero", "떠돌이 광대": "Artista ambulante", "궁중 예인": "Artista de la corte", "성실한 살림지기": "Encargado del hogar", "비밀 정보원": "Informante secreto" },
@@ -125,6 +195,11 @@ export function PastLifeResult({ result, image, onReset }: Props) {
   const displayWealthStyle = careerCopy?.wealthStyle ?? career.wealthStyle;
   const displayDescription = careerCopy?.description ?? career.description;
   const story = getStory(career.title, career.wealthStyle, i18n.language);
+  const premiumHooks = getPremiumHooks(displayTitle, i18n.language);
+  const shareTitle = isKorean ? `나는 전생에 ${career.title}이었다` : `${displayTitle} · ${copy.result}`;
+  const shareSummary = premiumUnlocked
+    ? [result.summary, story.secret, premiumHooks.punchText, premiumHooks.todayText].filter(Boolean).join("\n\n")
+    : result.summary;
 
   useEffect(() => {
     if (!image) return;
@@ -224,6 +299,9 @@ export function PastLifeResult({ result, image, onReset }: Props) {
               <StoryCard eyebrow={isKorean ? "생활력 기록" : pastLabel(i18n.language, "livelihood")} title={isKorean ? "재물 감각과 생존 방식" : pastLabel(i18n.language, "wealth")} text={story.wealth} />
               <StoryCard eyebrow={isKorean ? "사랑의 인연" : pastLabel(i18n.language, "love")} title={isKorean ? "관계에서 끝까지 지킨 것" : pastLabel(i18n.language, "protected")} text={story.love} />
               <StoryCard eyebrow={isKorean ? "현생 미션" : pastLabel(i18n.language, "mission")} title={isKorean ? "이번 주에 꺼내 쓸 기질" : pastLabel(i18n.language, "quality")} text={story.mission} accent />
+              <StoryCard eyebrow={premiumHooks.scene} title={premiumHooks.sceneTitle} text={premiumHooks.sceneText} />
+              <StoryCard eyebrow={premiumHooks.punch} title={premiumHooks.punchTitle} text={premiumHooks.punchText} accent />
+              <StoryCard eyebrow={premiumHooks.today} title={premiumHooks.todayTitle} text={premiumHooks.todayText} />
             </div>
             <div className="mt-4 border border-[#8e5a38]/25 bg-[#f4d89e] p-4 text-center">
               <p className="text-[10px] font-bold tracking-[.16em] text-[#85513b]">{isKorean ? "소장용 전생 포스터" : copy.poster}</p>
@@ -242,7 +320,7 @@ export function PastLifeResult({ result, image, onReset }: Props) {
         <p className="mt-4 px-3 text-center text-[11px] leading-5 text-[#705244]">{isKorean ? "당시 보상은 직업·시대·지역별 차이가 큰 현물 중심 체계였습니다. ‘현대 생활력 환산’은 역사적 급여를 확정하는 수치가 아닌, AI 전생 캐릭터 놀이를 위한 생활력 비유입니다." : copy.disclaimer}</p>
 
         <div className="mt-5">
-          <ResultShareButtons lang={i18n.language} title={isEnglish ? `I was a ${displayTitle} in a past life` : `나는 전생에 ${career.title}이었다`} url={url} summary={result.summary} image={generatedImage ?? image} service="past-life" variant="paper" />
+          <ResultShareButtons lang={i18n.language} title={shareTitle} url={url} summary={shareSummary} image={generatedImage ?? image} service="past-life" variant="paper" />
           {(generatedImage ?? image) && (
             <a className="mt-3 flex h-11 w-full items-center justify-center border border-[#815039]/35 bg-[#f7dfaa]/75 text-sm font-bold text-[#50291c]" href={generatedImage ?? image ?? undefined} download="mytesttype-past-life-result.png">
               {isKorean ? "전생 결과 이미지 저장" : copy.poster}
