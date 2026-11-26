@@ -739,6 +739,7 @@ export default function PalmReading() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const captureSectionRef = useRef<HTMLElement>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const stopCamera = useCallback(() => {
     streamRef.current?.getTracks().forEach((track) => track.stop());
@@ -746,6 +747,16 @@ export default function PalmReading() {
     if (videoRef.current) videoRef.current.srcObject = null;
   }, []);
   useEffect(() => stopCamera, [stopCamera]);
+  useEffect(() => {
+    if (stage !== "camera") return;
+    const frame = window.requestAnimationFrame(() => {
+      captureSectionRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [stage]);
   useEffect(() => {
     if (stage !== "camera") return;
     let cancelled = false;
@@ -1065,7 +1076,10 @@ export default function PalmReading() {
               </section>
             )}
             {stage === "camera" && (
-              <section className="border border-[#8e5a38]/35 bg-[#f6dda2]/85 p-4 shadow-[4px_4px_0_rgba(104,59,32,.14)]">
+              <section
+                ref={captureSectionRef}
+                className="scroll-mt-20 border border-[#8e5a38]/35 bg-[#f6dda2]/85 p-4 shadow-[4px_4px_0_rgba(104,59,32,.14)]"
+              >
                 <div className="relative overflow-hidden bg-black">
                   <video
                     ref={videoRef}
