@@ -4,7 +4,7 @@ import { useApp } from "../store/appStore";
 import { SiteNav } from "../components/SiteNav";
 import { generateReading } from "../lib/apiClient";
 import { KShamanShareButtons } from "../components/KShamanShareButtons";
-import { BottomBannerAd } from "../components/BottomBannerAd";
+import { NativeBannerAd } from "../components/NativeBannerAd";
 import { trackEvent } from "../lib/analytics";
 
 interface Props {
@@ -31,6 +31,8 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
   const [revealedCount, setRevealedCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [retryNonce, setRetryNonce] = useState(0);
+  const [loadingSeconds, setLoadingSeconds] = useState(0);
 
   const fromColor = selectedPersona?.colorFrom ?? "from-violet-600";
   const toColor = selectedPersona?.colorTo ?? "to-indigo-500";
@@ -86,7 +88,28 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
         setError(err.message ?? "Failed to generate reading.");
         setLoading(false);
       });
-  }, [user, lang, state.selectedPersonaId, state.selectedProductId]);
+  }, [user, lang, state.selectedPersonaId, state.selectedProductId, retryNonce]);
+
+  useEffect(() => {
+    if (!loading) {
+      setLoadingSeconds(0);
+      return undefined;
+    }
+
+    const startedAt = Date.now();
+    const timer = window.setInterval(() => {
+      setLoadingSeconds(Math.floor((Date.now() - startedAt) / 1000));
+    }, 1000);
+    return () => window.clearInterval(timer);
+  }, [loading, retryNonce]);
+
+  const retryReading = () => {
+    setBlocks([]);
+    setRevealedCount(0);
+    setError(null);
+    setLoading(true);
+    setRetryNonce((value) => value + 1);
+  };
 
   useEffect(() => {
     if (!loading && blocks.length > 0 && revealedCount < blocks.length) {
@@ -156,8 +179,29 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
             <p className={`text-xs pl-3 ${accentColor} animate-pulse`}>
               {T[lang].bokchaeLoading}
             </p>
+            {loadingSeconds >= 12 && (
+              <div className="rounded-xl border border-amber-300/20 bg-amber-300/5 px-4 py-3 text-center">
+                <p className="text-xs text-white/60">
+                  {isKo
+                    ? "점괘 응답이 평소보다 늦어지고 있어요."
+                    : "The reading is taking longer than usual."}
+                </p>
+                <button
+                  type="button"
+                  onClick={retryReading}
+                  className="mt-2 rounded-lg border border-white/15 px-3 py-1.5 text-xs font-semibold text-white/80 hover:bg-white/10"
+                >
+                  {isKo ? "다시 시도" : "Try again"}
+                </button>
+              </div>
+            )}
             <div className="pt-2">
-              <BottomBannerAd />
+              <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-3 py-2">
+                <p className="mb-1 text-center text-[10px] tracking-[0.16em] text-white/30">
+                  {isKo ? "잠시만 기다려주세요 · 광고" : "Please wait · Advertisement"}
+                </p>
+                <NativeBannerAd />
+              </div>
             </div>
           </div>
         )}

@@ -7,6 +7,7 @@ const router = Router();
 
 const FREE_PRODUCTS = new Set(["daily_fortune"]);
 const LONGEST_PRODUCTS = new Set(["yearly_fortune", "saju"]);
+const AI_TIMEOUT_MS = 20_000;
 
 function getMaxTokens(productId: string): number {
   if (FREE_PRODUCTS.has(productId)) return 700;
@@ -80,12 +81,19 @@ router.post("/reading/generate", async (req, res) => {
       `[reading/generate] persona=${userProfile.personaId} product=${userProfile.productId} max_tokens=${maxTokens}`,
     );
 
-    const completion = await client.chat.completions.create({
-      model: "gpt-4o",
-      messages,
-      temperature: 0.88,
-      max_tokens: maxTokens,
-    });
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), AI_TIMEOUT_MS);
+    let completion;
+    try {
+      completion = await client.chat.completions.create({
+        model: "gpt-4o",
+        messages,
+        temperature: 0.88,
+        max_tokens: maxTokens,
+      }, { signal: controller.signal });
+    } finally {
+      clearTimeout(timeout);
+    }
 
     let content = completion.choices[0]?.message?.content ?? "";
     if (!content) {
@@ -113,12 +121,22 @@ router.post("/reading/generate", async (req, res) => {
         { role: "user" as const, content: continuationInstruction },
       ];
 
-      const continuationCompletion = await client.chat.completions.create({
-        model: "gpt-4o",
-        messages: continuationMessages,
-        temperature: 0.88,
-        max_tokens: maxTokens,
-      });
+      const continuationController = new AbortController();
+      const continuationTimeout = setTimeout(
+        () => continuationController.abort(),
+        AI_TIMEOUT_MS,
+      );
+      let continuationCompletion;
+      try {
+        continuationCompletion = await client.chat.completions.create({
+          model: "gpt-4o",
+          messages: continuationMessages,
+          temperature: 0.88,
+          max_tokens: maxTokens,
+        }, { signal: continuationController.signal });
+      } finally {
+        clearTimeout(continuationTimeout);
+      }
 
       const continuation = continuationCompletion.choices[0]?.message?.content;
       if (continuation && continuation.trim().length > 100) {
