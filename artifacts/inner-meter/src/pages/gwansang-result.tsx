@@ -117,10 +117,10 @@ function AccordionCard({ icon, title, children, delay = 0, accent = "hsl(15,65%,
 }
 
 function FaceImageCard({
-  icon, title, description, accent, delay, uploadedImage, type, copy,
+  icon, title, description, accent, delay, uploadedImage, type, copy, language,
 }: {
   icon: string; title: string; description: string; accent: string;
-  delay: number; uploadedImage: string | null; type: "aging" | "baby" | "anime"; copy: FaceResultCopy;
+  delay: number; uploadedImage: string | null; type: "aging" | "baby" | "anime"; copy: FaceResultCopy; language: string;
 }) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -136,7 +136,7 @@ function FaceImageCard({
       const res = await fetch(`${API_BASE}/api/generate-face-image`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ imageBase64: uploadedImage, type }),
+        body: JSON.stringify({ imageBase64: uploadedImage, type, language }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "생성 실패");
@@ -146,7 +146,7 @@ function FaceImageCard({
     } finally {
       setLoading(false);
     }
-  }, [uploadedImage, type]);
+  }, [uploadedImage, type, language]);
 
   return (
     <motion.div className="overflow-hidden"
@@ -379,7 +379,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
             <FaceImageCard
               icon="⏳" title={copy.image.aging.action} type="aging"
               description={`${result.aging.decade} — ${result.aging.reading}`}
-              accent="hsl(35,55%,28%)" delay={0.72} uploadedImage={image} copy={copy}
+              accent="hsl(35,55%,28%)" delay={0.72} uploadedImage={image} copy={copy} language={i18n.language}
             />
           )}
 
@@ -387,7 +387,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
             <FaceImageCard
               icon="👶" title={copy.image.baby.action} type="baby"
               description={result.baby.reading}
-              accent="hsl(350,50%,32%)" delay={0.75} uploadedImage={image} copy={copy}
+              accent="hsl(350,50%,32%)" delay={0.75} uploadedImage={image} copy={copy} language={i18n.language}
             />
           )}
 
@@ -395,7 +395,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
             <FaceImageCard
               icon="✨" title={copy.image.anime.action} type="anime"
               description={`${result.anime.character} — ${result.anime.reading}`}
-              accent="hsl(280,45%,35%)" delay={0.78} uploadedImage={image} copy={copy}
+              accent="hsl(280,45%,35%)" delay={0.78} uploadedImage={image} copy={copy} language={i18n.language}
             />
           )}
         </div>

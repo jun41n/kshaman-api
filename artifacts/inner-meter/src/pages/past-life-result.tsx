@@ -136,7 +136,7 @@ export function PastLifeResult({ result, image, onReset }: Props) {
         const response = await fetch(`${API_BASE}/api/generate-face-image`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ imageBase64: image, type: "pastLife", career: displayTitle, language: i18n.language }),
+          body: JSON.stringify({ imageBase64: image, type: "pastLife", career: career.title, language: i18n.language }),
         });
         const data = await response.json();
         if (!response.ok) throw new Error(data.error || (isEnglish ? "Past-life image generation failed." : "전생 이미지 생성에 실패했습니다."));

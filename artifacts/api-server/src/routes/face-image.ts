@@ -55,23 +55,35 @@ function buildPastLifePrompt(career: string): string | null {
 }
 
 router.post("/generate-face-image", async (req, res): Promise<void> => {
-  const { imageBase64, type, career } = req.body as {
+  const { imageBase64, type, career, language = "ko" } = req.body as {
     imageBase64?: string;
     type?: string;
     career?: string;
+    language?: string;
   };
+  const errorCopy: Record<string, string> = language === "en"
+    ? { invalid: "A valid image and image type are required.", key: "OpenAI is not configured.", failed: "Image generation failed." }
+    : language === "ja"
+      ? { invalid: "有効な画像と画像タイプが必要です。", key: "OpenAIが設定されていません。", failed: "画像の生成に失敗しました。" }
+      : language === "es"
+        ? { invalid: "Se necesita una imagen y un tipo válidos.", key: "OpenAI no está configurado.", failed: "No se pudo generar la imagen." }
+        : language === "pt-BR"
+          ? { invalid: "É necessária uma imagem e um tipo válidos.", key: "O OpenAI não está configurado.", failed: "Não foi possível gerar a imagem." }
+          : language === "fr"
+            ? { invalid: "Une image et un type valides sont nécessaires.", key: "OpenAI n’est pas configuré.", failed: "La génération de l’image a échoué." }
+            : { invalid: "imageBase64와 유효한 type이 필요합니다.", key: "OpenAI API 키가 설정되지 않았습니다.", failed: "이미지 생성 중 오류가 발생했습니다." };
 
   const prompt = type === "pastLife" && career ? buildPastLifePrompt(career) : PROMPTS[type ?? ""];
   if (!imageBase64 || !type || !prompt) {
     res
       .status(400)
-      .json({ error: "imageBase64와 유효한 type(aging|baby|anime|pastLife)이 필요합니다." });
+      .json({ error: errorCopy.invalid });
     return;
   }
 
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
-    res.status(500).json({ error: "OpenAI API 키가 설정되지 않았습니다." });
+    res.status(500).json({ error: errorCopy.key });
     return;
   }
 
@@ -121,7 +133,7 @@ router.post("/generate-face-image", async (req, res): Promise<void> => {
     const message = err instanceof Error ? err.message : String(err);
     console.error("[face-image] generation failed", { type, message });
     console.error("[이미지생성] 오류", { err, type });
-    res.status(500).json({ error: "이미지 생성 중 오류가 발생했습니다.", detail: message.slice(0, 240) });
+    res.status(500).json({ error: errorCopy.failed, detail: message.slice(0, 240) });
   } finally {
     if (fs.existsSync(tmpFile)) fs.unlinkSync(tmpFile);
   }
