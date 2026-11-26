@@ -1038,7 +1038,7 @@ export default function PalmReading() {
               <section className="overflow-hidden rounded-[28px] border border-[#8e5a38]/35 bg-[#f6dda2]/85 p-5 shadow-[4px_4px_0_rgba(104,59,32,.14)]">
                 <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden rounded-[28px] bg-[#fff0c8]/75">
                   <div className="absolute inset-7 rounded-[28px] border-2 border-dashed border-primary/50" />
-                  <div className="relative flex flex-col items-center gap-3 text-center text-muted-foreground">
+                  <div className="relative flex flex-col items-center gap-3 text-center text-[#5b3224]">
                     <Hand
                       className={`h-28 w-28 text-primary/70 ${side === "right" ? "-scale-x-100" : ""}`}
                       strokeWidth={1.2}
@@ -1048,7 +1048,7 @@ export default function PalmReading() {
                         ? `${pairPerson === "me" ? modeCopy.me : modeCopy.partner} ${modeCopy.pairGuide}`
                         : `${handLabel(side, ui)} ${ui.guide}`}
                     </p>
-                    <p className="text-xs">
+                    <p className="text-xs font-medium text-[#6b402c]">
                       {mode === "compatibility"
                         ? modeCopy.pairInstruction
                         : ui.bright}
@@ -1185,7 +1185,7 @@ export default function PalmReading() {
             {error}
           </p>
         )}
-        <div className="mt-5 border border-[#8e5a38]/25 bg-[#f6dda2]/65 px-4 py-3 text-xs leading-relaxed text-[#705244]">
+        <div className="mt-5 border border-[#8e5a38]/25 bg-[#f6dda2]/65 px-4 py-3 text-xs font-medium leading-relaxed text-[#5b3224]">
           {ui.privacy}
         </div>
         <Link

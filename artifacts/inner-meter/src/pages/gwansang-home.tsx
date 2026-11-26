@@ -26,7 +26,7 @@ export function GwansangHome({ onStart, variant = "face" }: GwansangHomeProps) {
             <span className="h-px w-10 bg-[#9b5a3b]" /> {isPastLife ? copy.pastEyebrow : copy.faceEyebrow}
           </motion.div>
           <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.12, duration: 0.35 }}>
-            {!isPastLife && <img src={`${import.meta.env.BASE_URL}gwansang.png`} alt={copy.faceEyebrow} className="h-[74px] w-auto object-contain object-left mix-blend-multiply md:h-[104px]" style={{ filter: "sepia(0.18) contrast(1.08) drop-shadow(1px 2px 3px rgba(60,30,5,0.25))" }} />}
+            {!isPastLife && <img src={`${import.meta.env.BASE_URL}gwansang.png`} alt={copy.faceEyebrow} className="h-[88px] w-auto object-contain object-left mix-blend-multiply md:h-[120px]" style={{ filter: "sepia(0.18) contrast(1.08) drop-shadow(1px 2px 3px rgba(60,30,5,0.25))" }} />}
             {isPastLife ? (
               <h1 className="mt-4 max-w-[720px] font-serif text-[40px] font-semibold leading-[1.12] tracking-normal text-[#281915] md:text-[52px]"><span className="whitespace-nowrap">{copy.pastTitleFirst}</span><br /><span className="whitespace-nowrap text-[#8c3f2b]">{copy.pastTitleAccent}</span></h1>
             ) : (
@@ -47,7 +47,7 @@ export function GwansangHome({ onStart, variant = "face" }: GwansangHomeProps) {
               <img src={`${import.meta.env.BASE_URL}past-life-archive.png`} alt="조선시대 전생 직업 기록화" className="block h-auto w-full sepia-[.08]" />
               <div className="pointer-events-none absolute left-[24%] top-[25%] flex h-[40%] w-[52%] items-center justify-center">
                 <img src={`${import.meta.env.BASE_URL}past-life.png`} alt="전생" className="max-h-[64%] max-w-[86%] object-contain mix-blend-multiply" style={{ filter: "sepia(0.18) contrast(1.08) drop-shadow(1px 2px 2px rgba(60,30,5,0.22))" }} />
-                <p className="absolute bottom-[3%] left-0 right-0 text-center font-serif text-[8px] font-semibold leading-[1.35] tracking-[0.04em] text-[#5f3624] sm:text-[10px] md:text-[13px]">조선시대에 나는<br />어떤 사람이었을까?</p>
+                <p className="absolute bottom-[3%] left-0 right-0 text-center font-serif text-[13px] font-semibold leading-[1.35] tracking-[0.04em] text-[#5f3624] sm:text-[15px] md:text-[18px]">조선시대에 나는<br />어떤 사람이었을까?</p>
               </div>
             </div>
           ) : (

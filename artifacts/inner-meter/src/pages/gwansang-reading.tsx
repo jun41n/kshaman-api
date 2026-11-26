@@ -295,7 +295,7 @@ export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingP
           </button>
           <div>
             <h2 className="font-bold text-lg" style={{ color: "hsl(25,60%,10%)" }}>{pastLife ? copy.pastHeading : copy.faceHeading}</h2>
-            <p className="text-xs" style={{ color: "hsl(25,35%,40%)" }}>{pastLife ? copy.pastSubheading : copy.faceSubheading}</p>
+            <p className="text-xs" style={{ color: "#5b3224" }}>{pastLife ? copy.pastSubheading : copy.faceSubheading}</p>
           </div>
         </div>
 
@@ -315,7 +315,7 @@ export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingP
                 <Upload size={28} style={{ color: "hsl(15,65%,32%)" }} />
               </div>
               <p className="font-semibold text-base mb-1.5" style={{ color: "hsl(25,55%,14%)" }}>{copy.dropzone}</p>
-              <p className="text-sm" style={{ color: "hsl(25,35%,45%)" }}>JPG, PNG, HEIC · 10MB</p>
+                    <p className="text-sm" style={{ color: "#6b402c" }}>JPG, PNG, HEIC · 10MB</p>
               <input ref={fileInputRef} type="file" accept="image/*" className="hidden"
                 onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFile(f); }} />
             </motion.div>
@@ -347,7 +347,7 @@ export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingP
                 {copy.tips.map((tip, i) => (
                   <div key={i} className="flex items-center gap-3 px-1">
                     <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: "hsl(15,60%,40%)" }} />
-                    <p className="text-sm" style={{ color: "hsl(25,35%,40%)" }}>{tip}</p>
+                    <p className="text-sm font-medium" style={{ color: "#5b3224" }}>{tip}</p>
                   </div>
                 ))}
               </div>
@@ -377,7 +377,7 @@ export function GwansangReading({ pastLife = false, onResult, onBack }: ReadingP
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
             {preview ? (pastLife ? copy.pastStart : copy.faceStart) : copy.chooseFirst}
           </motion.button>
-          <p className="mt-3 text-[11px] leading-relaxed text-center" style={{ color: "hsl(25,35%,38%)" }}>
+          <p className="mt-3 text-[11px] leading-relaxed text-center" style={{ color: "#5b3224" }}>
             {copy.privacy}
           </p>
         </div>
