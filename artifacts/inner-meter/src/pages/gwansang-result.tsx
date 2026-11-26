@@ -52,6 +52,16 @@ function getTierName(tier: string, language: string) {
   return map?.[tier] ?? tier;
 }
 
+function getFacePremiumExtras(tier: string, language: string) {
+  const locale = language.toLowerCase().startsWith("pt") ? "pt-BR" : language.split("-")[0];
+  if (locale === "ja") return { title: "印象の意外な一面", text: `${tier}の雰囲気は強く見えても、実は場の空気を先に読んでいるタイプかもしれません。友だちから見ると「頼れるのに、変なところで慎重」と言われる反転が魅力です。`, action: "今週は一つだけ、考えすぎる前に先に動いてみましょう。" };
+  if (locale === "es") return { title: "El giro inesperado", text: `La vibra de ${tier} puede parecer intensa, pero también sugiere que lees el ambiente antes que nadie. Tus amigos quizá dirían: «confiable, aunque sorprendentemente prudente en cosas pequeñas».`, action: "Esta semana, actúa primero en una cosa pequeña antes de sobrepensarla." };
+  if (locale === "pt-BR") return { title: "O seu ponto surpreendente", text: `A vibe de ${tier} pode parecer forte, mas também mostra alguém que lê o ambiente antes de todo mundo. Seus amigos talvez digam: “confiável, mas cauteloso justamente nas coisas pequenas”.`, action: "Nesta semana, aja primeiro em uma coisa pequena antes de pensar demais." };
+  if (locale === "fr") return { title: "Votre détail surprenant", text: `L’ambiance ${tier} peut sembler intense, mais elle évoque aussi quelqu’un qui lit la pièce avant les autres. Vos amis diraient peut-être : « fiable, mais étonnamment prudent pour les petits détails ».`, action: "Cette semaine, agissez d’abord sur une petite chose avant de trop réfléchir." };
+  if (locale === "en") return { title: "The hidden twist", text: `${tier} may look intense, but it also suggests someone who reads the room before everyone else. Friends might describe you as “reliable, yet weirdly cautious about tiny details.”`, action: "This week, act first on one small thing before you overthink it." };
+  return { title: "인상의 숨은 반전", text: `${tier}처럼 강한 분위기로 보여도 사실은 누구보다 먼저 주변 공기를 읽는 타입일 수 있어요. 친구들은 “든든한데 이상하게 사소한 건 신중해”라고 말할지도 몰라요.`, action: "이번 주에는 작은 일 하나만큼은 생각보다 먼저 움직여 보세요." };
+}
+
 function SectionCard({ icon, title, children, delay = 0, accent = "hsl(15,65%,28%)" }: {
   icon: string; title: string; children: React.ReactNode; delay?: number; accent?: string;
 }) {
@@ -197,6 +207,7 @@ function FaceImageCard({
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.4 }}
                   />
+                  <a href={generatedImage} download={`mytesttype-face-${type}.png`} className="flex h-9 items-center justify-center rounded-xl bg-[#f9e5b5] text-[12px] font-semibold text-[#5b3224]">{language.toLowerCase().startsWith("ko") ? "이미지 저장" : "Save image"}</a>
                   <button
                     onClick={() => { setGeneratedImage(null); }}
                     className="w-full h-9 rounded-xl text-[12px] font-semibold"
@@ -218,8 +229,12 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
   const { i18n } = useTranslation();
   const copy = getFaceResultCopy(i18n.language);
   const tierName = result.dragonface?.tier ? getTierName(result.dragonface.tier, i18n.language) : "";
+  const premiumExtras = getFacePremiumExtras(tierName || copy.impression, i18n.language);
   const [premiumUnlocked, setPremiumUnlocked] = useState(false);
   const tierColor = result.dragonface?.tier ? (TIER_COLORS[result.dragonface.tier] ?? "hsl(15,65%,28%)") : "hsl(15,65%,28%)";
+  const shareSummary = premiumUnlocked
+    ? [result.summary, result.premium?.firstMeeting, result.premium?.relationshipRhythm, premiumExtras.text, premiumExtras.action].filter(Boolean).join("\n\n")
+    : result.summary;
 
   return (
     <div className="pb-12" style={{ background: PAGE_BG }}>
@@ -415,6 +430,10 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
               <FacePremiumCard title={copy.styleHint} text={result.premium.styleDirection} />
               <FacePremiumCard title={copy.sevenDay} text={result.premium.sevenDayPrompt} />
             </div>}
+            <div className="mt-3 grid gap-3 md:grid-cols-2">
+              <FacePremiumCard title={premiumExtras.title} text={premiumExtras.text} />
+              <FacePremiumCard title={copy.advice} text={premiumExtras.action} />
+            </div>
             <p className="mt-4 text-sm leading-6 text-[#604133]">사진에서 느껴지는 인상과 전통 관상 문화의 상징을 가볍게 연결한 개인화 결과입니다.</p>
           </div>
         )}
@@ -443,7 +462,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
             lang={i18n.language}
             title={result.dragonface?.tier ? `${copy.impression}: ${tierName}` : copy.complete}
             url="https://mytesttype.com/gwansang/"
-            summary={result.summary}
+            summary={shareSummary}
             image={image}
             service="face"
             variant="paper"
