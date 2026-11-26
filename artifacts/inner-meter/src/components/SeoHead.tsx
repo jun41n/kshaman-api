@@ -53,7 +53,23 @@ export function SeoHead({
   const htmlLang = HTML_LANG_MAP[lang] ?? lang;
   const ogLocale = LOCALE_MAP[lang] ?? "ko_KR";
 
-  const schemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+  const schemas = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: SITE_NAME,
+      url: BASE_URL,
+      description: DEFAULT_DESCRIPTION,
+      inLanguage: Object.values(HTML_LANG_MAP),
+      publisher: {
+        "@type": "Organization",
+        name: SITE_NAME,
+        url: BASE_URL,
+        email: "proofcom26@gmail.com",
+      },
+    },
+    ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : []),
+  ];
 
   return (
     <Helmet>
