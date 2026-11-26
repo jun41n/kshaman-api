@@ -167,7 +167,33 @@ ${bodyHtml}
   console.log("✓  gwansang/index.html");
 }
 
-console.log("\n✅ Pre-render 완료! 운영 서비스 2페이지 생성");
+/* ── /contact ───────────────────────────────── */
+{
+  const dir = join(distDir, "contact");
+  mkdirSync(dir, { recursive: true });
+  const html = buildPage({
+    title: "문의하기 | MyTestType",
+    description: "MyTestType 서비스 이용에 관한 문의와 제안을 이메일로 보내주세요.",
+    canonical: "https://mytesttype.com/contact/",
+    ogImage: "https://mytesttype.com/opengraph.jpg",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      name: "MyTestType 문의하기",
+      url: "https://mytesttype.com/contact/",
+      description: "MyTestType 서비스 이용에 관한 문의와 제안을 이메일로 보내는 페이지",
+      inLanguage: ["ko", "en", "ja", "es", "pt", "fr"],
+    },
+    bodyHtml: `
+<h1 style="font-size:1.7em;font-weight:900;margin:0 0 0.5em;color:#111">문의하기</h1>
+<p style="color:#555;margin-bottom:1.2em;line-height:1.7">MyTestType 서비스 이용에 관한 문의와 제안을 이메일로 보내주세요.</p>
+<p style="color:#555;line-height:1.7"><a href="mailto:proofcom26@gmail.com">proofcom26@gmail.com</a></p>`,
+  });
+  writeFileSync(join(dir, "index.html"), html, "utf-8");
+  console.log("✓  contact/index.html");
+}
+
+console.log("\n✅ Pre-render 완료! 운영 서비스 및 공통 페이지 생성");
 
 // GitHub Pages has no server-side redirect layer. Its 404 document handles
 // old, indexed MBTI/tarot/pet/blog URLs before the SPA has a chance to load.
