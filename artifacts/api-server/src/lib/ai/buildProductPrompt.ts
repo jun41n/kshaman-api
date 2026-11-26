@@ -104,9 +104,12 @@ const PRODUCT_CONFIGS: Record<string, ProductPromptConfig> = {
       "Use concrete-feeling observations rather than vague spiritual filler.",
       "The user should feel '맞아' and keep reading.",
       "For musokin, make it blunt, spoken, and highly readable.",
+      "Add a memorable one-line twist or light joke that makes the reading easy to share, without mocking the user or pretending certainty.",
+      "Separate the reading into recognizable beats: core nature, repeating pattern, relationships, work and money, current timing, and one action for this week.",
+      "End with a specific sentence that makes the user curious about what happens next, not a generic encouragement.",
     ],
     length_requirement:
-      "Korean: target 900–1600 characters. English: target 400–700 words. Long enough to feel paid, short enough to stay addictive.",
+      "Korean: target 1400–2200 characters. English: target 600–900 words. Long enough to feel paid, short enough to stay addictive.",
     structure_requirement: PAID_STRUCTURE,
   },
 

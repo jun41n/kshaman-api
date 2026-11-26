@@ -30,7 +30,7 @@ export default function App() {
   const handleProductSelect = (productId: string) => {
     store.setProductId(productId);
     trackEvent("saju_product_selected", { product_id: productId });
-    handlePaymentSuccess(productId);
+    setStep("payment");
   };
 
   const handlePaymentSuccess = (productId: string) => {

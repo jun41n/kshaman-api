@@ -121,7 +121,7 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
             </div>
           </div>
           <div className="flex flex-col items-center py-4 gap-1">
-            <p className="text-xs text-white/40">QR코드로 바로 송금</p>
+            <p className="text-xs text-white/70">QR코드로 바로 송금</p>
             <img
               src={`${BASE}toss_qr.jpg`}
               alt="Toss QR Code"
@@ -144,7 +144,7 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
             </a>
           </div>
           <div className="flex flex-col items-center py-4 gap-1">
-            <p className="text-xs text-white/40">
+            <p className="text-xs text-white/70">
               {isKo ? "QR코드로 PayPal 바로 연결" : "Scan QR to open PayPal"}
             </p>
             <img
