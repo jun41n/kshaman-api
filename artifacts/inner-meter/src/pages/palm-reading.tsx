@@ -595,6 +595,9 @@ function ResultView({
   const { i18n } = useTranslation();
   const ui = getPalmUiCopy(i18n.language);
   const resultCopy = getPalmResultCopy(i18n.language);
+  const shareSummary = premium
+    ? [free.summary, ...(premium.lines ?? []).map((line) => `${line.name}: ${line.reading}`), ...(premium.everyday ?? [])].join("\n\n").slice(0, 1800)
+    : free.summary;
   return (
     <div className="space-y-4">
       <section className="border border-[#8e5a38]/25 bg-[#f9e5b5]/80 p-5 text-[#3f281d]">
@@ -692,15 +695,16 @@ function ResultView({
           </button>
         </section>
       )}
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid gap-3 sm:grid-cols-2">
         {(["right", "left"] as HandSide[]).map(
           (hand) =>
             images[hand] && (
-              <img
+              <PalmMarkedImage
                 key={hand}
-                src={images[hand] as string}
+                image={images[hand] as string}
                 alt={`${handLabel(hand, ui)} analysis photo`}
-                className="aspect-square border border-[#8e5a38]/25 object-cover"
+                labels={free.lines.slice(0, 3).map((line) => line.name)}
+                saveLabel={i18n.language.toLowerCase().startsWith("ko") ? "이미지 저장" : "Save image"}
               />
             ),
         )}
@@ -709,12 +713,28 @@ function ResultView({
         lang={i18n.language}
         title={free.moneyStyle?.title ?? ui.flow}
         url="https://mytesttype.com/palm-reading/"
-        summary={free.summary}
+        summary={shareSummary}
         image={images.right ?? images.left}
         service="palm"
         variant="paper"
       />
     </div>
+  );
+}
+
+function PalmMarkedImage({ image, alt, labels, saveLabel }: { image: string; alt: string; labels: string[]; saveLabel: string }) {
+  const paths = ["M18 68 C28 55 36 45 49 42 C61 39 72 42 82 50", "M15 58 C28 62 42 66 56 67 C69 68 80 65 88 58", "M28 81 C35 72 46 67 59 63 C70 60 80 54 87 44"];
+  return (
+    <figure className="relative overflow-hidden border border-[#8e5a38]/25 bg-[#fff0c8]/70">
+      <img src={image} alt={alt} className="aspect-square w-full object-cover" />
+      <svg viewBox="0 0 100 100" className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden="true">
+        {paths.map((path, index) => <path key={path} d={path} fill="none" stroke={index === 0 ? "#ef6b57" : index === 1 ? "#7f5ac7" : "#2c9b83"} strokeWidth="1.1" strokeDasharray="2.2 1.4" strokeLinecap="round" />)}
+      </svg>
+      <figcaption className="flex flex-wrap gap-1.5 border-t border-[#8e5a38]/20 px-3 py-2 text-[10px] font-semibold text-[#604133]">
+        {labels.map((label, index) => <span key={label} className="rounded-full bg-[#f4d89e] px-2 py-1">{index + 1}. {label}</span>)}
+      </figcaption>
+      <a href={image} download="mytesttype-palm-result.png" className="flex h-9 items-center justify-center border-t border-[#8e5a38]/20 text-[11px] font-bold text-[#5b3224]">{saveLabel}</a>
+    </figure>
   );
 }
 
