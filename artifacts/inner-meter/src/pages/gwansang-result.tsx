@@ -16,6 +16,13 @@ const PAGE_BG = "linear-gradient(175deg, #D4A96A 0%, #C49050 40%, #B8813A 100%)"
 const TIER_COLORS: Record<string, string> = {
   황금룡: "#D4AF37", 청룡: "#00C8B4", 백호: "#B0B8C8", 주작: "#E05840", 현무: "#6040A0",
 };
+const TIER_NAMES: Record<string, Record<string, string>> = {
+  en: { 황금룡: "Golden Dragon", 청룡: "Azure Dragon", 백호: "White Tiger", 주작: "Vermilion Bird", 현무: "Black Tortoise" },
+  ja: { 황금룡: "黄金龍", 청룡: "青龍", 백호: "白虎", 주작: "朱雀", 현무: "玄武" },
+  es: { 황금룡: "Dragón dorado", 청룡: "Dragón azul", 백호: "Tigre blanco", 주작: "Ave bermellón", 현무: "Tortuga negra" },
+  "pt-BR": { 황금룡: "Dragão dourado", 청룡: "Dragão azul", 백호: "Tigre branco", 주작: "Pássaro vermilion", 현무: "Tartaruga negra" },
+  fr: { 황금룡: "Dragon doré", 청룡: "Dragon azur", 백호: "Tigre blanc", 주작: "Oiseau vermillon", 현무: "Tortue noire" },
+};
 
 const API_BASE = "https://api.mytesttype.com";
 
@@ -39,6 +46,10 @@ const FACE_RESULT_COPY: Record<string, FaceResultCopy> = {
 
 function getFaceResultCopy(language: string): FaceResultCopy {
   return FACE_RESULT_COPY[language] ?? FACE_RESULT_COPY[language.split("-")[0]] ?? FACE_RESULT_COPY.en;
+}
+function getTierName(tier: string, language: string) {
+  const map = TIER_NAMES[language] ?? TIER_NAMES[language.split("-")[0]];
+  return map?.[tier] ?? tier;
 }
 
 function SectionCard({ icon, title, children, delay = 0, accent = "hsl(15,65%,28%)" }: {
@@ -206,6 +217,7 @@ function FaceImageCard({
 export function GwansangResult({ result, image, onReset }: ResultProps) {
   const { i18n } = useTranslation();
   const copy = getFaceResultCopy(i18n.language);
+  const tierName = result.dragonface?.tier ? getTierName(result.dragonface.tier, i18n.language) : "";
   const [premiumUnlocked, setPremiumUnlocked] = useState(false);
   const tierColor = result.dragonface?.tier ? (TIER_COLORS[result.dragonface.tier] ?? "hsl(15,65%,28%)") : "hsl(15,65%,28%)";
 
@@ -243,7 +255,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
                 <p className="text-[11px] font-bold tracking-wider uppercase" style={{ color: "hsl(15,60%,30%)" }}>{copy.impression}</p>
               </div>
               <div className="px-3 py-1 rounded-full text-xs font-black" style={{ background: `${tierColor}22`, color: tierColor, border: `1px solid ${tierColor}66` }}>
-                {result.dragonface.tier}
+                {tierName}
               </div>
             </div>
             <p className="text-[13px] leading-relaxed" style={{ color: "hsl(25,45%,22%)" }}>{result.dragonface.reading}</p>
@@ -429,7 +441,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
         <div className="mb-4">
           <ResultShareButtons
             lang={i18n.language}
-            title={result.dragonface?.tier ? `${copy.impression}: ${result.dragonface.tier}` : copy.complete}
+            title={result.dragonface?.tier ? `${copy.impression}: ${tierName}` : copy.complete}
             url="https://mytesttype.com/gwansang/"
             summary={result.summary}
             service="face"
