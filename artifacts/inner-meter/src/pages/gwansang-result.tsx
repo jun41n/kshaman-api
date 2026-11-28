@@ -48,6 +48,20 @@ const FACE_RESULT_COPY: Record<string, FaceResultCopy> = {
 function getFaceResultCopy(language: string): FaceResultCopy {
   return FACE_RESULT_COPY[language] ?? FACE_RESULT_COPY[language.split("-")[0]] ?? FACE_RESULT_COPY.en;
 }
+
+const FACE_EXTRA_COPY: Record<string, { saveImage: string; generateFailed: string; analysisError: string; relationshipFallback: string; workFallback: string; personalizedNote: string }> = {
+  ko: { saveImage: "이미지 저장", generateFailed: "생성 실패", analysisError: "오류가 발생했습니다.", relationshipFallback: "관계 리포트를 준비 중입니다.", workFallback: "활동 리포트를 준비 중입니다.", personalizedNote: "사진에서 느껴지는 인상과 전통 관상 문화의 상징을 가볍게 연결한 개인화 결과입니다." },
+  en: { saveImage: "Save image", generateFailed: "Generation failed", analysisError: "Something went wrong.", relationshipFallback: "Your relationship report is being prepared.", workFallback: "Your activity report is being prepared.", personalizedNote: "This personalized result lightly connects the impression from your photo with traditional face-reading symbolism." },
+  ja: { saveImage: "画像を保存", generateFailed: "生成に失敗しました", analysisError: "エラーが発生しました。", relationshipFallback: "関係レポートを準備しています。", workFallback: "活動レポートを準備しています。", personalizedNote: "写真から感じられる印象と、伝統的な観相文化の象徴を軽やかに結びつけた個人向けの結果です。" },
+  es: { saveImage: "Guardar imagen", generateFailed: "No se pudo generar", analysisError: "Ocurrió un error.", relationshipFallback: "Estamos preparando tu informe de relaciones.", workFallback: "Estamos preparando tu informe de actividades.", personalizedNote: "Este resultado personalizado conecta de forma ligera la impresión de tu foto con símbolos tradicionales de la lectura facial." },
+  "pt-BR": { saveImage: "Salvar imagem", generateFailed: "Falha ao gerar", analysisError: "Ocorreu um erro.", relationshipFallback: "Seu relatório de relacionamentos está sendo preparado.", workFallback: "Seu relatório de atividades está sendo preparado.", personalizedNote: "Este resultado personalizado relaciona de forma leve a impressão da sua foto com símbolos tradicionais da leitura facial." },
+  fr: { saveImage: "Enregistrer l’image", generateFailed: "Échec de la génération", analysisError: "Une erreur est survenue.", relationshipFallback: "Votre rapport relationnel est en préparation.", workFallback: "Votre rapport d’activités est en préparation.", personalizedNote: "Ce résultat personnalisé relie avec légèreté l’impression de votre photo aux symboles traditionnels de la lecture du visage." },
+};
+
+function getFaceExtraCopy(language: string) {
+  const locale = language.toLowerCase().startsWith("pt") ? "pt-BR" : language.split("-")[0];
+  return FACE_EXTRA_COPY[locale] ?? FACE_EXTRA_COPY.en;
+}
 function getTierName(tier: string, language: string) {
   const map = TIER_NAMES[language] ?? TIER_NAMES[language.split("-")[0]];
   return map?.[tier] ?? tier;
@@ -138,6 +152,7 @@ function FaceImageCard({
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const imageCopy = copy.image[type];
+  const extraCopy = getFaceExtraCopy(language);
 
   const generate = useCallback(async () => {
     if (!uploadedImage) return;
@@ -150,10 +165,10 @@ function FaceImageCard({
         body: JSON.stringify({ imageBase64: uploadedImage, type, language }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "생성 실패");
+      if (!res.ok) throw new Error(data.error || extraCopy.generateFailed);
       setGeneratedImage(data.imageBase64);
     } catch (e: unknown) {
-      setError(e instanceof Error ? e.message : "오류가 발생했습니다.");
+      setError(e instanceof Error ? e.message : extraCopy.analysisError);
     } finally {
       setLoading(false);
     }
@@ -208,7 +223,7 @@ function FaceImageCard({
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.4 }}
                   />
-                  <a href={generatedImage} download={`mytesttype-face-${type}.png`} onClick={() => trackResultImageSave({ test_slug: "face_reading", result_key: type, result_title: title })} className="flex h-9 items-center justify-center rounded-xl bg-[#f9e5b5] text-[12px] font-semibold text-[#5b3224]">{language.toLowerCase().startsWith("ko") ? "이미지 저장" : "Save image"}</a>
+                  <a href={generatedImage} download={`mytesttype-face-${type}.png`} onClick={() => trackResultImageSave({ test_slug: "face_reading", result_key: type, result_title: title })} className="flex h-9 items-center justify-center rounded-xl bg-[#f9e5b5] text-[12px] font-semibold text-[#5b3224]">{extraCopy.saveImage}</a>
                   <button
                     onClick={() => { setGeneratedImage(null); }}
                     className="w-full h-9 rounded-xl text-[12px] font-semibold"
@@ -229,6 +244,7 @@ function FaceImageCard({
 export function GwansangResult({ result, image, onReset }: ResultProps) {
   const { i18n } = useTranslation();
   const copy = getFaceResultCopy(i18n.language);
+  const extraCopy = getFaceExtraCopy(i18n.language);
   const tierName = result.dragonface?.tier ? getTierName(result.dragonface.tier, i18n.language) : "";
   const premiumExtras = getFacePremiumExtras(tierName || copy.impression, i18n.language);
   const [premiumUnlocked, setPremiumUnlocked] = useState(false);
@@ -424,8 +440,8 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
             <h2 className="mt-1 font-serif text-xl font-bold text-[#3f281d]">{copy.premiumTitle}</h2>
             <div className="mt-4 grid gap-3 md:grid-cols-3">
               <FacePremiumCard title={copy.firstMeeting} text={result.premium?.firstMeeting ?? result.personality?.reading ?? result.eyes?.reading ?? result.summary} />
-              <FacePremiumCard title={copy.relationshipCharm} text={result.premium?.relationshipRhythm ?? result.compatibility?.reading ?? result.mouth?.reading ?? "Relationship report is being prepared."} />
-              <FacePremiumCard title={copy.workPresence} text={result.premium?.workPresence ?? result.career?.reading ?? result.historical?.reading ?? "Activity report is being prepared."} />
+              <FacePremiumCard title={copy.relationshipCharm} text={result.premium?.relationshipRhythm ?? result.compatibility?.reading ?? result.mouth?.reading ?? extraCopy.relationshipFallback} />
+              <FacePremiumCard title={copy.workPresence} text={result.premium?.workPresence ?? result.career?.reading ?? result.historical?.reading ?? extraCopy.workFallback} />
             </div>
             {result.premium && <div className="mt-3 grid gap-3 md:grid-cols-2">
               <FacePremiumCard title={copy.styleHint} text={result.premium.styleDirection} />
@@ -435,7 +451,7 @@ export function GwansangResult({ result, image, onReset }: ResultProps) {
               <FacePremiumCard title={premiumExtras.title} text={premiumExtras.text} />
               <FacePremiumCard title={copy.advice} text={premiumExtras.action} />
             </div>
-            <p className="mt-4 text-sm leading-6 text-[#604133]">사진에서 느껴지는 인상과 전통 관상 문화의 상징을 가볍게 연결한 개인화 결과입니다.</p>
+            <p className="mt-4 text-sm leading-6 text-[#604133]">{extraCopy.personalizedNote}</p>
           </div>
         )}
 

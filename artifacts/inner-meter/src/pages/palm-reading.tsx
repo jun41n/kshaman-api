@@ -54,6 +54,11 @@ const PALM_RESULT_COPY = {
   fr: { record: "Dossier détaillé de ma paume", heading: "Un rythme de vie dessiné par votre paume", focus: "Travail et concentration", relation: "Distance relationnelle", pairRecord: "Dossier détaillé de nos paumes", pairHeading: "Le rythme entre deux paumes", pairRelation: "Votre façon de dialoguer", unlock: "Ouvrir une lecture plus riche", pairUnlock: "Ouvrir le rapport de compatibilité", personalBody: "Découvrez des missions de travail, de relations et de rythme de vie, ainsi qu’une carte personnelle à conserver.", pairBody: "Découvrez votre rythme commun, les moments de friction, des missions pratiques et une carte de compatibilité.", rhythm: "Rythme commun", distance: "Distance dans la conversation", mission: "Mission de la semaine", chartFooter: "Archive traditionnelle × interprétation IA" },
 } as const;
 const getPalmResultCopy = (language: string) => PALM_RESULT_COPY[language as keyof typeof PALM_RESULT_COPY] ?? PALM_RESULT_COPY[language.split("-")[0] as keyof typeof PALM_RESULT_COPY] ?? PALM_RESULT_COPY.en;
+const PALM_SAVE_LABEL: Record<string, string> = { ko: "이미지 저장", en: "Save image", ja: "画像を保存", es: "Guardar imagen", "pt-BR": "Salvar imagem", fr: "Enregistrer l’image" };
+const getPalmSaveLabel = (language: string) => {
+  const locale = language.toLowerCase().startsWith("pt") ? "pt-BR" : language.split("-")[0];
+  return PALM_SAVE_LABEL[locale] ?? PALM_SAVE_LABEL.en;
+};
 type PalmUiCopy = {
   rightHand: string;
   leftHand: string;
@@ -704,7 +709,7 @@ function ResultView({
                 image={images[hand] as string}
                 alt={`${handLabel(hand, ui)} analysis photo`}
                 labels={free.lines.slice(0, 3).map((line) => line.name)}
-                saveLabel={i18n.language.toLowerCase().startsWith("ko") ? "이미지 저장" : "Save image"}
+                saveLabel={getPalmSaveLabel(i18n.language)}
               />
             ),
         )}

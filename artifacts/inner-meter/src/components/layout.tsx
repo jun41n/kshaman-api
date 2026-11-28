@@ -10,21 +10,30 @@ interface LayoutProps {
 }
 
 const K_SHAMAN_URL = "https://mytesttype.com/k-shaman/";
+const PAPER_LABELS: Record<string, { past: string; face: string; palm: string; saju: string; service: string; privacy: string; contact: string; description: string }> = {
+  ko: { past: "전생", face: "관상", palm: "손금", saju: "사주", service: "서비스", privacy: "개인정보 처리방침", contact: "문의", description: "AI 전생·관상·손금과 K-Shaman AI 사주를 문화·오락 목적으로 제공합니다." },
+  en: { past: "Past Life", face: "Face Reading", palm: "Palm Reading", saju: "Saju", service: "Services", privacy: "Privacy Policy", contact: "Contact", description: "Cultural, entertainment-oriented AI past-life, face-reading, palm-reading, and K-Shaman AI Saju." },
+  ja: { past: "前世", face: "観相", palm: "手相", saju: "四柱推命", service: "サービス", privacy: "プライバシーポリシー", contact: "お問い合わせ", description: "AI前世・観相・手相とK-Shaman四柱推命を文化・娯楽目的で提供しています。" },
+  es: { past: "Vida pasada", face: "Lectura facial", palm: "Lectura de palma", saju: "Saju", service: "Servicios", privacy: "Privacidad", contact: "Contacto", description: "Ofrecemos lecturas de vida pasada, rostro, palma y Saju con IA para fines culturales y de entretenimiento." },
+  "pt-BR": { past: "Vida passada", face: "Leitura facial", palm: "Leitura da palma", saju: "Saju", service: "Serviços", privacy: "Privacidade", contact: "Contato", description: "Oferecemos leituras de vida passada, rosto, palma e Saju com IA para fins culturais e de entretenimento." },
+  fr: { past: "Vie antérieure", face: "Lecture du visage", palm: "Lecture de la paume", saju: "Saju", service: "Services", privacy: "Confidentialité", contact: "Contact", description: "Nous proposons des lectures IA de vie antérieure, du visage, de la paume et du Saju à des fins culturelles et de divertissement." },
+};
 
 export function Layout({ children, showAd = false }: LayoutProps) {
   const { t, i18n } = useTranslation();
-  const isKo = i18n.language?.startsWith("ko");
+  const locale = i18n.language?.toLowerCase().startsWith("pt") ? "pt-BR" : i18n.language?.split("-")[0] || "ko";
+  const paperLabels = PAPER_LABELS[locale] ?? PAPER_LABELS.en;
   const [location] = useLocation();
   const isPastLifePage = location === "/";
   const isFacePage = location.startsWith("/gwansang");
   const isPalmPage = location.startsWith("/palm-reading");
   const isPaperPage = isPastLifePage || isFacePage || isPalmPage;
   const currentServiceLabel = isPastLifePage
-    ? isKo ? "전생" : "Past Life"
+    ? paperLabels.past
     : isFacePage
-      ? isKo ? "관상" : "Face Reading"
+      ? paperLabels.face
       : isPalmPage
-        ? isKo ? "손금" : "Palm Reading"
+        ? paperLabels.palm
         : null;
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -75,7 +84,7 @@ export function Layout({ children, showAd = false }: LayoutProps) {
                 <div className="w-5 h-5 rounded-md bg-muted flex items-center justify-center">
                   <ScrollText className="w-3 h-3" />
                 </div>
-                <span>{isKo ? "전생" : "Past Life"}</span>
+                <span>{paperLabels.past}</span>
               </Link>}
               {!isFacePage && <Link
                 href="/gwansang/"
@@ -84,7 +93,7 @@ export function Layout({ children, showAd = false }: LayoutProps) {
                 <div className="w-5 h-5 rounded-md bg-muted flex items-center justify-center">
                   <ScanFace className="w-3 h-3" />
                 </div>
-                <span>{isKo ? "관상" : "Face Reading"}</span>
+                <span>{paperLabels.face}</span>
               </Link>}
               {!isPalmPage && <Link
                 href="/palm-reading/"
@@ -93,7 +102,7 @@ export function Layout({ children, showAd = false }: LayoutProps) {
                 <div className="w-5 h-5 rounded-md bg-muted flex items-center justify-center">
                   <Hand className="w-3 h-3" />
                 </div>
-                <span>{isKo ? "손금" : "Palm Reading"}</span>
+                <span>{paperLabels.palm}</span>
               </Link>}
               <a
                 href={K_SHAMAN_URL}
@@ -112,21 +121,21 @@ export function Layout({ children, showAd = false }: LayoutProps) {
               {!isPastLifePage && <Link
                 href="/"
                 className="p-2 text-foreground"
-                aria-label={isKo ? "전생으로 이동" : "Go to past life"}
+                aria-label={`${paperLabels.past}로 이동`}
               >
                 <ScrollText className="w-5 h-5" />
               </Link>}
               {!isFacePage && <Link
                 href="/gwansang/"
                 className="p-2 text-foreground"
-                aria-label={isKo ? "관상으로 이동" : "Go to face reading"}
+                aria-label={`${paperLabels.face}로 이동`}
               >
                 <ScanFace className="w-5 h-5" />
               </Link>}
               {!isPalmPage && <Link
                 href="/palm-reading/"
                 className="p-2 text-foreground"
-                aria-label={isKo ? "손금으로 이동" : "Go to palm reading"}
+                aria-label={`${paperLabels.palm}로 이동`}
               >
                 <Hand className="w-5 h-5" />
               </Link>}
@@ -172,11 +181,7 @@ export function Layout({ children, showAd = false }: LayoutProps) {
                 </div>
                 MyTestType
               </span>
-              <p className="text-sm text-muted-foreground max-w-[220px]">
-                {isKo
-                  ? "AI 전생·관상·손금과 K-Shaman AI 사주를 문화·오락 목적으로 제공합니다."
-                  : "Cultural, entertainment-oriented AI past-life, face-reading, palm-reading, and K-Shaman AI Saju."}
-              </p>
+              <p className="text-sm text-muted-foreground max-w-[220px]">{paperLabels.description}</p>
               <div className="mt-2 text-xs text-muted-foreground/55 leading-relaxed space-y-0.5">
                 <p>Lee Hyejin | 30, Deoksong 1-ro, Namyangju-si, Gyeonggi-do | proofcom26@gmail.com</p>
                 <p>Notice: {t('footer.notice')}</p>
@@ -187,26 +192,26 @@ export function Layout({ children, showAd = false }: LayoutProps) {
             <div className="flex flex-col sm:flex-row gap-6 sm:gap-12">
               <div>
                 <p className="text-xs font-bold text-muted-foreground/60 uppercase tracking-wider mb-3">
-                  {isKo ? "서비스" : "Services"}
+                  {paperLabels.service}
                 </p>
                 <div className="flex flex-col gap-2.5 text-sm font-medium text-muted-foreground">
                   <Link href="/" className="hover:text-primary transition-colors">
-                    {isKo ? "AI 전생" : "AI Past Life"}
+                    {paperLabels.past}
                   </Link>
                   <Link href="/gwansang/" className="hover:text-primary transition-colors">
-                    {isKo ? "AI 관상" : "AI Face Reading"}
+                    {paperLabels.face}
                   </Link>
                   <Link href="/palm-reading/" className="hover:text-primary transition-colors">
-                    {isKo ? "AI 손금" : "AI Palm Reading"}
+                    {paperLabels.palm}
                   </Link>
                   <a href={K_SHAMAN_URL} className="hover:text-primary transition-colors">
-                    K-Shaman AI {isKo ? "사주" : "Saju"}
+                    K-Shaman AI {paperLabels.saju}
                   </a>
                   <a href="/privacy/" className="hover:text-primary transition-colors">
-                    {isKo ? "개인정보 처리방침" : "Privacy Policy"}
+                    {paperLabels.privacy}
                   </a>
                   <a href="/contact/" className="hover:text-primary transition-colors">
-                    {isKo ? "문의" : "Contact"}
+                    {paperLabels.contact}
                   </a>
                 </div>
               </div>
