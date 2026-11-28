@@ -110,6 +110,33 @@ ${bodyHtml}
   return html;
 }
 
+/* ── / (AI past-life character test) ───────── */
+{
+  const html = buildPage({
+    title: "AI 전생 테스트 | 조선시대 전생 직업 캐릭터 | MyTestType",
+    description:
+      "얼굴 사진 한 장으로 조선시대에 어떤 사람이었을지 재미있게 살펴보는 AI 전생 테스트입니다. 전생 직업 캐릭터와 얼굴 기반 전생 이미지를 문화·오락 목적으로 제공합니다.",
+    canonical: "https://mytesttype.com/",
+    ogImage: "https://mytesttype.com/past-life.png",
+    jsonLd: {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      name: "MyTestType AI 전생 테스트",
+      url: "https://mytesttype.com/",
+      applicationCategory: "EntertainmentApplication",
+      operatingSystem: "Any",
+      description: "얼굴 사진을 바탕으로 조선시대 전생 직업 캐릭터와 창작 이미지를 살펴보는 문화·오락 목적의 AI 전생 테스트",
+      inLanguage: ["ko", "en", "ja", "es", "pt", "fr"],
+    },
+    bodyHtml: `
+<h1 style="font-size:1.7em;font-weight:900;margin:0 0 0.5em;color:#111">AI 전생 테스트</h1>
+<p style="color:#555;margin-bottom:1.2em;line-height:1.7">얼굴 사진 한 장으로 조선시대에 나는 어떤 사람이었을지 재미있게 살펴보세요. 왕, 무사, 농사꾼, 대장장이 등 다양한 전생 직업 캐릭터와 얼굴 기반 창작 이미지를 확인할 수 있습니다.</p>
+<p style="color:#555;line-height:1.7">결과는 역사적 사실이나 성격·운명을 판정하는 내용이 아니라 전통 문화를 바탕으로 한 오락용 참고 콘텐츠입니다.</p>`,
+  });
+  writeFileSync(join(distDir, "index.html"), html, "utf-8");
+  console.log("✓  root/index.html");
+}
+
 /* ── /palm-reading ──────────────────────────── */
 {
   const dir = join(distDir, "palm-reading");
