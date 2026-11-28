@@ -68,16 +68,48 @@ function getPastLifeResultCopy(language: string) {
 }
 
 const PAST_LABELS: Record<string, Record<string, string>> = {
-  en: { record: "Past-life record", then: "You in that era", remembered: "How people remembered you", toss: "Toss support QR", paypal: "PayPal support QR", testOpen: "Open full record (test)", testNote: "During testing, the detailed result opens without support verification.", scene: "Defining scene", hidden: "A hidden past-life choice", livelihood: "Livelihood record", wealth: "Wealth instincts and survival", love: "Love and bonds", protected: "What you protected in relationships", mission: "Today’s mission", quality: "A quality to use this week", posterShare: "Share it as an SNS result card with your past-life character image", faceBased: "Character based on my face", transforming: "Creating your character", failed: "The character image could not be loaded" },
-  ja: { record: "前世の記録", then: "その時代のあなた", remembered: "人々の記憶に残った姿", toss: "Toss支援QR", paypal: "PayPal支援QR", testOpen: "完全版を開く（テスト）", testNote: "テスト期間中は支援確認なしで詳細結果を開けます。", scene: "決定的な場面", hidden: "隠された前世の選択", livelihood: "暮らしの記録", wealth: "財産感覚と生き抜く力", love: "愛と縁", protected: "関係で守り続けたもの", mission: "今週のミッション", quality: "今週活かしたい気質", posterShare: "前世キャラクター画像と一緒にSNS結果カードとして共有できます。", faceBased: "顔をもとにしたキャラクター", transforming: "キャラクターを作成中", failed: "キャラクター画像を読み込めませんでした" },
-  es: { record: "Registro de vida pasada", then: "Tú en aquella época", remembered: "Cómo te recordaban", toss: "QR de apoyo Toss", paypal: "QR de apoyo PayPal", testOpen: "Abrir registro completo (prueba)", testNote: "Durante la prueba, el resultado detallado se abre sin verificar apoyo.", scene: "Escena decisiva", hidden: "Una elección oculta de tu vida pasada", livelihood: "Registro de subsistencia", wealth: "Instinto financiero y supervivencia", love: "Amor y vínculos", protected: "Lo que protegías en tus relaciones", mission: "Misión para hoy", quality: "Un rasgo que usar esta semana", posterShare: "Compártelo como tarjeta de resultado con tu imagen de vida pasada.", faceBased: "Personaje basado en mi rostro", transforming: "Creando tu personaje", failed: "No se pudo cargar la imagen del personaje" },
-  "pt-BR": { record: "Registro da vida passada", then: "Você naquela época", remembered: "Como as pessoas se lembravam de você", toss: "QR de apoio Toss", paypal: "QR de apoio PayPal", testOpen: "Abrir registro completo (teste)", testNote: "Durante o teste, o resultado detalhado abre sem confirmação de apoio.", scene: "Cena decisiva", hidden: "Uma escolha oculta da vida passada", livelihood: "Registro de subsistência", wealth: "Instinto financeiro e sobrevivência", love: "Amor e vínculos", protected: "O que você protegeu nos relacionamentos", mission: "Missão de hoje", quality: "Um traço para usar nesta semana", posterShare: "Compartilhe como cartão de resultado com sua imagem de vida passada.", faceBased: "Personagem baseado no meu rosto", transforming: "Criando seu personagem", failed: "Não foi possível carregar a imagem do personagem" },
-  fr: { record: "Dossier de vie antérieure", then: "Vous à cette époque", remembered: "La façon dont on se souvenait de vous", toss: "QR de soutien Toss", paypal: "QR de soutien PayPal", testOpen: "Ouvrir le dossier complet (test)", testNote: "Pendant le test, le résultat détaillé s’ouvre sans vérification de soutien.", scene: "Scène décisive", hidden: "Un choix caché de votre vie antérieure", livelihood: "Dossier de subsistance", wealth: "Instinct financier et survie", love: "Amour et liens", protected: "Ce que vous protégiez dans vos relations", mission: "Mission du jour", quality: "Un trait à utiliser cette semaine", posterShare: "Partagez-la comme carte de résultat avec votre image de vie antérieure.", faceBased: "Personnage basé sur mon visage", transforming: "Création de votre personnage", failed: "Impossible de charger l’image du personnage" },
+  en: { record: "Past-life record", then: "You in that era", remembered: "How people remembered you", toss: "Toss support QR", paypal: "PayPal support QR", testOpen: "Open full record (test)", testNote: "During testing, the detailed result opens without support verification.", scene: "Defining scene", hidden: "A hidden past-life choice", livelihood: "Livelihood record", wealth: "Wealth instincts and survival", love: "Love and bonds", protected: "What you protected in relationships", mission: "Today’s mission", quality: "A quality to use this week", posterShare: "Share it as an SNS result card with your past-life character image", faceBased: "Character based on my face", originalFace: "Original face", transforming: "Creating your character", failed: "The character image could not be loaded", saveImage: "Save result image" },
+  ja: { record: "前世の記録", then: "その時代のあなた", remembered: "人々の記憶に残った姿", toss: "Toss支援QR", paypal: "PayPal支援QR", testOpen: "完全版を開く（テスト）", testNote: "テスト期間中は支援確認なしで詳細結果を開けます。", scene: "決定的な場面", hidden: "隠された前世の選択", livelihood: "暮らしの記録", wealth: "財産感覚と生き抜く力", love: "愛と縁", protected: "関係で守り続けたもの", mission: "今週のミッション", quality: "今週活かしたい気質", posterShare: "前世キャラクター画像と一緒にSNS結果カードとして共有できます。", faceBased: "顔をもとにしたキャラクター", originalFace: "元の顔写真", transforming: "キャラクターを作成中", failed: "キャラクター画像を読み込めませんでした", saveImage: "結果画像を保存" },
+  es: { record: "Registro de vida pasada", then: "Tú en aquella época", remembered: "Cómo te recordaban", toss: "QR de apoyo Toss", paypal: "QR de apoyo PayPal", testOpen: "Abrir registro completo (prueba)", testNote: "Durante la prueba, el resultado detallado se abre sin verificar apoyo.", scene: "Escena decisiva", hidden: "Una elección oculta de tu vida pasada", livelihood: "Registro de subsistencia", wealth: "Instinto financiero y supervivencia", love: "Amor y vínculos", protected: "Lo que protegías en tus relaciones", mission: "Misión para hoy", quality: "Un rasgo que usar esta semana", posterShare: "Compártelo como tarjeta de resultado con tu imagen de vida pasada.", faceBased: "Personaje basado en mi rostro", originalFace: "Rostro original", transforming: "Creando tu personaje", failed: "No se pudo cargar la imagen del personaje", saveImage: "Guardar imagen del resultado" },
+  "pt-BR": { record: "Registro da vida passada", then: "Você naquela época", remembered: "Como as pessoas se lembravam de você", toss: "QR de apoio Toss", paypal: "QR de apoio PayPal", testOpen: "Abrir registro completo (teste)", testNote: "Durante o teste, o resultado detalhado abre sem confirmação de apoio.", scene: "Cena decisiva", hidden: "Uma escolha oculta da vida passada", livelihood: "Registro de subsistência", wealth: "Instinto financeiro e sobrevivência", love: "Amor e vínculos", protected: "O que você protegeu nos relacionamentos", mission: "Missão de hoje", quality: "Um traço para usar nesta semana", posterShare: "Compartilhe como cartão de resultado com sua imagem de vida passada.", faceBased: "Personagem baseado no meu rosto", originalFace: "Rosto original", transforming: "Criando seu personagem", failed: "Não foi possível carregar a imagem do personagem", saveImage: "Salvar imagem do resultado" },
+  fr: { record: "Dossier de vie antérieure", then: "Vous à cette époque", remembered: "La façon dont on se souvenait de vous", toss: "QR de soutien Toss", paypal: "QR de soutien PayPal", testOpen: "Ouvrir le dossier complet (test)", testNote: "Pendant le test, le résultat détaillé s’ouvre sans vérification de soutien.", scene: "Scène décisive", hidden: "Un choix caché de votre vie antérieure", livelihood: "Dossier de subsistance", wealth: "Instinct financier et survie", love: "Amour et liens", protected: "Ce que vous protégiez dans vos relations", mission: "Mission du jour", quality: "Un trait à utiliser cette semaine", posterShare: "Partagez-la comme carte de résultat avec votre image de vie antérieure.", faceBased: "Personnage basé sur mon visage", originalFace: "Visage d’origine", transforming: "Création de votre personnage", failed: "Impossible de charger l’image du personnage", saveImage: "Enregistrer l’image du résultat" },
 };
 
 function pastLabel(language: string, key: string) {
   const locale = language.toLowerCase().startsWith("pt") ? "pt-BR" : language.split("-")[0];
   return PAST_LABELS[locale]?.[key] ?? PAST_LABELS.en[key] ?? key;
+}
+
+function localizeModernPay(value: string, language: string) {
+  const locale = language.toLowerCase().startsWith("pt") ? "pt-BR" : language.split("-")[0];
+  if (locale === "ko") return value;
+  const amount = value.replace(/^월\s*/, "").replace(/만원/g,
+    locale === "ja" ? "万ウォン" : locale === "es" ? "diez mil KRW" : locale === "pt-BR" ? "dez mil KRW" : "dix mille KRW");
+  const suffix = locale === "ja" ? "/月" : locale === "es" ? "/mes" : locale === "pt-BR" ? "/mês" : locale === "fr" ? "/mois" : "/month";
+  return `${amount}${suffix}`;
+}
+
+function getPastLifeErrorCopy(language: string) {
+  const locale = language.toLowerCase().startsWith("pt") ? "pt-BR" : language.split("-")[0];
+  const copy: Record<string, string> = {
+    ko: "전생 이미지 생성에 실패했습니다.",
+    en: "Past-life image generation failed.",
+    ja: "前世画像の生成に失敗しました。",
+    es: "No se pudo generar la imagen de vida pasada.",
+    "pt-BR": "Não foi possível gerar a imagem da vida passada.",
+    fr: "La génération de l’image de vie antérieure a échoué.",
+  };
+  return copy[locale] ?? copy.en;
+}
+
+function getPastLifePosterTitle(displayTitle: string, language: string) {
+  const locale = language.toLowerCase().startsWith("pt") ? "pt-BR" : language.split("-")[0];
+  if (locale === "ko") return `${displayTitle}로 남긴 나의 전생 기록`;
+  if (locale === "ja") return `${displayTitle}として残した前世の記録`;
+  if (locale === "es") return `Mi registro de vida pasada como ${displayTitle}`;
+  if (locale === "pt-BR") return `Meu registro de vida passada como ${displayTitle}`;
+  if (locale === "fr") return `Mon dossier de vie antérieure en tant que ${displayTitle}`;
+  return `My past-life record as a ${displayTitle}`;
 }
 
 function getPremiumHooks(title: string, language: string) {
@@ -173,7 +205,6 @@ function getLocalizedCareer(career: ReturnType<typeof getPastLifeCareer>, langua
 
 export function PastLifeResult({ result, image, onReset }: Props) {
   const { i18n } = useTranslation();
-  const isEnglish = i18n.language.toLowerCase().startsWith("en");
   const isKorean = i18n.language.toLowerCase().startsWith("ko");
   const copy = getPastLifeResultCopy(i18n.language);
   // The uploaded image is the stable seed. AI wording can vary between calls,
@@ -195,6 +226,7 @@ export function PastLifeResult({ result, image, onReset }: Props) {
   const displayEraPay = careerCopy?.eraPay ?? career.eraPay;
   const displayWealthStyle = careerCopy?.wealthStyle ?? career.wealthStyle;
   const displayDescription = careerCopy?.description ?? career.description;
+  const displayModernPay = localizeModernPay(career.modernPay, i18n.language);
   const story = getStory(career.title, career.wealthStyle, i18n.language);
   const premiumHooks = getPremiumHooks(displayTitle, i18n.language);
   const shareTitle = isKorean ? `나는 전생에 ${career.title}이었다` : `${displayTitle} · ${copy.result}`;
@@ -215,10 +247,10 @@ export function PastLifeResult({ result, image, onReset }: Props) {
           body: JSON.stringify({ imageBase64: image, type: "pastLife", career: career.title, language: i18n.language }),
         });
         const data = await response.json();
-        if (!response.ok) throw new Error(data.error || (isEnglish ? "Past-life image generation failed." : "전생 이미지 생성에 실패했습니다."));
+        if (!response.ok) throw new Error(data.error || getPastLifeErrorCopy(i18n.language));
         if (active) setGeneratedImage(data.imageBase64);
       } catch (error) {
-        if (active) setImageError(error instanceof Error ? error.message : (isEnglish ? "Past-life image generation failed." : "전생 이미지 생성에 실패했습니다."));
+        if (active) setImageError(error instanceof Error ? error.message : getPastLifeErrorCopy(i18n.language));
       } finally {
         if (active) setGenerating(false);
       }
@@ -242,14 +274,14 @@ export function PastLifeResult({ result, image, onReset }: Props) {
                 <img src={generatedImage} alt={`${displayTitle} past-life character`} className="aspect-[4/3] w-full object-cover sm:aspect-square" />
               ) : image ? (
                 <div className="relative aspect-[4/3] sm:aspect-square">
-                  <img src={image} alt="전생 캐릭터 생성에 사용할 얼굴" className="h-full w-full object-cover blur-[2px] opacity-55" />
+                  <img src={image} alt={isKorean ? "전생 캐릭터 생성에 사용할 얼굴" : pastLabel(i18n.language, "originalFace")} className="h-full w-full object-cover blur-[2px] opacity-55" />
                   <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#4a2517]/45 px-5 text-[#fff0c8]">
                     {generating ? <Loader2 className="h-7 w-7 animate-spin" /> : <span className="text-2xl">{career.icon}</span>}
                     <p className="text-center text-sm font-bold">{generating ? (isKorean ? `${career.title}의 모습으로 변신 중` : `${pastLabel(i18n.language, "transforming")} · ${displayTitle}`) : (isKorean ? "전생 캐릭터 이미지를 불러오지 못했습니다" : pastLabel(i18n.language, "failed"))}</p>
                   </div>
                 </div>
               ) : <div className="flex aspect-[4/3] items-center justify-center text-6xl sm:aspect-square">{career.icon}</div>}
-              {image && <div className="absolute bottom-3 left-3 flex items-center gap-2 border border-[#f4dca4]/60 bg-[#342016]/80 px-2 py-1.5 text-left text-[10px] font-bold text-[#fff0c8]"><img src={image} alt={isKorean ? "원본 얼굴" : "Original face"} className="h-7 w-7 rounded-full object-cover" />{isKorean ? "내 얼굴 기반 전생 캐릭터" : pastLabel(i18n.language, "faceBased")}</div>}
+              {image && <div className="absolute bottom-3 left-3 flex items-center gap-2 border border-[#f4dca4]/60 bg-[#342016]/80 px-2 py-1.5 text-left text-[10px] font-bold text-[#fff0c8]"><img src={image} alt={isKorean ? "원본 얼굴" : pastLabel(i18n.language, "originalFace")} className="h-7 w-7 rounded-full object-cover" />{isKorean ? "내 얼굴 기반 전생 캐릭터" : pastLabel(i18n.language, "faceBased")}</div>}
             </div>
             <h1 className="mt-5 font-serif text-3xl font-bold sm:text-4xl">{isKorean ? "당신의 전생 직업은" : copy.careerLabel}</h1>
             <p className="mt-1 font-serif text-4xl font-bold text-[#914430] sm:text-5xl">{displayTitle}</p>
@@ -259,7 +291,7 @@ export function PastLifeResult({ result, image, onReset }: Props) {
 
         <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: .1 }} className="mt-5 grid gap-3 sm:grid-cols-3">
           <InfoCard label={isKorean ? "당시 보상" : copy.eraPay} value={displayEraPay} />
-          <InfoCard label={isKorean ? "AI 전생 생활력 환산" : copy.modernPay} value={career.modernPay} emphasis />
+          <InfoCard label={isKorean ? "AI 전생 생활력 환산" : copy.modernPay} value={displayModernPay} emphasis />
           <InfoCard label={isKorean ? "재산을 쌓는 방식" : copy.wealthStyle} value={displayWealthStyle} />
         </motion.div>
 
@@ -306,7 +338,7 @@ export function PastLifeResult({ result, image, onReset }: Props) {
             </div>
             <div className="mt-4 border border-[#8e5a38]/25 bg-[#f4d89e] p-4 text-center">
               <p className="text-[10px] font-bold tracking-[.16em] text-[#85513b]">{isKorean ? "소장용 전생 포스터" : copy.poster}</p>
-              <p className="mt-1 font-serif text-lg font-bold text-[#4a2517]">{isEnglish ? `My past-life record as a ${displayTitle}` : `${career.title}로 남긴 나의 전생 기록`}</p>
+              <p className="mt-1 font-serif text-lg font-bold text-[#4a2517]">{getPastLifePosterTitle(displayTitle, i18n.language)}</p>
               <p className="mt-2 text-xs leading-5 text-[#684a3e]">{isKorean ? "위 전생 캐릭터 이미지와 함께 SNS 결과 카드에 담아 공유할 수 있습니다." : pastLabel(i18n.language, "posterShare")}</p>
             </div>
           </div>
@@ -324,13 +356,13 @@ export function PastLifeResult({ result, image, onReset }: Props) {
           <ResultShareButtons lang={i18n.language} title={shareTitle} url={url} summary={shareSummary} image={generatedImage ?? image} service="past-life" variant="paper" />
           {(generatedImage ?? image) && (
             <a className="mt-3 flex h-11 w-full items-center justify-center border border-[#815039]/35 bg-[#f7dfaa]/75 text-sm font-bold text-[#50291c]" href={generatedImage ?? image ?? undefined} download="mytesttype-past-life-result.png" onClick={() => trackResultImageSave({ test_slug: "past_life", result_key: career.title, result_title: displayTitle })}>
-              {isKorean ? "전생 결과 이미지 저장" : copy.poster}
+          {isKorean ? "전생 결과 이미지 저장" : pastLabel(i18n.language, "saveImage")}
             </a>
           )}
         </div>
 
         <button type="button" onClick={onReset} className="mt-4 flex h-12 w-full items-center justify-center gap-2 border border-[#815039]/35 bg-[#f7dfaa]/75 text-sm font-bold text-[#50291c]">
-          <RotateCcw className="h-4 w-4" />{isEnglish ? EN_RESULT_COPY.reset : "다른 전생 확인하기"}
+          <RotateCcw className="h-4 w-4" />{copy.reset}
         </button>
       </section>
     </main>
