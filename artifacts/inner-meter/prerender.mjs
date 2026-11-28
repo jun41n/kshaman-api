@@ -145,6 +145,7 @@ const guidePages = [
     description: "얼굴 사진으로 조선시대에 어떤 사람이었을지 살펴보는 AI 전생 테스트의 방식과 결과를 설명합니다.",
     answer: "AI 전생 테스트는 얼굴 사진에서 받은 인상과 전통 문화의 상징을 바탕으로 조선시대 전생 직업 캐릭터를 만들어 보는 오락용 콘텐츠입니다.",
     sections: ["전생 테스트는 정면 얼굴 사진을 바탕으로 여러 조선시대 직업 캐릭터 중 하나를 선택하고 짧은 이야기와 창작 이미지를 구성합니다.", "임금, 무사, 선비, 대장장이, 목수, 농사꾼 등 다양한 역할이 결과로 나올 수 있으며 보상 비교는 역사적 급여가 아닌 재미를 위한 비유입니다.", "결과는 실제 신분이나 성격을 판정하지 않으며 친구와 비교하고 현재의 나를 돌아보는 오락용 이야기로 이용합니다."],
+    faqs: [["얼굴만으로 진짜 전생을 알 수 있나요?", "아니요. 사진과 전통 문화 상징을 바탕으로 만든 오락용 캐릭터 결과이며 실제 전생을 증명하거나 판정하지 않습니다."], ["전생 캐릭터 이미지는 무엇을 바탕으로 만드나요?", "사용자가 올린 얼굴 사진을 시각적 참고로 사용해 선택된 직업과 시대 분위기를 표현하는 창작 이미지로 만듭니다."]],
     cta: "AI 전생 테스트 시작",
     path: "/",
   },
@@ -154,6 +155,7 @@ const guidePages = [
     description: "사진 속 표정과 얼굴 특징을 전통 관상 문화의 언어로 살펴보는 AI 관상 테스트 안내입니다.",
     answer: "AI 관상 테스트는 사진에서 보이는 표정과 얼굴 특징을 관찰하고 전통 관상에서 사용하던 상징을 문화·오락용으로 풀어보는 서비스입니다.",
     sections: ["이마, 눈, 코, 입, 얼굴의 균형처럼 사진에서 관찰 가능한 요소를 나누어 살펴봅니다.", "관찰한 모습과 전통적 상징은 구분해서 설명하며 과학적 성격 진단이나 건강·재산 판단으로 사용하지 않습니다.", "정면 얼굴이 보이고 밝은 곳에서 찍은 사진이 적합하며 선글라스나 마스크는 피하는 것이 좋습니다."],
+    faqs: [["사진으로 관상을 볼 수 있나요?", "사진에서 보이는 표정과 얼굴 특징을 관찰하는 것은 가능하지만, 그것으로 실제 성격이나 운명을 확정할 수는 없습니다."], ["관상 결과는 어떻게 활용하면 좋나요?", "첫인상과 자기표현을 돌아보는 참고 자료로 보고, 중요한 의사결정의 근거로 사용하지 않는 것이 좋습니다."]],
     cta: "AI 관상 테스트 시작",
     path: "/gwansang/",
   },
@@ -163,6 +165,7 @@ const guidePages = [
     description: "손바닥 사진으로 주요 손금과 전통 수상학 상징을 살펴보는 AI 손금 테스트 안내입니다.",
     answer: "AI 손금 테스트는 손바닥 사진에서 보이는 선과 형태를 관찰하고 생명선·두뇌선·감정선 등을 전통 수상학의 상징으로 설명하는 오락용 서비스입니다.",
     sections: ["생명선, 두뇌선, 감정선, 운명선, 재물선 등이 자주 언급되며 사진에 보이는 선의 형태를 조건부로 설명합니다.", "밝은 조명 아래 손바닥 전체를 정면으로 찍고 손가락과 손목이 잘리지 않게 촬영하면 좋습니다.", "손금 결과는 건강·수명·재산·미래를 예측하는 진단이 아니라 문화·오락용 해설입니다."],
+    faqs: [["손바닥 사진만으로 손금을 볼 수 있나요?", "사진에서 선과 형태를 관찰할 수는 있지만, 결과는 전통 수상학을 바탕으로 한 오락용 참고이며 미래를 확정하지 않습니다."], ["손금 사진은 어떻게 찍어야 하나요?", "밝은 조명 아래 손바닥 전체를 정면으로 찍고, 손가락과 손목이 잘리지 않게 촬영하세요."]],
     cta: "AI 손금 테스트 시작",
     path: "/palm-reading/",
   },
@@ -172,6 +175,7 @@ const guidePages = [
     description: "생년월일과 출생 정보를 바탕으로 전통 사주팔자를 대화형으로 살펴보는 AI 점사 안내입니다.",
     answer: "AI 사주팔자는 입력한 출생 정보를 바탕으로 전통 명리학의 달력 요소와 상징을 대화형으로 설명하는 문화·오락용 서비스입니다.",
     sections: ["사주팔자는 출생 연·월·일·시를 네 기둥으로 보고 천간과 지지 같은 전통 달력 요소를 해석하는 방식입니다.", "입력한 출생 정보를 바탕으로 전통 상징, 관계·재물·일에 대한 참고 주제와 일상 질문을 제공합니다.", "사주 결과는 문화·오락용 참고이며 건강, 법률, 투자, 의료, 중요한 인생 결정을 대신하지 않습니다."],
+    faqs: [["생년월일만으로 사주를 볼 수 있나요?", "서비스가 요구하는 출생 정보를 입력하면 전통 달력 요소를 계산해 오락용 해설을 제공합니다. 출생 시각을 모르면 일부 요소가 제한될 수 있습니다."], ["AI 사주와 전통 명리학은 같은가요?", "같지 않습니다. AI 사주는 전통 명리학의 용어와 상징을 참고해 대화형으로 설명하는 디지털 콘텐츠입니다."]],
     cta: "AI 사주팔자 시작",
     path: "/k-shaman/",
   },
@@ -182,7 +186,7 @@ for (const guide of guidePages) {
   const faq = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: [{ "@type": "Question", name: `${guide.title}란 무엇인가요?`, acceptedAnswer: { "@type": "Answer", text: guide.answer } }],
+      mainEntity: guide.faqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })),
   };
   const html = buildPage({
     title: guide.title,
@@ -193,7 +197,7 @@ for (const guide of guidePages) {
       { "@context": "https://schema.org", "@type": "Article", headline: guide.title, description: guide.description, url: `https://mytesttype.com/guide/${guide.slug}/`, author: { "@type": "Organization", name: "MyTestType" } },
       faq,
     ],
-    bodyHtml: `<h1 style="font-size:1.7em;font-weight:900;margin:0 0 .5em;color:#111">${guide.title.replace(" | MyTestType", "")}</h1><p style="color:#555;line-height:1.7">${guide.answer}</p><h2 style="font-size:1.25em;margin:1.3em 0 .4em;color:#111">이용 전 알아둘 점</h2>${guide.sections.map((section) => `<p style="color:#555;line-height:1.7">${section}</p>`).join("")}<p style="margin-top:1.4em"><a href="${guide.path}">${guide.cta}</a></p>`,
+    bodyHtml: `<h1 style="font-size:1.7em;font-weight:900;margin:0 0 .5em;color:#111">${guide.title.replace(" | MyTestType", "")}</h1><p style="color:#555;line-height:1.7">${guide.answer}</p><h2 style="font-size:1.25em;margin:1.3em 0 .4em;color:#111">이용 전 알아둘 점</h2>${guide.sections.map((section) => `<p style="color:#555;line-height:1.7">${section}</p>`).join("")}<h2 style="font-size:1.25em;margin:1.3em 0 .4em;color:#111">자주 묻는 질문</h2>${guide.faqs.map(([question, answer]) => `<h3 style="font-size:1em;margin:1em 0 .3em;color:#111">${question}</h3><p style="color:#555;line-height:1.7">${answer}</p>`).join("")}<p style="margin-top:1.4em"><a href="${guide.path}">${guide.cta}</a></p>`,
   });
   mkdirSync(dir, { recursive: true });
   writeFileSync(join(dir, "index.html"), html, "utf-8");

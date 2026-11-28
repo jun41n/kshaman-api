@@ -18,11 +18,20 @@ const PAPER_LABELS: Record<string, { past: string; face: string; palm: string; s
   "pt-BR": { past: "Vida passada", face: "Leitura facial", palm: "Leitura da palma", saju: "Saju", service: "Serviços", privacy: "Privacidade", contact: "Contato", description: "Oferecemos leituras de vida passada, rosto, palma e Saju com IA para fins culturais e de entretenimento." },
   fr: { past: "Vie antérieure", face: "Lecture du visage", palm: "Lecture de la paume", saju: "Saju", service: "Services", privacy: "Confidentialité", contact: "Contact", description: "Nous proposons des lectures IA de vie antérieure, du visage, de la paume et du Saju à des fins culturelles et de divertissement." },
 };
+const GUIDE_LABELS: Record<string, { title: string; past: string; face: string; palm: string; saju: string }> = {
+  ko: { title: "읽을거리", past: "전생 가이드", face: "관상 가이드", palm: "손금 가이드", saju: "사주 가이드" },
+  en: { title: "Guides", past: "Past-life guide", face: "Face-reading guide", palm: "Palm-reading guide", saju: "Saju guide" },
+  ja: { title: "ガイド", past: "前世ガイド", face: "観相ガイド", palm: "手相ガイド", saju: "四柱推命ガイド" },
+  es: { title: "Guías", past: "Guía de vida pasada", face: "Guía de lectura facial", palm: "Guía de lectura de palma", saju: "Guía de Saju" },
+  "pt-BR": { title: "Guias", past: "Guia de vida passada", face: "Guia de leitura facial", palm: "Guia de leitura da palma", saju: "Guia de Saju" },
+  fr: { title: "Guides", past: "Guide de vie antérieure", face: "Guide de lecture du visage", palm: "Guide de lecture de la paume", saju: "Guide du Saju" },
+};
 
 export function Layout({ children, showAd = false }: LayoutProps) {
   const { t, i18n } = useTranslation();
   const locale = i18n.language?.toLowerCase().startsWith("pt") ? "pt-BR" : i18n.language?.split("-")[0] || "ko";
   const paperLabels = PAPER_LABELS[locale] ?? PAPER_LABELS.en;
+  const guideLabels = GUIDE_LABELS[locale] ?? GUIDE_LABELS.en;
   const [location] = useLocation();
   const isPastLifePage = location === "/";
   const isFacePage = location.startsWith("/gwansang");
@@ -213,6 +222,15 @@ export function Layout({ children, showAd = false }: LayoutProps) {
                   <a href="/contact/" className="hover:text-primary transition-colors">
                     {paperLabels.contact}
                   </a>
+                </div>
+              </div>
+              <div>
+                <p className="text-xs font-bold text-muted-foreground/60 uppercase tracking-wider mb-3">{guideLabels.title}</p>
+                <div className="flex flex-col gap-2.5 text-sm font-medium text-muted-foreground">
+                  <Link href="/guide/past-life/" className="hover:text-primary transition-colors">{guideLabels.past}</Link>
+                  <Link href="/guide/face/" className="hover:text-primary transition-colors">{guideLabels.face}</Link>
+                  <Link href="/guide/palm/" className="hover:text-primary transition-colors">{guideLabels.palm}</Link>
+                  <Link href="/guide/saju/" className="hover:text-primary transition-colors">{guideLabels.saju}</Link>
                 </div>
               </div>
             </div>

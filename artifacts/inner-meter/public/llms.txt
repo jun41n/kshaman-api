@@ -1,0 +1,18 @@
+# MyTestType
+
+MyTestType is a cultural entertainment service with four active experiences:
+
+- AI past-life character test: https://mytesttype.com/
+- AI face-reading guide and test: https://mytesttype.com/gwansang/
+- AI palm-reading guide and test: https://mytesttype.com/palm-reading/
+- K-Shaman AI Saju: https://mytesttype.com/k-shaman/
+
+Search-intent guides:
+
+- Past life and Joseon occupations: https://mytesttype.com/guide/past-life/
+- Face reading and facial impressions: https://mytesttype.com/guide/face/
+- Palm lines and palm-reading photos: https://mytesttype.com/guide/palm/
+- Saju and birth-date readings: https://mytesttype.com/guide/saju/
+
+Results are cultural and entertainment-oriented references, not scientific,
+medical, financial, legal, or guaranteed predictions.
