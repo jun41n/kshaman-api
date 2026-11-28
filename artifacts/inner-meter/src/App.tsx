@@ -17,6 +17,7 @@ const Terms = lazy(() => import("@/pages/terms"));
 const Contact = lazy(() => import("@/pages/contact"));
 const NotFound = lazy(() => import("@/pages/not-found"));
 const SharedResult = lazy(() => import("@/pages/shared-result"));
+const Guides = lazy(() => import("@/pages/guides"));
 
 const queryClient = new QueryClient();
 
@@ -49,6 +50,7 @@ function Router() {
           <Route path="/privacy" component={Privacy} />
           <Route path="/terms" component={Terms} />
           <Route path="/contact" component={Contact} />
+          <Route path="/guide/:topic" component={Guides} />
           <Route path="/gwansang" component={Gwansang} />
           <Route path="/palm-reading" component={PalmReading} />
           <Route component={NotFound} />
