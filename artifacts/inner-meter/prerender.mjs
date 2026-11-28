@@ -9,7 +9,8 @@ import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const distDir = join(__dirname, "dist/public");
-const baseTemplate = readFileSync(join(distDir, "index.html"), "utf-8");
+const baseTemplate = readFileSync(join(distDir, "index.html"), "utf-8")
+  .replace(/\n<div id="prerender-seo"[\s\S]*?<\/script>/, "");
 
 // These files belong to retired MBTI, tarot, pet, and blog products. Keep
 // source history locally if needed, but do not publish them with the live site.
@@ -30,8 +31,10 @@ function esc(str) {
  * #root 앞에 pre-rendered 콘텐츠를 삽입합니다.
  * React 앱이 마운트된 후 prerender 영역을 숨깁니다.
  */
-function buildPage({ title, description, canonical, bodyHtml, ogImage, jsonLd }) {
+function buildPage({ title, description, canonical, bodyHtml, ogImage, jsonLd, hreflangs = [], staticOnly = false, htmlLang }) {
   let html = baseTemplate;
+
+  if (htmlLang) html = html.replace(/<html([^>]*)>/, `<html$1 lang="${htmlLang}">`);
 
   // <title> 교체
   html = html.replace(/<title>[^<]*<\/title>/, `<title>${esc(title)}</title>`);
@@ -66,6 +69,10 @@ function buildPage({ title, description, canonical, bodyHtml, ogImage, jsonLd })
 </head>`
   );
 
+  if (hreflangs.length) {
+    html = html.replace("</head>", `${hreflangs.map(({ lang, href }) => `<link rel="alternate" hreflang="${lang}" href="${href}">`).join("\n")}\n</head>`);
+  }
+
   html = html.replace(
     /<meta\s+name="twitter:title"[\s\S]*?\/?>/,
     `<meta name="twitter:title" content="${esc(title)}">`
@@ -89,11 +96,12 @@ function buildPage({ title, description, canonical, bodyHtml, ogImage, jsonLd })
 
   // pre-rendered 콘텐츠 + 숨김 스크립트
   const prerender = `
-<div id="prerender-seo" style="display:none;max-width:768px;margin:0 auto;padding:24px 16px;font-family:sans-serif">
+<div id="prerender-seo" style="display:${staticOnly ? "block" : "none"};max-width:768px;margin:0 auto;padding:24px 16px;font-family:sans-serif">
 ${bodyHtml}
 </div>
 <script>
 (function(){
+  if(${staticOnly ? "true" : "false"})return;
   var pre=document.getElementById('prerender-seo');
   if(!pre)return;
   var root=document.getElementById('root');
@@ -193,6 +201,7 @@ for (const guide of guidePages) {
     description: guide.description,
     canonical: `https://mytesttype.com/guide/${guide.slug}/`,
     ogImage: "https://mytesttype.com/opengraph.jpg",
+    hreflangs: [{ lang: "x-default", href: `https://mytesttype.com/guide/${guide.slug}/` }, { lang: "ko", href: `https://mytesttype.com/guide/${guide.slug}/` }, { lang: "en", href: `https://mytesttype.com/en/guide/${guide.slug}/` }, { lang: "ja", href: `https://mytesttype.com/ja/guide/${guide.slug}/` }, { lang: "es", href: `https://mytesttype.com/es/guide/${guide.slug}/` }, { lang: "pt-BR", href: `https://mytesttype.com/pt-br/guide/${guide.slug}/` }, { lang: "fr", href: `https://mytesttype.com/fr/guide/${guide.slug}/` }],
     jsonLd: [
       { "@context": "https://schema.org", "@type": "Article", headline: guide.title, description: guide.description, url: `https://mytesttype.com/guide/${guide.slug}/`, author: { "@type": "Organization", name: "MyTestType" } },
       faq,
@@ -202,6 +211,49 @@ for (const guide of guidePages) {
   mkdirSync(dir, { recursive: true });
   writeFileSync(join(dir, "index.html"), html, "utf-8");
   console.log(`✓  guide/${guide.slug}/index.html`);
+}
+
+/* ── localized search pages ─────────────────── */
+const localizedGuides = {
+  en: {
+    label: "Guide", faqTitle: "Frequently asked questions", related: "Related services", before: "What to know first",
+    guides: {
+      "past-life": { title: "AI Past-Life Test and Joseon-Era Roles", description: "Learn how an AI past-life test uses a face photo to create a playful Joseon-era character.", answer: "This entertainment experience turns visual impressions and traditional cultural symbols into a fictional Joseon-era occupation and character story.", sections: ["Upload a front-facing photo and the service creates a short story and original image around one of several historical roles.", "Possible roles include a ruler, warrior, scholar, blacksmith, carpenter, farmer and more. Reward comparisons are playful estimates, not historical payroll data.", "Use the result as a light story to compare with friends, not as a real claim about identity or personality."], faqs: [["Can a face photo prove a real past life?", "No. The result is a fictional entertainment character inspired by a photo and cultural symbols."], ["How is the character image made?", "Your photo is used as a visual reference for a creative scene matching the selected role and period."]], cta: "Start the AI past-life test" },
+      face: { title: "AI Face Reading Test and First-Impression Guide", description: "Explore visible facial features and first impressions through the language of traditional Korean face-reading culture.", answer: "This AI face-reading experience observes visible expressions and features, then explains traditional symbols as cultural entertainment.", sections: ["The guide separates observable areas such as the forehead, eyes, nose, mouth and overall balance.", "It is not a scientific personality, health, wealth or career assessment; it is a cultural interpretation for reflection.", "A clear, front-facing photo in bright light works best. Avoid sunglasses or anything covering the face."], faqs: [["Can a photo determine my personality?", "No. A photo can show visible expressions and features, but it cannot confirm personality or fate."], ["How should I use the result?", "Use it as a playful prompt for thinking about first impressions and self-expression, not for important decisions."]], cta: "Start the AI face-reading test" },
+      palm: { title: "AI Palm Reading Test: Life, Head and Heart Lines", description: "Learn how an AI palm-reading test observes major palm lines through traditional palmistry symbols.", answer: "This entertainment service observes visible palm lines and shapes, including life, head and heart lines, through traditional palmistry symbolism.", sections: ["Commonly discussed lines include the life, head, heart, fate, wealth and marriage lines.", "Photograph the entire palm from the front in bright light, with fingers and wrist visible.", "Palm reading does not diagnose health, lifespan, wealth or the future; it is a cultural and entertainment interpretation."], faqs: [["Can a palm photo predict my future?", "No. It can support a playful observation of visible lines, but it cannot confirm future events."], ["How do I take a palm photo?", "Use bright, even light and keep the whole palm, fingers and wrist inside the frame."]], cta: "Start the AI palm-reading test" },
+      saju: { title: "AI Saju and Birth-Date Fortune Guide", description: "Explore Korean four-pillars concepts and birth information through an interactive AI fortune-reading experience.", answer: "AI Saju uses birth information and traditional calendar symbols to create an interactive cultural and entertainment reading.", sections: ["Saju considers the year, month, day and hour as four pillars using traditional heavenly stems and earthly branches.", "The result offers symbolic themes about current flow, relationships, work and money, plus questions for reflection.", "It is cultural entertainment, not medical, legal, investment or professional advice."], faqs: [["Can Saju use only a birth date?", "The service asks for the available birth information. Missing birth time may limit some traditional calendar elements."], ["Is AI Saju the same as traditional Myeongri practice?", "No. It is digital content that references traditional terms and symbols in a conversational format."]], cta: "Start the AI Saju reading" },
+    }
+  },
+  ja: { label: "ガイド", faqTitle: "よくある質問", related: "関連サービス", before: "利用前に知っておくこと", answer: "写真や伝統文化の象徴をもとにした、気軽に楽しめる文化・エンタメ体験です。", sections: ["写真から見える特徴を観察し、テーマに合わせた短いストーリーを作ります。", "結果は文化的な象徴を使ったエンタメであり、性格・健康・財産・運命を断定するものではありません。", "明るく見やすい写真を用意し、結果は友達と比べながら楽しくご覧ください。"], faqs: [["結果は本当の運命を証明しますか？", "いいえ。写真と文化的な象徴から作るエンタメ用のキャラクター結果です。"], ["どんな写真を使えばよいですか？", "顔や手の全体が明るく見え、重要な部分が隠れていない写真がおすすめです。"]], guides: {} },
+  es: { label: "Guía", faqTitle: "Preguntas frecuentes", related: "Servicios relacionados", before: "Antes de empezar", answer: "Es una experiencia cultural y de entretenimiento creada a partir de fotos y símbolos tradicionales.", sections: ["Observamos los rasgos visibles de la foto y creamos una breve historia según el tema elegido.", "El resultado es entretenimiento basado en símbolos culturales; no determina personalidad, salud, dinero ni destino.", "Usa una foto clara y luminosa, y comparte el resultado con amigos como una actividad divertida."], faqs: [["¿El resultado demuestra mi destino real?", "No. Es un personaje de entretenimiento creado a partir de una foto y referencias culturales."], ["¿Qué foto debo usar?", "Elige una foto clara, bien iluminada y sin cubrir las partes importantes del rostro o la mano."]], guides: {} },
+  "pt-br": { label: "Guia", faqTitle: "Perguntas frequentes", related: "Serviços relacionados", before: "Antes de começar", answer: "É uma experiência cultural e de entretenimento criada a partir de fotos e símbolos tradicionais.", sections: ["Observamos os traços visíveis da foto e criamos uma breve história de acordo com o tema escolhido.", "O resultado é entretenimento baseado em símbolos culturais; não determina personalidade, saúde, dinheiro ou destino.", "Use uma foto clara e bem iluminada e compartilhe o resultado com amigos por diversão."], faqs: [["O resultado prova meu destino real?", "Não. É um personagem de entretenimento criado a partir de uma foto e referências culturais."], ["Que foto devo usar?", "Escolha uma foto clara, bem iluminada e sem esconder partes importantes do rosto ou da mão."]], guides: {} },
+  fr: { label: "Guide", faqTitle: "Questions fréquentes", related: "Services associés", before: "À savoir avant de commencer", answer: "Il s'agit d'une expérience culturelle et ludique créée à partir de photos et de symboles traditionnels.", sections: ["Nous observons les éléments visibles de la photo et créons une courte histoire selon le thème choisi.", "Le résultat est un divertissement culturel : il ne détermine ni la personnalité, ni la santé, ni l'argent, ni le destin.", "Utilisez une photo claire et lumineuse, puis comparez le résultat avec vos amis pour vous amuser."], faqs: [["Le résultat prouve-t-il mon vrai destin ?", "Non. Il s'agit d'un personnage ludique créé à partir d'une photo et de références culturelles."], ["Quelle photo dois-je utiliser ?", "Choisissez une photo nette, bien éclairée, sans cacher les éléments importants du visage ou de la main."]], guides: {} },
+};
+
+// The English source above is the canonical translation set. These compact
+// localized summaries keep every indexable page useful while the full product
+// UI remains available in the user's selected language.
+const localizedFallback = {
+  ja: { title: ["AI前世テストと朝鮮時代の職業", "AI観相テストと第一印象ガイド", "AI手相テスト：生命線・頭脳線・感情線", "AI四柱推命と生年月日占いガイド"], cta: ["AI前世テストを始める", "AI観相テストを始める", "AI手相テストを始める", "AI四柱推命を始める"] },
+  es: { title: ["Test de vida pasada con IA y oficios de Joseon", "Test de lectura facial con IA y primeras impresiones", "Test de quiromancia con IA: líneas de la vida y más", "Guía de Saju con IA y fecha de nacimiento"], cta: ["Comenzar el test de vida pasada", "Comenzar la lectura facial", "Comenzar la lectura de la palma", "Comenzar la lectura de Saju"] },
+  "pt-br": { title: ["Teste de vida passada com IA e profissões de Joseon", "Teste de leitura facial com IA e primeiras impressões", "Teste de quiromancia com IA: linhas da mão", "Guia de Saju com IA e data de nascimento"], cta: ["Começar o teste de vida passada", "Começar a leitura facial", "Começar a leitura da palma", "Começar a leitura de Saju"] },
+  fr: { title: ["Test de vie antérieure par IA et métiers de Joseon", "Test de lecture du visage par IA et première impression", "Test de chiromancie par IA : lignes de la main", "Guide du Saju par IA et date de naissance"], cta: ["Commencer le test de vie antérieure", "Commencer la lecture du visage", "Commencer la lecture de la paume", "Commencer la lecture du Saju"] },
+};
+const enGuides = localizedGuides.en.guides;
+const guideOrder = ["past-life", "face", "palm", "saju"];
+for (const [locale, copy] of Object.entries(localizedGuides)) {
+  for (const [index, slug] of guideOrder.entries()) {
+    const source = enGuides[slug];
+    const translated = locale === "en" ? source.title : localizedFallback[locale].title[index];
+    const langGuide = { ...source, path: guidePages[index].path, title: translated, description: locale === "en" ? source.description : `${translated}. ${localizedGuides[locale].answer}`, cta: locale === "en" ? source.cta : localizedFallback[locale].cta[index], answer: locale === "en" ? source.answer : localizedGuides[locale].answer, sections: locale === "en" ? source.sections : localizedGuides[locale].sections, faqs: locale === "en" ? source.faqs : localizedGuides[locale].faqs };
+    const canonical = `https://mytesttype.com/${locale}/guide/${slug}/`;
+    const hreflangs = [{ lang: "x-default", href: `https://mytesttype.com/guide/${slug}/` }, { lang: "ko", href: `https://mytesttype.com/guide/${slug}/` }, { lang: "en", href: `https://mytesttype.com/en/guide/${slug}/` }, ...["ja", "es", "pt-BR", "fr"].map((lang) => ({ lang, href: `https://mytesttype.com/${lang.toLowerCase() === "pt-br" ? "pt-br" : lang}/guide/${slug}/` }))];
+    const faq = { "@context": "https://schema.org", "@type": "FAQPage", inLanguage: locale, mainEntity: langGuide.faqs.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) };
+    const html = buildPage({ title: langGuide.title, description: langGuide.description, canonical, ogImage: "https://mytesttype.com/opengraph.jpg", staticOnly: true, htmlLang: locale === "pt-br" ? "pt-BR" : locale, hreflangs, jsonLd: [{ "@context": "https://schema.org", "@type": "Article", headline: langGuide.title, description: langGuide.description, url: canonical, inLanguage: locale, author: { "@type": "Organization", name: "MyTestType" } }, faq], bodyHtml: `<h1>${langGuide.title}</h1><p>${langGuide.answer}</p><h2>${copy.before}</h2>${langGuide.sections.map((section) => `<p>${section}</p>`).join("")}<h2>${copy.faqTitle}</h2>${langGuide.faqs.map(([question, answer]) => `<h3>${question}</h3><p>${answer}</p>`).join("")}<p><a href="${langGuide.path}">${langGuide.cta}</a></p>` });
+    const dir = join(distDir, locale, "guide", slug);
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(join(dir, "index.html"), html, "utf-8");
+  }
 }
 
 /* ── /palm-reading ──────────────────────────── */

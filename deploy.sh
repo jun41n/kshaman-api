@@ -72,6 +72,10 @@ cp "$INNER_METER/public/llms-full.txt" "$DEPLOY_DIR/llms-full.txt"
 echo "── 6b. 검색 가이드 정적 페이지 교체 ──"
 rm -rf "$DEPLOY_DIR/guide"
 cp -r "$DIST/guide" "$DEPLOY_DIR/guide"
+for locale in en ja es pt-br fr; do
+  rm -rf "$DEPLOY_DIR/$locale"
+  cp -r "$DIST/$locale" "$DEPLOY_DIR/$locale"
+done
 rm -rf "$DEPLOY_DIR/privacy"
 cp -r "$DEPLOY_STATIC/privacy" "$DEPLOY_DIR/privacy"
 rm -rf "$DEPLOY_DIR/contact"
