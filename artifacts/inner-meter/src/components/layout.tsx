@@ -121,21 +121,21 @@ export function Layout({ children, showAd = false }: LayoutProps) {
               {!isPastLifePage && <Link
                 href="/"
                 className="p-2 text-foreground"
-                aria-label={`${paperLabels.past}로 이동`}
+                aria-label={paperLabels.past}
               >
                 <ScrollText className="w-5 h-5" />
               </Link>}
               {!isFacePage && <Link
                 href="/gwansang/"
                 className="p-2 text-foreground"
-                aria-label={`${paperLabels.face}로 이동`}
+                aria-label={paperLabels.face}
               >
                 <ScanFace className="w-5 h-5" />
               </Link>}
               {!isPalmPage && <Link
                 href="/palm-reading/"
                 className="p-2 text-foreground"
-                aria-label={`${paperLabels.palm}로 이동`}
+                aria-label={paperLabels.palm}
               >
                 <Hand className="w-5 h-5" />
               </Link>}
