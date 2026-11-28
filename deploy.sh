@@ -63,10 +63,15 @@ echo "── 6. 공통 SEO·안내 파일 교체 ──"
 # entrypoint at / so the browser mounts the real React page instead of only
 # receiving the SEO fallback document.
 cp "$DIST/index.html" "$DEPLOY_DIR/index.html"
-cp "$DEPLOY_STATIC/404.html" "$DEPLOY_DIR/404.html"
-cp "$DEPLOY_STATIC/robots.txt" "$DEPLOY_DIR/robots.txt"
-cp "$DEPLOY_STATIC/sitemap.xml" "$DEPLOY_DIR/sitemap.xml"
-cp "$DEPLOY_STATIC/llms.txt" "$DEPLOY_DIR/llms.txt"
+cp "$DIST/404.html" "$DEPLOY_DIR/404.html"
+cp "$INNER_METER/public/robots.txt" "$DEPLOY_DIR/robots.txt"
+cp "$INNER_METER/public/sitemap.xml" "$DEPLOY_DIR/sitemap.xml"
+cp "$INNER_METER/public/llms.txt" "$DEPLOY_DIR/llms.txt"
+cp "$INNER_METER/public/llms-full.txt" "$DEPLOY_DIR/llms-full.txt"
+
+echo "── 6b. 검색 가이드 정적 페이지 교체 ──"
+rm -rf "$DEPLOY_DIR/guide"
+cp -r "$DIST/guide" "$DEPLOY_DIR/guide"
 rm -rf "$DEPLOY_DIR/privacy"
 cp -r "$DEPLOY_STATIC/privacy" "$DEPLOY_DIR/privacy"
 rm -rf "$DEPLOY_DIR/contact"
@@ -74,19 +79,21 @@ mkdir -p "$DEPLOY_DIR/contact"
 cp "$DIST/contact/index.html" "$DEPLOY_DIR/contact/index.html"
 
 echo "── 7. 구형 공개 경로 제거 및 안전 검사 ──"
-rm -rf "$DEPLOY_DIR/blog" "$DEPLOY_DIR/pet-test" "$DEPLOY_DIR/tests" "$DEPLOY_DIR/results"
+rm -rf "$DEPLOY_DIR/blog" "$DEPLOY_DIR/pet-test" "$DEPLOY_DIR/tests" "$DEPLOY_DIR/results" "$DEPLOY_DIR/tarot"
 rm -f "$DEPLOY_DIR/posts.json"
 
-for forbidden in blog pet-test tests results; do
-  if [ -e "$DEPLOY_DIR/$forbidden" ]; then
-    echo "금지 경로가 남아 있습니다: $forbidden" >&2
-    exit 1
-  fi
+echo "── 7b. 구형 경로 전생 메인 리디렉션 설치 ──"
+for legacy in blog pet-test tests tarot; do
+  rm -rf "$DEPLOY_DIR/$legacy"
+  mkdir -p "$DEPLOY_DIR/$legacy"
+  cp "$DIST/$legacy/index.html" "$DEPLOY_DIR/$legacy/index.html"
 done
 
 test -f "$DEPLOY_DIR/index.html"
 test -f "$DEPLOY_DIR/robots.txt"
 test -f "$DEPLOY_DIR/sitemap.xml"
+test -f "$DEPLOY_DIR/llms-full.txt"
+test -f "$DEPLOY_DIR/guide/past-life/index.html"
 test -f "$DEPLOY_DIR/gwansang/index.html"
 test -f "$DEPLOY_DIR/k-shaman/index.html"
 test -f "$DEPLOY_DIR/privacy/index.html"
