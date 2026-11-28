@@ -2,6 +2,8 @@ import { Link, useRoute } from "wouter";
 import { ArrowRight, BookOpen, Hand, ScanFace, ScrollText, Sparkles } from "lucide-react";
 import { Layout } from "@/components/layout";
 import { SeoHead } from "@/components/SeoHead";
+import { useEffect } from "react";
+import { trackEvent } from "@/lib/analytics";
 
 type Guide = {
   slug: string;
@@ -64,6 +66,9 @@ export default function Guides() {
   const guide = params?.topic ? GUIDES[params.topic] : undefined;
   if (!guide) return null;
   const Icon = guide.icon;
+  useEffect(() => {
+    trackEvent("guide_view", { guide_slug: guide.slug });
+  }, [guide.slug]);
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -82,7 +87,7 @@ export default function Guides() {
           <div className="mb-4 flex items-center gap-2 text-sm font-semibold text-primary"><Icon className="h-5 w-5" /> MyTestType Guide</div>
           <h1 className="text-3xl font-black leading-tight md:text-5xl">{guide.title}</h1>
           <p className="mt-5 text-base leading-8 text-muted-foreground">{guide.answer}</p>
-          <Link href={guide.testPath} className="mt-6 inline-flex h-11 items-center gap-2 rounded-md bg-primary px-5 text-sm font-bold text-primary-foreground">{guide.testLabel}<ArrowRight className="h-4 w-4" /></Link>
+          <Link href={guide.testPath} onClick={() => trackEvent("guide_cta_click", { guide_slug: guide.slug, target_service: guide.testPath })} className="mt-6 inline-flex h-11 items-center gap-2 rounded-md bg-primary px-5 text-sm font-bold text-primary-foreground">{guide.testLabel}<ArrowRight className="h-4 w-4" /></Link>
         </header>
         <div className="mt-8 space-y-8">
           {guide.sections.map((section) => <section key={section.heading}><h2 className="text-xl font-bold md:text-2xl">{section.heading}</h2><p className="mt-3 leading-8 text-muted-foreground">{section.body}</p></section>)}
