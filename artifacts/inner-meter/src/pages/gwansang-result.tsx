@@ -4,6 +4,7 @@ import { RotateCcw, ChevronDown, Sparkles, Loader2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { GwansangAnalysisResult } from "@/pages/gwansang";
 import { ResultShareButtons } from "@/components/ResultShareButtons";
+import { trackDetailView, trackResultImageSave, trackSupportClick } from "@/lib/analytics";
 
 interface ResultProps {
   result: GwansangAnalysisResult;
@@ -90,10 +91,10 @@ function SupportUnlockCard({ onUnlock, copy }: { onUnlock: () => void; copy: Fac
         {copy.unlockBody}
       </p>
       <div className="mt-4 flex flex-wrap justify-center gap-2 text-xs">
-        <a href="https://mytesttype.com/k-shaman/toss_qr.jpg" target="_blank" rel="noreferrer" className="border border-[#8e5a38]/35 bg-[#f9e5b5] px-3 py-2 font-semibold text-[#4a2517]">{copy.toss}</a>
-        <a href="https://mytesttype.com/k-shaman/paypal_qr.jpg" target="_blank" rel="noreferrer" className="border border-[#8e5a38]/35 bg-[#f9e5b5] px-3 py-2 font-semibold text-[#4a2517]">{copy.paypal}</a>
+        <a href="https://mytesttype.com/k-shaman/toss_qr.jpg" target="_blank" rel="noreferrer" onClick={() => trackSupportClick({ service: "face", method: "toss" })} className="border border-[#8e5a38]/35 bg-[#f9e5b5] px-3 py-2 font-semibold text-[#4a2517]">{copy.toss}</a>
+        <a href="https://mytesttype.com/k-shaman/paypal_qr.jpg" target="_blank" rel="noreferrer" onClick={() => trackSupportClick({ service: "face", method: "paypal" })} className="border border-[#8e5a38]/35 bg-[#f9e5b5] px-3 py-2 font-semibold text-[#4a2517]">{copy.paypal}</a>
       </div>
-      <button type="button" onClick={onUnlock} className="mt-4 h-11 border border-[#4a2517] bg-[#3b1d17] px-5 text-sm font-bold text-[#fff0c8] shadow-[3px_3px_0_#9b5a3b]">{copy.openDetail}</button>
+      <button type="button" onClick={() => { trackDetailView({ service: "face" }); onUnlock(); }} className="mt-4 h-11 border border-[#4a2517] bg-[#3b1d17] px-5 text-sm font-bold text-[#fff0c8] shadow-[3px_3px_0_#9b5a3b]">{copy.openDetail}</button>
       <p className="mt-2 text-[10px] text-[#705244]">{copy.supportNote}</p>
     </motion.div>
   );
@@ -207,7 +208,7 @@ function FaceImageCard({
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.4 }}
                   />
-                  <a href={generatedImage} download={`mytesttype-face-${type}.png`} className="flex h-9 items-center justify-center rounded-xl bg-[#f9e5b5] text-[12px] font-semibold text-[#5b3224]">{language.toLowerCase().startsWith("ko") ? "이미지 저장" : "Save image"}</a>
+                  <a href={generatedImage} download={`mytesttype-face-${type}.png`} onClick={() => trackResultImageSave({ test_slug: "face_reading", result_key: type, result_title: title })} className="flex h-9 items-center justify-center rounded-xl bg-[#f9e5b5] text-[12px] font-semibold text-[#5b3224]">{language.toLowerCase().startsWith("ko") ? "이미지 저장" : "Save image"}</a>
                   <button
                     onClick={() => { setGeneratedImage(null); }}
                     className="w-full h-9 rounded-xl text-[12px] font-semibold"

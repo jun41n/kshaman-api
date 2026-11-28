@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/layout";
 import { SeoHead } from "@/components/SeoHead";
 import { ResultShareButtons } from "@/components/ResultShareButtons";
-import { trackEvent, trackTestComplete, trackTestStart } from "@/lib/analytics";
+import { trackDetailView, trackEvent, trackResultImageSave, trackSupportClick, trackTestComplete, trackTestStart } from "@/lib/analytics";
 
 type HandSide = "left" | "right";
 type PalmMode = "solo" | "compatibility";
@@ -688,7 +688,7 @@ function ResultView({
           </div>
           <button
             type="button"
-            onClick={onPremium}
+            onClick={() => { trackDetailView({ service: "palm", mode }); onPremium(); }}
             className="mt-4 h-11 bg-[#281915] px-5 font-semibold text-[#f8e7bd]"
           >
             {ui.openDetail}
@@ -733,7 +733,7 @@ function PalmMarkedImage({ image, alt, labels, saveLabel }: { image: string; alt
       <figcaption className="flex flex-wrap gap-1.5 border-t border-[#8e5a38]/20 px-3 py-2 text-[10px] font-semibold text-[#604133]">
         {labels.map((label, index) => <span key={label} className="rounded-full bg-[#f4d89e] px-2 py-1">{index + 1}. {label}</span>)}
       </figcaption>
-      <a href={image} download="mytesttype-palm-result.png" className="flex h-9 items-center justify-center border-t border-[#8e5a38]/20 text-[11px] font-bold text-[#5b3224]">{saveLabel}</a>
+      <a href={image} download="mytesttype-palm-result.png" onClick={() => trackResultImageSave({ test_slug: "palm_reading", result_key: alt, result_title: alt })} className="flex h-9 items-center justify-center border-t border-[#8e5a38]/20 text-[11px] font-bold text-[#5b3224]">{saveLabel}</a>
     </figure>
   );
 }
@@ -1023,7 +1023,7 @@ export default function PalmReading() {
             mode={mode}
             free={free}
             premium={premium}
-            onPremium={() => setPaymentOpen(true)}
+            onPremium={() => { trackSupportClick({ service: "palm", method: "support_unlock", mode }); setPaymentOpen(true); }}
           />
         ) : stage === "analyzing" ? (
           <section className="border border-[#8e5a38]/35 bg-[#f6dda2]/85 p-10 text-center shadow-[4px_4px_0_rgba(104,59,32,.14)]">

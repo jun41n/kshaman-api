@@ -4,6 +4,7 @@ import { useApp } from "../store/appStore";
 import { formatPrice, FREE_LABEL } from "../config/pricing";
 import { SiteNav } from "../components/SiteNav";
 import { AdOverlay } from "../components/AdOverlay";
+import { trackSupportClick } from "../lib/analytics";
 
 interface Props {
   onSuccess: (productId: string) => void;
@@ -109,7 +110,7 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
               <span className="text-sm font-mono text-white font-bold tracking-wide shrink-0">1001-8318-9198</span>
               <span className="text-xs text-white/50 shrink-0">Choi Youngjun</span>
               <button
-                onClick={handleCopy}
+                onClick={() => { trackSupportClick({ service: "saju", method: "toss_copy", productId: state.selectedProductId ?? undefined }); handleCopy(); }}
                 className={`ml-auto shrink-0 text-xs px-3 py-1.5 rounded-lg font-semibold transition-all ${
                   copied
                     ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
@@ -137,6 +138,7 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
               href="https://paypal.me/YoungjunChoi310/1.99"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackSupportClick({ service: "saju", method: "paypal", productId: state.selectedProductId ?? undefined })}
               className="flex items-center justify-center gap-3 w-full py-3 rounded-xl bg-[#003087] hover:bg-[#002070] transition-colors font-bold text-white text-sm shadow"
             >
               <img src={`${BASE}paypal_logo.jpg`} alt="PayPal" className="h-5 object-contain rounded" />
@@ -167,7 +169,7 @@ export function PaymentPage({ onSuccess, onBack }: Props) {
       <div className="fixed bottom-0 left-0 right-0 px-4 pb-8 pt-4 bg-gradient-to-t from-gray-950 via-gray-950/95 to-transparent">
         <div className="max-w-md mx-auto">
           <button
-            onClick={() => onSuccess(state.selectedProductId ?? "")}
+            onClick={() => { trackSupportClick({ service: "saju", method: "confirm", productId: state.selectedProductId ?? undefined }); onSuccess(state.selectedProductId ?? ""); }}
             className={`w-full py-4 rounded-2xl font-bold text-white text-lg shadow-2xl active:scale-95 transition-all bg-gradient-to-r ${fromColor} ${toColor}`}
           >
             {t.bokchaeConfirm}

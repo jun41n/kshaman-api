@@ -65,6 +65,7 @@ export function KShamanShareButtons({ lang, title = "K-Shaman AI 사주 결과",
     try {
       const shareUrl = await getShareUrl(); await navigator.clipboard.writeText(`${shareText}\n${title}\n${summary}\n${shareUrl}`);
       trackEvent("saju_result_share", { share_type: "copy_link" });
+      trackEvent("result_share", { service: "saju", share_type: "copy_link" });
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
     } catch { /* ignore */ }
@@ -73,6 +74,7 @@ export function KShamanShareButtons({ lang, title = "K-Shaman AI 사주 결과",
   const openShare = async (makeUrl: (shareUrl: string) => string, shareType: string) => {
     const shareUrl = await getShareUrl();
     trackEvent("saju_result_share", { share_type: shareType });
+    trackEvent("result_share", { service: "saju", share_type: shareType });
     window.open(makeUrl(shareUrl), "_blank", "width=640,height=480");
   };
 
@@ -80,12 +82,14 @@ export function KShamanShareButtons({ lang, title = "K-Shaman AI 사주 결과",
     try { const shareUrl = await getShareUrl(); await navigator.clipboard.writeText(`${shareText}\n${title}\n${summary}\n${shareUrl}`); } catch { /* ignore */ }
     setGuidance(g => g === "instagram" ? null : "instagram");
     trackEvent("saju_result_share", { share_type: "instagram_copy" });
+    trackEvent("result_share", { service: "saju", share_type: "instagram" });
   };
 
   const handleTikTok = async () => {
     try { const shareUrl = await getShareUrl(); await navigator.clipboard.writeText(`${shareText}\n${title}\n${summary}\n${shareUrl}`); } catch { /* ignore */ }
     setGuidance(g => g === "tiktok" ? null : "tiktok");
     trackEvent("saju_result_share", { share_type: "tiktok_copy" });
+    trackEvent("result_share", { service: "saju", share_type: "tiktok" });
   };
 
   const buttons = [

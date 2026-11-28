@@ -11,7 +11,8 @@ import { BottomBannerAd } from "./components/BottomBannerAd";
 import { FixedBannerAd } from "./components/FixedBannerAd";
 import { ShamanFooter } from "./components/ShamanFooter";
 import { SparkleOrbs } from "./components/SparkleOrbs";
-import { initAnalytics, trackEvent } from "./lib/analytics";
+import { initAnalytics, trackEvent, trackSupportComplete } from "./lib/analytics";
+import { getProductById } from "./config/products";
 
 type Step = "select" | "form" | "products" | "payment" | "partner-form" | "result" | "chat";
 
@@ -34,6 +35,9 @@ export default function App() {
   };
 
   const handlePaymentSuccess = (productId: string) => {
+    if (!getProductById(productId)?.is_free) {
+      trackSupportComplete({ service: "saju", method: "self_reported", productId });
+    }
     if (productId === "ask_anything") {
       setStep("chat");
     } else if (productId === "compatibility") {

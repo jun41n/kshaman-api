@@ -45,6 +45,7 @@ export function UserInfoFormPage({ onNext, onBack }: Props) {
       language: state.currentLang,
       has_birth_hour: Boolean(form.birthHour),
     });
+    trackEvent("reading_start", { service: "saju", product_stage: "form_submitted" });
     onNext();
   };
 

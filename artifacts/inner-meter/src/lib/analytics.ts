@@ -78,6 +78,10 @@ export function trackTestStart(params: {
   category: string;
 }): void {
   trackEvent('test_start', params);
+  trackEvent('reading_start', {
+    service: params.category,
+    test_slug: params.test_slug,
+  });
 }
 
 export function trackTestComplete(params: {
@@ -88,6 +92,11 @@ export function trackTestComplete(params: {
   category: string;
 }): void {
   trackEvent('test_complete', params);
+  trackEvent('reading_complete', {
+    service: params.category,
+    test_slug: params.test_slug,
+    result_key: params.result_key,
+  });
 }
 
 export function trackResultShareClick(params: {
@@ -96,6 +105,10 @@ export function trackResultShareClick(params: {
   share_type: string;
 }): void {
   trackEvent('result_share_click', params);
+  trackEvent('result_share', {
+    service: params.test_slug,
+    share_type: params.share_type,
+  });
 }
 
 export function trackResultImageSave(params: {
@@ -104,6 +117,22 @@ export function trackResultImageSave(params: {
   result_title: string;
 }): void {
   trackEvent('result_image_save', params);
+}
+
+export function trackDetailView(params: { service: string; mode?: string }): void {
+  trackEvent('detail_view', params);
+}
+
+export function trackSupportClick(params: { service: string; method: string; mode?: string }): void {
+  trackEvent('support_cta_click', params);
+}
+
+/**
+ * The current Toss/PayPal flow has no provider callback. Keep this explicit so
+ * the dashboard can separate a user's confirmation from a verified payment.
+ */
+export function trackSupportComplete(params: { service: string; method: string; verification: 'self_reported' | 'provider' }): void {
+  trackEvent('support_complete', params);
 }
 
 export function trackTarotDraw(card_name: string): void {

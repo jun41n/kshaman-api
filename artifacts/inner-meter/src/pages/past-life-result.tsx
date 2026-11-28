@@ -3,6 +3,7 @@ import { Loader2, RotateCcw, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ResultShareButtons } from "@/components/ResultShareButtons";
+import { trackDetailView, trackSupportClick, trackResultImageSave } from "@/lib/analytics";
 import { getPastLifeCareer } from "@/data/past-life-careers";
 import type { GwansangAnalysisResult } from "@/pages/gwansang";
 
@@ -284,10 +285,10 @@ export function PastLifeResult({ result, image, onReset }: Props) {
               {["재물과 생존 전략", "사랑에서 지킨 약속", "현생 전생 미션", "내 전생 소장 포스터"].map((item) => <div key={item} className="border border-[#f4dca4]/15 bg-black/10 px-3 py-2 blur-[1.2px]">{item}</div>)}
             </div>
             <div className="mt-4 grid grid-cols-2 gap-2 text-center text-xs font-bold">
-              <a href="https://mytesttype.com/k-shaman/toss_qr.jpg" target="_blank" rel="noreferrer" className="border border-[#f4dca4]/30 bg-[#fff0c8]/10 px-3 py-3">{isKorean ? "Toss 후원 QR" : pastLabel(i18n.language, "toss")}</a>
-              <a href="https://mytesttype.com/k-shaman/paypal_qr.jpg" target="_blank" rel="noreferrer" className="border border-[#f4dca4]/30 bg-[#fff0c8]/10 px-3 py-3">{isKorean ? "PayPal 후원 QR" : pastLabel(i18n.language, "paypal")}</a>
+              <a href="https://mytesttype.com/k-shaman/toss_qr.jpg" target="_blank" rel="noreferrer" onClick={() => trackSupportClick({ service: "past-life", method: "toss" })} className="border border-[#f4dca4]/30 bg-[#fff0c8]/10 px-3 py-3">{isKorean ? "Toss 후원 QR" : pastLabel(i18n.language, "toss")}</a>
+              <a href="https://mytesttype.com/k-shaman/paypal_qr.jpg" target="_blank" rel="noreferrer" onClick={() => trackSupportClick({ service: "past-life", method: "paypal" })} className="border border-[#f4dca4]/30 bg-[#fff0c8]/10 px-3 py-3">{isKorean ? "PayPal 후원 QR" : pastLabel(i18n.language, "paypal")}</a>
             </div>
-            <button type="button" onClick={() => setPremiumUnlocked(true)} className="mt-3 h-11 w-full bg-[#f1c970] text-sm font-black text-[#3a1f14]">{isKorean ? "테스트로 상세 기록 열기" : pastLabel(i18n.language, "testOpen")}</button>
+            <button type="button" onClick={() => { trackDetailView({ service: "past-life" }); setPremiumUnlocked(true); }} className="mt-3 h-11 w-full bg-[#f1c970] text-sm font-black text-[#3a1f14]">{isKorean ? "테스트로 상세 기록 열기" : pastLabel(i18n.language, "testOpen")}</button>
             <p className="mt-2 text-center text-[10px] text-[#f4dca4]/60">{isKorean ? "테스트 기간에는 후원 확인 없이 상세 결과를 열 수 있습니다." : pastLabel(i18n.language, "testNote")}</p>
           </section>
         ) : (
@@ -322,7 +323,7 @@ export function PastLifeResult({ result, image, onReset }: Props) {
         <div className="mt-5">
           <ResultShareButtons lang={i18n.language} title={shareTitle} url={url} summary={shareSummary} image={generatedImage ?? image} service="past-life" variant="paper" />
           {(generatedImage ?? image) && (
-            <a className="mt-3 flex h-11 w-full items-center justify-center border border-[#815039]/35 bg-[#f7dfaa]/75 text-sm font-bold text-[#50291c]" href={generatedImage ?? image ?? undefined} download="mytesttype-past-life-result.png">
+            <a className="mt-3 flex h-11 w-full items-center justify-center border border-[#815039]/35 bg-[#f7dfaa]/75 text-sm font-bold text-[#50291c]" href={generatedImage ?? image ?? undefined} download="mytesttype-past-life-result.png" onClick={() => trackResultImageSave({ test_slug: "past_life", result_key: career.title, result_title: displayTitle })}>
               {isKorean ? "전생 결과 이미지 저장" : copy.poster}
             </a>
           )}

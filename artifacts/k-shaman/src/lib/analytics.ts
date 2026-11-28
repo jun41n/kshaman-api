@@ -33,3 +33,12 @@ export function trackEvent(name: string, params: EventParams = {}) {
   if (!initialized) return;
   window.gtag?.("event", name, params);
 }
+
+export function trackSupportClick(params: { service: string; method: string; productId?: string }) {
+  trackEvent("support_cta_click", params);
+}
+
+/** No payment provider callback exists yet; this is explicitly self-reported. */
+export function trackSupportComplete(params: { service: string; method: string; productId?: string }) {
+  trackEvent("support_complete", { ...params, verification: "self_reported" });
+}

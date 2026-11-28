@@ -81,6 +81,10 @@ export function ReadingResultPage({ onAskAnything, onReset }: Props) {
           product_id: state.selectedProductId ?? "unknown",
           persona_id: state.selectedPersonaId ?? "unknown",
         });
+        trackEvent("reading_complete", {
+          service: "saju",
+          product_id: state.selectedProductId ?? "unknown",
+        });
         setLoading(false);
       })
       .catch((err: Error) => {
