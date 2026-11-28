@@ -205,10 +205,7 @@ export function Layout({ children, showAd = false }: LayoutProps) {
                   <a href="/privacy/" className="hover:text-primary transition-colors">
                     {isKo ? "개인정보 처리방침" : "Privacy Policy"}
                   </a>
-                  <a
-                    href="mailto:proofcom26@gmail.com"
-                    className="hover:text-primary transition-colors"
-                  >
+                  <a href="/contact/" className="hover:text-primary transition-colors">
                     {isKo ? "문의" : "Contact"}
                   </a>
                 </div>
